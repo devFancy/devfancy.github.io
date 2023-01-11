@@ -5,7 +5,7 @@ categories: Java
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 throw와 throws차이를 짚고 가기 이전에, try-catch 문에 대한 개념을 먼저 알고 가자.
 

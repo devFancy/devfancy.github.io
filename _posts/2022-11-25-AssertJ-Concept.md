@@ -5,7 +5,7 @@ categories: AssertJ
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 
 테스트코드를 작성하면서 JUnit과 AssertJ 사용법을 익혀야 한다는 사실을 알게 되고 난 이후에 따로 공부를 하게 되었다.

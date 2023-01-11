@@ -5,7 +5,7 @@ categories: Git
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 ## 커밋 메세지 형식
 

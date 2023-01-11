@@ -5,7 +5,7 @@ categories: E.T.C
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 IT업계에서 프로젝트를 할 때 기본적으로 팀 구성이 PM, 디자인, 프론트, 백엔드로 구성되어 있다. 나의 직무인 `백엔드 개발자 역량`뿐만 아니라, 다른 직무에 대한 이해도 필요하다고 생각해서 해외 온라인 강좌 [Coursera](https://www.coursera.org/) 사이트에서 해당 강좌들을 수강했다.
 

@@ -15,11 +15,11 @@ type: page
 
 * <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기록하는 걸 좋아합니다.
 
-* <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 공유하고 알려주는 것을 좋아합니다.
+* <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 같이 협업하며 성장하는 것을 추구합니다.
 
-* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 꾸준히 공부하는 성실한 개발자입니다.
+* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 매년 성장하기 위해 노력하는 개발자입니다.
 
-* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : 블로그에 보고 듣고 느끼고 배운 걸 남기는 재미로 살아갑니다.
+* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : 공부하면서 배운 것을 블로그에 남기는 재미로 살아갑니다.
  
 
 
@@ -70,7 +70,7 @@ type: page
 
 * 　11. 29 ~ 12.03 [인재개발원] 현직자 직무멘토링 프로그램 참가
 
-*  09 ~ 교내 동아리 데이터금융분석학회(DART) 참가
+* 　09 ~ 교내 동아리 데이터금융분석학회(DART) 참가
 
 * 　04.14 [삼성SDI] 상반기 동문선배 및 인사실무자 멘토링 참가
 

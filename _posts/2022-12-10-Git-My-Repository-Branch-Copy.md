@@ -5,7 +5,7 @@ categories: Git
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 ## Motivation
 

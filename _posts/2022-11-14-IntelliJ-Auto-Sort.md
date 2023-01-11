@@ -5,7 +5,7 @@ categories: IntelliJ
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 ## 자동 정렬 기능
 

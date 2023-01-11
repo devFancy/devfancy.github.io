@@ -5,7 +5,7 @@ categories: AlgorithmSkill
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 ## static 이란?
 

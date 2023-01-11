@@ -5,7 +5,7 @@ categories: Retrospective
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 > 2022년 **Dev History**
 

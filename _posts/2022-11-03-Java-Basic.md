@@ -5,7 +5,7 @@ categories: Java
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 ## Java
 

@@ -5,7 +5,7 @@ categories: IntelliJ
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 * 기존에 나는 터미널에서 "java -version" 입력했을 때, JDK 버전이 18이였다.
 

@@ -5,7 +5,7 @@ categories: IntelliJ
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 * 개발을 하면서 내가 짠 코드들을 머릿속으로 온전히 이해하기가 쉽지 않다.
 

@@ -5,7 +5,7 @@ categories: AlgorithmSkill
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 [숫자 야구 게임](https://github.com/woowacourse-precourse/java-baseball)
 

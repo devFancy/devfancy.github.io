@@ -5,7 +5,7 @@ categories: Java
 author: fancy96
 ---
 * content
-  {:toc}
+{:toc}
 
 ## 객체 지향과 자바
 
