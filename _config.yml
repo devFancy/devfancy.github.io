@@ -1,0 +1,62 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: GitBlog
+brief-intro: BE Developer
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://fancy96.github.io" # the base hostname & protocol for your site
+# url에 임의의 값을 넣으면
+# {{site.url}} 사용시 local 환경에서도 지정한 값을 사용한다.
+    
+
+permalink: /:title/
+
+# other links
+github_username: Fancy96
+# linkedIn_username:
+# facebook_username:
+# insta_username:
+# email: hello.goodgid@gmail.com
+
+description_footer: ""
+
+# comments
+# two ways to comment, only choose one, and use your own short name
+disqus_shortname: Fancy96
+
+# Statistic Analysis 
+google_analytics_id: G-7BMWW1711K # google analytics id
+
+# Build settings
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+sass:
+  sass_dir:         _sass
+  style:            compressed
+
+# port (default = 4000)
+# port: 4000
+
+# url
+category_dir: category/
+tag_dir: tag/
+
+# excerpt
+excerpt_separator: "\n\n\n"
+
+# paginate
+plugins: [jekyll-paginate]
+paginate: 6
+
+future: true
+incremental: false
+regenerate : true
