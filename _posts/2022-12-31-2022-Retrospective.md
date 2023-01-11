@@ -136,7 +136,6 @@ author: fancy96
 - 4학년 2학기 공부
 - 취업 준비
 - 공개SW 개발자 대회 - 최종 발표(11월 9일) / 장소 : 삼성역 코엑스 컨퍼런스 룸
-    - [공개SW 개발자 대회 후기](https://velog.io/@fancy-log/2022-%EA%B3%B5%EA%B0%9C-SW-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%8C%80%ED%9A%8C-%ED%9B%84%EA%B8%B0)
 - 우아한테크코스 프리코스 참가(10월 26일 ~ 11월 23일) - branch : fancy-log
     - [1주차 온보딩 미션](https://github.com/fancy-log/java-onboarding)
     - [2주차 숫자 야구 게임 미션](https://github.com/fancy-log/java-baseball)
