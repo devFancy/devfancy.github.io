@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 8. The Multi-Level Feedback Queue(MLFQ)"
+title:  " 8. The Multi-Level Feedback Queue(MLFQ) "
 categories: OS
 author: fancy96
 ---
