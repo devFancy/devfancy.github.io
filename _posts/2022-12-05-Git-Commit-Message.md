@@ -21,11 +21,11 @@ author: fancy96
 
 커밋 메시지의 각 줄은 100자를 넘을 수 없습니다. 이래야지 github와 다양한 git도구들에서 쉽게 메시지를 읽을 수 있습니다.
 
-## **Subject Line (제목)**
+## Subject Line (제목)
 
 제목에는 변경사항에 대한 간결한 설명을 포함시킵니다.
 
-### **`<`type`>`에 들어갈 수 있는 항목들 **
+### `<`type`>`에 들어갈 수 있는 항목들 
 
 - feat (feature) : 새로운 기능 추가
 - fix (bug fix) : 버그 수정
@@ -38,28 +38,24 @@ author: fancy96
 - perf : 성능 개선
 - chore (maintain) : 그 외의 수정
 
-### **`<`scope`>`에 들어갈 수 있는 내용들**
+### `<`scope`>`에 들어갈 수 있는 내용들
 
 어디가 변경되었는지에 관하여 변경된 부분은 모두 들어갈 수 있습니다. $location, $browser, $compile, $rootScope, ngHref, ngClick, ngView, 등등...이 들어갈 수 있으며 **scope는 생략 가능합니다.**
 
-### **`<`subject`>`**
+### `<`subject`>`
 
-- 명령형 현제 시제를 사용해야합니다. -> changed, changes가 아닌 **change를 사용❗**
+- 명령형 현제 시제를 사용해야합니다. -> changed, changes가 아닌 change를 사용❗
 - 첫 글자는 대문자가 아닌 소문자로 사용합니다.
-- 문장 끝에 **마침표(.)를 붙이지 말아야 합니다.**
+- 문장 끝에 마침표(.)를 붙이지 말아야 합니다.
 
-## **Message body (내용)**
+## Message body (내용)
 
 - 명령형과 현제 시제를 사용해야합니다.
 - 변화에 대한 이유와 이전코드와 이후 코드의 차이점을 포함시켜야 합니다.
 
-[http://365git.tumblr.com/post/3308646748/writing-git-commit-messages](http://365git.tumblr.com/post/3308646748/writing-git-commit-messages) 
+## Message footer
 
-[http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
-
-## **Messa ge footer**
-
-### **Breaking changes (주요 변경 내용)**
+### Breaking changes (주요 변경 내용)
 
 모든 주요 변경 사항은
 
@@ -90,9 +86,9 @@ BREAKING CHANGE: isolate scope bindings definition has changed and
     The removed `inject` wasn't generaly useful for directives so there should be no code using it.
 ```
 
-### **Referencing Issues (해결된 이슈?)**
+### Referencing Issues (해결된 이슈?)
 
-해결되 이슈는 커밋 메시지 하단에 `Closes #<이슈번호>`와 함께 기록해야합니다.
+해결되 이슈는 커밋 메시지 하단에 `Closes #<이슈번호>`와 함께 기록해야합니다.
 
 ```
 이슈가 하나인 경우
