@@ -232,7 +232,7 @@ author: fancy96
 
 **BaseballGameResult(Model 부분)**
 
-![](/assets/img/woowacourse/2th_BaseballMaker.png)
+![](/assets/img/woowacourse/2th_BaseballGameResult.png)
 
 * 여기서 showResult() 메서드에서 view 패키지의 Outputview 클래스를
 
