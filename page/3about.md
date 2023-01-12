@@ -44,33 +44,35 @@ type: page
 
 ### 2022
 
-* 　12. 31 Coursera 5개 수료증 취득
+* 　12. 31 Coursera 5개 수강
 
-* 　10. 26 우아한테크코스 5기 프리코스 참가
+* 　10. 26 [우아한테크코스 5기 프리코스](https://github.com/woowacourse-precourse) 참가
 
-* 　10. 12 KNU 창업 성과 경진대회 참가
+    *  [미션 복습](https://fancy96.github.io/category/#Woowacourse)
+
+* 　10. 12 KNU 창업 성과 경진대회 참가 - 장려상 수상
 
 * 　08. 30 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
 
-* 　08. 09 KNU 학생설계 융합전공 공모전 참가
+* 　08. 09 KNU 학생설계 융합전공 공모전 참가 - 대상 수상
 
-* 　07. 04 공개 SW 개발자 대회 참가
+* 　07. 04 [공개 SW 개발자 대회](https://www.oss.kr/dev_competition) 참가
 
-* 　07. 01 ~ 08. 31 과학기술정보통신부 주관 알파시티 마스터과정 참가 - 백엔드 개발자
+* 　07. 01 ~ 08. 31 과학기술정보통신부 주관 알파시티 마스터과정 참가(백엔드 개발자로 근무)
 
-* 　06. 02 SK하이닉스 제 2회 사회문제 해결 스타트업 아이디어 공모전 참가
+* 　06. 02 [SK하이닉스 제 2회 사회문제 해결 스타트업 아이디어 공모전](https://news.skhynix.co.kr/post/2nd-solving-social-problems-exhibition-contest) 참가
 
-* 　05. 20 신한 스퀘어브릿지 HERO IR DAY 대학생 창업 아이디어 경진대회 참가
+* 　05. 20 [신한 스퀘어브릿지 HERO IR DAY 대학생 창업 아이디어 경진대회](https://sehub.net/archives/2076603) 참가
 
-* 　01. 03 제 1회 투자재능 발굴 프로젝트 참가
+* 　01. 03 [제 1회 투자재능 발굴 프로젝트](https://alphabridge1101.notion.site/6d25cbbaf0ea470e945467e4398be4e1) 참가
 
 ### 2021
 
-* 　09. 01 ~ 12.15 시스템프로그래밍 공부 - Linux
+* 　09. 01 ~ 12.15 [시스템프로그래밍](https://github.com/Fancy96/System_Programming) 공부 - Linux
 
 * 　11. 29 ~ 12.03 [인재개발원] 현직자 직무멘토링 프로그램 참가
 
-* 　09 ~ 교내 동아리 데이터금융분석학회(DART) 참가
+* 　09 ~ [교내 동아리 데이터금융분석학회(DART)](https://www.knudart.com/) 참가
 
 * 　04.14 [삼성SDI] 상반기 동문선배 및 인사실무자 멘토링 참가
 
@@ -92,7 +94,7 @@ type: page
 
 1. 컴퓨터활용능력 1급 (19. 03. 29) - 19-K9-027104
 
-1. OPIc IH (19. 12. 15) - 1A934212562
+1. OPIc IH (19. 12. 15) - 갱신 예정
 
 ---
 
@@ -102,7 +104,7 @@ type: page
 
 * 동아리 운영비 후원
 
-* Coursera 5개 수료증 취득
+* [Coursera 5개 수료증 취득](https://fancy96.github.io/Coursera-Certificates/)
 
 ---
 
