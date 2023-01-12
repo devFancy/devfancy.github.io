@@ -56,7 +56,7 @@ author: fancy96
 
 ### Git Workflow - 3가지 작업환경
 
-* **working directory -** 우리가 프로젝트의 파일들을 수정하고 작업하고 있는 환경
+* working directory - 우리가 프로젝트의 파일들을 수정하고 작업하고 있는 환경
 
   * untracked  - 새로 만들어진 파일이거나, 아직 트랙킹 하지 않는 파일
   
@@ -64,11 +64,11 @@ author: fancy96
   
     * unmodified - 이전 버전과 비교해서 수정되지 않은 파일
     
-    * modified - **오직 수정이 된 파일만 staging area로 옮길 수 있다.**
+    * modified - 오직 수정이 된 파일만 `staging area`로 옮길 수 있다.
 
-* **staging area** - 어느 정도 작업하다가 버전의 히스토리에 저장할 준비가 되어있는 파일들을 옮겨놓은 환경 ( commit 명령어를 이용해서 .git directory로 옮긴다)
+* staging area - 어느 정도 작업하다가 버전의 히스토리에 저장할 준비가 되어있는 파일들을 옮겨놓은 환경 ( commit 명령어를 이용해서 .git directory로 옮긴다)
 
-* **.git directory** - 버전의 히스토리를 가지고 있는 환경 (== .git repository)
+* git directory - 버전의 히스토리를 가지고 있는 환경 (== .git repository)
 
   * git directory에 저장된 버전들은 checkout이라는 명령어를 이용해서 언제든지 원하는 버전으로 다시 돌아갈 수 있다.
 
@@ -77,6 +77,7 @@ author: fancy96
   * 그리고 서버에서 다시 로컬로 다운로드 받고 싶을 때는 **pull**이라는 명령어를 이용할 수 있다.
 
 ![](/assets/img/git/Git_Workflow_1.png)
+
 ---
 
 ### 로컬 파일들 추가하기 - add - 예시)
@@ -97,7 +98,7 @@ author: fancy96
 
 ---
 
-### **커밋할 때 팁**
+### 커밋할 때 팁
 
 ![](/assets/img/git/Git_Workflow_5.png)
 
@@ -113,9 +114,9 @@ author: fancy96
 
 * 태그는 왜 필요할까 ?
   
-  * **내가 특정한 commit을 북마크 하고 싶을 때 git tag 이다.**
+  * 내가 특정한 commit을 북마크 하고 싶을 때 `git tag` 이다.
   
-  * 대부분 **sematic versioning 시스템**을 따라간다.
+  * 대부분 `sematic versioning 시스템`을 따라간다.
 
 ![](/assets/img/git/Git_Workflow_6.png)
 
