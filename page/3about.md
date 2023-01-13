@@ -15,9 +15,9 @@ type: page
 
 * <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기록하는 걸 좋아합니다.
 
-* <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 같이 협업하며 성장하는 것을 추구합니다.
+* <img src="/assets/img/logo/handshake.png" style="max-width: 4%; vertical-align: text-bottom;"> : 같이 협업하며 성장하는 것을 추구합니다.
 
-* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 매년 성장하기 위해 노력하는 개발자입니다.
+* <img src="/assets/img/logo/rocket-lunch.png" style="max-width: 3%; vertical-align: text-bottom;"> : 매년 성장하기 위해 노력하는 개발자입니다.
 
 * <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : 공부하면서 배운 것을 블로그에 남기는 재미로 살아갑니다.
  
