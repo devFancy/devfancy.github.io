@@ -106,3 +106,5 @@ Sitemap: http://fancy96.github.io/sitemap.xml
 * [Github blog를 Google 검색 엔진에 노출시키기](https://burningfalls.github.io/blog/google-search-console/)
 
 * [Robots.txt 파일 작성 및 제출 방법](https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt?hl=ko)
+
+* [Jekyll 블로그 검색엔진에 등록하기 - NAVER](https://sanghyuk.dev/blog/2/)

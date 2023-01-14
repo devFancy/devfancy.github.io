@@ -15,7 +15,7 @@ type: page
 
 * <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기록하는 걸 좋아합니다.
 
-* <img src="/assets/img/logo/handshake.png" style="max-width: 4%; vertical-align: text-bottom;"> : 같이 협업하며 성장하는 것을 추구합니다.
+* <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 같이 협업하며 성장하는 것을 추구합니다.
 
 * <img src="/assets/img/logo/rocket-lunch.png" style="max-width: 3%; vertical-align: text-bottom;"> : 매년 성장하기 위해 노력하는 개발자입니다.
 
@@ -47,8 +47,6 @@ type: page
 * 　12. 31 Coursera 5개 수강
 
 * 　10. 26 [우아한테크코스 5기 프리코스](https://github.com/woowacourse-precourse) 참가
-
-    *  [미션 복습](https://fancy96.github.io/category/#Woowacourse)
 
 * 　10. 12 KNU 창업 성과 경진대회 참가 - 장려상 수상
 
