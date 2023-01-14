@@ -7,7 +7,6 @@ author: fancy96
 * content
 {:toc}
 
-
 ## Git 과 Github는 무엇인가 ?
 
 ### Distributed Version Control - 분산시스템
@@ -202,7 +201,7 @@ author: fancy96
 
 ---
 
-## 참고
+## Reference
 
 * 드림코딩 엘리 - Git 마스터과정
 

@@ -159,7 +159,7 @@ author: fancy96
 
 ---
 
-## 참고
+## Reference
 
 * [[10분 테코톡] 제리의 MVC 패턴](https://www.youtube.com/watch?v=ogaXW6KPc8I&ab_channel=%EC%9A%B0%EC%95%84%ED%95%9CTech)
 

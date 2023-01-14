@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  " 3. Introduction to Computing Systems "
+title:  " 3. 컴퓨터 시스템의 동작 원리 "
 categories: OS
 author: fancy96
 ---
 * content
 {:toc}
-
-컴퓨터 시스템의 동작 원리
 
 ## 1. 컴퓨터 시스템의 구조
 
@@ -209,3 +207,9 @@ DMA(Diredt Memory Access)
   * CPU에 직접적으로 연결 X
 
 ![](/assets/img/os/os-3-Intro-to-Computing-Systems_8.png)
+
+## Reference
+
+* [운영 체제와 정보기술의 원리](http://www.yes24.com/Product/Goods/90124877)
+
+* 학교 수업 내용

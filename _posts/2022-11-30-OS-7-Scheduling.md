@@ -282,3 +282,9 @@ author: fancy96
   * 응답시간이 더 길다.
   
   * context switching의 비용이 줄어들 것이다.
+
+## Reference
+
+* [운영 체제와 정보기술의 원리](http://www.yes24.com/Product/Goods/90124877)
+
+* 학교 수업 내용

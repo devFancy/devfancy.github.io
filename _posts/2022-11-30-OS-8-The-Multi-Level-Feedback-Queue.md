@@ -188,3 +188,9 @@ MLFQ의 각 단계에서 CPU 총 사용 시간을 측정하는 것
   : 주어진 단계에서 **시간 할당량(time allotment)을 소진하면** (CPU를 몇 번 양도하였는지 상관없이), **우선순위는 낮아진다.** (아래 단계의 큐로 이동한다.)
 
   ![](/assets/img/os/os-8-The-Multi-Level-Feedback-Queue_7.png)
+
+## Reference
+
+* [운영 체제와 정보기술의 원리](http://www.yes24.com/Product/Goods/90124877)
+
+* 학교 수업 내용

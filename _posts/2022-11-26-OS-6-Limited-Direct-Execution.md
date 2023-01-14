@@ -116,7 +116,6 @@ author: fancy96
 
 ![](/assets/img/os/os-6-Limited-Direct-Execution_6.png)
 
-
 ### Problem#2: Switching between processes
 
 * Problem#1에서는 **하나**의 프로세스가 수행중에 권한이 있는 작업을 수행하는 방법에 대해 알아봤다.
@@ -185,3 +184,9 @@ author: fancy96
 * 이번 장은 **Limited Direct Execution**에 대해 복습하고 정리해봤다.
 
 * 디스크에 I/O요청이 오거나 CPU 또는 메모리와 같은 더 많은 시스템 리소스에 접근을 허용할 때에는 **system call을 통해 mode switch 하는 방법**, 그리고 여러 개의 프로세스들이 동시에 실행할 때에는 **context switch를 통해 time interrupt를 사용하는 방법**을 배웠다.
+
+## Reference
+
+* [운영 체제와 정보기술의 원리](http://www.yes24.com/Product/Goods/90124877)
+
+* 학교 수업 내용
