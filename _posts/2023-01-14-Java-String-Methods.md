@@ -68,15 +68,15 @@ String b = a.trim(); // b = "Hellonicetomeetyou". 스페이스와 `\t` 제거됨
 
 ## String 클래스의 주요 메소드
 
-`char charAt(int index)` - index 인덱스에 있는 문자 값 리턴
+### `char charAt(int index)` - index 인덱스에 있는 문자 값 리턴
   
 * 문자열 중에서 한 글자만 선택하는 경우 사용한다.
 
-`String toLowerCase()` - 소문자로 변경한 스트링 리턴 / `String toUpperCase()` - 대문자로 변경한 스트링 리턴
+### `String toLowerCase()` - 소문자로 변경한 스트링 리턴 / `String toUpperCase()` - 대문자로 변경한 스트링 리턴
 
 * 대소문자가 섞여있는 문자열을 소문자로 변환할 때 사용한다.
 
-`int length()` - 스트링의 길이(문자 개수) 리턴
+### `int length()` - 스트링의 길이(문자 개수) 리턴
 
 * 참고로, 배열로 선언된 String은 `length`로 사용한다.
   
@@ -105,7 +105,7 @@ class Solution {
 }
 ```
 
-`String [] split(String regex)` - 정규식 regex에 일치하는 부분을 중심으로 스트링을 분리하고 분리된 스트링을 배열에 저장하여 리턴
+### `String [] split(String regex)` - 정규식 regex에 일치하는 부분을 중심으로 스트링을 분리하고 분리된 스트링을 배열에 저장하여 리턴
 
 * 문자열을 배열로 전환할 때 사용한다.
 
@@ -118,11 +118,11 @@ boolean solution(String s) {
 }
 ```
 
-`boolean contains(CharSequence s)` - s에 지정된 문자들을 포함하고 있으면 true 리턴
+### `boolean contains(CharSequence s)` - s에 지정된 문자들을 포함하고 있으면 true 리턴
 
-`String replace(CharSequence target, CharSequence replacement)` - target이 지정하는 일련의 문자들을 replacement가 지정하는 문자들로 변경한 스트링 리턴
+### `String replace(CharSequence target, CharSequence replacement)` - target이 지정하는 일련의 문자들을 replacement가 지정하는 문자들로 변경한 스트링 리턴
 
-`String subString(int beginIndex)` - beginIndex 인텍스부터 시작하는 서브 스트링 리턴
+### `String subString(int beginIndex)` - beginIndex 인텍스부터 시작하는 서브 스트링 리턴
 
 * 문자열을 원하는 위치에서 잘라야 하는 경우에 쓰이는 메소드이다.
   
@@ -132,10 +132,10 @@ boolean solution(String s) {
 String str = "0123456789";
 str.substring(5); // 결과 : 56789
 ```
-* 
+
 * index 값이 5인 위치 이후 값을 가져오라고 했기 때문에 56789를 리턴하게 된다.
 
-`String subString(int beginIndex, int endIndex)` - beginIndex 부터 endIndex 전까지 서브 스트링 리턴
+### `String subString(int beginIndex, int endIndex)` - beginIndex 부터 endIndex 전까지 서브 스트링 리턴
 
 예시)
 
@@ -161,15 +161,13 @@ public class Solution {
 }
 ```
 
-`String concat(String str)` - str 스트링을 현재 스트링 뒤에 덧붙인 스트링 리턴
+### `String concat(String str)` - str 스트링을 현재 스트링 뒤에 덧붙인 스트링 리턴
 
 예시) 
 
 ``` java
 a = a.concat(b); // 문자열 연결 (a = "Hello", b = "friends") => "Hellow friends"
 ```
-
-`String trim()` - 스트링 앞뒤의 공백 문자들을 제거한 스트링 리턴
 
 ## Reference
 
