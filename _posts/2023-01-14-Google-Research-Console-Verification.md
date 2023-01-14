@@ -39,7 +39,7 @@ author: fancy96
 
 * 여기서 `HTML 파일`을 클릭한 후 아래의 `google~~~.html`파일을 다운로드 하고 내 github.io 폴더안에 추가한다.
 
-![](![](/assets/img/etc/Google-Research-Console-Verification_5.png)
+![](/assets/img/etc/Google-Research-Console-Verification_5.png)
 
 * 그리고 몇분정도 지나고 새로고침을 하면, "확인이 완료되었습니다." 라는 문구가 뜨게 된다.
 
