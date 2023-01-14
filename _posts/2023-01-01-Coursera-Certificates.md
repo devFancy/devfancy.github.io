@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " [Coursera] 5개 수료증 취득 "
-categories: E.T.C
+categories: ETC
 author: fancy96
 ---
 * content
