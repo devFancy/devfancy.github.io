@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://goodgid.github.io/sitemap.xml
+Sitemap: http://fancy96.github.io/sitemap.xml
