@@ -14,7 +14,7 @@ layout: null
     <image>
       <url>https://fancy96.github.io/assets/img/logo.png</url>
       <title>GitBlog</title>
-      <link>https://fancy96.github.io/</link>
+      <link>https://fancy96.github.io</link>
     </image>
     {% for post in site.posts limit:30 %}
       <item>
