@@ -23,17 +23,17 @@ author: fancy96
 
 ``` java
 @DisplayName("중복인지 확인")
-    @Test
-    void DuplicateTest() {
-        List<Integer> userDuplicate = Arrays.asList(1,1,2,3,4,5);
-        // Set 으로 변환
-        Set<Integer> userNoDuplicate = new HashSet<>(userDuplicate);
-        if(userNoDuplicate.size() != userDuplicate.size()) {
-            System.out.println("중복된 요소가 있습니다.");
-            System.out.println("전체 개수는 " + userDuplicate.size()); // 6개
-            System.out.println("중복되지 않은 개수는 " + userNoDuplicate.size()); // 5개
-        }
+@Test
+void DuplicateTest() {
+    List<Integer> userDuplicate = Arrays.asList(1,1,2,3,4,5);
+    // Set 으로 변환
+    Set<Integer> userNoDuplicate = new HashSet<>(userDuplicate);
+    if(userNoDuplicate.size() != userDuplicate.size()) {
+        System.out.println("중복된 요소가 있습니다.");
+        System.out.println("전체 개수는 " + userDuplicate.size()); // 6개
+        System.out.println("중복되지 않은 개수는 " + userNoDuplicate.size()); // 5개
     }
+}
 ```
 
 
@@ -44,21 +44,21 @@ author: fancy96
 구현한 코드 주소 : [java-baseball-review](https://github.com/fancy-log/java-baseball-review/pull/1)
 
 ``` java
-	public void validateNumberRange(List<Integer> user) {
-        Set<Integer> userNoDuplicate = new HashSet<>(user);
-        if(userNoDuplicate.size() != user.size()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "서로 다른 3자리 숫자만 입력 가능합니다.");
-        }
-        if(!isCorrectForm(userNoDuplicate)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "0이 아닌 3자리 숫자만 입력 가능합니다.");
-        }
+public void validateNumberRange(List<Integer> user) {
+    Set<Integer> userNoDuplicate = new HashSet<>(user);
+    if(userNoDuplicate.size() != user.size()) {
+        throw new IllegalArgumentException(ERROR_MESSAGE + "서로 다른 3자리 숫자만 입력 가능합니다.");
     }
-    public boolean isCorrectForm(Set<Integer> userNoDuplicate) {
-        if (userNoDuplicate.size() == BASEBALL_LENGTH && !userNoDuplicate.contains(ZERO)) {
-            return true;
-        }
-        return false;
+    if(!isCorrectForm(userNoDuplicate)) {
+        throw new IllegalArgumentException(ERROR_MESSAGE + "0이 아닌 3자리 숫자만 입력 가능합니다.");
     }
+}
+public boolean isCorrectForm(Set<Integer> userNoDuplicate) {
+    if (userNoDuplicate.size() == BASEBALL_LENGTH && !userNoDuplicate.contains(ZERO)) {
+        return true;
+    }
+    return false;
+}
 ```
 
 * List로 받아온 user를 Set으로 변환한 userNoDuplicate와 .size()로 비교해서 같지 않으면 중복이므로, IllegalArgumentException()로 예외를 발생시킨다.
@@ -76,9 +76,9 @@ author: fancy96
 ``` java
 public static void main(String[] args) {
 
-        List<Integer> numList = Arrays.asList(1,1,2,3,4,5);
-        if(numList.size() != numList.stream().distinct().count()){
-            System.out.println("중복된 요소가 있습니다.");
-        }
+    List<Integer> numList = Arrays.asList(1,1,2,3,4,5);
+    if(numList.size() != numList.stream().distinct().count()){
+        System.out.println("중복된 요소가 있습니다.");
     }
+}
 ```
