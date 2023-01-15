@@ -7,7 +7,21 @@ author: fancy96
 * content
 {:toc}
 
-## 커밋 메세지 형식
+## Git 커밋 메세지의 7가지 규칙
+
+1. 제목과 분문을 빈 행으로 구분한다.
+
+2. 제목을 50글자 내로 제한한다.
+
+3. 제목 첫 글자는 대문자로 작성한다.
+
+4. 제목 끝에는 마침표를 넣지 않는다.
+
+5. 제목은 명령문을 사용하며 과거형을 사용하지 않는다.
+
+6. 본문의 각 행은 72글자 내로 제한한다.
+
+7. 어떻게 보다는 무엇과 왜를 설명한다.
 
 ---
 
@@ -25,33 +39,33 @@ author: fancy96
 
 * 제목에는 변경사항에 대한 간결한 설명을 포함시킵니다.
 
-### `<`type`>`에 들어갈 수 있는 항목들 
+### Type에 들어갈 수 있는 항목들 
 
-* feat (feature) : 새로운 기능 추가
+* `feat` (feature) : 새로운 기능 추가
 
-* fix (bug fix) : 버그 수정
+* `fix` (bug fix) : 버그 수정
 
-* docs (documentation) : 문서 관련 내용
+* `docs` (documentation) : 문서 관련 내용
 
-* style (formatting, missing semi colons, …) : 스타일 변경
+* `style` (formatting, missing semi colons, …) : 스타일 변경
 
-* refactor : 코드 리팩토링
+* `refactor` : 코드 리팩토링
 
-* test (when adding missing tests) : 테스트 관련 코드
+* `test` (when adding missing tests) : 테스트 관련 코드
 
-* build : 빌드 관련 파일 수정
+* `build` : 빌드 관련 파일 수정
 
-* ci : CI 설정 파일 수정
+* `ci` : CI 설정 파일 수정
 
-* perf : 성능 개선
+* `perf` : 성능 개선
 
-* chore (maintain) : 그 외의 수정
+* `chore` (maintain) : 그 외의 수정
 
-### `<`scope`>`에 들어갈 수 있는 내용들
+### Scope에 들어갈 수 있는 내용들
 
 * 어디가 변경되었는지에 관하여 변경된 부분은 모두 들어갈 수 있습니다. $location, $browser, $compile, $rootScope, ngHref, ngClick, ngView, 등등...이 들어갈 수 있으며 **scope는 생략 가능합니다.**
 
-### `<`subject`>`
+### Subject
 
 * 명령형 현제 시제를 사용해야합니다. -> changed, changes가 아닌 change를 사용❗
 
@@ -209,5 +223,7 @@ The removed `inject` wasn't generaly useful for directives so there should be no
 ---
 
 ## Reference
+
+* [How to Write a Git Commit Message](https://cbea.ms/git-commit/)
 
 * [Commit Message Conventions](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)
