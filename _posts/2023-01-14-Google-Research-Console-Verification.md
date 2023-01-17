@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " Google Search Console에 GitHub 블로그 등록하기 "
-categories: ETC
+categories: Technology
 author: fancy96
 ---
 * content

@@ -38,8 +38,9 @@ author: fancy96
 ---
 ### 2. 원하는 JDK버전이 없으면 다운로드 받기
 
-아래 링크 접속
-https://www.azul.com/
+* 아래 링크 접속
+
+* https://www.azul.com/
 
 ![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_3.png)
 
@@ -142,5 +143,4 @@ java -version
 
 * **1번(IntelliJ에서 JDK버전 바꾸기)으로 이동해서 원하는 버전으로 바꿔주면 끝!**
 
----
 * IntelliJ 환경에서 JDK 버전을 변경하는 방법을 배웠다.

@@ -74,6 +74,29 @@ public static void main(String[] args) {
 
 * 그 상태에서 `enter`를 치면, 자동으로 선언부가 완성된다.
 
+#### 메소드 추출하기
+
+``` java
+// 메소드 추출전
+public MemberService memberService() {
+    return new MemberServiceImpl(new MemoryMemberRepository());
+}
+```
+
+* `new MemoryMemberRepository`을 드래그 한 다음에 `cmd + option + m`을 입력하고
+
+* 메소드 이름을 `memberRepository`로 입력하면 아래와 같이 메소드가 추출된다.
+
+``` java
+// 메소드 추출후
+public MemberService memberService() {
+    return new MemberServiceImpl(memberRepository());
+}
+private MemberRepository memberRepository() {
+    return new MemoryMemberRepository();
+}
+```
+
 #### 한 줄 복사하기
 
 * `cmd + d`를 입력하면 복사가 된다.
@@ -81,6 +104,10 @@ public static void main(String[] args) {
 #### 한 줄 삭제하기
 
 * `cmd + x`를 입력하면 삭제가 된다.
+
+#### 과거 히스토리 확인
+
+* `cmd + e`를 입력하면 과거 히스토리를 확인할 수 있다.
 
 ## 테스트코드
 

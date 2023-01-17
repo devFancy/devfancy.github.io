@@ -176,7 +176,7 @@ assertThat(someCharacter)
 
 ---
 
-#### 참고
+## Reference
 
 * [AssertJ 소개](https://www.baeldung.com/introduction-to-assertj#2-writing-assertions)
 
