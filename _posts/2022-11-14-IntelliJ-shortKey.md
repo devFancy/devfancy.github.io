@@ -45,9 +45,11 @@ author: fancy96
 
 ### 자동 입력 기능
 
-* `psvm` 을 입력하면 public static void main()이 자동으로 입력된다.
+* `psvm` 을 입력하면 public static void main()이 자동으로 생성된다.
 
-* `soutv` 를 입력하면 System.out.println()이 자동으로 입력된다.
+* `soutv` 를 입력하면 System.out.println()과 변수명을 자동으로 생성된다.
+
+* `iter` 를 입력하면 for()문이 자동으로 생성된다.
 
 ### 코드 Edit
 
@@ -130,7 +132,7 @@ Assertions.assertThat(discount).isEqualTo(1000);
 
 * 예를 들어, 어떤 조건이 참인지 아닌지 검증하는 `org.assertj.core.api.Assertions` 라이브러리의 assertThat()은 위와 같이 사용된다.
 
-* Assertions 앞에서 `option + enter`를 누르고, "Add on-demand static import"을 선택하면 
+* Assertions 앞에서 `option + enter`를 누르고, `Add on-demand static import`을 선택하면 
 
 ``` java
 // static import 선언후

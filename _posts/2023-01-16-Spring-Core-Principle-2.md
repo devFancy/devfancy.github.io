@@ -7,6 +7,8 @@ author: fancy96
 * content
 {:toc}
 
+> 이 글의 코드와 정보들은 강의를 들으며 정리한 내용을 토대로 작성하였습니다.
+
 ## 스프링 컨테이너
 
 ### @Configuration
@@ -23,7 +25,7 @@ author: fancy96
 
 ### AppConfig 스프링 기반으로 변경
 
-``` java
+```java
 package hello.core;
 
 import org.springframework.context.annotation.Bean;
@@ -70,7 +72,7 @@ public class AppConfig {
 
 ### MemberApp에 스프링 컨테이너 적용
 
-``` java
+```java
 package hello.core;
 
 import org.springframework.context.ApplicationContext;
@@ -116,7 +118,7 @@ public class MemberApp {
 
 ### OrderApp에 스프링 컨테이너 적용
 
-``` java
+```java
 package hello.core;
 
 import org.springframework.context.ApplicationContext;
@@ -149,7 +151,6 @@ public class OrderApp {
     }
 }
 ```
-
 
 ## Reference
 
