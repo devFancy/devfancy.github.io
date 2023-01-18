@@ -21,7 +21,7 @@ author: fancy96
 
 * 그러므로 중복된 빈 이름이 존재하지 않도록 주의해야 한다.
 
-AppConfig 스프링 기반으로 변경
+### AppConfig 스프링 기반으로 변경
 
 ``` java
 package hello.core;
@@ -68,7 +68,7 @@ public class AppConfig {
 
 * 각 메서드에 @Bean 을 붙여준다. 이렇게 하면 스프링 컨테이너에 스프링 빈으로 등록한다.
 
-MemberApp에 스프링 컨테이너 적용
+### MemberApp에 스프링 컨테이너 적용
 
 ``` java
 package hello.core;
@@ -114,7 +114,7 @@ public class MemberApp {
 
 * 기존에는 개발자가 직접 자바 코드로 모든 것을 했다면 이제부터는 스프링 컨테이너에 객체를 스프링 빈으로 등록하고, 스프링 컨테이너에 스프링 빈을 찾아서 사용하도록 변경되었다.
 
-OrderApp에 스프링 컨테이너 적용
+### OrderApp에 스프링 컨테이너 적용
 
 ``` java
 package hello.core;
