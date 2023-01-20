@@ -30,6 +30,8 @@ class Variable {
 
 ![](/assets/img/java/variable-and-method.png)
 
+## 클래스변수와 인스턴스변수
+
 [1] 인스턴스 변수(instance variable)
 
 * 클래스 영역에 선언되며, 클래스의 인스턴스를 생성할 때 만들어진다.
