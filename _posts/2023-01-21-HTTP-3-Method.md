@@ -25,9 +25,9 @@ author: fancy96
 
     * **회원** 삭제 /members/{id}
 
-* URI는 리소스만 식별하므로 리소스와 해당 리소스를 대상으로 하는 **행위**를 분리시킨다. 여기서 행위는 `조회`, `등록`, `삭제`, `변경`을 의미한다.
+* URI는 리소스만 식별하므로 리소스와 해당 리소스를 대상으로 하는 **행위**를 분리시킨다. 여기서 행위는 `조회`, `등록`, `수정`, `삭제`을 의미한다.
 
-* 행위(메서드)는 GET, POST, PUT, PATCH, DELETE로 구분한다.
+* 행위(메서드)는 GET, POST, PUT, PATCH, DELETE 로 구분한다.
 
 ### HTTP 메서드 종류
 
@@ -73,7 +73,7 @@ Content-Type: application/json
 
     * POST의 결과로 새로운 리소스가 생성되지 않을 수 있다.
 
-    * 예시) POST /orders/{orderId}/start-delivery(컨트롤 URL)
+    * 예시) POST /orders/{orderId}/start-delivery(**컨트롤 URL**)
 
 * [3] 다른 메서드로 처리하기 애매한 경우
 
@@ -127,12 +127,18 @@ Host: localhost:8080
 
 #### 멱등(Idempotent)
 
-* 몇번을 호출하든 결과가 똑같다.
+* 몇번을 호출하든 결과가 똑같다. 외부 요인으로 중간에 리소스가 변경되는 것 까지는 고려하지 않는다.
 
-    * 멱등에 해당하는 메서드 : `GET`, `PUT`, `DELETE`
+    * 멱등에 해당하는 메서드 : `GET`, `PUT`, `DELETE`, `HEAD`
 
 * 활용) 자동 복구 메커니즘
 
 #### 캐시가능(Cacheable)
 
 * 응답 결과 리소스를 캐시해서 실제로 사용하는 메서드는 `GET`, `HEAD` 가 있다.
+
+    * 캐시가능에 해당하는 메서드 : `GET`, `HEAD`, `POST`, `PATCH`  
+
+## Reference
+
+* [모든 개발자를 위한 HTTP 웹 기본 지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard)
