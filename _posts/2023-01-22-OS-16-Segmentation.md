@@ -11,7 +11,7 @@ author: fancy96
 
 * 세그멘테이션을 설명하기에 전에, 먼저 하드웨어 기반 `주소변환`에 대해 알아보자.
 
-* 주소 변환이란 가상 주소를 실제 메모리의 주소로 변환하는 하드웨어 자원을 의미한다. `주소 재배치`와 같은 말이다.
+* 주소 변환이란 **가상 주소를 실제 메모리의 주소로 변환하는 하드웨어 자원을 의미한다.** `주소 재배치`와 같은 말이다.
 
 * 이를 통해 프로세스는 가상 주소를 실제 메모리 주소로 착각하게 만드는 가상화를 수행하게 된 것이다.
 
@@ -59,7 +59,7 @@ author: fancy96
 
 ![](/assets/img/os/os-16-segmentation-2.png)
 
-* 기존 가상 주소 공간에서는 heap과 stack 사이의 사용하지 않는 공간도 할당되므로 비효율성이 발생한다.
+* 기존 가상 주소 공간에서는 **Heap과 Stack 사이의 사용하지 않는 공간도 할당되므로 비효율성**이 발생한다.
 
     * [1] 사용하지 않는 크기가 발생하므로 **메모리 공간이 낭비**된다.
 
@@ -71,19 +71,19 @@ author: fancy96
 
 ## Segmentation
 
-* 세그먼테이션은 가상 주소 공간을 세그먼트 단위로 실제 메모리 주소 공간에 독립적으로 각각 매핑하는 방식이다.
+* `세그먼테이션`은 **가상 주소 공간을 세그먼트 단위로 실제 메모리 주소 공간에 독립적으로 각각 매핑**하는 방식이다.
 
 ![](/assets/img/os/os-16-segmentation-3.png)
 
 * 이로 인해 heap과 stack 사이의 사용하지 않는 비효율성인 문제를 해결하게 되었다.
 
-    * [1] 더이상 메모리 공간이 낭비되지 않는다.
+    * [1] 더이상 **메모리 공간이 낭비되지 않는다.**
 
-    * [2] 이전보다 훨씬 더 많은 주소 공간을 지원할 수 있다.
+    * [2] 이전보다 **훨씬 더 많은 주소 공간을 지원할 수 있다.**
 
-    * [3] 세그먼트는 주소 공간 간에 Code를 공유하면서 메모리를 절약할 수 있다.
+    * [3] 세그먼트는 주소 공간 간에 **Code를 공유하면서 메모리를 절약할 수 있다.**
 
-* 세그먼트(Segment)는 메모리에서 일정 부분을 의미하며 일반적인 주소 공간은 3개의 세그먼트(Code, Stack, Heap)으로 구성된다.
+* 세그먼트(Segment)는 메모리에서 일정 부분을 의미하며 일반적인 주소 공간은 **3개의 세그먼트(Code, Stack, Heap)**으로 구성된다.
 
 * OS는 3개의 세그먼트를 메모리에 배치하여 heap과 stack 사이의 공간을 낭비하지 않도록 하는 것이다.
 
@@ -92,7 +92,7 @@ author: fancy96
 
 ### Basic
 
-* 그럼 이제 세그먼테이션에서 Virtual memory 주소를 받고 Physical memory 주소를 찾는 방법(주소 변환)에 대해 알아보자.
+* 그럼 이제 세그먼테이션에서 **Virtual memory 주소를 받고 Physical memory 주소를 찾는 방법(주소 변환)**에 대해 알아보자.
 
 * 가상주소는 `segment id + offset` 으로 구할 수 있다.
 
@@ -102,17 +102,17 @@ author: fancy96
 
 * 위의 그림을 예시로 들어보자.
 
-* Segment ID가 01인 Heap 영역에 가서 **Base 값**을 찾는다. (Base = 26K)
+* [1] Segment ID가 01인 Heap 영역에 가서 **Base 값**을 찾는다. (Base = 26K)
 
-* **Offset 을 계산**한다. (16진수 Hex -> 10진수 Decimal)
+* [2] **Offset 을 계산**한다. (16진수 Hex -> 10진수 Decimal)
 
     * 0x068 -> (Decimal) (16^1 * 6) + (16^0 * 8) = 104
 
-* segmentation fault 발생하는지 확인한다. (segmentation fault : 프로그램이 허용되지 않은 메모리 영역에 접근을 시도하거나(free 공간), 허용되지 않은 방법으로 메모리 영역에 접근을 시도할 경우 발생한다)
+* [2-2] segmentation fault 발생하는지 확인한다. (segmentation fault : 프로그램이 허용되지 않은 메모리 영역에 접근을 시도하거나(free 공간), 허용되지 않은 방법으로 메모리 영역에 접근을 시도할 경우 발생한다)
 
     * Offset 값인 104가 Bound인 값인 2K (104 < 2000) 보다 작기 때문에 segmentation fault 발생하지 않는다.
 
-* Physical memory 주소를 찾는다. (**base + offset**)
+* [3] Physical memory 주소를 찾는다. (**base + offset**)
 
     * Segment ID가 01인 Heap 영역에서 Base 값과 offset 값을 더하면 된다. 
 
@@ -137,25 +137,25 @@ else
 
 ### Stack 인 경우
 
-* Stack은 Code, Heap 부분과 다르게 거꾸로 확장되기 때문에 주소 변환을 다르게 해야한다.
-
-    * Code, Heap은 Sign이 Positive인 반면에 Stack은 Sign이 Negative이다.
-
 ![](/assets/img/os/os-16-segmentation-5.png)
 
-* Stack 세그먼트의 base 레지스터는 가장 높은 주소에서 시작한다.
+* `Stack`은 Code, Heap 부분과 다르게 거꾸로 확장되기 때문에 주소 변환을 다르게 해야한다.
 
-* Segement ID가 10인 Stack 영역에 가서 Base 값을 찾는다. (Base = 36K)
+  * Code, Heap은 Sign이 Positive인 반면에 Stack은 Sign이 **Negative**이다.
 
-* **Offset 을 계산**한다. (16진수 Hex -> 10진수 Decimal)
+* Stack 세그먼트의 base 레지스터는 **가장 높은 주소**에서 시작한다.
+
+* [1] Segement ID가 10인 Stack 영역에 가서 Base 값을 찾는다. (Base = 36K)
+
+* [2] **Offset 을 계산**한다. (16진수 Hex -> 10진수 Decimal)
 
     * 0xA00 -> (Decimal) (16^2 * 10) + (16^1 * 0)  + (16^0 * 0) = 2560
 
-* segmentation fault 발생하는지 확인한다.
+* [2-2] segmentation fault 발생하는지 확인한다.
 
     * Offset 값인 104가 Bound인 값인 3K (2560 < 3000) 보다 작기 때문에 segmentation fault 발생하지 않는다.
 
-* Physical memory 주소를 찾는다. (**base - offset**)
+* [3] Physical memory 주소를 찾는다. (**base - offset**)
 
     * Stack 에서는 base인 36KB에 offset인 2560을 더하는 것이 아닌 빼주면 된다.
 
@@ -163,9 +163,9 @@ else
 
 ### Code Sharing
 
-* 세그먼트는 추가적인 하드웨어 지원을 통해 주소 공간 사이에서 공유될 수 있다.
-
 ![](/assets/img/os/os-16-segmentation-6.png)
+
+* 세그먼트는 추가적인 하드웨어 지원을 통해 **주소 공간 사이에서 공유**될 수 있다.
 
 * 그래서 다중 프로세스는 Code 세그먼트를 공유할 수 있는데, **읽고 실행은 가능하지만 값을 변경할 수는 없다.**
 
@@ -195,9 +195,9 @@ else
 
 * 하지만, 전체로 보면 24KB 여유 공간(free)이 있지만 16KB, 4KB, 4KB로 인접하지 않은 세그먼트로 20KB 크기를 갖는 갖는 공간을 할당받을 수 없다.
 
-* 이를 해결하기 위해 OS는 가운데 그림처럼 `Compaction` 이라는 방법으로 실제 메모리에 있는 기존의 세그먼트를 재배치시킨다. 하지만 Compaction 방법은 **비용이 발생하여 성능이 떨어지는** 문제점이 있다.
+* 이를 해결하기 위해 OS는 가운데 그림처럼 `Compaction` 이라는 방법으로 실제 메모리에 있는 **기존의 세그먼트를 재배치**시킨다. 하지만 Compaction 방법은 **비용이 발생하여 성능이 떨어지는** 문제점이 있다.
 
-* 그래서 결국 맨 오른쪽 그림처럼 `Paging`(페이징) 이라는 기법을 통해 고정적인 크기(fixed-size)의 세그먼트로 외부 단편화를 제거하여 여유 공간을 관리할 수 있다.
+* 그래서 결국 맨 오른쪽 그림처럼 `Paging`(페이징) 이라는 기법을 통해 **고정적인 크기(fixed-size)의 세그먼트로 외부 단편화를 제거하여 여유 공간을 관리할 수 있다.**
 
 * 하지만 페이징 기법 역시 `내부 단편화`(internal fragmentation) 문제가 남아 있다.
 
