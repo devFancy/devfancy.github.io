@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 스프링으로 전환하기 "
+title: " Spring 핵심원리 - 기본편 : 스프링으로 전환하기 "
 categories: Spring
 author: fancy96
 ---

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 스프링 컨테이너와 스프링 빈 "
+title: " Spring 핵심원리 - 기본편 : 스프링 컨테이너와 스프링 빈 "
 categories: Spring
 author: fancy96
 ---

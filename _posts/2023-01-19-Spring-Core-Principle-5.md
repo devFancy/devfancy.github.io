@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 싱글톤 컨테이너 "
+title: " Spring 핵심원리 - 기본편 : 싱글톤 컨테이너 "
 categories: Spring
 author: fancy96
 ---

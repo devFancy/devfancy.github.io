@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 객체 지향 설계와 스프링 "
+title: " Spring 핵심원리 - 기본편 : 객체 지향 설계와 스프링 "
 categories: Spring
 author: fancy96
 ---

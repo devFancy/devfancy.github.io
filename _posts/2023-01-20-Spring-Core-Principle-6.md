@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 컴포넌트 스캔 "
+title: " Spring 핵심원리 - 기본편 : 컴포넌트 스캔 "
 categories: Spring
 author: fancy96
 ---

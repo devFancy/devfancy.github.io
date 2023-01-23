@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " Spring : 테스트를 할 때 쓰이는 어노테이션 "
+title: " Spring 핵심원리 - 기본편 : 테스트를 할 때 쓰이는 어노테이션 "
 categories: Spring
 author: fancy96
 ---

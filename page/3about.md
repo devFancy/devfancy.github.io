@@ -38,15 +38,21 @@ type: page
 
 ---
 
-## Time Line
+## TimeLine
 
 ### 2023
 
+* 　01. 21 ~ 01. 23 [모든 개발자를 위한 HTTP 웹 기본 지식](https://fancy96.github.io/category/#HTTP)
+
+* 　01. 14 ~ 01. 23 [스프링 핵심원리 - 기본편](https://fancy96.github.io/category/#Spring)
+
+* 　01. 02 ~ [CS 스터디 진행](https://github.com/Fancy96/2023-CS-Study)
+
+* 　01. 01 [[Coursera] 5개 수료증 취득](https://fancy96.github.io/Coursera-Certificates/) 
+
 ### 2022
 
-* 　12. 31 Coursera 5개 수강
-
-* 　10. 26 [우아한테크코스 5기 프리코스](https://github.com/woowacourse-precourse) 참가
+* 　10. 26 [우아한테크코스 5기 프리코스 과정](https://github.com/Fancy96/fancy96-woowacourse) 참가
 
 * 　10. 12 KNU 창업 성과 경진대회 참가 - 장려상 수상
 

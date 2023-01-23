@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 스프링 컨테이너에 등록된 빈 조회 "
+title: " Spring 핵심원리 - 기본편 : 스프링 컨테이너에 등록된 빈 조회 "
 categories: Spring
 author: fancy96
 ---
