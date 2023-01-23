@@ -1,8 +1,9 @@
 ---
 layout: post
 title: " 03. 데이터 기술하기: 수치적 척도 "
-categories: Business Statistics
+categories: Business-Statistics
 author: fancy96
+use_math: true
 ---
 * content
 {:toc}

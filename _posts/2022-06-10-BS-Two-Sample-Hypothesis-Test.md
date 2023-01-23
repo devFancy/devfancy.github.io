@@ -1,8 +1,9 @@
 ---
 layout: post
 title: " 11. 두 표본 가설 검정 "
-categories: Business Statistics
+categories: Business-Statistics
 author: fancy96
+use_math: true
 ---
 * content
 {:toc}

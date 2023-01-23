@@ -1,8 +1,9 @@
 ---
 layout: post
 title: " 10. 단일표본 가설검정 "
-categories: Business Statistics
+categories: Business-Statistics
 author: fancy96
+use_math: true
 ---
 * content
 {:toc}

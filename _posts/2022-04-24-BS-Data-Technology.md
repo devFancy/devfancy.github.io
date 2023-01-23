@@ -1,8 +1,9 @@
 ---
 layout: post
 title: " 04. 자료기술: 자료의 시각적 표현과 탐색 "
-categories: Business Statistics
+categories: Business-Statistics
 author: fancy96
+use_math: true
 ---
 * content
 {:toc}

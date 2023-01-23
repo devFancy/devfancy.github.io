@@ -1,8 +1,9 @@
 ---
 layout: post
 title: " 12. 분산분석 "
-categories: Business Statistics
+categories: Business-Statistics
 author: fancy96
+use_math: true
 ---
 * content
 {:toc}

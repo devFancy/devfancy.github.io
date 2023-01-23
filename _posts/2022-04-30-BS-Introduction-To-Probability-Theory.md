@@ -1,8 +1,9 @@
 ---
 layout: post
 title: " 05. 확률론개론 "
-categories: Business Statistics
+categories: Business-Statistics
 author: fancy96
+use_math: true
 ---
 * content
 {:toc}

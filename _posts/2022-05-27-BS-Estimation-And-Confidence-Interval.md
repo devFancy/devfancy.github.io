@@ -1,8 +1,9 @@
 ---
 layout: post
 title: " 09. 추정과 신뢰구간 "
-categories: Business Statistics
+categories: Business-Statistics
 author: fancy96
+use_math: true
 ---
 * content
 {:toc}

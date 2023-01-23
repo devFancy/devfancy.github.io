@@ -1,8 +1,9 @@
 ---
 layout: post
 title: " 02. 데이터 기술하기: 도수표, 도수분포 및 도표표현 "
-categories: Business Statistics
+categories: Business-Statistics
 author: fancy96
+use_math: true
 ---
 * content
 {:toc}
