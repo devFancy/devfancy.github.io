@@ -56,7 +56,7 @@ author: fancy96
 
 * A number of celebrated fintech unicorns have been able to rapidly acquire a **significant user base.**
 
-* **B2C, B2B의 차이점**
+#### B2C, B2B의 차이점
 
 * B2C fintech business model
 
