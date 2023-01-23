@@ -1,0 +1,55 @@
+---
+layout: post
+title: " Business-Statistics 소개 "
+categories: Business-Statistics
+author: fancy96
+---
+* content
+{:toc}
+
+> 이 카테고리는 경영학부 경영통계 수업을 듣고 정리한 내용을 바탕으로 글을 작성하였습니다.
+
+## Text book
+
+* 경영경제통계학17판, Lind, Marchal, Wathen, (2018), McGrawHill, 강종열 등 역, 지필미디어
+
+![](/assets/img/bs/business-statistics_textbook.png){: width="200"}
+
+
+## Reference
+
+* Excel 활용 통계학개론(제6판), 박명섭, 박광태, 이민호, 홍문사, 2014
+
+* Basic statistics for business and economics 17th edition, Lind, D. A., Marchal,
+W.G. and Wathen S.A. ,2018, McGraw-Hill/Irwin, New York, NY.
+
+* Essentials of Contemporary Business Statistics 17th edition, Anderson, D. R.,
+  Sweeney, D. J. and Williams, T. A. ,2018, South-Western
+
+## Lecture plan
+
+* [CH01. 통계학은 어떠한 학문인가](https://fancy96.github.io/BS-What-Is-Statistics/)
+
+* [CH02-03. 데이터 기술하기: 도수표, 도수분포 및 도표표현](https://fancy96.github.io/BS-Describing-Data/)
+
+* [CH03. 데이터 기술하기: 수치적 척도](https://fancy96.github.io/BS-Describing-Data-2/)
+
+* [CH04-05. 자료기술, 확률론 개론](https://fancy96.github.io/BS-Data-Technology/)
+
+* [CH05. 확률론 개론](https://fancy96.github.io/BS-Introduction-To-Probability-Theory/)
+
+* [CH06. 이산 확률분포](https://fancy96.github.io/BS-Discrete-Probability-Distribution/)
+
+* [CH07. 연속 확률분포](https://fancy96.github.io/BS-Continuous-Probability-Distribution/)
+
+* [CH08. 표본 추출법과 중심극한정리](https://fancy96.github.io/BS-Sampling-Methods-And-Central-Limit-Theorem/)
+
+* [CH09. 추정과 신뢰구간](https://fancy96.github.io/BS-Estimation-And-Confidence-Interval/)
+
+* [CH10. 단일 표본 가설검증](https://fancy96.github.io/BS-Hypothesis-Testing/)
+
+* [CH11. 두 표본 가설 검정](https://fancy96.github.io/BS-Two-Sample-Hypothesis-Test/)
+
+* [CH12. 분산분석](https://fancy96.github.io/BS-Analysis-Of-Variance/)
+
+> 2022년 1학기 경영통계 수업을 강의해주신 권혜정 교수님께 이 자리를 빌어 감사의 말씀을 드립니다.
