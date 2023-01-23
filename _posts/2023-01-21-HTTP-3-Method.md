@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " HTTP 메서드 "
+title: " HTTP 웹 기본 지식 : HTTP 메서드 "
 categories: HTTP
 author: fancy96
 ---
