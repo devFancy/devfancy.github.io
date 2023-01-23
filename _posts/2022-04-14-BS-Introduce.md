@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " Business-Statistics 소개 "
+title: " 0. 경영통계 과목 소개 "
 categories: Business-Statistics
 author: fancy96
 ---
@@ -8,6 +8,8 @@ author: fancy96
 {:toc}
 
 > 이 카테고리는 경영학부 경영통계 수업을 듣고 정리한 내용을 바탕으로 글을 작성하였습니다.
+
+# Business Statistics
 
 ## Text book
 
@@ -25,6 +27,20 @@ W.G. and Wathen S.A. ,2018, McGraw-Hill/Irwin, New York, NY.
 
 * Essentials of Contemporary Business Statistics 17th edition, Anderson, D. R.,
   Sweeney, D. J. and Williams, T. A. ,2018, South-Western
+
+
+## Course Objective
+
+* 다양한 통계 분석 기법의 이해
+
+  * 기술통계: 자료의 정리/요약
+
+  * 추론통계: 표본으로부터 모집단의 특성을 추론
+
+* 다양한 의사결정 상황에서의 각 통계 기법들의 적용 방법을 학습
+
+* MS 엑셀을 이용한 통계분석 활용 방법 습득 및 결과 해석 방법 학습
+
 
 ## Lecture plan
 
