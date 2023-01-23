@@ -92,13 +92,13 @@ use_math: true
 
 ### 4.2.3 The Poisson Process
 
-* Expected waiting time and Expected numver of events
+* Expected waiting time and Expected number of events
   
   * Expected waiting time btw. two events in a Poisson process: $\frac{1}{\lambda}$
     
-  * Expected number of events occuring within a fixed time interval $t: \lambda t$
+  * Expected number of events occurring within a fixed time interval $t: \lambda t$
     
-  * Moreover, the number of events occuring within such a time interval has a Poisson distribution with mean  $\lambda t$
+  * Moreover, the number of events occurring within such a time interval has a Poisson distribution with mean  $\lambda t$
 
 ![](/assets/img/ps/ps-04-continuous-probability-distributions_3.png){: width="400"}
 
@@ -134,7 +134,7 @@ use_math: true
         
   * $T$라는 시간동안 전송 시도했던 패킷의 평균 횟수
   
-* $\gamma$ : probabilty of successful transmission
+* $\gamma$ : probability of successful transmission
         
   * 성공한 전송의 확률
 
@@ -162,7 +162,7 @@ Average number of retransmissions
 
 > $(P_{s})_{n} = (1 - \gamma)^{n-1} \gamma$ where $P_{s} = \gamma = e^{-2G}$
 
-* Average number of transsmision($N$)
+* Average number of transmission($N$)
 
 > $E[N] = \sum_{n=1}^\infty n(1-\gamma)^{n-1} \gamma = \frac{1}{\gamma} = e^{2G}$
 
@@ -278,7 +278,7 @@ Slotted ALOHA
 
   * $\Gamma(n) = (n-1)!$
 
-  * but except for these special cases there is in general no cloesd-form expression for the gamma function.
+  * but except for these special cases there is in general no closed-form expression for the gamma function.
 
 * **Curves of Gamma**
   

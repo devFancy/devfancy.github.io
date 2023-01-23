@@ -90,7 +90,7 @@ use_math: true
   
   * The number of trials up to and including the $r^{th}$ success
   
-    > $P( X = x) = {x - 1 \choose r - 1} p^{r-1} (1 - p)^{(x-1)-(r-1)} \times p = {x - 1 \choose r - 1} (1 - p)^{x-r} p^{r}$, for $x = r, r + 1, r + 2, r + 3, …$
+    > $P( X = x) = {x - 1 \choose r - 1} p^{r-1} (1 - p)^{(x-1)-(r-1) } \times p = {x - 1 \choose r - 1} (1 - p)^{x-r} p^{r}$, for $x = r, r + 1, r + 2, r + 3, …$
     
     * x - 1 번 시도해서 r - 1번 성공할 확률 X(곱하기) r번째 성공할 확률
 
@@ -107,7 +107,7 @@ The hypergeometric distribution
     
 * $P(X = x)$: (전제: N개 중에서 r개가 특정 조건을 만족) N개 중에서 n개 를 골랐는데, 그 중 x개가 r과 같은 조건에 포함된 경우에 대한 분포
   
-* The pmf $P( X = x) = \frac{{r \choose x} \times {N - r \choose n - x}}{{N \choose n}}$ ,  for $max( 0, n + r - N ) ≤ x ≤ min( n, r )$
+* The pmf $P( X = x) = \frac{ {r \choose x} \times {N - r \choose n - x} }{ {N \choose n} }$ ,  for $max( 0, n + r - N ) ≤ x ≤ min( n, r )$
   
 * Expectation and Variance: $E(X) = \frac{nr}{N}, Var(X) = \frac{N - n}{N - 1} \times n \times \frac{r}{N} \times ( 1 - \frac{r}{N})$
 
@@ -121,7 +121,7 @@ Ex2) Defective Computer Chips
           
   * The number of sample containing exactly one defective chip, ${9 \choose 1} \times {491 \choose 2}$ → 3개중 한개가 defective chip인 경우의 확률 값 계산
               
-  * $P( X = 1) = \frac{{r \choose x} \times {N - r \choose n - x}}{{N \choose n}} = \frac{{9 \choose 1} \times {491 \choose 2}}{{500 \choose 3}} \cong 0.0523$
+  * $P( X = 1) = \frac{{r \choose x} \times {N - r \choose n - x} }{ {N \choose n} } = \frac{{9 \choose 1} \times {491 \choose 2} }{ {500 \choose 3} } \cong 0.0523$
 
 
 ### 3.4.1 Definition of the Poisson Distribution <중요>
@@ -142,9 +142,7 @@ Ex2) Defective Computer Chips
     - A parameter value of $\lambda = np$ should be used for the Poisson distribution, so that it has the same expected value as the binomial distribution.
 
 
----
-
-## 3.5.1 Definition of the Multinomial Distribution <중요>
+### 3.5.1 Definition of the Multinomial Distribution <중요>
 
 The Multinomial Distribution
 
