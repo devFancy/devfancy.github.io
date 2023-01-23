@@ -99,30 +99,7 @@ use_math: true
     > $E(X) = \frac{r}{p}$
   
     > $Var(X) = \frac{r(1-p)}{p^{2}}$
-
-
-### 3.3.1 Definition of the Hypergeometric Distribution
-
-The hypergeometric distribution
     
-* $P(X = x)$: (전제: N개 중에서 r개가 특정 조건을 만족) N개 중에서 n개 를 골랐는데, 그 중 x개가 r과 같은 조건에 포함된 경우에 대한 분포
-  
-* The pmf $P( X = x) = \frac{ {r \choose x} \times {N - r \choose n - x} }{ {N \choose n} }$ ,  for $max( 0, n + r - N ) ≤ x ≤ min( n, r )$
-  
-* Expectation and Variance: $E(X) = \frac{nr}{N}, Var(X) = \frac{N - n}{N - 1} \times n \times \frac{r}{N} \times ( 1 - \frac{r}{N})$
-
-Ex2) Defective Computer Chips
-    
-* There are 500 computer chips in a box, in which 9 defective chips. Let’s randomly choose 3 chips without replacement.
-
-  * $N = 500$, $r = 9$, and $n = 3$
-          
-  * The total number of possible samples, ${500 \choose 3}$
-          
-  * The number of sample containing exactly one defective chip, ${9 \choose 1} \times {491 \choose 2}$ → 3개중 한개가 defective chip인 경우의 확률 값 계산
-              
-  * $P( X = 1) = \frac{{r \choose x} \times {N - r \choose n - x} }{ {N \choose n} } = \frac{{9 \choose 1} \times {491 \choose 2} }{ {500 \choose 3} } \cong 0.0523$
-
 
 ### 3.4.1 Definition of the Poisson Distribution <중요>
 
