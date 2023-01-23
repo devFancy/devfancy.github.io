@@ -8,6 +8,8 @@ use_math: true
 * content
 {:toc}
 
+> 이 글은 컴퓨터학부 확률과통계 수업에서 배운 자료들을 정리한 내용입니다.
+
 ## Contents
 
 * 1.1 Probabilities
@@ -85,9 +87,7 @@ use_math: true
 
 * The Event $A \bigcap B$ is the **intersection** of the events A and B consists of the outcomes that are contained within both events A and B. The probability of this event, $P(A\cap B)$, is the probability that both events A and B occur simultaneously.
 
-> $P(A \cap B) + P(A \cap B') = P(A)
->
-> \\ P(A \cap B) + P(A' \cap B) = P(B)$
+> $P(A \cap B) + P(A \cap B') = P(A) \\ P(A \cap B) + P(A' \cap B) = P(B)$
 
 
 * `Mutually Exclusive Events` ( 공통점이 없는 경우 )
@@ -166,9 +166,9 @@ use_math: true
 
 > The  probability of the **intersection of a series of events**
 >
->$A_1,\  ...\ , A_n$  can be calculated from the expression
+> $A_1,\  ...\ , A_n$  can be calculated from the expression
 >
->$P(A_1\ \cap .\ .\ .\ \cap A_n) = P(A_1)\ \times P(A_2|A_1)\ \times P(A_3|A_1\ \cap\ A_2)\ \times .\ .\ .\ \times P(A_n|A_1\ \cap\ .\ .\ .\ A_{n-1})$
+> $\\P(A_1\ \cap .\ .\ .\ \cap A_n) = P(A_1)\ \times P(A_2|A_1)\ \times P(A_3|A_1\ \cap\ A_2)\ \times .\ .\ .\ \times P(A_n|A_1\ \cap\ .\ .\ .\ A_{n-1})$
 >
 > 전개해보면 $P(A_1\ \cap .\ .\ .\ \cap A_n)$ 으로 되는 것을 알 수 있다.
 
@@ -227,9 +227,9 @@ use_math: true
 >
 > $P(A_i | B) = \frac{P(A_i)\ P(B|A_i)}{\sum\nolimits_{j=1}^n P(A_j)P(B|A_j)}$
 >
-> ⇒ $P(A_i| B) = \frac{P(A_i \cap B)}{P(B)} = \frac{P(A_i)P(B|A_i)}{P(B)}$
+> $P(A_i| B) = \frac{P(A_i \cap B)}{P(B)} = \frac{P(A_i)P(B|A_i)}{P(B)}$
 
 
 ## Reference
 
-* ![Probability and Statistics for Engineers and Scientists, 4/E](http://www.yes24.com/Product/Goods/5404183)
+* [Probability and Statistics for Engineers and Scientists, 4/E](http://www.yes24.com/Product/Goods/5404183)

@@ -8,6 +8,8 @@ use_math: true
 * content
 {:toc}
 
+> 이 글은 컴퓨터학부 확률과통계 수업에서 배운 자료들을 정리한 내용입니다.
+
 ## Contents
 
 * 4.1 The Uniform Distribution
@@ -289,4 +291,4 @@ Slotted ALOHA
 
 ## Reference
 
-* ![Probability and Statistics for Engineers and Scientists, 4/E](http://www.yes24.com/Product/Goods/5404183)
+* [Probability and Statistics for Engineers and Scientists, 4/E](http://www.yes24.com/Product/Goods/5404183)

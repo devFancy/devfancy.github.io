@@ -8,6 +8,8 @@ use_math: true
 * content
 {:toc}
 
+> 이 글은 컴퓨터학부 확률과통계 수업에서 배운 자료들을 정리한 내용입니다.
+
 ## Contents
 
 * 2.1 Discrete Random Variables
@@ -220,9 +222,7 @@ use_math: true
 
 >  The `conditional distribution` of a random variable X conditional on a random variable Y taking a particular value summarizes the probabilistic properties of the random variable X under the knowledge provided by the value of Y. It consists of the probability values
 >
->  $p_{i | Y = y_{j}} = P( X = x_{i} Y = y_{j} ) = \frac{P( X = x_{i}, Y = y_{j})}{P( Y = y_{j})}
->
->  = \frac{p_{ij}}{p_{+j}}$
+>  $p_{i | Y = y_{j}} = P( X = x_{i} Y = y_{j} ) = \frac{P( X = x_{i}, Y = y_{j})}{P( Y = y_{j})} = \frac{p_{ij}}{p_{+j}}$
 >
 >  for discrete random variables or the probability density function
 >
@@ -271,4 +271,4 @@ use_math: true
 
 ## Reference
 
-* ![Probability and Statistics for Engineers and Scientists, 4/E](http://www.yes24.com/Product/Goods/5404183)
+* [Probability and Statistics for Engineers and Scientists, 4/E](http://www.yes24.com/Product/Goods/5404183)
