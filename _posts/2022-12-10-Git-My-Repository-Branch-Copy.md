@@ -69,7 +69,7 @@ git remote add <리모트명> <깃 레포지토리 링크>
 
 ![](/assets/img/git/Git-My-Repository-Branch-Copy_2.png)
 
-![](/assets/img/git/Git-My-Repository-Branch-Copy_3.png)
+> git git remote add fancy-log2-remote http://github.com/fancy-log/old-java-bridge-review.git
 
 * IntelliJ 하단에 있는는 `Git`을 클릭하면 위와 같이 remote명 `fancy-log2-remote`가 추가된 것을 볼 수 있다.
 
