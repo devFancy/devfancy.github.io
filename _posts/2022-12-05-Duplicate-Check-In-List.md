@@ -39,9 +39,7 @@ void DuplicateTest() {
 
 ## 구현한 코드
 
-숫자 야구 게임 주소 : [숫자 야구 게임](https://github.com/woowacourse-precourse/java-baseball)
-
-구현한 코드 주소 : [java-baseball-review](https://github.com/fancy-log/java-baseball-review/pull/1)
+구현한 코드 주소 : [java-baseball-review](https://github.com/Fancy96/java-baseball)
 
 ``` java
 public void validateNumberRange(List<Integer> user) {
