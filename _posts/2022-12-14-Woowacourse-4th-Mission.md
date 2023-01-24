@@ -17,7 +17,7 @@ author: fancy96
 
 [다리건너기](https://github.com/woowacourse-precourse/java-bridge)
 
-[구현한 코드](https://github.com/fancy-log/java-bridge-review/commits/main)
+[구현한 코드](https://github.com/Fancy96/java-bridge/tree/fancy-review)
 
 
 > **4주차 미션 목표**

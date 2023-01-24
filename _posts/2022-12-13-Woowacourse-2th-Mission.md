@@ -17,7 +17,7 @@ author: fancy96
 
 [숫자 야구 게임](https://github.com/woowacourse-precourse/java-baseball)
 
-[구현한 코드](https://github.com/fancy-log/java-baseball-review/pull/2)
+[구현한 코드](https://github.com/Fancy96/java-baseball/tree/fancy-review2)
 
 
 ## 우테코 마지막 메일의 일부분

@@ -17,7 +17,7 @@ author: fancy96
 
 [로또](https://github.com/woowacourse-precourse/java-lotto)
 
-[구현한 코드](https://github.com/fancy-log/java-lotto-review/pull/1)
+[구현한 코드](https://github.com/Fancy96/java-lotto)
 
 > **3주차 미션 목표**
 1. 클래스(객체)를 분리하는 연습
