@@ -13,15 +13,15 @@ type: page
 
 * BackEnd 개발 관련 공부를 하고 있습니다.
 
-* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기록하는 걸 좋아합니다.
+* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기록하는 것을 좋아합니다.
 
-* <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 같이 협업하며 성장하는 것을 추구합니다.
+* <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 협업하는 것뿐만 아니라, 생산적인 동반자 관계를 추구합니다.
 
-* <img src="/assets/img/logo/rocket-lunch.png" style="max-width: 3%; vertical-align: text-bottom;"> : 매년 성장하기 위해 노력하는 개발자입니다.
-
-* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : 공부하면서 배운 것을 블로그에 남기는 재미로 살아갑니다.
+* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 자기개발하는 것을 좋아하는 개발자입니다.
  
+* <img src="/assets/img/logo/workout.png" style="max-width: 3%; vertical-align: text-bottom;"> : 취미로 평상시에 운동을 즐겨하고 있습니다.
 
+* <img src="/assets/img/logo/coffee.png" style="max-width: 3%; vertical-align: text-bottom;"> : 새로운 취미로 바리스타를 배우고 있습니다.
 
 ---
 
@@ -42,7 +42,7 @@ type: page
 
 ### 2023
 
-* 　01. 24 ~ 스프링 부트 개념과 활용
+* 　01. 24 ~ 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
 
 * 　01. 21 ~ 01. 23 [모든 개발자를 위한 HTTP 웹 기본 지식](https://fancy96.github.io/category/#HTTP)
 
@@ -108,7 +108,7 @@ type: page
 
 1. 컴퓨터활용능력 1급 (19. 03. 29) - 19-K9-027104
 
-1. OPIc IH (19. 12. 15) - 갱신 예정
+1. TOEIC (19. 12. 15) - 895
 
 ---
 
