@@ -64,68 +64,49 @@ author: fancy96
 
 > 230101 ~ 230107
 
-* **Programmers** 풀기
+* [[Programmers] 12916. 문자열 내 p와 y의 개수](https://fancy96.github.io/Programmers-12916/)
 
-    * [[Programmers] 12916. 문자열 내 p와 y의 개수](https://fancy96.github.io/Programmers-12916/)
+* [[Programmers] 12928. 약수의 합](https://fancy96.github.io/Programmers-12928/)
 
-    * [[Programmers] 12928. 약수의 합](https://fancy96.github.io/Programmers-12928/)
+* [[Programmers] 12931. 자릿수 더하기](https://fancy96.github.io/Programmers-12931/)
 
-    * [[Programmers] 12931. 자릿수 더하기](https://fancy96.github.io/Programmers-12931/)
+* [[Programmers] 12932. 자연수 뒤집어 배열로 만들기](https://fancy96.github.io/Programmers-12932/)
 
-    * [[Programmers] 12932. 자연수 뒤집어 배열로 만들기](https://fancy96.github.io/Programmers-12932/)
+* [[Programmers] 12934. 정수 제곱근 판별](https://fancy96.github.io/Programmers-12934/)
 
-    * [[Programmers] 12934. 정수 제곱근 판별](https://fancy96.github.io/Programmers-12934/)
+* [CS 스터디 : 초기 세팅](https://github.com/Fancy96/2023-CS-Study)
 
+* [CS 스터디 : 스터디 방향 회의](https://github.com/Fancy96/2023-CS-Study/issues/1)
 
-* [CS 스터디](https://github.com/Fancy96/2023-CS-Study)
+* [CS 스터디 : 네트워크 1주차](https://github.com/Fancy96/2023-CS-Study/issues/3)
 
-    * 초기 세팅
-
-    * [스터디 방향 회의](https://github.com/Fancy96/2023-CS-Study/issues/1)
-
-    * [네트워크 챕터 시작](https://github.com/Fancy96/2023-CS-Study/issues/2)
-
-    * [네트워크 : 1주차](https://github.com/Fancy96/2023-CS-Study/issues/3)
-
-
-* **Algorithm Skill**
-
-    * [제곱근, 제곱을 구할때 쓰는 메서드](https://fancy96.github.io/Math-Sqrt/)
-
+* [[Algorithm Skill] : 제곱근, 제곱을 구할때 쓰는 메서드](https://fancy96.github.io/Math-Sqrt/)
 
 * [[Coursera] 5개 수료증 취득](https://fancy96.github.io/Coursera-Certificates/)
 
 > 230109 ~ 230114
 
-* [Git Blog 만들기(Jekyll) : fancylog](https://fancy96.github.io/)
+* Git Blog 만들기(Jekyll)
 
-* **Programmers** 풀기
+* [[Programmers] 12933. 정수 내림차순으로 배치하기](https://fancy96.github.io/Programmers-12933/)
 
-    * [[Programmers] 12933. 정수 내림차순으로 배치하기](https://fancy96.github.io/Programmers-12933/)
+* [[Programmers] 12947. 하샤드 수](https://fancy96.github.io/Programmers-12947/)
 
-    * [[Programmers] 12947. 하샤드 수](https://fancy96.github.io/Programmers-12947/)
+* [[Programmers] 12954. x만큼 간격이 있는 n개의 숫자](https://fancy96.github.io/Programmers-12954/)
 
-    * [[Programmers] 12954. x만큼 간격이 있는 n개의 숫자](https://fancy96.github.io/Programmers-12954/)
+* [[Programmers] 12910. 나누어 떨어지는 숫자 배열](https://fancy96.github.io/Programmers-12910/)
 
-    * [[Programmers] 12910. 나누어 떨어지는 숫자 배열](https://fancy96.github.io/Programmers-12910/)
+* [[Programmers] 12912. 두 정수 사이의 합](https://fancy96.github.io/Programmers-12912/)
 
-    * [[Programmers] 12912. 두 정수 사이의 합](https://fancy96.github.io/Programmers-12912/)
+* [[Programmers] 12919. 서울에서 김서방 찾기](https://fancy96.github.io/Programmers-12919/)
 
-    * [[Programmers] 12919. 서울에서 김서방 찾기](https://fancy96.github.io/Programmers-12919/)
+* [[Programmers] 12943. 콜라츠 추측](https://fancy96.github.io/Programmers-12943/)
 
-    * [[Programmers] 12943. 콜라츠 추측](https://fancy96.github.io/Programmers-12943/)
+* [CS 스터디 : 네트워크 2주차](https://github.com/Fancy96/2023-CS-Study/issues/14)
 
+* [CS 스터디 : 네트워크 공부 - SOP와 CORS란 무엇인가?](https://fancy96.github.io/Network-CORS-SOP/)
 
-* **CS 스터디**
-
-    * [네트워크 : 2주차](https://github.com/Fancy96/2023-CS-Study/issues/14)
-
-    * [네트워크 공부 : SOP와 CORS란 무엇인가?](https://fancy96.github.io/Network-CORS-SOP/)
-
-
-* **Java**
-
-    * [String 특징과 String 클래스의 주요 메소드](https://fancy96.github.io/Java-String-Methods/)
+* [[Java] : String 특징과 String 클래스의 주요 메소드](https://fancy96.github.io/Java-String-Methods/)
 
 * [Google Search Console에 GitHub 블로그 등록하기](https://fancy96.github.io/Google-Research-Console-Verification/)
 
@@ -133,26 +114,21 @@ author: fancy96
 
 > 230115 ~ 230123
 
-* **Programmers** 풀기
+* [[Programmers] 134240. 푸드 파이트 대회](https://fancy96.github.io/Programmers-134240/)
 
-    * [[Programmers] 134240. 푸드 파이트 대회](https://fancy96.github.io/Programmers-134240/)
+* [[Programmers] 17681. [1차] 비밀지도](https://fancy96.github.io/Programmers-17681/)
 
-    * [[Programmers] 17681. [1차] 비밀지도](https://fancy96.github.io/Programmers-17681/)
+* [[Programmers] 81301. 숫자 문자열과 영단어](https://fancy96.github.io/Programmers-81301/)
 
-    * [[Programmers] 81301. 숫자 문자열과 영단어](https://fancy96.github.io/Programmers-81301/)
+* [CS 스터디 : 네트워크 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/21)
 
+* [CS 스터디 : 네트워크 회고](https://github.com/Fancy96/2023-CS-Study/issues/22)
 
-* **CS 스터디**
+* [CS 스터디 : 운영체제 1주차](https://github.com/Fancy96/2023-CS-Study/issues/24)
 
-    * [네트워크 : 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/21)
+* [CS 스터디 : 운영체제 공부 - Segmentation(세그먼테이션)](https://fancy96.github.io/OS-16-Segmentation/)
 
-    * [네트워크 : 회고](https://github.com/Fancy96/2023-CS-Study/issues/22)
-
-    * [운영체제 : 1주차](https://github.com/Fancy96/2023-CS-Study/issues/24)
-
-    * [운영체제 공부 : Segmentation(세그먼테이션)](https://fancy96.github.io/OS-16-Segmentation/)
-
-* **스프링 핵심 원리 - 기본편**
+* 스프링 핵심 원리 - 기본편
 
     * [객체 지향 설계와 스프링](https://fancy96.github.io/Spring-Core-Principle-1/)
 
@@ -187,7 +163,7 @@ author: fancy96
     * 기타 : [테스트를 할 때 쓰이는 어노테이션](https://fancy96.github.io/Spring-Core-Principle-TestCode-1/)
 
 
-* **모든 개발자를 위한 HTTP 웹 기본 지식**
+* 모든 개발자를 위한 HTTP 웹 기본 지식
 
     * 인터넷 네트워크 - 인터넷 통신 / IP / TCP, UDP / PORT / DNS
 
@@ -207,31 +183,22 @@ author: fancy96
 
     * HTTP 헤더2 - 캐시와 조건부 요청
 
-* **Java**
+* [[Java] : 객체지향언어](https://fancy96.github.io/Java-1-Object-Oriented-Language/)
 
-    * [객체지향언어](https://fancy96.github.io/Java-1-Object-Oriented-Language/)
+* [[Java] :클래스와 객체](https://fancy96.github.io/Java-2-Class-And-Object/)
 
-    * [클래스와 객체](https://fancy96.github.io/Java-2-Class-And-Object/)
+* [[Java] :변수와 메소드](https://fancy96.github.io/Java-3-Variable-And-Method/)
 
-    * [변수와 메소드](https://fancy96.github.io/Java-3-Variable-And-Method/)
-
-    * [JVM의 메모리 구조](https://fancy96.github.io/Java-3_2-JVM-Memory-Structure/)
+* [[Java] :JVM의 메모리 구조](https://fancy96.github.io/Java-3_2-JVM-Memory-Structure/)
 
 * [우아한테크코스 5기 프리코스과정을 정리한 repository](https://github.com/Fancy96/fancy96-woowacourse)
 
 > 230126 ~ 230131
 
-*  **Programmers** 풀기
+* [[Programmers] 42889. 실패율](https://fancy96.github.io/Programmers-42889/)
 
-    * [[Programmers] 42889. 실패율](https://fancy96.github.io/Programmers-42889/)
-
-
-* **CS 스터디**
-
-
-* **스프링 MVC 1편** - 백엔드 웹 개발 핵심 기술
+* 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
 
     * 웹 어플리케이션 이해
-
 
 * [크롬 북마크에 있는 파비콘이 제대로 안보이는 경우](https://fancy96.github.io/ETC-Chrome-Bookmark/)
