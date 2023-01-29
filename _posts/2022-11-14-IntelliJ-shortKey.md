@@ -21,7 +21,7 @@ author: fancy96
 
 * `cmd + n`을 눌러서 `toString` 을 입력하여 클릭하고 위와 같은 방식으로 처리하면 toString이 자동으로 추가된다.
 
-###  Import 추가 / 이름 변경(클래스, 메소드, 패키지)
+###  Import 추가 / 이름 변경(클래스,* 메서드 , 패키지)
 
 * import가 필요한 경우 `option + enter`를 누르면 "Implement methods" 를 선택한 다음에 
 
@@ -51,6 +51,16 @@ author: fancy96
 
 * `iter` 를 입력하면 for()문이 자동으로 생성된다.
 
+### 검색
+
+* 경로내 검색하기 : `cmd + shift + enter`
+
+* **전체 검색하기** : `shift` 두번(연속으로)
+
+* 최근 파일 열기 : `ctrl + E`
+
+* **사용하는 코드 추적하기** : 해당 클래스 / 메서드에서 `cmd + B`
+
 ### 코드 Edit
 
 #### 변수 자동 생성
@@ -76,10 +86,10 @@ public static void main(String[] args) {
 
 * 그 상태에서 `enter`를 치면, 자동으로 선언부가 완성된다.
 
-#### 메소드 추출하기
+####* 메서드  추출하기
 
 ``` java
-// 메소드 추출전
+//* 메서드  추출전
 public MemberService memberService() {
     return new MemberServiceImpl(new MemoryMemberRepository());
 }
@@ -87,10 +97,10 @@ public MemberService memberService() {
 
 * `new MemoryMemberRepository`을 드래그 한 다음에 `cmd + option + m`을 입력하고
 
-* 메소드 이름을 `memberRepository`로 입력하면 아래와 같이 메소드가 추출된다.
+* 메서드 이름을 `memberRepository`로 입력하면 아래와 같이* 메서드 가 추출된다.
 
 ``` java
-// 메소드 추출후
+//* 메서드  추출후
 public MemberService memberService() {
     return new MemberServiceImpl(memberRepository());
 }
@@ -115,7 +125,7 @@ private MemberRepository memberRepository() {
 
 ### 테스트코드 자동 추가
 
-* 메소드 이름앞에서 `cmd + shift + T` 를 누르면 "Create New Test"를 클릭하고
+* 메서드 이름앞에서 `cmd + shift + T` 를 누르면 "Create New Test"를 클릭하고
 
 ![](/assets/img/intellij/intellij_shortKey_testCode.png)
 

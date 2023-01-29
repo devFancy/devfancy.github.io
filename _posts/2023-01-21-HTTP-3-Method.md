@@ -9,7 +9,25 @@ author: fancy96
 
 > 이 글의 코드와 정보들은 강의를 들으며 정리한 내용을 토대로 작성하였습니다.
 
-### API URI 설계
+## Contents
+
+* 다음 순서에 맞게 보시는 것을 권장해드립니다.
+
+1. [HTTP 웹 기본 지식 : HTTP 기본](https://fancy96.github.io/HTTP-1-Basic/)
+
+2. [HTTP 웹 기본 지식 : HTTP 메세지](https://fancy96.github.io/HTTP-2-Basic/)
+
+3. [HTTP 웹 기본 지식 : HTTP 메서드](https://fancy96.github.io/HTTP-3-Method/)
+
+4. [HTTP 웹 기본 지식 : HTTP 메서드 활용](https://fancy96.github.io/HTTP-4-Method-Application/)
+
+5. [HTTP 웹 기본 지식 : HTTP 상태코드](https://fancy96.github.io/HTTP-5-Status-Code/)
+
+6. [HTTP 웹 기본 지식 : HTTP 헤더1 - 일반 헤더](https://fancy96.github.io/HTTP-6-Header1/)
+
+7. [HTTP 웹 기본 지식 : HTTP 헤더2 - 캐시와 조건부 요청](https://fancy96.github.io/HTTP-7-Header2/)
+
+## API URI 설계
 
 * 예를 들면 요구사항에서 회원 정보 관리 API를 만드는 내용이 적혀져 있다.
 
@@ -29,7 +47,7 @@ author: fancy96
 
 * 행위(메서드)는 GET, POST, PUT, PATCH, DELETE 로 구분한다.
 
-### HTTP 메서드 종류
+## HTTP 메서드 종류
 
 * `GET` : 리소스를 **조회**한다.
 
@@ -41,7 +59,7 @@ author: fancy96
 
 * `DELETE` : 리소스를 **삭제**한다.
 
-#### GET
+### GET
 
 ```text
 GET /search?q=hello&hl=ko HTTP/1.1 
@@ -51,7 +69,7 @@ Host: www.google.com
 * 리소스를 조회하는 역할로 서버에 전달하고 싶은 데이터는 query(쿼리 파라미터, 쿼리 스트링)를 통해 전달한다.
 
 
-#### POST
+### POST
 
 ```text
 POST /members HTTP/1.1 
@@ -80,7 +98,7 @@ Content-Type: application/json
     * 만약 HTTP에서 PATCH를 받아들이지 못하는 경우 POST를 쓰면 된다.
 
 
-#### PUT
+### PUT
 
 ```text
 PUT /members/100 HTTP/1.1 
@@ -96,7 +114,7 @@ Content-Type: application/json
 
     * `POST`의 경우 리소스를 식별하지 못한다. => /members
 
-#### PATCH
+### PATCH
 
 ```text
 PATCH /members/100 HTTP/1.1 
@@ -108,7 +126,7 @@ Content-Type: application/json
 
 * 리소스 일부를 대체(변경)한다.
 
-#### DELETE
+### DELETE
 
 ```text
 DELETE /members/100 HTTP/1.1 
@@ -117,15 +135,15 @@ Host: localhost:8080
 
 * 리소스를 제거한다.
 
-### HTTP 메서드의 속성
+## HTTP 메서드의 속성
 
-#### 안전(Safe)
+### 안전(Safe)
 
 * 호출해도 리소스를 변경하지 않는다. 해당 리소스만 고려하기 때문에 로그가 쌓여서 장애가 발생하는 부분까지 고려하지 않는다.
 
     * 안전에 해당하는 메서드 : `GET`
 
-#### 멱등(Idempotent)
+### 멱등(Idempotent)
 
 * 몇번을 호출하든 결과가 똑같다. 외부 요인으로 중간에 리소스가 변경되는 것 까지는 고려하지 않는다.
 
@@ -133,7 +151,7 @@ Host: localhost:8080
 
 * 활용) 자동 복구 메커니즘
 
-#### 캐시가능(Cacheable)
+### 캐시가능(Cacheable)
 
 * 응답 결과 리소스를 캐시해서 실제로 사용하는 메서드는 `GET`, `HEAD` 가 있다.
 

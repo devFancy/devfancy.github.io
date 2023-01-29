@@ -14,21 +14,21 @@ author: fancy96
 
 Introduction : [HST 13-7 운동 프로그램 시작](https://fancy96.github.io/Workout-HST-Introduction/)
 
-1. [HST Week1주차 후기](https://fancy96.github.io/Workout-HST-Week1/)
+1. [HST Week 1주 차 후기](https://fancy96.github.io/Workout-HST-Week1/)
 
-2. [HST Week2주차 후기 ( + HST 프로그램 수정)](https://fancy96.github.io/Workout-HST-Week2/)
+2. [HST Week 2주 차 후기 ( + HST 프로그램 수정)](https://fancy96.github.io/Workout-HST-Week2/)
 
-3. [HST Week3주차 후기](https://fancy96.github.io/Workout-HST-Week3/)
+3. [HST Week 3주 차 후기](https://fancy96.github.io/Workout-HST-Week3/)
 
-4. [HST Week 4주차 및 1달 리뷰](https://fancy96.github.io/Workout-HST-Week4/)
+4. [HST Week 4주 차 및 1달 리뷰](https://fancy96.github.io/Workout-HST-Week4/)
 
-5. [HST Week 5주차, 6주차 리뷰](https://fancy96.github.io/Workout-HST-Week5-And-6/)
+5. [HST Week 5주 차, 6주 차 리뷰](https://fancy96.github.io/Workout-HST-Week5-And-6/)
 
-6. [HST 2달(완료)후기 (1/17 - 3/19)](https://fancy96.github.io/Workout-HST-End/)
+6. [HST 2달 후기 (1/17 - 3/19)](https://fancy96.github.io/Workout-HST-End/)
 
 ## Program
 
-> HST 프로그램에 맞게 저만의 운동루틴을 세웠고, 2분할로 상체-하체를 일주일에 2번반복으로 총 주4회로 구성했습니다.
+> HST 프로그램에 맞게 저만의 운동 루틴을 세웠고, 2분할로 상체-하체를 일주일에 2번 반복으로 총 주 4회로 구성했습니다.
 
 * 2주차에 접어들면서,운동이 잘되는 것 같은 느낌이 안나서 몇 가지 부분들을 수정했습니다.
 

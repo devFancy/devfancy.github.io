@@ -40,19 +40,19 @@ type: page
 
 ### 2023
 
-* 　01. 24 ~ Study 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
+* 　01. 30 ~ Study 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
 
-* 　01. 21 ~ 01. 23 [Study 모든 개발자를 위한 HTTP 웹 기본 지식](https://fancy96.github.io/category/#HTTP)
+* 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식](https://fancy96.github.io/category/#HTTP)
 
-* 　01. 14 ~ 01. 23 [Study 스프링 핵심원리 - 기본편](https://fancy96.github.io/category/#Spring)
+* 　01. 14 ~ 01. 24 [Study 스프링 핵심원리 - 기본편](https://fancy96.github.io/category/#Spring)
 
 * 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
 
 * 　01. 14  Google 애드센스 블로그에 적용
 
-* 　01. 12 Tawk.to 서비스 블로그에 적용
+* 　01. 12  Tawk.to 서비스 블로그에 적용
 
-* 　01. 12 [기술 블로그](https://github.com/Fancy96?tab=repositories) 만들기
+* 　01. 12 [기술 블로그](https://github.com/Fancy96/fancy96.github.io) 만들기
 
 * 　01. 07 ~ [Programmers : 코딩테스트 공부](https://fancy96.github.io/category/#Algorithm)
 
@@ -60,9 +60,9 @@ type: page
 
 * 　01. 02 ~ [운동 일지 기록](https://fancy96.github.io/Workout/)
 
-* 　01. 01 [[Coursera] 5개 수료증 취득](https://fancy96.github.io/Coursera-Certificates/) 
-
 ### 2022
+
+* 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득](https://fancy96.github.io/Coursera-Certificates/)
 
 * 　11. 03 ~ Java 복습
 
@@ -74,54 +74,50 @@ type: page
 
 * 　08. 30 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
 
-* 　08. 09 ~ 10. 28 [Competition : KNU 학생설계 융합전공 공모전 수상](https://knu.ac.kr/wbbs/wbbs/bbs/btin/viewBtin.action?bbs_cde=11&btin.bbs_cde=11&btin.doc_no=1326876&btin.appl_no=000000&btin.page=1&btin.search_type=&btin.search_text=&popupDeco=false&btin.note_div=row&menu_idx=73) 참가
+* 　08. 09 ~ 10. 28 [Competition : KNU 학생설계 융합전공 공모전 수상](https://knu.ac.kr/wbbs/wbbs/bbs/btin/viewBtin.action?bbs_cde=11&btin.bbs_cde=11&btin.doc_no=1326876&btin.appl_no=000000&btin.page=1&btin.search_type=&btin.search_text=&popupDeco=false&btin.note_div=row&menu_idx=73)
 
-* 　07. 04 [Competition : 공개 SW 개발자 대회, OSS](https://www.oss.kr/dev_competition) 본선 진출
+* 　07. 04 ~ 11. 03 [Competition : 공개 SW 개발자 대회, OSS](https://www.oss.kr/dev_competition) 본선 진출
 
 * 　07. 01 ~ 07. 14 [스프링 부트 웹 프로젝트 공부](https://github.com/Fancy96/Spring-Boot-Web-Project)
 
-* 　07. 01 ~ 12. 15 과학기술정보통신부 주관 알파시티 마스터과정 참가(ESG 플랫폼 - 백엔드 개발자 인턴 근무 : 07.01 ~ 08.31)
+* 　07. 01 ~ 08. 31 ESG 플랫폼 - 백엔드 개발자 인턴 근무
+
+* 　07. 01 ~ 12. 15 과학기술정보통신부 주관 알파시티 마스터과정 참가
 
 * 　06. 02 [Competition : SK하이닉스 제 2회 사회문제 해결 스타트업 아이디어 공모전](https://news.skhynix.co.kr/post/2nd-solving-social-problems-exhibition-contest) 참가
 
 * 　05. 20 [Competition : 신한 스퀘어브릿지 HERO IR DAY 대학생 창업 아이디어 경진대회](https://sehub.net/archives/2076603) 참가
 
-* 　04. 11 ~ 06. 26 [Study Probability Statistics](https://fancy96.github.io/PS-Introduction/)
-
-* 　04. 11 ~ 06. 25 [Study Electronic Finance School of Business Administration](https://fancy96.github.io/EF-Introduction/)
-
-* 　04. 11 ~ 06. 17 [Study Business Statistics](https://fancy96.github.io/BS-Introduction/)
-
 * 　04. 11 ~ 06. 17 [Study Git](https://fancy96.github.io/category/#Git)
 
 * 　03. 15 ~ Study Java (명품 자바 에센셜)
 
-* 　01. 17 ~ 02. 13 31회 투자자산운용사 공부
+* 　03. 02 ~ 06. 26 [Study Probability Statistics](https://fancy96.github.io/PS-Introduction/)
+
+* 　03. 02 ~ 06. 25 [Study Electronic Finance School of Business Administration](https://fancy96.github.io/EF-Introduction/)
+
+* 　03. 02 ~ 06. 17 [Study Business Statistics](https://fancy96.github.io/BS-Introduction/)
 
 * 　03. 02 ~ 06. 15 [Study Algorithm Practice](https://github.com/Fancy96/KNU/tree/main/algorithm)
+
+* 　01. 17 ~ 02. 13 31회 투자자산운용사 공부
 
 * 　01. 01 ~ [Study Data Science](https://datascienceschool.net/intro.html)
 
 
 ### 2021
 
-* 　11. 29 ~ 12. 31 Competition : 제1차 투자재능 발굴 프로젝트 수상
-
 * 　11. 29 ~ 12. 03 [인재개발원] 현직자 직무멘토링 프로그램 참가
 
 * 　09. 15 ~ Study Python3 
 
-* 　10. 01 ~ 22. 07. 31 Competition : 제 7회 전국 대학(원)생 가치투자대회 참가
-
 * 　09 ~ [교내 동아리 데이터금융분석학회(DART)](https://www.knudart.com/) 참가
 
-* 　09. 01 ~ 12. 15 [Study SystemProgramming](https://github.com/Fancy96/KNU/tree/main/systemProgramming) 공부 - Linux
+* 　09. 06 ~ 09. 07 [Study Linux](https://fancy96.github.io/SP-Linux/)
 
-* 　09. 01 ~ 12. 15 Study Software Math
+* 　09. 01 ~ 12. 15 [Study SystemProgramming](https://github.com/Fancy96/KNU/tree/main/systemProgramming)
 
 * 　09. 01 ~ 12. 15 Study Linear Algebra
-
-* 　08. 23 ~ 11. 26 ~ 제2회 NH투자증권 빅데이터 경진대회 수상
 
 * 　06. 20 ~ 08. 15 [Study Data Structure](https://github.com/Fancy96/KNU/tree/main/dataStructure)
 
@@ -133,10 +129,6 @@ type: page
 
 
 ### 2020
-
-* 　09. 01 ~ 12.15 Study Financial Derivatives(금융파생상품론)
-
-* 　09. 01 ~ 12.15 Study Fintech(핀테크 개론)
 
 * 　09. 01 ~ 12.15 소프트웨어설계 팀프로젝트 참가
 

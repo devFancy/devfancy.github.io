@@ -154,11 +154,11 @@ author: fancy96
 
     * [컴포넌트 스캔](https://fancy96.github.io/Spring-Core-Principle-6/)
 
-    * 의존관계 자동주입
+    * [의존관계 자동주입](https://fancy96.github.io/Spring-Core-Principle-7/)
   
-    * 빈 생명주기 콜백
+    * [빈 생명주기 콜백](https://fancy96.github.io/Spring-Core-Principle-8/)
 
-    * 빈 스코프 
+    * [빈 스코프](https://fancy96.github.io/Spring-Core-Principle-6/)
 
     * 기타 : [테스트를 할 때 쓰이는 어노테이션](https://fancy96.github.io/Spring-Core-Principle-TestCode-1/)
 
@@ -169,9 +169,9 @@ author: fancy96
 
     * URI와 웹 브라우저 요청 흐름
 
-    * [HTTP 기본](https://fancy96.github.io/HTTP-1-Basic/)
+    * [HTTP 기본1](https://fancy96.github.io/HTTP-1-Basic/)
 
-        * [HTTP 메세지](https://fancy96.github.io/HTTP-2-Basic/)
+    * [HTTP 기본2 - HTTP 메세지](https://fancy96.github.io/HTTP-2-Basic/)
 
     * [HTTP 메서드](https://fancy96.github.io/HTTP-3-Method/)
 
@@ -179,9 +179,9 @@ author: fancy96
 
     * [HTTP 상태코드](https://fancy96.github.io/HTTP-5-Status-Code/)
 
-    * HTTP 헤더1 - 일반 헤더
+    * [HTTP 헤더1 - 일반 헤더](https://fancy96.github.io/HTTP-6-Header1/)
 
-    * HTTP 헤더2 - 캐시와 조건부 요청
+    * [HTTP 헤더2 - 캐시와 조건부 요청](https://fancy96.github.io/HTTP-7-Header2)
 
 * [[Java] : 객체지향언어](https://fancy96.github.io/Java-1-Object-Oriented-Language/)
 
@@ -193,12 +193,23 @@ author: fancy96
 
 * [우아한테크코스 5기 프리코스과정을 정리한 repository](https://github.com/Fancy96/fancy96-woowacourse)
 
-> 230126 ~ 230131
+> 230126 ~ 230129
 
 * [[Programmers] 42889. 실패율](https://fancy96.github.io/Programmers-42889/)
 
-* 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
+* [[Programmers] 17682. [1차] 다트 게임](https://fancy96.github.io/Programmers-17682/)
 
-    * 웹 어플리케이션 이해
+* [[Programmers] 67256. 키패드 누르기](https://fancy96.github.io/Programmers-67256/)
+
+* [[Programmers] 77484. 로또의 최고 순위와 최저 순위](https://fancy96.github.io/Programmers-77484/)
+
+* [[Programmers] 92334. 신고 결과 받기](https://fancy96.github.io/Programmers-92334/)
+
+* [[Programmers] 118666. 성격 유형 검사하기](https://fancy96.github.io/Programmers-118666/)
+
+* [2023 1월 운동 기록](https://fancy96.github.io/Workout/)
 
 * [크롬 북마크에 있는 파비콘이 제대로 안보이는 경우](https://fancy96.github.io/ETC-Chrome-Bookmark/)
+
+> 230130 ~ 230205
+

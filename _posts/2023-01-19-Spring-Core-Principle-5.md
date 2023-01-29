@@ -9,6 +9,29 @@ author: fancy96
 
 > 이 글의 코드와 정보들은 강의를 들으며 정리한 내용을 토대로 작성하였습니다.
 
+## Contents
+
+* 다음 순서에 맞게 보시는 것을 권장해드립니다.
+
+1. [Spring 핵심원리 - 기본편 : 객체 지향 설계와 스프링](https://fancy96.github.io/Spring-Core-Principle-1/)
+
+2. [Spring 핵심원리 - 기본편 : 스프링으로 전환하기](https://fancy96.github.io/Spring-Core-Principle-2/)
+
+3. [Spring 핵심원리 - 기본편 : 스프링 컨테이너와 스프링 빈](https://fancy96.github.io/Spring-Core-Principle-4/)
+
+4. [Spring 핵심원리 - 기본편 : 스프링 컨테이너에 등록된 빈 조회](https://fancy96.github.io/Spring-Core-Principle-4-2/)
+
+5. [Spring 핵심원리 - 기본편 : 싱글톤 컨테이너](https://fancy96.github.io/Spring-Core-Principle-5/)
+
+6. [Spring 핵심원리 - 기본편 : 컴포넌트 스캔](https://fancy96.github.io/Spring-Core-Principle-6/)
+
+7. [Spring 핵심원리 - 기본편 : 의존관계 자동 주입](https://fancy96.github.io/Spring-Core-Principle-7/)
+
+8. [Spring 핵심원리 - 기본편 : 빈 생명주기 콜백](https://fancy96.github.io/Spring-Core-Principle-8/)
+
+9. [Spring 핵심원리 - 기본편 : 빈 스코프](https://fancy96.github.io/Spring-Core-Principle-9/)
+
+
 ## 웹 어플리케이션과 싱글톤
 
 * 스프링이 없던 순수한 DI컨테이너인 AppConfig은 요청을 할 때마다 객체를 새로 생성해서 메모리 낭비가 심했다.
