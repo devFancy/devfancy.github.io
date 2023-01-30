@@ -1,8 +1,8 @@
 ---
 layout: post
 title: " [OSS] 공개 SW 개발자 대회 (본선 진출) "
-categories: Probability-Statistics
-author: Competition
+categories: Competition
+author: fancy96
 use_math: true
 ---
 * content

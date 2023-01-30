@@ -27,7 +27,9 @@ type: page
 
 * <img src="/assets/img/logo/github.png" style="max-width: 3%; vertical-align: text-bottom;"> :  [{{site.github_username}}](https://github.com/{{site.github_username}})
 
-* <img src="/assets/img/logo/email.png" style="max-width: 3%; vertical-align: text-bottom;"> : jymoon1121@gmail.com
+* <img src="/assets/img/logo/linkedin.png" style="max-width: 3%; vertical-align: text-bottom;"> : [fancy.junyongmoon](https://www.linkedin.com/in/junyong-moon-479385264/)
+
+* <img src="/assets/img/logo/email.png" style="max-width: 3%; vertical-align: text-bottom;"> : fancy.junyongmoon@gmail.com
 
 --- 
 
@@ -48,13 +50,13 @@ type: page
 
 * 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
 
-* 　01. 14  Google 애드센스 블로그에 적용
+* 　01. 14  Google 애드센스 블로그에 적용(01. 30 애드센스 계정이 활성화)
 
 * 　01. 12  Tawk.to 서비스 블로그에 적용
 
 * 　01. 12 [기술 블로그](https://github.com/Fancy96/fancy96.github.io) 만들기
 
-* 　01. 07 ~ [Programmers : 코딩테스트 공부](https://fancy96.github.io/category/#Algorithm)
+* 　01. 07 ~ [Programmers : 코딩테스트 대비](https://fancy96.github.io/category/#Algorithm)
 
 * 　01. 02 ~ [CS 스터디 진행](https://github.com/Fancy96/2023-CS-Study)
 
