@@ -57,8 +57,11 @@ author: fancy96
 
 > 김영한의 스프링 부트와 JPA 실무 완전 정복 로드맵
 
+* [자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/)
+
 * [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/)
 
+* [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94/)
 
 ## January
 
@@ -158,7 +161,7 @@ author: fancy96
   
     * [빈 생명주기 콜백](https://fancy96.github.io/Spring-Core-Principle-8/)
 
-    * [빈 스코프](https://fancy96.github.io/Spring-Core-Principle-6/)
+    * [빈 스코프](https://fancy96.github.io/Spring-Core-Principle-9/)
 
     * 기타 : [테스트를 할 때 쓰이는 어노테이션](https://fancy96.github.io/Spring-Core-Principle-TestCode-1/)
 
@@ -193,7 +196,7 @@ author: fancy96
 
 * [우아한테크코스 5기 프리코스과정을 정리한 repository](https://github.com/Fancy96/fancy96-woowacourse)
 
-> 230126 ~ 230129
+> 230126 ~ 230131
 
 * [[Programmers] 42889. 실패율](https://fancy96.github.io/Programmers-42889/)
 
@@ -207,9 +210,23 @@ author: fancy96
 
 * [[Programmers] 118666. 성격 유형 검사하기](https://fancy96.github.io/Programmers-118666/)
 
-* [2023 1월 운동 기록](https://fancy96.github.io/Workout/)
+* [[Programmers] 17680. [1차] 캐시](https://fancy96.github.io/Programmers-17680/)
 
 * [크롬 북마크에 있는 파비콘이 제대로 안보이는 경우](https://fancy96.github.io/ETC-Chrome-Bookmark/)
 
-> 230130 ~ 230205
+* [왜 개발자를 선택했는가](https://fancy96.github.io/ETC-Why-Did-You-Select-The-Developer/)
+
+* [2023 1월 운동 기록](https://fancy96.github.io/Workout/)
+
+> 230201 ~ 230205
+
+* [[Programmers] 12939. 최댓값과 최솟값](https://fancy96.github.io/Programmers-12939/)
+
+* [[Programmers] 12951. JadenCase 문자열 만들기](https://fancy96.github.io/Programmers-12951/)
+
+* [[Programmers] 12941. 최솟값 만들기](https://fancy96.github.io/Programmers-12941/)
+
+* [CS 스터디 : 운영체제 공부 - Paging(페이징)](https://fancy96.github.io/OS-18-Paging/)
+
+* [[Book] 소프트웨어 장인 리뷰](https://fancy96.github.io/Book-Software-Master-Craftsman/)
 
