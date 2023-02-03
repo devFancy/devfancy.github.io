@@ -42,7 +42,7 @@ type: page
 
 ### 2023
 
-* 　01. 30 ~ Study 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
+* 　02. 01 ~ [Study 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://fancy96.github.io/category/#Spring)
 
 * 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식](https://fancy96.github.io/category/#HTTP)
 
@@ -50,11 +50,11 @@ type: page
 
 * 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
 
-* 　01. 14  Google 애드센스 블로그에 적용(01. 30 애드센스 계정이 활성화)
+* 　01. 14  Google 애드센스 블로그에 적용(01. 30 애드센스 계정 활성화)
 
 * 　01. 12  Tawk.to 서비스 블로그에 적용
 
-* 　01. 12 [기술 블로그](https://github.com/Fancy96/fancy96.github.io) 만들기
+* 　01. 12 [기술 블로그](https://github.com/Fancy96/fancy96.github.io) 생성
 
 * 　01. 07 ~ [Programmers : 코딩테스트 대비](https://fancy96.github.io/category/#Algorithm)
 
