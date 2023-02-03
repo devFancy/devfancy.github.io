@@ -131,60 +131,59 @@ author: fancy96
 
 * [CS 스터디 : 운영체제 공부 - Segmentation(세그먼테이션)](https://fancy96.github.io/OS-16-Segmentation/)
 
-* 스프링 핵심 원리 - 기본편
+**스프링 핵심 원리 - 기본편**
 
-    * [객체 지향 설계와 스프링](https://fancy96.github.io/Spring-Core-Principle-1/)
+* [객체 지향 설계와 스프링](https://fancy96.github.io/Spring-Core-Principle-1/)
 
-    * 스프링 핵심원리 이해 - 객체 지향 원리 적용
+* 스프링 핵심원리 이해 - 객체 지향 원리 적용
 
-        * 좋은 객체 지향 설계의 5가지 원칙의 적용
+    * 좋은 객체 지향 설계의 5가지 원칙의 적용
 
-        * IoC, DI, 그리고 컨테이너
+    * IoC, DI, 그리고 컨테이너
 
-        * [스프링으로 전환하기](https://fancy96.github.io/Spring-Core-Principle-2/)
+    * [스프링으로 전환하기](https://fancy96.github.io/Spring-Core-Principle-2/)
 
-    * [스프링 컨테이너와 스프링 빈](https://fancy96.github.io/Spring-Core-Principle-4/)
+* [스프링 컨테이너와 스프링 빈](https://fancy96.github.io/Spring-Core-Principle-4/)
 
-        * [스프링 컨테이너에 등록된 빈 조회](https://fancy96.github.io/Spring-Core-Principle-4-2/)
+    * [스프링 컨테이너에 등록된 빈 조회](https://fancy96.github.io/Spring-Core-Principle-4-2/)
     
-        * BeanFactory와 ApplicationContext
+    * BeanFactory와 ApplicationContext
   
-        * 다양한 설정 형식 지원 - 자바 코드, XML
+    * 다양한 설정 형식 지원 - 자바 코드, XML
     
-        * 스프링 빈 설정 메타 정보 - BeanDefinition
+    * 스프링 빈 설정 메타 정보 - BeanDefinition
 
-    * [싱글톤 컨테이너](https://fancy96.github.io/Spring-Core-Principle-5/)
+* [싱글톤 컨테이너](https://fancy96.github.io/Spring-Core-Principle-5/)
 
-    * [컴포넌트 스캔](https://fancy96.github.io/Spring-Core-Principle-6/)
+* [컴포넌트 스캔](https://fancy96.github.io/Spring-Core-Principle-6/)
 
-    * [의존관계 자동주입](https://fancy96.github.io/Spring-Core-Principle-7/)
+* [의존관계 자동주입](https://fancy96.github.io/Spring-Core-Principle-7/)
   
-    * [빈 생명주기 콜백](https://fancy96.github.io/Spring-Core-Principle-8/)
+* [빈 생명주기 콜백](https://fancy96.github.io/Spring-Core-Principle-8/)
 
-    * [빈 스코프](https://fancy96.github.io/Spring-Core-Principle-9/)
+* [빈 스코프](https://fancy96.github.io/Spring-Core-Principle-9/)
 
-    * 기타 : [테스트를 할 때 쓰이는 어노테이션](https://fancy96.github.io/Spring-Core-Principle-TestCode-1/)
+* 기타 : [테스트를 할 때 쓰이는 어노테이션](https://fancy96.github.io/Spring-Core-Principle-TestCode-1/)
 
+**모든 개발자를 위한 HTTP 웹 기본 지식**
 
-* 모든 개발자를 위한 HTTP 웹 기본 지식
+* 인터넷 네트워크 - 인터넷 통신 / IP / TCP, UDP / PORT / DNS
 
-    * 인터넷 네트워크 - 인터넷 통신 / IP / TCP, UDP / PORT / DNS
+* URI와 웹 브라우저 요청 흐름
 
-    * URI와 웹 브라우저 요청 흐름
+* [HTTP 기본1](https://fancy96.github.io/HTTP-1-Basic/)
 
-    * [HTTP 기본1](https://fancy96.github.io/HTTP-1-Basic/)
+* [HTTP 기본2 - HTTP 메세지](https://fancy96.github.io/HTTP-2-Basic/)
 
-    * [HTTP 기본2 - HTTP 메세지](https://fancy96.github.io/HTTP-2-Basic/)
+* [HTTP 메서드](https://fancy96.github.io/HTTP-3-Method/)
 
-    * [HTTP 메서드](https://fancy96.github.io/HTTP-3-Method/)
+* [HTTP 메서드 활용](https://fancy96.github.io/HTTP-4-Method-Application/)
 
-    * [HTTP 메서드 활용](https://fancy96.github.io/HTTP-4-Method-Application/)
+* [HTTP 상태코드](https://fancy96.github.io/HTTP-5-Status-Code/)
 
-    * [HTTP 상태코드](https://fancy96.github.io/HTTP-5-Status-Code/)
+* [HTTP 헤더1 - 일반 헤더](https://fancy96.github.io/HTTP-6-Header1/)
 
-    * [HTTP 헤더1 - 일반 헤더](https://fancy96.github.io/HTTP-6-Header1/)
-
-    * [HTTP 헤더2 - 캐시와 조건부 요청](https://fancy96.github.io/HTTP-7-Header2)
+* [HTTP 헤더2 - 캐시와 조건부 요청](https://fancy96.github.io/HTTP-7-Header2)
 
 * [[Java] : 객체지향언어](https://fancy96.github.io/Java-1-Object-Oriented-Language/)
 
@@ -217,6 +216,8 @@ author: fancy96
 * [왜 개발자를 선택했는가](https://fancy96.github.io/ETC-Why-Did-You-Select-The-Developer/)
 
 * [2023 1월 운동 기록](https://fancy96.github.io/Workout/)
+
+## February
 
 > 230201 ~ 230205
 
