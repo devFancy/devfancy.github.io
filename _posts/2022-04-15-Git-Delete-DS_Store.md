@@ -25,22 +25,19 @@ author: fancy96
 
 * 저장소 상위 디렉토리에서 현재 디렉토리 아래의 모든 .DS_Store 파일을 제거
 
-```
-    find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
-```
+> find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
 
 * 만약, 앞으로도 .DS_Store 파일을 업로드하지 않을거라면,
 
 * 저장소 상위 디렉토리에 .gitignore 파일 생성 및 .DS_Store 파일 추가
 
-```
-    echo .DS_Store >> .gitignore
-```
+> echo .DS_Store >> .gitignore
 
 * 변경 사항을 원격 저장소에 push
 
-```
-    git add --all
-    git commit -m '.DS_Store removed'
-    git push origin main
-```
+> git add --all
+> 
+> git commit -m '.DS_Store removed'
+>
+> git push origin main
+
