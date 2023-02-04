@@ -13,7 +13,7 @@ author: fancy96
 
 * 그 중 3가지 주요 영역(method area, call stack, heap)에 대해서 알아보자.
 
-![](/assets/img/java/jvm-memory-structure.png)
+![](/assets/img/java/jvm-memory-structure.png){: width="500"}
 
 [1] 메소드 영역(method area)
 

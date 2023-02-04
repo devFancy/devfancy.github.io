@@ -187,11 +187,11 @@ author: fancy96
 
 * [[Java] : 객체지향언어](https://fancy96.github.io/Java-1-Object-Oriented-Language/)
 
-* [[Java] :클래스와 객체](https://fancy96.github.io/Java-2-Class-And-Object/)
+* [[Java] : 클래스와 객체](https://fancy96.github.io/Java-2-Class-And-Object/)
 
-* [[Java] :변수와 메소드](https://fancy96.github.io/Java-3-Variable-And-Method/)
+* [[Java] : 변수와 메소드](https://fancy96.github.io/Java-3-Variable-And-Method/)
 
-* [[Java] :JVM의 메모리 구조](https://fancy96.github.io/Java-3_2-JVM-Memory-Structure/)
+* [[Java] : JVM의 메모리 구조](https://fancy96.github.io/Java-3_2-JVM-Memory-Structure/)
 
 * [우아한테크코스 5기 프리코스과정을 정리한 repository](https://github.com/Fancy96/fancy96-woowacourse)
 

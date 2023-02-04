@@ -15,7 +15,7 @@ type: page
 
 * <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 자기개발을 좋아합니다.
 
-* <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 고객과 협업하는 것뿐만 아니라, 생산적인 동반자 관계를 추구합니다.
+* <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기술을 공유하고 함께 성장하는 것을 추구합니다.
  
 * <img src="/assets/img/logo/gym.png" style="max-width: 3%; vertical-align: text-bottom;"> : 평상시에 운동을 즐겨하고 있습니다.
 
