@@ -27,7 +27,7 @@ description_footer: ""
 
 # comments
 # two ways to comment, only choose one, and use your own short name
-disqus_shortname: fancy96-github-io
+disqus_shortname:
 
 # Statistic Analysis 
 google_analytics_id: G-7BMWW1711K # google analytics id
