@@ -7,9 +7,9 @@ author: fancy96
 * content
 {:toc}
 
-> 2023년 **Developer History**
+> 2023 Dev History
 
-* 2023년에는 내가 공부를 하면서 성장해나가는 모습을 기록해두자.
+* 2023년에는 내가 공부하면서 배운 내용을 꾸준히 기록하자.
 
 
 ## Plan
@@ -21,13 +21,9 @@ author: fancy96
 
 ## Book
 
-### PM
-
 * [제품의 탄생](https://product.kyobobook.co.kr/detail/S000200359090)
 
 * [인스파이어드](https://product.kyobobook.co.kr/detail/S000001916921)
-
-### BE
 
 * [소프트웨어 장인](https://product.kyobobook.co.kr/detail/S000001889885)
 
@@ -61,8 +57,6 @@ author: fancy96
 
 * [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/)
 
-* [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94/)
-
 ## January
 
 > 230101 ~ 230107
@@ -87,7 +81,7 @@ author: fancy96
 
 * [[Coursera] 5개 수료증 취득](https://fancy96.github.io/Coursera-Certificates/)
 
-> 230109 ~ 230114
+> 230109 ~ 230115
 
 * Git Blog 만들기(Jekyll)
 
@@ -115,7 +109,7 @@ author: fancy96
 
 * [인텔리제이와 깃허브 연동 (Mac 버전)](https://fancy96.github.io/IntelliJ-Connection-Git-Repository/)
 
-> 230115 ~ 230123
+> 230120 ~ 230125
 
 * [[Programmers] 134240. 푸드 파이트 대회](https://fancy96.github.io/Programmers-134240/)
 
@@ -129,7 +123,7 @@ author: fancy96
 
 * [CS 스터디 : 운영체제 1주차](https://github.com/Fancy96/2023-CS-Study/issues/24)
 
-* [CS 스터디 : 운영체제 공부 - Segmentation(세그먼테이션)](https://fancy96.github.io/OS-16-Segmentation/)
+* [CS 스터디 : 운영체제 공부 - 16. Segmentation](https://fancy96.github.io/OS-16-Segmentation/)
 
 **스프링 핵심 원리 - 기본편**
 
@@ -165,6 +159,8 @@ author: fancy96
 
 * 기타 : [테스트를 할 때 쓰이는 어노테이션](https://fancy96.github.io/Spring-Core-Principle-TestCode-1/)
 
+---
+
 **모든 개발자를 위한 HTTP 웹 기본 지식**
 
 * 인터넷 네트워크 - 인터넷 통신 / IP / TCP, UDP / PORT / DNS
@@ -184,6 +180,8 @@ author: fancy96
 * [HTTP 헤더1 - 일반 헤더](https://fancy96.github.io/HTTP-6-Header1/)
 
 * [HTTP 헤더2 - 캐시와 조건부 요청](https://fancy96.github.io/HTTP-7-Header2)
+
+---
 
 * [[Java] : 객체지향언어](https://fancy96.github.io/Java-1-Object-Oriented-Language/)
 
@@ -227,7 +225,35 @@ author: fancy96
 
 * [[Programmers] 12941. 최솟값 만들기](https://fancy96.github.io/Programmers-12941/)
 
-* [CS 스터디 : 운영체제 공부 - Paging(페이징)](https://fancy96.github.io/OS-18-Paging/)
+* [[Programmers] 12909. 올바른 괄호](https://fancy96.github.io/Programmers-12909/)
+
+* [[Programmers] 12981. 영어 끝말잇기](https://fancy96.github.io/Programmers-12981/)
+
+* [CS 스터디 : 운영체제 공부 - 18. Paging](https://fancy96.github.io/OS-18-Paging/)
+
+* [운영체제 공부 - 19. TLB](https://fancy96.github.io/OS-19-TLB/)
+
+* [운영체제 공부 - 21. Swapping](https://fancy96.github.io/OS-21-Swapping/)
+
+* [운영체제 공부 - 26. Concurrency](https://fancy96.github.io/OS-26-Concurrency/)
+
+* [운영체제 공부 - 28. Lock](https://fancy96.github.io/OS-28-Lock/)
+
+* [운영체제 공부 - 31. Semaphore](https://fancy96.github.io/OS-31-Semaphore/)
+
+* [운영체제 공부 - 37. Hard Disk Drives](https://fancy96.github.io/OS-37-Hard-Disk-Drives/)
+
+* [네트워크 공부 - DNS](https://fancy96.github.io/Network-DNS/)
+
+* [네트워크 공부 - HTTP & HTTPS](https://fancy96.github.io/Network-HTTP-And-HTTPS/)
+
+* [네트워크 공부 - Proxy Server](https://fancy96.github.io/Network-Proxy-Server/)
+
+* [네트워크 공부 - REST API & RESTful](https://fancy96.github.io/Network-REST/)
+
+* [네트워크 공부 - TCP 와 UDP](https://fancy96.github.io/Network-Tcp-And-Udp/)
+
+* [네트워크 공부 - TCP 의 연결 및 해제 과정](https://fancy96.github.io/Network-Tcp-3way-And-4way/)
 
 * [[Book] 소프트웨어 장인 리뷰](https://fancy96.github.io/Book-Software-Master-Craftsman/)
 
