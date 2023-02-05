@@ -72,3 +72,7 @@ author: fancy96
 ![](/assets/img/technology/GitHub-Branch-Protection-Rule_5.png)
 
 * 이 두 가지는 특별한 일이 아니면 사용하지 않는 게 좋다.
+
+## Reference
+
+* [[GitHub] Branch Protection Rule 적용해 브랜치 보호하기](https://kotlinworld.com/292)
