@@ -11,15 +11,15 @@ type: page
 
 ## Who am i
 
-* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : BackEnd 개발 관련 공부를 하고 있습니다.
-
-* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 자기개발을 좋아합니다.
+* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : BackEnd 개발 관련 공부를 하고 있습니다.
 
 * <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기술을 공유하고 함께 성장하는 것을 추구합니다.
- 
-* <img src="/assets/img/logo/gym.png" style="max-width: 3%; vertical-align: text-bottom;"> : 평상시에 운동을 즐겨하고 있습니다.
 
-* <img src="/assets/img/logo/coffee.png" style="max-width: 3%; vertical-align: text-bottom;"> : 커피를 좋아해서 바리스타를 배우고 있습니다.
+* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 자기개발을 좋아합니다.
+
+* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 블로그에 기록하는 것을 좋아합니다.
+
+* <img src="/assets/img/logo/gym.png" style="max-width: 3%; vertical-align: text-bottom;"> : 평상시에 운동을 즐겨하고 있습니다.
 
 ---
 
@@ -29,11 +29,9 @@ type: page
 
 * <img src="/assets/img/logo/linkedin.png" style="max-width: 3%; vertical-align: text-bottom;"> : [fancy.junyongmoon](https://www.linkedin.com/in/junyong-moon-479385264/)
 
+* <img src="/assets/img/logo/kakaotalk.png" style="max-width: 3%; vertical-align: text-bottom;"> : [Kakao Open Chat](https://open.kakao.com/o/swXZ9B2e)
+
 * <img src="/assets/img/logo/email.png" style="max-width: 3%; vertical-align: text-bottom;"> : fancy.junyongmoon@gmail.com
-
---- 
-
-## About Blog
 
 
 ---
@@ -74,7 +72,7 @@ type: page
 
 * 　09. 01 ~ 12. 20 [Study Operating System](https://fancy96.github.io/category/#OS)
 
-* 　08. 30 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
+* 　08. 30 ~ 08. 31 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
 
 * 　08. 09 ~ 10. 28 [Competition : KNU 학생설계 융합전공 공모전 수상](https://knu.ac.kr/wbbs/wbbs/bbs/btin/viewBtin.action?bbs_cde=11&btin.bbs_cde=11&btin.doc_no=1326876&btin.appl_no=000000&btin.page=1&btin.search_type=&btin.search_text=&popupDeco=false&btin.note_div=row&menu_idx=73)
 
@@ -142,21 +140,23 @@ type: page
 
 ## Certificate
 
-* TOEIC (19. 12. 15) - 895
+*   TOEIC (19. 12. 15) - 895
 
-* 정보 처리 산업기사 (19. 08. 16) - 19202053043M
+*   정보 처리 산업기사 (19. 08. 16) - 19202053043M
 
-* 네트워크관리사 2급 (19. 04. 09) - NT2046165
+*   네트워크관리사 2급 (19. 04. 09) - NT2046165
 
-* 컴퓨터활용능력 1급 (19. 03. 29) - 19-K9-027104
+*   컴퓨터활용능력 1급 (19. 03. 29) - 19-K9-027104
 
 ---
 
-## E.T.C
+## Hobby
 
-* 정부출연연구기관 견학
+*   어쿠스틱 기타 : 2012 ~ 2014 / 2017 ~ 2018 / 2022 ~
 
-* 동아리 운영비 후원
+*   [운동](https://fancy96.github.io/category/#Workout) : 2018 ~
+
+*   [독서 : 재테크, IT](https://fancy96.github.io/category/#Book) : 2017 ~
 
 ---
 
