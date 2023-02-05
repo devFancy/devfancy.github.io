@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 3. 컴퓨터 시스템의 동작 원리 "
+title:  " 3.  Introduction to Computing Systems "
 categories: OS
 author: fancy96
 ---
