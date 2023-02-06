@@ -17,7 +17,7 @@ author: fancy96
 
 (현재) 결과물 : 나의 GitHub README.md(2022.02.06)
 
-[](/assets/img/technology/technology-github-readme_main.png)
+![](/assets/img/technology/technology-github-readme_main.png)
 
 ## README repo 생성
 
@@ -37,7 +37,7 @@ author: fancy96
 
 ## README Header
 
-![](/assets/img/technology/technology-github-readme_3.png)
+![](/assets/img/technology/technology-github-readme_header.png)
 
 * [Readme Header : capsule-render](https://github.com/kyechan99/capsule-render)에 가서 `Markdown` 아래에 있는 코드를 복사한다.
 
@@ -50,7 +50,7 @@ author: fancy96
 
 ## GitHub Profile Views Counter
 
-![](/assets/img/technology/technology-github-readme_4.png)
+![](/assets/img/technology/technology-github-readme_profile_view.png)
 
 * [GitHub Profile Views Counter](https://github.com/antonkomarev/github-profile-views-counter)에 가서 `Named color` 아래에 있는 코드를 복사해서 나의 `README.md`파일로 가져왔다.
 
@@ -83,7 +83,7 @@ author: fancy96
 <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>
 ```
 
-* `Spring-6DB33F` 에서 
+* `6DB33F`은 Spring의 색상 코드를 의미하고, `logo=` 뒤에 `Spring`은 로고 이름을 의미한다.
 
 * 색상 코드와 사용 가능한 로고의 목록은 [Simpleicons.org](https://simpleicons.org/)에서 확인할 수 있다.
 
@@ -95,6 +95,8 @@ author: fancy96
     기존에는 Public Gist를 생성해서 토큰을 발급받아서 이런저런 과정을 거쳐야 하는데, 다행히도 그러한 과정들을 코드로 구현한 오픈소스가 있었다)
 
 * [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)에 가면, 다양한 번역이 있다.
+
+![](/assets/img/technology/technology-github-readme_github_stats.png)
 
 * 영어가 불편하면 `한국어` 버전을 클릭한 다음에 `GitHub 통계` 아래에 있는 코드를 복사 해준다. (기본 값)
 
@@ -113,7 +115,7 @@ author: fancy96
 
 ![](/assets/img/technology/technology-github-readme_result.png)
 
-* 이렇게 해서 나만의 GitHub README.md를 만들었다.
+* 이렇게 해서 나만의 **GitHub README.md**를 만들었다.
 
 * 처음이라 익숙지 않은 부분들이 있기 때문에, 개발 공부를 하면서 추가적으로 나만의 GitHub README.md를 업데이트하자!
 
