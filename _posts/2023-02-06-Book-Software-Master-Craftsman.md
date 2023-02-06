@@ -9,6 +9,8 @@ author: fancy96
 
 ## Prologue
 
+![](/assets/img/book/book-software-master-craftsman.jpg){: width="500"}
+
 * 우아한테크코스의 캡틴으로 불리는 `박재성`님이 0순위로 추천한 책이다.
 
 * 책을 읽고 난 소감은 개발과 관련해서 더 나은 개발자가 되기 위한 `마인드` 위주의 책이었다.
@@ -192,7 +194,7 @@ author: fancy96
 
 * 익스트림 프로그래밍(XP)의 실행 관례에는 테스트 주도 개발(TDD), 페어 프로그래밍, 리펙토링, 단순한 디자인, 지속적인 통합 등이 있다.
 
-![](/assets/img/book/Book-Software-Master-Craftsman_7.jpg)
+![](/assets/img/book/book-software-master-craftsman_7.jpg){: width="500"}
 
 ### TDD(테스트 주도 개발)
 
