@@ -71,11 +71,11 @@ author: fancy96
 
 * [[Programmers] 12934. 정수 제곱근 판별](https://fancy96.github.io/Programmers-12934/)
 
-* [CS 스터디 : 초기 세팅](https://github.com/Fancy96/2023-CS-Study)
+* [CS Study 시작](https://github.com/Fancy96/2023-CS-Study)
 
-* [CS 스터디 : 스터디 방향 회의](https://github.com/Fancy96/2023-CS-Study/issues/1)
+* [CS Study : 스터디 방향 회의](https://github.com/Fancy96/2023-CS-Study/issues/1)
 
-* [CS 스터디 : 네트워크 1주차](https://github.com/Fancy96/2023-CS-Study/issues/3)
+* [CS Study : 네트워크 1주차](https://github.com/Fancy96/2023-CS-Study/issues/3)
 
 * [[Algorithm Skill] : 제곱근, 제곱을 구할때 쓰는 메서드](https://fancy96.github.io/Math-Sqrt/)
 
@@ -99,15 +99,15 @@ author: fancy96
 
 * [[Programmers] 12943. 콜라츠 추측](https://fancy96.github.io/Programmers-12943/)
 
-* [CS 스터디 : 네트워크 2주차](https://github.com/Fancy96/2023-CS-Study/issues/14)
+* [CS Study : 네트워크 2주차](https://github.com/Fancy96/2023-CS-Study/issues/14)
 
-* [CS 스터디 : 네트워크 공부 - SOP와 CORS란 무엇인가?](https://fancy96.github.io/Network-CORS-SOP/)
+* [[Network] SOP와 CORS란 무엇인가?](https://fancy96.github.io/Network-CORS-SOP/)
 
-* [[Java] : String 특징과 String 클래스의 주요 메소드](https://fancy96.github.io/Java-String-Methods/)
+* [[Java] String 특징과 String 클래스의 주요 메소드](https://fancy96.github.io/Java-String-Methods/)
 
-* [Google Search Console에 GitHub 블로그 등록하기](https://fancy96.github.io/Google-Research-Console-Verification/)
+* [[Technology] Google Search Console에 GitHub 블로그 등록하기](https://fancy96.github.io/Technology-Google-Research-Console-Verification/)
 
-* [인텔리제이와 깃허브 연동 (Mac 버전)](https://fancy96.github.io/IntelliJ-Connection-Git-Repository/)
+* [[IntelliJ] 인텔리제이와 깃허브 연동 (Mac 버전)](https://fancy96.github.io/IntelliJ-Connection-Git-Repository/)
 
 > 230120 ~ 230125
 
@@ -117,19 +117,21 @@ author: fancy96
 
 * [[Programmers] 81301. 숫자 문자열과 영단어](https://fancy96.github.io/Programmers-81301/)
 
-* [CS 스터디 : 네트워크 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/21)
+* [CS Study : 네트워크 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/21)
 
-* [CS 스터디 : 네트워크 회고](https://github.com/Fancy96/2023-CS-Study/issues/22)
+* [CS Study : 네트워크 회고](https://github.com/Fancy96/2023-CS-Study/issues/22)
 
-* [CS 스터디 : 운영체제 1주차](https://github.com/Fancy96/2023-CS-Study/issues/24)
+* [CS Study : 운영체제 1주차](https://github.com/Fancy96/2023-CS-Study/issues/24)
 
-* [CS 스터디 : 운영체제 공부 - 16. Segmentation](https://fancy96.github.io/OS-16-Segmentation/)
+* [[OS] 16. Segmentation](https://fancy96.github.io/OS-16-Segmentation/)
+
+---
 
 **스프링 핵심 원리 - 기본편**
 
-* [객체 지향 설계와 스프링](https://fancy96.github.io/Spring-Core-Principle-1/)
+* [[Spring] 객체 지향 설계와 스프링](https://fancy96.github.io/Spring-Core-Principle-1/)
 
-* 스프링 핵심원리 이해 - 객체 지향 원리 적용
+* [Spring] 스프링 핵심원리 이해 - 객체 지향 원리 적용
 
     * 좋은 객체 지향 설계의 5가지 원칙의 적용
 
@@ -137,7 +139,7 @@ author: fancy96
 
     * [스프링으로 전환하기](https://fancy96.github.io/Spring-Core-Principle-2/)
 
-* [스프링 컨테이너와 스프링 빈](https://fancy96.github.io/Spring-Core-Principle-4/)
+* [[Spring] 스프링 컨테이너와 스프링 빈](https://fancy96.github.io/Spring-Core-Principle-4/)
 
     * [스프링 컨테이너에 등록된 빈 조회](https://fancy96.github.io/Spring-Core-Principle-4-2/)
     
@@ -147,51 +149,51 @@ author: fancy96
     
     * 스프링 빈 설정 메타 정보 - BeanDefinition
 
-* [싱글톤 컨테이너](https://fancy96.github.io/Spring-Core-Principle-5/)
+* [[Spring] 싱글톤 컨테이너](https://fancy96.github.io/Spring-Core-Principle-5/)
 
-* [컴포넌트 스캔](https://fancy96.github.io/Spring-Core-Principle-6/)
+* [[Spring] 컴포넌트 스캔](https://fancy96.github.io/Spring-Core-Principle-6/)
 
-* [의존관계 자동주입](https://fancy96.github.io/Spring-Core-Principle-7/)
+* [[Spring] 의존관계 자동주입](https://fancy96.github.io/Spring-Core-Principle-7/)
   
-* [빈 생명주기 콜백](https://fancy96.github.io/Spring-Core-Principle-8/)
+* [[Spring] 빈 생명주기 콜백](https://fancy96.github.io/Spring-Core-Principle-8/)
 
-* [빈 스코프](https://fancy96.github.io/Spring-Core-Principle-9/)
+* [[Spring] 빈 스코프](https://fancy96.github.io/Spring-Core-Principle-9/)
 
-* 기타 : [테스트를 할 때 쓰이는 어노테이션](https://fancy96.github.io/Spring-Core-Principle-TestCode-1/)
+* 기타 : [[Spring] 테스트를 할 때 쓰이는 어노테이션](https://fancy96.github.io/Spring-Core-Principle-TestCode-1/)
 
 ---
 
 **모든 개발자를 위한 HTTP 웹 기본 지식**
 
-* 인터넷 네트워크 - 인터넷 통신 / IP / TCP, UDP / PORT / DNS
+* [HTTP] 인터넷 네트워크 - 인터넷 통신 / IP / TCP, UDP / PORT / DNS
 
-* URI와 웹 브라우저 요청 흐름
+* [HTTP] URI와 웹 브라우저 요청 흐름
 
-* [HTTP 기본1](https://fancy96.github.io/HTTP-1-Basic/)
+* [[HTTP] HTTP 기본1](https://fancy96.github.io/HTTP-1-Basic/)
 
-* [HTTP 기본2 - HTTP 메세지](https://fancy96.github.io/HTTP-2-Basic/)
+* [[HTTP] HTTP 기본2 - HTTP 메세지](https://fancy96.github.io/HTTP-2-Basic/)
 
-* [HTTP 메서드](https://fancy96.github.io/HTTP-3-Method/)
+* [[HTTP] HTTP 메서드](https://fancy96.github.io/HTTP-3-Method/)
 
-* [HTTP 메서드 활용](https://fancy96.github.io/HTTP-4-Method-Application/)
+* [[HTTP] HTTP 메서드 활용](https://fancy96.github.io/HTTP-4-Method-Application/)
 
-* [HTTP 상태코드](https://fancy96.github.io/HTTP-5-Status-Code/)
+* [[HTTP] HTTP 상태코드](https://fancy96.github.io/HTTP-5-Status-Code/)
 
-* [HTTP 헤더1 - 일반 헤더](https://fancy96.github.io/HTTP-6-Header1/)
+* [[HTTP] HTTP 헤더1 - 일반 헤더](https://fancy96.github.io/HTTP-6-Header1/)
 
-* [HTTP 헤더2 - 캐시와 조건부 요청](https://fancy96.github.io/HTTP-7-Header2)
+* [[HTTP] HTTP 헤더2 - 캐시와 조건부 요청](https://fancy96.github.io/HTTP-7-Header2)
 
 ---
 
-* [[Java] : 객체지향언어](https://fancy96.github.io/Java-1-Object-Oriented-Language/)
+* [[Java] 객체지향언어](https://fancy96.github.io/Java-1-Object-Oriented-Language/)
 
-* [[Java] : 클래스와 객체](https://fancy96.github.io/Java-2-Class-And-Object/)
+* [[Java] 클래스와 객체](https://fancy96.github.io/Java-2-Class-And-Object/)
 
-* [[Java] : 변수와 메소드](https://fancy96.github.io/Java-3-Variable-And-Method/)
+* [[Java] 변수와 메소드](https://fancy96.github.io/Java-3-Variable-And-Method/)
 
-* [[Java] : JVM의 메모리 구조](https://fancy96.github.io/Java-3_2-JVM-Memory-Structure/)
+* [[Java] JVM의 메모리 구조](https://fancy96.github.io/Java-3_2-JVM-Memory-Structure/)
 
-* [우아한테크코스 5기 프리코스과정을 정리한 repository](https://github.com/Fancy96/fancy96-woowacourse)
+* [[Woowacourse] 우아한테크코스 5기 프리코스 과정을 정리한 repository](https://github.com/Fancy96/fancy96-woowacourse)
 
 > 230126 ~ 230131
 
@@ -209,11 +211,11 @@ author: fancy96
 
 * [[Programmers] 17680. [1차] 캐시](https://fancy96.github.io/Programmers-17680/)
 
-* [크롬 북마크에 있는 파비콘이 제대로 안보이는 경우](https://fancy96.github.io/ETC-Chrome-Bookmark/)
+* [[E.T.C] 크롬 북마크에 있는 파비콘이 제대로 안보이는 경우](https://fancy96.github.io/ETC-Chrome-Bookmark/)
 
-* [왜 개발자를 선택했는가](https://fancy96.github.io/ETC-Why-Did-You-Select-The-Developer/)
+* [[E.T.C] 왜 개발자를 선택했는가](https://fancy96.github.io/ETC-Why-Did-You-Select-The-Developer/)
 
-* [2023 1월 운동 기록](https://fancy96.github.io/Workout/)
+* [[Workout] 2023 1월 운동 기록](https://fancy96.github.io/Workout/)
 
 ## February
 
@@ -229,31 +231,57 @@ author: fancy96
 
 * [[Programmers] 12981. 영어 끝말잇기](https://fancy96.github.io/Programmers-12981/)
 
-* [CS 스터디 : 운영체제 공부 - 18. Paging](https://fancy96.github.io/OS-18-Paging/)
+* [CS Study : 운영체제 2주차](https://github.com/Fancy96/2023-CS-Study/issues/35)
 
-* [운영체제 공부 - 19. TLB](https://fancy96.github.io/OS-19-TLB/)
+* [[OS] 18. Paging](https://fancy96.github.io/OS-18-Paging/)
 
-* [운영체제 공부 - 21. Swapping](https://fancy96.github.io/OS-21-Swapping/)
+* [[OS] 19. TLB](https://fancy96.github.io/OS-19-TLB/)
 
-* [운영체제 공부 - 26. Concurrency](https://fancy96.github.io/OS-26-Concurrency/)
+* [[OS] 21. Swapping](https://fancy96.github.io/OS-21-Swapping/)
 
-* [운영체제 공부 - 28. Lock](https://fancy96.github.io/OS-28-Lock/)
+* [[OS] 26. Concurrency](https://fancy96.github.io/OS-26-Concurrency/)
 
-* [운영체제 공부 - 31. Semaphore](https://fancy96.github.io/OS-31-Semaphore/)
+* [[OS] 28. Lock](https://fancy96.github.io/OS-28-Lock/)
 
-* [운영체제 공부 - 37. Hard Disk Drives](https://fancy96.github.io/OS-37-Hard-Disk-Drives/)
+* [[OS] 31. Semaphore](https://fancy96.github.io/OS-31-Semaphore/)
 
-* [네트워크 공부 - DNS](https://fancy96.github.io/Network-DNS/)
+* [[OS] 37. Hard Disk Drives](https://fancy96.github.io/OS-37-Hard-Disk-Drives/)
 
-* [네트워크 공부 - HTTP & HTTPS](https://fancy96.github.io/Network-HTTP-And-HTTPS/)
+* [[Technology] GitHub Blog에 댓글 기능 추가(utterances)](https://fancy96.github.io/Technology-utterances/)
 
-* [네트워크 공부 - Proxy Server](https://fancy96.github.io/Network-Proxy-Server/)
+* [[Technology] GitHub에 올라간 Branch에 Protection Rule 적용하기](https://fancy96.github.io/Technology-GitHub-Branch-Protection-Rule/)
 
-* [네트워크 공부 - REST API & RESTful](https://fancy96.github.io/Network-REST/)
+> 230206 ~ 230212
 
-* [네트워크 공부 - TCP 와 UDP](https://fancy96.github.io/Network-Tcp-And-Udp/)
+* [[Programmers] 12980. 점프와 순간이동](https://fancy96.github.io/Programmers-12981/)
 
-* [네트워크 공부 - TCP 의 연결 및 해제 과정](https://fancy96.github.io/Network-Tcp-3way-And-4way/)
+* [[Programmers] 42747. H-Index](https://fancy96.github.io/Programmers-42747/)
+
+* [[solved.ac] Class3++ 1012. 유기농 배추](https://www.acmicpc.net/problem/1012)
+
+* [[solved.ac] Class3++ DFS와 BFS](https://www.acmicpc.net/problem/1260)
+
+* [[solved.ac] Class3++ 2606. 바이러스](https://www.acmicpc.net/problem/2606)
+
+* [CS Study : 운영체제 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/42)
+
+* [[Network] OSI 7 계층과 TCP/IP 4계층](https://fancy96.github.io/Network-OSI7-Hierarchy-And-TCP-IP4-Hierarchy/)
+
+* [[Network] DNS와 웹 통신 흐름](https://fancy96.github.io/Network-DNS/)
+
+* [[Network] TCP 와 UDP](https://fancy96.github.io/Network-Tcp-And-Udp/)
+
+* [[Network] Load Balancing](https://fancy96.github.io/Network-Load-Balancing/)
+
+* [[Network] HTTP & HTTPS](https://fancy96.github.io/Network-HTTP-And-HTTPS/)
+
+* [[Network] REST API](https://fancy96.github.io/Network-REST-API/)
+
+* [[Network] 쿠키와 세션](https://fancy96.github.io/Network-Cookie-And-Session/)
+
+* [[Network] Proxy Server](https://fancy96.github.io/Network-Proxy-Server/)
 
 * [[Book] 소프트웨어 장인 리뷰](https://fancy96.github.io/Book-Software-Master-Craftsman/)
+
+* [[Technology] 나만의 GitHub README.md 꾸미기](https://fancy96.github.io/Technology-GitHub-Readme/)
 
