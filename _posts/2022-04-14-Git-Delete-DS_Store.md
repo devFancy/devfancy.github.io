@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " DS_Store 삭제방법 "
+title:  " [Git] DS_Store 삭제방법 "
 categories: Git
 author: fancy96
 ---
@@ -25,7 +25,7 @@ author: fancy96
 
 * 저장소 상위 디렉토리에서 현재 디렉토리 아래의 모든 .DS_Store 파일을 제거
 
-```
+```bash
 find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
 ```
 
@@ -33,13 +33,13 @@ find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
 
 * 저장소 상위 디렉토리에 .gitignore 파일 생성 및 .DS_Store 파일 추가
 
-```
+```bash
 echo .DS_Store >> .gitignore
 ```
 
 * 변경 사항을 원격 저장소에 push
 
-```
+```bash
 git add --all
 git commit -m '.DS_Store removed' 
 git push origin main

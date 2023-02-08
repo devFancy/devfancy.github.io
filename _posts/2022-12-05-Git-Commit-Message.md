@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 커밋 메세지 규약 정리 (AngularJS) "
+title:  " Git 커밋 메세지 규약 정리 (AngularJS) "
 categories: Git
 author: fancy96
 ---
