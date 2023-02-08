@@ -95,9 +95,9 @@ cmd = code --wait $MERGED
 
 * 선택 후 닫으면 conflict해결되면서 merge완료되는 것을 알 수 있다. → `git status`로 확인한다.
 
-![](/assets/img/git/git-master-merge-6.png))
+![](/assets/img/git/git-master-merge-6.png)
 
-![](/assets/img/git/git-master-merge-7.png))
+![](/assets/img/git/git-master-merge-7.png)
 
 * 그러면 git status 에서 **main.txt.orig** (오리지널 파일)보이는데, 이것은 이전에 merge conflict이 발생하였을 때, 내용이 포함된 것을 볼 수 있다.
 
@@ -150,7 +150,7 @@ keepBackup = false
 
 ![](/assets/img/git/git-master-merge-8.png))
 
-* ₩git mergetool₩ 입력하면 → p4merge에 대한 창이 나오게 된다.
+* `git mergetool` 입력하면 → p4merge에 대한 창이 나오게 된다.
 
 ![](/assets/img/git/git-master-merge-9.png)
 
