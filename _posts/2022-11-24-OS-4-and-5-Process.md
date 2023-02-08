@@ -186,4 +186,4 @@ CPU를 할당받을 프로세스를 선택한 후
 
 * [운영 체제와 정보기술의 원리](http://www.yes24.com/Product/Goods/90124877)
 
-* 학교 수업 내용
+* 학교 수업 내용 - [Operating Systems Three Easy Pieces](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X)
