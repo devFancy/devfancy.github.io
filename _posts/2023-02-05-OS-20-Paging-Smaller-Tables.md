@@ -35,7 +35,7 @@ author: fancy96
 
 * 결론적으로 Page table 이 **너무 커서 너무 많은 메모리를 사용**하고 있다.
 
-## Large Page: Smaller Table
+## 1. Large Page: Smaller Table
 
 * Page table이 너무 클 경우를 대비해서 **Page table의 크기를 줄여 메모리를 절약하는 방법**에 대해 알아보자.
 
@@ -57,7 +57,7 @@ author: fancy96
 
 * 결론적으로 Page의 크기를 늘리는 방법은 **완전한 해결책은 아니다**.
 
-## Problem
+### Problem
 
 * 예) 1KB 크기의 Page와 16KB 크기를 갖는 가상 주소 공간이 있다.
 
@@ -69,7 +69,7 @@ author: fancy96
 
 * 위의 예시를 통해 알게 된 점은 4개를 제외한 **나머지의 Page table이 안쓰는 것(un-used)을 확인**할 수 있다. (어두운 색깔 : 안쓰는 영역)
 
-## Hybrid Approach: Paging and Segments
+## 2. Hybrid Approach: Paging and Segments
 
 *  이런 상황에서 Page table의 크기를 줄이는 방법 중 다른 하나는 **Paging 기법과 Segmentation** 같이 사용하는 것이다.
 
@@ -81,7 +81,7 @@ author: fancy96
 
 ![](/assets/img/os/os-20-paging-smaller-tables-5.png)
 
-## Simple Example of Hybrid Approach
+### Simple Example of Hybrid Approach
 
 * 다음 예시를 통해 `Paging과 Segments`을 같이 사용하는 방법에 대해 알아보자.
 
@@ -94,7 +94,7 @@ author: fancy96
   * Process가 실행 중일 때 이러한 각 Segment의 `base 레지스터`는 해당 Segment에 대한 linear page table의 **실제 주소(physical address)가 포함**된다.
 
 
-## TLB miss on Hybrid Approach
+### TLB miss on Hybrid Approach
 
 * **하드웨어**는 Page table 으로 부터 **실제 주소(physical address)** 를 얻을 수 있다.
 
@@ -108,17 +108,17 @@ author: fancy96
 
 * 여기서 TLB miss가 발생했어도 segment 비트를 사용해서 주소 변환을 진행하면 된다.
 
-## Problem of Hybrid Approach
+* 기존 paging 기법과의 차이점은 bount 레지스터가 page table의 끝 값을 가지기 때문에 **사용하지 않는 page table의 공간을 유지할 필요가 없어지므로** 메모리 낭비를 줄일 수 있다.
+
+### Problem of Hybrid Approach
 
 * 하지만 이런 Hybrid Approach에는 문제점이 있다.
-
-* bount 레지스터가 page table의 끝 값을 가지기 때문에 **사용하지 않는 page table의 공간을 유지할 필요가 없어진다**.
 
 * 그리고 만약 **사용 빈도가 낮지만 큰 Heap이 있다면**, 여전히 너무 많은 Page table이 낭비가 될 수 있다.
 
 * 이러한 문제점은 **외부 단편화**(external fragmentation)을 다시 발생시킨다.
 
-## Multi-level Page Tables
+## 3. Multi-level Page Tables
 
 * 이번에는 **Page table에서 사용하지 않는 공간은 메모리에서 제거하는 방법**인 `Multi-level Page Tables`에 대해 알아보자.
 
@@ -132,7 +132,7 @@ author: fancy96
 
   * Page table의 page가 유효한지 아닌지 추적하기 위해 `Page Directory`라는 새로운 구조를 사용한다.
 
-## Multi-level Page Tables: Page Directory
+### Multi-level Page Tables: **Page Directory**
 
 * 다음 예시를 통해 `Multi-level Page Tables`을 이해하자.
 
@@ -156,15 +156,15 @@ author: fancy96
 
   * Valid : 이 PDE가 가리키는 **해당 페이지의 PTE가 적어도 하나는 유효하다**는 것을 의미한다.
 
-## Multi-level Page Tables: Advantage & Disadvantage
+### Multi-level Page Tables: Advantage & Disadvantage
 
-### Advantage
+#### Advantage
 
 * Only 사용 중인 주소 공간에 비래하여 page-table space(페이지 테이블 공간)만 할당한다.
 
 * OS가 page table을 할당하거나 확장해야 할 때 다음의 free page(무료 페이지)를 잡을 수 있다.
 
-### Disadvantage
+#### Disadvantage
 
 * TLB miss인 경우, page table에서 올바른 변환 정보를 얻으려면 메모리에서 2개의 load가 필요하다.
   
@@ -192,11 +192,11 @@ author: fancy96
 
 ## 예상 질문
 
-* Page table에 사용되는 메모리 공간을 줄이는 방법으로 Multi-level Page Tables에 대해 설명해 주세요. (page directory 언급)
+* Page table의 크기를 줄이는 방법 3가지 중 2가지를 각각의 장단점을 포함하여 설명해 주세요.
+
+* Multi-level Page Tables에 대해 설명해 주세요. (page directory 언급)
 
 * Multi-level Page Tables의 장점과 단점은 무엇인가요?
-
-* 동시에 수행되는 Process의 개수에 따라 page table size가 얼마만큼 커지나요?
 
 ## Reference
 
