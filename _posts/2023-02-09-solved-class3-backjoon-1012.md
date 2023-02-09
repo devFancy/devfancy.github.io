@@ -233,3 +233,7 @@ public class Main {
 * 해당 문제는 추후에 다시 풀도록 하자.
 
 * bfs, dfs 에 대한 개념 및 문제 풀이는 나중에 꼭 업로드를 하자.
+
+## Reference
+
+* [[백준] 1012 유기농배추 자바 BFS, DFS](https://lotuus.tistory.com/98)
