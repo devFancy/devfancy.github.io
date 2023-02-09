@@ -81,7 +81,7 @@ author: fancy96
 
 ![](/assets/img/os/os-20-paging-smaller-tables-5.png)
 
-### Simple Example of Hybrid Approach
+### Simple Example
 
 * 다음 예시를 통해 `Paging과 Segments`을 같이 사용하는 방법에 대해 알아보자.
 
@@ -94,7 +94,7 @@ author: fancy96
   * Process가 실행 중일 때 이러한 각 Segment의 `base 레지스터`는 해당 Segment에 대한 linear page table의 **실제 주소(physical address)가 포함**된다.
 
 
-### TLB miss on Hybrid Approach
+### TLB miss
 
 * **하드웨어**는 Page table 으로 부터 **실제 주소(physical address)** 를 얻을 수 있다.
 
@@ -110,7 +110,7 @@ author: fancy96
 
 * 기존 paging 기법과의 차이점은 bount 레지스터가 page table의 끝 값을 가지기 때문에 **사용하지 않는 page table의 공간을 유지할 필요가 없어지므로** 메모리 낭비를 줄일 수 있다.
 
-### Problem of Hybrid Approach
+### Problem
 
 * 하지만 이런 Hybrid Approach에는 문제점이 있다.
 
@@ -132,7 +132,7 @@ author: fancy96
 
   * Page table의 page가 유효한지 아닌지 추적하기 위해 `Page Directory`라는 새로운 구조를 사용한다.
 
-### Multi-level Page Tables: **Page Directory**
+### **Page Directory**
 
 * 다음 예시를 통해 `Multi-level Page Tables`을 이해하자.
 
@@ -144,7 +144,7 @@ author: fancy96
 
 * `Page Directory`의 역할은 page table의 page가 어디에 있는지, 해당 page table에 유효한 page가 있는지 알려주는 것이다.
 
-### Multi-level Page Tables: Page directory entries
+### Page directory entries
 
 * Page Directory는 **page당 하나의 page entry만 가지고 있다**. (즉, page table의 시작부분, base 레지스터와 같은 역할을 한다고 보면 된다)
 
@@ -156,7 +156,7 @@ author: fancy96
 
   * Valid : 이 PDE가 가리키는 **해당 페이지의 PTE가 적어도 하나는 유효하다**는 것을 의미한다.
 
-### Multi-level Page Tables: Advantage & Disadvantage
+### Advantage & Disadvantage
 
 #### Advantage
 
