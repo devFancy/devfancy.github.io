@@ -237,6 +237,8 @@ author: fancy96
 
 * [[OS] 19. TLB](https://fancy96.github.io/OS-19-TLB/)
 
+* [[OS] 20. Paging: Smaller Table](https://fancy96.github.io/OS-20-Paging-Smaller-Tables/)
+
 * [[OS] 21. Swapping](https://fancy96.github.io/OS-21-Swapping/)
 
 * [[OS] 26. Concurrency](https://fancy96.github.io/OS-26-Concurrency/)
@@ -245,25 +247,25 @@ author: fancy96
 
 * [[OS] 31. Semaphore](https://fancy96.github.io/OS-31-Semaphore/)
 
-* [[OS] 37. Hard Disk Drives](https://fancy96.github.io/OS-37-Hard-Disk-Drives/)
-
 * [[Technology] GitHub Blog에 댓글 기능 추가(utterances)](https://fancy96.github.io/Technology-utterances/)
 
 * [[Technology] GitHub에 올라간 Branch에 Protection Rule 적용하기](https://fancy96.github.io/Technology-GitHub-Branch-Protection-Rule/)
 
 > 230206 ~ 230212
 
-* [[Programmers] 12980. 점프와 순간이동](https://fancy96.github.io/Programmers-12981/)
+* [[Programmers] 12980. 점프와 순간이동](https://fancy96.github.io/Programmers-12980/)
 
 * [[Programmers] 42747. H-Index](https://fancy96.github.io/Programmers-42747/)
 
-* [[solved.ac] Class3++ 1012. 유기농 배추](https://www.acmicpc.net/problem/1012)
+* [[Programmers] 64065. 튜플](https://fancy96.github.io/Programmers-64065/)
 
-* [[solved.ac] Class3++ DFS와 BFS](https://www.acmicpc.net/problem/1260)
+* [[Programmers] 17677. [1차] 뉴스 클러스터링](https://fancy96.github.io/Programmers-17677/)
 
-* [[solved.ac] Class3++ 2606. 바이러스](https://www.acmicpc.net/problem/2606)
+* [[solved.ac] Class3++ 1012. 유기농 배추](https://fancy96.github.io/solved-class3-backjoon-1012/)
 
 * [CS Study : 운영체제 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/42)
+
+* [CS Study : 데이터베이스 시작](https://github.com/Fancy96/2023-CS-Study/issues/54)
 
 * [[Network] OSI 7 계층과 TCP/IP 4계층](https://fancy96.github.io/Network-OSI7-Hierarchy-And-TCP-IP4-Hierarchy/)
 
@@ -285,3 +287,10 @@ author: fancy96
 
 * [[Technology] 나만의 GitHub README.md 꾸미기](https://fancy96.github.io/Technology-GitHub-Readme/)
 
+* [[Jekyll] 에서 Liquid syntax error 처리하는 방법](https://fancy96.github.io/ETC-Liquid-syntax-error/)
+
+> 230213 ~ 230219
+
+* [[solved.ac] Class3++ DFS와 BFS](https://fancy96.github.io/solved-class3-backjoon-1260/)
+
+* [[solved.ac] Class3++ 2606. 바이러스](https://fancy96.github.io/solved-class3-backjoon-2606/)
