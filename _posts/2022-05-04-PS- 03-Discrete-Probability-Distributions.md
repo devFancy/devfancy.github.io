@@ -114,10 +114,11 @@ use_math: true
 
 * The Poisson distribution can be used to approximate the $B(n, p)$ distribution
 
-![](/assets/img/ps/ps-03-discrete-probability-distributions_1.png){: width="300"}
+![](/assets/img/ps/ps-03-discrete-probability-distributions_1.png)
 
-    - when 1) $n$ is very large (larger than 150, say) and 2) the success probability $p$ is very small (smaller than 0.01, say).
-    - A parameter value of $\lambda = np$ should be used for the Poisson distribution, so that it has the same expected value as the binomial distribution.
+* when 1) $n$ is very large (larger than 150, say) and 2) the success probability $p$ is very small (smaller than 0.01, say).
+
+* A parameter value of $\lambda = np$ should be used for the Poisson distribution, so that it has the same expected value as the binomial distribution.
 
 
 ### 3.5.1 Definition of the Multinomial Distribution <중요>

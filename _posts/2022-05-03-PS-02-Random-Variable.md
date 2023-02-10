@@ -29,7 +29,7 @@ use_math: true
 
 * `Random Variables` : A random variable is obtained by assigning a numerical value(임의로 할당) to each outcome of a particular experiment
 
-![](/assets/img/ps/ps-02-random-variables_1.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_1.png)
 
 
 ### 2.1.2 Probability Mass Function
@@ -48,7 +48,7 @@ use_math: true
 >
 > $x_i$ : 값
 
-![](/assets/img/ps/ps-02-random-variables_2.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_2.png)
 
 
 ### 2.1.3 Cumulative Distribution Function
@@ -61,7 +61,7 @@ use_math: true
 
 *  범위에 있는 값들을 누적해서 더한 값.
 
-![](/assets/img/ps/ps-02-random-variables_3.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_3.png)
 
 
 ### 2.2.2 Probability Density Function
@@ -76,7 +76,7 @@ use_math: true
 
 * **PMF vs PDF 비교**
 
-![](/assets/img/ps/ps-02-random-variables_4.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_4.png)
 
 * X가 가질 수 있는 값이 너무 많다 → `Continuous Random Variable`
 
@@ -84,7 +84,7 @@ use_math: true
 
 * Cumulative Distribution Function → 예시)
 
-![](/assets/img/ps/ps-02-random-variables_5.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_5.png)
 
 
 ### 2.3.1 Expectations of Discrete Random Variables
@@ -111,7 +111,7 @@ use_math: true
 
 >  If a continuous random variable $X$ has a probability density function f(x) that is symmetric about a point $$ $\mu$ so that $f(\mu + x) = f(\mu - x)$ for all $x \in R $ , then $E(X) = \mu$, so that the expectation of the random variable is equal to the point of symmetry.
 
-![](/assets/img/ps/ps-02-random-variables_6.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_6.png)
 
 
 * A random variables as a function **$g(X)$**
@@ -150,12 +150,12 @@ use_math: true
 
 * for example, taking c = 2 gives $P(\mu - 2\sigma ≤ X ≤ \mu + 2\sigma ) ≥ 1 - \frac{1}{2^{2}} = 0.75$
 
-![](/assets/img/ps/ps-02-random-variables_7.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_7.png)
 
 
 * for example, taking c = 3 gives $P(\mu - 3\sigma ≤ X ≤ \mu + 3\sigma ) ≥ 1 - \frac{1}{3^{2}} = 0.89$
 
-![](/assets/img/ps/ps-02-random-variables_8.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_8.png)
 
 
 ### 2.4.4 Quantiles of Random Variables
@@ -170,7 +170,7 @@ use_math: true
 >
 > There is a probability of p that the random variable takes a value less than the pth quantile.
 
-![](/assets/img/ps/ps-02-random-variables_9.png){: width="400"}
+![](/assets/img/ps/ps-02-random-variables_9.png)
 
 
 * Quartiles and Interquartile Range
@@ -181,7 +181,7 @@ use_math: true
     
   * Interquartile range: The distance between the two quartiles
   
-  ![](/assets/img/ps/ps-02-random-variables_10.png){: width="400"}
+  ![](/assets/img/ps/ps-02-random-variables_10.png)
 
 
 ### 2.5.1 Jointly Distributed Random Variables
