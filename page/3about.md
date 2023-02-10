@@ -40,7 +40,11 @@ type: page
 
 ### 2023
 
+* 　02. 13 ~ 03. 05 [Study Database](https://fancy96.github.io/category/#Database)
+
 * 　02. 01 ~ [Study 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://fancy96.github.io/category/#Spring)
+
+* 　01. 23 ~ 02. 12 [Study & Review Operating System](https://fancy96.github.io/category/#OS)
 
 * 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식](https://fancy96.github.io/category/#HTTP)
 
@@ -55,6 +59,8 @@ type: page
 * 　01. 12 [기술 블로그](https://github.com/Fancy96/fancy96.github.io) 생성
 
 * 　01. 07 ~ [Programmers : 코딩테스트 대비](https://fancy96.github.io/category/#Algorithm)
+
+* 　01. 02 ~ 02. 12 [Study Network](https://fancy96.github.io/category/#Network)
 
 * 　01. 02 ~ [CS 스터디 진행](https://github.com/Fancy96/2023-CS-Study)
 
