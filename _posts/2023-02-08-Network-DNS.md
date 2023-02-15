@@ -7,6 +7,8 @@ author: fancy96
 * content
 {:toc}
 
+> 이 글의 정보들은 주로 `컴퓨터 네트워킹 : 하향식 접근(7판)` 교재를 공부하면서 정리한 내용입니다.
+
 ## Host name 과 Domain name 차이
 
 * 예를 들어 `fancy96.github.io` 일때 `fancy96`가 호스트 네임, `github.io`이 도메인 네임이다.
@@ -155,6 +157,8 @@ author: fancy96
 * hosts 파일은 어떤 역할을 하나요? DNS와 비교하였을 때 어떤 것이 우선순위가 더 높나요?
 
 ## Reference
+
+* [컴퓨터 네트워킹 : 하향식 접근(7판)](https://product.kyobobook.co.kr/detail/S000001868723)
 
 * [도메인 네임 vs 호스트 네임 차이](https://gamtoggi.tistory.com/82)
 
