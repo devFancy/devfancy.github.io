@@ -241,12 +241,6 @@ author: fancy96
 
 * [[OS] 21. Swapping](https://fancy96.github.io/OS-21-Swapping/)
 
-* [[OS] 26. Concurrency](https://fancy96.github.io/OS-26-Concurrency/)
-
-* [[OS] 28. Lock](https://fancy96.github.io/OS-28-Lock/)
-
-* [[OS] 31. Semaphore](https://fancy96.github.io/OS-31-Semaphore/)
-
 * [[Technology] GitHub Blog에 댓글 기능 추가(utterances)](https://fancy96.github.io/Technology-utterances/)
 
 * [[Technology] GitHub에 올라간 Branch에 Protection Rule 적용하기](https://fancy96.github.io/Technology-GitHub-Branch-Protection-Rule/)
@@ -265,23 +259,27 @@ author: fancy96
 
 * [CS Study : 운영체제 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/42)
 
-* [CS Study : 데이터베이스 시작](https://github.com/Fancy96/2023-CS-Study/issues/54)
+* [CS Study : 운영체제 회고](https://github.com/Fancy96/2023-CS-Study/issues/50)
 
-* [[Network] OSI 7 계층과 TCP/IP 4계층](https://fancy96.github.io/Network-OSI7-Hierarchy-And-TCP-IP4-Hierarchy/)
+* [CS Study : 데이터베이스 시작](https://github.com/Fancy96/2023-CS-Study/issues/48)
 
-* [[Network] DNS와 웹 통신 흐름](https://fancy96.github.io/Network-DNS/)
+* [[Network] OSI 7 계층](https://fancy96.github.io/Network-OSI7-Hierarchy/)
+
+* [[Network] DNS](https://fancy96.github.io/Network-DNS/)
 
 * [[Network] TCP 와 UDP](https://fancy96.github.io/Network-Tcp-And-Udp/)
 
-* [[Network] Load Balancing](https://fancy96.github.io/Network-Load-Balancing/)
+* [[Network] Load Balancing, L4/L7 스위치](https://fancy96.github.io/Network-Load-Balancing-And-L4-L7-Switch/)
 
-* [[Network] HTTP & HTTPS](https://fancy96.github.io/Network-HTTP-And-HTTPS/)
+* [[Network] HTTP 진화과정](https://fancy96.github.io/Network-HTTP/)
 
-* [[Network] REST API](https://fancy96.github.io/Network-REST-API/)
+* [[Network] REST, REST API, RESTful](https://fancy96.github.io/Network-REST-RESTAPI-RESTful/)
 
 * [[Network] 쿠키와 세션](https://fancy96.github.io/Network-Cookie-And-Session/)
 
 * [[Network] Proxy Server](https://fancy96.github.io/Network-Proxy-Server/)
+
+* [[Database] RDB와 NoSQL](https://fancy96.github.io/DB-Rdb-Nosql/)
 
 * [[Book] 소프트웨어 장인 리뷰](https://fancy96.github.io/Book-Software-Master-Craftsman/)
 
@@ -291,6 +289,24 @@ author: fancy96
 
 > 230213 ~ 230219
 
+* [[Programmers] 43165. 타켓 넘버(dfs)](https://fancy96.github.io/Programmers-43165/)
+
+* [[Programmers] 1844. 게임 맵 최단거리](https://school.programmers.co.kr/learn/courses/30/lessons/1844)
+
 * [[solved.ac] Class3++ DFS와 BFS](https://fancy96.github.io/solved-class3-backjoon-1260/)
 
 * [[solved.ac] Class3++ 2606. 바이러스](https://fancy96.github.io/solved-class3-backjoon-2606/)
+
+* [CS Study : 데이터베이스 1주차](https://github.com/Fancy96/2023-CS-Study/issues/54)
+
+* [[Database] 관계 데이터 모델의 개념](https://fancy96.github.io/DB-RDB-Concept/)
+
+* [[Database] 관계 데이터 모델의 개념 - Key의 종류](https://fancy96.github.io/DB-RDB-Concept-Key/)
+
+* [[Database] DB Locking](https://fancy96.github.io/DB-Locking/)
+
+* [[OS] 26. Concurrency](https://fancy96.github.io/OS-26-Concurrency/)
+
+* [[OS] 28. Lock](https://fancy96.github.io/OS-28-Lock/)
+
+* [[OS] 31. Semaphore](https://fancy96.github.io/OS-31-Semaphore/)
