@@ -7,65 +7,20 @@ author: fancy96
 * content
 {:toc}
 
-## Address Translation
-
-* 세그멘테이션을 설명하기에 전에, 먼저 하드웨어 기반 `주소변환`에 대해 알아보자.
-
-* 주소 변환이란 **가상 주소를 실제 메모리의 주소로 변환하는 하드웨어 자원을 의미한다.** `주소 재배치`와 같은 말이다.
-
-* 이를 통해 프로세스는 가상 주소를 실제 메모리 주소로 착각하게 만드는 가상화를 수행하게 된 것이다.
-
-### Base and Bounds Register
-
-* 주소 변환 기술을 사용하기 위해 CPU에는 2개의 하드웨어 레지스터가 필요하다.
-
-* 하나는 base 레지스터, 다른 하나는 bound 레지스터라고 한다.
-
-    * `base 레지스터` : 가상 주소 공간이 실제 메모리에 재배치되었을 때 **주소 공간의 시작 부분**을 가리킨다.
-
-    * `bound 레지스터` : **가상 주소 공간의 크기**를 나타낸다.
-
-* 참고로 base, bound 레지스터 모두 CPU에 존재하는 하드웨어(DRAM)라는 점을 잊지 말자.
-
-![](/assets/img/os/os-16-segmentation-1.png)
-
-* 위의 그림와 같이 `bound register` 는 16KB로 가상 주소 공간의 크기를 알려준다. 그리고 `base register` 는 32KB로 실제 메모리 주소 공간의 시작 부분을 가리킨다.
-
-* 2개의 레지스터를 사용하면 실제 메모리의 원하는 위치에 가상 주소 공간을 배치할 수 있고, 프로세스가 자신의 주소 공간에 접근할 수 있게 해준다.
-
-### Dynamic(Hardware-based) Relocation
-
-* **base, bound 레지스터를 이용하여 하드웨어 기반 주소 변환하는 방법**인 `동적 재배치 기술`에 대해 알아보자.
-
-* 프로그램 실행이 시작했을 때 OS는 프로세스를 로드해야 하는 물리적 메모리 위치를 결정한다.
-
-    * 먼저 base register 에 값을 결정한다.
-
-    > physical address = virtual address + base
-
-    * 가상 주소는 bound 보다 크면 안되고 0보다 크거나 같아야 한다.
-
-    > 0 <= virtual address < bound
-
-* 이를 통해 주소변환 처리와 프로세스를 보호할 수 있고, 만약 base, bound 레지스터에 문제가 발생하게 되면 OS가 개입해서 문제를 처리할 수 있다.
-
-##### Essential prerequisite(필수 전제조건)
-
-* 오로지 OS에 의해서만 base, bound 레지스터에 접근해서 값을 바꿀 수 있다. 
 
 ## Motivation
 
 * 주소 변환하면서 몇가지 비효율적인 문제가 발생한다.
 
-![](/assets/img/os/os-16-segmentation-2.png)
+![](/assets/img/os/os-16-segmentation-1.png)
 
 * 기존 가상 주소 공간에서는 **Heap과 Stack 사이의 사용하지 않는 공간도 할당되므로 비효율성**이 발생한다.
 
-    * [1] 사용하지 않는 크기가 발생하므로 **메모리 공간이 낭비**된다.
+  * [1] 사용하지 않는 크기가 발생하므로 **메모리 공간이 낭비**된다.
 
-    * [2] 위의 그림과 같이 (16KB 이상의) 메모리가 **큰 주소 공간에는 프로세스를 지원할 수 없다.**
+  * [2] 위의 그림과 같이 (16KB 이상의) 메모리가 **큰 주소 공간에는 프로세스를 지원할 수 없다.**
 
-    * [3] Code 공간에 여러 코드가 들어가서 **중복**이 발생할 수 있다.
+  * [3] Code 공간에 여러 코드가 들어가서 **중복**이 발생할 수 있다.
 
 * 이러한 문제점을 해결하기 위해 `Segmentation` 이라는 아이디어가 나오게 되었다.
 
@@ -73,7 +28,7 @@ author: fancy96
 
 * `세그먼테이션`은 **가상 주소 공간을 세그먼트 단위로 실제 메모리 주소 공간에 독립적으로 각각 매핑**하는 방식이다.
 
-![](/assets/img/os/os-16-segmentation-3.png)
+![](/assets/img/os/os-16-segmentation-2.png)
 
 * 이로 인해 heap과 stack 사이의 사용하지 않는 비효율성인 문제를 해결하게 되었다.
 
@@ -98,7 +53,7 @@ author: fancy96
 
     * segment id 는  상위 2개 비트로 구분할 수 있고, offset은 하위 12개 비트로 계산할 수 있다.
 
-![](/assets/img/os/os-16-segmentation-4.png)
+![](/assets/img/os/os-16-segmentation-3.png)
 
 * 위의 그림을 예시로 들어보자.
 
@@ -137,7 +92,7 @@ else
 
 ### Stack 인 경우
 
-![](/assets/img/os/os-16-segmentation-5.png)
+![](/assets/img/os/os-16-segmentation-4.png)
 
 * `Stack`은 Code, Heap 부분과 다르게 거꾸로 확장되기 때문에 주소 변환을 다르게 해야한다.
 
@@ -163,7 +118,7 @@ else
 
 ### Code Sharing
 
-![](/assets/img/os/os-16-segmentation-6.png)
+![](/assets/img/os/os-16-segmentation-5.png)
 
 * 세그먼트는 추가적인 하드웨어 지원을 통해 **주소 공간 사이에서 공유**될 수 있다.
 
@@ -189,7 +144,7 @@ else
 
   * `외부 단편화`란 외부가 잘게 쪼개진 형태를 의미한다.
 
-![](/assets/img/os/os-16-segmentation-7.png)
+![](/assets/img/os/os-16-segmentation-6.png)
 
 * 상황) 왼쪽 메모리에서 20KB 크기를 갖는 세그먼트를 할당하려고 한다.
 
