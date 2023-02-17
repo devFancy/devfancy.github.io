@@ -160,8 +160,8 @@ author: fancy96
 
 * [컴퓨터 네트워킹 : 하향식 접근(7판)](https://product.kyobobook.co.kr/detail/S000001868723)
 
-* [도메인 네임 vs 호스트 네임 차이](https://gamtoggi.tistory.com/82)
+* [2023-CS-Study : DNS와 웹 통신의 흐름](https://hello-judy-world.tistory.com/189)
 
-* [DNS와 웹 통신의 흐름](https://hello-judy-world.tistory.com/189)
+* [도메인 네임 vs 호스트 네임 차이](https://gamtoggi.tistory.com/82)
 
 * [DNS Record Type 레코드 종류와 역할](https://0433.tistory.com/13)
