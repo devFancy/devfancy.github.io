@@ -107,6 +107,14 @@ author: fancy96
 | 예시 |유저의 선호도(로그인 정보, 방문기록, 방문횟수)| 오디오, 비디오 파일                                                                             |
 
 
+## 예상 질문
+
+* 세션 방식의 로그인 과정에 대해 설명해 주세요.
+
+* 세션을 사용하면 좋은데 왜 쿠키를 사용할까요?
+
+* 쿠키와 세션/캐시의 차이점은 무엇인가요?
+
 ## Reference
 
 * [2023-CS-Study : 쿠키와 세션](https://github.com/Fancy96/2023-CS-Study/blob/main/Network/network_cookie_and_session.md)
