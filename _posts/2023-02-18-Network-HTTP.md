@@ -41,7 +41,7 @@ Simple HTML Page
 </html>
 ```
 
-HTTP/0.9 특징
+### HTTP/0.9 특징
 
 * HTTP 헤더가 없으므로 HTML 파일만 전송 가능하다.
 
@@ -53,7 +53,7 @@ HTTP/0.9 특징
 
 * `HTTP/1.0`이 등장한 배경은 HTTP/0.9 가 굉장히 제한적이었고, 확장성을 높이기 위해서이다.
 
-HTTP/1.0 특징
+### HTTP/1.0 특징
 
 * **버전 정보**가 각 요청에 포함된다. 요청 메서드는 기존 `GET`에서 `HEAD`, `POST` 가 추가되면서 세 가지로 확장되었다.
 
@@ -87,7 +87,7 @@ A page with an image
 
 * `HTTP/1.1`은 모호험을 명확하게 하고 많은 개선 사항들을 도입했다.
 
-### 특징
+### HTTP/1.1 특징
 
 > [1] 연결 재사용
 
@@ -208,7 +208,9 @@ SPDY 특징
 
 > [2] 응답 다중화(Multiplexing)
 
-* HTTP/2s는 하나의 TCP 연결에 여러 개의 요청을 처리 할 수 있는데, 이것을 **Stream, Message, Frame** 이라는 단위로 세분화했다.
+* HTTP/1.1  TCP 연결에서 한 번에 하나의 요청만 처리 가능하며 **요청 별 순서**를 반드시 지켜야 한다.
+
+* HTTP/2 는 하나의 TCP 연결에 여러 개의 요청을 처리 할 수 있는데, 이것을 **Stream, Message, Frame** 이라는 단위로 더욱 세분화했다.
 
 ![](/assets/img/network/network-http-http2-multiplexing1.png)
 
@@ -263,7 +265,7 @@ SPDY 특징
 * UDP 자체는 신뢰성을 보장하지 않지만, 직접 구현을 통해 신뢰성을 보장받을 수 있게 되었다.
 
 
-![](![](/assets/img/network/network-http-http3-1.png)
+![](/assets/img/network/network-http-http3-1.png)
 
 > QUIC = UDP + 패킷 재전송, 혼잡 제어, 흐름 제어 (직접 구현)
 
@@ -289,9 +291,11 @@ SPDY 특징
 
 ## 예상 질문
 
-* HTTP/1.1과 HTTP/2의 차이점은 무엇인가요? (HOL Blocking, HTTP/3.0 주요 특징)
+* HTTP/1.1과 HTTP/2의 차이점은 무엇인가요? (HOL Blocking)
 
 * HTTP/2를 설명하고 장점 2가지를 설명해 주세요.
+
+* HTTP/3.0 주요 특징에 대해 설명해 주세요.
 
 
 ## Reference
