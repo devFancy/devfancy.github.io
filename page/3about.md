@@ -133,6 +133,7 @@ type: page
 
 * 　03. 02 ~ 06. 01 Study R Programming
 
+* 　01. 13 ~ 02. 09 AEP(Academic English Program) 참가 (The University of Texas at Austin English Language Center) - ![수료증](/assets/img/etc/aep_certification_junyongmoon.png)
 
 ### 2020
 
