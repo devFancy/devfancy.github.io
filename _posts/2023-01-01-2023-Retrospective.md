@@ -269,16 +269,6 @@ author: fancy96
 
 * [[Network] TCP 와 UDP](https://fancy96.github.io/Network-Tcp-And-Udp/)
 
-* [[Network] Load Balancing, L4/L7 스위치](https://fancy96.github.io/Network-Load-Balancing-And-L4-L7-Switch/)
-
-* [[Network] HTTP 진화과정](https://fancy96.github.io/Network-HTTP/)
-
-* [[Network] REST, REST API, RESTful](https://fancy96.github.io/Network-REST-RESTAPI-RESTful/)
-
-* [[Network] 쿠키와 세션](https://fancy96.github.io/Network-Cookie-And-Session/)
-
-* [[Network] Proxy Server](https://fancy96.github.io/Network-Proxy-Server/)
-
 * [[Database] RDB와 NoSQL](https://fancy96.github.io/DB-Rdb-Nosql/)
 
 * [[Book] 소프트웨어 장인 리뷰](https://fancy96.github.io/Book-Software-Master-Craftsman/)
@@ -291,7 +281,7 @@ author: fancy96
 
 * [[Programmers] 43165. 타켓 넘버(dfs)](https://fancy96.github.io/Programmers-43165/)
 
-* [[Programmers] 1844. 게임 맵 최단거리](https://school.programmers.co.kr/learn/courses/30/lessons/1844)
+* [[Programmers] 1844. 게임 맵 최단거리](https://fancy96.github.io/Programmers-1844/)
 
 * [[solved.ac] Class3++ DFS와 BFS](https://fancy96.github.io/solved-class3-backjoon-1260/)
 
@@ -303,10 +293,22 @@ author: fancy96
 
 * [[Database] 관계 데이터 모델의 개념 - Key의 종류](https://fancy96.github.io/DB-RDB-Concept-Key/)
 
-* [[Database] DB Locking](https://fancy96.github.io/DB-Locking/)
+* [[Network] Proxy Server](https://fancy96.github.io/Network-Proxy-Server/)
+
+* [[Network] Cookie & Session](https://fancy96.github.io/Network-Cookie-And-Session/)
+
+* [[Network] Load Balancing](https://fancy96.github.io/Network-Load-Balancing/)
+
+* [[Network] HTTP 진화과정](https://fancy96.github.io/Network-HTTP/)
+
+* [[Network] REST, REST API, RESTful](https://fancy96.github.io/Network-REST-RESTAPI-RESTful/)
 
 * [[OS] 26. Concurrency](https://fancy96.github.io/OS-26-Concurrency/)
 
 * [[OS] 28. Lock](https://fancy96.github.io/OS-28-Lock/)
 
 * [[OS] 31. Semaphore](https://fancy96.github.io/OS-31-Semaphore/)
+
+> 230220 ~ 23026
+
+* [[Database] DB Locking](https://fancy96.github.io/DB-Locking/)
