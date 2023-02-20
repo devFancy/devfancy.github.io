@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 관계 데이터 모델의 개념 - Key의 종류 "
+title: " [DB] 관계 데이터 모델의 개념 - Key의 종류 "
 categories: Database
 author: fancy96
 ---

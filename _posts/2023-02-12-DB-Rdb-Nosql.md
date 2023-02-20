@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " RDB와 NoSQL "
+title: " [DB] RDB와 NoSQL "
 categories: Database
 author: fancy96
 ---

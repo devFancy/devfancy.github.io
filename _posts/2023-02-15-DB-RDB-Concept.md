@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 관계 데이터 모델의 개념 "
+title: " [DB] 관계 데이터 모델의 개념 "
 categories: Database
 author: fancy96
 ---
