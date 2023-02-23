@@ -150,8 +150,31 @@ git diff branch1..branch2 #all the changes between branch1 and branch2
 	# 마찬가지로 코드를 확인하고 싶을 때 git diff를 사용한다.
 ```
 
+### Rename
+
+```bash
+# 로컬 Git 저장소 브랜치의 이름을 변경(수정)하는 방법
+git branch -m [Old_branch] [New_branch]
+    # git branch의 m 옵션을 사용하면 브랜치의 이름을 변경할 수 있다.
+    # [Old_branch]에는 이름을 변경하고 싶은 브랜치를 지정하고,
+    # [New_branch]에는 새로운 브랜치 이름을 지정한다. 
+
+# GitHub 저장소 브랜치 이름을 변경(수정)하는 방법
+git push origin [New_branch]
+    # 1. 로컬에서 변경한 [New_branch] 이름을 GitHub에 반영한다.
+git push origin --delete [Old_branch]
+    # 2. 기존 origin에 있는 [Old_branch]를 삭제한다.
+
+git push origin :[Old_branch] [New_branch]
+    # 1+2. 브랜치의 생성과 삭제를 한 번에 할 수 있다.
+    # [Old_branch]를 삭제하고, [New_branch]를 생성하는 방법이다.
+```
+
+
 ## Reference
 
 * [git 공식문서](https://git-scm.com/book/en/v2)
 
 * [Dream Coding - Git 마스터 과정](https://academy.dream-coding.com/courses/git)
+
+* [GitHub 저장소의 브랜치 이름을 변경하는 방법](https://www.lainyzine.com/ko/article/how-to-rename-local-github-branch/)
