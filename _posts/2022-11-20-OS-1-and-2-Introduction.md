@@ -7,6 +7,8 @@ author: fancy96
 * content
 {:toc}
 
+> 이 글의 사진과 내용은 [공룡책](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.
+
 ## 1. 운영체제의 정의
 
 `OS`는 컴퓨터 하드웨어 바로 윗단에 설치되는 소프트웨어.

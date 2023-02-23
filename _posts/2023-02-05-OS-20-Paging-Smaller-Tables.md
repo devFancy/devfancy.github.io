@@ -7,6 +7,8 @@ author: fancy96
 * content
 {:toc}
 
+> 이 글의 사진과 내용은 [공룡책](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.
+
 ## Prologue
 
 * TLB가 관리할 수 있는 page보다 더 많은 page를 요구하는 프로세스를 처리하는 경우

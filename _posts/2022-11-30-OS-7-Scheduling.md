@@ -7,6 +7,11 @@ author: fancy96
 * content
 {:toc}
 
+
+> 이 글의 사진과 내용은 [공룡책](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.
+
+## Prologue
+
 * **`CPU 스케줄링`**이 필요한 이유 : CPU를 사용하는 패턴이 상이한 여러 프로그램이 동일한 시스템 내부에서 함께 실행되기 때문
 
 * CPU 버스트가 균일하지 않은 다양한 프로그램들이 공존하므로 **효율적인 CPU 스케줄링 기법**이 반드시 필요하다.

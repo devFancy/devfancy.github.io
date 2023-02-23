@@ -7,6 +7,8 @@ author: fancy96
 * content
 {:toc}
 
+> 이 글의 사진과 내용은 [공룡책](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.
+
 ## Multi-threaded Process 
 
 Concurrency(동시성)을 구현하기 전에, 먼저 `Thread`에 대해 알아보자. 

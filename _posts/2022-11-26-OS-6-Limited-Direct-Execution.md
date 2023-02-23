@@ -7,7 +7,9 @@ author: fancy96
 * content
 {:toc}
 
-### (Virtual) Memory
+> 이 글의 사진과 내용은 [공룡책](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.
+
+## (Virtual) Memory
 
 * 32bit CPU의 메모리 주소 레지스터의 크기는 32bit
 

@@ -7,6 +7,8 @@ author: fancy96
 * content
 {:toc}
 
+> 이 글의 사진과 내용은 [공룡책](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.
+
 ## 1. 컴퓨터 시스템의 구조
 
 * 컴퓨터 시스템의 구조는 컴퓨터 내부장치인 CPU, 메모리와 컴퓨터 외부장치인 디스크, 키보드, 마우스, 모니터, 네트워크 장치 등으로 구성된다.

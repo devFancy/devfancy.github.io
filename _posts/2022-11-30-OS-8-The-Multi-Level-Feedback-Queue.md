@@ -7,6 +7,8 @@ author: fancy96
 * content
 {:toc}
 
+> 이 글의 사진과 내용은 [공룡책](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.
+
 ## Multi-Level Queue
 멀티-레벨 큐(MLQ)
 
@@ -16,9 +18,6 @@ author: fancy96
 * MLQ는 일반적으로 성격이 다른 프로세스들을 별도로 관리하고, 프로세스의 성격에 맞는 스케줄링을 적용하기 위해 ready queue를 별도로 두게 된다.
 
 * **미래를 예측하기 위해 과거를 배우는** 스케줄러이다.
-
-
----
 
 ## ML(F)Q : Basic Rules
 

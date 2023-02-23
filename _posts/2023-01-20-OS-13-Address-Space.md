@@ -7,6 +7,8 @@ author: fancy96
 * content
 {:toc}
 
+> 이 글의 사진과 내용은 [공룡책](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.
+
 ## Prologue
 
 * 이번 글의 목적은 왜 가상 메모리를 사용하는지, 메모리 가상화를 위한 메모리 사용의 변화 과정, 주소 공간을 추상화하는 개념에 대해 알아보자.
