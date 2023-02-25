@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " [solved.ac] Class3++ 2606. 바이러스 "
-categories: SQL
+categories: Algorithm
 author: fancy96
 ---
 * content
@@ -99,9 +99,7 @@ public class Main {
     arr = new int[node + 1][node + 1];
     checked = new boolean[node + 1];
 
-    for (
-            int i = 0;
-            i < line; i++) {
+    for (int i = 0; i < line; i++) {
       StringTokenizer str = new StringTokenizer(br.readLine());
 
       int a = Integer.parseInt(str.nextToken());
