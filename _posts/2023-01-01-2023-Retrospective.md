@@ -285,8 +285,6 @@ author: fancy96
 
 * [[solved.ac] Class3++ DFS와 BFS](https://fancy96.github.io/solved-class3-backjoon-1260/)
 
-* [[solved.ac] Class3++ 2606. 바이러스](https://fancy96.github.io/solved-class3-backjoon-2606/)
-
 * [CS Study : 데이터베이스 1주차](https://github.com/Fancy96/2023-CS-Study/issues/54)
 
 * [[Database] 관계 데이터 모델의 개념](https://fancy96.github.io/DB-RDB-Concept/)
@@ -311,4 +309,30 @@ author: fancy96
 
 > 230220 ~ 23026
 
+* [[Programmers] 12921. 소수찾기](https://fancy96.github.io/Programmers-12921/)
+
+* [[Programmers] 92335. k진수에서 소수 개수 구하기](https://fancy96.github.io/Programmers-92335/)
+
+* [[Programmers] 17684. [3차] 압축](https://fancy96.github.io/Programmers-17684/)
+
+* [[Programmers] SQL 59047. 이름에 el이 들어가는 동물 찾기](https://fancy96.github.io/Programmers-59047/)
+
+* [[Programmers] SQL 59414. DATETIME에서 DATE로 형 변환](https://fancy96.github.io/Programmers-59414/)
+
+* [[Programmers] SQL 59409. 중성화 여부 파악하기](https://fancy96.github.io/Programmers-59409/)
+
+* [[Programmers] SQL 131529. 카테고리 별 상품 개수 구하기](https://fancy96.github.io/Programmers-131529/)
+
+* [[solved.ac] Class3++ 2606. 바이러스](https://fancy96.github.io/solved-class3-backjoon-2606/)
+
+* [CS Study : 데이터베이스 2주차](https://github.com/Fancy96/2023-CS-Study/issues/68)
+
+* [[Database] 트랜잭션(ACID 특성)](https://fancy96.github.io/DB-Transaction/)
+
+* [[Database] 트랜잭션 격리수준](https://fancy96.github.io/DB-Transaction-Isolation-Level/)
+
 * [[Database] DB Locking](https://fancy96.github.io/DB-Locking/)
+
+> 230227 ~ 230305
+
+* [CS Study : 데이터베이스 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/82)
