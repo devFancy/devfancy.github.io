@@ -7,7 +7,7 @@ author: fancy96
 * content
 {:toc}
 
-> 이 글은 [실전!스프링 부트와 JPA 활용 1](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/) 강의자료를 기반으로 내용을 작성하였습니다.
+> 이 글의 코드와 정보들은 [실전! 스프링 부트와 JPA 활용 1] 강의를 들으며 정리한 내용을 토대로 작성하였습니다..
 
 * `H2` DB를 사용하는 이유 : 개발이나 테스트 용도로 가볍고 편리한 DB, 웹 화면 제공하기 때문.
 
@@ -48,5 +48,7 @@ author: fancy96
 ![](/assets/img/springboot/springboot-h2-db-install-3.png)
 
 ## Reference
+
+* [실전! 스프링 부트와 JPA 활용 1](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/)
 
 * [Mac에서 brew로 java 설치(feat. java version 바꾸는 방법)](https://llighter.github.io/install-java-on-mac/)
