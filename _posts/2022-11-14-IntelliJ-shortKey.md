@@ -53,7 +53,7 @@ author: fancy96
 
 ### 검색
 
-* 경로내 검색하기 : `cmd + shift + enter`
+* 경로내(파일내) 검색하기 : `cmd + shift + f`
 
 * **전체 검색하기** : `shift` 두번(연속으로)
 
