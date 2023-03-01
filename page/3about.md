@@ -40,11 +40,15 @@ type: page
 
 ### 2023
 
+* 　03. 01 ~ Study Data Structure
+
+* 　02. 22 ~ [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/Fancy96/jpashop/)
+
 * 　02. 13 ~ [Study Database](https://fancy96.github.io/category/#Database)
 
-* 　02. 01 ~ [Study 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://fancy96.github.io/category/#Spring)
+* 　02. 02 ~ [Study 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://fancy96.github.io/category/#Spring)
 
-* 　01. 23 ~ [Study & Review Operating System](https://fancy96.github.io/category/#OS)
+* 　01. 23 ~ 02. 19 [Study & Review Operating System](https://fancy96.github.io/category/#OS)
 
 * 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식](https://fancy96.github.io/category/#HTTP)
 
@@ -63,8 +67,6 @@ type: page
 * 　01. 02 ~ [Study Network](https://fancy96.github.io/category/#Network)
 
 * 　01. 02 ~ [CS 스터디 진행](https://github.com/Fancy96/2023-CS-Study)
-
-* 　01. 02 ~ [운동 일지 기록](https://fancy96.github.io/Workout/)
 
 ### 2022
 
