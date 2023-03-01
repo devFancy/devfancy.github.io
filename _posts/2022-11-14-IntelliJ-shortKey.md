@@ -21,7 +21,7 @@ author: fancy96
 
 * `cmd + n`을 눌러서 `toString` 을 입력하여 클릭하고 위와 같은 방식으로 처리하면 toString이 자동으로 추가된다.
 
-###  Import 추가 / 이름 변경(클래스,* 메서드 , 패키지)
+###  Import 추가 / 이름 변경(클래스, 메서드 , 패키지)
 
 * import가 필요한 경우 `option + enter`를 누르면 "Implement methods" 를 선택한 다음에 
 
@@ -36,6 +36,42 @@ author: fancy96
 ### 자동 정렬 기능
 
 * `cmd + option + L`을 누르면 자동으로 정렬이 된다.
+
+### 변수 선언 및 return 부분을 합치는 기능
+
+[변경 전]
+
+```java
+public class MemberRepository {
+    /* ... */
+    
+    public List<Member> findALl() {
+        List<Member> result = em.createQuery("select m from Member m", Member.class)
+            .getResultList();
+        return result;
+
+    }
+}
+```
+
+* 변수를 선언한 이후에 해당 {} 안을 깔끔하게 합치려면, 'cmd + option + n'을 누르면 다음과 같이 단축된다.
+
+[변경 후]
+
+```java
+public class MemberRepository {
+    /* ... */
+    
+    public List<Member> findALl() {
+        return em.createQuery("select m from Member m", Member.class)
+            .getResultList();
+
+    }
+}
+```
+
+
+* `cmd + option + n`을 누르면
 
 #### 패키지 모든 영역에 적용하고 싶다면 ?
 
@@ -86,7 +122,7 @@ public static void main(String[] args) {
 
 * 그 상태에서 `enter`를 치면, 자동으로 선언부가 완성된다.
 
-####* 메서드  추출하기
+#### 메서드 추출하기
 
 ``` java
 //* 메서드  추출전
