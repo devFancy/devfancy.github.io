@@ -40,9 +40,11 @@ type: page
 
 ### 2023
 
+* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편
+
 * 　03. 01 ~ Study Data Structure
 
-* 　02. 22 ~ [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/Fancy96/jpashop/)
+* 　02. 22 ~ 03. 04 [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/Fancy96/jpashop/)
 
 * 　02. 13 ~ [Study Database](https://fancy96.github.io/category/#Database)
 
