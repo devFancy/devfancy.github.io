@@ -39,6 +39,12 @@ author: fancy96
 
 ### 변수 선언 및 return 부분을 합치는 기능
 
+방법1 : `control + t` 누르고 Inline Variable 클릭하면 된다.
+
+방법2 : `cmd + option + n` (Inline Variable 단축키)
+
+> 방법2 예시
+
 [변경 전]
 
 ```java
@@ -54,7 +60,7 @@ public class MemberRepository {
 }
 ```
 
-* 변수를 선언한 이후에 해당 {} 안을 깔끔하게 합치려면, 'cmd + option + n'을 누르면 다음과 같이 단축된다.
+* 변수를 선언한 이후에 해당 {} 안을 깔끔하게 합치려면, `cmd + option + n`을 누르면 다음과 같이 단축된다.
 
 [변경 후]
 
@@ -69,6 +75,7 @@ public class MemberRepository {
     }
 }
 ```
+
 
 
 * `cmd + option + n`을 누르면
@@ -186,6 +193,11 @@ import static org.assertj.core.api.Assertions.*;
 ```
 
 * import static이 추가가 되면서 Assertions 없이 assertThat()만 사용할 수 있다.
+
+
+### main <-> test 이동하기
+
+* `cmd + shift + t`를 입력하면 **테스트 -> 메인** 혹은 **메인 -> 테스트**와 같이, 비슷한 이름의 클래스로 편리하게 이동할 수 있다.
 
 ## Reference
 
