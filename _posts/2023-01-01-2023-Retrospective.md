@@ -335,4 +335,14 @@ author: fancy96
 
 > 230227 ~ 230305
 
+* [[Programmers] SQL > SUM, MAX, MIN 풀이 모음](https://fancy96.github.io/Programmers-131115/)
+
+* [[Programmers] 157342. 자동차 평균 대여 기간 구하기](https://fancy96.github.io/Programmers-157342/)
+
+* [[Programmers] 59046. 루시와 엘라 찾기](https://fancy96.github.io/Programmers-59046/)
+
 * [CS Study : 데이터베이스 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/82)
+
+* [[SpringBoot] 변경 감지와 병합(merge)](https://fancy96.github.io/Springboot-merge/)
+
+* [2023 2월 운동 기록](https://fancy96.github.io/Workout-2/)
