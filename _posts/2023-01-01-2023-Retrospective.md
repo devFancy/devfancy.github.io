@@ -21,10 +21,6 @@ author: fancy96
 
 ## Book
 
-* [제품의 탄생](https://product.kyobobook.co.kr/detail/S000200359090)
-
-* [인스파이어드](https://product.kyobobook.co.kr/detail/S000001916921)
-
 * [소프트웨어 장인](https://product.kyobobook.co.kr/detail/S000001889885)
 
 * [함께 자라기](https://product.kyobobook.co.kr/detail/S000001033071)
@@ -49,13 +45,17 @@ author: fancy96
 
 * [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/)
 
-* [스프링 MVC 2편 - 백엔드 웹 개발 활용 기술](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-2/)
-
 > 김영한의 스프링 부트와 JPA 실무 완전 정복 로드맵
 
 * [자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/)
 
 * [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-%ED%99%9C%EC%9A%A9-1/)
+
+* [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94#)
+
+* [실전! 스프링 데이터 JPA](https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84)
+
+* [실전! Querydsl](https://www.inflearn.com/course/querydsl-%EC%8B%A4%EC%A0%84)
 
 ## January
 
@@ -333,6 +333,8 @@ author: fancy96
 
 * [[Database] DB Locking](https://fancy96.github.io/DB-Locking/)
 
+## March
+
 > 230227 ~ 230305
 
 * [[Programmers] SQL > SUM, MAX, MIN 풀이 모음](https://fancy96.github.io/Programmers-131115/)
@@ -346,3 +348,5 @@ author: fancy96
 * [[SpringBoot] 변경 감지와 병합(merge)](https://fancy96.github.io/Springboot-merge/)
 
 * [2023 2월 운동 기록](https://fancy96.github.io/Workout-2/)
+
+> 230306 ~ 230312
