@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 프로그래밍 문제 접근법 - 1 "
-categories: AlgorithmSkill
+categories: Interview
 author: fancy96
 ---
 * content
