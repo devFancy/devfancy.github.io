@@ -6,7 +6,7 @@ author: fancy96
 use_math: true
 ---
 * content
-  {:toc}
+{:toc}
 
 > 이 글의 코드와 정보들은 책을 공부하며 정리한 내용을 토대로 작성하였습니다.
 
@@ -38,15 +38,12 @@ use_math: true
 
 * n개의 vertics와 e개의 edges를 가진 무방향성 그래프인 G에서 edge의 최대 수는 **O(n+e)** 이다.
 
-![](/assets/img/datastructure/graph-3.png)
-
 * `인접 행렬`은 노드 개수만큼의 차원 수로 만들어지는 정사각형 형태의 2차원 배열로 표현하는 자료구조다.
 
-![](/assets/img/datastructure/graph-4.png)
+![](/assets/img/datastructure/graph-3.png)
 
 * n개의 vertics와 e개의 edges를 가진 무방향성 그래프인 G에서 edge의 최대 수는 **O(n^2)** 이다.
 
-![](/assets/img/datastructure/graph-5.png)
 
 ##  Reference
 
