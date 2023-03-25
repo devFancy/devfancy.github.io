@@ -40,15 +40,17 @@ type: page
 
 ### 2023
 
-* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편
+* 　03. 22 ~ Hibit 프로젝트 참가
 
-* 　03. 01 ~ Study Data Structure
+* 　03. 19 ~ [Study Data Structure](https://fancy96.github.io/category/#DataStructure)
+
+* 　03. 17 ~ `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://fancy96.github.io/category/#Interview), [DataStructure](https://fancy96.github.io/category/#DataStructure)
+
+* 　03. 05 ~ [Study 자바 ORM 표준 JPA 프로그래밍 - 기본편]()
 
 * 　02. 22 ~ 03. 04 [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/Fancy96/jpashop/)
 
 * 　02. 13 ~ [Study Database](https://fancy96.github.io/category/#Database)
-
-* 　02. 02 ~ [Study 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://fancy96.github.io/category/#Spring)
 
 * 　01. 23 ~ 02. 19 [Study & Review Operating System](https://fancy96.github.io/category/#OS)
 
