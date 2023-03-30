@@ -337,7 +337,7 @@ author: fancy96
 
 > 230227 ~ 230305
 
-* [[Programmers] SQL > SUM, MAX, MIN 풀이 모음](https://fancy96.github.io/Programmers-131115/)
+* [[Programmers] SQL > SUM, MAX, MIN 풀이 모음](https://fancy96.github.io/Programmers-SQL-SUM-MAX-MIN/)
 
 * [[Programmers] 157342. 자동차 평균 대여 기간 구하기](https://fancy96.github.io/Programmers-157342/)
 
@@ -345,8 +345,40 @@ author: fancy96
 
 * [CS Study : 데이터베이스 모의면접](https://github.com/Fancy96/2023-CS-Study/issues/82)
 
+* [[SpringBoot] 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/Fancy96/jpashop/)
+
 * [[SpringBoot] 변경 감지와 병합(merge)](https://fancy96.github.io/Springboot-merge/)
 
 * [2023 2월 운동 기록](https://fancy96.github.io/Workout-2/)
 
 > 230306 ~ 230312
+
+* [[백준] 1937. 욕심쟁이 판다](https://fancy96.github.io/baekjoon-1937/)
+
+* [[Programmers] 12924. 숫자의 표현](https://fancy96.github.io/Programmers-12924/)
+
+* [[Programmers] 138476. 귤 고르기](https://fancy96.github.io/Programmers-138476/)
+
+* [[Programmers] 92341. 주차 요금 계산](https://fancy96.github.io/Programmers-92341/)
+
+> 230313 ~ 230319
+
+* [[Programmers] SQL > Join 풀이 모음](https://fancy96.github.io/Programmers-JOIN/)
+
+* [[Interview] 프로그래밍 문제 접근법 (1)](https://fancy96.github.io/Tech-Interview-1/)
+
+* [[Interview] 프로그래밍 문제 접근법 (2)](https://fancy96.github.io/Tech-Interview-2/)
+
+* [[DataStructure] 연결 리스트](https://fancy96.github.io/DataStructure-LinkedList/)
+
+> 230320 ~ 230326
+
+* [[Programmers] 17687. [3차] n진수 게임](https://fancy96.github.io/Programmers-17687/)
+
+* [[Programmers] 42888. 오픈채팅방](https://fancy96.github.io/Programmers-42888/)
+
+* [[DataStructure] 트리](https://fancy96.github.io/DataStructure-Tree/)
+
+* [[DataStructure] 그래프](https://fancy96.github.io/DataStructure-Graph/)
+
+* [[DataStructure] 기본적인 그래프 기법 : DFS, BFS](https://fancy96.github.io/DataStructure-DFS-BFS/)
