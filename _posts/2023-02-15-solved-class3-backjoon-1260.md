@@ -17,7 +17,7 @@ author: fancy96
 
 * 그래프 이론(graphs), 그래프 탐색(graph_traversal), 너비 우선 탐색(bfs), 깊이 우선 탐색(dfs)
 
-### Answer Code1(2023.02.09) - BFS
+### Answer Code1(2023.02.09)
 
 ```java
 import java.io.*;
