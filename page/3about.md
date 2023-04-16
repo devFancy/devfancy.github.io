@@ -11,9 +11,9 @@ type: page
 
 ## Who am i
 
-* <img src="/assets/img/logo/woorifis-logo.png" style="max-width: 3%; vertical-align: text-bottom;"> 우리에프아이에스 Future 핀테크랩에서 클라우드 서비스 개발 과정을 듣고 있습니다.
+* <img src="/assets/img/logo/woorifis-logo.png" style="max-width: 4%; vertical-align: text-bottom;"> 우리에프아이에스 Future 핀테크랩에서 클라우드 서비스 개발 과정을 듣고 있습니다.
 
-  (2023.04.23 ~ 2023.09.27)
+  (2023.04.24 ~ 2023.09.27)
 
 * <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : BackEnd 개발 관련 공부를 하고 있습니다.
 
