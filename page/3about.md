@@ -31,9 +31,9 @@ type: page
 
 * <img src="/assets/img/logo/github.png" style="max-width: 3%; vertical-align: text-bottom;"> :  [{{site.github_username}}](https://github.com/{{site.github_username}})
 
-* <img src="/assets/img/logo/linkedin.png" style="max-width: 3%; vertical-align: text-bottom;"> : [{{site.facebook_username}}](https://www.facebook.com/{{site.facebook_username}})
+* <img src="/assets/img/logo/linkedin.png" style="max-width: 3%; vertical-align: text-bottom;"> : [Junyong Moon](https://www.linkedin.com/in/{{site.linkedIn_username}})
 
-* <img src="/assets/img/logo/instagram.png" style="max-width: 3%; vertical-align: text-bottom;"> :  [{{site.insta_username}}](https://www.instagram.com/{{site.insta_username}})
+* <img src="/assets/img/logo/instagram.png" style="max-width: 3%; vertical-align: text-bottom;"> : [{{site.insta_username}}](https://www.instagram.com/{{site.insta_username}})
 
 * <img src="/assets/img/logo/kakaotalk.png" style="max-width: 3%; vertical-align: text-bottom;"> : [Kakao Open Chat](https://open.kakao.com/o/swXZ9B2e)
 
