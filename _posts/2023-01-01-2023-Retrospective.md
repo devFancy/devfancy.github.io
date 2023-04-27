@@ -382,3 +382,23 @@ author: fancy96
 * [[DataStructure] 그래프](https://fancy96.github.io/DataStructure-Graph/)
 
 * [[DataStructure] 기본적인 그래프 기법 : DFS, BFS](https://fancy96.github.io/DataStructure-DFS-BFS/)
+
+> 230327 ~ 230402
+
+* [[Programmers] 42586. 기능개발](https://fancy96.github.io/Programmers-42586/)
+
+* [[Programmers] 42587. 프린터](https://fancy96.github.io/Programmers-42587/)
+
+* [[Programmers] 42584. 주식가격](https://fancy96.github.io/Programmers-42584/)
+
+> 230403 ~ 230423
+
+* [[Programmers] 42583. 다리를 지나는 트럭](https://fancy96.github.io/Programmers-42583/)
+
+> 230424 ~ 230430
+
+* [[JavScript] 자바스크립트 기초(1) - 변수, 자료형, 연산자](https://fancy96.github.io/Javascript-1/)
+
+* [[JavScript] 자바스크립트 기초(2) - 조건문, 반복문, 객체](https://fancy96.github.io/Javascript-2/)
+
+* [[JavScript] 자바스크립트 기초(3) - 함수, 배열](https://fancy96.github.io/Javascript-3/)
