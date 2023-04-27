@@ -397,8 +397,8 @@ author: fancy96
 
 > 230424 ~ 230430
 
-* [[JavScript] 자바스크립트 기초(1) - 변수, 자료형, 연산자](https://fancy96.github.io/Javascript-1/)
+* [[JavScript] 자바스크립트 기초(1) - 변수, 자료형, 연산자](https://fancy96.github.io/JavaScript-1/)
 
-* [[JavScript] 자바스크립트 기초(2) - 조건문, 반복문, 객체](https://fancy96.github.io/Javascript-2/)
+* [[JavScript] 자바스크립트 기초(2) - 조건문, 반복문, 객체](https://fancy96.github.io/JavaScript-2/)
 
-* [[JavScript] 자바스크립트 기초(3) - 함수, 배열](https://fancy96.github.io/Javascript-3/)
+* [[JavScript] 자바스크립트 기초(3) - 함수, 배열](https://fancy96.github.io/JavaScript-3/)
