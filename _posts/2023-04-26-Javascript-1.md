@@ -1,11 +1,13 @@
 ---
 layout: post
 title: " 자바스크립트 기초(1) - 변수, 자료형, 연산자 "
-categories: Javascript
+categories: JavaScript
 author: fancy96
 ---
 * content
 {:toc}
+
+> 이 글의 목표는 자바스크립트의 대략적인 문법을 살펴보는데 맞춰져 있다. 깊은 지식은 나중에 기회가 된다면 별도의 포스팅으로 다룰 것이다.
 
 ## 변수
 
