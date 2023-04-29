@@ -13,8 +13,6 @@ type: page
 
 * <img src="/assets/img/logo/woorifis-logo.png" style="max-width: 4%; vertical-align: text-bottom;"> 우리에프아이에스 Future 핀테크랩에서 클라우드 서비스 개발 과정을 듣고 있습니다.
 
-  (2023.04.24 ~ 2023.09.27)
-
 * <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : BackEnd 개발 관련 공부를 하고 있습니다.
 
 * <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기술을 공유하고 함께 성장하는 것을 추구합니다.
@@ -33,7 +31,7 @@ type: page
 
 * <img src="/assets/img/logo/linkedin.png" style="max-width: 3%; vertical-align: text-bottom;"> : [Junyong Moon](https://www.linkedin.com/in/{{site.linkedIn_username}})
 
-* <img src="/assets/img/logo/instagram.png" style="max-width: 3%; vertical-align: text-bottom;"> : [{{site.insta_username}}](https://www.instagram.com/{{site.insta_username}})
+* <img src="/assets/img/logo/instagram.png" style="max-width: 3%; vertical-align: text-bottom;"> : [junyongmoon](https://www.instagram.com/{{site.insta_username}})
 
 * <img src="/assets/img/logo/kakaotalk.png" style="max-width: 3%; vertical-align: text-bottom;"> : [Kakao Open Chat](https://open.kakao.com/o/swXZ9B2e)
 
@@ -46,17 +44,19 @@ type: page
 
 ### 2023
 
-* 　03. 22 ~ Hibit 프로젝트 참가
+* 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 프로젝트](http://www.woorifis.com/kor/peoplelife/futureLab/labInfo)
+
+* 　03. 22 ~ [Hibit 프로젝트 참가](https://github.com/hibit0)
 
 * 　03. 19 ~ [Study Data Structure](https://fancy96.github.io/category/#DataStructure)
 
 * 　03. 17 ~ `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://fancy96.github.io/category/#Interview), [DataStructure](https://fancy96.github.io/category/#DataStructure)
 
-* 　03. 05 ~ [Study 자바 ORM 표준 JPA 프로그래밍 - 기본편]()
+* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편
 
 * 　02. 22 ~ 03. 04 [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/Fancy96/jpashop/)
 
-* 　02. 13 ~ [Study Database](https://fancy96.github.io/category/#Database)
+* 　02. 13 ~ 03. 05 [Study Database](https://fancy96.github.io/category/#Database)
 
 * 　01. 23 ~ 02. 19 [Study & Review Operating System](https://fancy96.github.io/category/#OS)
 
@@ -74,15 +74,13 @@ type: page
 
 * 　01. 07 ~ [Programmers : 코딩테스트 대비](https://fancy96.github.io/category/#Algorithm)
 
-* 　01. 02 ~ [Study Network](https://fancy96.github.io/category/#Network)
+* 　01. 02 ~ 02. 18 [Study Network](https://fancy96.github.io/category/#Network)
 
 * 　01. 02 ~ [CS 스터디 진행](https://github.com/Fancy96/2023-CS-Study)
 
 ### 2022
 
 * 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득](https://fancy96.github.io/Coursera-Certificates/)
-
-* 　11. 03 ~ Java 복습
 
 * 　10. 26 ~ 12. 17 [우아한테크코스 5기 프리코스 과정](https://github.com/Fancy96/fancy96-woowacourse) 참가
 
@@ -108,7 +106,7 @@ type: page
 
 * 　04. 11 ~ 06. 17 [Study Git](https://fancy96.github.io/category/#Git)
 
-* 　03. 15 ~ Study Java (명품 자바 에센셜)
+* 　03. 15 ~ 06. 15 Study Java (명품 자바 에센셜)
 
 * 　03. 02 ~ 06. 26 [Study Probability Statistics](https://fancy96.github.io/PS-Introduction/)
 
@@ -149,15 +147,17 @@ type: page
 
 ### 2020
 
-* 　09. 01 ~ 12.15 소프트웨어설계 팀프로젝트 참가
+* 　09. 01 ~ 12.15 KNU 소프트웨어설계 팀프로젝트 참가
 
-* 　09. 01 ~ 12.15 모바일앱프로그래밍 팀프로젝트 참가 
+* 　09. 01 ~ 12.15 KNU 모바일앱프로그래밍 팀프로젝트 참가 
 
 * 　09. 01 ~ 교내 동아리 정보보안학회(KERT) 참가
 
 ---
 
 ## Certificate
+
+*   Academic English Program (21. 02. 10) - The University of Texas at Austin
 
 *   TOEIC (19. 12. 15) - 895
 
