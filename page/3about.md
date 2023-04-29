@@ -31,7 +31,7 @@ type: page
 
 * <img src="/assets/img/logo/linkedin.png" style="max-width: 3%; vertical-align: text-bottom;"> : [Junyong Moon](https://www.linkedin.com/in/{{site.linkedIn_username}})
 
-* <img src="/assets/img/logo/instagram.png" style="max-width: 3%; vertical-align: text-bottom;"> : [junyongmoon](https://www.instagram.com/{{site.insta_username}})
+* <img src="/assets/img/logo/instagram.png" style="max-width: 3%; vertical-align: text-bottom;"> : [{{site.insta_username}}](https://www.instagram.com/{{site.insta_username}})
 
 * <img src="/assets/img/logo/kakaotalk.png" style="max-width: 3%; vertical-align: text-bottom;"> : [Kakao Open Chat](https://open.kakao.com/o/swXZ9B2e)
 
