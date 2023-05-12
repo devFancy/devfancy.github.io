@@ -44,15 +44,13 @@ type: page
 
 ### 2023
 
-* 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 프로젝트](http://www.woorifis.com/kor/peoplelife/futureLab/labInfo)
+* 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/Fancy96/fancy-woorifisa)
 
-* 　03. 22 ~ [Hibit 프로젝트 참가](https://github.com/hibit0)
-
-* 　03. 19 ~ [Study Data Structure](https://fancy96.github.io/category/#DataStructure)
+* 　03. 22 ~ [Hibit Project - Backend Developer](https://github.com/hibit-team/hibit-backend)
 
 * 　03. 17 ~ `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://fancy96.github.io/category/#Interview), [DataStructure](https://fancy96.github.io/category/#DataStructure)
 
-* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편
+[//]: # (* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편)
 
 * 　02. 22 ~ 03. 04 [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/Fancy96/jpashop/)
 
