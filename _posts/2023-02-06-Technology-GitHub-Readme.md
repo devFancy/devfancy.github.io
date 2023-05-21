@@ -15,7 +15,7 @@ author: fancy96
 
     **보다 쉬운 이해**를 위해서 (+나의 프로필을 꾸미고 싶어서) 만들게 되었다.
 
-(현재) 결과물 : 나의 GitHub README.md(2022.02.06)
+(현재) 결과물 : 나의 GitHub README.md(2023.02.06)
 
 ![](/assets/img/technology/technology-github-readme_main.png)
 
@@ -67,7 +67,7 @@ author: fancy96
 
 * [Shields.io](https://shields.io/)에 가서 본인이 직접 입력해서 사용하는 방법이 있다. 
 
-* `https://img.shields.io/badge/<LABEL>-<MESSAGE>-<COLOR>` 형태로 파라미터를 넣어주면, **배지 이미지**가 생성된다. 
+* `https://img.shields.io/badge/<LABEL>-<MESSAGE>-<COLOR>` 형태로 파라미터를 넣어주면, **배경 이미지**가 생성된다. 
 
     * 추가적으로 `logo`, `logoColor`, `lableColr`등의 여러 쿼리를 함께 사용할 수 있다.
 
