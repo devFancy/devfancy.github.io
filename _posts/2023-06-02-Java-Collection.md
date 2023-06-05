@@ -2,7 +2,7 @@
 layout: post
 title: " [Java] 컬렉션 프레임워크 - List, Set, Map "
 categories: VueJs
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}
@@ -35,3 +35,62 @@ author: fancy96
 
 ![](/assets/img/java/java-collection-2.png)
 
+## List
+
+* 배열과 리스트의 가장 큰 차이점으 **저장 크기가 고정적인지, 동적으로 변화하는 지의 여부**이다.
+
+* 배열은 저장 크기가 고정적이고, 리스트는 저장 크기가 동적으로 변화된다.
+
+### List<E> 인터페이스 구현 클래스 생성자로 동적 컬렉션 객체 생성
+
+* List<E>는 기본 생성자를 사용해 객체를 생성하면 기본적으로 10만큼의 저장 용량을 내부에 확보해 놓는다.
+
+* 이후 데이터가 추가돼 저장 용량이 더 필요하면 자바 가상 머신이 저장 용량을 **자동**으로 늘리므로 개발자가 따로 신경쓰지 않아도 된다.
+
+```java
+// 예시
+List<Integer> aList1 = new ArrayList<Integer>(); // capacity = 10;
+List<Integer> aList2 = new ArrayList<Integer>(30); // capacity = 30;
+Vector<String> aList3 = new Vector<String>(); // capacity = 10;
+List<MyWork> aList4 = new ArrayList<MyWork>(20); // 오류
+```
+
+* ListedList는 capacity 지정이 불가하다.
+
+
+### Arrays.asList() 메서드를 이용해 정적 컬렉션 객체 생성
+
+* List<E> 객체를 생성하는 또 다른 방법은 Arrays 클래스의 asList() 정적 메서드를 사용하는 것이다.
+
+* 내부적으로 배열을 먼저 생성하고, 이를 List<E>로 포장만 해놓은 것으로, 내부 구조는 배열과 동일하다.
+
+* 따라서 컬렉션 객체인데도 저장 공간의 크기를 변경할 수 없다.
+
+Arrays.asList() 메서드로 정적 컬렉션 객체 생성
+
+```java
+List<제네릭 타입 지정> 참조 변수 = Arrays.asList(제네릭 타입 저장 데이터);
+```
+
+```java
+// 예시
+List<Integer> aList1 = Arrays.asList(1, 2, 3, 4);
+aList1.set(1, 7); // [1 7 3 4]
+aList1.add(5); // 오류(UnsupportedOperationException)
+aList1.remove(0); // 오류(UnsupportedOperationException)
+```
+
+* 구현 클래스로 객체를 생성했을 때와 달리 **데이터의 추가(add()) 및 삭제(remove())가 불가능**하다.
+
+* 다만, 저장 공간의 크기를 변경하지 않는 데이터의 변경(set())은 가능하다. 
+
+* 따라서 고정된 개수의 데이터를 저장하거나 활용할 때 주로 사용한다.
+
+## Set
+
+## Map
+
+
+## Reference
+
+* [컬렉션 프레임워크](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/doc-files/coll-overview.html)

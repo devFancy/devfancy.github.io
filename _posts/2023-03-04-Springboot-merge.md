@@ -2,7 +2,7 @@
 layout: post
 title: " [SpringBoot] 변경 감지와 병합(merge) "
 categories: SpringBoot
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title: " 연결 리스트 "
 categories: DataStructure
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

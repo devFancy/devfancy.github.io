@@ -44,23 +44,23 @@ type: page
 
 ### 2023
 
-* 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/Fancy96/fancy-woorifisa)
+* 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/devfancy/fancy-woorifisa)
 
 * 　03. 22 ~ [Hibit Project - Backend Developer](https://github.com/hibit-team/hibit-backend)
 
-* 　03. 17 ~ `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://fancy96.github.io/category/#Interview), [DataStructure](https://fancy96.github.io/category/#DataStructure)
+* 　03. 17 ~ `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://devfancy.github.io/category/#Interview), [DataStructure](https://devfancy.github.io/category/#DataStructure)
 
 [//]: # (* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편)
 
-* 　02. 22 ~ 03. 04 [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/Fancy96/jpashop/)
+* 　02. 22 ~ 03. 04 [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/devfancy/jpashop/)
 
-* 　02. 13 ~ 03. 05 [Study Database](https://fancy96.github.io/category/#Database)
+* 　02. 13 ~ 03. 05 [Study Database](https://devfancy.github.io/category/#Database)
 
-* 　01. 23 ~ 02. 19 [Study & Review Operating System](https://fancy96.github.io/category/#OS)
+* 　01. 23 ~ 02. 19 [Study & Review Operating System](https://devfancy.github.io/category/#OS)
 
-* 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식](https://fancy96.github.io/category/#HTTP)
+* 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식](https://devfancy.github.io/category/#HTTP)
 
-* 　01. 14 ~ 01. 24 [Study 스프링 핵심원리 - 기본편](https://fancy96.github.io/category/#Spring)
+* 　01. 14 ~ 01. 24 [Study 스프링 핵심원리 - 기본편](https://devfancy.github.io/category/#Spring)
 
 * 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
 
@@ -68,23 +68,23 @@ type: page
 
 * 　01. 12  Tawk.to 서비스 블로그에 적용
 
-* 　01. 12 [기술 블로그](https://github.com/Fancy96/fancy96.github.io) 생성
+* 　01. 12 [기술 블로그](https://github.com/devfancy/devfancy.github.io) 생성
 
-* 　01. 07 ~ [Programmers : 코딩테스트 대비](https://fancy96.github.io/category/#Algorithm)
+* 　01. 07 ~ [Programmers : 코딩테스트 대비](https://devfancy.github.io/category/#Algorithm)
 
-* 　01. 02 ~ 02. 18 [Study Network](https://fancy96.github.io/category/#Network)
+* 　01. 02 ~ 02. 18 [Study Network](https://devfancy.github.io/category/#Network)
 
-* 　01. 02 ~ [CS 스터디 진행](https://github.com/Fancy96/2023-CS-Study)
+* 　01. 02 ~ [CS 스터디 진행](https://github.com/devfancy/2023-CS-Study)
 
 ### 2022
 
-* 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득](https://fancy96.github.io/Coursera-Certificates/)
+* 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득](https://devfancy.github.io/Coursera-Certificates/)
 
-* 　10. 26 ~ 12. 17 [우아한테크코스 5기 프리코스 과정](https://github.com/Fancy96/fancy96-woowacourse) 참가
+* 　10. 26 ~ 12. 17 [우아한테크코스 5기 프리코스 과정](https://github.com/devfancy/devfancy-woowacourse) 참가
 
 * 　10. 12 ~ 11. 18 [Competition : KNU 창업 성과 경진대회 수상](https://computer.knu.ac.kr/bbs/board.php?bo_table=sub5_1&wr_id=26769)
 
-* 　09. 01 ~ 12. 20 [Study Operating System](https://fancy96.github.io/category/#OS)
+* 　09. 01 ~ 12. 20 [Study Operating System](https://devfancy.github.io/category/#OS)
 
 * 　08. 30 ~ 08. 31 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
 
@@ -92,7 +92,7 @@ type: page
 
 * 　07. 04 ~ 11. 03 [Competition : 공개 SW 개발자 대회, OSS](https://www.oss.kr/dev_competition) 본선 진출
 
-* 　07. 01 ~ 07. 14 [스프링 부트 웹 프로젝트 공부](https://github.com/Fancy96/Spring-Boot-Web-Project)
+* 　07. 01 ~ 07. 14 [스프링 부트 웹 프로젝트 공부](https://github.com/devfancy/Spring-Boot-Web-Project)
 
 * 　07. 01 ~ 08. 31 ESG 플랫폼 - 백엔드 개발자 인턴 근무
 
@@ -102,17 +102,17 @@ type: page
 
 * 　05. 20 [Competition : 신한 스퀘어브릿지 HERO IR DAY 대학생 창업 아이디어 경진대회](https://sehub.net/archives/2076603) 참가
 
-* 　04. 11 ~ 06. 17 [Study Git](https://fancy96.github.io/category/#Git)
+* 　04. 11 ~ 06. 17 [Study Git](https://devfancy.github.io/category/#Git)
 
 * 　03. 15 ~ 06. 15 Study Java (명품 자바 에센셜)
 
-* 　03. 02 ~ 06. 26 [Study Probability Statistics](https://fancy96.github.io/PS-Introduction/)
+* 　03. 02 ~ 06. 26 [Study Probability Statistics](https://devfancy.github.io/PS-Introduction/)
 
-* 　03. 02 ~ 06. 25 [Study Electronic Finance School of Business Administration](https://fancy96.github.io/EF-Introduction/)
+* 　03. 02 ~ 06. 25 [Study Electronic Finance School of Business Administration](https://devfancy.github.io/EF-Introduction/)
 
-* 　03. 02 ~ 06. 17 [Study Business Statistics](https://fancy96.github.io/BS-Introduction/)
+* 　03. 02 ~ 06. 17 [Study Business Statistics](https://devfancy.github.io/BS-Introduction/)
 
-* 　03. 02 ~ 06. 15 [Study Algorithm Practice](https://github.com/Fancy96/KNU/tree/main/algorithm)
+* 　03. 02 ~ 06. 15 [Study Algorithm Practice](https://github.com/devfancy/KNU/tree/main/algorithm)
 
 * 　01. 17 ~ 02. 13 31회 투자자산운용사 공부
 
@@ -127,15 +127,15 @@ type: page
 
 * 　09 ~ [교내 동아리 데이터금융분석학회(DART)](https://www.knudart.com/) 참가
 
-* 　09. 06 ~ 09. 07 [Study Linux](https://fancy96.github.io/SP-Linux/)
+* 　09. 06 ~ 09. 07 [Study Linux](https://devfancy.github.io/SP-Linux/)
 
-* 　09. 01 ~ 12. 15 [Study SystemProgramming](https://github.com/Fancy96/KNU/tree/main/systemProgramming)
+* 　09. 01 ~ 12. 15 [Study SystemProgramming](https://github.com/devfancy/KNU/tree/main/systemProgramming)
 
 * 　09. 01 ~ 12. 15 Study Linear Algebra
 
-* 　06. 20 ~ 08. 15 [Study Data Structure](https://github.com/Fancy96/KNU/tree/main/dataStructure)
+* 　06. 20 ~ 08. 15 [Study Data Structure](https://github.com/devfancy/KNU/tree/main/dataStructure)
 
-* 　05. 07 ~ 06. 19 [Algorithm problems in C language](https://github.com/Fancy96/KNU/tree/main/c)
+* 　05. 07 ~ 06. 19 [Algorithm problems in C language](https://github.com/devfancy/KNU/tree/main/c)
 
 * 　04. 14 [삼성 SDI] 상반기 동문선배 및 인사실무자 멘토링 참가
 
@@ -171,9 +171,9 @@ type: page
 
 *   어쿠스틱 기타 : 2012 ~ 2014 / 2017 ~ 2018 / 2022 ~
 
-*   [운동](https://fancy96.github.io/category/#Workout) : 2018 ~
+*   [운동](https://devfancy.github.io/category/#Workout) : 2018 ~
 
-*   [독서 : 재테크, IT](https://fancy96.github.io/category/#Book) : 2017 ~
+*   [독서 : 재테크, IT](https://devfancy.github.io/category/#Book) : 2017 ~
 
 ---
 

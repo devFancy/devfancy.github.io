@@ -2,7 +2,7 @@
 layout: post
 title: " 기본적인 그래프 기법 : DFS, BFS "
 categories: DataStructure
-author: fancy96
+author: devFancy
 use_math: true
 ---
 * content

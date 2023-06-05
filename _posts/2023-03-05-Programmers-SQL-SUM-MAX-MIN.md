@@ -2,7 +2,7 @@
 layout: post
 title: " [Programmers] SQL > SUM, MAX, MIN 풀이 모음 "
 categories: SQL
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

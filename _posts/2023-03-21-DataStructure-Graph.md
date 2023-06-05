@@ -2,7 +2,7 @@
 layout: post
 title: " 그래프 "
 categories: DataStructure
-author: fancy96
+author: devFancy
 use_math: true
 ---
 * content

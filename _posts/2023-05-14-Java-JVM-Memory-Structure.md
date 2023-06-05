@@ -2,7 +2,7 @@
 layout: post
 title: " JVM 메모리 구조 "
 categories: Java
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

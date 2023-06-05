@@ -2,7 +2,7 @@
 layout: post
 title: " 자바스크립트 기초(2) - 조건문, 반복문, 객체 "
 categories: JavaScript
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

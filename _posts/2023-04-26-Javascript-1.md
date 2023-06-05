@@ -2,7 +2,7 @@
 layout: post
 title: " 자바스크립트 기초(1) - 변수, 자료형, 연산자 "
 categories: JavaScript
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

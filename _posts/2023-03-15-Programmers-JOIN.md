@@ -2,7 +2,7 @@
 layout: post
 title: " [Programmers] SQL > Join 풀이 모음 "
 categories: Algorithm
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}
