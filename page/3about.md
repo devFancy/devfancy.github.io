@@ -44,9 +44,11 @@ type: page
 
 ### 2023
 
-* 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/devfancy/fancy-woorifisa)
+* 　04. 28 ~ [woorifisa-apply 프로젝트 : PM, Backend Developer](https://github.com/woorifisa/apply)
 
-* 　03. 22 ~ [Hibit Project - Backend Developer](https://github.com/hibit-team/hibit-backend)
+* 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/devFancy/devfancy-woorifisa)
+
+* 　03. 22 ~ [Hibit 프로젝트 - Backend Developer](https://github.com/hibit-team/hibit-backend)
 
 * 　03. 17 ~ `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://devfancy.github.io/category/#Interview), [DataStructure](https://devfancy.github.io/category/#DataStructure)
 
@@ -74,7 +76,7 @@ type: page
 
 * 　01. 02 ~ 02. 18 [Study Network](https://devfancy.github.io/category/#Network)
 
-* 　01. 02 ~ [CS 스터디 진행](https://github.com/devfancy/2023-CS-Study)
+* 　01. 02 ~ [CS 스터디 진행](https://github.com/devSquad-study/2023-CS-Study)
 
 ### 2022
 
