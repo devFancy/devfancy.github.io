@@ -44,7 +44,9 @@ type: page
 
 ### 2023
 
-* 　04. 28 ~ [woorifisa-apply 프로젝트 : PM, Backend Developer](https://github.com/woorifisa/apply)
+* 　06. 06 ~ [Hibit 팀 기술 블로그](https://hibit-team.github.io/), [woorifisa-apply 팀 기술 블로그](https://woorifisa.github.io/) 운영 및 관리
+
+* 　04. 28 ~ [woorifisa-apply 프로젝트 : TPM, Backend Developer](https://github.com/woorifisa/apply)
 
 * 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/devFancy/devfancy-woorifisa)
 
@@ -156,6 +158,8 @@ type: page
 ---
 
 ## Certificate
+
+*   OPIC(영어) (23. 05. 14) - 2A3930115300
 
 *   Academic English Program (21. 02. 10) - The University of Texas at Austin
 
