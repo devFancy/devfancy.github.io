@@ -27,66 +27,8 @@ brew install mysql
 ==> Fetching icu4c
 ==> Downloading https://ghcr.io/v2/homebrew/core/icu4c/manifests/72.1
 ######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/icu4c/blobs/sha256:90c50fe2cbf8
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching ca-certificates
-==> Downloading https://ghcr.io/v2/homebrew/core/ca-certificates/manifests/2023-
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/ca-certificates/blobs/sha256:f6
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching openssl@1.1
-==> Downloading https://ghcr.io/v2/homebrew/core/openssl/1.1/manifests/1.1.1u
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/openssl/1.1/blobs/sha256:c1ad47
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching libevent
-==> Downloading https://ghcr.io/v2/homebrew/core/libevent/manifests/2.1.12
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libevent/blobs/sha256:4867e07fe
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching libcbor
-==> Downloading https://ghcr.io/v2/homebrew/core/libcbor/manifests/0.10.2
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libcbor/blobs/sha256:57f42308a7
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching libfido2
-==> Downloading https://ghcr.io/v2/homebrew/core/libfido2/manifests/1.13.0
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/libfido2/blobs/sha256:c881e6791
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching lz4
-==> Downloading https://ghcr.io/v2/homebrew/core/lz4/manifests/1.9.4
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/lz4/blobs/sha256:284fa580570efd
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching protobuf@21
-==> Downloading https://ghcr.io/v2/homebrew/core/protobuf/21/manifests/21.12
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/protobuf/21/blobs/sha256:4f147f
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching zlib
-==> Downloading https://ghcr.io/v2/homebrew/core/zlib/manifests/1.2.13-1
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/zlib/blobs/sha256:71825106a1d3c
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching xz
-==> Downloading https://ghcr.io/v2/homebrew/core/xz/manifests/5.4.3
-######################################################################### 100.0%
-==> Downloading https://ghcr.io/v2/homebrew/core/xz/blobs/sha256:c3ad39578242f6f
-==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
-######################################################################### 100.0%
-==> Fetching zstd
-==> Downloading https://ghcr.io/v2/homebrew/core/zstd/manifests/1.5.5
-######################################################################### 100.0%
+
+// ... 중간 생략
 ==> Downloading https://ghcr.io/v2/homebrew/core/zstd/blobs/sha256:e3cb579108afe
 ==> Downloading from https://pkg-containers.githubusercontent.com/ghcr1/blobs/sh
 ######################################################################### 100.0%
@@ -106,30 +48,7 @@ brew install mysql
 🍺  /opt/homebrew/Cellar/ca-certificates/2023-05-30: 3 files, 216.2KB
 ==> Installing mysql dependency: openssl@1.1
 ==> Pouring openssl@1.1--1.1.1u.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/openssl@1.1/1.1.1u: 8,101 files, 18MB
-==> Installing mysql dependency: libevent
-==> Pouring libevent--2.1.12.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libevent/2.1.12: 57 files, 2.1MB
-==> Installing mysql dependency: libcbor
-==> Pouring libcbor--0.10.2.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libcbor/0.10.2: 31 files, 193.7KB
-==> Installing mysql dependency: libfido2
-==> Pouring libfido2--1.13.0.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/libfido2/1.13.0: 547 files, 1.3MB
-==> Installing mysql dependency: lz4
-==> Pouring lz4--1.9.4.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/lz4/1.9.4: 22 files, 681.4KB
-==> Installing mysql dependency: protobuf@21
-==> Pouring protobuf@21--21.12.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/protobuf@21/21.12: 288 files, 19.2MB
-==> Installing mysql dependency: zlib
-==> Pouring zlib--1.2.13.arm64_monterey.bottle.1.tar.gz
-🍺  /opt/homebrew/Cellar/zlib/1.2.13: 13 files, 399.0KB
-==> Installing mysql dependency: xz
-==> Pouring xz--5.4.3.arm64_monterey.bottle.tar.gz
-🍺  /opt/homebrew/Cellar/xz/5.4.3: 162 files, 2.6MB
-==> Installing mysql dependency: zstd
-==> Pouring zstd--1.5.5.arm64_monterey.bottle.tar.gz
+// ... 중간 생략
 🍺  /opt/homebrew/Cellar/zstd/1.5.5: 31 files, 2.3MB
 ==> Installing mysql
 ==> Pouring mysql--8.0.33_1.arm64_monterey.bottle.tar.gz
@@ -191,7 +110,7 @@ Or, if you don't want/need a background service you can just run:
 ### [2] mysql 버전 확인
 
 ```shell
-mysql --veersion
+mysql --version
 ```
 
 ```
@@ -365,7 +284,7 @@ Shutting down MySQL
 ... SUCCESS!
 ```
 
-## sakila 설치
+## Sakila 설치
 
 * 아래의 주소로 접속하여 예제 DB에서 `sakila databse` 파일을 내려 받는다. 
 
