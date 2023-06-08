@@ -392,6 +392,10 @@ mysql.server stop // mysql server 종료
 
 * 설치할 버전과 OS를 확인하여 다운로드 한다.
 
+* Mac M1은 반드시 Product Version을 **8.0.28**로 해야 mysql과 호환이 가능하다.
+
+(8.0.32 이상으로 하면 나중에 mysql 실행할 때`MySQLWorkbench 응용 프로그램이 예기치 않게 종료되었습니다`라는 문구가 뜨게 된다)
+
 ![](/assets/img/mysql/mysql-installation-workbench.png)
 
 * 다운로드가 완료되었다면, `commend + space` (검색창 여는 단축키) 로 MySQL Workbench 앱을 실행시킨다.
