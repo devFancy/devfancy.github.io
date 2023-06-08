@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " SELECT, JOIN - Practice "
+title: " [MySQL] 3. SELECT, JOIN - Practice "
 categories: MySQL
 author: devFancy
 ---
@@ -15,7 +15,7 @@ author: devFancy
 
 * sakila DB를 다운받는 위치는 [Other MySQL Documentation](https://dev.mysql.com/doc/index-other.html) 안에 **Example Databases - `sakila database(ZIP)`** 다운받으면 됩니다.
 
-![](/assets/img/mysql/2023-06-08-MySQL-Practice-1.png)
+![](/assets/img/mysql/mysql-practice.png)
 
 * 위의 sakila DB 다운받은 후에 `MySQL Workbench`를 실행한 다음, 해당 파일(4.exercise)에서 문제를 풀었습니다.
 

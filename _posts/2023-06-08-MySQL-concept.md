@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " [MySQL 공식문서] What is MySQL? "
+title: " [MySQL 공식문서] 1. What is MySQL? "
 categories: MySQL
 author: devFancy
 ---
