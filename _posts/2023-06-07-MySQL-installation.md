@@ -118,7 +118,7 @@ mysql --version
 mysql  Ver 8.0.33 for macos12.6 on arm64 (Homebrew)
 ```
 
-### [3] mysql serveer 실행
+### [3] mysql server 실행
 
 * MySQL 서버를 가동시켜주는 명령어
 
