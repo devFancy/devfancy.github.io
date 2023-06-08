@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " MacOS M1 기반 MySQL, Workbench 설치하기 "
+title: " MacOS M1 기반 MySQL, Workbench, Sakila 설치하기 "
 categories: MySQL
 author: devFancy
 ---
@@ -302,9 +302,43 @@ Shutting down MySQL
 ... SUCCESS!
 ```
 
+## Workbench 설치
+
+* 해당 [다운로드](https://downloads.mysql.com/archives/workbench/) 링크를 클릭한다.
+
+* 설치할 버전과 OS를 확인하여 다운로드 한다.
+
+* Mac M1은 반드시 Product Version을 **8.0.28**로 해야 mysql과 호환이 가능하다.
+
+(8.0.32 이상으로 하면 나중에 mysql 실행할 때`MySQLWorkbench 응용 프로그램이 예기치 않게 종료되었습니다`라는 문구가 뜨게 된다)
+
+![](/assets/img/mysql/mysql-installation-workbench.png)
+
+* 다운로드가 완료되었다면, `commend + space` (검색창 여는 단축키) 로 MySQL Workbench 앱을 실행시킨다.
+
+* MySQL Connections 밑에 있는 `mysql-local`에서 마우스 오른쪽 버튼 - Edit Connection 클릭한다.
+
+  (참고로, `mysql-local` 부분은 내가 임시로 입력한 Connection name 이다)
+
+![](/assets/img/mysql/mysql-installation-workbench-2.png)
+
+* 원하는 Connection name(`mysql-local`)을 입력한다.
+
+* **로컬에서 실행 중인 MySQL Server를 사용하는 경우** 아래와 같이 설정한다.
+
+  * hostname: 127.0.0.1 또는 localhost
+  
+  * mysql 기본 포트: 3306
+
+* close 버튼을 클릭하고 내가 지정한 Connection name인 `mysql-local`를 클릭하면 실행 중인 MySQL과 연결된다.
+
+![](/assets/img/mysql/mysql-installation-workbench-3.png)
+
 ## Sakila 설치
 
-* 아래의 주소로 접속하여 예제 DB에서 `sakila databse` 파일을 내려 받는다. 
+> 위의 Workbench 설치 후 Schemas 에서 작업해야 sakila databse를 정상적으로 받아올 수 있다.
+
+* 아래의 주소로 접속하여 예제 DB에서 `sakila databse` 파일을 내려 받는다.
 
   * https://dev.mysql.com/doc/index-other.html
 
@@ -385,38 +419,6 @@ show databses;
 exit //mysql를 종료
 mysql.server stop // mysql server 종료
 ```
-
-## Workbench 설치
-
-* 해당 [다운로드](https://downloads.mysql.com/archives/workbench/) 링크를 클릭한다.
-
-* 설치할 버전과 OS를 확인하여 다운로드 한다.
-
-* Mac M1은 반드시 Product Version을 **8.0.28**로 해야 mysql과 호환이 가능하다.
-
-(8.0.32 이상으로 하면 나중에 mysql 실행할 때`MySQLWorkbench 응용 프로그램이 예기치 않게 종료되었습니다`라는 문구가 뜨게 된다)
-
-![](/assets/img/mysql/mysql-installation-workbench.png)
-
-* 다운로드가 완료되었다면, `commend + space` (검색창 여는 단축키) 로 MySQL Workbench 앱을 실행시킨다.
-
-* MySQL Connections 밑에 있는 `mysql-local`에서 마우스 오른쪽 버튼 - Edit Connection 클릭한다.
-
-  (참고로, `mysql-local` 부분은 내가 임시로 입력한 Connection name 이다)
-
-![](/assets/img/mysql/mysql-installation-workbench-2.png)
-
-* 원하는 Connection name(`mysql-local`)을 입력한다.
-
-* **로컬에서 실행 중인 MySQL Server를 사용하는 경우** 아래와 같이 설정한다.
-
-  * hostname: 127.0.0.1 또는 localhost
-  
-  * mysql 기본 포트: 3306
-
-* close 버튼을 클릭하고 내가 지정한 Connection name인 `mysql-local`를 클릭하면 실행 중인 MySQL과 연결된다.
-
-![](/assets/img/mysql/mysql-installation-workbench-3.png)
 
 ## Reference
 
