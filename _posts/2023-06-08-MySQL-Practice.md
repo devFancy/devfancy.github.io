@@ -7,7 +7,7 @@ author: devFancy
 * content
 {:toc}
 
-> 해당 문제는 MySQL 기반의 SELECT, JOIN 문제에 대한 정리를 바탕으로 작성했습니다.
+> 해당 글은 MySQL 기반의 SELECT, JOIN 문제에 대한 정리를 바탕으로 작성했습니다.
 
 해당 문제는 sakila DB를 바탕으로 풀었습니다.
 
@@ -21,7 +21,7 @@ author: devFancy
 
 ## 사전 작업
 
-```mysql
+```sql
 use sakila;
 ```
 
@@ -30,28 +30,28 @@ use sakila;
 1. actor 테이블에서 전체 컬럼(열) 조회
    → 실행 결과 행의 수는 총 200개
 
-```mysql
+```sql
 SELECT * FROM actor LIMIT 200;
 ```
 
 2. actor 테이블에서 first_name, last_name 컬럼 조회
    → 실행 결과 행의 수는 총 200개
 
-```mysql
+```sql
 SELECT first_name, last_name FROM actor LIMIT 200;
 ```
 
 3. actor 테이블에서 first_name과 last_name을 하나로 연결(concat)하여 Actor Name이라는 컬럼명으로 조회하고, 전부 대문자로 조회
    → 실행 결과 행의 수는 총 200개
 
-```mysql
+```sql
 SELECT concat(first_name, '+' ,last_name) AS Actor_Name FROM actor;
 ```
 
 4. actor 테이블에서 actor_id, first_name, last_name을 조회하되, first_name이 Joe인 데이터만 필터링하여 조회
    → 실행 결과 행의 수는 1개
 
-```mysql
+```sql
 SELECT actor_id, first_name, last_name
 FROM actor
 WHERE first_name = 'Joe';
@@ -61,7 +61,7 @@ WHERE first_name = 'Joe';
   (last_name의 맨 앞, 맨 뒤, 중간 등 어느 부분에 포함되어도 상관없이 전체 조회)
    → 실행 결과 행의 수는 총 4개
 
-```mysql
+```sql
 SELECT actor_id, first_name, last_name
 FROM actor
 WHERE last_name LIKE '%Gen%';
@@ -70,7 +70,7 @@ WHERE last_name LIKE '%Gen%';
 6. actor 테이블에서 actor_id, first_name, last_name을 조회하되, last_name에 LI(엘, 아이)가 포함된 데이터를 필터링하고, last_name, first_name 순서로 오름차순 정렬하여 조회
   → 실행 결과 행의 수는 총 10개
 
-```mysql
+```sql
 SELECT actor_id, first_name, last_name
 FROM actor
 WHERE last_name LIKE '%LI%'
@@ -80,7 +80,7 @@ ORDER BY last_name, first_name ASC;
 7. country 테이블에서 country_id, country 열을 조회하되, `IN 연산자`를 활용하여 country가 Afghanistan, Bangladesh, China 중에 속하는 데이터만 필터링하여 조회
    → 실행 결과 행의 수는 총 3개
 
-```mysql
+```sql
 SELECT country_id, country
 FROM country
 WHERE country IN('Afghanistan', 'Bangladesh', 'China');
@@ -92,7 +92,7 @@ WHERE country IN('Afghanistan', 'Bangladesh', 'China');
     https://guguttemy.speedgabia.com/DB/dml_practice8.png
    → 8번 문제 실행 결과 행의 수는 총 121개
 
-```mysql
+```sql
 SELECT last_name, count(last_name)
 FROM actor
 GROUP BY last_name;
@@ -101,7 +101,7 @@ GROUP BY last_name;
 9. actor 테이블에서 last_name 컬럼과 해당 last_name을 사용하는 수를 집계해주는 컬럼을 조회하되, 집계되는 컬럼의 별칭은 ‘Count of Last Name’ 이라고 짓고, last_name 카운트가 2 초과인 그룹만 필터링하여 조회
   → 실행 결과 행의 수는 총 20개
 
-```mysql
+```sql
 SELECT last_name, count(last_name) AS "Count of Last Name"
 FROM actor
 GROUP BY last_name
@@ -112,28 +112,28 @@ HAVING count(last_name) > 2;
 
 10. address 테이블의 정보(description) 조회
 
-```mysql
+```sql
 SELECT * FROM address;
 ```
 
 11. address 테이블의 총 행 수 조회
     → 실행 결과 행의 수는 총 603개
 
-```mysql
+```sql
 SELECT count(*) FROM address;
 ```
 
 12. address 테이블의 가상 상위 데이터 5개만 제한(LIMIT)하여 조회
     → 실행 결과 행의 수는 총 5개
 
-```mysql
+```sql
 SELECT * FROM address ORDER BY address_id LIMIT 5;
 ```
 
 13. staff 테이블의 별칭을 s, address 테이블의 별칭을 a로 짓고, 두 테이블을 연결(JOIN)하여 address_id가 일치하는 first_name, last_name, address를 조회
     → 실행 결과 행의 수는 총 2개
 
-```mysql
+```sql
 SELECT first_name, last_name, address
 FROM staff c JOIN address a
 WHERE c.address_id = a.address_id;
@@ -143,7 +143,7 @@ WHERE c.address_id = a.address_id;
     payment_date가 2005-08-01 00:00:00 이후이고, 2005-08-02 00:00:00 ‘미만’인 데이터만 필터링하여 staff_id를 기준으로 묶어서(grouping) 조회**
     → 실행 결과 행의 수는 총 2개
 
-```mysql
+```sql
 SELECT s.staff_id, first_name, last_name, sum(amount)
 FROM staff s JOIN payment p ON s.staff_id = p.staff_id
 WHERE p.payment_date BETWEEN '2005-08-01 00:00:00' AND  '2005-08-02 00:00:00'
@@ -154,7 +154,7 @@ GROUP BY staff_id;
     (단, 이대로 조회하면 결과 데이터가 총 997행이기 때문에 상위 20개의 행만 제한하여 조회)
     → 실행 결과 행의 수는 총 20개(로 제한, LIMIT 사용)
 
-```mysql
+```sql
 SELECT title, actor
 FROM film f JOIN film_actor fa
 WHERE f.film_id = fa.film_id
@@ -163,21 +163,21 @@ LIMIT 20;
 
 16. inventory 테이블의 정보(description) 조회
 
-```mysql
+```sql
 SELECT * FROM inventory;
 ```
 
 17. inventory 테이블의 데이터 상위 10개 조회
     → 실행 결과 행의 수는 총 10개
 
-```mysql
+```sql
 SELECT * FROM inventory LIMIT 10;
 ```
 
 18. film 테이블에서 title, description 컬럼을 조회하되, 상위 20개만 조회
   → 실행 결과 행의 수는 총 20개
 
-```mysql
+```sql
 SELECT title, description
 FROM film LIMIT 20;
 ```
@@ -189,7 +189,7 @@ FROM film LIMIT 20;
   title이 ‘ALABAMA DEVIL’인 film만 조회
   → 실행 결과 행의 수는 1개
 
-```mysql
+```sql
 LECT title, count(f.film_id) AS '복제본'
 FROM film f JOIN inventory i
 WHERE f.film_id = i.film_id AND title = 'ALABAMA DEVIL';
@@ -201,7 +201,7 @@ WHERE f.film_id = i.film_id AND title = 'ALABAMA DEVIL';
   first_name, last_name 순으로 묶어서(grouping) last_name을 기준으로 오름차순하여 조회
   → 실행 결과 행의 수는 599개
 
-```mysql
+```sql
 SELECT first_name, last_name, sum(amount)
 FROM customer c JOIN payment p
 GROUP BY first_name, last_name
