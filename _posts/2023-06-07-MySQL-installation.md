@@ -227,6 +227,24 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 ```
 
+* 만약 아래와 같은 오류가 발생할 수 있다.
+
+```shell
+➜  ~ mysql -u root -p
+Enter password:
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
+```
+
+* 이런 경우 MySQL 명령어를 터미널에서 쓰기 위해서는 start MySQL 하는 과정이 필요하다.
+
+```shell
+brew services start mysql
+mysql -u root - p
+```
+
+* 위의 명령어를 쓰면 에러 처리가 되면서 성공이 된다.
+
+
 ### [6] mysql 상태 확인
 
 ```shell
@@ -368,7 +386,7 @@ exit //mysql를 종료
 mysql.server stop // mysql server 종료
 ```
 
-## Workbench
+## Workbench 설치
 
 * 해당 [다운로드](https://downloads.mysql.com/archives/workbench/) 링크를 클릭한다.
 
