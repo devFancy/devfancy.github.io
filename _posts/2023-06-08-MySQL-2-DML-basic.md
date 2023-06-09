@@ -21,35 +21,6 @@ show databases;
 
   데이터베이스, 테이블, 열, 사용자 및 권한과 같은 정보를 쿼리로 조회가 가능하다.
 
-```sql
-mysql> SELECT table_name, table_type, engine
-       FROM information_schema.tables
-       WHERE table_schema = 'db5'
-       ORDER BY table_name;
-+------------+------------+--------+
-| table_name | table_type | engine |
-+------------+------------+--------+
-| fk         | BASE TABLE | InnoDB |
-| fk2        | BASE TABLE | InnoDB |
-| goto       | BASE TABLE | MyISAM |
-| into       | BASE TABLE | MyISAM |
-| k          | BASE TABLE | MyISAM |
-| kurs       | BASE TABLE | MyISAM |
-| loop       | BASE TABLE | MyISAM |
-| pk         | BASE TABLE | InnoDB |
-| t          | BASE TABLE | MyISAM |
-| t2         | BASE TABLE | MyISAM |
-| t3         | BASE TABLE | MyISAM |
-| t7         | BASE TABLE | MyISAM |
-| tables     | BASE TABLE | MyISAM |
-| v          | VIEW       | NULL   |
-| v2         | VIEW       | NULL   |
-| v3         | VIEW       | NULL   |
-| v56        | VIEW       | NULL   |
-+------------+------------+--------+
-17 rows in set (0.01 sec)
-```
-
 * [2] mysql : MySQL 사용자 계정 및 권한 정보를 의미한다.
 
 * [3] [performance_schema](https://dev.mysql.com/doc/refman/8.0/en/performance-schema.html) : MySQL 서버의 성능과 관련된 정보를 제공한다. 
