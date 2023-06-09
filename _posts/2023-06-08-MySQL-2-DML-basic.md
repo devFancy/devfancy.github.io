@@ -47,7 +47,7 @@ use sakila;
 show tables;
 ```
 
-```sql
+```
 mysql> show tables;
 +----------------------------+
 | Tables_in_sakila           |
@@ -93,7 +93,7 @@ DESC customer;
 * Default : 실제 값을 넣을 때 별도의 값을 작성하지 않을 경우, 기본값으로 설정해주는 값
 
 
-```sql
+```
 mysql> DESC customer;
 +-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
 | Field       | Type              | Null | Key | Default           | Extra                                         |
@@ -117,7 +117,7 @@ mysql> DESC customer;
 SELECT version(), user(), database();
 ```
 
-```sql
+```
 mysql> SELECT version(), user(), database();
 +-----------+----------------+------------+
 | version() | user()         | database() |
