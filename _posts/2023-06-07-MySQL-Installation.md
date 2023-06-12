@@ -1,13 +1,13 @@
 ---
 layout: post
-title: " MacOS M1 기반 MySQL, Workbench, Sakila 설치하기 "
+title: " [MySQL] MacOS M1 기반 MySQL, Workbench, Sakila 설치하기 "
 categories: MySQL
 author: devFancy
 ---
 * content
 {:toc}
 
-> 해당 글은 **MacOs M1** 기반으로 MySQL, Workbench 설치하는 과정을 간략하게 작성했습니다.
+> 해당 글은 **MacOS M1** 기반으로 MySQL, Workbench 설치하는 과정을 간략하게 작성했습니다.
 
 ## MySQL
 

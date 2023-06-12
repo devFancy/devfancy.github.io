@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " [MySQL] 4. SELECT, JOIN - Practice "
+title: " [MySQL] SELECT, JOIN - Practice "
 categories: MySQL
 author: devFancy
 ---
