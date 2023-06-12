@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " [Java] 컬렉션 프레임워크 - List "
+title: " 컬렉션 프레임워크 - List "
 categories: Java
 author: devFancy
 ---
@@ -92,7 +92,9 @@ aList1.remove(0); // 오류(UnsupportedOperationException)
 
 * 이 중 주요한 메서드는 다음과 같다.
 
-![](/assets/img/java/java-collection-list.jpg)
+![](/assets/img/java/java-collection-method-1.png)
+
+![](/assets/img/java/java-collection-method-2.png)
 
 * List<E>에 있는 메서드는 추상 메서드이므로 List<E>의 자식 클래스들은 반드시 이 메서드들을 구현해야 한다.
 
@@ -239,6 +241,35 @@ System.out.println(Arrays.toString(integer1));  //  [1, 2, 3, null, null]
     * 리스트가 갖고 있는 개수보다 작은 크기의 배열을 넘겨주면 **리스트 데이터의 개수만큼 크기가 확장된 배열을 리턴**한다.
 
     * 하지만 리스트의 데이터의 개수보다 더 큰 배열을 입력하면 **나머지 값은 null**로 리턴하게 된다.
+
+### LinkedList<E> 구현 클래스
+
+#### ArrayList<E>와의 공통점
+
+`ListkedList<E>`는 ArrayList<E>와 몇 가지 공통점을 지니고 있다.
+
+* 동일한 타입의 객체 수집(collection)
+
+* 메모리의 동적할당
+
+* 데이터의 추가, 변경, 삭제등의 메서드
+
+#### ArrayList<E>와의 다른점
+
+`ListkedList<E>`는 ArrayList<E>와는 다르게 몇 가지 차이점을 지니고 있다.
+
+[1] LinkedList<E>는 **저장 용량(capacity)을 매개변수로 갖는 생성자가 없기 때문에 객체를 생성할 때 저장 용량을 지정할 수 없다.**
+
+```java
+List<E> aLinkedlist1 = new LinkedList<Integer>(); // O
+List<E> aLinkedList2 = new LinkedList<Integer>(20); // X
+```
+
+[2] 가장 큰 차이점은 **내부적으로 데이터를 저장하는 방식이 서로 다르다.** ArrayList<E>가 모든 데이터를 위치 정보(인덱스)와 같은 값으로 저장하는 반면, LinkedList<E>는 **앞뒤 객체의 정보를 저장한다.**
+
+말 그대로 **모든 데이터가 서로 연결된 형태로 관리**되는 것이다.
+
+![](/assets/img/java/java-collection-linkedlist.jpg)
 
 
 ## Reference
