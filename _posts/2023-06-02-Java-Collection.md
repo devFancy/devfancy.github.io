@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " [Java] 컬렉션 프레임워크 - List, Set, Map "
-categories: VueJs
+title: " [Java] 컬렉션 프레임워크 - List "
+categories: Java
 author: devFancy
 ---
 * content
@@ -31,9 +31,9 @@ author: devFancy
 
     **메모리 입출력 특성**에 따라 기존의 컬렉션 기능을 확장 또는 조합한 Stack<E>, Queue<E>가 있다.
 
-* 이 글은 컬렉션의 모든 기능들 중에 아래 그림과 같이 **List, Set, Map**에 대해서만 정리하고자 한다.
-
 ![](/assets/img/java/java-collection-2.png)
+
+* 이 글은 컬렉션의 모든 기능들 중에 **List** 에 대해서만 정리하고자 한다. (Set, Map은 나중에 다른 post로 업로드할 예정이다)
 
 ## List
 
@@ -86,11 +86,163 @@ aList1.remove(0); // 오류(UnsupportedOperationException)
 
 * 따라서 고정된 개수의 데이터를 저장하거나 활용할 때 주로 사용한다.
 
-## Set
+### List<E>의 주요 메서드
 
-## Map
+* List<E>에는 데이터 추가, 변경, 삭제, 리스트 데이터 정보 추출 및 리스트의 배열 반환 등의 추상 메서드가 정의되어 있다.
+
+* 이 중 주요한 메서드는 다음과 같다.
+
+![](/assets/img/java/java-collection-list.jpg)
+
+* List<E>에 있는 메서드는 추상 메서드이므로 List<E>의 자식 클래스들은 반드시 이 메서드들을 구현해야 한다.
+
+* 즉, List<E>의 대표적 구현 클래스인 ArrayList<E>, Vector<E>, LinkedList<E>의  내부에는 앞에서 알아본 메서드들이 구현된 상태로 있다는 말이다.
+
+* 그럼 이제 각각 구현 클래스를 이용해 List<E>의 메서드를 활용해 보자.
+
+### ArrayList<E> 구현 클래스
+
+* ArrayList<E>는 대표적인 List<E>의 구현 클래스로, List<E>가 지니고 있는 대표적인 특징인 데이터를 인덱스로 관리하는 기능, 저장 공간을 동적으로 관리하는 기능 등을 그대로 지니고 있다.
+
+ArrayList<E>의 특징
+
+* List<E> 인터페이스를 구현한 구현 클래스
+
+* 배열처럼 수집(collect)한 원소(element)를 인덱스(index)로 관리하며 저장 용량(capacity)을 동적 관리 
+
+#### 데이터 추가하기 - add()
+
+단일 데이터 추가
+
+```java
+List<Integer> aList1 = new ArrayList<Integer>();
+// add(E element)
+aList1.add(3);
+aList1.add(4);
+aList1.add(5);
+System.out.println(aList1.toString) // [3, 4, 5]
+
+// add(int index, E element)
+aList.add(1, 6)
+System.out.println(aList1.toString()); [3, 6, 4, 5]
+```
+
+* 두 번째 데이터 추가 방법으로 1번째 인덱스에 데이터 10을 삽입했을 때, 1번 인덱스에 10이 들어가고, 기존 값들은 1개씩 뒤로 밀려나게 된다.
+
+컬렉션 객체 추가
+
+```java
+// addAll(Collection<? extend E> c)
+List<Integer> aList2 = new ArrayList<Integer>();
+aList2.add(1)
+aList2.add(2)
+aList2.addAll(aList1);  // aList 1 = [3, 6, 4, 5]
+System.out.println(aList2.toString());  // [1, 2, 3, 6, 4, 5]
+
+// addAll(int index, Collection<? extends E> c)
+List<Integer> aList3 = new ArrayList<Integer>();
+aList3.add(1);
+aList3.add(2);
+aList3.addAll(1, aList3);
+System.out.println(aList3.toString());  // [1, 1, 2, 2]
+```
+
+* [1] 앞에서 생성한 aList1 객체를 통째로 추가하면, 추가된 리스트 객체의 전체 데이터가 뒤쪽에 한꺼번에 추가된다.
+
+* [2] 특정 위치에 리스트 객체를 통째로 추가할 수 있다.
+
+#### 데이터 변경하기 - set()
+
+데이터의 변경
+
+```java
+// set(int index, e element): aList3 = [1, 1, 2, 2]
+aList3.set(1, 5);
+aList3.set(3, 6);
+System.out.println(aList3.toString());  // [1, 5, 2, 6]
+```
+
+* set() 메서드를 이용해 인덱스 1번째에는 5, 3번째에는 6을 넣었으므로 리스트 값이 [1, 5, 2, 6]을 갖게 된다.
+
+* set() 메서드에서는 **기존에 있는 데이터만** 변경할 수 있다.
+
+#### 데이터 삭제하기 - remove(), clear()
+
+데이터 삭제
+
+```java
+// remove(int index): aList3 = [1, 5, 2, 6]
+aList3.remove(1);
+System.out.println(aList3.toString());  // [1, 2, 6]
+        
+// remove(Object o)
+aList3.remove(new Integer(2));
+System.out.println(aList3.toString()); // [1, 6]
+        
+// clear()
+aList3.clear();
+System.out.println(aList3.toString()); // []
+```
+
+* remove(1) : 1번 인덱스에 위치한 값을 삭제하는 의미이다.
+
+* remove(new Integer(2)) : 정숫값 2를 원소로 갖는 객체가 지워진다는 의미이다.
+
+* clear() : 데이터의 개수에 관계없이 모드 ㄴ데이터를 한 번에 삭제하는 의미이다.
+
+#### 데이터 정보 추출하기 - isEmpty(), size(), get(int index)
+
+데이터 정보 추출
+
+```java
+// isEmpty(), aList3 = []
+System.out.println(aList3.isEmpty()); // true
+
+// size()
+aList3.add(1);
+aList3.add(2);
+aList3.add(3);
+System.out.println(aList3.toString());  // [1, 2, 3]
+System.out.println("size: " + aList3.size());   // size: 3
+
+// get(int index)
+System.out.println("0번째: " + aList3.get(0)); // 0번째: 1
+System.out.println("1번째: " + aList3.get(1)); // 1번째: 2
+System.out.println("2번째: " + aList3.get(2)); // 2번째: 3
+for(int i = 0; i < aList3.size(); i++) {
+    System.out.println(i + "번째: " + aList3.get(i));
+}
+```
+
+#### 배열로 반환하기 - toArray(), toArray(T[] t)
+
+리스트 -> 배열
+
+```java
+// toArray() aList3 = [1, 2, 3]
+Object [] object = aList3.toArray();
+System.out.println(Arrays.toString(Object));    // [1, 2, 3]
+// toArray(T[] t)
+Integer[] integer1 = aList3.toArray(new Integer[0]);
+System.out.println(Arrays.toString(integer1));  // [1, 2, 3]
+// toArray(T[] t)
+Integer[] integer1 = aList3.toArray(new Integer[0]);
+System.out.println(Arrays.toString(integer1));  //  [1, 2, 3, null, null]
+```
+
+* [1] toArray() 메서드를 Obejct[]에 담아 리턴하면 저장 원소 타입으로 다운캐스팅해 사용해야 할 수 있다.
+
+    * 따라서 **특정 타입의 배열로 바로 변환**하기 위해서는 `toArray(T[] t)` 메서드를 이용하면 된다.
+
+* [2] toArray(T[] t) 메서드를 이용할 때 주의할 점
+
+    * 리스트가 갖고 있는 개수보다 작은 크기의 배열을 넘겨주면 **리스트 데이터의 개수만큼 크기가 확장된 배열을 리턴**한다.
+
+    * 하지만 리스트의 데이터의 개수보다 더 큰 배열을 입력하면 **나머지 값은 null**로 리턴하게 된다.
 
 
 ## Reference
+
+* [Do it! 자바 완전 정복](https://product.kyobobook.co.kr/detail/S000001818032)
 
 * [컬렉션 프레임워크](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/doc-files/coll-overview.html)
