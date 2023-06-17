@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " [DB] 파티셔닝(Partitioning) "
-categories: Java
+categories: Database
 author: devFancy
 ---
 * content

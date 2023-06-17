@@ -5,7 +5,7 @@ categories: Java
 author: devFancy
 ---
 * content
-{:toc}
+  {:toc}
 
 > 이 글의 코드와 정보들은 [Do it! 자바 완전 정복](https://product.kyobobook.co.kr/detail/S000001818032) 책에서 공부하고 정리한 내용을 토대로 작성하였습니다.
 
@@ -27,9 +27,9 @@ author: devFancy
 
 ![](/assets/img/java/java-collection-1.png)
 
-* 컬렉션의 특성에 따라 구분하면 크게 List<E>, Set<E>, Map<K, V>로 나눌 수 있고, 
+* 컬렉션의 특성에 따라 구분하면 크게 List<E>, Set<E>, Map<K, V>로 나눌 수 있고,
 
-    **메모리 입출력 특성**에 따라 기존의 컬렉션 기능을 확장 또는 조합한 Stack<E>, Queue<E>가 있다.
+  **메모리 입출력 특성**에 따라 기존의 컬렉션 기능을 확장 또는 조합한 Stack<E>, Queue<E>가 있다.
 
 ![](/assets/img/java/java-collection-2.png)
 
@@ -82,7 +82,7 @@ aList1.remove(0); // 오류(UnsupportedOperationException)
 
 * 구현 클래스로 객체를 생성했을 때와 달리 **데이터의 추가(add()) 및 삭제(remove())가 불가능**하다.
 
-* 다만, 저장 공간의 크기를 변경하지 않는 데이터의 변경(set())은 가능하다. 
+* 다만, 저장 공간의 크기를 변경하지 않는 데이터의 변경(set())은 가능하다.
 
 * 따라서 고정된 개수의 데이터를 저장하거나 활용할 때 주로 사용한다.
 
@@ -110,7 +110,7 @@ ArrayList<E>의 특징
 
 * List<E> 인터페이스를 구현한 구현 클래스
 
-* 배열처럼 수집(collect)한 원소(element)를 인덱스(index)로 관리하며 저장 용량(capacity)을 동적 관리 
+* 배열처럼 수집(collect)한 원소(element)를 인덱스(index)로 관리하며 저장 용량(capacity)을 동적 관리
 
 #### 데이터 추가하기 - add()
 
