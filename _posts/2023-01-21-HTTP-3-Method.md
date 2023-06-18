@@ -13,19 +13,19 @@ author: fancy96
 
 * 다음 순서에 맞게 보시는 것을 권장해드립니다.
 
-1. [HTTP 웹 기본 지식 : HTTP 기본](https://fancy96.github.io/HTTP-1-Basic/)
+1. [HTTP 웹 기본 지식 : HTTP 기본](https://devfancy.github.io/HTTP-1-Basic/)
 
-2. [HTTP 웹 기본 지식 : HTTP 메세지](https://fancy96.github.io/HTTP-2-Basic/)
+2. [HTTP 웹 기본 지식 : HTTP 메세지](https://devfancy.github.io/HTTP-2-Basic/)
 
-3. [HTTP 웹 기본 지식 : HTTP 메서드](https://fancy96.github.io/HTTP-3-Method/)
+3. [HTTP 웹 기본 지식 : HTTP 메서드](https://devfancy.github.io/HTTP-3-Method/)
 
-4. [HTTP 웹 기본 지식 : HTTP 메서드 활용](https://fancy96.github.io/HTTP-4-Method-Application/)
+4. [HTTP 웹 기본 지식 : HTTP 메서드 활용](https://devfancy.github.io/HTTP-4-Method-Application/)
 
-5. [HTTP 웹 기본 지식 : HTTP 상태코드](https://fancy96.github.io/HTTP-5-Status-Code/)
+5. [HTTP 웹 기본 지식 : HTTP 상태코드](https://devfancy.github.io/HTTP-5-Status-Code/)
 
-6. [HTTP 웹 기본 지식 : HTTP 헤더1 - 일반 헤더](https://fancy96.github.io/HTTP-6-Header1/)
+6. [HTTP 웹 기본 지식 : HTTP 헤더1 - 일반 헤더](https://devfancy.github.io/HTTP-6-Header1/)
 
-7. [HTTP 웹 기본 지식 : HTTP 헤더2 - 캐시와 조건부 요청](https://fancy96.github.io/HTTP-7-Header2/)
+7. [HTTP 웹 기본 지식 : HTTP 헤더2 - 캐시와 조건부 요청](https://devfancy.github.io/HTTP-7-Header2/)
 
 ## API URI 설계
 

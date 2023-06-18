@@ -5,7 +5,7 @@ categories: Java
 author: devFancy
 ---
 * content
-  {:toc}
+{:toc}
 
 > 이 글의 코드와 정보들은 [Do it! 자바 완전 정복](https://product.kyobobook.co.kr/detail/S000001818032) 책에서 공부하고 정리한 내용을 토대로 작성하였습니다.
 
