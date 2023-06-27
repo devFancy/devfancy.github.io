@@ -397,8 +397,6 @@ author: devFancy
 
 * [[Programmers] 118667. 두 큐 합 같게 만들기](https://devFancy.github.io/Programmers-118667/)
 
-* [[WOORIFISA] Frontend - 토이 프로젝트 : 모아모아](https://github.com/devFancy/html-css-moamoa)
-
 * [[JavScript] 자바스크립트 기초(1) - 변수, 자료형, 연산자](https://devFancy.github.io/JavaScript-1/)
 
 * [[JavScript] 자바스크립트 기초(2) - 조건문, 반복문, 객체](https://devFancy.github.io/JavaScript-2/)
@@ -407,13 +405,8 @@ author: devFancy
 
 * [[Vue.js] 1. 기본 템플릿 문법](https://devfancy.github.io/VueJs-1/)
 
-* [[WOORIFISA] Frontend - 토이 프로젝트 : 코인 슬롯 머신 게임](https://github.com/devFancy/javaScript-coinpick)
-
-* [[WOORIFISA] Frontend - 기술 세미나: 왜 Vue.js를 사용하는가](https://github.com/devFancy/woorifisa-fe-tech-seminar)
-
 * [[Java] JVM 메모리 구조](https://devfancy.github.io/Java-JVM-Memory-Structure/)
 
-* [[WOORIFISA] Backend - 미션 : 회식 메뉴 추천](https://github.com/devFancy/java-dinner)
 
 ## Jun
 
@@ -436,13 +429,3 @@ author: devFancy
 * [[Java] Auto Boxing & UnBoxing](https://devFancy.github.io/Java-AutoBoxing-And-UnBoxing/)
 
 * [[Book] 함께 자라기 리뷰](https://devFancy.github.io/Book-Grow-Together/)
-
-* [[WOORIFISA] Backend - 미션: 입출금 내역 분석 프로그램](https://github.com/devFancy/java-book)
-
-* [[WOORIFISA] Backend - 미션: 티켓(Ticket) 발행 프로그램](https://github.com/devFancy/java-pattern)
-
-* [[WOORIFISA] Backend - JDBC 라이브러리 구현(기초)](https://github.com/devFancy/java-jdbc)
-
-* [[WOORIFISA] Backend - JDBC 라이브러리 활용1(Todo)](https://github.com/devFancy/java-jdbc-todo)
-
-* [[WOORIFISA] Backend - JDBC 라이브러리 활용2(Apple Store)](https://github.com/devFancy/java-jdbc-apple)
