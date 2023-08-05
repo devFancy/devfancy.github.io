@@ -14,9 +14,9 @@ author: devFancy
 
 ## Plan
 
-* [[2023 Plan Note](https://gist.github.com/devfancy/03e1fb1aac746be13582891b0d0aab29)
+* [2023 Plan Note](https://gist.github.com/devFancy/03e1fb1aac746be13582891b0d0aab29)
 
-<script src="https://gist.github.com/Fancy96/03e1fb1aac746be13582891b0d0aab29.js"></script>
+<script src="https://gist.github.com/devFancy/03e1fb1aac746be13582891b0d0aab29.js"></script>
 
 
 ## Jan
@@ -354,13 +354,12 @@ author: devFancy
 
 * [[DB] 파티셔닝]({{site.url}}/DB-Partition/)
 
+## Aug
+
 * [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Grow-Together/)
 
+* [[Project] Hibit - 구글 소셜 로그인 기능을 구현하는 과정]({{site.url}}/)
 
-* [[Java] ArrayList와 LinkedList의 성능 비교](https://devfancy.github.io/Java-ArrayList-LinkedList/)
+* [[Project] Hibit - 리프레쉬 토큰을 통해 새로운 액세스 토큰을 재발급하는 과정]({{site.url}}/)
 
-* [[DB] 파티셔닝](https://devfancy.github.io/DB-Partition/)
-
-* [[Java] Auto Boxing & UnBoxing](https://devFancy.github.io/Java-AutoBoxing-And-UnBoxing/)
-
-* [[Book] 함께 자라기 리뷰](https://devFancy.github.io/Book-Grow-Together/)
+* [[Project] 우리FISA 최종 프로젝트: SUT - Git Flow 전략]({{site.url}}/s)
