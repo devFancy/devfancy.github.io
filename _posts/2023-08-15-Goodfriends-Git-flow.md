@@ -253,6 +253,6 @@ $ git push origin feature/11-register-used-product
 
 ## Reference
 
-- [우린 Git-flow를 사용하고 있어요]()
-- [git flow; 환상과 현실 그 사이에 서비스]()
-- [git 브랜치 전략을 소개합니다.]()
+- [우린 Git-flow를 사용하고 있어요](https://techblog.woowahan.com/2553/)
+- [git flow; 환상과 현실 그 사이에 서비스](https://vallista.kr/git-flow;-%ED%99%98%EC%83%81%EA%B3%BC-%ED%98%84%EC%8B%A4-%EA%B7%B8-%EC%82%AC%EC%9D%B4%EC%97%90-%EC%84%9C%EB%B9%84%EC%8A%A4/)
+- [git 브랜치 전략을 소개합니다.](https://dallog.github.io/git-branch-strategy/)
