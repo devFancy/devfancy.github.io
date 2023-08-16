@@ -27,7 +27,7 @@ git flow 전략을 들어본 사람은 알겠지만, 배포 주기가 길고 팀
 
 프로젝트 시작하기에 앞서, 현재 Git Repository 구성부터 살펴보겠습니다.
 
-![](/assets/img/woorifisa/git-flow-repository-1.jpg)
+![](/assets/img/woorifisa/git-flow-repository.jpg)
 
 위 그림은 Git Repository 구성과 워크플로우를 설명하고 있습니다.
 
