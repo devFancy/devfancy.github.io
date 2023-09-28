@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 굿프렌즈팀의 Git-flow 전략을 소개합니다. "
-categories: Woorifisa
+categories: Projects
 author: devFancy
 ---
 * content
@@ -9,7 +9,7 @@ author: devFancy
 
 [굿프렌즈 기술 블로그 방문하기 🎋](https://goodfriends-team.tistory.com/)
 
-> 이 글은 굿프렌즈팀 멤버인 `팬시`가 작성했습니다.
+> 이 글은 우리FISA 1기 [굿프렌즈팀의 기술 블로그](https://goodfriends-team.tistory.com/2)에 게시된 글 입니다.
 
 > 이 게시글은 git에 대한 기본적인 명령어 이해를 알고 있다는 전제하에 작성했습니다
 

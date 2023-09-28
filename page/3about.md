@@ -11,8 +11,6 @@ type: page
 
 ## Who am i
 
-* <img src="/assets/img/logo/woorifis-logo.png" style="max-width: 4%; vertical-align: text-bottom;"> 우리에프아이에스 Future 핀테크랩에서 클라우드 서비스 개발 과정을 듣고 있습니다.
-
 * <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : BackEnd 개발 관련 공부를 하고 있습니다.
 
 * <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기술을 공유하고 함께 성장하는 것을 추구합니다.
@@ -44,13 +42,13 @@ type: page
 
 ### 2023
 
-* 　06. 06 ~ [Hibit 팀 기술 블로그](https://hibit-team.github.io/), [woorifisa-apply 팀 기술 블로그](https://woorifisa.github.io/) 운영 및 관리
+* 　08. 02 ~ [사기 피해방지 중고거래 웹 서비스: Goodfriends - Backend/DevOps Developer](https://github.com/woorifisa-projects/GoodFriends)
 
-* 　04. 28 ~ [woorifisa-apply 프로젝트 : TPM, Backend Developer](https://github.com/woorifisa/apply)
+* 　04. 27 ~ [지원서 관리 플랫폼: Apply - TPM, Backend Developer](https://github.com/woorifisa/apply)
 
 * 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/devFancy/devfancy-woorifisa)
 
-* 　03. 22 ~ [Hibit 프로젝트 - Backend Developer](https://github.com/hibit-team/hibit-backend)
+* 　04. 05 ~ [Hibit: 예술 전시회 소셜 매칭 서비스 - Backend Developer](https://github.com/hibit-team/hibit-backend)
 
 * 　03. 17 ~ `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://devfancy.github.io/category/#Interview), [DataStructure](https://devfancy.github.io/category/#DataStructure)
 

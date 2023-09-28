@@ -358,8 +358,14 @@ author: devFancy
 
 * [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Grow-Together/)
 
-* [[Project] Hibit - 구글 소셜 로그인 기능을 구현하는 과정]({{site.url}}/)
+* [[Project] Git Flow 전략]({{site.url}}/Goodfriends-Git-flow/)
 
-* [[Project] Hibit - 리프레쉬 토큰을 통해 새로운 액세스 토큰을 재발급하는 과정]({{site.url}}/)
+* [[Project] Agile 기반 Scrum 프로세스 도입]({{site.url}}/Goodfriends-Agile-Scrum/)
 
-* [[Project] 우리FISA 최종 프로젝트: SUT - Git Flow 전략]({{site.url}}/s)
+* [[Project] EC2 환경에서 도커를 활용한 젠킨스 설치하기]({{site.url}}/Goodfriends-EC2-Docker-Jenkins/)
+
+* [[Project] 젠킨스를 사용하여 CI/CD Pipeline 구축기(백엔드편)]({{site.url}}/Goodfriends-Jenkins-Pipeline-Backend/)
+
+* [[Project] 젠킨스를 사용하여 CI/CD Pipeline 구축기(프론트엔드편)]({{site.url}}/Goodfriends-Jenkins-Pipeline-Frontend/)
+
+* [[Project] PR 라벨로 Jenkins Build 유발 구분하기]({{site.url}}/Goodfriends-PR-Label-Jenkins-Build/)
