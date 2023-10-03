@@ -154,7 +154,7 @@ author: devFancy
 
 `피그잼`에 정리한 저희 굿프렌즈팀의 이벤트 스토밍 결과물입니다.
 
-![event-storming-end.png](..%2F..%2F..%2Fevent-storming-end.png)
+![](/assets/img/project/event-storming-end.png)
 
 이벤트 스토밍을 도입한 이유는 단순히 DDD를 쉽게 이해하는 목적이 아니라, **팀원 모두가 서비스에 대한 공통된 이해를 가지는 것**이였습니다.
 
