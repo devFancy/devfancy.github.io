@@ -70,7 +70,7 @@ author: devFancy
 
 저희 팀은 아래의 영상에 나오는 단계를 참고하여 진행했지만, 처음 진행해보는 것이고 정해진 시간이 있기 때문에 완전히 똑같지는 않게 진행했습니다.
 
-![KCD 2020 [Track 2] 도메인 지식 탐구를 위한 이벤트 스토밍 Event Storming](https://www.youtube.com/watch?v=hUcpv5fdCIk&ab_channel=OpenUP-%EC%98%A4%ED%94%88%EC%97%85)
+[KCD 2020 [Track 2] 도메인 지식 탐구를 위한 이벤트 스토밍 Event Storming](https://www.youtube.com/watch?v=hUcpv5fdCIk&ab_channel=OpenUP-%EC%98%A4%ED%94%88%EC%97%85)
 
 그럼 저희 굿프렌즈 팀에서 진행했던 단계를 경험 기반으로 소개해보겠습니다.
 
