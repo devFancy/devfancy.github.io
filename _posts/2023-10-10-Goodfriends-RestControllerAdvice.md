@@ -252,5 +252,9 @@ Spring은 매우 다양한 예외 처리 방법을 제공하고 있어 어떻게
 
 지금까지 읽어주셔서 감사합니다. 😌
 
+## Reference
+
+- [Annotation Interface ExceptionHandler](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/ExceptionHandler.html)
+- [[Spring] 스프링의 다양한 예외 처리 방법(ExceptionHandler, ControllerAdvice 등) 완벽하게 이해하기](https://mangkyu.tistory.com/204)
 
 
