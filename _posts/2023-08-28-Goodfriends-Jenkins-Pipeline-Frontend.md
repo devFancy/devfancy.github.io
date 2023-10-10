@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 젠킨스를 사용하여 CI/CD Pipeline 구축기(프론트엔드편) "
-categories: Projects
+categories: Goodfriends
 author: devFancy
 ---
 * content

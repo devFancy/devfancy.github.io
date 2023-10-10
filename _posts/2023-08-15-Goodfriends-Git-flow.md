@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 굿프렌즈팀의 Git-flow 전략을 소개합니다. "
-categories: Projects
+categories: Goodfriends
 author: devFancy
 ---
 * content

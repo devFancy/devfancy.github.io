@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " PR 라벨로 Jenkins Build 유발 구분하기 🏷 "
-categories: Projects
+categories: Goodfriends
 author: devFancy
 ---
 * content
