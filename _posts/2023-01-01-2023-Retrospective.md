@@ -358,14 +358,29 @@ author: devFancy
 
 * [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Grow-Together/)
 
-* [[Project] Git Flow 전략]({{site.url}}/Goodfriends-Git-flow/)
+* [[Goodfriends] 굿프렌즈팀의 이벤트 스토밍(Event Storming) 도입기]({{site.url}}/Goodfriends-event-storming/)
 
-* [[Project] Agile 기반 Scrum 프로세스 도입]({{site.url}}/Goodfriends-Agile-Scrum/)
+* [[Goodfriends] Git Flow 전략]({{site.url}}/Goodfriends-Git-flow/)
 
-* [[Project] EC2 환경에서 도커를 활용한 젠킨스 설치하기]({{site.url}}/Goodfriends-EC2-Docker-Jenkins/)
+* [[Goodfriends] Agile 기반 Scrum 프로세스 도입]({{site.url}}/Goodfriends-Agile-Scrum/)
 
-* [[Project] 젠킨스를 사용하여 CI/CD Pipeline 구축기(백엔드편)]({{site.url}}/Goodfriends-Jenkins-Pipeline-Backend/)
+* [[Goodfriends] EC2 환경에서 도커를 활용한 젠킨스 설치하기]({{site.url}}/Goodfriends-EC2-Docker-Jenkins/)
 
-* [[Project] 젠킨스를 사용하여 CI/CD Pipeline 구축기(프론트엔드편)]({{site.url}}/Goodfriends-Jenkins-Pipeline-Frontend/)
+* [[Goodfriends] 젠킨스를 사용하여 CI/CD Pipeline 구축기(백엔드편)]({{site.url}}/Goodfriends-Jenkins-Pipeline-Backend/)
 
-* [[Project] PR 라벨로 Jenkins Build 유발 구분하기]({{site.url}}/Goodfriends-PR-Label-Jenkins-Build/)
+* [[Goodfriends] 젠킨스를 사용하여 CI/CD Pipeline 구축기(프론트엔드편)]({{site.url}}/Goodfriends-Jenkins-Pipeline-Frontend/)
+
+* [[Goodfriends] PR 라벨로 Jenkins Build 유발 구분하기]({{site.url}}/Goodfriends-PR-Label-Jenkins-Build/)
+
+
+## September
+
+* [[Goodfriends] 굿프렌즈팀의 DDD 기반 기능별 패키지 구조 적용기]({{site.url}}/Goodfriends-ddd-function-package/)
+
+## October
+
+* [[Programmers] 150370. 개인정보 수집 유효기간]({{site.url}}/Programmers-150370/)
+
+* [[Goodfriends] 다양한 예외 처리들을 관리하기 위해 @RestControllerAdvice 도입]({{site.url}}/Goodfriends-RestControllerAdvice/)
+
+* [[Programmers] 17686. [3차] 파일명 정렬]({{site.url}}/Programmers-17686/)

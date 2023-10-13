@@ -42,15 +42,15 @@ type: page
 
 ### 2023
 
-* 　08. 02 ~ [사기 피해방지 중고거래 웹 서비스: Goodfriends - Backend/DevOps Developer](https://github.com/woorifisa-projects/GoodFriends)
+* 　10. 12 ~ 직무 기반 기술면접 스터디
 
-* 　04. 27 ~ [지원서 관리 플랫폼: Apply - TPM, Backend Developer](https://github.com/woorifisa/apply)
+* 　08. 02 ~ [사기 피해방지 중고거래 웹 서비스: Goodfriends - Backend/DevOps Developer](https://github.com/woorifisa-projects/GoodFriends)
 
 * 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/devFancy/devfancy-woorifisa)
 
 * 　04. 05 ~ [Hibit: 예술 전시회 소셜 매칭 서비스 - Backend Developer](https://github.com/hibit-team/hibit-backend)
 
-* 　03. 17 ~ `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://devfancy.github.io/category/#Interview), [DataStructure](https://devfancy.github.io/category/#DataStructure)
+* 　03. 17 ~  03. 31 `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://devfancy.github.io/category/#Interview), [DataStructure](https://devfancy.github.io/category/#DataStructure)
 
 [//]: # (* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편)
 
@@ -76,7 +76,7 @@ type: page
 
 * 　01. 02 ~ 02. 18 [Study Network](https://devfancy.github.io/category/#Network)
 
-* 　01. 02 ~ [CS 스터디 진행](https://github.com/devSquad-study/2023-CS-Study)
+* 　01. 02 ~ 06. 30 [CS 스터디 진행](https://github.com/devSquad-study/2023-CS-Study)
 
 ### 2022
 
