@@ -42,6 +42,8 @@ type: page
 
 ### 2023
 
+* 　10. 18 ~ [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://github.com/devFancy/jpashop)
+
 * 　10. 12 ~ 직무 기반 기술면접 스터디
 
 * 　08. 02 ~ [사기 피해방지 중고거래 웹 서비스: Goodfriends - Backend/DevOps Developer](https://github.com/woorifisa-projects/GoodFriends)
@@ -50,19 +52,19 @@ type: page
 
 * 　04. 05 ~ [Hibit: 예술 전시회 소셜 매칭 서비스 - Backend Developer](https://github.com/hibit-team/hibit-backend)
 
-* 　03. 17 ~  03. 31 `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview](https://devfancy.github.io/category/#Interview), [DataStructure](https://devfancy.github.io/category/#DataStructure)
+* 　03. 17 ~  03. 31 `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview]({{site.url}}/category/#Interview), [DataStructure]({{site.url}}/category/#DataStructure)
 
 [//]: # (* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편)
 
 * 　02. 22 ~ 03. 04 [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/devfancy/jpashop/)
 
-* 　02. 13 ~ 03. 05 [Study Database](https://devfancy.github.io/category/#Database)
+* 　02. 13 ~ 03. 05 [Study Database]({{site.url}}/category/#Database)
 
-* 　01. 23 ~ 02. 19 [Study & Review Operating System](https://devfancy.github.io/category/#OS)
+* 　01. 23 ~ 02. 19 [Study & Review Operating System]({{site.url}}/category/#OS)
 
-* 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식](https://devfancy.github.io/category/#HTTP)
+* 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식]({{site.url}}/category/#HTTP)
 
-* 　01. 14 ~ 01. 24 [Study 스프링 핵심원리 - 기본편](https://devfancy.github.io/category/#Spring)
+* 　01. 14 ~ 01. 24 [Study 스프링 핵심원리 - 기본편]({{site.url}}/category/#Spring)
 
 * 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
 
@@ -72,21 +74,21 @@ type: page
 
 * 　01. 12 [기술 블로그](https://github.com/devfancy/devfancy.github.io) 생성
 
-* 　01. 07 ~ [Programmers : 코딩테스트 대비](https://devfancy.github.io/category/#Algorithm)
+* 　01. 07 ~ [Programmers : 코딩테스트 대비]({{site.url}}/category/#Algorithm)
 
-* 　01. 02 ~ 02. 18 [Study Network](https://devfancy.github.io/category/#Network)
+* 　01. 02 ~ 02. 18 [Study Network]({{site.url}}/category/#Network)
 
 * 　01. 02 ~ 06. 30 [CS 스터디 진행](https://github.com/devSquad-study/2023-CS-Study)
 
 ### 2022
 
-* 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득](https://devfancy.github.io/Coursera-Certificates/)
+* 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득]({{site.url}}/Coursera-Certificates/)
 
 * 　10. 26 ~ 12. 17 [우아한테크코스 5기 프리코스 과정](https://github.com/devfancy/devfancy-woowacourse) 참가
 
 * 　10. 12 ~ 11. 18 [Competition : KNU 창업 성과 경진대회 수상](https://computer.knu.ac.kr/bbs/board.php?bo_table=sub5_1&wr_id=26769)
 
-* 　09. 01 ~ 12. 20 [Study Operating System](https://devfancy.github.io/category/#OS)
+* 　09. 01 ~ 12. 20 [Study Operating System]({{site.url}}/category/#OS)
 
 * 　08. 30 ~ 08. 31 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
 
@@ -108,11 +110,11 @@ type: page
 
 * 　03. 15 ~ 06. 15 Study Java (명품 자바 에센셜)
 
-* 　03. 02 ~ 06. 26 [Study Probability Statistics](https://devfancy.github.io/PS-Introduction/)
+* 　03. 02 ~ 06. 26 [Study Probability Statistics]({{site.url}}/PS-Introduction/)
 
-* 　03. 02 ~ 06. 25 [Study Electronic Finance School of Business Administration](https://devfancy.github.io/EF-Introduction/)
+* 　03. 02 ~ 06. 25 [Study Electronic Finance School of Business Administration]({{site.url}}/EF-Introduction/)
 
-* 　03. 02 ~ 06. 17 [Study Business Statistics](https://devfancy.github.io/BS-Introduction/)
+* 　03. 02 ~ 06. 17 [Study Business Statistics]({{site.url}}/BS-Introduction/)
 
 * 　03. 02 ~ 06. 15 [Study Algorithm Practice](https://github.com/devfancy/KNU/tree/main/algorithm)
 
@@ -129,7 +131,7 @@ type: page
 
 * 　09 ~ [교내 동아리 데이터금융분석학회(DART)](https://www.knudart.com/) 참가
 
-* 　09. 06 ~ 09. 07 [Study Linux](https://devfancy.github.io/SP-Linux/)
+* 　09. 06 ~ 09. 07 [Study Linux]({{site.url}}/SP-Linux/)
 
 * 　09. 01 ~ 12. 15 [Study SystemProgramming](https://github.com/devfancy/KNU/tree/main/systemProgramming)
 
@@ -175,9 +177,9 @@ type: page
 
 *   어쿠스틱 기타 : 2012 ~ 2014 / 2017 ~ 2018 / 2022 ~
 
-*   [운동](https://devfancy.github.io/category/#Workout) : 2018 ~
+*   [운동]({{site.url}}/category/#Workout) : 2018 ~
 
-*   [독서 : 재테크, IT](https://devfancy.github.io/category/#Book) : 2017 ~
+*   [독서 : 재테크, IT]({{site.url}}/category/#Book) : 2017 ~
 
 ---
 
