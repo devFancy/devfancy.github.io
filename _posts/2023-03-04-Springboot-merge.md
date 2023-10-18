@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " [SpringBoot] 변경 감지와 병합(merge) "
+title: " 실전! 스프링 부트와 JPA 활용1 - 변경 감지와 병합(merge) "
 categories: SpringBoot
 author: devFancy
 ---
@@ -12,7 +12,7 @@ author: devFancy
 
 ## 준영속 엔티티
 
-* `준영속 엔티티`란 영속성 컨텍스트가 더는 관리하지 엔티티를 말한다.
+* `준영속 엔티티`란 영속성 컨텍스트가 더는 관리하지 않는 엔티티를 말한다.
 
 * `itemController` 에서 updateItem 클래스로 예시를 들자면,
 
@@ -91,7 +91,7 @@ public class ItemService {
 * 두 번째 방법은 병합을 사용하는 것이다. `병합`이란 **준영속성 상태의 엔티티를 영속 상태로 변경할 때 사용하는 기능**이다.
 
 
-![]()
+![](/assets/img/springboot/springboot_merge.png)
 
 > 병합 동작 방식(디테일한 설명)
 
