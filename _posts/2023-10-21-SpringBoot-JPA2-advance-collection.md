@@ -7,7 +7,7 @@ author: devFancy
 * content
 {:toc}
 
-> 이 글의 코드와 정보들은 [실전! 스프링 부트와 JPA 활용 2] 강의를 들으며 정릐한 내용을 토대로 작성하였습니다.
+> 이 글의 코드와 정보들은 [실전! 스프링 부트와 JPA 활용 2] 강의를 들으며 정리한 내용을 토대로 작성하였습니다.
 
 ## API 개발 고급
 
@@ -120,9 +120,9 @@ public class OrderRepository {
 
 * 지연 로딩 성능 최적화를 위해 다음 2가지를 중 1개를 사용하면 된다.
 
-    * [1] 글로벌 설정: application.yml 파일에 `hibernate.default_batch_fetch_size` 를 추가한다.
+    * [1] **글로벌 설정**: application.yml 파일에 `hibernate.default_batch_fetch_size` 를 추가한다.
 
-    * [2] 개별 최적화: 적용할 엔티티 클래스, 컬렉션 필드 위에 `@BatchSize`을 추가한다.
+    * [2] **개별 최적화**: 적용할 엔티티 클래스, 컬렉션 필드 위에 `@BatchSize`을 추가한다.
 
     * 이 옵션을 사용하면 컬렉션이나, 프록시 객체를 한꺼번에 설정한 size 만큼 IN 쿼리로 조회한다.
 
