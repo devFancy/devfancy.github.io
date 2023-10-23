@@ -7,7 +7,7 @@ author: fancy96
 * content
 {:toc}
 
-[숫자 야구 게임](https://github.com/woowacourse-precourse/java-baseball)
+[숫자 야구 게임](https://github.com/devFancy/java-baseball/tree/fancy-review)
 
 * 해당 미션에서 예외 처리 목록에서 서로 다른 숫자가 아닌 경우 예외 처리를 해줘야만 했다.
 
