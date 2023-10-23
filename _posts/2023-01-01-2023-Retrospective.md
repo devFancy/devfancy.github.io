@@ -379,8 +379,28 @@ author: devFancy
 
 ## October
 
+> 231002 ~ 231008
+
 * [[Programmers] 150370. 개인정보 수집 유효기간]({{site.url}}/Programmers-150370/)
+
+> 231009 ~ 231015
+
+* [[Programmers] 17686. [3차] 파일명 정렬]({{site.url}}/Programmers-17686/)
 
 * [[Goodfriends] 다양한 예외 처리들을 관리하기 위해 @RestControllerAdvice 도입]({{site.url}}/Goodfriends-RestControllerAdvice/)
 
-* [[Programmers] 17686. [3차] 파일명 정렬]({{site.url}}/Programmers-17686/)
+* [[Goodfriends] 시스템 장애를 미리 예방하기 위해 Amazon CloudWatch를 활용]({{site.url}}/Goodfriends-Aws-CloudWatch/)
+
+> 231016 ~ 231022
+
+* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2 - API 개발 기본]({{site.url}}/SpringBoot-JPA2-basic/)
+
+* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 지연 로딩과 조회 성능 최적화]({{site.url}}/SpringBoot-JPA2-advance/)
+
+* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 컬렉션 조회 최적화]({{site.url}}/SpringBoot-JPA2-advance-collection/)
+
+> 231023 ~ 231029
+
+* [[Programmers] 131704. 택배상자]({{site.url}}/Programmers-131704/)
+
+* [[Java] 알고리즘/코딩테스트를 위한 코드 정리]({{site.url}}/Stack/)
