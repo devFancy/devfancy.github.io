@@ -43,7 +43,7 @@ author: devFancy
 
 * 두 가지 쿠키를 구분하는 기준은 **파기되는 시점**이다. 파기되는 시점을 가리키는 `Expires` 혹은 `Max-Age` 파라미터가 없으면 **세션 쿠키**이다.
 
-```http response
+```
 Set-Cookie: <쿠키 이름>=<쿠키 값>; Expires=종료 시점
 Set-Cookie: <쿠키 이름>=<쿠키 값>; Max-Age=유효 기간
 ```
@@ -68,16 +68,16 @@ Set-Cookie: <쿠키 이름>=<쿠키 값>; Max-Age=유효 기간
 
 * 첫번째 보안 속성은 `Secure` 이다. `Set-Cookie` 응답 헤더에 이 속성이 명시된 쿠키는 브라우저가 `https` 프로토콜 상에서만 서버로 돌려 보낸다. 네트워크 상에서 탈취되었을 때 문제가 될 수 있는 쿠키를 상대로 쓰면 유용할 것이다.
 
-```http response
+```
 Set-Cookie: <쿠키 이름>=<쿠키 값>; Secure
 ```
 
 * 두번째 보안 속성은 `HttpOnly`이다.
     `Set-Cookie` 응답 헤더에 이 속성이 명시된 쿠키는 이 속성이 명시된 쿠키는 브라우저에서 **자바스크립트로 `Document.cookie`객체를 통해 접근할 수 없다.**
 
-```http response
+```
 Set-Cookie: <쿠키 이름>=<쿠키 값>; HttpOnly
-```    
+```
 
 ## 세션(Session)
 
@@ -141,13 +141,15 @@ HTTP 프로토콜은 서버가 클라이언트의 상태를 보존하지 않는 
 예를 들어, 사용자가 서비스에 최초로 접속했을 때 서버가 브라우저에게 `a=1` 쿠키를 저장하라고 시키면,
 
 HTTP 요청
-```http request
+
+```
 GET /index.html HTTP/1.1
 Host: www.test.com
 ```
 
 HTTP 응답
-```http response
+
+```
 HTTP/1.1 200 OK
 Content-Type: text/html
 Set-Cookie: a=1
