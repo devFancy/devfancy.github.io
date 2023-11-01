@@ -401,6 +401,18 @@ author: devFancy
 
 > 231023 ~ 231029
 
+* [[Java] 알고리즘/코딩테스트를 위한 코드 정리]({{site.url}}/Algorithm_cleanup/)
+
 * [[Programmers] 131704. 택배상자]({{site.url}}/Programmers-131704/)
 
-* [[Java] 알고리즘/코딩테스트를 위한 코드 정리]({{site.url}}/Stack/)
+* [[Programmers] 155651. 호텔 대실(누적합)]({{site.url}}/Programmers-155651/)
+
+* [[Programmers] 159993. 미로탈출 (BFS)]({{site.url}}/Programmers-159993/)
+
+* [쿠키와 세션]({{site.url}}/Technology-Cookie/)
+
+* [[Goodfriends] Set-Cookie의 보안 속성 적용기]({{site.url}}/Technology-Set-Cookie/)
+
+* [NGINX란?]({{site.url}}/Technology-NGINX/)
+
+> 231031 ~ 231105
