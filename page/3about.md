@@ -42,6 +42,8 @@ type: page
 
 ### 2023
 
+* 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요?
+
 * 　10. 18 ~ [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://github.com/devFancy/jpashop)
 
 * 　10. 12 ~ 직무 기반 기술면접 스터디
@@ -50,7 +52,7 @@ type: page
 
 * 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/devFancy/devfancy-woorifisa)
 
-* 　04. 05 ~ [Hibit: 예술 전시회 소셜 매칭 서비스 - Backend Developer](https://github.com/hibit-team/hibit-backend)
+* 　04. 05 ~ 10. 22 [Hibit: 예술 전시회 소셜 매칭 서비스 - Backend Developer](https://github.com/hibit-team/hibit-backend)
 
 * 　03. 17 ~  03. 31 `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview]({{site.url}}/category/#Interview), [DataStructure]({{site.url}}/category/#DataStructure)
 
