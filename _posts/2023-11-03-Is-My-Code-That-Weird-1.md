@@ -57,7 +57,7 @@ public class ContractAmount {
 
 - 이때, 소비세와 관련된 부분을 소스 코드 전체에서 찾아서 확인해보니, 세금 포함 금액을 계산하는 로직이 수십 곳에 있음을 확인했다.
 
-[](/assets/img/goodcode/My-Code-That-Weird-1-1.jpeg)
+![](/assets/img/goodcode/My-Code-That-Weird-1-1.jpeg)
 
 - 이런 상황은 **데이터**를 담고 있는 클래스와 **데이터를 사용하는** 계산 로직이 멀리 떨어져 있을 때 자주 일어난다.
 

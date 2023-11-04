@@ -244,7 +244,7 @@ class Money {
 
 * 몇 가지 디자인 패턴을 소개하면 표 3.2와 같다.
 
-[](/assets/img/goodcode/Is-My-Code-That-Weird-3-1.png)
+![](/assets/img/goodcode/Is-My-Code-That-Weird-3-1.png)
 
 * 이 장의 Money 클래스는 완전 생성자와 값 객체라는 두 가지 디자인 패턴을 적용한 것이다.
 
