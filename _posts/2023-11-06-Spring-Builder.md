@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " [Spring] Builder 패턴에 대한 이해와 사용 "
+title:  " [Spring] Builder 패턴에 대한 이해와 사용, @Builder "
 categories: Spring
 author: devFancy
 ---
@@ -14,6 +14,8 @@ author: devFancy
 * 하지만 생성자를 통해 객체를 생성하는데 몇 가지 단점이 있어 객체를 생성하는 별도 builder를 두는 방법이 있다.
 
 * 이를 `Builder 패턴`이라고 한다.
+
+* `Builder 패턴`이란 생성과 관련된 디자인 패턴으로, 동일한 프로세스를 거쳐 다양한 구성의 인스턴스를 만드는 방법이다.
 
 ```java
 Profile profile = Profile.builder()
