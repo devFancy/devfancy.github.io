@@ -9,7 +9,7 @@ author: fancy96
 
 ## Prologue
 
-* [이전 트랜잭션](https://fancy96.github.io/DB-Transaction/)의 ACID 특성 중 한 가지인 **격리성**에 대해 조금 더 깊게 공부하기 위해 해당 포스트를 작성하게 되었다.
+* [이전 트랜잭션](https://devFancy.github.io/DB-Transaction/)의 ACID 특성 중 한 가지인 **격리성**에 대해 조금 더 깊게 공부하기 위해 해당 포스트를 작성하게 되었다.
 
 ## 격리성
 

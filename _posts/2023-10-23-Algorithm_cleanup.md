@@ -11,6 +11,20 @@ author: devFancy
 
 * Java로 알고리즘/코딩테스트에서 자주 쓰이는 문법들을 정리하기 위한 포스팅이다.
 
+## DFS/BFS
+
+- 깊이 우선 탐색과 너비 우선 탐색은 [기본적인 그래프 기법 : DFS, BFS](https://devfancy.github.io/DataStructure-DFS-BFS/)에 정리했으니, 해당 글을 참고하자.
+
+> 관련 문제(최신순)
+
+- [[Programmers 43162. 네트워크]]()
+- [[Programmers] 159993. 미로 탈출](https://devfancy.github.io/Programmers-159993/)
+- [[백준] 1937. 욕심쟁이 판다](https://devfancy.github.io/baekjoon-1937/)
+- [[solved.ac] Class3++ 2606. 바이러스](https://devfancy.github.io/solved-class3-backjoon-2606/)
+- [[solved.ac] Class3++ 1260. DFS와 BFS](https://devfancy.github.io/solved-class3-backjoon-1260/)
+- [[Programmers] 43165. 타켓 넘버(dfs)](https://devfancy.github.io/Programmers-43165/)
+- [[solved.ac] Class3++ 1012. 유기농 배추](https://devfancy.github.io/solved-class3-backjoon-1012/)
+
 ## Stack
 
 - 스택은 `LIFO`(List In First Out, 후입선출) 구조로 데이터를 쌓아올린 형태의 자료구조를 뜻한다. ex) 쓰레기통, 마트용 음료수 진열대, 프링X스(과자)
