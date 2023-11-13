@@ -49,7 +49,7 @@ author: devFancy
 
 * `갱신 이상`(update anomaly)은 릴레이션의 **중복된 튜플(=행)들 중 일부만 수정하여 데이터가 불일치하게 되는 모순이 발생**하는 문제를 말한다.
 
-![](/assets/img/db/DB-Normalization-3.JPG)
+![](/assets/img/db/DB-Normalization-1.JPG)
 
 * [그림 9-2]의 이벤트참여 릴레이션에는 아이디가 `apple`인 고객에 대한 튜플(행)이 3개 존재하여, 고객아이디, 고객이름, 등급 속성의 값이 중복되어 있다.
 
@@ -57,7 +57,7 @@ author: devFancy
 
 * 그렇지 않고, 아래 [그림 9-4]와 같이 2개의 튜플만 등급이 수정되면 `apple` 고객이 서로 다른 등급을 가지는 모순이 생겨 `갱신 이상`이 발생하게 된다.
 
-![](/assets/img/db/DB-Normalization-4.JPG)
+![](/assets/img/db/DB-Normalization-3.JPG)
 
 #### 삭제 이상
 
@@ -67,7 +67,7 @@ author: devFancy
 
 * 그런데 이 튜플은 이벤트에 대한 정보(이벤트번호, 당첨여부) 뿐만 아니라 의도치 않게 해당 고객에 대한 정보인 고객아이디, 고객이름, 등급에 대한 정보도 같이 손실되는 `삭제 이상`이 발생하게 된다.
 
-![](/assets/img/db/DB-Normalization-5.jpg)
+![](/assets/img/db/DB-Normalization-4.jpg)
 
 ## 정규화의 필요성
 
@@ -91,7 +91,7 @@ author: devFancy
 
 * 아래 [그림 9-7]의 고객 릴레이션을 대상으로 속성 간의 함수 종속 관계를 판단해보자.
 
-![](/assets/img/db/DB-Normalization-6.jpg)
+![](/assets/img/db/DB-Normalization-5.jpg)
 
 * 고객 릴레이션에서 각 `고객아이디` 속성 값에 대응되는 `고객이름` 속성과 `등급` 속성의 값이 단 하나이므로,
 
@@ -105,7 +105,7 @@ author: devFancy
 
     * `부분 함수 종속`은 속성 집합 Y가 속성 집합 X의 전체가 아닌 **일부분**에도 함수적으로 종속됨을 의미한다.
 
-![](/assets/img/db/DB-Normalization-7.JPG)
+![](/assets/img/db/DB-Normalization-6.jpg)
 
 * 예를 들어, [그림 9-10]의 이벤트참여 릴레이션에서 `고객이름`은 고객아이디에 완전 함수 종속되어 있지만, {고객아이디, 이벤트번호}에는 부분 함수 종속되어 있다. 그리고 `당첨여부`는 {고객아이디, 이벤트번호}에 완전 함수 종속되어 있다.
 
@@ -125,7 +125,7 @@ author: devFancy
 
     * `고급 정규형`에는 제4정규형, 제5정규형이 있다.
 
-![](/assets/img/db/DB-Normalization-8.JPG)
+![](/assets/img/db/DB-Normalization-7.JPG)
 
 * 각 정규형마다 만족시켜야 하는 제약조건이 존재하며, 정규형의 차수가 높아질수록 요구되는 제약조건이 많이지고 엄격해진다.
 
@@ -143,7 +143,7 @@ author: devFancy
 
 * 즉, **다중 값을 가질 수 있는 속성은 분리**되어야 한다.
 
-![](/assets/img/db/DB-Normalization-9.JPG)
+![](/assets/img/db/DB-Normalization-8.JPG)
 
 * [그림 9-16]의 이벤트참여 릴레이션에서 이벤트번호 속성과 당첨여부 속성은 하나의 고객아이디에 해당하는 값이 여러 개다.
 
@@ -151,7 +151,7 @@ author: devFancy
 
 * 제1정규형을 만족하도록 정규화를 수행한 결과는 아래 [그림 9-17]과 같다.
 
-![](/assets/img/db/DB-Normalization-10.JPG)
+![](/assets/img/db/DB-Normalization-9.JPG)
 
 * 제1정규형을 정리하면 아래와 같다.
 
@@ -171,7 +171,7 @@ author: devFancy
 
 * `제2정규형`을 만족하게 하려면, 부분 함수 종속을 제거하고 모든 속성이 기본키에 완전 함수 종속되도록 릴레이션을 분해하는 정규화 과정을 거쳐야 한다.
 
-![](/assets/img/db/DB-Normalization-11.jpg)
+![](/assets/img/db/DB-Normalization-10.JPG)
 
 * 이벤트참여 릴레이션에서 기본키인 {고객아이디, 이벤트번호}에 완전 함수 종속되지 않는 등급, 할인율 속성이 존재하므로
 
@@ -205,7 +205,7 @@ author: devFancy
 
 * `제3정규형`을 만족하기 위해서는 릴레이션에서 **이행적 함수 종속을 제거**해서, 모든 속성이 **기본키에 이행적 함수 종속이 되지 않도록 릴레이션을 분해**하는 정규화 과정을 거쳐야 한다.
 
-![](/assets/img/db/DB-Normalization-12.jpg)
+![](/assets/img/db/DB-Normalization-11.jpg)
 
 * 위 [그림 9-26]에서 보는 것처럼 고객아이디가 등급을 결정하고, 등급이 할인율을 결정하는 함수 종속 관계로 인해,
 
@@ -217,9 +217,11 @@ author: devFancy
 
 * 제3정규형을 만족하기 위해서 [그림 9-26]의 분해된 고객 릴레이션은 고객아이디 -> 등급, 등급 -> 할인율의 함수 종속 관계를 유지할 수 있도록 아래 [그림 9-32]와 같이 2개의 릴레이션으로 분해하면 된다.
 
-![](/assets/img/db/DB-Normalization-13.jpg)
+![](/assets/img/db/DB-Normalization-12.jpg)
 
 * 아래 [그림 9-33]의 함수 종속 다이어그램에서 확인할 수 있듯이, 릴레이션을 분해하면 하나의 릴레이션에 하나의 관계만 존재하게 되어 이행적 함수 종속으로 인한 이상 현상이 발생하지 않게 된다.
+
+![](![](/assets/img/db/DB-Normalization-13.jpg)
 
 * 고객 릴레이션과 고객등급 릴레이션 모두 기본기가 직접 결정하므로 제3정규형에 속한다.
 
