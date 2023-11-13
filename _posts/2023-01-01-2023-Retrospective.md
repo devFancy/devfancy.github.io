@@ -415,4 +415,24 @@ author: devFancy
 
 * [NGINX란?]({{site.url}}/Technology-NGINX/)
 
+## November
+
 > 231031 ~ 231105
+
+* [[내 코드가 그렇게 이상한가요?] 1장. 잘못된 구조의 문제 깨닫기]({{site.url}}/Is-My-Code-That-Weird-1/)
+
+* [[내 코드가 그렇게 이상한가요?] 3장. 클래스 설계: 모든 것과 연결되는 설계 기반]({{site.url}}/Is-My-Code-That-Weird-3/)
+
+* [우선순위 큐(Priority Queue) 개념 및 사용법 정리]({{site.url}}/Priority-Queue/)
+
+> 231106 ~ 231112
+
+* [[Spring] Builder 패턴에 대한 이해와 사용, @Builder]({{site.url}}/Spring-Builder/)
+
+* [[Programmers] 43162. 네트워크(DFS)]({{site.url}}/Programmers-43162/)
+
+* [[Programmers] 수식 최대화(dfs, 순열)]({{site.url}}/Programmers-2020-Kakao-Internship-2/)
+
+> 231113 ~ 231119
+
+* [[DB] 정규화 과정]({{site.url}}/DB-Normalization/)
