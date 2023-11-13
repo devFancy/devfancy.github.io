@@ -17,7 +17,8 @@ author: devFancy
 
 > 관련 문제(최신순)
 
-- [[Programmers 43162. 네트워크]]()
+- [[Programmers] 1844. 게임 맵 최단거리(bfs)](https://devfancy.github.io/Programmers-1844/)
+- [[Programmers] 43162. 네트워크](https://devfancy.github.io/Programmers-43162/)
 - [[Programmers] 159993. 미로 탈출](https://devfancy.github.io/Programmers-159993/)
 - [[백준] 1937. 욕심쟁이 판다](https://devfancy.github.io/baekjoon-1937/)
 - [[solved.ac] Class3++ 2606. 바이러스](https://devfancy.github.io/solved-class3-backjoon-2606/)

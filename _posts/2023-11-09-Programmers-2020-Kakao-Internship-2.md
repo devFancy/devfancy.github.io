@@ -212,43 +212,43 @@ static void sol() {
 
         // 연산자 우선순위에 따라 계산
         for(int i = 0; i < perm.length; i++) {
-        String op = perm[i];
-        for(int j = 0; j < oper.size(); j++) {
-        if(oper.get(j).equals(op)) {
-        long n1 = num.get(j);
-        long n2 = num.get(j+1);
-        long res = cal(n1, n2, op);
-
-        // list 갱신
-        num.remove(j+1);
-        num.remove(j);
-        oper.remove(j);
-
-        num.add(j, res);
-
-        j--;
-        }
-        }
+            String op = perm[i];
+            for(int j = 0; j < oper.size(); j++) {
+                if(oper.get(j).equals(op)) {
+                    long n1 = num.get(j);
+                    long n2 = num.get(j+1);
+                    long res = cal(n1, n2, op);
+            
+                    // list 갱신
+                    num.remove(j+1);
+                    num.remove(j);
+                    oper.remove(j);
+            
+                    num.add(j, res);
+            
+                    j--;
+                }
+            }
         }
 
         answer = Math.max(answer, Math.abs(num.get(0)));
-        }
+    }
 
 static long cal(long n1, long n2, String op) {
         long result = 0;
         switch(op) {
-        case "*":
-        result = n1 * n2;
-        break;
-        case "+":
-        result = n1 + n2;
-        break;
-        case "-":
-        result = n1 - n2;
-        break;
+            case "*":
+                result = n1 * n2;
+                break;
+            case "+":
+                result = n1 + n2;
+                break;
+            case "-":
+                result = n1 - n2;
+                break;
         }
         return result;
-        }
+}
 ```
 
 `oper`라는 새로운 문자열 리스트를 생성하고, 연산자 리스트의 복사본을 만든다.
