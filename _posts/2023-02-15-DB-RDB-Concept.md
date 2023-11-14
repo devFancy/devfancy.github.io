@@ -1,8 +1,8 @@
 ---
 layout: post
-title: " [DB] 관계 데이터 모델의 개념 "
+title: " [데이터베이스개론] 관계 데이터 모델의 개념 "
 categories: Database
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

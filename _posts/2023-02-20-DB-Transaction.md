@@ -1,8 +1,8 @@
 ---
 layout: post
-title: " [DB] 트랜잭션 "
+title: " [데이터베이스개론] 트랜잭션 "
 categories: Database
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

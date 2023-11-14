@@ -2,7 +2,7 @@
 layout: post
 title: " [DB] 트랜잭션 격리 수준 "
 categories: Database
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

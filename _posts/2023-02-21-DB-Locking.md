@@ -2,7 +2,7 @@
 layout: post
 title: " [DB] Locking "
 categories: Database
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}

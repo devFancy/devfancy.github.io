@@ -7,7 +7,7 @@ author: devFancy
 * content
 {:toc}
 
-> 이 글은 MySQL 기준으로 작성했습니다.
+> 이 글은 MySQL 공식문서를 바탕으로 공부하고 정리한 내용입니다.
 
 ## Motivation
 

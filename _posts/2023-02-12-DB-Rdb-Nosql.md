@@ -2,7 +2,7 @@
 layout: post
 title: " [DB] RDB와 NoSQL "
 categories: Database
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}
