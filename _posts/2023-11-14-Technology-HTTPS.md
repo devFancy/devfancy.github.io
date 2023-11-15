@@ -49,6 +49,8 @@ author: devFancy
 
     * 기관으로부터 검증된 사이트만 주소에 HTTPS 사용이 허가되고, HTTP만 사용되는 사이트들은 `"안전하지 않음"`와 같은 표시가 뜨게 된다.
 
+    ![](/assets/img/technology/Technology-HTTPS-not-secure.png)
+
 * 요약하자면, `HTTPS`는 [1] 내가 사이트에 보내는 정보들을 제 3자가 못보게 하고, [2] 접속한 사이트가 믿을 만한 곳인지를 알려준다.
 
 ## 대칭키와 비대칭키
