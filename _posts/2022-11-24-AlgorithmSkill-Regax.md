@@ -41,27 +41,26 @@ public class RegexExample {
 
 ### Matcher 클래스 주요 메서드
 
-```markdown
-* matches() : 대상 문자열과 패턴이 일치할 경우 true 반환한다.
+* `matches()` : 대상 문자열과 패턴이 일치할 경우 true 반환한다.
 
-* find() : 대상 문자열과 패턴이 일치하는 경우 true를 반환하고, 그 위치로 이동한다.
+* `find()` : 대상 문자열과 패턴이 일치하는 경우 true를 반환하고, 그 위치로 이동한다.
 
-* find(int start) : start위치 이후부터 매칭검색을 수행한다.
+* `find(int start)` : start위치 이후부터 매칭검색을 수행한다.
 
-* start() : 매칭되는 문자열 시작위치 반환한다.
+* `start()` : 매칭되는 문자열 시작위치 반환한다.
 
-* start(int group) : 지정된 그룹이 매칭되는 시작위치 반환한다.
+* `start(int group)` : 지정된 그룹이 매칭되는 시작위치 반환한다.
 
-* end() : 매칭되는  문자열 끝 다음 문자위치 반환한다.
+* `end()` : 매칭되는  문자열 끝 다음 문자위치 반환한다.
 
-* end(int group) : 지정되 그룹이 매칭되는 끝 다음 문자위치 반환한다.
+* `end(int group)` : 지정되 그룹이 매칭되는 끝 다음 문자위치 반환한다.
 
-* group() : 매칭된 부분을 반환한다.
+* `group()` : 매칭된 부분을 반환한다.
 
-* group(int group) : 매칭된 부분중 group번 그룹핑 매칭부분 반환한다.
+* `group(int group)` : 매칭된 부분중 group번 그룹핑 매칭부분 반환한다.
 
-* groupCount() : 패턴내 그룹핑한(괄호지정) 전체 갯수를 반환한다.
-```
+* `groupCount()` : 패턴내 그룹핑한(괄호지정) 전체 갯수를 반환한다.
+
 
 ## Pattern 클래스
 
@@ -95,21 +94,21 @@ public class RegexExample {
 
 ### Pattern 클래스 주요 메서드
 
-```markdown
-* compile(String regex) : 주어진 정규표현식으로부터 패턴을 만듭니다.
 
-* matcher(CharSequence input) : 대상 문자열이 패턴과 일치할 경우 true를 반환합니다.
+* `compile(String regex)` : 주어진 정규표현식으로부터 **패턴**을 만듭니다.
 
-* asPredicate() : 문자열을 일치시키는 데 사용할 수있는 술어를 작성합니다.
+* `matcher(CharSequence input)` : 대상 문자열이 패턴과 일치할 경우 **true**를 반환합니다.
 
-* pattern() : 컴파일된 정규표현식을 String 형태로 반환합니다.
+* `asPredicate()` : 문자열을 일치시키는 데 사용할 수 있는 술어를 작성합니다.
 
-* split(CharSequence input) : 문자열을 주어진 인자값 CharSequence 패턴에 따라 분리합니다.
-```
+* `pattern()` : 컴파일된 정규표현식을 **String** 형태로 반환합니다.
+
+* `split(CharSequence input)` : 문자열을 주어진 인자값 CharSequence 패턴에 따라 분리합니다.
+
 
 ### 자주 쓰이는 패턴
 
-```markdown
+```
 1) 숫자만 : ^[0-9]*$
 
 2) 영문자만 : ^[a-zA-Z]*$
@@ -143,23 +142,26 @@ public class RegexExample {
 
   * `+`는 숫자가 1개이상 있는지 확인한다.
 
+* `\d`: 숫자만을 의미한다. (숫자 ([0-9]와 동일))
+
+* `\D`: 숫자를 제외한 모든 문자를 의미한다.
+
+* `{}`: 횟수나 범위를 의미한다.
+
 #### 예시) 아이디, 비밀번호
 
 회원가입할 때 자주 나오는 `아이디`와 `비밀번호`에 대한 유효성 검사에도 위의 정규 표현식을 사용한다.
 
-```markdown
-예시) 아이디는 **5글자 이상, 15글자 이하의 문자열**이어야 하며 **알파벳 소문자와 숫자만** 을 사용해야 한다.
+* 예시) 아이디는 **5글자 이상, 15글자 이하의 문자열**이어야 하며 **알파벳 소문자와 숫자만** 을 사용해야 한다.
 
-=> private static final Pattern ID_PATTERN = Pattern.compile("^[a-z0-9]{5,15}$");
-
-예시) 비밀번호는 **8글자 이상, 16글자이하의 문자열**이어야 하며 **알파벳 대/소문자, 숫자, 특수기호(!@#$)** 을 사용해야 한다. 
-그리고 알파벳, 숫자, 특수기호는 각각 **하나 이상은 반드시 사용**해야 한다.
-
-=> private static final Pattern PW_PATTERN = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#\\$]).{8,16}$");
+```
+private static final Pattern ID_PATTERN = Pattern.compile("^[a-z0-9]{5,15}$");
 ```
 
-* `\d`: 숫자만을 의미한다. (숫자 ([0-9]와 동일)) <-> `\D`: 숫자를 제외한 모든 문자를 의미한다.
+* 예시) 비밀번호는 **8글자 이상, 16글자이하의 문자열**이어야 하며 **알파벳 대/소문자, 숫자, 특수기호(!@#$)** 을 사용해야 한다. 그리고 알파벳, 숫자, 특수기호는 각각 **하나 이상은 반드시 사용**해야 한다.
+
+```
+private static final Pattern PW_PATTERN = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#\\$]).{8,16}$");
+```
 
 * `?=.*\d` : 해당 문자열안에 숫자를 포함하는지 확인한다.
-
-* `{}`: 횟수나 범위를 의미한다.
