@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 프로그래밍 문제 접근법 - 2 "
-categories: Interview
+title: " [Algorithm] 프로그래밍 문제 접근법 - 빅 오 분석법 "
+categories: AlgorithmSkill
 author: devFancy
 ---
 * content
@@ -11,7 +11,7 @@ author: devFancy
 
 ## 풀이 분석
 
-* 문제에 대한 다븡ㄹ 내놀고 나면 **구현의 효율성**에 대한 질문이 나오는 경우가 많다.
+* 문제에 대한 답을 내놓고 나면 **구현의 효율성**에 대한 질문이 나오는 경우가 많다.
 
 * 지원자가 구현한 풀이 방법과 다른 풀이 방법을 제시하고 그 둘의 장단점을 `비교`한다거나
 

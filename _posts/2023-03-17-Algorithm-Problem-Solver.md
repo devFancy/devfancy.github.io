@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 프로그래밍 문제 접근법 - 1 "
-categories: Interview
+title: " [Algorithm] 프로그래밍 문제 접근법 - 문제 해결 "
+categories: AlgorithmSkill
 author: devFancy
 ---
 * content
