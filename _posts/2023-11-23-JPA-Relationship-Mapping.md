@@ -107,7 +107,7 @@ public class Member {
     private String name;
     private int age;
 
-    @ManyToOne // User: M이므로 '다'에 속하기 때문에 Many~로 시작한다.
+    @ManyToOne // Member: M이므로 '다'에 속하기 때문에 Many~로 시작한다.
     @JoinColumn(name = "TEAM_ID") // 조인할 테이블의 식별키를 작성한다. => 외래 키
     private Team team;
     
@@ -124,10 +124,8 @@ public class Team {
     @Id
     @GeneratedValue
     private Long id;
-    
     private String name;
-
-
+    
     @OneToMany(mappedBy = "team") // Team은 일대다에 '일'에 속하므로 @One으로 시작한다.
     List<Member> members = new ArrayList<Member>();
     
