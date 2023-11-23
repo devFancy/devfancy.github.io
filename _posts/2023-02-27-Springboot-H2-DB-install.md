@@ -1,8 +1,8 @@
 ---
 layout: post
 title: " 실전! 스프링 부트와 JPA 활용1 - H2 데이터베이스 설치 "
-categories: SpringBoot
-author: fancy96
+categories: JPA
+author: devFancy
 ---
 * content
 {:toc}

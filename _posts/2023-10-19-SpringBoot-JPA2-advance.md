@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 지연 로딩과 조회 성능 최적화 "
-categories: SpringBoot
+categories: JPA
 author: devFancy
 ---
 * content

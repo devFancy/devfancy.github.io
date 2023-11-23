@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 컬렉션 조회 최적화 (엔티티 조회 기준) "
-categories: SpringBoot
+categories: JPA
 author: devFancy
 ---
 * content

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 실전! 스프링 부트와 JPA 활용1 - 변경 감지와 병합(merge) "
-categories: SpringBoot
+categories: JPA
 author: devFancy
 ---
 * content

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 실전! 스프링 부트와 JPA 활용2 - API 개발 기본 "
-categories: SpringBoot
+categories: JPA
 author: devFancy
 ---
 * content
