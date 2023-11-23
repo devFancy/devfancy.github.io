@@ -11,13 +11,43 @@ author: devFancy
 
 * 2023년에는 내가 공부하면서 배운 내용을 꾸준히 기록해두자.
 
-
 ## Plan
 
 * [2023 Plan Note](https://gist.github.com/devFancy/03e1fb1aac746be13582891b0d0aab29)
 
 <script src="https://gist.github.com/devFancy/03e1fb1aac746be13582891b0d0aab29.js"></script>
 
+> 인프런 강의: [우아한형제들 최연소 기술이사 김영한의 스프링 완전 정복](https://www.inflearn.com/roadmaps/373)
+
+* [스프링 핵심 원리](https://www.inflearn.com/course/스프링-핵심-원리-기본편/dashboard) 강의 [정리]({{site.url}}/category/#Spring)
+
+* [모든 개발자를 위한 HTTP 웹 기본 지식](https://www.inflearn.com/course/http-웹-네트워크)  강의 [정리]({{site.url}}/category/#HTTP)
+
+* [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/스프링-mvc-1/dashboard) 강의
+
+* [스프링 DB 1편 - 데이터 접근 핵심 원리](https://www.inflearn.com/course/스프링-db-1/dashboard) 강의
+
+> 인프런 강의: [김영한의 스프링 부트와 JPA 실무 완전 정복 로드맵](https://www.inflearn.com/roadmaps/149)
+
+* [자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic) 강의
+
+* [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/스프링부트-JPA-활용-1/) 강의
+
+* [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/스프링부트-JPA-API개발-성능최적화/dashboard) 강의
+
+* [실전! 스프링 데이터 JPA](https://www.inflearn.com/course/스프링-데이터-JPA/dashboard) 강의
+
+> 객체 지향 설계, 테스트와 관련된 책
+
+* [내 코드가 그렇게 이상한가요?](https://product.kyobobook.co.kr/detail/S000202521361) 스터디 진행하면서 [정리](https://devfancy.github.io/category/#GoodCode)
+
+* [Practical Testing: 실용적인 테스트 가이드](https://www.inflearn.com/course/practical-testing-실용적인-테스트-가이드/dashboard) 강의
+
+> 협업, 마인드 관련된 책
+
+* [소프트웨어 장인](https://product.kyobobook.co.kr/detail/S000001889885) 책 읽고 내용과 소감문 [정리](https://devfancy.github.io/category/#Book)
+
+* [함께 자라기](https://product.kyobobook.co.kr/detail/S000001033071) 책 읽고 내용과 소감문 [정리](https://devfancy.github.io/category/#Book)
 
 ## Jan
 
@@ -75,17 +105,11 @@ author: devFancy
 
 ---
 
-**스프링 핵심 원리 - 기본편**
+> 스프링 핵심 원리 - 기본편
 
 * [[Spring] 객체 지향 설계와 스프링]({{site.url}}/Spring-Core-Principle-1/)
 
-* [Spring] 스프링 핵심원리 이해 - 객체 지향 원리 적용
-
-  * 좋은 객체 지향 설계의 5가지 원칙의 적용
-
-  * IoC, DI, 그리고 컨테이너
-
-  * [스프링으로 전환하기]({{site.url}}/Spring-Core-Principle-2/)
+* [[Spring] 핵심원리 - 기본편 : 객체 지향 원리 적용]({{site.url}}/Spring-Core-Principle-2/)
 
 * [[Spring] 스프링 컨테이너와 스프링 빈]({{site.url}}/Spring-Core-Principle-4/)
 
@@ -111,7 +135,7 @@ author: devFancy
 
 ---
 
-**모든 개발자를 위한 HTTP 웹 기본 지식**
+> 모든 개발자를 위한 HTTP 웹 기본 지식
 
 * [HTTP] 인터넷 네트워크 - 인터넷 통신 / IP / TCP, UDP / PORT / DNS
 
@@ -401,7 +425,7 @@ author: devFancy
 
 > 231023 ~ 231029
 
-* [[Java] 알고리즘/코딩테스트를 위한 코드 정리]({{site.url}}/Algorithm_cleanup/)
+* [[Java] 알고리즘/코딩테스트를 위한 코드 정리]({{site.url}}/Algorithm_Summary/)
 
 * [[Programmers] 131704. 택배상자]({{site.url}}/Programmers-131704/)
 
@@ -429,10 +453,48 @@ author: devFancy
 
 * [[Spring] Builder 패턴에 대한 이해와 사용, @Builder]({{site.url}}/Spring-Builder/)
 
+* [[Spring] Transaction이란 (feat. @Transactional 동작 원리)]({{site.url}}/)
+
 * [[Programmers] 43162. 네트워크(DFS)]({{site.url}}/Programmers-43162/)
 
 * [[Programmers] 수식 최대화(dfs, 순열)]({{site.url}}/Programmers-2020-Kakao-Internship-2/)
 
+* [[내 코드가 그렇게 이상한가요?] 4장. 불변 활용하기: 안정적으로 동작하게 만들기]({{site.url}}/Is-My-Code-That-Weird-4/)
+
+* [[내 코드가 그렇게 이상한가요?] 6장. 조건 분기: 미궁처럼 복잡한 분기 처리를 무너뜨리는 방법]({{site.url}}/Is-My-Code-That-Weird-6/)
+
+* [[내 코드가 그렇게 이상한가요?] 8장. 강한 결합: 복잡하게 얽혀서 풀 수 없는 구조]({{site.url}}/Is-My-Code-That-Weird-8/)
+
 > 231113 ~ 231119
 
 * [[DB] 정규화 과정]({{site.url}}/DB-Normalization/)
+
+* [[Technology] 왜 HTTPS를 사용하나요?]({{site.url}}/Technology-HTTPS/)
+
+* [[Goodfriends] Nginx와 Let's Encrypt로 HTTPS 웹 서비스 배포하기]({{site.url}}/Goodfriends-Nginx-SSL-HTTPS/)
+
+* [[내 코드가 그렇게 이상한가요?] 10장. 이름 설계: 구조를 파악할 수 있는 이름]({{site.url}}/Is-My-Code-That-Weird-10/)
+
+* [[내 코드가 그렇게 이상한가요?] 11장. 주석: 유지 보수와 변경의 정확성을 높이는 주석 장석 방법]({{site.url}}/Is-My-Code-That-Weird-11/)
+
+* [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Growing-Up-Together/)
+
+> 231120 ~ 231126
+
+* [[내 코드가 그렇게 이상한가요?] 13장. 모델링: 클래스 설계의 토대]({{site.url}}/Is-My-Code-That-Weird-13/)
+
+* [[내 코드가 그렇게 이상한가요?] 15장. 설계의 의의와 설계를 대하는 방법]({{site.url}}/Is-My-Code-That-Weird-15/)
+
+> 자바 ORM 표준 JPA 프로그래밍 - 기본편
+
+* JPA 소개
+
+* JPA 시작하기
+
+* [[JPA] 영속성 컨텍스트란]({{site.url}}/JPA-3-Persistence-Context/)
+
+* [[JPA] 엔티티 매핑]({{site.url}}/JPA-4-Entity-Mapping/)
+
+* [[JPA] 연관관계 기초]({{site.url}}/JPA-5-Relationship-Mapping-Basic/)
+
+* [[JPA] 다양한 연관관계 매핑]({{site.url}}/JPA-6-Relationship-Mapping-Kind/)
