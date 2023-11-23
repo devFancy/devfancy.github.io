@@ -11,11 +11,42 @@ author: devFancy
 
 * Java로 알고리즘/코딩테스트에서 자주 쓰이는 문법들을 정리하기 위한 포스팅이다.
 
+## 구현
+
+- 구현은 머릿속에 있는 알고리즘을 소스코드로 바꾸는 과정이다.
+
+  - Problem -> Thinking -> Solution
+
+- 구현 유형의 예시는 다음과 같다.
+
+  - 알고리즘은 간단한데 코드가 지나칠 만큼 길어지는 문제
+  - 실수 연산을 다루고, 특정 소수점 자리까지 출력해야 하는 문제
+  - 문자열을 특정한 기준에 따라서 끊어 처리해야 하는 문제
+  - 적절한 라이브러리를 찾아서 사용해야 하는 문제
+
+
+- 구현 유형은 `완전 탐색`, `시뮬레이션`을 포함한다.
+
+  - `완전 탐색`(Brute Forcing) : 모든 경우의 수를 주저 없이 다 계산하는 해결 방법
+  - `시뮬레이션` : 문제에서 제시한 알고리즘을 한 단계씩 차례대로 직접 수행
+
+> 관련 문제
+
+- [[Programmers] 150370. 개인정보 수집 유효기간](https://devfancy.github.io/Programmers-150370/)
+- [[Programmers] 42888. 오픈채팅방](https://devfancy.github.io/Programmers-42888/)
+- [[Programmers] 92341. 주차 요금 계산](https://devfancy.github.io/Programmers-92341/)
+- [[Programmers] 12981. 영어 끝말잇기](https://devfancy.github.io/Programmers-12981/)
+- [[Programmers] 92334. 신고 결과 받기](https://devfancy.github.io/Programmers-92334/)
+- [[Programmers] 118666. 성격 유형 검사하기](https://devfancy.github.io/Programmers-118666/)
+- [[Programmers] 81301. 숫자 문자열과 영단어](https://devfancy.github.io/Programmers-81301/)
+- [[Programmers] 67256. 키패드 누르기](https://devfancy.github.io/Programmers-67256/)
+
+
 ## DFS/BFS
 
 - 깊이 우선 탐색과 너비 우선 탐색은 [기본적인 그래프 기법 : DFS, BFS](https://devfancy.github.io/DataStructure-DFS-BFS/)에 정리했으니, 해당 글을 참고하자.
 
-> 관련 문제(최신순)
+> 관련 문제
 
 - [[Programmers] 1844. 게임 맵 최단거리(bfs)](https://devfancy.github.io/Programmers-1844/)
 - [[Programmers] 43162. 네트워크](https://devfancy.github.io/Programmers-43162/)
@@ -192,6 +223,8 @@ queue.peek();       // queue의 첫번째 값 참조
 
 
 ## Reference
+
+- [이것이 코딩 테스트다](https://product.kyobobook.co.kr/detail/S000001810273)
 
 - [2023-CS-Study: 신입 개발자 면접 대비 CS 스터디](https://github.com/devSquad-study/2023-CS-Study)
 
