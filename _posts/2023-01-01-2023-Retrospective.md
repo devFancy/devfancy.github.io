@@ -49,7 +49,7 @@ author: devFancy
 
 * [함께 자라기](https://product.kyobobook.co.kr/detail/S000001033071) 책 읽고 내용과 소감문 [정리](https://devfancy.github.io/category/#Book)
 
-## Jan
+## Weekly & Record
 
 > 230101 ~ 230107
 
@@ -185,7 +185,6 @@ author: devFancy
 
 * [[E.T.C] 왜 개발자를 선택했는가]({{site.url}}/ETC-Why-Did-You-Select-The-Developer/)
 
-## Feb
 
 > 230201 ~ 230205
 
@@ -289,8 +288,6 @@ author: devFancy
 
 * [[Database] DB Locking]({{site.url}}/DB-Locking/)
 
-## Mar
-
 > 230227 ~ 230305
 
 * [[Programmers] SQL > SUM, MAX, MIN 풀이 모음]({{site.url}}/Programmers-SQL-SUM-MAX-MIN/)
@@ -315,9 +312,9 @@ author: devFancy
 
 * [[Programmers] SQL > Join 풀이 모음]({{site.url}}/Programmers-JOIN/)
 
-* [[Interview] 프로그래밍 문제 접근법 (1)]({{site.url}}/Tech-Interview-1/)
+* [[Algorithm] 프로그래밍 문제 접근법 - 문제 해결]({{site.url}}/Tech-Interview-1/)
 
-* [[Interview] 프로그래밍 문제 접근법 (2)]({{site.url}}/Tech-Interview-2/)
+* [[Algorithm] 프로그래밍 문제 접근법 - 빅 오 분석법]({{site.url}}/Tech-Interview-2/)
 
 * [[DataStructure] 연결 리스트]({{site.url}}/DataStructure-LinkedList/)
 
@@ -339,24 +336,13 @@ author: devFancy
 
 * [[Programmers] 42584. 주식가격]({{site.url}}/Programmers-42584/)
 
-## Apr
+> 230403 ~ 230409
 
 * [[Programmers] 42583. 다리를 지나는 트럭]({{site.url}}/Programmers-42583/)
 
 * [[Programmers] 118667. 두 큐 합 같게 만들기]({{site.url}}/Programmers-118667/)
 
-* [[JavScript] 자바스크립트 기초(1) - 변수, 자료형, 연산자]({{site.url}}/JavaScript-1/)
-
-* [[JavScript] 자바스크립트 기초(2) - 조건문, 반복문, 객체]({{site.url}}/JavaScript-2/)
-
-## May
-
-* [[Vue.js] 1. 기본 템플릿 문법]({{site.url}}/VueJs-1/)
-
-* [[Java] JVM 메모리 구조]({{site.url}}/Java-JVM-Memory-Structure/)
-
-
-## Jun
+> 230514 ~ 230612
 
 * [[Java] 컬렉션 프레임워크 - List]({{site.url}}/Java-Collection-List/)
 
@@ -368,7 +354,7 @@ author: devFancy
 
 * [[Java] ArrayList와 LinkedList의 성능 비교]({{site.url}}/Java-ArrayList-LinkedList/)
 
-## Aug
+> 230805 ~ 230831
 
 * [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Grow-Together/)
 
@@ -386,12 +372,9 @@ author: devFancy
 
 * [[Goodfriends] PR 라벨로 Jenkins Build 유발 구분하기]({{site.url}}/Goodfriends-PR-Label-Jenkins-Build/)
 
-
-## September
+> 230901 ~ 230930
 
 * [[Goodfriends] 굿프렌즈팀의 DDD 기반 기능별 패키지 구조 적용기]({{site.url}}/Goodfriends-ddd-function-package/)
-
-## October
 
 > 231002 ~ 231008
 
@@ -428,8 +411,6 @@ author: devFancy
 * [[Goodfriends] Set-Cookie의 보안 속성 적용기]({{site.url}}/Technology-Set-Cookie/)
 
 * [NGINX란?]({{site.url}}/Technology-NGINX/)
-
-## November
 
 > 231031 ~ 231105
 
