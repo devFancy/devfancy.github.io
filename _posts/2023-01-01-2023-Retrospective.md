@@ -185,8 +185,6 @@ author: devFancy
 
 * [[E.T.C] 왜 개발자를 선택했는가]({{site.url}}/ETC-Why-Did-You-Select-The-Developer/)
 
-* [[Workout] 2023 1월 운동 기록]({{site.url}}/Workout/)
-
 ## Feb
 
 > 230201 ~ 230205
@@ -303,8 +301,6 @@ author: devFancy
 
 * [[SpringBoot] 변경 감지와 병합(merge)](https://devFancy.github.io/Springboot-merge/)
 
-* [2023 2월 운동 기록]({{site.url}}/Workout-2/)
-
 > 230306 ~ 230312
 
 * [[백준] 1937. 욕심쟁이 판다]({{site.url}}/baekjoon-1937/)
@@ -332,8 +328,6 @@ author: devFancy
 * [[Programmers] 42888. 오픈채팅방]({{site.url}}/Programmers-42888/)
 
 * [[DataStructure] 트리]({{site.url}}/DataStructure-Tree/)
-
-* [[DataStructure] 그래프]({{site.url}}/DataStructure-Graph/)
 
 * [[DataStructure] 기본적인 그래프 기법 : DFS, BFS]({{site.url}}/DataStructure-DFS-BFS/)
 
@@ -368,15 +362,11 @@ author: devFancy
 
 * [[MySQL] MacOS M1 기반 MySQL, Workbench, Sakila 설치하기]({{site.url}}/MySQL-Installation/)
 
-* [[MySQL 공식문서] DML - 기본 DB 조작 명령어, DML 스키마]({{site.url}}/MySQL-DML/)
-
 * [[MySQL] SELECT, JOIN - Practice]({{site.url}}/MySQL-DML-Practice-1/)
 
 * [[MySQL] SELECT, JOIN, SubQuery - Practice]({{site.url}}/MySQL-DML-Practice-2/)
 
 * [[Java] ArrayList와 LinkedList의 성능 비교]({{site.url}}/Java-ArrayList-LinkedList/)
-
-* [[DB] 파티셔닝]({{site.url}}/DB-Partition/)
 
 ## Aug
 
@@ -463,8 +453,6 @@ author: devFancy
 
 * [[내 코드가 그렇게 이상한가요?] 6장. 조건 분기: 미궁처럼 복잡한 분기 처리를 무너뜨리는 방법]({{site.url}}/Is-My-Code-That-Weird-6/)
 
-* [[내 코드가 그렇게 이상한가요?] 8장. 강한 결합: 복잡하게 얽혀서 풀 수 없는 구조]({{site.url}}/Is-My-Code-That-Weird-8/)
-
 > 231113 ~ 231119
 
 * [[DB] 정규화 과정]({{site.url}}/DB-Normalization/)
@@ -473,17 +461,13 @@ author: devFancy
 
 * [[Goodfriends] Nginx와 Let's Encrypt로 HTTPS 웹 서비스 배포하기]({{site.url}}/Goodfriends-Nginx-SSL-HTTPS/)
 
-* [[내 코드가 그렇게 이상한가요?] 10장. 이름 설계: 구조를 파악할 수 있는 이름]({{site.url}}/Is-My-Code-That-Weird-10/)
-
-* [[내 코드가 그렇게 이상한가요?] 11장. 주석: 유지 보수와 변경의 정확성을 높이는 주석 장석 방법]({{site.url}}/Is-My-Code-That-Weird-11/)
+* [[내 코드가 그렇게 이상한가요?] 8 - 12장 정리]({{site.url}}/Is-My-Code-That-Weird-8/)
 
 * [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Growing-Up-Together/)
 
 > 231120 ~ 231126
 
-* [[내 코드가 그렇게 이상한가요?] 13장. 모델링: 클래스 설계의 토대]({{site.url}}/Is-My-Code-That-Weird-13/)
-
-* [[내 코드가 그렇게 이상한가요?] 15장. 설계의 의의와 설계를 대하는 방법]({{site.url}}/Is-My-Code-That-Weird-15/)
+* [[내 코드가 그렇게 이상한가요?] 13 - 16장 정리]({{site.url}}/Is-My-Code-That-Weird-13/)
 
 > 자바 ORM 표준 JPA 프로그래밍 - 기본편
 
@@ -498,3 +482,7 @@ author: devFancy
 * [[JPA] 연관관계 기초]({{site.url}}/JPA-5-Relationship-Mapping-Basic/)
 
 * [[JPA] 다양한 연관관계 매핑]({{site.url}}/JPA-6-Relationship-Mapping-Kind/)
+
+* [[JPA] 고급 매핑 (상속관계 매핑, BaseEntity)]({{site.url}}/JPA-7-Advanced-Mapping/)
+
+> 231127 ~ 231203
