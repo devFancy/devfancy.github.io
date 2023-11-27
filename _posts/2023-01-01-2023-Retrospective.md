@@ -105,7 +105,7 @@ author: devFancy
 
 ---
 
-> 스프링 핵심 원리 - 기본편
+스프링 핵심 원리 - 기본편
 
 * [[Spring] 객체 지향 설계와 스프링]({{site.url}}/Spring-Core-Principle-1/)
 
@@ -135,7 +135,7 @@ author: devFancy
 
 ---
 
-> 모든 개발자를 위한 HTTP 웹 기본 지식
+모든 개발자를 위한 HTTP 웹 기본 지식
 
 * [HTTP] 인터넷 네트워크 - 인터넷 통신 / IP / TCP, UDP / PORT / DNS
 
@@ -156,14 +156,6 @@ author: devFancy
 * [[HTTP] HTTP 헤더2 - 캐시와 조건부 요청]({{site.url}}/HTTP-7-Header2)
 
 ---
-
-* [[Java] 객체지향언어]({{site.url}}/Java-1-Object-Oriented-Language/)
-
-* [[Java] 클래스와 객체]({{site.url}}/Java-2-Class-And-Object/)
-
-* [[Java] 변수와 메소드]({{site.url}}/Java-3-Variable-And-Method/)
-
-* [[Java] JVM의 메모리 구조]({{site.url}}/Java-3_2-JVM-Memory-Structure/)
 
 > 230126 ~ 230131
 
@@ -344,8 +336,6 @@ author: devFancy
 
 > 230514 ~ 230612
 
-* [[Java] 컬렉션 프레임워크 - List]({{site.url}}/Java-Collection-List/)
-
 * [[MySQL] MacOS M1 기반 MySQL, Workbench, Sakila 설치하기]({{site.url}}/MySQL-Installation/)
 
 * [[MySQL] SELECT, JOIN - Practice]({{site.url}}/MySQL-DML-Practice-1/)
@@ -442,15 +432,15 @@ author: devFancy
 
 * [[Goodfriends] Nginx와 Let's Encrypt로 HTTPS 웹 서비스 배포하기]({{site.url}}/Goodfriends-Nginx-SSL-HTTPS/)
 
-* [[내 코드가 그렇게 이상한가요?] 8 - 12장 정리]({{site.url}}/Is-My-Code-That-Weird-8/)
+* [[내 코드가 그렇게 이상한가요?] 8 - 12장 정리]({{site.url}}/Is-My-Code-That-Weird-8-to-12/)
 
 * [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Growing-Up-Together/)
 
 > 231120 ~ 231126
 
-* [[내 코드가 그렇게 이상한가요?] 13 - 16장 정리]({{site.url}}/Is-My-Code-That-Weird-13/)
+* [[내 코드가 그렇게 이상한가요?] 13 - 16장 정리]({{site.url}}/Is-My-Code-That-Weird-13-to-16/)
 
-> 자바 ORM 표준 JPA 프로그래밍 - 기본편
+자바 ORM 표준 JPA 프로그래밍 - 기본편
 
 * JPA 소개
 
