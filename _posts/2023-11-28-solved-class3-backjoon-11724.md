@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " [solved.ac] Class3++ 11724. 연결 요소의 개수(dfs) "
+title: " [solved.ac] Class3++ 11724. 연결 요소의 개수(DFS) "
 categories: Algorithm
 author: devFancy
 ---
@@ -89,13 +89,6 @@ class Main {
 ### Step0. 입력 및 초기화
 
 ```java
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.StringTokenizer;
-import java.io.*;
-
 class Main {
     static final int MAX = 1000 + 10;
     static boolean[][] graph;
@@ -167,12 +160,7 @@ class Main {
 
 ```java
 class Main {
-    final static int MAX = 1000 + 10;
-    static boolean[][] graph;
-    static boolean[] visited;
-    static int N, M;
-    static int answer;
-
+    ...
     static void dfs(int idx) {
       visited[idx] = true;
       for(int i = 1; i <= N; i++) {
@@ -223,21 +211,7 @@ class Main {
 
 ```java
 class Main {
-    final static int MAX = 1000 + 10;
-    static boolean[][] graph;
-    static boolean[] visited;
-    static int N, M;
-    static int answer;
-
-    static void dfs(int idx) {
-      visited[idx] = true;
-      for(int i = 1; i <= N; i++) {
-        if(visited[i] == false && graph[idx][i]) {
-          dfs(i);
-        }
-      }
-    }
-    
+    ...
     public static void main(String[] args) throws IOException {
 
       // 3. 출력
