@@ -15,7 +15,7 @@ author: fancy96
 
 1. [Spring 핵심원리 - 기본편 : 객체 지향 설계와 스프링](https://devfancy.github.io/Spring-Core-Principle-1/)
 
-2. [Spring 핵심원리 - 기본편 : 스프링으로 전환하기](https://devfancy.github.io/Spring-Core-Principle-2/)
+2. [Spring 핵심원리 - 기본편 : 객체 지향 원리 적용](https://devfancy.github.io/Spring-Core-Principle-2/)
 
 3. [Spring 핵심원리 - 기본편 : 스프링 컨테이너와 스프링 빈](https://devfancy.github.io/Spring-Core-Principle-4/)
 
@@ -130,7 +130,7 @@ public class AutoAppConfig {
 }
 ```
 
-* `basePackageClasses` : 지정한 클래스의 패키지를 탑색 시작 위치로 지정한다.
+* `basePackageClasses` : 지정한 클래스의 패키지를 탐색 시작 위치로 지정한다.
 
 * 패키지의 시작 위치를 지정하지 않으면 `@ComponentScan`이 붙은 설정 정보 클래스의 패키지가 시작 위치가 된다.
 
