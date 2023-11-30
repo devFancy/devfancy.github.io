@@ -111,7 +111,7 @@ author: devFancy
 
 ### READ_COMMITTED
 
-* 가장 많이 사용하는 격리 수준이며, MySQL8.0, PostgreSQL, SQL Server, 오라클에서 기본값으로 설정되어 있다.
+* 가장 많이 사용하는 격리 수준이며, PostgreSQL, SQL Server, 오라클에서 기본값으로 설정되어 있다.
 
 * READ_UNCOMMITTED 와 달리 다른 트랜잭션이 커밋 되지 않은 정보는 읽을 수 없다.
 
@@ -123,7 +123,9 @@ author: devFancy
 
 ### REPEATABLE_READ
 
-* 하나의 트랜잭션이 수정한 행을 다른 트랜잭션이 수정할 수 없도록 막아주지만 **새로운 행을 추가**하는 것은 막지 않는다.
+> "REPEATABLE READ: This is the default isolation level for InnoDB." - MySQL 공식문서 -
+
+* **`MySQL의 InnoDB엔진`의 기본 격리수준**으로, 하나의 트랜잭션이 수정한 행을 다른 트랜잭션이 수정할 수 없도록 막아주지만 **새로운 행을 추가**하는 것은 막지 않는다.
 
     따라서 이후에 **추가된 행**이 발견될 수 있다.
 
