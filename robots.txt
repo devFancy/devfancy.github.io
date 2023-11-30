@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://fancy96.github.io/sitemap.xml
+Sitemap: http://devFancy.github.io/sitemap.xml
