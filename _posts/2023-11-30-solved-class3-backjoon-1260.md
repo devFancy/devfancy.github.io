@@ -2,7 +2,7 @@
 layout: post
 title: " [solved.ac] Class3++ 1260. DFS와 BFS "
 categories: Algorithm
-author: fancy96
+author: devFancy
 ---
 * content
 {:toc}
