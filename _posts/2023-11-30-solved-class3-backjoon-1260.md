@@ -9,15 +9,99 @@ author: fancy96
 
 [문제 링크](https://www.acmicpc.net/problem/1260)
 
-### 성능 요약
+## 성능 요약
 
 * 메모리: 24156 KB, 시간: 368 ms
 
-### 구분
+## 구분
 
 * 그래프 이론(graphs), 그래프 탐색(graph_traversal), 너비 우선 탐색(bfs), 깊이 우선 탐색(dfs)
 
-### Answer Code1(2023.02.09)
+## Answer Code2(2023.11.30)
+
+```java
+import java.util.*;
+import java.io.*;
+
+class Main {
+    static final int MAX = 1000 + 10;
+    static boolean[][] graph;
+    static boolean[] visited;
+    static ArrayList<Integer> queue; // bfs를 위해 만든 것
+    static int N, M, V;
+
+    public static void dfs(int idx) {
+        visited[idx] = true;
+        System.out.print(idx + " "); // 몇 번째 노드를 방문했다.
+        
+        for(int i = 1; i <= N; i++) {
+            if(visited[i] == false && graph[idx][i] == true) {
+                dfs(i);
+            }
+        }
+        
+    }
+    /*
+     * bfs() 풀이 과정
+     * 1. queue를 만들고, visited를 새로 초기화해준다.
+     * 2. 가장 첫 번째 시작 정점이라는 값(1)을 추가해주고, 그 값(1)을 방문했다라고 표기해준다. (처음 V 값이 1이므로)
+     * 3. !queue.isEmpty() 때까지, 가장 앞에 있는 값을 꺼내오고, 출력해 준 다음에 그 값을 기준으로 방문할 수 있는 값들을 방문한다.
+     * 
+     */
+    public static void bfs() {
+        queue = new ArrayList<>();
+        visited = new boolean[MAX];
+
+        queue.add(V);
+        visited[V] = true;
+
+        while (!queue.isEmpty()) {
+            int idx = queue.remove(0); // 가장 앞에 있는 녀석을 꺼내서 걔를 인덱스에 담겠다.
+            System.out.print(idx + " ");
+
+            for(int i = 1; i <= N; i++) {
+                if(visited[i] == false && graph[idx][i] == true) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+            
+        }
+    }
+    public static void main(String[] args) throws IOException {
+        // 0. 입력 및 초기화
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        V = Integer.parseInt(st.nextToken());
+
+        graph = new boolean[MAX][MAX];
+        visited = new boolean[MAX];
+
+        // 1. graph에 연결 정보 채우기
+        for(int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            graph[x][y] = true;
+            graph[y][x] = true;
+        }
+
+        // 2. dfs(재귀 함수) 호출 + 출력하기
+        dfs(V);
+        System.out.println();
+
+        // 3. bfs(너비 우선 탐색) 호출 + 출력하기
+        bfs();
+
+        // 4. 종료
+        br.close();
+    }
+}
+```
+
+## Answer Code1(2023.02.09)
 
 ```java
 import java.io.*;
@@ -100,11 +184,19 @@ public class Main {
 
 ## Review
 
+> 23.02.15
+
 * 해당 문제는 dfs, bfs 관련 문제를 **처음 풀기 좋은 정석같은 문제**였다.
 
 * **입출력 부분에서 `BufferedReader` 사용하는 방법**을 처음 알게 되었다. 그동안 Scanner를 이용해서 풀었는데, 이번에는 다른 방식으로 풀면서 해당 개념에 대해 배워서 좋았다.
 
 * `dfs`, `bfs`에 대해서는 관련 문제들을 풀면서 개념을 계속적으로 복습해 나가면서, 최종적으로는 머릿속으로도 문제를 풀 수 있는 실력을 갖추도록 하자.
+
+> 23.11.15
+
+* bfs 문제를 풀 때는 queue 자료구조를 사용하고, 관련 메서드 함수들을 기억해두자.
+
+* 만약 **내림차순**으로 방문한다라고 가정한다면, dfs 함수에서 for문을 `for(int i = N; i >= 1; i--)`로 수정해주면 된다. -> 가장 큰 값부터 가장 작은 값까지 방문한다.
 
 ## Reference
 
