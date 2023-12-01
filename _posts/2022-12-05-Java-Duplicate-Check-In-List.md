@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  " 리스트 내 요소 중복 체크(유효성 검사) "
-categories: AlgorithmSkill
-author: fancy96
+categories: Java
+author: devFancy
 ---
 * content
 {:toc}

@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "제곱근, 제곱을 구할때 쓰는 메서드"
-categories: AlgorithmSkill
-author: fancy96
+categories: Java
+author: devFancy
 ---
 * content
 {:toc}

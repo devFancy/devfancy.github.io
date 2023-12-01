@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  " String을 List<Integer>로 변환하는 방법 "
-categories: AlgorithmSkill
-author: fancy96
+categories: Java
+author: devFancy
 ---
 * content
 {:toc}
