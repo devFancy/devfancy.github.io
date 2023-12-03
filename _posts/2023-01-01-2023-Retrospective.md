@@ -19,35 +19,35 @@ author: devFancy
 
 > 인프런 강의: [우아한형제들 최연소 기술이사 김영한의 스프링 완전 정복](https://www.inflearn.com/roadmaps/373)
 
-* [스프링 핵심 원리](https://www.inflearn.com/course/스프링-핵심-원리-기본편/dashboard) 강의 [정리]({{site.url}}/category/#Spring)
+* [스프링 핵심 원리](https://www.inflearn.com/course/스프링-핵심-원리-기본편/dashboard)
 
-* [모든 개발자를 위한 HTTP 웹 기본 지식](https://www.inflearn.com/course/http-웹-네트워크)  강의 [정리]({{site.url}}/category/#HTTP)
+* [모든 개발자를 위한 HTTP 웹 기본 지식](https://www.inflearn.com/course/http-웹-네트워크)
 
-* [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/스프링-mvc-1/dashboard) 강의
+* [스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술](https://www.inflearn.com/course/스프링-mvc-1/dashboard)
 
-* [스프링 DB 1편 - 데이터 접근 핵심 원리](https://www.inflearn.com/course/스프링-db-1/dashboard) 강의
+* [스프링 DB 1편 - 데이터 접근 핵심 원리](https://www.inflearn.com/course/스프링-db-1/dashboard)
 
 > 인프런 강의: [김영한의 스프링 부트와 JPA 실무 완전 정복 로드맵](https://www.inflearn.com/roadmaps/149)
 
-* [자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic) 강의
+* [자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic)
 
-* [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/스프링부트-JPA-활용-1/) 강의
+* [실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://www.inflearn.com/course/스프링부트-JPA-활용-1/)
 
-* [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/스프링부트-JPA-API개발-성능최적화/dashboard) 강의
+* [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://www.inflearn.com/course/스프링부트-JPA-API개발-성능최적화/dashboard)
 
-* [실전! 스프링 데이터 JPA](https://www.inflearn.com/course/스프링-데이터-JPA/dashboard) 강의
+* [실전! 스프링 데이터 JPA](https://www.inflearn.com/course/스프링-데이터-JPA/dashboard)
 
 > 객체 지향 설계, 테스트와 관련된 책
 
-* [내 코드가 그렇게 이상한가요?](https://product.kyobobook.co.kr/detail/S000202521361) 스터디 진행하면서 [정리](https://devfancy.github.io/category/#GoodCode)
+* [내 코드가 그렇게 이상한가요?](https://product.kyobobook.co.kr/detail/S000202521361)
 
-* [Practical Testing: 실용적인 테스트 가이드](https://www.inflearn.com/course/practical-testing-실용적인-테스트-가이드/dashboard) 강의
+* [Practical Testing: 실용적인 테스트 가이드](https://www.inflearn.com/course/practical-testing-실용적인-테스트-가이드/dashboard)
 
 > 협업, 마인드 관련된 책
 
-* [소프트웨어 장인](https://product.kyobobook.co.kr/detail/S000001889885) 책 읽고 내용과 소감문 [정리](https://devfancy.github.io/category/#Book)
+* [소프트웨어 장인](https://product.kyobobook.co.kr/detail/S000001889885)
 
-* [함께 자라기](https://product.kyobobook.co.kr/detail/S000001033071) 책 읽고 내용과 소감문 [정리](https://devfancy.github.io/category/#Book)
+* [함께 자라기](https://product.kyobobook.co.kr/detail/S000001033071)
 
 ## Weekly & Record
 
@@ -457,3 +457,21 @@ author: devFancy
 * [[JPA] 고급 매핑 (상속관계 매핑, BaseEntity)]({{site.url}}/JPA-7-Advanced-Mapping/)
 
 > 231127 ~ 231203
+
+* [[Programmers] [1차] 프렌즈4블록(2018 카카오 블라인드)]({{site.url}}/Programmers-17679/)
+
+* [[Programmers] 후보키 (2019 카카오 블라인드)]({{site.url}}/Programmers-42890/)
+
+* [[solved.ac] Class3++ 2606. 바이러스 (DFS)]({{site.url}}/solved-class3-backjoon-2606/)
+
+* [[solved.ac] Class3++ 11724. 연결 요소의 개수(DFS)]({{site.url}}/solved-class3-backjoon-11724/)
+
+* [[백준] 알고리즘 수업 - 깊이 우선 탐색 1(DFS)]({{site.url}}/Algorithm-Baekjoon-24479/)
+
+* [[백준] 알고리즘 수업 - 깊이 우선 탐색 2(DFS)]({{site.url}}/Algorithm-Baekjoon-24480/)
+
+* [[백준] 2644번. 촌수계산(DFS)]({{site.url}}/Algorithm-backjoon-2644/)
+
+* [[solved.ac] Class3++ 1260. DFS와 BFS]({{site.url}}/Algorithm-solved-class3-backjoon-1260/)
+
+* [[백준] 11725. 트리의 부모찾기]({{site.url}}/Algorithm-backjoon-11725/)
