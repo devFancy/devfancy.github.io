@@ -42,29 +42,15 @@ type: page
 
 ### 2023
 
-* 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요?
+* 　11. 26 ~ 2024. 04 [글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가
 
-* 　10. 18 ~ 10. 31 [실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화](https://github.com/devFancy/jpashop)
+* 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 완독 및 [정리](https://devfancy.github.io/category/#GoodCode)
 
-* 　08. 02 ~ [사기 피해방지 중고거래 웹 서비스: Goodfriends - Backend/DevOps Developer](https://github.com/woorifisa-projects/GoodFriends)
+* 　08. 02 ~ 09. 27 팀프로젝트 - [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) : 중고거래 웹 서비스, 역할: `Backend Developer`, [관련 포스팅](https://devfancy.github.io/category/#Goodfriends)
 
-* 　04. 24 ~ 09. 27  [우리FISA 클라우드 서비스 개발 과정 참가](https://github.com/devFancy/devfancy-woorifisa)
+* 　04. 24 ~ 09. 27 우리FISA 클라우드 서비스 개발 과정 - [정리](https://github.com/devFancy/devfancy-woorifisa)
 
-* 　03. 17 ~  03. 31 `프로그래밍 면접 이렇게 준비한다` 공부 - [Interview]({{site.url}}/category/#Interview), [DataStructure]({{site.url}}/category/#DataStructure)
-
-* 　03. 07 ~ 10. 22 [Hibit: 예술 전시회 소셜 매칭 서비스 - Backend Developer](https://github.com/hibit-team/hibit-backend)
-
-[//]: # (* 　03. 05 ~ Study 자바 ORM 표준 JPA 프로그래밍 - 기본편)
-
-* 　02. 22 ~ 03. 04 [Study 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발](https://github.com/devfancy/jpashop/)
-
-* 　02. 13 ~ 03. 05 [Study Database]({{site.url}}/category/#Database)
-
-* 　01. 23 ~ 02. 19 [Study & Review Operating System]({{site.url}}/category/#OS)
-
-* 　01. 21 ~ 01. 25 [Study 모든 개발자를 위한 HTTP 웹 기본 지식]({{site.url}}/category/#HTTP)
-
-* 　01. 14 ~ 01. 24 [Study 스프링 핵심원리 - 기본편]({{site.url}}/category/#Spring)
+* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`
 
 * 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
 
@@ -74,29 +60,25 @@ type: page
 
 * 　01. 12 [기술 블로그](https://github.com/devfancy/devfancy.github.io) 생성
 
-* 　01. 07 ~ [Programmers : 코딩테스트 대비]({{site.url}}/category/#Algorithm)
-
-* 　01. 02 ~ 02. 18 [Study Network]({{site.url}}/category/#Network)
+* 　01. 07 ~ [Programmers : 코딩테스트 대비](https://github.com/devFancy/problem-solving)
 
 * 　01. 02 ~ 06. 30 [CS 스터디 진행](https://github.com/devSquad-study/2023-CS-Study)
 
 ### 2022
 
-* 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득]({{site.url}}/Coursera-Certificates/)
+* 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득](https://devfancy.github.io/Coursera-Certificates/)
 
-* 　10. 26 ~ 12. 17 [우아한테크코스 5기 프리코스 과정](https://github.com/devfancy/devfancy-woowacourse) 참가
+* 　10. 26 ~ 12. 17 [우아한테크코스 5기 프리코스 과정](https://github.com/devFancy/devfancy-woowacourse) 참가
 
-* 　10. 12 ~ 11. 18 [Competition : KNU 창업 성과 경진대회 수상](https://computer.knu.ac.kr/bbs/board.php?bo_table=sub5_1&wr_id=26769)
+* 　10. 12 ~ 11. 18 [Competition : KNU 창업 성과 경진대회 장려상 수상
 
-* 　09. 01 ~ 12. 20 [Study Operating System]({{site.url}}/category/#OS)
+* 　09. 01 ~ 12. 20 [Study Operating System](https://devfancy.github.io/category/#OS)
 
 * 　08. 30 ~ 08. 31 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
 
-* 　08. 09 ~ 10. 28 [Competition : KNU 학생설계 융합전공 공모전 수상](https://knu.ac.kr/wbbs/wbbs/bbs/btin/viewBtin.action?bbs_cde=11&btin.bbs_cde=11&btin.doc_no=1326876&btin.appl_no=000000&btin.page=1&btin.search_type=&btin.search_text=&popupDeco=false&btin.note_div=row&menu_idx=73)
+* 　08. 09 ~ 10. 28 [Competition : KNU 학생설계 융합전공 공모전 대상 수상](https://devfancy.github.io/Competition-KNU-Student-Design-Convergence-Major-Contest/)
 
-* 　07. 04 ~ 11. 03 [Competition : 공개 SW 개발자 대회, OSS](https://www.oss.kr/dev_competition) 본선 진출
-
-* 　07. 01 ~ 07. 14 [스프링 부트 웹 프로젝트 공부](https://github.com/devfancy/Spring-Boot-Web-Project)
+* 　07. 04 ~ 11. 03 Competition : 2022 공개 SW 개발자 대회 OSS 우수작 선정
 
 * 　07. 01 ~ 08. 31 ESG 플랫폼 - 백엔드 개발자 인턴 근무
 
@@ -110,18 +92,13 @@ type: page
 
 * 　03. 15 ~ 06. 15 Study Java (명품 자바 에센셜)
 
-* 　03. 02 ~ 06. 26 [Study Probability Statistics]({{site.url}}/PS-Introduction/)
+* 　03. 02 ~ 06. 26 [Study Probability Statistics](https://devfancy.github.io/category/#Probability-Statistics)
 
-* 　03. 02 ~ 06. 25 [Study Electronic Finance School of Business Administration]({{site.url}}/EF-Introduction/)
+* 　03. 02 ~ 06. 25 [Study Electronic Finance School of Business Administration](https://devfancy.github.io/category/#Electronic-Finance)
 
-* 　03. 02 ~ 06. 17 [Study Business Statistics]({{site.url}}/BS-Introduction/)
+* 　03. 02 ~ 06. 17 [Study Business Statistics](https://devfancy.github.io/category/#Business-Statistics)
 
 * 　03. 02 ~ 06. 15 [Study Algorithm Practice](https://github.com/devfancy/KNU/tree/main/algorithm)
-
-* 　01. 17 ~ 02. 13 31회 투자자산운용사 공부
-
-* 　01. 01 ~ [Study Data Science](https://datascienceschool.net/intro.html)
-
 
 ### 2021
 
@@ -131,7 +108,7 @@ type: page
 
 * 　09 ~ [교내 동아리 데이터금융분석학회(DART)](https://www.knudart.com/) 참가
 
-* 　09. 06 ~ 09. 07 [Study Linux]({{site.url}}/SP-Linux/)
+* 　09. 06 ~ 09. 07 [Study Linux](https://devfancy.github.io/category/#SystemProgramming)
 
 * 　09. 01 ~ 12. 15 [Study SystemProgramming](https://github.com/devfancy/KNU/tree/main/systemProgramming)
 
@@ -170,17 +147,6 @@ type: page
 *   네트워크관리사 2급 (19. 04. 09) - NT2046165
 
 *   컴퓨터활용능력 1급 (19. 03. 29) - 19-K9-027104
-
----
-
-## Hobby
-
-*   어쿠스틱 기타 : 2012 ~ 2014 / 2017 ~ 2018 / 2022 ~
-
-*   [운동]({{site.url}}/category/#Workout) : 2018 ~
-
-*   [독서 : 재테크, IT]({{site.url}}/category/#Book) : 2017 ~
-
 ---
 
 ## Comments
