@@ -93,7 +93,7 @@ Docker를 설치하기 이전에, **먼저 Jenkins EC2 인스턴스에 연결을
 
 (참고로, $ 앞에 "ubuntu@ip-{젠킨스 EC2 인스턴스 ip 주소}~" 계속 중복되어서 생략했습니다)
 
-1. Update the apt package index and install packages to allow apt to use a repository over HTTPS
+[1]. Update the apt package index and install packages to allow apt to use a repository over HTTPS
 
 (아래 명령을 통해서 우분투의 apt의 패키지 인덱스를 최신화하고, apt가 HTTPS를 통해 패키지를 설치할 수 있도록 설정합니다)
 
@@ -103,7 +103,7 @@ $ sudo apt-get install ca-certificates curl gnupg
 ```
 
 
-2. Add Docker’s official GPG key(도커의 공식 GPG 키 추가)
+[2]. Add Docker’s official GPG key(도커의 공식 GPG 키 추가)
 
 ```shell
 $ sudo install -m 0755 -d /etc/apt/keyrings
@@ -111,7 +111,7 @@ $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -
 $ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 ```
 
-3. Use the following command to set up the repository(레포지토리 셋업)
+[3]. Use the following command to set up the repository(레포지토리 셋업)
 
 ```shell
 $ echo \
@@ -124,13 +124,13 @@ sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 ### 2-3. Docker 엔진  설치
 
-1. apt 패키지 인덱스를 업데이트 합니다.
+[1]. apt 패키지 인덱스를 업데이트 합니다.
 
 ```shell
 $ sudo apt-get update
 ```
 
-2. 아래 명령을 실행하면 가장 최신버전의 도커 엔진이 설치됩니다.
+[2]. 아래 명령을 실행하면 가장 최신버전의 도커 엔진이 설치됩니다.
 
 - Latest 
 - Specific version
