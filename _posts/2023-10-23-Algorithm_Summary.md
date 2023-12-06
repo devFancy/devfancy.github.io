@@ -128,6 +128,8 @@ author: devFancy
 
 ## Stack
 
+![](/assets/img/java/stack.png)
+
 * 스택은 `LIFO`(List In First Out, 후입선출) 구조로 데이터를 쌓아올린 형태의 자료구조를 뜻한다. ex) 쓰레기통, 마트용 음료수 진열대, 프링X스(과자)
 
 * 즉 한쪽 끝에서만 자료(데이터)를 넣고 뺄 수 있는 형식의 자료 구조이다.
@@ -172,13 +174,13 @@ Stack<Integer> stack = new Stack<>();
 
 ## Queue
 
+![](/assets/img/java/queue.png)
+
 * 큐는 `FIFO`(First In First Out, 선입선출) 데이터를 순서대로 줄을 세운 형태의 자료구조를 뜻한다. ex) 놀이공원 이나 매표소 등 줄을 서서 차례로 업무를 처리하는 경우
 
 * 주로 `앞(frotn`)에서는 `조회/삭제` 연산을 수행하고, `뒤(Rear)`에서는 `삽입` 연산을 수행한다.
 
 * 그래프의 넓이 우선 탐색(BFS)에서도 사용된다.
-
-![](/assets/img/java/Java_queue.png)
 
 * 용어 정리
   
