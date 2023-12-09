@@ -353,9 +353,178 @@ IntelliJ IDEA - Preferences - Live Templates - Java - test에서 아래 Template
 
 ## Spring & JPA 기반 테스트
 
-### 레이어드 아키텍처와 테스트
+### 레이어드 아키텍처와 통합 테스트
+
+#### 레이어드 아키텍처
+
+![](/assets/img/testcode/Practical_Testing_Layered_Architecture.png)
+
+사용자의 요청을 Layer 별로 구분하여 처리하는 구조인데, 이는 Presentation Layer, Business Layer, Persistence Layer 라는 3가지 Layer로 구분된다.
+
+  * (Persistence Layer 하위에 Infrastructure Layer를 두고 4 티어라고 부르기도 한다)
+
+이러한 레이어드 아키텍처 구조는 **관심사를 분리해서 책임을 나누고, 유지보수하기 용이하게 만드는 목적**이 크다.
+
+이렇게 관심사를 분리하면 테스트 하기 복잡해 보일 수 있지만, 레이어별로 뜯어서 접근을 해볼 수 있다.
+
+왜냐하면 관심사가 분리되어 있으니까, 사실 복잡해 보이지만, 앞서 배웠던 것들과 기조는 동일하다.
+
+  * 여기서 `기조`는 테스트하기 어려운 영역을 외부로 분리하고 테스트 하고자 하는 영역에 집중하고, 명시적이고 이해할 수 있는 문서 형태로 테스트를 깔끔하게 작성한다는 것을 말한다.
+
+그래서 Spring & JPA 기반 테스트 보다는, **우리가 무엇을 테스트할지, 어떻게 테스트할지 집중**해서 보면 좋을 것 같다.
+
+#### 통합 테스트
+
+`통합 테스트`란 여러 모듈이 협력하는 기능을 통합적으로 검증하는 테스트이다.
+
+일반적으로 작은 범위의 단위 테스트만으로는 기능 전체의 신뢰성을 보장할 수 없다.
+
+그래서 풍부한 단위 테스트와 큰 기능 단위를 검증하는 통합 테스트, 두 가지 관점으로 접근하면 좋을 것 같다.
+
+아래부터는 각 레이어별로 통합 테스트를 어떻게 진행하면 좋을지에 대해서 알아가보자.
 
 ### Spring / JPA & 기본 엔티티 설계
+
+> Library vs Framework 
+
+![](/assets/img/testcode/Practical_Testing_8.png)
+
+Spring에 대해서 이야기 할 때 Library와 Framework의 차이점에 대해 고민해볼 수 있다.
+
+* Library의 경우  **내 코드가 주체**가 되어서 필요한 기능만 있다면, 외부에서 끌어와서 사용을 하게 된다.
+
+* Framework의 경우 이미 갖춰진 동작할 수 있는 그런 환경들이 구성이 되어있고, **내 코드가 수동적으로 이 프레임안에 들어가서 역할**을 하게 된다.
+
+Spring 같은 경우는 프레임워크로써 이미 갖춰진 것들, 제공하고 있는 환경들이 있고, 그걸 맞춰서 우리가 우리의 코드를 작성해서 끼워 넣으면 원하는 대로 동작을 하게 되는 구조인 것이다.
+
+> Spring 3대 개념
+
+* IoC(Inversion of Control)
+
+* DI(Dependency Injection)
+
+* AOP (Aspect Oriented Programming)
+
+(Spring 3대 개념에 대한 자세한 내용은 해당 포스팅의 주요 내용이 아니여서, 다른 포스팅에서 정리해보려고 합니다)
+
+> ORM과 JPA
+
+`ORM`(Object-Relational Mapping)이란 객체와 관계형 데이터베이스의 데이터를 자동으로 매핑해주는 일을 한다. 
+
+* 객체지향 프로그래밍은 클래스를 사용하고 관계형 데이터베이스는 테이블을 사용하여 두 모델간에 불일치가 발생하게 된다. 이러한 문제는 `ORM`이 **중간에서 객체간의 관계를 바탕으로 RDB와 매핑하여 불일치를 해결**해줄 수 있다.
+
+* ORM을 사용함으로써 객체 지향적인 코드로 인해 더 직관적이고 비즈니스 로직에 더 집중할 수 있게 도와주고, DBMS에 대한 종속성이 줄어들게 된다.
+
+`JPA`(Java Persistence API)란 **자바에서 사용하고 있는 ORM의 표준**이다.
+
+  * JPA는 구현체가 아닌 `인터페이스의 모음`으로, JPA의 인터페이스를 구현한 대표적인 오픈소스로는 Hibernate, EclipseLink, DataNucleus가 있다. 보통 `Hibernate` 를 주로 사용한다.
+
+  * 기본적인 CRUD SQL 쿼리문을 생성하고 실행해주며, 여러 부가 기능을 제공한다. 편리하지만 쿼리를 직접 작성하지 않기 때문에, 어떤 식으로 쿼리가 만들어지고 실행되는지 명확하게 이해하고 있어야 한다.
+
+  * Spring 진영에서는 JPA를 한번 더 추상화한 `Spring Data JPA` 을 제공한다.
+
+  * JPA는 주로 `QueryDSL`와 많이 조합하여 사용하게 되는데, `QueryDSL`은 **타입체크나 동적쿼리에 대한 이점 때문에 실무에서는 거의 필수로 사용**되고 있다.
+
+  * JPA에서 주로 사용하는 어노테이션으로 @Entity, @Id, @Column, @ManyToOne, @OneToMany, @OneToOne, @ManyToMany가 있다. @ManyToMany의 경우에는 일대다 - 다대일 관계로 풀어서 사용하는 것을 권장한다.
+
+> Entity 설계
+
+이번 프로젝트 주제인 '초간단 카페 키오스크 시스템'에서 사용할 엔티티 중에서 Order(주문)과 Product(상품)이라는 엔티티가 있다.
+
+여기서 Order와 Product의 관계가 다대다 관계를 지니고 있다. 하나의 주문에는 여러 개의 상품이 존재할 수 있고, 하나의 상품에도 여러 개의 주문이 존재할 수 있다.
+
+![](/assets/img/testcode/Practical_Testing_9.png)
+
+그래서 다대다 관계를 일대다, 다대일 관계로 풀어서 접근하기 위해 **중간 매핑 테이블(OrderProduct)을 만들어서 연관관계를 매핑**해준다.
+
+보통은 주문에서 상품을 조회하는 경우는 있지만, 상품에서 주문을 조회하는 경우는 없기 때문에, 주문(Order)에서만 양방향 매핑을 하고 상품(Product)에는 단방향 매핑을 했다.
+
+```java
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "orders")
+@Entity
+public class Order extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
+    private int totalPrice;
+
+    private LocalDateTime registeredDateTime;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderProduct> orderProducts = new ArrayList<>();
+
+    public Order(List<Product> products, LocalDateTime registeredDateTime) {
+        this.orderStatus = OrderStatus.INIT;
+        this.totalPrice = calculateTotalPrice(products);
+        this.registeredDateTime = registeredDateTime;
+        this.orderProducts = products.stream()
+                .map(product -> new OrderProduct(this, product))
+                .collect(Collectors.toList());
+    }
+}
+```
+
+```java
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+public class OrderProduct extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Order order;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Product product;
+
+    public OrderProduct(Order order, Product product) {
+        this.order = order;
+        this.product = product;
+    }
+}
+```
+
+```java
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
+public class Product extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String productNumber;
+
+    @Enumerated(EnumType.STRING)
+    private ProductType type;
+
+    @Enumerated(EnumType.STRING)
+    private ProductSellingStatus sellingStatus;
+
+    private String name;
+
+    private int price;
+
+    @Builder
+    public Product(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
+        this.productNumber = productNumber;
+        this.type = type;
+        this.sellingStatus = sellingStatus;
+        this.name = name;
+        this.price = price;
+    }
+}
+```
 
 ### Persistence Layer
 
