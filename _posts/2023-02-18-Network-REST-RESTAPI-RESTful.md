@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  " REST, REST API, RESTful "
-categories: Network
-author: fancy96
+categories: Technology
+author: devFancy
 ---
 * content
 {:toc}
