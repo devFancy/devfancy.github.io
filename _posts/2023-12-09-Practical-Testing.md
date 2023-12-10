@@ -851,7 +851,7 @@ class OrderServiceTest {
 
 최상단에 `http` 라는 폴더를 만들고 그 안에 `order.http`, `product.http`를 만든다.
 
-```http request
+```
 POST localhost:8080/api/v1/orders/new
 Content-Type: application/json
 
@@ -863,7 +863,7 @@ Content-Type: application/json
 }
 ```
 
-```http request
+```
 GET localhost:8080/api/v1/products/selling
 ```
 
