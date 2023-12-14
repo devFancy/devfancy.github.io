@@ -1332,6 +1332,24 @@ Controller 계층에서만 유효성 검사 처리를 하게 되고, Service 계
 
 결론은 **각 Layer마다 DTO를 구분하는게 의존성과 책임분리 측면에서 좋다.**
 
+### Spring & JPA 기반 테스트 리뷰
+
+* 레이어드 아키텍처의 각 계층별로 통합/단위 테스트를 어떻게 작성해야 할까?
+
+    * Presentation Layer(Controller): Business Layer, Persistence Layer를 Mocking 처리하여 단위 테스트를 진행한다.
+
+    * Business Layer(Service): Persistence Layer를 주입받는 통합 테스트를 진행한다. @SpringBootTest를 기준으로 작성하며 수동으로 삭제하는 tearDown 메서드를 적극 활용한다.
+
+    * Persistence Layer(Repository): Data Access하는 로직만 갖고 있기 때문에 단위 테스트를 진행한다. @DataJpaTest를 기준으로 작성해도 상관없다.
+
+* API별로 응답에 대한 응답 DTO를 분리해야 하는 것이 좋은가?
+
+    * 응답 형태가 비슷하더라도 서비스가 커지면 커질수록 의존성에 대한 부담이 커질 수 있기 때문에, 각 Layer마다 DTO를 구분하는게 의존성과 책임분리 측면에서 좋다.
+
+* 유효성 검사에 대해 계층별로 어떻게 책임을 분리해야 할까?
+
+    * Presentation Layer에는 기본적인 유효성 검사만 진행하고 도메인에 대한 유효성 검증이 필요한 경우, 해당 도메인 객체에서 진행한다.
+
 ## Review
 
 해당 강의를 들으면서 중요한 부분 or 처음 배우는 개념에 대해서 학습했다. 그리고 강의에서 깊게 다루지 않는 개념들에 대해서는 추가적으로 공부해가면서, 정리해 보니 내 기준에서 생각보다 어마어마한 양의 내용을 배우게 되었다.
