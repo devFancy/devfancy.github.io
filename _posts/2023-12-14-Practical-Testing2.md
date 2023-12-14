@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " Practical Testing: 테스트 코드 작성 방법 [2] "
+title:  " Practical Testing: 테스트 코드 작성 방법 - Mock, 더 나은 테스트를 위한 구체적 조언 "
 categories: TestCode
 author: devFancy
 ---
@@ -450,13 +450,13 @@ Mockist 입장에서 바라보면 Service 테스트 할 때에도 Repository에�
 
 테스트 코드를 글쓰기 관점에서 봤을 때, 하나의 테스트는 하나의 주제만을 가져야 한다.
 
-* 논리구조 - 분기문(if), 반복문(while, for)
+논리구조에는 분기문(if), 반복문(while, for)이 있다.
 
-    * 분기문이 존재한다는 것 자체가 2가지 이상 내용이 들어가있다는 걸 반증한다.
+* 분기문이 존재한다는 것 자체가 2가지 이상 내용이 들어가있다는 걸 반증한다.
 
-    * 반복문 역시 테스트 코드를 읽는 사람이 한번 더 생각해야 한다.
+* 반복문 역시 테스트 코드를 읽는 사람이 한번 더 생각해야 한다.
 
-    * 결론은, 케이스가 두 가지 이상 생기면 → 테스트 코드를 2개로 나눠서 코드를 작성한다. -> 논리구조는 방해 요소가 될 수 있기 때문에 되도록 지양하자.
+* 결론은, 케이스가 두 가지 이상 생기면 → 테스트 코드를 2개로 나눠서 코드를 작성한다. -> 논리구조는 방해 요소가 될 수 있기 때문에 되도록 지양하자.
 
 ### 완벽하게 제어하기
 
@@ -566,7 +566,7 @@ class OrderServiceTest {
         // when & then
         assertThatThrownBy(() -> orderService.createOrder(request, registeredDateTime))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("재고가 부족한 상품이 있습니다.");
+                .hasMessage("재고가 부족한 상품이 있습니다.");![스크린샷 2023-12-14 오후 9.29.37.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fzx%2Fc4x7my7d75bbp1pqypzbbp1r0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_EwRxsg%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-12-14%20%EC%98%A4%ED%9B%84%209.29.37.png)
     }
 }
 ```
@@ -591,9 +591,9 @@ class OrderServiceTest {
 
 > Fixture: 고정물, 고정되어 있는 물체
 
-* `@BeforeAll` - 매 테스트 클래스를 실행하기 전에 무언가 작업을 하는 어노테이션
+* `@BeforeAll` - 매 **테스트 클래스**를 실행하기 전에 무언가 작업을 하는 어노테이션
 
-* `@BeforeEach` - 매 테스트 메서드를 실행하기 전에 무언가 작업을 하는 어노테이션
+* `@BeforeEach` - 매 **테스트 메서드**를 실행하기 전에 무언가 작업을 하는 어노테이션
 
 ```java
 @BeforeAll
@@ -623,13 +623,15 @@ void setUp() {
 
 #### Fixture 구성할 때 유의해야 할 점들
 
-1. 미리 셋업하는 data.sql과 같은 파일은 되도록 지양하자! (권장하지 않음)
+[1] 미리 셋업하는 data.sql과 같은 파일은 되도록 지양하자! (권장하지 않음)
 
-    * 애플리케이션이 점점 고도화될 수록 해당 파일에 들어가는 데이터양이 증가하면-> 하나의 테스트 클래스 혹은 문서를 볼 때, 테스트의 목적을 파악하기 힘들고, sql의 파일의 수가 늘어나 관리하기가 힘들어 질 수 있다.
+* 애플리케이션이 점점 고도화될 수록 해당 파일에 들어가는 데이터양이 증가하면-> 하나의 테스트 클래스 혹은 문서를 볼 때, 테스트의 목적을 파악하기 힘들고, sql의 파일의 수가 늘어나 관리하기가 힘들어 질 수 있다.
 
-2. given 절을 구성할 때 필요한 Parameter만 구성하자! 아래와 같이 테스트에 딱 필요한 메서드만 명시하는게 좋다.
+[2] given 절을 구성할 때 필요한 파라미터만 구성하자! 아래와 같이 테스트에 딱 필요한 메서드만 명시하는게 좋다.
 
-    * 테스트 클래스마다 필요한 매개변수를 넣어서 구분하는게 관리면에서 중요하다.
+* **테스트 클래스마다 필요한 파라미터를 넣어서 구분**하는게 관리면에서 중요하다.
+
+* 아래 클래스에서 `name`과 같은 필드가 없어도 상관없는 테스트라면 2번처럼 사용하면 된다.
 
 ```java
 class ProductServiceTest {
@@ -658,9 +660,7 @@ class ProductServiceTest {
 }
 ```
 
-* 위 클래스에서는 name 과 같은 필드가 없어도 상관없는 테스트라면 2번처럼 사용하면 된다.
-
-3. **fixture를 만들기 위한 builder를 한 곳에 모으는 것은 지양**하자! → 수십개가 생겨서 복잡도가 올라간다.
+[3] **fixture를 만들기 위한 builder를 한 곳에 모으는 것은 지양**하자! → 수십개가 생겨서 복잡도가 올라간다.
 
   * 실무에서 사용하는 객체들은 필드가 수십개가 넘는 경우가 대부분이다. -> 각기 다른 builder를 만들어서 다른 패키지(fixture)에 넣으면 관리가 안된다. → 이유: builder만 수십개만 만들어져서 갈수록 사용하기 힘들어진다.
 
@@ -1019,17 +1019,19 @@ class OrderStatisticsServiceTest extends IntegrationTestSupport {
 
 -> MockBean 처리된 필드를 상위 클래스(IntegrationTestSupport)에 두게 된다면 동일한 테스트 환경에서 실행할 수 있다.
 
-다만, 테스트 환경을 고려해서 다른 서비스 테스트에도 Mock이 필요한지 고려해봐야 한다.
+다만, 테스트 환경을 고려해서 다른 서비스 테스트에도 `Mock`이 필요한지 고려해봐야 한다.
 
--> Mock 처리가 필요없는 테스트 환경을 위한 TestSupport 상위 클래스를 구축하고, Mock 처리가 필요한 테스트 환경을 위한 MockTestSupport 상위 클래스를 구축하여 Mock을 기준으로 테스트 환경을 구분해주면 된다.
+-> **`Mock` 처리가 필요없는 테스트 환경을 위한 `TestSupport` 상위 클래스를 구축하고, `Mock` 처리가 필요한 테스트 환경을 위한 `MockTestSupport` 상위 클래스를 구축하여 `Mock`을 기준으로 테스트 환경을 구분**해주면 된다.
 
 #### Repository Test의 경우 @DataJpaTest vs @SpringBootTest, 둘 중 어느 것을 사용해야 할까?
 
 현재 시스템 로그상으로 확인하면, `StockRepositoryTest`, `ProductRepositoryTest` 모두 서버가 각각 실행되고 있다.
 
-A. Service 테스트 하면서 Repository도 같이 Test 하면 어떨까? 꼭 `@DataJpaTest`를 사용하는 것이 아니라면 시간 절약을 위해 `@SpringBootTest`를 사용한다.
+Service 테스트 하면서 Repository도 같이 Test 하면 어떨까?
 
-`@SpringBootTest`를 사용한다면, `@DataJpaTest`에서 자동으로 제공해주는 `@Transactional`이 적용되지 않기에 다시 RepositoryTest 클래스에 `@Transactional` 어노테이션을 붙여줘야 한다. -> ProductRepositoryTest 위에 `@Transactional` 어노테이션을 붙여준다.
+꼭 `@DataJpaTest`를 사용하는 것이 아니라면 **시간 절약을 위해 `@SpringBootTest`를 사용한다.**
+
+`@SpringBootTest`를 사용한다면, **`@DataJpaTest`에서 자동으로 제공해주는 `@Transactional`이 적용되지 않기에 다시 RepositoryTest 클래스에 `@Transactional` 어노테이션을 붙여줘야 한다.**
 
 -> 이렇게 해서 Repository Test도 Service Test 환경과 동일하게 상위 클래스인 `IntegrationTestSupport` 클래스를 상속받도록 하면, Service와 Repository를 하나의 서버에 수행할 수 있게 되었다.
 
