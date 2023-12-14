@@ -114,6 +114,8 @@ author: devFancy
 
 * [[백준] 1388. 바닥장식](https://devfancy.github.io/Algorithm-backjoon-1388/)
 
+* [[백준] 16173. 점프왕 쩰리 (Small)](https://devfancy.github.io/Algorithm-backjoon-16173/)
+
 ### 그외 
 
 * [[Programmers] 1844. 게임 맵 최단거리(bfs)](https://devfancy.github.io/Programmers-1844/)
