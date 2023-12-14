@@ -82,11 +82,13 @@ author: devFancy
 
 * [[백준] 알고리즘 수업 - 깊이 우선 탐색 2](https://devfancy.github.io/Algorithm-Baekjoon-24480/)
 
-* [[solved.ac] Class3++ 1260. DFS와 BFS](https://devfancy.github.io/solved-class3-backjoon-1260/)
+* [[solved.ac] Class3++ 1260. DFS와 BFS](https://devfancy.github.io/Algorithm-solved-class3-backjoon-1260/)
 
 * [[백준] 2644번. 촌수계산(DFS)](https://devfancy.github.io/Algorithm-backjoon-2644/)
 
 * [[solved.ac] Class4++ 11725. 트리의 부모찾기](https://devfancy.github.io/Algorithm-backjoon-11725/)
+
+* [[Programmers] 43162. 네트워크](https://devfancy.github.io/Programmers-43162/)
 
 ### 유형2. 같은 부류 찾기
 
@@ -116,11 +118,9 @@ author: devFancy
 
 * [[백준] 16173. 점프왕 쩰리 (Small)](https://devfancy.github.io/Algorithm-backjoon-16173/)
 
+* [[Programmers] 1844. 게임 맵 최단거리(bfs)](https://devfancy.github.io/Programmers-1844/) - BFS
+
 ### 그외 
-
-* [[Programmers] 1844. 게임 맵 최단거리(bfs)](https://devfancy.github.io/Programmers-1844/)
-
-* [[Programmers] 43162. 네트워크](https://devfancy.github.io/Programmers-43162/)
 
 * [[Programmers] 159993. 미로 탈출](https://devfancy.github.io/Programmers-159993/)
 

@@ -7,7 +7,7 @@ author: devFancy
 * content
 {:toc}
 
-[문제 링크](https://www.acmicpc.net/problem/2644)
+[문제 링크](https://www.acmicpc.net/problem/11725)
 
 ## 성능 요약
 
