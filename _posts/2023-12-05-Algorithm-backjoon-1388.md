@@ -17,10 +17,10 @@ author: devFancy
 
 * 깊이 우선 탐색, 그래프 이론, 그래프 탐색, 구현
 
-## Answer Code1
+## Answer Code1(23.12.05)
 
 ```java
-// 바닥장식([백준] 4963.) - 23.12.05
+// 바닥장식([백준] 4963.)
 import java.util.*;
 import java.io.*;
 
@@ -80,7 +80,7 @@ class FloorDecoration {
 }
 ```
 
-## Answer Code 2
+## Answer Code2(23.12.06)
 
 > visited 없이 구현한 결과
 
