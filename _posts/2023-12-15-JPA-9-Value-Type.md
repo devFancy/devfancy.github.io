@@ -181,7 +181,7 @@ public class Member {
 
 * **영속성 전이(Cascade) + 고아 객체 제거(orphan remove)** 를 사용해서 값 타입 컬렉션 처럼 사용하는 방법이 있다. ⇒ ex) `AddressEntity`
 
-* 아래와 같이 AddressEntity 라는 엔티티 테이블을 만들고, Member 테이블과 연관관계(대다일)를 맺어준다.
+* 아래와 같이 AddressEntity 라는 엔티티 테이블을 만들고, Member 테이블과 연관관계를 맺어준다.
 
 ![](/assets/img/jpa/JPA-Value-Type-12.png)
 
