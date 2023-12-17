@@ -475,3 +475,35 @@ author: devFancy
 * [[solved.ac] Class3++ 1260. DFS와 BFS]({{site.url}}/Algorithm-solved-class3-backjoon-1260/)
 
 * [[백준] 11725. 트리의 부모찾기]({{site.url}}/Algorithm-backjoon-11725/)
+
+> 231204 ~ 231210
+
+* [[백준] 13565. 침투]({{site.url}}/Algorithm-backjoon-13565/)
+
+* [[solved.ac] Class3++ 1012. 유기농 배추]({{site.url}}/solved-class3-backjoon-1012/)
+
+* [[백준] 1388. 바닥장식]({{site.url}}/Algorithm-backjoon-1388/)
+
+* [[백준] 4963. 섬의개수]({{site.url}}/Algorithm-backjoon-4963/)
+
+* [[Java] equals와 hashCode 관계]({{site.url}}/equals-and-hashcode/)
+
+* [[TestCode] Practical Testing: 테스트 코드 작성 방법]({{site.url}}/Practical-Testing/)
+
+> 231211 ~ 231217
+
+* [[백준] 16173. 점프왕 쩰리 (Small)]({{site.url}}/Algorithm-backjoon-16173/)
+
+* [[Programmers] 43162. 네트워크(DFS)]({{site.url}}/Programmers-43162/)
+
+* [[Programmers] 1844. 게임 맵 최단거리(bfs)]({{site.url}}/Programmers-1844/)
+
+* [[Programmers] 159993. 미로탈출 (BFS)]({{site.url}}/Programmers-159993/)
+
+* [[TestCode] Practical Testing: 테스트 코드 작성 방법 - Mock, 더 나은 테스트를 위한 구체적 조언]({{site.url}}/Practical-Testing2/)
+
+자바 ORM 표준 JPA 프로그래밍 - 기본편
+
+* [[JPA] 프록시와 연관관계 관리]({{site.url}}/JPA-8-Proxy/)
+
+* [[JPA] 값 타입]({{site.url}}/JPA-9-Value-Type/)
