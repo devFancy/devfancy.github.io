@@ -566,7 +566,7 @@ class OrderServiceTest {
         // when & then
         assertThatThrownBy(() -> orderService.createOrder(request, registeredDateTime))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("재고가 부족한 상품이 있습니다.");![스크린샷 2023-12-14 오후 9.29.37.png](..%2F..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fzx%2Fc4x7my7d75bbp1pqypzbbp1r0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_EwRxsg%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202023-12-14%20%EC%98%A4%ED%9B%84%209.29.37.png)
+                .hasMessage("재고가 부족한 상품이 있습니다.");
     }
 }
 ```
