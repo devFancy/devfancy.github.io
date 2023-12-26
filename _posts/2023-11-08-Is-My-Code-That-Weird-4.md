@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " [내 코드가 그렇게 이상한가요?] 4장. 불변 활용하기: 안정적적으로 동작하게 만들기 "
+title:  " [내 코드가 그렇게 이상한가요?] 4장. 불변 활용하기: 안정적으로 동작하게 만들기 "
 categories: GoodCode
 author: devFancy
 ---

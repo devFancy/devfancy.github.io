@@ -346,7 +346,7 @@ SELECT  D.HISTORY_ID
          , HISTORY_ID DESC
 ```
 
-## 조건에 부합하는 중고거래 상태 조회하기(Lv.2)
+## 조건에 부합하는 중고거래 상태 조회하기(Lv 2)
 
 > [조건에 부합하는 중고거래 상태 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/164672)
 
@@ -376,6 +376,187 @@ where board_id in(
 order 
     by board_id desc;
 ```
+
+
+### 문제 풀이
+
+> 문제를 풀기 위해서 해야할 작업들
+
+## 조건별로 분류하여 주문상태 출력하기(Lv 3)
+
+> [조건별로 분류하여 주문상태 출력하기](https://school.programmers.co.kr/learn/courses/30/lessons/131113)
+
+* 문제: `FOOD_ORDER` 테이블에서 5월 1일을 기준으로 주문 ID, 제품 ID, 출고일자, 출고여부를 조회하는 SQL문을 작성해주세요.
+
+  출고여부는 5월 1일까지 출고완료로 이 후 날짜는 출고 대기로 미정이면 출고미정으로 출력해주시고, 
+
+  결과는 주문 ID를 기준으로 오름차순 정렬해주세요.
+
+### Answer Cod(2023.12.26)
+
+```sql
+SELECT  ORDER_ID, PRODUCT_ID, DATE_FORMAT(OUT_DATE, '%Y-%m-%d') as OUT_DATE,
+        case 
+            when OUT_DATE <= '2022-05-01' then '출고완료' 
+            when OUT_DATE > '2022-05-01' then '출고대기'
+            else '출고미정'
+        end  '출고여부'
+from FOOD_ORDER
+order by ORDER_ID asc;
+```
+
+
+### 문제 풀이
+
+> 문제를 풀기 위해서 해야할 작업들
+
+1. `FOOD_ORDER` 테이블에서 5월 1일을 기준으로 ORDER_ID, PRODUCT_ID, OUT_DATE, 출고여부를 조회한다.
+2. 이때 `출고여부`는 5월 1일까지 `출고완료`로, 이후 날짜는 `출고대기`, 미정이면 `출고미정`으로 출력한다. -> CASE 문을 사용
+3. 예시처럼 `OUT_DATE`를 yyyy-mm-dd 처럼 출력하기 위해 DATE_FORMAT(OUT_DATE, '%Y-%m-%d') 를 사용한다. 이때 대문자 Y는 4자리, 소문자 y는 2자리 숫자를 출력해준다.
+4. ORDER_ID 를 기준으로 오름차순 정렬해준다. -> ORDER BY ORDER_ID ASC;
+
+
+## 대여 기록이 존재하는 자동차 리스트 구하기(Lv 3)
+
+> [대여 기록이 존재하는 자동차 리스트 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/157341)
+
+* 문제: `CAR_RENTAL_COMPANY_CAR` 테이블과 `CAR_RENTAL_COMPANY_RENTAL_HISTORY` 테이블에서 
+
+  자동차 종류가 '세단'인 자동차들 중 10월에 대여를 시작한 기록이 있는 자동차 ID 리스트를 출력하는 SQL문을 작성해주세요. 
+
+  자동차 ID 리스트는 중복이 없어야 하며, 자동차 ID를 기준으로 내림차순 정렬해주세요.
+
+### Answer Code(23.12.26)
+
+```sql
+SELECT DISTINCT (A.CAR_ID)
+FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY A
+LEFT JOIN CAR_RENTAL_COMPANY_CAR B ON A.CAR_ID = B.CAR_ID
+WHERE B.CAR_TYPE = '세단'
+    AND SUBSTR(A.START_DATE, 6, 2) = 10 
+ORDER 
+    BY A.CAR_ID DESC;
+```
+
+### 문제풀이
+
+> 문제를 풀기 위해서 해야할 작업들
+
+1. CAR_RENTAL_COMPANY_RENTAL_HISTORY 테이블과 CAR_RENTAL_COMPANY_CAR 테이블을 조인하기 -> JOIN
+2. 자동차 종류가 '세단'인 CAR_ID를 선택 -> WHERE 
+3. 그리고 10월에 대여를 시작한 기록 -> 데이터 필터링(AND SUBSTR)
+4. CAR_ID 리스트를 출력 
+5. CAR_ID 중복 제거 -> DISTINCT
+6. CAR_ID를 기준으로 내림차순 정렬
+
+
+* CAR_RENTAL_COMPANY_RENTAL_HISTORY 테이블에서 CAR_RENTAL_COMPANY_CAR 테이블을 `LEFT JOIN`으로 조인을 실행해줬다.
+
+* 기준은 두 테이블에서 CAR_ID가 동일한 컬럼과 값을 가지고 있어서 CAR_ID를 이용했다.
+
+* 두번째 작업은 WHERE 절에서 CAR_ID가 '세단'인 데이터만 조회가 되도록 조건 필터링을 넣어줬다.
+
+* 세번째 작업은 데이터 필터링을 위해 SUBSTR()을 이용해 '월' 정보만을 가져온 다음 이 내역이 10인 데이터만 가져오도록 조건 필터링을 넣어줬다.
+
+* 네번째 작업은 CAR_ID 중복 제거를 위해 DISTINCT를 사용했다.
+
+* 마지막 작업은 CAR_ID를 기준으로 내림차순 정렬을 위해 ORDER BY 절을 사용했고, 내림차순(DESC)으로 정렬했다.
+
+## 취소되지 않은 진료 예약 조회하기(Lv 4)
+
+> [취소되지 않은 진료 예약 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/132204)
+
+* 문제: `PATIENT`, `DOCTOR` 그리고 `APPOINTMENT` 테이블에서
+
+  2022년 4월 13일 취소되지 않은 흉부외과(CS) 진료 예약 내역을 조회하는 SQL문을 작성해주세요.
+
+  진료예약번호, 환자이름, 환자번호, 진료과코드, 의사이름, 진료예약일시 항목이 출력되도록 작성해주세요.
+
+  결과는 진료예약일시를 기준으로 오름차순 정렬해주세요.
+
+### Answer Code(2023.12.26)
+
+```sql
+SELECT A.APNT_NO,
+       P.PT_NAME,
+       A.PT_NO,
+       A.MCDP_CD,
+       D.DR_NAME,
+       A.APNT_YMD
+FROM APPOINTMENT A
+    LEFT JOIN PATIENT P ON A.PT_NO = P.PT_NO
+    LEFT JOIN DOCTOR D ON A.MDDR_ID = D.DR_ID
+WHERE A.MCDP_CD = 'CS'
+    AND A.APNT_CNCL_YN = 'N'
+    AND LEFT(APNT_YMD, 10) = '2022-04-13'
+ORDER BY
+    A.APNT_YMD ASC
+```
+
+### 문제 풀이
+
+> 문제 접근
+
+1. 3개의 테이블 조인하기(JOIN)
+2. APPOINTMENT 테이블에서 조건에 맞는 데이터 필터링(WHERE)
+3. 필요한 컬럼들 선택(SELECT)
+4. 진료 예약일시 기준으로 오름차순 정렬
+
+---
+
+[1] 3개의 테이블 조인하기
+
+  * APPOINTMENT 테이블을 기준으로 PATIENT 테이블과 환자 번호(PT_NO)로 LEFT JOIN
+
+  * 그리고 APPOINTMENT 테이블을 기준으로 DOCTOR 테이블과 의사 아이디(MDDR_ID)로 LEFT JOIN
+
+[2] WHERE절에서 조건에 맞는 데이터만 조회가 되도록 3개의 조건 필터링을 걸어준다.
+
+  * 진료과 코드가 '흉부외과'인 데이터 (MCDP_CD = 'CS')
+
+  * 진료 예약이 취소되지 않은 데이터 (APNT_CNCL_YN = 'N')
+
+  *  진료 예약일이 '2022-04-13'인 데이터(LEFT(APNT_YMD,10) = '2022-04-13')
+
+[3] SELECT 문에서 필요한 컬럼을 불러온다.
+
+  * 진료예약번호(APPOINTMENT.APNT_NO), 
+  * 환자이름(PATIENT.PT_NAME), 
+  * 환자번호(APPOINTMENT.PT_NO)
+  * 진료과코드(APPOINTMENT.MCDP_CD),
+  * 의사이름(DOCTOR.DR_NAME), 
+  * 진료예약일시(APPOINTMENT.APNT_YMD)
+
+[4] 진료 예약일시(A.APNT_YMD) 기준으로 오름차순 정렬
+
+  *  ORDER BY A.APNY_YMD ASC
+
+## 오랜 기간 보호한 동물(2)(Lv 3)
+
+> [오랜 기간 보호한 동물(2)](https://school.programmers.co.kr/learn/courses/30/lessons/59411)
+
+* 문제: 입양을 간 동물 중, 보호 기간이 가장 길었던 동물 두 마리의 아이디와 이름을 조회하는 SQL문을 작성해주세요. 
+
+  이때 결과는 보호 기간이 긴 순으로 조회해야 합니다.
+
+### Answer Code(2023.12.27)
+
+```sql
+SELECT A.ANIMAL_ID, A.NAME
+FROM ANIMAL_INS A
+    LEFT JOIN ANIMAL_OUTS B ON A.ANIMAL_ID = B.ANIMAL_ID
+ORDER BY B.DATETIME - A.DATETIME DESC
+LIMIT 2
+```
+
+### 문제 풀이
+
+> 문제 접근
+
+1. 두 개의 테이블 조인(JOIN)
+2. 보호 기간이 가장 길었던 동물 두마리에 대한 필터링(ORDER BY, LIMIT)
+3. 아이디와 이름을 조회(SELECT)
+
 
 ## Reference
 
