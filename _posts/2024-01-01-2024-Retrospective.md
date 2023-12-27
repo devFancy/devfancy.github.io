@@ -15,7 +15,7 @@ author: devFancy
 
 * [2024 Plan Note](https://gist.github.com/devFancy/69dd0f78f039f8ee2fb6fdfde88c959f)
 
-<script src="https://gist.github.com/devFancy/03e1fb1aac746be13582891b0d0aab29.js"></script>
+<script src="https://gist.github.com/devFancy/69dd0f78f039f8ee2fb6fdfde88c959f.js"></script>
 
 > 인프런 강의: [우아한형제들 최연소 기술이사 김영한의 스프링 완전 정복](https://www.inflearn.com/roadmaps/373)
 

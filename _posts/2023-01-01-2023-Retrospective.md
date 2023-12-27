@@ -508,4 +508,6 @@ author: devFancy
 
 > 231218 ~ 231224
 
+* 팀프로젝트 - Goodfriends: 신고, 상품 기능에 대한 리팩터링 - [PRs](https://github.com/woorifisa-projects/GoodFriends/pulls?q=is%3Apr+is%3Aclosed+assignee%3AdevFancy)
+
 * [[Programmers] SQL > String, Date 풀이 모음](https://devfancy.github.io/SQL-String-and-Date/)
