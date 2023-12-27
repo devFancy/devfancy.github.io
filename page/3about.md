@@ -11,15 +11,13 @@ type: page
 
 ## Who am i
 
-* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : BackEnd 개발 관련 공부를 하고 있습니다.
+* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : BackEnd 개발 관련 공부를 하고 있으며 품질 좋은 코드를 지향합니다.
 
-* <img src="/assets/img/logo/handshake.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기술을 공유하고 함께 성장하는 것을 추구합니다.
+* <img src="/assets/img/logo/mentoring.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기술을 공유하고 함께 성장하는 것을 추구합니다.
 
-* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 자기개발을 좋아합니다.
+* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 더 나은 개발자가 되기 위해 개발 스터디에 적극적으로 참여하고 있습니다.
 
-* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 블로그에 기록하는 것을 좋아합니다.
-
-* <img src="/assets/img/logo/gym.png" style="max-width: 3%; vertical-align: text-bottom;"> : 평상시에 운동을 즐겨하고 있습니다.
+* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 주도적으로 문제를 해결하고, 그 과정을 기록하는 걸 좋아합니다.
 
 ---
 
@@ -42,15 +40,17 @@ type: page
 
 ### 2023
 
+* 　12. 20 ~ 팀프로젝트 - [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) 리팩터링, 성능 개선
+
 * 　11. 26 ~ 2024. 04 [글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가
 
 * 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 완독 및 [정리](https://devfancy.github.io/category/#GoodCode)
 
-* 　08. 02 ~ 09. 27 팀프로젝트 - [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) : 중고거래 웹 서비스, 역할: `Backend Developer`, [관련 포스팅](https://devfancy.github.io/category/#Goodfriends)
+* 　08. 02 ~ 09. 27 팀프로젝트 - [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) : 중고거래 웹 서비스, 역할: `Backend Developer` ,[Blog Posts](https://devfancy.github.io/category/#Goodfriends),  [Pull Requests](https://github.com/woorifisa-projects/GoodFriends/pulls?q=is%3Apr+is%3Aclosed+assignee%3AdevFancy)
 
 * 　04. 24 ~ 09. 27 우리FISA 클라우드 서비스 개발 과정 - [정리](https://github.com/devFancy/devfancy-woorifisa)
 
-* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`
+* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`, [Pull Requests](https://github.com/hibit-team/hibit-backend/pulls?q=is%3Apr+assignee%3AdevFancy+is%3Aclosed)
 
 * 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
 
