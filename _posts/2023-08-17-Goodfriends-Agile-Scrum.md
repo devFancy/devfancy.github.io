@@ -33,11 +33,11 @@ author: devFancy
 
 ## 애자일 개발 프로세스
 
-![](/assets/img/project/agile_1.png)
+![](/assets/img/goodfriends/agile_1.png)
 
 애자일 방법론은 `프로세스 전반적인 과정(기획->디자인->개발->테스트->배포)`을 **최대한 신속하고 시간낭비 없이 프로덕트를 만드는** 다양한 방법론 전체를 일컫는다.
 
-![](/assets/img/project/agile_2.png)
+![](/assets/img/goodfriends/agile_2.png)
 
 그 예로 스크럼(Scrum), 익스트림 프로그래밍(XP), 칸반(Kanban) 등이 있으며 가장 대표적인 것이 `스크럼`이다.
 
@@ -47,7 +47,7 @@ author: devFancy
 
 - `스크럼`은 작은 주기(Sprint)로 개발 및 검토를 하며 효율적인 협업 방법을 제공한다.
 
-![](/assets/img/project/agile_3.png)
+![](/assets/img/goodfriends/agile_3.png)
 
 ### 주요 용어
 

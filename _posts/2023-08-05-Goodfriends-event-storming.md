@@ -46,7 +46,7 @@ author: devFancy
 
 포스트잇 색상으로 개념을 구분하고, 해당 개념에 따라 포스트잇을 붙여나가면서 도메인 이해를 해나가는 방법입니다.
 
-![](/assets/img/project/event-storming-1.png)
+![](/assets/img/goodfriends/event-storming-1.png)
 
 ```
 1. 초록색 : '정보' - 액터가 액션을 실행하는 데에 필요한 정보
@@ -82,13 +82,13 @@ author: devFancy
 
 우선 이벤트 스토밍에 대한 포스트잇을 진행하기 이전에, 해당 서비스를 사용하는 특정 사용자를 정의하기 위해 `페르소나 분석`을 정의했습니다.
 
-![](/assets/img/project/event-storming-2.png)
+![](/assets/img/goodfriends/event-storming-2.png)
 
 그리고 사용자에 대해 알아야할 점들을 포스트잇으로 하나씩 붙여 정리했습니다.
 
 (처음엔 큰 종이로 적고, 이후에 피그잼에 옮겨 정리했습니다)
 
-![](/assets/img/project/event-stroming-3.png)
+![](/assets/img/goodfriends/event-stroming-3.png)
 
 그런 다음, 위의 자료들을 기반으로 구현해야할 기능을 적고, 기능에 대한 이벤트 스토밍을 진행하였습니다.
 
@@ -140,11 +140,11 @@ author: devFancy
 - 유저가 상품 삭제 버튼을 클릭하면 <- 정책
 ```
 
-![](/assets/img/project/event-storming-4.png)
+![](/assets/img/goodfriends/event-storming-4.png)
 
-![](/assets/img/project/event-storming-5.png)
+![](/assets/img/goodfriends/event-storming-5.png)
 
-![](/assets/img/project/event-storming-6.png)
+![](/assets/img/goodfriends/event-storming-6.png)
 
 이 단계에서 중요한 작업은 `정보 & 정책 & 액션 & 액터`를 붙여나가기 전에, **2단계에서 붙여놨던 포스트잇을 다시 확인하면서 해결해 나가는 과정**입니다.
 
@@ -154,7 +154,7 @@ author: devFancy
 
 `피그잼`에 정리한 저희 굿프렌즈팀의 이벤트 스토밍 결과물입니다.
 
-![](/assets/img/project/event-storming-end.png)
+![](/assets/img/goodfriends/event-storming-end.png)
 
 이벤트 스토밍을 도입한 이유는 단순히 DDD를 쉽게 이해하는 목적이 아니라, **팀원 모두가 서비스에 대한 공통된 이해를 가지는 것**이였습니다.
 

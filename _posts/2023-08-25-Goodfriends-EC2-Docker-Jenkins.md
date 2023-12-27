@@ -13,7 +13,7 @@ author: devFancy
 
 우선 굿프렌즈팀의 프로젝트에서 구축하려는 CI/CD 구조는 다음과 같습니다.
 
-![](/assets/img/project/Goodfriends-EC2-Docker-Jenkins-1.jpeg)
+![](/assets/img/goodfriends/Goodfriends-EC2-Docker-Jenkins-1.jpeg)
 
 이번 스프린트3에서는 저는 **배포와 CI/CD와 같이 인프라**와 관련된 태스크에 집중하고 있습니다.
 
@@ -45,7 +45,7 @@ author: devFancy
 
 **애플리케이션 및 OS 이미지(Amazon Machine Image)**: Ubuntu
 
-![](/assets/img/project/Goodfriends-EC2-Docker-Jenkins-2.png)
+![](/assets/img/goodfriends/Goodfriends-EC2-Docker-Jenkins-2.png)
 
 **인스턴스 유형**: t2.micro
 
@@ -248,7 +248,7 @@ public IP 주소로 웹 브라우저(**크롬**)에서 접근합니다.
 
 localhost:8080으로 접속하면 아래와 같은 화면이 보일 것 입니다.
 
-![](/assets/img/project/Goodfriends-EC2-Docker-Jenkins-3.png)
+![](/assets/img/goodfriends/Goodfriends-EC2-Docker-Jenkins-3.png)
 
 ## 4. Jenkins 로그인
    
@@ -270,7 +270,7 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 그러면 아래와 같이 로그인이 완료되는 것을 확인할 수 있습니다.
 
-![](/assets/img/project/Goodfriends-EC2-Docker-Jenkins-4.png)
+![](/assets/img/goodfriends/Goodfriends-EC2-Docker-Jenkins-4.png)
 
 ### 4-2. Customize Jenkins
 
@@ -280,7 +280,7 @@ Install Suggested plugins 버튼을 선택합니다.
 
 그리고 시간이 지나면, **Getting Started - 플러그인 설치 과정이 완료**되는 걸 확인할 수 있습니다.
 
-![](/assets/img/project/Goodfriends-EC2-Docker-Jenkins-5.png)
+![](/assets/img/goodfriends/Goodfriends-EC2-Docker-Jenkins-5.png)
 
 ### 4-3. Create First Admin User
 
@@ -294,20 +294,20 @@ Jenkins Dashboard에 접속하기 위한 URL을 설정하는 부분으로, 기�
 
 (Jenkins URL = 젠킨스 인스턴스 주소)
 
-![](/assets/img/project/Goodfriends-EC2-Docker-Jenkins-6.png)
+![](/assets/img/goodfriends/Goodfriends-EC2-Docker-Jenkins-6.png)
 
 
 ### 4-5. Jenkins is Ready!
 "Start using jenkins" 버튼을 선택합니다.
 
-![](/assets/img/project/Goodfriends-EC2-Docker-Jenkins-7.png)
+![](/assets/img/goodfriends/Goodfriends-EC2-Docker-Jenkins-7.png)
 
 ### 4-6.  젠킨스 접속 완료
 앞서 만든 사용자 계정으로 젠킨스에 접속하게 되면 아래와 같은 화면이 나오게 됩니다. 🤟
 
 아래와 같이 젠킨스가 웹 인터페이스를 제공하는 덕분에 저희 굿프렌즈팀은 CLI가 아닌 GUI화면을 통해 CI/CD 를 구축할 수 있습니다.
 
-![](/assets/img/project/Goodfriends-EC2-Docker-Jenkins-8.png)
+![](/assets/img/goodfriends/Goodfriends-EC2-Docker-Jenkins-8.png)
 
 
 ## 다음 글에서는

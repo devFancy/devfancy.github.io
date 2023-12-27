@@ -9,7 +9,7 @@ author: devFancy
 
 ## 프로젝트 구조
 
-![](/assets/img/project/Goodfriends-Nginx-SSL-HTTPS-1.png)
+![](/assets/img/goodfriends/Goodfriends-Nginx-SSL-HTTPS-1.png)
 
 * 굿프렌즈 프로젝트 구조는 위 그림과 같다.
 
@@ -47,7 +47,7 @@ author: devFancy
 
 * `Let's Encrypt`에서 `Cerbot`을 함께 사용하는 것을 권장하는 문장을 아래 이미지를 통해 확인할 수 있다.
 
-![](/assets/img/project/Goodfriends-Nginx-SSL-HTTPS-2.png)
+![](/assets/img/goodfriends/Goodfriends-Nginx-SSL-HTTPS-2.png)
 
 ## 필요한 것들(준비물)
 
@@ -73,25 +73,25 @@ Route 53 검색 후 호스팅 영역을 생성한다.
 
 > 굿프렌즈의 경우, 프론트엔드 도메인 이름은 `goodfriends.life`, 백엔드 도메인 이름은 `goodfriends.pro` 이다.
 
-![](/assets/img/project/Goodfriends-Nginx-SSL-HTTPS-3.png)
+![](/assets/img/goodfriends/Goodfriends-Nginx-SSL-HTTPS-3.png)
 
 호스팅 영역에서 `도메인 이름`과 `설명`을 아래와 같이 작성한 후 유형 부분에 `퍼블릭 호스팅 영역`을 클릭한 뒤 생성 버튼을 클릭한다.
 
-![](/assets/img/project/Goodfriends-Nginx-SSL-HTTPS-4.png)
+![](/assets/img/goodfriends/Goodfriends-Nginx-SSL-HTTPS-4.png)
 
 호스팅 영역에서 생성한 도메인에서 `레코드 생성` 버튼을 클릭한다.
 
-![](/assets/img/project/Goodfriends-Nginx-SSL-HTTPS-5.png)
+![](/assets/img/goodfriends/Goodfriends-Nginx-SSL-HTTPS-5.png)
 
 레코드 생성안에 `값`이라는 부분에 EC2 서버의 `퍼블릭 IPv4 주소`를 기입하고 생성 버튼을 클릭하면 된다. 그러면 레코드가 생성된 것을 확인할 수 있다.
 
 레코드를 생성 완료했다면, `NS`(네임서버)에서 가비아와 연결할 `값/트래픽 라우팅 대상`을 확인한다.
 
-![](/assets/img/project/Goodfriends-Nginx-SSL-HTTPS-6.png)
+![](/assets/img/goodfriends/Goodfriends-Nginx-SSL-HTTPS-6.png)
 
 그런 다음, 해당 `값/트래픽 라우팅 대상`에 있는 값을 가비아 홈페이지에서 `My가비아` -> 구매한 도메인의 관리 탭 클릭 -> `네임서버` 설정에 동일하게 넣어준다.
 
-![](/assets/img/project/Goodfriends-Nginx-SSL-HTTPS-7.png)
+![](/assets/img/goodfriends/Goodfriends-Nginx-SSL-HTTPS-7.png)
 
 ## 리버스 프록시 서버 설정
 
@@ -157,7 +157,7 @@ server {
 
 > 참고로 굿프렌즈의 경우 AWS EC2 서버를 생성할 때 [애플리케이션 및 OS 이미지]를 Ubuntu Server 20.04 LTS (프리 티어)로 설정했다.
 
-![](/assets/img/project/Goodfriends-Nginx-SSL-HTTPS-cerbot.png)
+![](/assets/img/goodfriends/Goodfriends-Nginx-SSL-HTTPS-cerbot.png)
 
 `Certbot`은 손쉽게 SSL 인증서를 자동 발급할 수 있도록 도와주는 도구이다. `Certbot`은 우분투의 snap 이라는 패키지 매니저를 사용하여 설치하는 것을 권장한다. 따라서 apt가 아닌 `snap`을 사용하여 설치한다.
 

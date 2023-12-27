@@ -39,7 +39,7 @@ author: devFancy
 
 굿프렌즈 백엔드 EC2 애플리케이션 및 OS 이미지는 아래와 같습니다.
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_1.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_1.png)
 
 
 ### IAM 역할 설정
@@ -52,22 +52,22 @@ author: devFancy
 - 신뢰할 수 있는 엔터티 유형 - AWS 서비스
 - 사용 사례 - EC2
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_2.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_2.png)
 
 4. 권한 추가
 - CloudWatchAgent 검색
 - CloudWatchAgentServerPolicy 선택
 - 다음 클릭
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_3.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_3.png)
 
 5. 이름 지정, 검토 및 생성
 - 역할 이름 - ec2-monitoring (원하는 이름으로 해도 상관없다.)
 - 역할 이름 지정 후 역할 생성
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_4.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_4.png)
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_5.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_5.png)
 
 6. EC2 인스턴스에 IAM 적용
 
@@ -75,11 +75,11 @@ author: devFancy
 - CloudWatch를 붙이고 싶은 인스턴스 클릭
 - 작업 - 보안 - IAM 역할 수정
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_6.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_6.png)
 
 - IAM 역할에 방금 만들어둔 role 선택후 저장
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_7.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_7.png)
 
 ### CloudWatch 에이전트 설치
 
@@ -193,61 +193,61 @@ Created symlink /etc/systemd/system/multi-user.target.wants/amazon-cloudwatch-ag
 1. CloudWatch - 지표 - 모든 지표 - 찾아보기 - CWAgent
 - 최초 실행시에는 로그 수집까지 5분 정도 소요 될 수 있다.
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_8.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_8.png)
 
 - InstanceId, device, fstype, pat - 등록한 인스턴스 클릭
 - 이제 상단 그래프에 현재 디스크 사용량이 표시된다.
 - 아래 예시의 경우 서비스에 대한 기능을 실제 테스트 하기 전이므로 전체 디스크를 0%를 사용하고 있다.
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_9.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_9.png)
 
 ## Cloud Watch 알림 설정
 
 1. 경보 생성
 - CloudWatch - 경보 - "경보 생성" 버튼 클릭
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_10.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_10.png)
 
 - 지표 선택
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_11.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_11.png)
 
 - CWAgent - InstanceId, device, fstype, path3 - CloudWatch를 붙여둔 instance
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_12.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_12.png)
 
 - 지표 및 조건 지정 
   - 기간 - 1시간으로 변경 
   - 1시간마다 디스크의 사용량을 확인
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_13.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_13.png)
 
 - 조건: 디스크의 사용량이 50% 이상일 때 알림을 준다.
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_14.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_14.png)
 
 - 작업 구성 
   - 주제가 이미 존재한다면 기존 주제 사용 
   - 주제가 없다면 아래 예시처럼 주제 구성 후 주제 생성
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_15.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_15.png)
 
 - 주제 생성 후 기존 SNS 주제 선택 및 “다음” 선택
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_16.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_16.png)
 
 - 이름 및 설명 추가
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_17.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_17.png)
 
 - 경보 생성
 - 위의 주제에서 등록한 이메일에서 confirm (최초만 적용)
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_18.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_18.png)
 
 이제 Test 인스턴스의 용량이 50% 이상을 사용한다면 이메일로 알림이 온다.
 
-![](/assets/img/project/Goodfriends_Aws_CloudWatch_result.png)
+![](/assets/img/goodfriends/Goodfriends_Aws_CloudWatch_result.png)
 
 이것으로 AWS EC2 인스턴스에 CloudWatch 적용하는 과정을 마치겠습니다.
 

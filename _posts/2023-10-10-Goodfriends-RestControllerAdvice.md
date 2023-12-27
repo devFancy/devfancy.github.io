@@ -244,7 +244,7 @@ ContorllerAdvice는 전역적으로 적용되는데, 지금과 같이 특정 클
 
 ## 정리
 
-![](/assets/img/project/Goodfriends_RestController_result.png)
+![](/assets/img/goodfriends/Goodfriends_RestController_result.png)
 
 Spring은 매우 다양한 예외 처리 방법을 제공하고 있어 어떻게 에러를 처리하는 것이 최선의 방법인지 파악하기 어려울 수 있습니다. 
 여러 스프링의 다양한 예외 처리 방법들 중에 현 프로젝트에 ControllerAdvice를 이용하는 것이 가장 좋은 방식인 것 같아 적용해보았습니다.
