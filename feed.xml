@@ -12,9 +12,9 @@ layout: null
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <generator>Jekyll v{{ jekyll.version }}</generator>
     <image>
-      <url>https://fancy96.github.io/assets/img/logo.png</url>
+      <url>https://devfancy.github.io/assets/img/logo.png</url>
       <title>GitBlog</title>
-      <link>https://fancy96.github.io</link>
+      <link>https://devfancy.github.io</link>
     </image>
     {% for post in site.posts limit:30 %}
       <item>
