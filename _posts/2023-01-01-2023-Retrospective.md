@@ -53,67 +53,67 @@ author: devFancy
 
 > 230101 ~ 230107
 
-* [[Programmers] 12916. 문자열 내 p와 y의 개수]({{site.url}}/Programmers-12916/)
+* [[Programmers] 12916. 문자열 내 p와 y의 개수](https://devfancy.github.io/Programmers-17680//Programmers-12916/)
 
-* [[Programmers] 12928. 약수의 합]({{site.url}}/Programmers-12928/)
+* [[Programmers] 12928. 약수의 합](https://devfancy.github.io/Programmers-17680//Programmers-12928/)
 
-* [[Programmers] 12931. 자릿수 더하기]({{site.url}}/Programmers-12931/)
+* [[Programmers] 12931. 자릿수 더하기](https://devfancy.github.io/Programmers-17680//Programmers-12931/)
 
-* [[Programmers] 12932. 자연수 뒤집어 배열로 만들기]({{site.url}}/Programmers-12932/)
+* [[Programmers] 12932. 자연수 뒤집어 배열로 만들기](https://devfancy.github.io/Programmers-17680//Programmers-12932/)
 
-* [[Programmers] 12934. 정수 제곱근 판별]({{site.url}}/Programmers-12934/)
+* [[Programmers] 12934. 정수 제곱근 판별](https://devfancy.github.io/Programmers-17680//Programmers-12934/)
 
-* [[Algorithm Skill] : 제곱근, 제곱을 구할때 쓰는 메서드]({{site.url}}/Math-Sqrt/)
+* [[Algorithm Skill] : 제곱근, 제곱을 구할때 쓰는 메서드](https://devfancy.github.io/Programmers-17680//Math-Sqrt/)
 
-* [[Coursera] 5개 수료증 취득]({{site.url}}/Coursera-Certificates/)
+* [[Coursera] 5개 수료증 취득](https://devfancy.github.io/Programmers-17680//Coursera-Certificates/)
 
 > 230109 ~ 230115
 
 * Git Blog 만들기(Jekyll)
 
-* [[Programmers] 12933. 정수 내림차순으로 배치하기]({{site.url}}/Programmers-12933/)
+* [[Programmers] 12933. 정수 내림차순으로 배치하기](https://devfancy.github.io/Programmers-17680//Programmers-12933/)
 
-* [[Programmers] 12947. 하샤드 수]({{site.url}}/Programmers-12947/)
+* [[Programmers] 12947. 하샤드 수](https://devfancy.github.io/Programmers-17680//Programmers-12947/)
 
-* [[Programmers] 12954. x만큼 간격이 있는 n개의 숫자]({{site.url}}/Programmers-12954/)
+* [[Programmers] 12954. x만큼 간격이 있는 n개의 숫자](https://devfancy.github.io/Programmers-17680//Programmers-12954/)
 
-* [[Programmers] 12910. 나누어 떨어지는 숫자 배열]({{site.url}}/Programmers-12910/)
+* [[Programmers] 12910. 나누어 떨어지는 숫자 배열](https://devfancy.github.io/Programmers-17680//Programmers-12910/)
 
-* [[Programmers] 12912. 두 정수 사이의 합]({{site.url}}/Programmers-12912/)
+* [[Programmers] 12912. 두 정수 사이의 합](https://devfancy.github.io/Programmers-17680//Programmers-12912/)
 
-* [[Programmers] 12919. 서울에서 김서방 찾기]({{site.url}}/Programmers-12919/)
+* [[Programmers] 12919. 서울에서 김서방 찾기](https://devfancy.github.io/Programmers-17680//Programmers-12919/)
 
-* [[Programmers] 12943. 콜라츠 추측]({{site.url}}/Programmers-12943/)
+* [[Programmers] 12943. 콜라츠 추측](https://devfancy.github.io/Programmers-17680//Programmers-12943/)
 
-* [[Network] SOP와 CORS란 무엇인가?]({{site.url}}/Network-CORS-SOP/)
+* [[Network] SOP와 CORS란 무엇인가?](https://devfancy.github.io/Programmers-17680//Network-CORS-SOP/)
 
-* [[Java] String 특징과 String 클래스의 주요 메소드]({{site.url}}/Java-String-Methods/)
+* [[Java] String 특징과 String 클래스의 주요 메소드](https://devfancy.github.io/Programmers-17680//Java-String-Methods/)
 
-* [[Technology] Google Search Console에 GitHub 블로그 등록하기]({{site.url}}/Technology-Google-Research-Console-Verification/)
+* [[Technology] Google Search Console에 GitHub 블로그 등록하기](https://devfancy.github.io/Programmers-17680//Technology-Google-Research-Console-Verification/)
 
-* [[IntelliJ] 인텔리제이와 깃허브 연동 (Mac 버전)]({{site.url}}/IntelliJ-Connection-Git-Repository/)
+* [[IntelliJ] 인텔리제이와 깃허브 연동 (Mac 버전)](https://devfancy.github.io/Programmers-17680//IntelliJ-Connection-Git-Repository/)
 
 > 230120 ~ 230125
 
-* [[Programmers] 134240. 푸드 파이트 대회]({{site.url}}/Programmers-134240/)
+* [[Programmers] 134240. 푸드 파이트 대회](https://devfancy.github.io/Programmers-17680//Programmers-134240/)
 
-* [[Programmers] 17681. [1차] 비밀지도]({{site.url}}/Programmers-17681/)
+* [[Programmers] 17681. [1차] 비밀지도](https://devfancy.github.io/Programmers-17680//Programmers-17681/)
 
-* [[Programmers] 81301. 숫자 문자열과 영단어]({{site.url}}/Programmers-81301/)
+* [[Programmers] 81301. 숫자 문자열과 영단어](https://devfancy.github.io/Programmers-17680//Programmers-81301/)
 
-* [[OS] 16. Segmentation]({{site.url}}/OS-16-Segmentation/)
+* [[OS] 16. Segmentation](https://devfancy.github.io/Programmers-17680//OS-16-Segmentation/)
 
 ---
 
 스프링 핵심 원리 - 기본편
 
-* [[Spring] 객체 지향 설계와 스프링]({{site.url}}/Spring-Core-Principle-1/)
+* [[Spring] 객체 지향 설계와 스프링](https://devfancy.github.io/Programmers-17680/Spring-Core-Principle-1/)
 
-* [[Spring] 핵심원리 - 기본편 : 객체 지향 원리 적용]({{site.url}}/Spring-Core-Principle-2/)
+* [[Spring] 핵심원리 - 기본편 : 객체 지향 원리 적용](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-2/)
 
-* [[Spring] 스프링 컨테이너와 스프링 빈]({{site.url}}/Spring-Core-Principle-4/)
+* [[Spring] 스프링 컨테이너와 스프링 빈](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-4/)
 
-  * [스프링 컨테이너에 등록된 빈 조회]({{site.url}}/Spring-Core-Principle-4-2/)
+  * [스프링 컨테이너에 등록된 빈 조회](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-4-2/)
 
   * BeanFactory와 ApplicationContext
 
@@ -121,17 +121,17 @@ author: devFancy
 
   * 스프링 빈 설정 메타 정보 - BeanDefinition
 
-* [[Spring] 싱글톤 컨테이너]({{site.url}}/Spring-Core-Principle-5/)
+* [[Spring] 싱글톤 컨테이너](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-5/)
 
-* [[Spring] 컴포넌트 스캔]({{site.url}}/Spring-Core-Principle-6/)
+* [[Spring] 컴포넌트 스캔](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-6/)
 
-* [[Spring] 의존관계 자동주입]({{site.url}}/Spring-Core-Principle-7/)
+* [[Spring] 의존관계 자동주입](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-7/)
 
-* [[Spring] 빈 생명주기 콜백]({{site.url}}/Spring-Core-Principle-8/)
+* [[Spring] 빈 생명주기 콜백](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-8/)
 
-* [[Spring] 빈 스코프]({{site.url}}/Spring-Core-Principle-9/)
+* [[Spring] 빈 스코프](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-9/)
 
-* 기타 : [[Spring] 테스트를 할 때 쓰이는 어노테이션]({{site.url}}/Spring-Core-Principle-TestCode-1/)
+* 기타 : [[Spring] 테스트를 할 때 쓰이는 어노테이션](https://devfancy.github.io/Programmers-17680//Spring-Core-Principle-TestCode-1/)
 
 ---
 
@@ -141,304 +141,302 @@ author: devFancy
 
 * [HTTP] URI와 웹 브라우저 요청 흐름
 
-* [[HTTP] HTTP 기본1]({{site.url}}/HTTP-1-Basic/)
+* [[HTTP] HTTP 기본1](https://devfancy.github.io/Programmers-17680//HTTP-1-Basic/)
 
-* [[HTTP] HTTP 기본2 - HTTP 메세지]({{site.url}}/HTTP-2-Basic/)
+* [[HTTP] HTTP 기본2 - HTTP 메세지](https://devfancy.github.io/Programmers-17680//HTTP-2-Basic/)
 
-* [[HTTP] HTTP 메서드]({{site.url}}/HTTP-3-Method/)
+* [[HTTP] HTTP 메서드](https://devfancy.github.io/Programmers-17680//HTTP-3-Method/)
 
-* [[HTTP] HTTP 메서드 활용]({{site.url}}/HTTP-4-Method-Application/)
+* [[HTTP] HTTP 메서드 활용](https://devfancy.github.io/Programmers-17680//HTTP-4-Method-Application/)
 
-* [[HTTP] HTTP 상태코드]({{site.url}}/HTTP-5-Status-Code/)
+* [[HTTP] HTTP 상태코드](https://devfancy.github.io/Programmers-17680//HTTP-5-Status-Code/)
 
-* [[HTTP] HTTP 헤더1 - 일반 헤더]({{site.url}}/HTTP-6-Header1/)
+* [[HTTP] HTTP 헤더1 - 일반 헤더](https://devfancy.github.io/Programmers-17680//HTTP-6-Header1/)
 
-* [[HTTP] HTTP 헤더2 - 캐시와 조건부 요청]({{site.url}}/HTTP-7-Header2)
+* [[HTTP] HTTP 헤더2 - 캐시와 조건부 요청](https://devfancy.github.io/Programmers-17680//HTTP-7-Header2)
 
 ---
 
 > 230126 ~ 230131
 
-* [[Programmers] 42889. 실패율]({{site.url}}/Programmers-42889/)
+* [[Programmers] 42889. 실패율](https://devfancy.github.io/Programmers-17680//Programmers-42889/)
 
-* [[Programmers] 17682. [1차] 다트 게임]({{site.url}}/Programmers-17682/)
+* [[Programmers] 17682. [1차] 다트 게임](https://devfancy.github.io/Programmers-17680//Programmers-17682/)
 
-* [[Programmers] 67256. 키패드 누르기]({{site.url}}/Programmers-67256/)
+* [[Programmers] 67256. 키패드 누르기](https://devfancy.github.io/Programmers-17680//Programmers-67256/)
 
-* [[Programmers] 77484. 로또의 최고 순위와 최저 순위]({{site.url}}/Programmers-77484/)
+* [[Programmers] 77484. 로또의 최고 순위와 최저 순위](https://devfancy.github.io/Programmers-17680//Programmers-77484/)
 
-* [[Programmers] 92334. 신고 결과 받기]({{site.url}}/Programmers-92334/)
+* [[Programmers] 92334. 신고 결과 받기](https://devfancy.github.io/Programmers-17680//Programmers-92334/)
 
-* [[Programmers] 118666. 성격 유형 검사하기]({{site.url}}/Programmers-118666/)
+* [[Programmers] 118666. 성격 유형 검사하기](https://devfancy.github.io/Programmers-17680//Programmers-118666/)
 
-* [[Programmers] 17680. [1차] 캐시]({{site.url}}/Programmers-17680/)
+* [[Programmers] 17680. [1차] 캐시](https://devfancy.github.io/Programmers-17680/)
 
-* [[E.T.C] 크롬 북마크에 있는 파비콘이 제대로 안보이는 경우]({{site.url}}/ETC-Chrome-Bookmark/)
+* [[E.T.C] 크롬 북마크에 있는 파비콘이 제대로 안보이는 경우](https://devfancy.github.io/ETC-Chrome-Bookmark/)
 
-* [[E.T.C] 왜 개발자를 선택했는가]({{site.url}}/ETC-Why-Did-You-Select-The-Developer/)
+* [[E.T.C] 왜 개발자를 선택했는가](https://devfancy.github.io/ETC-Why-Did-You-Select-The-Developer/)
 
 
 > 230201 ~ 230205
 
-* [[Programmers] 12939. 최댓값과 최솟값]({{site.url}}/Programmers-12939/)
+* [[Programmers] 12939. 최댓값과 최솟값](https://devfancy.github.io/Programmers-12939/)
 
-* [[Programmers] 12951. JadenCase 문자열 만들기]({{site.url}}/Programmers-12951/)
+* [[Programmers] 12951. JadenCase 문자열 만들기](https://devfancy.github.io/Programmers-12951/)
 
-* [[Programmers] 12941. 최솟값 만들기]({{site.url}}/Programmers-12941/)
+* [[Programmers] 12941. 최솟값 만들기](https://devfancy.github.io/Programmers-12941/)
 
-* [[Programmers] 12909. 올바른 괄호]({{site.url}}/Programmers-12909/)
+* [[Programmers] 12909. 올바른 괄호](https://devfancy.github.io/Programmers-12909/)
 
-* [[Programmers] 12981. 영어 끝말잇기]({{site.url}}/Programmers-12981/)
+* [[Programmers] 12981. 영어 끝말잇기](https://devfancy.github.io/Programmers-12981/)
 
-* [[OS] 18. Paging]({{site.url}}/OS-18-Paging/)
+* [[OS] 18. Paging](https://devfancy.github.io/OS-18-Paging/)
 
-* [[OS] 19. TLB]({{site.url}}/OS-19-TLB/)
+* [[OS] 19. TLB](https://devfancy.github.io/OS-19-TLB/)
 
-* [[OS] 20. Paging: Smaller Table]({{site.url}}/OS-20-Paging-Smaller-Tables/)
+* [[OS] 20. Paging: Smaller Table](https://devfancy.github.io/OS-20-Paging-Smaller-Tables/)
 
-* [[OS] 21. Swapping]({{site.url}}/OS-21-Swapping/)
+* [[OS] 21. Swapping](https://devfancy.github.io/OS-21-Swapping/)
 
-* [[Technology] GitHub Blog에 댓글 기능 추가(utterances)]({{site.url}}/Technology-utterances/)
+* [[Technology] GitHub Blog에 댓글 기능 추가(utterances)](https://devfancy.github.io/Technology-utterances/)
 
-* [[Technology] GitHub에 올라간 Branch에 Protection Rule 적용하기]({{site.url}}/Technology-GitHub-Branch-Protection-Rule/)
+* [[Technology] GitHub에 올라간 Branch에 Protection Rule 적용하기](https://devfancy.github.io/Technology-GitHub-Branch-Protection-Rule/)
 
 > 230206 ~ 230212
 
-* [[Programmers] 12980. 점프와 순간이동]({{site.url}}/Programmers-12980/)
+* [[Programmers] 12980. 점프와 순간이동](https://devfancy.github.io/Programmers-12980/)
 
-* [[Programmers] 42747. H-Index]({{site.url}}/Programmers-42747/)
+* [[Programmers] 42747. H-Index](https://devfancy.github.io/Programmers-42747/)
 
-* [[Programmers] 64065. 튜플]({{site.url}}/Programmers-64065/)
+* [[Programmers] 64065. 튜플](https://devfancy.github.io/Programmers-64065/)
 
-* [[Programmers] 17677. [1차] 뉴스 클러스터링]({{site.url}}/Programmers-17677/)
+* [[Programmers] 17677. [1차] 뉴스 클러스터링](https://devfancy.github.io/Programmers-17677/)
 
-* [[solved.ac] Class3++ 1012. 유기농 배추]({{site.url}}/solved-class3-backjoon-1012/)
+* [[solved.ac] Class3++ 1012. 유기농 배추](https://devfancy.github.io/solved-class3-backjoon-1012/)
 
 * [[Network] OSI 7 계층](https://devFancy.github.io/Network-OSI7-Hierarchy/)
 
 * [[Network] DNS](https://devFancy.github.io/Network-DNS/)
 
-* [[Network] TCP 와 UDP]({{site.url}}/Network-Tcp-And-Udp/)
+* [[Network] TCP 와 UDP](https://devfancy.github.io/Network-Tcp-And-Udp/)
 
-* [[Database] RDB와 NoSQL]({{site.url}}/DB-Rdb-Nosql/)
+* [[Database] RDB와 NoSQL](https://devfancy.github.io/DB-Rdb-Nosql/)
 
-* [[Book] 소프트웨어 장인 리뷰]({{site.url}}/Book-Software-Master-Craftsman/)
+* [[Book] 소프트웨어 장인 리뷰](https://devfancy.github.io/Book-Software-Master-Craftsman/)
 
-* [[Technology] 나만의 GitHub README.md 꾸미기]({{site.url}}/Technology-GitHub-Readme/)
+* [[Technology] 나만의 GitHub README.md 꾸미기](https://devfancy.github.io/Technology-GitHub-Readme/)
 
-* [[Jekyll] 에서 Liquid syntax error 처리하는 방법]({{site.url}}/ETC-Liquid-syntax-error/)
+* [[Jekyll] 에서 Liquid syntax error 처리하는 방법](https://devfancy.github.io/ETC-Liquid-syntax-error/)
 
 > 230213 ~ 230219
 
-* [[Programmers] 43165. 타켓 넘버(dfs)]({{site.url}}/Programmers-43165/)
+* [[Programmers] 43165. 타켓 넘버(dfs)](https://devfancy.github.io/Programmers-43165/)
 
-* [[Programmers] 1844. 게임 맵 최단거리]({{site.url}}/Programmers-1844/)
+* [[Programmers] 1844. 게임 맵 최단거리](https://devfancy.github.io/Programmers-1844/)
 
-* [[solved.ac] Class3++ DFS와 BFS]({{site.url}}/solved-class3-backjoon-1260/)
+* [[solved.ac] Class3++ DFS와 BFS](https://devfancy.github.io/solved-class3-backjoon-1260/)
 
-* [[Database] 관계 데이터 모델의 개념]({{site.url}}/DB-RDB-Concept/)
+* [[Database] 관계 데이터 모델의 개념](https://devfancy.github.io/DB-RDB-Concept/)
 
-* [[Database] 관계 데이터 모델의 개념 - Key의 종류]({{site.url}}/DB-RDB-Concept-Key/)
+* [[Database] 관계 데이터 모델의 개념 - Key의 종류](https://devfancy.github.io/DB-RDB-Concept-Key/)
 
-* [[Network] Proxy Server]({{site.url}}/Network-Proxy-Server/)
+* [[Network] Proxy Server](https://devfancy.github.io/Network-Proxy-Server/)
 
-* [[Network] Cookie & Session]({{site.url}}/Network-Cookie-And-Session/)
+* [[Network] Cookie & Session](https://devfancy.github.io/Network-Cookie-And-Session/)
 
-* [[Network] Load Balancing]({{site.url}}/Network-Load-Balancing/)
+* [[Network] Load Balancing](https://devfancy.github.io/Network-Load-Balancing/)
 
-* [[Network] HTTP 진화과정]({{site.url}}/Network-HTTP/)
+* [[Network] HTTP 진화과정](https://devfancy.github.io/Network-HTTP/)
 
-* [[Network] REST, REST API, RESTful]({{site.url}}/Network-REST-RESTAPI-RESTful/)
+* [[Network] REST, REST API, RESTful](https://devfancy.github.io/Network-REST-RESTAPI-RESTful/)
 
-* [[OS] 26. Concurrency]({{site.url}}/OS-26-Concurrency/)
+* [[OS] 26. Concurrency](https://devfancy.github.io/OS-26-Concurrency/)
 
-* [[OS] 28. Lock]({{site.url}}/OS-28-Lock/)
+* [[OS] 28. Lock](https://devfancy.github.io/OS-28-Lock/)
 
-* [[OS] 31. Semaphore]({{site.url}}/OS-31-Semaphore/)
+* [[OS] 31. Semaphore](https://devfancy.github.io/OS-31-Semaphore/)
 
 > 230220 ~ 23026
 
-* [[Programmers] 12921. 소수찾기]({{site.url}}/Programmers-12921/)
+* [[Programmers] 12921. 소수찾기](https://devfancy.github.io/Programmers-12921/)
 
-* [[Programmers] 92335. k진수에서 소수 개수 구하기]({{site.url}}/Programmers-92335/)
+* [[Programmers] 92335. k진수에서 소수 개수 구하기](https://devfancy.github.io/Programmers-92335/)
 
-* [[Programmers] 17684. [3차] 압축]({{site.url}}/Programmers-17684/)
+* [[Programmers] 17684. [3차] 압축](https://devfancy.github.io/Programmers-17684/)
 
-* [[Programmers] SQL 59047. 이름에 el이 들어가는 동물 찾기]({{site.url}}/Programmers-59047/)
+* [[Programmers] SQL 59047. 이름에 el이 들어가는 동물 찾기](https://devfancy.github.io/Programmers-59047/)
 
-* [[Programmers] SQL 59414. DATETIME에서 DATE로 형 변환]({{site.url}}/Programmers-59414/)
+* [[Programmers] SQL 59414. DATETIME에서 DATE로 형 변환](https://devfancy.github.io/Programmers-59414/)
 
-* [[Programmers] SQL 59409. 중성화 여부 파악하기]({{site.url}}/Programmers-59409/)
+* [[Programmers] SQL 59409. 중성화 여부 파악하기](https://devfancy.github.io/Programmers-59409/)
 
-* [[Programmers] SQL 131529. 카테고리 별 상품 개수 구하기]({{site.url}}/Programmers-131529/)
+* [[Programmers] SQL 131529. 카테고리 별 상품 개수 구하기](https://devfancy.github.io/Programmers-131529/)
 
-* [[solved.ac] Class3++ 2606. 바이러스]({{site.url}}/solved-class3-backjoon-2606/)
+* [[solved.ac] Class3++ 2606. 바이러스](https://devfancy.github.io/solved-class3-backjoon-2606/)
 
-* [[Database] 트랜잭션(ACID 특성)]({{site.url}}/DB-Transaction/)
+* [[Database] 트랜잭션(ACID 특성)](https://devfancy.github.io/DB-Transaction/)
 
-* [[Database] 트랜잭션 격리수준]({{site.url}}/DB-Transaction-Isolation-Level/)
+* [[Database] 트랜잭션 격리수준](https://devfancy.github.io/DB-Transaction-Isolation-Level/)
 
-* [[Database] DB Locking]({{site.url}}/DB-Locking/)
+* [[Database] DB Locking](https://devfancy.github.io/DB-Locking/)
 
 > 230227 ~ 230305
 
-* [[Programmers] SQL > SUM, MAX, MIN 풀이 모음]({{site.url}}/Programmers-SQL-SUM-MAX-MIN/)
+* [[Programmers] SQL > SUM, MAX, MIN 풀이 모음](https://devfancy.github.io/Programmers-SQL-SUM-MAX-MIN/)
 
-* [[Programmers] 157342. 자동차 평균 대여 기간 구하기]({{site.url}}/Programmers-157342/)
+* [[Programmers] 157342. 자동차 평균 대여 기간 구하기](https://devfancy.github.io/Programmers-157342/)
 
-* [[Programmers] 59046. 루시와 엘라 찾기]({{site.url}}/Programmers-59046/)
+* [[Programmers] 59046. 루시와 엘라 찾기](https://devfancy.github.io/Programmers-59046/)
 
 * [[SpringBoot] 변경 감지와 병합(merge)](https://devFancy.github.io/Springboot-merge/)
 
 > 230306 ~ 230312
 
-* [[백준] 1937. 욕심쟁이 판다]({{site.url}}/baekjoon-1937/)
+* [[백준] 1937. 욕심쟁이 판다](https://devfancy.github.io/baekjoon-1937/)
 
-* [[Programmers] 12924. 숫자의 표현]({{site.url}}/Programmers-12924/)
+* [[Programmers] 12924. 숫자의 표현](https://devfancy.github.io/Programmers-12924/)
 
-* [[Programmers] 138476. 귤 고르기]({{site.url}}/Programmers-138476/)
+* [[Programmers] 138476. 귤 고르기](https://devfancy.github.io/Programmers-138476/)
 
-* [[Programmers] 92341. 주차 요금 계산]({{site.url}}/Programmers-92341/)
+* [[Programmers] 92341. 주차 요금 계산](https://devfancy.github.io/Programmers-92341/)
 
 > 230313 ~ 230319
 
-* [[Programmers] SQL > Join 풀이 모음]({{site.url}}/Programmers-JOIN/)
+* [[Programmers] SQL > Join 풀이 모음](https://devfancy.github.io/Programmers-JOIN/)
 
-* [[Algorithm] 프로그래밍 문제 접근법 - 문제 해결]({{site.url}}/Tech-Interview-1/)
+* [[Algorithm] 프로그래밍 문제 접근법 - 문제 해결](https://devfancy.github.io/Tech-Interview-1/)
 
-* [[Algorithm] 프로그래밍 문제 접근법 - 빅 오 분석법]({{site.url}}/Tech-Interview-2/)
+* [[Algorithm] 프로그래밍 문제 접근법 - 빅 오 분석법](https://devfancy.github.io/Tech-Interview-2/)
 
-* [[DataStructure] 연결 리스트]({{site.url}}/DataStructure-LinkedList/)
+* [[DataStructure] 연결 리스트](https://devfancy.github.io/DataStructure-LinkedList/)
 
 > 230320 ~ 230326
 
-* [[Programmers] 17687. [3차] n진수 게임]({{site.url}}/Programmers-17687/)
+* [[Programmers] 17687. [3차] n진수 게임](https://devfancy.github.io/Programmers-17687/)
 
-* [[Programmers] 42888. 오픈채팅방]({{site.url}}/Programmers-42888/)
+* [[Programmers] 42888. 오픈채팅방](https://devfancy.github.io/Programmers-42888/)
 
-* [[DataStructure] 트리]({{site.url}}/DataStructure-Tree/)
+* [[DataStructure] 트리](https://devfancy.github.io/DataStructure-Tree/)
 
-* [[DataStructure] 기본적인 그래프 기법 : DFS, BFS]({{site.url}}/DataStructure-DFS-BFS/)
+* [[DataStructure] 기본적인 그래프 기법 : DFS, BFS](https://devfancy.github.io/DataStructure-DFS-BFS/)
 
 > 230327 ~ 230402
 
-* [[Programmers] 42586. 기능개발]({{site.url}}/Programmers-42586/)
+* [[Programmers] 42586. 기능개발](https://devfancy.github.io/Programmers-42586/)
 
-* [[Programmers] 42587. 프린터]({{site.url}}/Programmers-42587/)
+* [[Programmers] 42587. 프린터](https://devfancy.github.io/Programmers-42587/)
 
-* [[Programmers] 42584. 주식가격]({{site.url}}/Programmers-42584/)
+* [[Programmers] 42584. 주식가격](https://devfancy.github.io/Programmers-42584/)
 
 > 230403 ~ 230409
 
-* [[Programmers] 42583. 다리를 지나는 트럭]({{site.url}}/Programmers-42583/)
+* [[Programmers] 42583. 다리를 지나는 트럭](https://devfancy.github.io/Programmers-42583/)
 
-* [[Programmers] 118667. 두 큐 합 같게 만들기]({{site.url}}/Programmers-118667/)
+* [[Programmers] 118667. 두 큐 합 같게 만들기](https://devfancy.github.io/Programmers-118667/)
 
 > 230514 ~ 230612
 
-* [[MySQL] MacOS M1 기반 MySQL, Workbench, Sakila 설치하기]({{site.url}}/MySQL-Installation/)
+* [[MySQL] MacOS M1 기반 MySQL, Workbench, Sakila 설치하기](https://devfancy.github.io/MySQL-Installation/)
 
-* [[MySQL] SELECT, JOIN - Practice]({{site.url}}/MySQL-DML-Practice-1/)
+* [[MySQL] SELECT, JOIN - Practice](https://devfancy.github.io/MySQL-DML-Practice-1/)
 
-* [[MySQL] SELECT, JOIN, SubQuery - Practice]({{site.url}}/MySQL-DML-Practice-2/)
+* [[MySQL] SELECT, JOIN, SubQuery - Practice](https://devfancy.github.io/MySQL-DML-Practice-2/)
 
-* [[Java] ArrayList와 LinkedList의 성능 비교]({{site.url}}/Java-ArrayList-LinkedList/)
+* [[Java] ArrayList와 LinkedList의 성능 비교](https://devfancy.github.io/Java-ArrayList-LinkedList/)
 
 > 230805 ~ 230831
 
-* [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Grow-Together/)
+* [[Book] 함께 자라기 리뷰](https://devfancy.github.io/Book-Grow-Together/)
 
-* [[Goodfriends] 굿프렌즈팀의 이벤트 스토밍(Event Storming) 도입기]({{site.url}}/Goodfriends-event-storming/)
+* [[Goodfriends] 굿프렌즈팀의 이벤트 스토밍(Event Storming) 도입기](https://devfancy.github.io/Goodfriends-event-storming/)
 
-* [[Goodfriends] Git Flow 전략]({{site.url}}/Goodfriends-Git-flow/)
+* [[Goodfriends] Git Flow 전략](https://devfancy.github.io/Goodfriends-Git-flow/)
 
-* [[Goodfriends] Agile 기반 Scrum 프로세스 도입]({{site.url}}/Goodfriends-Agile-Scrum/)
+* [[Goodfriends] Agile 기반 Scrum 프로세스 도입](https://devfancy.github.io/Goodfriends-Agile-Scrum/)
 
-* [[Goodfriends] EC2 환경에서 도커를 활용한 젠킨스 설치하기]({{site.url}}/Goodfriends-EC2-Docker-Jenkins/)
+* [[Goodfriends] EC2 환경에서 도커를 활용한 젠킨스 설치하기](https://devfancy.github.io/Goodfriends-EC2-Docker-Jenkins/)
 
-* [[Goodfriends] 젠킨스를 사용하여 CI/CD Pipeline 구축기(백엔드편)]({{site.url}}/Goodfriends-Jenkins-Pipeline-Backend/)
+* [[Goodfriends] 젠킨스를 사용하여 CI/CD Pipeline 구축기(백엔드편)](https://devfancy.github.io/Goodfriends-Jenkins-Pipeline-Backend/)
 
-* [[Goodfriends] 젠킨스를 사용하여 CI/CD Pipeline 구축기(프론트엔드편)]({{site.url}}/Goodfriends-Jenkins-Pipeline-Frontend/)
+* [[Goodfriends] 젠킨스를 사용하여 CI/CD Pipeline 구축기(프론트엔드편)](https://devfancy.github.io/Goodfriends-Jenkins-Pipeline-Frontend/)
 
-* [[Goodfriends] PR 라벨로 Jenkins Build 유발 구분하기]({{site.url}}/Goodfriends-PR-Label-Jenkins-Build/)
+* [[Goodfriends] PR 라벨로 Jenkins Build 유발 구분하기](https://devfancy.github.io/Goodfriends-PR-Label-Jenkins-Build/)
 
 > 230901 ~ 230930
 
-* [[Goodfriends] 굿프렌즈팀의 DDD 기반 기능별 패키지 구조 적용기]({{site.url}}/Goodfriends-ddd-function-package/)
+* [[Goodfriends] 굿프렌즈팀의 DDD 기반 기능별 패키지 구조 적용기](https://devfancy.github.io/Goodfriends-ddd-function-package/)
 
 > 231002 ~ 231008
 
-* [[Programmers] 150370. 개인정보 수집 유효기간]({{site.url}}/Programmers-150370/)
+* [[Programmers] 150370. 개인정보 수집 유효기간](https://devfancy.github.io/Programmers-150370/)
 
 > 231009 ~ 231015
 
-* [[Programmers] 17686. [3차] 파일명 정렬]({{site.url}}/Programmers-17686/)
+* [[Programmers] 17686. [3차] 파일명 정렬](https://devfancy.github.io/Programmers-17686/)
 
-* [[Goodfriends] 다양한 예외 처리들을 관리하기 위해 @RestControllerAdvice 도입]({{site.url}}/Goodfriends-RestControllerAdvice/)
+* [[Goodfriends] 다양한 예외 처리들을 관리하기 위해 @RestControllerAdvice 도입](https://devfancy.github.io/Goodfriends-RestControllerAdvice/)
 
-* [[Goodfriends] 시스템 장애를 미리 예방하기 위해 Amazon CloudWatch를 활용]({{site.url}}/Goodfriends-Aws-CloudWatch/)
+* [[Goodfriends] 시스템 장애를 미리 예방하기 위해 Amazon CloudWatch를 활용](https://devfancy.github.io/Goodfriends-Aws-CloudWatch/)
 
 > 231016 ~ 231022
 
-* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2 - API 개발 기본]({{site.url}}/SpringBoot-JPA2-basic/)
+* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2 - API 개발 기본](https://devfancy.github.io/SpringBoot-JPA2-basic/)
 
-* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 지연 로딩과 조회 성능 최적화]({{site.url}}/SpringBoot-JPA2-advance/)
+* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 지연 로딩과 조회 성능 최적화](https://devfancy.github.io/SpringBoot-JPA2-advance/)
 
-* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 컬렉션 조회 최적화]({{site.url}}/SpringBoot-JPA2-advance-collection/)
+* [[SpringBoot] 실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 컬렉션 조회 최적화](https://devfancy.github.io/SpringBoot-JPA2-advance-collection/)
 
 > 231023 ~ 231029
 
-* [[Java] 알고리즘/코딩테스트를 위한 코드 정리]({{site.url}}/Algorithm_Summary/)
+* [[Java] 알고리즘/코딩테스트를 위한 코드 정리](https://devfancy.github.io/Algorithm_Summary/)
 
-* [[Programmers] 131704. 택배상자]({{site.url}}/Programmers-131704/)
+* [[Programmers] 131704. 택배상자](https://devfancy.github.io/Programmers-131704/)
 
-* [[Programmers] 155651. 호텔 대실(누적합)]({{site.url}}/Programmers-155651/)
+* [[Programmers] 155651. 호텔 대실(누적합)](https://devfancy.github.io/Programmers-155651/)
 
-* [[Programmers] 159993. 미로탈출 (BFS)]({{site.url}}/Programmers-159993/)
+* [[Programmers] 159993. 미로탈출 (BFS)](https://devfancy.github.io/Programmers-159993/)
 
-* [쿠키와 세션]({{site.url}}/Technology-Cookie/)
+* [쿠키와 세션](https://devfancy.github.io/Technology-Cookie/)
 
-* [[Goodfriends] Set-Cookie의 보안 속성 적용기]({{site.url}}/Technology-Set-Cookie/)
+* [[Goodfriends] Set-Cookie의 보안 속성 적용기](https://devfancy.github.io/Technology-Set-Cookie/)
 
-* [NGINX란?]({{site.url}}/Technology-NGINX/)
+* [NGINX란?](https://devfancy.github.io/Technology-NGINX/)
 
 > 231031 ~ 231105
 
-* [[내 코드가 그렇게 이상한가요?] 1장. 잘못된 구조의 문제 깨닫기]({{site.url}}/Is-My-Code-That-Weird-1/)
+* [[내 코드가 그렇게 이상한가요?] 1장. 잘못된 구조의 문제 깨닫기](https://devfancy.github.io/Is-My-Code-That-Weird-1/)
 
-* [[내 코드가 그렇게 이상한가요?] 3장. 클래스 설계: 모든 것과 연결되는 설계 기반]({{site.url}}/Is-My-Code-That-Weird-3/)
+* [[내 코드가 그렇게 이상한가요?] 3장. 클래스 설계: 모든 것과 연결되는 설계 기반](https://devfancy.github.io/Is-My-Code-That-Weird-3/)
 
-* [우선순위 큐(Priority Queue) 개념 및 사용법 정리]({{site.url}}/Priority-Queue/)
+* [우선순위 큐(Priority Queue) 개념 및 사용법 정리](https://devfancy.github.io/Priority-Queue/)
 
 > 231106 ~ 231112
 
-* [[Spring] Builder 패턴에 대한 이해와 사용, @Builder]({{site.url}}/Spring-Builder/)
+* [[Spring] Builder 패턴에 대한 이해와 사용, @Builder](https://devfancy.github.io/Spring-Builder/)
 
-* [[Spring] Transaction이란 (feat. @Transactional 동작 원리)]({{site.url}}/)
+* [[Programmers] 43162. 네트워크(DFS)](https://devfancy.github.io/Programmers-43162/)
 
-* [[Programmers] 43162. 네트워크(DFS)]({{site.url}}/Programmers-43162/)
+* [[Programmers] 수식 최대화(dfs, 순열)](https://devfancy.github.io/Programmers-2020-Kakao-Internship-2/)
 
-* [[Programmers] 수식 최대화(dfs, 순열)]({{site.url}}/Programmers-2020-Kakao-Internship-2/)
+* [[내 코드가 그렇게 이상한가요?] 4장. 불변 활용하기: 안정적으로 동작하게 만들기](https://devfancy.github.io/Is-My-Code-That-Weird-4/)
 
-* [[내 코드가 그렇게 이상한가요?] 4장. 불변 활용하기: 안정적으로 동작하게 만들기]({{site.url}}/Is-My-Code-That-Weird-4/)
-
-* [[내 코드가 그렇게 이상한가요?] 6장. 조건 분기: 미궁처럼 복잡한 분기 처리를 무너뜨리는 방법]({{site.url}}/Is-My-Code-That-Weird-6/)
+* [[내 코드가 그렇게 이상한가요?] 6장. 조건 분기: 미궁처럼 복잡한 분기 처리를 무너뜨리는 방법](https://devfancy.github.io/Is-My-Code-That-Weird-6/)
 
 > 231113 ~ 231119
 
-* [[DB] 정규화 과정]({{site.url}}/DB-Normalization/)
+* [[DB] 정규화 과정](https://devfancy.github.io/DB-Normalization/)
 
-* [[Technology] 왜 HTTPS를 사용하나요?]({{site.url}}/Technology-HTTPS/)
+* [[Technology] 왜 HTTPS를 사용하나요?](https://devfancy.github.io/Technology-HTTPS/)
 
-* [[Goodfriends] Nginx와 Let's Encrypt로 HTTPS 웹 서비스 배포하기]({{site.url}}/Goodfriends-Nginx-SSL-HTTPS/)
+* [[Goodfriends] Nginx와 Let's Encrypt로 HTTPS 웹 서비스 배포하기](https://devfancy.github.io/Goodfriends-Nginx-SSL-HTTPS/)
 
-* [[내 코드가 그렇게 이상한가요?] 8 - 12장 정리]({{site.url}}/Is-My-Code-That-Weird-8-to-12/)
+* [[내 코드가 그렇게 이상한가요?] 8 - 12장 정리](https://devfancy.github.io/Is-My-Code-That-Weird-8-to-12/)
 
-* [[Book] 함께 자라기 리뷰]({{site.url}}/Book-Growing-Up-Together/)
+* [[Book] 함께 자라기 리뷰](https://devfancy.github.io/Book-Growing-Up-Together/)
 
 > 231120 ~ 231126
 
-* [[내 코드가 그렇게 이상한가요?] 13 - 16장 정리]({{site.url}}/Is-My-Code-That-Weird-13-to-16/)
+* [[내 코드가 그렇게 이상한가요?] 13 - 16장 정리](https://devfancy.github.io/Is-My-Code-That-Weird-13-to-16/)
 
 자바 ORM 표준 JPA 프로그래밍 - 기본편
 
@@ -446,64 +444,68 @@ author: devFancy
 
 * JPA 시작하기
 
-* [[JPA] 영속성 컨텍스트란]({{site.url}}/JPA-3-Persistence-Context/)
+* [[JPA] 영속성 컨텍스트란](https://devfancy.github.io/JPA-3-Persistence-Context/)
 
-* [[JPA] 엔티티 매핑]({{site.url}}/JPA-4-Entity-Mapping/)
+* [[JPA] 엔티티 매핑](https://devfancy.github.io/JPA-4-Entity-Mapping/)
 
-* [[JPA] 연관관계 기초]({{site.url}}/JPA-5-Relationship-Mapping-Basic/)
+* [[JPA] 연관관계 기초](https://devfancy.github.io/JPA-5-Relationship-Mapping-Basic/)
 
-* [[JPA] 다양한 연관관계 매핑]({{site.url}}/JPA-6-Relationship-Mapping-Kind/)
+* [[JPA] 다양한 연관관계 매핑](https://devfancy.github.io/JPA-6-Relationship-Mapping-Kind/)
 
-* [[JPA] 고급 매핑 (상속관계 매핑, BaseEntity)]({{site.url}}/JPA-7-Advanced-Mapping/)
+* [[JPA] 고급 매핑 (상속관계 매핑, BaseEntity)](https://devfancy.github.io/JPA-7-Advanced-Mapping/)
 
 > 231127 ~ 231203
 
-* [[Programmers] [1차] 프렌즈4블록(2018 카카오 블라인드)]({{site.url}}/Programmers-17679/)
+* [[Programmers] [1차] 프렌즈4블록(2018 카카오 블라인드)](https://devfancy.github.io/Programmers-17679/)
 
-* [[Programmers] 후보키 (2019 카카오 블라인드)]({{site.url}}/Programmers-42890/)
+* [[Programmers] 후보키 (2019 카카오 블라인드)](https://devfancy.github.io/Programmers-42890/)
 
-* [[solved.ac] Class3++ 2606. 바이러스 (DFS)]({{site.url}}/solved-class3-backjoon-2606/)
+* [[solved.ac] Class3++ 2606. 바이러스 (DFS)](https://devfancy.github.io/solved-class3-backjoon-2606/)
 
-* [[solved.ac] Class3++ 11724. 연결 요소의 개수(DFS)]({{site.url}}/solved-class3-backjoon-11724/)
+* [[solved.ac] Class3++ 11724. 연결 요소의 개수(DFS)](https://devfancy.github.io/solved-class3-backjoon-11724/)
 
-* [[백준] 알고리즘 수업 - 깊이 우선 탐색 1(DFS)]({{site.url}}/Algorithm-Baekjoon-24479/)
+* [[백준] 알고리즘 수업 - 깊이 우선 탐색 1(DFS)](https://devfancy.github.io/Algorithm-Baekjoon-24479/)
 
-* [[백준] 알고리즘 수업 - 깊이 우선 탐색 2(DFS)]({{site.url}}/Algorithm-Baekjoon-24480/)
+* [[백준] 알고리즘 수업 - 깊이 우선 탐색 2(DFS)](https://devfancy.github.io/Algorithm-Baekjoon-24480/)
 
-* [[백준] 2644번. 촌수계산(DFS)]({{site.url}}/Algorithm-backjoon-2644/)
+* [[백준] 2644번. 촌수계산(DFS)](https://devfancy.github.io/Algorithm-backjoon-2644/)
 
-* [[solved.ac] Class3++ 1260. DFS와 BFS]({{site.url}}/Algorithm-solved-class3-backjoon-1260/)
+* [[solved.ac] Class3++ 1260. DFS와 BFS](https://devfancy.github.io/Algorithm-solved-class3-backjoon-1260/)
 
-* [[백준] 11725. 트리의 부모찾기]({{site.url}}/Algorithm-backjoon-11725/)
+* [[백준] 11725. 트리의 부모찾기](https://devfancy.github.io/Algorithm-backjoon-11725/)
 
 > 231204 ~ 231210
 
-* [[백준] 13565. 침투]({{site.url}}/Algorithm-backjoon-13565/)
+* [[백준] 13565. 침투](https://devfancy.github.io/Algorithm-backjoon-13565/)
 
-* [[solved.ac] Class3++ 1012. 유기농 배추]({{site.url}}/solved-class3-backjoon-1012/)
+* [[solved.ac] Class3++ 1012. 유기농 배추](https://devfancy.github.io/solved-class3-backjoon-1012/)
 
-* [[백준] 1388. 바닥장식]({{site.url}}/Algorithm-backjoon-1388/)
+* [[백준] 1388. 바닥장식](https://devfancy.github.io/Algorithm-backjoon-1388/)
 
-* [[백준] 4963. 섬의개수]({{site.url}}/Algorithm-backjoon-4963/)
+* [[백준] 4963. 섬의개수](https://devfancy.github.io/Algorithm-backjoon-4963/)
 
-* [[Java] equals와 hashCode 관계]({{site.url}}/equals-and-hashcode/)
+* [[Java] equals와 hashCode 관계](https://devfancy.github.io/equals-and-hashcode/)
 
-* [[TestCode] Practical Testing: 테스트 코드 작성 방법]({{site.url}}/Practical-Testing/)
+* [[TestCode] Practical Testing: 테스트 코드 작성 방법](https://devfancy.github.io/Practical-Testing/)
 
 > 231211 ~ 231217
 
-* [[백준] 16173. 점프왕 쩰리 (Small)]({{site.url}}/Algorithm-backjoon-16173/)
+* [[백준] 16173. 점프왕 쩰리 (Small)](https://devfancy.github.io/Algorithm-backjoon-16173/)
 
-* [[Programmers] 43162. 네트워크(DFS)]({{site.url}}/Programmers-43162/)
+* [[Programmers] 43162. 네트워크(DFS)](https://devfancy.github.io/Programmers-43162/)
 
-* [[Programmers] 1844. 게임 맵 최단거리(bfs)]({{site.url}}/Programmers-1844/)
+* [[Programmers] 1844. 게임 맵 최단거리(bfs)](https://devfancy.github.io/Programmers-1844/)
 
-* [[Programmers] 159993. 미로탈출 (BFS)]({{site.url}}/Programmers-159993/)
+* [[Programmers] 159993. 미로탈출 (BFS)](https://devfancy.github.io/Programmers-159993/)
 
-* [[TestCode] Practical Testing: 테스트 코드 작성 방법 - Mock, 더 나은 테스트를 위한 구체적 조언]({{site.url}}/Practical-Testing2/)
+* [[TestCode] Practical Testing: 테스트 코드 작성 방법 - Mock, 더 나은 테스트를 위한 구체적 조언](https://devfancy.github.io/Practical-Testing2/)
 
 자바 ORM 표준 JPA 프로그래밍 - 기본편
 
-* [[JPA] 프록시와 연관관계 관리]({{site.url}}/JPA-8-Proxy/)
+* [[JPA] 프록시와 연관관계 관리](https://devfancy.github.io/JPA-8-Proxy/)
 
-* [[JPA] 값 타입]({{site.url}}/JPA-9-Value-Type/)
+* [[JPA] 값 타입](https://devfancy.github.io/JPA-9-Value-Type/)
+
+> 231218 ~ 231224
+
+* [[Programmers] SQL > String, Date 풀이 모음](https://devfancy.github.io/SQL-String-and-Date/)
