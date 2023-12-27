@@ -7,31 +7,31 @@ author: devFancy
 * content
 {:toc}
 
-## 자동차 대여 기록에서 장기/단기 대여 구분하기
+## 자동차 대여 기록에서 장기/단기 대여 구분하기(Lv.1)
 
 > [자동차 대여 기록에서 장기/단기 대여 구분하기](https://school.programmers.co.kr/learn/courses/30/lessons/151138)
 
-* 문제: `CAR_RENTAL_COMPANY_RENTAL_HISTORY` 테이블에서 대여 시작일이 
-    
-    2022년 9월에 속하는 대여 기록에 대해서 대여 기간이 30일 이상이면 '장기 대여' 
-    
-    그렇지 않으면 '단기 대여' 로 표시하는 컬럼(컬럼명: RENT_TYPE)을 추가하여 
+* 문제: `CAR_RENTAL_COMPANY_RENTAL_HISTORY` 테이블에서 대여 시작일이
 
-    대여기록을 출력하는 SQL문을 작성해주세요. 
+  2022년 9월에 속하는 대여 기록에 대해서 대여 기간이 30일 이상이면 '장기 대여'
 
-    결과는 대여 기록 ID를 기준으로 내림차순 정렬해주세요.
+  그렇지 않으면 '단기 대여' 로 표시하는 컬럼(컬럼명: RENT_TYPE)을 추가하여
 
-### Answer Code(Lv.1)
+  대여기록을 출력하는 SQL문을 작성해주세요.
+
+  결과는 대여 기록 ID를 기준으로 내림차순 정렬해주세요.
+
+### Answer Code(2023.12.22)
 
 ```sql
-select history_id, car_id, 
-date_format(start_date, '%Y-%m-%d') as start_date,
-date_format(end_date,  '%Y-%m-%d') as end_date,
-case when datediff(end_date, start_date) + 1 >= 30 then "장기 대여"
-else "단기 대여" end as rent_type
-from car_rental_company_rental_history
-where start_date between '2022-09-01' and '2022-09-30'
-order by history_id desc;
+SELECT HISTORY_ID, CAR_ID, 
+DATE_FORMAT(START_DATE, '%Y-%m-%d') AS START_DATE,
+DATE_FORMAT(END_DATE,  '%Y-%m-%d') AS END_DATE,
+CASE WHEN DATEDIFF(END_DATE, START_DATE) + 1 >= 30 THEN "장기 대여"
+ELSE "단기 대여" END AS RENT_TYPE
+FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
+WHERE START_DATE BETWEEN '2022-09-01' AND '2022-09-30'
+ORDER BY HISTORY_ID DESC;
 ```
 
 ### 문제 풀이
@@ -43,7 +43,7 @@ order by history_id desc;
 
 > `DATE_FORMAT` : MySQL에서 사용되는 **날짜 데이터의 출력 형식을 지정하는 함수**
 
-* `date_format(start_date, '%Y-%m-%d')`은 start_date 에서 `'%Y-%m-%d'` 형식으로 반환해준다.
+* `DATE_FORMAT(START_DATE, '%Y-%m-%d')`은 start_date 에서 `'%Y-%m-%d'` 형식으로 반환해준다.
 
   (대부분의 날짜 데이터는 **`%Y-%m-%d` 형식**을 많이 사용한다.)
 
@@ -57,7 +57,7 @@ order by history_id desc;
 
 * 이 함수는 첫 번째 날짜에서 두 번째 날짜를 뺀 결과를 반환해준다.
 
-* 기본 사용 형식: `DATEDIFF(end_date, start_date)`
+* 기본 사용 형식: `DATEDIFF(END_DATE, START_DATE)`
 
 * **중요)** 오늘 대여하고 오늘 반납해도 대여 기간은 하루 기간이기 때문에, **(END_DATE - START_DATE) +1 >= 30** 으로 계산해야 한다.
 
@@ -90,7 +90,7 @@ END
 
 > [특정 옵션이 포함된 자동차 리스트 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/157343)
 
-* 문제: `CAR_RENTAL_COMPANY_CAR` 테이블에서 '네비게이션' 옵션이 포함된 자동차 리스트를 출력하는 SQL문을 작성해주세요. 
+* 문제: `CAR_RENTAL_COMPANY_CAR` 테이블에서 '네비게이션' 옵션이 포함된 자동차 리스트를 출력하는 SQL문을 작성해주세요.
 
   결과는 자동차 ID를 기준으로 내림차순 정렬해주세요.
 
@@ -110,9 +110,49 @@ order by car_id desc
 1. `네비게이션` 옵션이 포함된 자동차 리스트를 출력한다.
 2. 자동차 ID를 기준으로 내림차순으로 정렬한다.
 
-* `CAR_RENTAL_COMPANY_CAR` 테이블에서 '네비게이션' 옵션이 포함 => **where + like** 절을 사용한다. => `like '%네비게이션%'` 
+* `CAR_RENTAL_COMPANY_CAR` 테이블에서 '네비게이션' 옵션이 포함 => **where + like** 절을 사용한다. => `like '%네비게이션%'`
 
 * `order by car_id desc` => `DESC`는 내림차순(`ASC`는 오름차순 이다)
+
+## 조건에 부합하는 중고거래 상태 조회하기(Lv 2)
+
+> [조건에 부합하는 중고거래 상태 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/164672)
+
+* 문제: `USED_GOODS_BOARD` 테이블에서 2022년 10월 5일에 등록된
+
+  중고거래 게시물의 게시글 ID, 작성자 ID, 게시글 제목, 가격, 거래상태를 조회하는 SQL문을 작성해주세요.
+
+  거래상태가 SALE 이면 판매중, RESERVED이면 예약중, DONE이면 거래완료 분류하여 출력해주시고,
+
+  결과는 게시글 ID를 기준으로 내림차순 정렬해주세요.
+
+### Answer Code
+
+```sql
+SELECT BOARD_ID, WRITER_ID, TITLE, PRICE, 
+    CASE 
+        WHEN STATUS = 'SALE' THEN '판매중'
+        WHEN STATUS = 'RESERVED' THEN '예약중'
+        WHEN STATUS = 'DONE' THEN '거래완료' 
+        END STATUS
+FROM USED_GOODS_BOARD
+WHERE BOARD_ID IN(
+  SELECT BOARD_ID 
+  FROM USED_GOODS_BOARD
+  WHERE CREATED_DATE = '2022-10-05'
+)
+ORDER 
+    BY BOARD_ID DESC;
+```
+
+### 문제 풀이
+
+> 문제를 풀기 위해서 해야할 작업들
+
+1. 2022년 10월 5일에 등록된 중고 거래 게시물에서 (WHERE)
+2. 필요한 컬럼들 조회(SELECT)
+3. 거래 상태에 따라 분류해서 출력(CASE)
+4. 게시글 ID를 기준으로 내림차순 정렬(ORDER BY)
 
 ## 조건에 맞는 사용자 정보 조회하기(Lv.3)
 
@@ -266,7 +306,7 @@ ORDER
 > 문제를 풀기 위해서 해야할 작업들
 
 1. CONCAT() 함수를 이용하여 `USED_GOODS_FILE` 테이블에서 BOARD_ID 를 기준으로 디렉터리를 '/' 으로 구분하고, 파일이름은 FILE_ID, FILE_NAME, FILE_EXT로 구성되도록 한다.
-2. 조건 where 절에서 `USED_GOODS_BOARD` 테이블에서 가장 높은 조회수(VIEW)를 SELECT 절과 MAX를 이용해서 하나만 조회하도록 한다.
+2. 조건 WHERE 절에서 `USED_GOODS_BOARD` 테이블에서 가장 높은 조회수(VIEW)를 SELECT 절과 MAX를 이용해서 하나만 조회하도록 한다.
 3. FILE_ID를 기준으로 내림차순 정렬하여 결과를 출력한다.
 
 [1]. CONCAT() 함수를 이용하여 `USED_GOODS_FILE` 테이블에서 BOARD_ID 를 기준으로 디렉터리를 '/' 으로 구분하고, 파일이름은 FILE_ID, FILE_NAME, FILE_EXT로 구성되도록 한다.
@@ -306,82 +346,6 @@ WHERE VIEWS = (SELECT MAX(VIEWS) FROM USED_GOODS_BOARD)
 ORDER BY FILE_ID DESC
 ```
 
-## 자동차 대여 기록 별 대여 금액 구하기(Lv.4)
-
-> [자동차 대여 기록 별 대여 금액 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/151141)
-
-* 문제: `CAR_RENTAL_COMPANY_CAR` 테이블과 `CAR_RENTAL_COMPANY_RENTAL_HISTORY` 테이블과 `CAR_RENTAL_COMPANY_DISCOUNT_PLAN` 테이블에서
-
-  자동차 종류가 '트럭'인 자동차의 대여 기록에 대해서 대여 기록 별로 대여 금액(컬럼명: FEE)을 구하여
-
-  대여 기록 ID와 대여 금액 리스트를 출력하는 SQL문을 작성해주세요. 
-
-  결과는 대여 금액을 기준으로 내림차순 정렬하고, 
-  
-  대여 금액이 같은 경우 대여 기록 ID를 기준으로 내림차순 정렬해주세요.
-
-### Answer Code
-
-```sql
-SELECT  D.HISTORY_ID
-        , ROUND(IF(D.DISCOUNT_RATE IS NULL, D.DAILY_FEE * D.DATE_DIFF, D.DAILY_FEE * D.DATE_DIFF * (100-D.DISCOUNT_RATE)*0.01),0) AS FEE
-  FROM  (
-        SELECT  A.*
-                , B.HISTORY_ID
-                , DATEDIFF(B.END_DATE,B.START_DATE) + 1 AS DATE_DIFF
-                , C.DISCOUNT_RATE
-          FROM  CAR_RENTAL_COMPANY_CAR A
-          LEFT
-          JOIN  CAR_RENTAL_COMPANY_RENTAL_HISTORY B
-            ON  A.CAR_ID = B.CAR_ID
-          LEFT
-          JOIN  CAR_RENTAL_COMPANY_DISCOUNT_PLAN C
-            ON  CASE WHEN DATEDIFF(B.END_DATE,B.START_DATE) BETWEEN 7 AND 29 THEN C.PLAN_ID = 10
-                     WHEN DATEDIFF(B.END_DATE,B.START_DATE) BETWEEN 30 AND 89 THEN C.PLAN_ID = 11
-                     WHEN DATEDIFF(B.END_DATE,B.START_DATE) >= 90 THEN C.PLAN_ID = 12 END
-         WHERE  A.CAR_TYPE = '트럭'
-         ) D 
- ORDER
-    BY   FEE DESC 
-         , HISTORY_ID DESC
-```
-
-## 조건에 부합하는 중고거래 상태 조회하기(Lv 2)
-
-> [조건에 부합하는 중고거래 상태 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/164672)
-
-* 문제: `USED_GOODS_BOARD` 테이블에서 2022년 10월 5일에 등록된 
-
-  중고거래 게시물의 게시글 ID, 작성자 ID, 게시글 제목, 가격, 거래상태를 조회하는 SQL문을 작성해주세요.
-
-  거래상태가 SALE 이면 판매중, RESERVED이면 예약중, DONE이면 거래완료 분류하여 출력해주시고, 
-
-  결과는 게시글 ID를 기준으로 내림차순 정렬해주세요.
-
-### Answer Code
-
-```sql
-select board_id, writer_id, title, price, 
-    case 
-        when status = 'SALE' then '판매중' 
-        when status = 'RESERVED' then '예약중' 
-        when status = 'DONE' then '거래완료' 
-        end status
-from used_goods_board
-where board_id in(
-    select board_id 
-    from used_goods_board 
-    where created_date = '2022-10-05'
-)
-order 
-    by board_id desc;
-```
-
-
-### 문제 풀이
-
-> 문제를 풀기 위해서 해야할 작업들
-
 ## 조건별로 분류하여 주문상태 출력하기(Lv 3)
 
 > [조건별로 분류하여 주문상태 출력하기](https://school.programmers.co.kr/learn/courses/30/lessons/131113)
@@ -415,7 +379,6 @@ order by ORDER_ID asc;
 3. 예시처럼 `OUT_DATE`를 yyyy-mm-dd 처럼 출력하기 위해 DATE_FORMAT(OUT_DATE, '%Y-%m-%d') 를 사용한다. 이때 대문자 Y는 4자리, 소문자 y는 2자리 숫자를 출력해준다.
 4. ORDER_ID 를 기준으로 오름차순 정렬해준다. -> ORDER BY ORDER_ID ASC;
 
-
 ## 대여 기록이 존재하는 자동차 리스트 구하기(Lv 3)
 
 > [대여 기록이 존재하는 자동차 리스트 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/157341)
@@ -426,7 +389,7 @@ order by ORDER_ID asc;
 
   자동차 ID 리스트는 중복이 없어야 하며, 자동차 ID를 기준으로 내림차순 정렬해주세요.
 
-### Answer Code(23.12.26)
+### Answer Code(2023.12.26)
 
 ```sql
 SELECT DISTINCT (A.CAR_ID)
@@ -460,7 +423,31 @@ ORDER
 
 * 네번째 작업은 CAR_ID 중복 제거를 위해 DISTINCT를 사용했다.
 
-* 마지막 작업은 CAR_ID를 기준으로 내림차순 정렬을 위해 ORDER BY 절을 사용했고, 내림차순(DESC)으로 정렬했다.
+## 오랜 기간 보호한 동물(2)(Lv 3)
+
+> [오랜 기간 보호한 동물(2)](https://school.programmers.co.kr/learn/courses/30/lessons/59411)
+
+* 문제: 입양을 간 동물 중, 보호 기간이 가장 길었던 동물 두 마리의 아이디와 이름을 조회하는 SQL문을 작성해주세요.
+
+  이때 결과는 보호 기간이 긴 순으로 조회해야 합니다.
+
+### Answer Code(2023.12.27)
+
+```sql
+SELECT A.ANIMAL_ID, A.NAME
+FROM ANIMAL_INS A
+    LEFT JOIN ANIMAL_OUTS B ON A.ANIMAL_ID = B.ANIMAL_ID
+ORDER BY B.DATETIME - A.DATETIME DESC
+LIMIT 2
+```
+
+### 문제 풀이
+
+> 문제 접근
+
+1. 두 개의 테이블 조인(JOIN)
+2. 보호 기간이 가장 길었던 동물 두마리에 대한 필터링(ORDER BY, LIMIT)
+3. 아이디와 이름을 조회(SELECT)
 
 ## 취소되지 않은 진료 예약 조회하기(Lv 4)
 
@@ -530,33 +517,97 @@ ORDER BY
 [4] 진료 예약일시(A.APNT_YMD) 기준으로 오름차순 정렬
 
   *  ORDER BY A.APNY_YMD ASC
+* 마지막 작업은 CAR_ID를 기준으로 내림차순 정렬을 위해 ORDER BY 절을 사용했고, 내림차순(DESC)으로 정렬했다.
 
-## 오랜 기간 보호한 동물(2)(Lv 3)
+## 자동차 대여 기록 별 대여 금액 구하기(Lv.4)
 
-> [오랜 기간 보호한 동물(2)](https://school.programmers.co.kr/learn/courses/30/lessons/59411)
+> [자동차 대여 기록 별 대여 금액 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/151141)
 
-* 문제: 입양을 간 동물 중, 보호 기간이 가장 길었던 동물 두 마리의 아이디와 이름을 조회하는 SQL문을 작성해주세요. 
+* 문제: `CAR_RENTAL_COMPANY_CAR` 테이블과 `CAR_RENTAL_COMPANY_RENTAL_HISTORY` 테이블과 `CAR_RENTAL_COMPANY_DISCOUNT_PLAN` 테이블에서
 
-  이때 결과는 보호 기간이 긴 순으로 조회해야 합니다.
+  자동차 종류가 '트럭'인 자동차의 대여 기록에 대해서 대여 기록 별로 대여 금액(컬럼명: FEE)을 구하여
 
-### Answer Code(2023.12.27)
+  대여 기록 ID와 대여 금액 리스트를 출력하는 SQL문을 작성해주세요.
+
+  결과는 대여 금액을 기준으로 내림차순 정렬하고,
+
+  대여 금액이 같은 경우 대여 기록 ID를 기준으로 내림차순 정렬해주세요.
+
+### Answer Code
 
 ```sql
-SELECT A.ANIMAL_ID, A.NAME
-FROM ANIMAL_INS A
-    LEFT JOIN ANIMAL_OUTS B ON A.ANIMAL_ID = B.ANIMAL_ID
-ORDER BY B.DATETIME - A.DATETIME DESC
-LIMIT 2
+SELECT  D.HISTORY_ID
+        , ROUND(IF(D.DISCOUNT_RATE IS NULL, D.DAILY_FEE * D.DATE_DIFF, D.DAILY_FEE * D.DATE_DIFF * (100-D.DISCOUNT_RATE)*0.01),0) AS FEE
+  FROM  (
+        SELECT  A.*
+                , B.HISTORY_ID
+                , DATEDIFF(B.END_DATE,B.START_DATE) + 1 AS DATE_DIFF
+                , C.DISCOUNT_RATE
+          FROM  CAR_RENTAL_COMPANY_CAR A
+          LEFT
+          JOIN  CAR_RENTAL_COMPANY_RENTAL_HISTORY B
+            ON  A.CAR_ID = B.CAR_ID
+          LEFT
+          JOIN  CAR_RENTAL_COMPANY_DISCOUNT_PLAN C
+            ON  CASE WHEN DATEDIFF(B.END_DATE,B.START_DATE) BETWEEN 7 AND 29 THEN C.PLAN_ID = 10
+                     WHEN DATEDIFF(B.END_DATE,B.START_DATE) BETWEEN 30 AND 89 THEN C.PLAN_ID = 11
+                     WHEN DATEDIFF(B.END_DATE,B.START_DATE) >= 90 THEN C.PLAN_ID = 12 END
+         WHERE  A.CAR_TYPE = '트럭'
+         ) D 
+ ORDER
+    BY   FEE DESC 
+         , HISTORY_ID DESC
 ```
 
 ### 문제 풀이
 
-> 문제 접근
+> 문제를 풀기 위해서 해야할 작업들
 
-1. 두 개의 테이블 조인(JOIN)
-2. 보호 기간이 가장 길었던 동물 두마리에 대한 필터링(ORDER BY, LIMIT)
-3. 아이디와 이름을 조회(SELECT)
+1. 자동차 종류가 '트럭'인 자동차 필터링 작업
+2. 자동차 대여 일자 계산하기
+3. 대여 일자에 맞게 할인률 반영하여 JOIN 하기
+4. 일일 대여 금액, 대여 일자, 할인율을 반영한 대여 금액 계산하기
+5. 대여 금액 내림차순, 대여 기록 ID 내림차순 정렬
 
+* 첫 번째 작업을 해결하기 위해 `CAR_RENTAL_COMPANY_CAR` 테이블에 CAR_TYPE(자동차 종류)이 '트럭'인 자동차만 선택하는 쿼리를 작성한다.
+
+> [1] WHERE A.CAR_TYPE = '트럭'
+
+* 두 번째 작업은 자동차 대여 일자 계산하는 것인데, START_DATE 부터 END_DATE 까지 대여한 일자를 구하기 위해
+
+* DATEDIFF(B.END_DATE, B.START_DATE) + 1을 사용해서 쿼리를 작성했다.
+
+* 1을 더해준 이유는 하루만 대여를 한 경우에도 0일이 아닌 1일이 되도록 보장하기 위해서이다.
+
+> [2] DATEDIFF(B.END_DATE,B.START_DATE) + 1 AS DATE_DIFF
+
+* 세 번째 작업은, 대여 일자에 맞게 할인율을 반영하여 JOIN 하는 과정이다.
+
+* 대여 일자를 `DATE_DIFF`로 생성했고, CASE 구문내에서 DATE_DIFF를 통해 대여 일수에 따라 PLAN_ID를 매칭하여 LEFT JOIN 하도록 쿼리를 작성했다.
+
+* 네 번째 작업은, 일일 대여 금액, 대여 일자, 할인율을 반영한 대여 금액(FEE)를 계산하는 것이다.
+
+* LEFT JOIN으로 할인율을 적용해서 본 결과, 할인이 적용되지 않는 데이터에는 할인율이 NULL 값으로 들어가 있다.
+
+* 그래서 IF와 IS NULL 함수를 통해 아래와 같이 계산하도록 쿼리를 작성한다.
+
+  * 할인율이 NULL 값인 경우: 일일 대여 금액 * 대여 일자 = 대여 금액(FEE)
+
+  * 할인율이 있는 경우: 일일 대여 금액 * 대여 일자 * (100 - 할인율) * 100 = 대여 금액(FEE)
+
+```sql
+SELECT  D.HISTORY_ID
+                , ROUND(IF(D.DISCOUNT_RATE IS NULL, D.DAILY_FEE * D.DATE_DIFF
+                                    , D.DAILY_FEE * D.DATE_DIFF * (100-D.DISCOUNT_RATE)*0.01),0) AS FEE
+```
+
+* 마지막으로, 문제에서 요구한 정렬 조건과 같이 ORDER BY를 이용한다.
+
+```sql
+ORDER
+       BY   FEE DESC 
+               , HISTORY_ID DESC
+```
 
 ## Reference
 
