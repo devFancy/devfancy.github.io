@@ -274,8 +274,10 @@ queue.peek();       // queue의 첫번째 값 참조
 > 관련 문제
 
 - [[Programmers] 150370. 개인정보 수집 유효기간]({{site.url}}/Programmers-150370/)
+- [[Programmers] 92341. 주차 요금 계산](https://devfancy.github.io/Programmers-92341/)
 
-### Map 선언
+
+### HashMap 선언
 
 ```java
 //map 선언
@@ -294,6 +296,48 @@ queue.peek();       // queue의 첫번째 값 참조
         //map의 key가 이름인 값 출력
         System.out.println(map.get("이름"));
 ```
+
+### HashMap 메서드
+
+* 데이터 추가
+
+  * **`V put(K key, V value)`**: key와 value를 저장한다.
+
+* 데이터 삭제
+
+  * `void clear()` : 모든 데이터를 삭제한다.
+
+  * **`V remove(Object key)`** : key와 일치하는 기존 데이터(key와 value)를 삭제한다.
+
+  * `boolean remove(Object key, Object value)` : key와 value가 동시에 일치하는 데이터를 삭제한다.
+
+* 데이터 수정
+
+  * `V replace(K key, V value)` : key와 일치하는 기존 데이터의 value를 변경한다.
+
+  * `V replace(K key, V oldValue, V newValue)` : key와 oldValue가 동시에 일치하는 데이터의 value를 newValue로 변경한다.
+
+* 데이터 확인
+
+  * **`boolean containsKey(Object key)`** : key와 일치하는 데이터가 있는지 여부를 반환한다. (있으면 true)
+
+  * `boolean containsValue(Object value)` : value가 일치하는 데이터가 있는지 여부를 반환한다. (있으면 true)
+
+  * **`boolean isEmpty( )`** : 데이터가 빈 상태인지 여부를 반환한다. (빈 상태면 true)
+
+  * **`int size( )`** : key-value 맵핑 데이터의 개수를 반환한다.
+
+* 데이터 반환
+
+  * **`V get(Object key)`** : key와 맵핑된 value값을 반환한다.
+
+  * `V getOrDefault(Object key, V defaultValue)` : key와 맵핑된 value값을 반환하고 없으면 defaultValue값을 반환한다.
+
+  * `Set<Map.Entry<K, V>> entrySet( )` : 모든 key-value 맵핑 데이터를 가진 Set 데이터를 반환한다.
+
+  * `Set<K> keySet()` : 모든 key 값을 가진 Set 데이터를 반환한다.
+
+  * `Collection<V> values()` : 모든 value 값을 가진 Collection 데이터를 반환한다.
 
 ## 문자열
 
