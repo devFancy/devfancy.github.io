@@ -27,6 +27,14 @@ git 브랜치의 대표적인 전략은 다음과 같습니다.
 
 git flow 전략을 들어본 사람은 알겠지만, 배포 주기가 길고 팀의 이력이 있는 경우 적합한 브랜치 전략입니다.
 
+## 결과: 굿프렌즈팀의 Git-flow
+
+![](/assets/img/goodfriends/Goodfriends-Git-Flow-result.png)
+
+결론적으로 우리 굿프렌즈팀이 Git-flow을 적용한 사진입니다.
+
+해당 부분에 대한 설명을 지금부터 다루도록 하겠습니다.
+
 ## Git Repository 구성
 
 프로젝트 시작하기에 앞서, 현재 Git Repository 구성부터 살펴보겠습니다.
