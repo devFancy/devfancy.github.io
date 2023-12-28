@@ -2,7 +2,7 @@
 layout: post
 title: " 08. 표본추출법과 중심 극한정리 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

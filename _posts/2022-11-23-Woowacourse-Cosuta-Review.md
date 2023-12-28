@@ -2,7 +2,7 @@
 layout: post
 title:  " [우아한테크코스] 코수타 내용 정리 "
 categories: Woowacourse
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

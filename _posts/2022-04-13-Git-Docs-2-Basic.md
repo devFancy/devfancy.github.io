@@ -2,7 +2,7 @@
 layout: post
 title:  " [Git 공식문서 & Git 마스터과정] Git 기초 "
 categories: Git
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -52,16 +52,16 @@ git commit -m " 커밋 메시지 "
 
 * `git clone <url>` 명령으로 저장소를 Clone 한다.
 
-* fancy96.github.io에 있는 소스코드를 Clone하려면 아래와 같이 실행한다.
+* devfancy.github.io에 있는 소스코드를 Clone하려면 아래와 같이 실행한다.
 
 ```bash
-https://github.com/Fancy96/fancy96.github.io.git
+https://github.com/devfancy/devfancy.github.io.git
 ```
 
 * 만약 다른 디렉토리 이름(`jun-yong`)으로 Clone 하고 싶을 경우 아래와 같이 입력하면 된다.
 
 ```bash
-https://github.com/Fancy96/fancy96.github.io.git jun-yong
+https://github.com/devfancy/devfancy.github.io.git jun-yong
 ```
 
 * url 주소 뒤에 하고 싶은 디렉토리 이름을 추가해서 명령어를 입력하면 된다.

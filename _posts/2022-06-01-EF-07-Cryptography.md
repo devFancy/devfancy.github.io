@@ -2,7 +2,7 @@
 layout: post
 title: " 07. Cryptography "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

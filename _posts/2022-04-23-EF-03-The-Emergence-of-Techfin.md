@@ -2,7 +2,7 @@
 layout: post
 title: " 03. The Emergence of Techfin "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

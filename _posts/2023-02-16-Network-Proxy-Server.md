@@ -2,7 +2,7 @@
 layout: post
 title:  " 프락시 서버 "
 categories: Network
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -123,7 +123,7 @@ author: fancy96
 
 ## Reference
 
-* [2023-CS-Study : Proxy Server](https://github.com/Fancy96/2023-CS-Study/blob/main/Network/network_proxy_server.md)
+* [2023-CS-Study : Proxy Server](https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_proxy_server.md)
 
 * [Proxy vs Gateway](https://code-masterjung.tistory.com/53)
 

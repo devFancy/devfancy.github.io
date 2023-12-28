@@ -2,7 +2,7 @@
 layout: post
 title: " HST 2달 후기 (1/17 - 3/19) "
 categories: Workout
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

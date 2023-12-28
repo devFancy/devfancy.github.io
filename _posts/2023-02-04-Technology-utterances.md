@@ -2,7 +2,7 @@
 layout: post
 title: " GitHub Blog에 댓글 기능 추가(utterances) "
 categories: Technology
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -61,7 +61,7 @@ author: fancy96
 
 * `repo:` 아래 입력 칸에는 본인의 "Github-ID/GitBlog-repository name"을 입력하면 된다.
 
-* 예) Fancy96/fancy96.github.io
+* 예) devfancy/devfancy.github.io
 
 ### Blog Post ↔️ Issue Mapping
 
@@ -104,8 +104,8 @@ author: fancy96
      */
 
     var disqus_config = function() {
-        this.page.url = 'https://fancy96.github.io{{ page.url }}'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'https://fancy96.github.io{{ page.url }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'https://devfancy.github.io{{ page.url }}'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://devfancy.github.io{{ page.url }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -123,7 +123,7 @@ author: fancy96
 
 <!-- utterances comment -->
 <script src="https://utteranc.es/client.js"
-        repo="Fancy96/fancy96.github.io"
+        repo="devfancy/devfancy.github.io"
         issue-term="pathname"
         label="comments"
         theme="github-light"
@@ -155,7 +155,7 @@ git push origin main
 
 ![](/assets/img/technology/utterances_test.png){: width="500"}
 
-* [About](https://fancy96.github.io/about/#comments) 댓글 부분에 테스트 용도로 댓글을 입력했다.
+* [About](https://devfancy.github.io/about/#comments) 댓글 부분에 테스트 용도로 댓글을 입력했다.
 
 ![](/assets/img/technology/utterances_issues.png){: width="500"}
 

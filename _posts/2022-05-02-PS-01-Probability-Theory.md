@@ -2,7 +2,7 @@
 layout: post
 title: " 01. Probability Theory "
 categories: Probability-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

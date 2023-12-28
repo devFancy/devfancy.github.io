@@ -2,7 +2,7 @@
 layout: post
 title:  " AssertJ 개념 정리 "
 categories: AssertJ
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

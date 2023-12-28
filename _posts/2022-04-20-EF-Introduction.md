@@ -2,7 +2,7 @@
 layout: post
 title: " 0. 전자금융의 이해 과목 소개 "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -48,29 +48,29 @@ I hope students have global perspec- tives on technology-fueled transformations 
 
 * 01. The Rise of Fintech
 
-    * [01. The Rise of Fintech : Drivers of the Fintech Revolution](https://fancy96.github.io/EF-The-Rise-Of-Fintech/)
+    * [01. The Rise of Fintech : Drivers of the Fintech Revolution](https://devfancy.github.io/EF-The-Rise-Of-Fintech/)
 
-    * [01. The Rise of Fintech : Types of Fintech](https://fancy96.github.io/EF-The-Rise-Of-Fintech_2/)
+    * [01. The Rise of Fintech : Types of Fintech](https://devfancy.github.io/EF-The-Rise-Of-Fintech_2/)
 
-    * [01. The Rise of Fintech : Challenges Faced by Fintechs](https://fancy96.github.io/EF-The-Rise-Of-Fintech_3/)
+    * [01. The Rise of Fintech : Challenges Faced by Fintechs](https://devfancy.github.io/EF-The-Rise-Of-Fintech_3/)
 
-* [02. Incumbent Financial Institutions and Their Response to Fintechs](https://fancy96.github.io/EF-02-Incumbent-Financial-Institutions-and-Their-Response-to-Fintechs/)
+* [02. Incumbent Financial Institutions and Their Response to Fintechs](https://devfancy.github.io/EF-02-Incumbent-Financial-Institutions-and-Their-Response-to-Fintechs/)
 
-* [03. The Emergence of Techfin](https://fancy96.github.io/EF-03-The-Emergence-of-Techfin/)
+* [03. The Emergence of Techfin](https://devfancy.github.io/EF-03-The-Emergence-of-Techfin/)
 
-* [04. The Changing Structure of the Financial Ecosyste](https://fancy96.github.io/EF-04-The-Changing-Structure-of-the-Financial-Ecosystem/)
+* [04. The Changing Structure of the Financial Ecosyste](https://devfancy.github.io/EF-04-The-Changing-Structure-of-the-Financial-Ecosystem/)
 
-* [05. Financial Innovation and Inclusion](https://fancy96.github.io/EF-05-Financial-Innovation-and-Inclusion/)
+* [05. Financial Innovation and Inclusion](https://devfancy.github.io/EF-05-Financial-Innovation-and-Inclusion/)
 
-* [06. Digital Money](https://fancy96.github.io/EF-06-Digital-Money/)
+* [06. Digital Money](https://devfancy.github.io/EF-06-Digital-Money/)
 
-* [07. Cryptography](https://fancy96.github.io/EF-07-Cryptography/)
+* [07. Cryptography](https://devfancy.github.io/EF-07-Cryptography/)
 
-* [08. Cryptocurrencies](https://fancy96.github.io/EF-08-Cryptocurrencies/)
+* [08. Cryptocurrencies](https://devfancy.github.io/EF-08-Cryptocurrencies/)
 
-* [09. Digital Tokens](https://fancy96.github.io/EF-09-Digital-Tokens/)
+* [09. Digital Tokens](https://devfancy.github.io/EF-09-Digital-Tokens/)
 
-* [10. Blockchain Technology](https://fancy96.github.io/EF-10-Blockchain-Technology/)
+* [10. Blockchain Technology](https://devfancy.github.io/EF-10-Blockchain-Technology/)
 
 
 > 2022년 1학기 전자금융의 이해 수업을 강의해주신 권준엽 교수님께 이 자리를 빌어 감사의 말씀을 드립니다.

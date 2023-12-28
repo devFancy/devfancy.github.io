@@ -13,7 +13,7 @@ author: devFancy
 
 * `무상태성`은 서버가 클라이언트의 상태를 보존하지 않는다는 것을 의미하고, `비연결성`은 말 그대로 연결을 유지하지 않는다는 것을 의미한다.
 
-* 두가지 특징에 대한 자세한 설명은 [HTTP 기본](https://fancy96.github.io/HTTP-1-Basic/)에 작성해두었다.
+* 두가지 특징에 대한 자세한 설명은 [HTTP 기본](https://devfancy.github.io/HTTP-1-Basic/)에 작성해두었다.
 
 * 예를 들어, 홈페이지에서 로그인을 하고 난 뒤에 **새로 고침을 하게 되면 로그인이 풀리는 상태**가 된다.
 
@@ -187,7 +187,7 @@ Set-Cookie: a=1
 
 ## Reference
 
-* [2023-CS-Study : 쿠키와 세션](https://github.com/Fancy96/2023-CS-Study/blob/main/Network/network_cookie_and_session.md)
+* [2023-CS-Study : 쿠키와 세션](https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_cookie_and_session.md)
 
 * [Web - 쿠키와 세션의 차이, 용도, 사용법](https://jeong-pro.tistory.com/80)
 

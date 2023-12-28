@@ -2,7 +2,7 @@
 layout: post
 title:  " IntelliJ 유용한 단축키들 (Mac 기준) "
 categories: IntelliJ
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

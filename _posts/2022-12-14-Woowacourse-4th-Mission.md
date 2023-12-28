@@ -2,7 +2,7 @@
 layout: post
 title:  " [BE] 4주차 미션 회고 (다리 건너기) "
 categories: Woowacourse
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -16,7 +16,7 @@ author: fancy96
 
 [다리건너기](https://github.com/woowacourse-precourse/java-bridge)
 
-[구현한 코드](https://github.com/Fancy96/java-bridge/tree/fancy-review)
+[구현한 코드](https://github.com/devfancy/java-bridge/tree/fancy-review)
 
 
 > **4주차 미션 목표**

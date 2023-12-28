@@ -2,7 +2,7 @@
 layout: post
 title: " 07. 연속확률분포 (Continuous probability distribution) "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

@@ -2,7 +2,7 @@
 layout: post
 title:  " [Git] 커밋 메세지 규약 정리 (AngularJS) "
 categories: Git
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title:  " [BE] 2주차 미션 회고 (숫자 야구 게임) "
 categories: Woowacourse
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -16,7 +16,7 @@ author: fancy96
 
 [숫자 야구 게임](https://github.com/woowacourse-precourse/java-baseball)
 
-[구현한 코드](https://github.com/Fancy96/java-baseball/tree/fancy-review2)
+[구현한 코드](https://github.com/devfancy/java-baseball/tree/fancy-review2)
 
 
 ## 우테코 마지막 메일의 일부분

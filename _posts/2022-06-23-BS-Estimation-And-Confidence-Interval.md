@@ -2,7 +2,7 @@
 layout: post
 title: " 09. 추정과 신뢰구간 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

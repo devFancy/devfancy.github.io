@@ -2,7 +2,7 @@
 layout: post
 title: " GitHub에 올라간 Branch에 Protection Rule 적용하기 "
 categories: Technology
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

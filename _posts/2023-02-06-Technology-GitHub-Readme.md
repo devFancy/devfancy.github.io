@@ -2,7 +2,7 @@
 layout: post
 title: " 나만의 GitHub README.md 꾸미기 "
 categories: Technology
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -56,7 +56,7 @@ author: fancy96
 
 * 복사한 코드 : `![](https://komarev.com/ghpvc/?username=your-github-username&color=green)`
 
-* 여기서 `your-github-username&color` 부분을 `Fancy96&color=blue`으로 수정했다.(나의 계정 이름과 내가 좋아하는 색깔로 바꿨다)
+* 여기서 `your-github-username&color` 부분을 `devfancy&color=blue`으로 수정했다.(나의 계정 이름과 내가 좋아하는 색깔로 바꿨다)
 
 * `Named color` 아래에 있는 코드뿐만 아니라 다른 코드들도 확인해서 본인에게 맞는 코드를 가져와서 응용하면 된다.
 

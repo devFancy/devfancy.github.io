@@ -2,7 +2,7 @@
 layout: post
 title:  " 20. Paging: Smaller Table "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

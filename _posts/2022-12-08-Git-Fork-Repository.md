@@ -2,7 +2,7 @@
 layout: post
 title:  " [Git] fork 해온 repository 잔디 심는 방법 "
 categories: Git
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title: " 08. Cryptocurrencies "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

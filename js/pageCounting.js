@@ -14,7 +14,7 @@ function increaseAccessCount(currentUrl){
     };
 
     // xhr.open("POST","http://localhost:8080/increase/view-count");
-    // xhr.open("POST", "https://goodgid.ga/increase/view-count");
+    // xhr.open("POST", "https://devfancy.ga/increase/view-count");
     // xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
     // xhr.setRequestHeader("Content-Type", "application/json");
     // xhr.send(JSON.stringify(data));

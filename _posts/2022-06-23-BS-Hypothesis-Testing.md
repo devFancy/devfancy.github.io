@@ -2,7 +2,7 @@
 layout: post
 title: " 10. 단일표본 가설검정 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

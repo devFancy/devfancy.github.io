@@ -2,7 +2,7 @@
 layout: post
 title:  " 13. The Abstractoin: Address Space "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

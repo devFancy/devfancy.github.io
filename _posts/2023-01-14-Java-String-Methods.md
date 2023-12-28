@@ -2,7 +2,7 @@
 layout: post
 title:  " String 특징과 String 클래스의 주요 메소드 "
 categories: Java
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

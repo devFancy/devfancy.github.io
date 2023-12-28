@@ -2,7 +2,7 @@
 layout: post
 title:  " throw와 throws 차이 "
 categories: Java
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

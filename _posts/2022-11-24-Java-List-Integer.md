@@ -10,7 +10,7 @@ author: devFancy
 
 ## 숫자 야구 게임
 
-* [숫자 야구 게임](https://github.com/Fancy96/java-baseball)
+* [숫자 야구 게임](https://github.com/devfancy/java-baseball)
 
 서로 다른 3자리 숫자를 String으로 입력받은 변수 number을 ArrayList<>()로 선언한 List<Integer> user로 옮기는 방법
 

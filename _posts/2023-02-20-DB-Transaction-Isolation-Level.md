@@ -159,4 +159,4 @@ author: devFancy
 
 * [트랜잭션 격리 수준](https://gyoogle.dev/blog/computer-science/data-base/Transaction%20Isolation%20Level.html)
 
-* [트랜잭션 - Isolation level(격리 수준)과 이상 현상](https://github.com/Fancy96/2023-CS-Study/blob/main/DB/db_transaction_isolation_level.md)
+* [트랜잭션 - Isolation level(격리 수준)과 이상 현상](https://github.com/devfancy/2023-CS-Study/blob/main/DB/db_transaction_isolation_level.md)

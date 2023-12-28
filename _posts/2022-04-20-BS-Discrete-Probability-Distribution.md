@@ -2,7 +2,7 @@
 layout: post
 title: " 06. 이산확률 분포 (Discrete probability distribution) "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

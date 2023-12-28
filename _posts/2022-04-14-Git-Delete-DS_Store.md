@@ -2,7 +2,7 @@
 layout: post
 title:  " [Git] DS_Store 삭제방법 "
 categories: Git
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

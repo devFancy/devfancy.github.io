@@ -2,7 +2,7 @@
 layout: post
 title: " 01. The Rise of Fintech : Types of Fintech "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

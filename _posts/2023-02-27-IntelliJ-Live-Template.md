@@ -2,7 +2,7 @@
 layout: post
 title:  " 인텔리제이 템플릿 자동완성(Live Template 적용) "
 categories: IntelliJ
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

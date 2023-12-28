@@ -2,7 +2,7 @@
 layout: post
 title: " [solved.ac] Class3++ 1012. 유기농 배추 "
 categories: Algorithm
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

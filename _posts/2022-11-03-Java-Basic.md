@@ -2,7 +2,7 @@
 layout: post
 title:  " 자바의 기본 개념 1편 "
 categories: Java
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

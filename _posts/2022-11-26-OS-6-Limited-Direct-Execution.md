@@ -2,7 +2,7 @@
 layout: post
 title:  " 6. Limited Direct Execution "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

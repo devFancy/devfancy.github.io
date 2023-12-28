@@ -2,7 +2,7 @@
 layout: post
 title: " HTTP 웹 기본 지식 : HTTP 메서드 활용 "
 categories: HTTP
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

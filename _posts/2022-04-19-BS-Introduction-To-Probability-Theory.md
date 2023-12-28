@@ -2,7 +2,7 @@
 layout: post
 title: " 05. 확률론개론 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

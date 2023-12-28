@@ -2,7 +2,7 @@
 layout: post
 title: " HST Week 5주 차, 6주 차 리뷰 "
 categories: Workout
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

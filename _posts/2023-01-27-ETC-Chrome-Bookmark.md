@@ -2,7 +2,7 @@
 layout: post
 title: " 크롬 북마크에 있는 파비콘이 제대로 안보이는 경우 "
 categories: E.T.C
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title:  " Google Search Console에 GitHub 블로그 등록하기 "
 categories: Technology
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -25,7 +25,7 @@ author: fancy96
 
 * 속성 유형 선택에서 URL 접두어 유형에서 URL 입력 칸에 내 사이트 도메인(URL)주소를 입력하고 계속 버튼을 클릭한다.
 
-* 여기서 나는 `https://fancy96.github.io/`을 입력했다.
+* 여기서 나는 `https://devfancy.github.io/`을 입력했다.
 
 ## 2단계 : HTML 파일 github.io 폴더안에 추가
 
@@ -81,7 +81,7 @@ plugins:
 User-agent: *
 Allow: /
 
-Sitemap: http://fancy96.github.io/sitemap.xml
+Sitemap: http://devfancy.github.io/sitemap.xml
 ```
 
 * 이 `robots.txt` 파일의 의미는 "모든 사용자 에이전트는 전체 사이트를 크롤링할 수 있다" 입니다.

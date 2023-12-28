@@ -99,7 +99,7 @@ use_math: true
 
 ## DFS, BFS 구현
 
-* [Class3++ 1260. DFS와 BFS](https://fancy96.github.io/solved-class3-backjoon-1260/) 문제를 DFS와 BFS를 이용하여 풀었다.
+* [Class3++ 1260. DFS와 BFS](https://devfancy.github.io/solved-class3-backjoon-1260/) 문제를 DFS와 BFS를 이용하여 풀었다.
 
 ### 정답 코드
 

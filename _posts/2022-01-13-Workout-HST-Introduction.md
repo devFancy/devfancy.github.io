@@ -2,7 +2,7 @@
 layout: post
 title: " 2022 1월 HST 13-7 운동 프로그램 시작 "
 categories: Workout
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

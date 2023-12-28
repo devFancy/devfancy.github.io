@@ -2,7 +2,7 @@
 layout: post
 title:  " TCP와 UDP "
 categories: Network
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -164,4 +164,4 @@ author: fancy96
 
 * [면접을 위한 CS 전공 지식 노트](https://product.kyobobook.co.kr/detail/S000001834833)
 
-* [2023-CS-Study : TCP/IP 4계층 모델](https://github.com/Fancy96/2023-CS-Study/blob/main/Network/network_tcp_and_udp.md)
+* [2023-CS-Study : TCP/IP 4계층 모델](https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_tcp_and_udp.md)

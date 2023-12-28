@@ -2,7 +2,7 @@
 layout: post
 title:  " 로드밸런싱 "
 categories: Network
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -184,7 +184,7 @@ author: fancy96
 
 * [로드밸런서의 개념과 특징](https://post.naver.com/viewer/postView.nhn?volumeNo=27046347&memberNo=2521903)
 
-* [L7/L4 스위치, 로드밸런싱](https://github.com/Fancy96/2023-CS-Study/blob/main/Network/network_l4_l7_switch_and_load_balancing.md)
+* [L7/L4 스위치, 로드밸런싱](https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_l4_l7_switch_and_load_balancing.md)
 
 * [로드 밸런싱과 클러스터링](https://goodgid.github.io/Load-Balancing-And-Clustering/#%EC%A3%BC%EC%9A%94-%EA%B8%B0%EC%88%A0)
 

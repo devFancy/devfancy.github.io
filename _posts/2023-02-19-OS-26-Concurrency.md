@@ -2,7 +2,7 @@
 layout: post
 title:  " 26. Concurrency: An Introduction "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

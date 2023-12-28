@@ -2,7 +2,7 @@
 layout: post
 title: " 02. Incumbent Financial Institutions and Their Response to Fintechs "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

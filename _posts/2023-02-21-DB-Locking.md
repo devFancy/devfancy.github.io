@@ -156,7 +156,7 @@ author: devFancy
 
 * 비관적 락(Pessimistic lock)은 Repeatable_Read 또는 Serializable 정도의 격리성 수준을 제공한다.
 
-  (DB 트랜잭션 격리 수준에 대해 모르겠다면, [트랜잭션 격리 수준](https://fancy96.github.io/DB-Transaction-Isolation-Level/)을 참고하시길 바랍니다)
+  (DB 트랜잭션 격리 수준에 대해 모르겠다면, [트랜잭션 격리 수준](https://devfancy.github.io/DB-Transaction-Isolation-Level/)을 참고하시길 바랍니다)
 
 * 비관적 락이란 지원 요청에 따른 동시성 문제가 발생할 것이라고 예상하고 **lock**을 걸어버리는 방법이다.
 

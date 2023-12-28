@@ -2,7 +2,7 @@
 layout: post
 title:  " 4-5. Process "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

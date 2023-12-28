@@ -2,7 +2,7 @@
 layout: post
 title:  " 인텔리제이와 깃허브 연동 (Mac 버전) "
 categories: IntelliJ
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

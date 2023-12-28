@@ -2,7 +2,7 @@
 layout: post
 title: " [KNU] 학생설계 융합전공 공모전(대상 수상) "
 categories: Competition
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

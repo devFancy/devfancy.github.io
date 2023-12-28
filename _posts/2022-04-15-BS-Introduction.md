@@ -2,7 +2,7 @@
 layout: post
 title: " 0. 경영통계 과목 소개 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -44,28 +44,28 @@ W.G. and Wathen S.A. ,2018, McGraw-Hill/Irwin, New York, NY.
 
 ## Lecture plan
 
-* [CH01. 통계학은 어떠한 학문인가](https://fancy96.github.io/BS-What-Is-Statistics/)
+* [CH01. 통계학은 어떠한 학문인가](https://devfancy.github.io/BS-What-Is-Statistics/)
 
-* [CH02-03. 데이터 기술하기: 도수표, 도수분포 및 도표표현](https://fancy96.github.io/BS-Describing-Data/)
+* [CH02-03. 데이터 기술하기: 도수표, 도수분포 및 도표표현](https://devfancy.github.io/BS-Describing-Data/)
 
-* [CH03. 데이터 기술하기: 수치적 척도](https://fancy96.github.io/BS-Describing-Data-2/)
+* [CH03. 데이터 기술하기: 수치적 척도](https://devfancy.github.io/BS-Describing-Data-2/)
 
-* [CH04-05. 자료기술, 확률론 개론](https://fancy96.github.io/BS-Data-Technology/)
+* [CH04-05. 자료기술, 확률론 개론](https://devfancy.github.io/BS-Data-Technology/)
 
-* [CH05. 확률론 개론](https://fancy96.github.io/BS-Introduction-To-Probability-Theory/)
+* [CH05. 확률론 개론](https://devfancy.github.io/BS-Introduction-To-Probability-Theory/)
 
-* [CH06. 이산 확률분포](https://fancy96.github.io/BS-Discrete-Probability-Distribution/)
+* [CH06. 이산 확률분포](https://devfancy.github.io/BS-Discrete-Probability-Distribution/)
 
-* [CH07. 연속 확률분포](https://fancy96.github.io/BS-Continuous-Probability-Distribution/)
+* [CH07. 연속 확률분포](https://devfancy.github.io/BS-Continuous-Probability-Distribution/)
 
-* [CH08. 표본 추출법과 중심극한정리](https://fancy96.github.io/BS-Sampling-Methods-And-Central-Limit-Theorem/)
+* [CH08. 표본 추출법과 중심극한정리](https://devfancy.github.io/BS-Sampling-Methods-And-Central-Limit-Theorem/)
 
-* [CH09. 추정과 신뢰구간](https://fancy96.github.io/BS-Estimation-And-Confidence-Interval/)
+* [CH09. 추정과 신뢰구간](https://devfancy.github.io/BS-Estimation-And-Confidence-Interval/)
 
-* [CH10. 단일 표본 가설검증](https://fancy96.github.io/BS-Hypothesis-Testing/)
+* [CH10. 단일 표본 가설검증](https://devfancy.github.io/BS-Hypothesis-Testing/)
 
-* [CH11. 두 표본 가설 검정](https://fancy96.github.io/BS-Two-Sample-Hypothesis-Test/)
+* [CH11. 두 표본 가설 검정](https://devfancy.github.io/BS-Two-Sample-Hypothesis-Test/)
 
-* [CH12. 분산분석](https://fancy96.github.io/BS-Analysis-Of-Variance/)
+* [CH12. 분산분석](https://devfancy.github.io/BS-Analysis-Of-Variance/)
 
 > 2022년 1학기 경영통계 수업을 강의해주신 권혜정 교수님께 이 자리를 빌어 감사의 말씀을 드립니다.

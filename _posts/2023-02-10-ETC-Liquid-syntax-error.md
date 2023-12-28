@@ -2,7 +2,7 @@
 layout: post
 title: " [Jekyll] 에서 Liquid syntax error 처리하는 방법 "
 categories: E.T.C
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title:  " [Git 공식문서 & Git 마스터과정] Git 브랜치 정리하기 "
 categories: Git
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

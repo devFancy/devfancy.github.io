@@ -2,7 +2,7 @@
 layout: post
 title: " 11. 두 표본 가설 검정 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

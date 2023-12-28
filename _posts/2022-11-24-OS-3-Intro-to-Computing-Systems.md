@@ -2,7 +2,7 @@
 layout: post
 title:  " 3.  Introduction to Computing Systems "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

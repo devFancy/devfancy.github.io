@@ -2,7 +2,7 @@
 layout: post
 title:  " Spring MVC 이해와 적용 "
 categories: Spring
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title:  " 클래스 다이어그램 그리는 기능 "
 categories: IntelliJ
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

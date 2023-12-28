@@ -2,7 +2,7 @@
 layout: post
 title:  " 7. Scheduling "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

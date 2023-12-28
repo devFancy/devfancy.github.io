@@ -2,7 +2,7 @@
 layout: post
 title: " 왜 개발자를 선택했는가 "
 categories: E.T.C
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

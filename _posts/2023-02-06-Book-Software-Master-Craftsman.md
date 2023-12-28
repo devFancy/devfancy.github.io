@@ -2,7 +2,7 @@
 layout: post
 title: " [Dev] 소프트웨어 장인 리뷰 "
 categories: Book
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

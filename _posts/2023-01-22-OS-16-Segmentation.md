@@ -2,7 +2,7 @@
 layout: post
 title:  " 16. Segmentation "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

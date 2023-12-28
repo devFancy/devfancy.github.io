@@ -2,7 +2,7 @@
 layout: post
 title:  " OSI 7 Layers "
 categories: Network
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title:  " HTTP 진화과정 "
 categories: Network
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -63,7 +63,7 @@ Simple HTML Page
 
 * 새로운 HTTP 헤더의 등장(`Content-Type`)으로 HTML 파일 이외의 다른 파일도 전송할 수 있게 되었다.
 
-  * [HTTP 헤더](https://fancy96.github.io/HTTP-6-Header1/)에 대한 개념을 따로 정리해 두었다.
+  * [HTTP 헤더](https://devfancy.github.io/HTTP-6-Header1/)에 대한 개념을 따로 정리해 두었다.
 
 ```html
 <!-- HTTP request -->
@@ -300,7 +300,7 @@ SPDY 특징
 
 ## Reference
 
-* [[주디] HTTP 진화 과정 (HTTP/1.0부터 HTTP/3까지)](https://github.com/Fancy96/2023-CS-Study/blob/main/Network/network_http.md)
+* [[주디] HTTP 진화 과정 (HTTP/1.0부터 HTTP/3까지)](https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_http.md)
 
 * [HTTP/1.1 - Keep-Alive와 파이프라이닝](https://seonghui.github.io/TIL/docs/http/keep-alive-and-pipelining.html)
 

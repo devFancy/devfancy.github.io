@@ -2,7 +2,7 @@
 layout: post
 title: " 12. 분산분석 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

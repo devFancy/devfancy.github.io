@@ -2,7 +2,7 @@
 layout: post
 title: " 03. 데이터 기술하기: 수치적 척도 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

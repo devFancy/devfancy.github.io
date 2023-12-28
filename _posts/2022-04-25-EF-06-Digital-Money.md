@@ -2,7 +2,7 @@
 layout: post
 title: " 06. Digital Money "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title:  " SOP와 CORS란  무엇인가? "
 categories: Network
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -25,7 +25,7 @@ author: devFancy
 
     * `Delete` : 데이터 삭제 <-> DELETE
 
-* 참고) [HTTP 메소드](https://fancy96.github.io/HTTP-3-Method/)에 가면, HTTP 메소드의 종류와 속성을 따로 정리해 두었다.
+* 참고) [HTTP 메소드](https://devfancy.github.io/HTTP-3-Method/)에 가면, HTTP 메소드의 종류와 속성을 따로 정리해 두었다.
 
 ### REST 구성 요소
 
@@ -114,36 +114,36 @@ author: devFancy
 [1] URI는 명사, 소문자를 사용해야 한다.
 
 ```text
-Bad Example https://fancy96.github.io/Healthy
-Good Example https://fancy96.github.io/health
+Bad Example https://devfancy.github.io/Healthy
+Good Example https://devfancy.github.io/health
 ```
 
 [2] 마지막에 슬래시(/) 포함하지 않는다.
 
 ```text
-Bad Example https://fancy96.github.io/health/
-Good Example https://fancy96.github.io/health
+Bad Example https://devfancy.github.io/health/
+Good Example https://devfancy.github.io/health
 ```
 
 [3] 언더바(_) 대신 가독성을 높이는 하이픈(-)을 사용한다.
 
 ```text
-Bad Example https://fancy96.github.io/health_club
-Good Example https://fancy96.github.io/health-club
+Bad Example https://devfancy.github.io/health_club
+Good Example https://devfancy.github.io/health-club
 ```
 
 [4] 파일 확장자(.png, .jpg)는 URI에 포함시키지 않는다.
 
 ```text
-Bad Example https://fancy96.github.io/developer.png
-Good Example https://fancy96.github.io/developer
+Bad Example https://devfancy.github.io/developer.png
+Good Example https://devfancy.github.io/developer
 ```
 
 [5] 행위를 포함하지 않는다.
 
 ```text
-Bad Example https://fancy96.github.io/delete/post/1
-Good Example https://fancy96.github.io/post/1
+Bad Example https://devfancy.github.io/delete/post/1
+Good Example https://devfancy.github.io/post/1
 ```
 
 ## RESTful
@@ -181,7 +181,7 @@ Good Example https://fancy96.github.io/post/1
 
 ## Reference
 
-* [REST API + RESTful](https://github.com/Fancy96/2023-CS-Study/blob/main/Network/network_rest_api_restful.md)
+* [REST API + RESTful](https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_rest_api_restful.md)
 
 * [REST API](https://goodgid.github.io/REST-API/#rest%EC%9D%98-%ED%8A%B9%EC%84%B1)
 

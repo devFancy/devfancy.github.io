@@ -2,7 +2,7 @@
 layout: post
 title: " 05. Financial Innovation and Inclusion "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

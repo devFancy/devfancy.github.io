@@ -2,7 +2,7 @@
 layout: post
 title:  " [Git 마스터과정] Git Merge 정리하기 "
 categories: Git
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

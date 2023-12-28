@@ -2,7 +2,7 @@
 layout: post
 title: " 03. Discrete Probability Distributions "
 categories: Probability-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

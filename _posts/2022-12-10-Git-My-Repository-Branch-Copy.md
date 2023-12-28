@@ -2,7 +2,7 @@
 layout: post
 title:  " [Git] 다른 사람 혹은 나의 repository에 있는 branch 복사하는 방법 "
 categories: Git
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

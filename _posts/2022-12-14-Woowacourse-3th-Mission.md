@@ -2,7 +2,7 @@
 layout: post
 title:  " [BE] 3주차 미션 회고 (로또 게임) "
 categories: Woowacourse
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -17,7 +17,7 @@ author: fancy96
 
 [로또](https://github.com/woowacourse-precourse/java-lotto)
 
-[구현한 코드](https://github.com/Fancy96/java-lotto)
+[구현한 코드](https://github.com/devfancy/java-lotto)
 
 > **3주차 미션 목표**
 1. 클래스(객체)를 분리하는 연습

@@ -2,7 +2,7 @@
 layout: post
 title:  " IntelliJ JDK 버전 바꾸기(m1 macOS) "
 categories: IntelliJ
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

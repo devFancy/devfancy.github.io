@@ -2,7 +2,7 @@
 layout: post
 title: " 04. The Changing Structure of the Financial Ecosystem "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

@@ -2,7 +2,7 @@
 layout: post
 title: " 01. 통계학은 어떠한 학문인가 "
 categories: Business-Statistics
-author: fancy96
+author: devfancy
 use_math: true
 ---
 * content

@@ -2,7 +2,7 @@
 layout: post
 title:  " DNS "
 categories: Network
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
@@ -11,7 +11,7 @@ author: fancy96
 
 ## Host name 과 Domain name 차이
 
-* 예를 들어 `fancy96.github.io` 일때 `fancy96`가 호스트 네임, `github.io`이 도메인 네임이다.
+* 예를 들어 `devfancy.github.io` 일때 `devfancy`가 호스트 네임, `github.io`이 도메인 네임이다.
 
 * 호스트 네임과 도메인 네임을 합치면 `FQDN`(Fully Qualified Domain Name)이 된다.
 

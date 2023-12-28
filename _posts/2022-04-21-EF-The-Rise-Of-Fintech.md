@@ -2,7 +2,7 @@
 layout: post
 title: " 01. The Rise of Fintech : Drivers of the Fintech Revolution "
 categories: Electronic-Finance
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}

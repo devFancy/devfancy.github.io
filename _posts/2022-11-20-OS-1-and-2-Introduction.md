@@ -2,7 +2,7 @@
 layout: post
 title:  " 1-2. Introduction to OS "
 categories: OS
-author: fancy96
+author: devfancy
 ---
 * content
 {:toc}
