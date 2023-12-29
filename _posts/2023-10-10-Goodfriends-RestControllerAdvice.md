@@ -144,7 +144,7 @@ ControllerAdvice 클래스는 여러 컨트롤러에 대해 전역적으로 Exce
 
 ### HTTP 상태코드별 에러 클래스 정의
 
-굿프렌즈 서버에서는 400, 401, 403, 404, 405, 406, 500 를 사용하였고, 이에 따라 에러 클래스를 정의해봤습니다.
+굿프렌즈 서버에서는 400, 401, 403, 404, 405, 500 를 사용하였고, 이에 따라 에러 클래스를 정의해봤습니다.
 
 > 400 BAD_REQUEST
 
@@ -190,10 +190,11 @@ ControllerAdvice 클래스는 여러 컨트롤러에 대해 전역적으로 Exce
 
     클라이언트가 요청한 리소스에 대해 **허용되지 않는 HTTP 메서드를 사용한 경우**에 발생합니다.
 
-> 406 NOT_ACCEPTABLE
-
-
 > 500 INTERNAL_SERVER_ERROR
+
+* 설명: 서버 측에서 오류가 발생했음을 나타냅니다. 이는 클라이언트의 요청을 처리하는 동안 서버가 예기치 않은 상황에 직면하여 요청을 완료할 수 없는 경우에 사용됩니다.
+
+* 예시) `Exception.class` : 서버에서 예상치 못한 에러가 발생했습니다. / `OAuthException.class` : Oauth 서버와의 통신 과정에서 문제가 발생했습니다.
 
 ```java
 @RestControllerAdvice
@@ -259,15 +260,6 @@ public class ControllerAdvice {
     public ResponseEntity<ErrorResponse> handleNotSupportedMethod() {
         ErrorResponse errorResponse = new ErrorResponse("지원하지 않는 HTTP 메서드 요청입니다.");
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(errorResponse);
-    }
-
-    @ExceptionHandler({ // 클라이언트 에러: 406
-            AlreadyOrderedException.class,
-            AlreadyReportedException.class
-    })
-    public ResponseEntity<ErrorResponse> handleAlreadyOrderException(final RuntimeException e) {
-        ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(errorResponse);
     }
 
     @ExceptionHandler(OAuthException.class) // 서버 에러: 500
