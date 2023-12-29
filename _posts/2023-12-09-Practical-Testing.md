@@ -7,7 +7,7 @@ author: devFancy
 * content
 {:toc}
 
-> 이 글은 [Practical Testing: 테스트 코드 작성 방법](https://www.inflearn.com/course/practical-testing-실용적인-테스트-가이드/dashboard) 강의를 듣고 내용을 정리한 글입니다.
+> 이 글은 [Practical Testing: 실용적인 테스트 가이드](https://www.inflearn.com/course/practical-testing-실용적인-테스트-가이드/dashboard) 강의를 듣고 내용을 정리한 글입니다.
 
 ## 학습 목표
 

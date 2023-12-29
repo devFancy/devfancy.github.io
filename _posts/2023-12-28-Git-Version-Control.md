@@ -99,7 +99,7 @@ feat: User 클래스가 수정!
 
 ![](/assets/img/git/Git-Version-Control-1.jpeg)
 
-## Revice
+## Review
 
 * 이전 굿프렌즈 팀 프로젝트에서는 우리만의 [Git flow 전략](https://devfancy.github.io/Goodfriends-Git-flow/)을 만들면서, 형상 관리를 나름 신경썼다고 생각했다.
 
