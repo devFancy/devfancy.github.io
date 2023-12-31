@@ -511,3 +511,15 @@ author: devFancy
 * 팀프로젝트 - Goodfriends: 신고, 상품 기능에 대한 리팩터링 - [PRs](https://github.com/woorifisa-projects/GoodFriends/pulls?q=is%3Apr+is%3Aclosed+assignee%3AdevFancy)
 
 * [[Programmers] SQL > String, Date 풀이 모음](https://devfancy.github.io/SQL-String-and-Date/)
+
+> 231225 ~ 231231
+
+* 팀프로젝트 - Goodfriends: 주문 기능에 대한 리팩터링 - [PR](https://github.com/woorifisa-projects/GoodFriends/pull/355)
+
+* [[사이드 프로젝트] 굿프렌즈 - 사용자 기반 기능 전체 리팩터링](https://devfancy.github.io/Goodfriends-Improved/)
+
+* [[Programmers] SQL > JOIN 풀이 모음](https://devfancy.github.io/SQL-Join/)
+
+* [[Programmers] 118667. 두 큐 합 같게 만들기(queue)](https://devfancy.github.io/Programmers-118667/)
+
+* [Git 형상 관리 + 작업 단위와 PR 코드 리뷰 + 협업을 잘하는 개발자 (feat. 제미니의 개발실무)](https://devfancy.github.io/Git-Version-Control/)
