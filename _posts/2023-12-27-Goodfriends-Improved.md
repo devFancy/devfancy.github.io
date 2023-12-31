@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " [사이드 프로젝트] 굿프렌즈 - 사용자 기반 기능 전체 리팩터링 "
+title: " 굿프렌즈 - 사용자 기반 기능 전체 리팩터링 "
 categories: Goodfriends
 author: devFancy
 ---

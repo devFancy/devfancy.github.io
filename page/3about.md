@@ -11,13 +11,17 @@ type: page
 
 ## Who am i
 
-* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : BackEnd 개발 관련 공부를 하고 있으며 품질 좋은 코드를 지향합니다.
+주도적으로 문제를 해결하고, 그 과정을 기록하는 걸 좋아하는 개발자, 문준용입니다.
 
-* <img src="/assets/img/logo/mentoring.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기술을 공유하고 함께 성장하는 것을 추구합니다.
+* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : 품질 좋은 코드를 지향합니다. 현재는 객체 지향 설계 기법과 테스트 코드에 관심을 갖고 공부하고 있습니다.
 
-* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 더 나은 개발자가 되기 위해 개발 스터디에 적극적으로 참여하고 있습니다.
+* <img src="/assets/img/logo/mentoring.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기록과 공유의 가치를 중요시합니다. 2023년 기준, 기술 블로그에 186개의 글을 작성했습니다.
 
-* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 주도적으로 문제를 해결하고, 그 과정을 기록하는 걸 좋아합니다.
+* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 더 나은 개발자가 되기 위해 개발 스터디에 적극적으로 참여하고 있습니다. 이전에는 우아한스터디(2023 겨울 시즌)에 참가하여 객체 지향 설계를 통해 코드 품질을 높이는 방법을 배우고 있습니다. 
+    스터디에 배운 내용을 기반으로 기존 프로젝트에 리팩터링하면서 적용했습니다.
+
+* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 새로운 기술과 프로젝트의 어려움에 끊임없이 도전하며, 그것을 해결해 나가는 과정을 즐깁니다.
+    2023년에는 Goofriends, Hibit 팀 프로젝트에 참여했으며, 올해(2024)에는 기존 Hibit 팀 프로젝트를 개선하기 위해 `hibit-backend-improved` 이라는 프로젝트를 진행하고 있습니다.
 
 ---
 
@@ -38,13 +42,17 @@ type: page
 
 ## TimeLine
 
+### 2024
+
+* 　01. 02 팀프로젝트 - [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 (ver 1) Hibit 프로젝트를 기반으로 코드 리팩터링 및 성능 개선
+
 ### 2023
 
-* 　12. 20 ~ 팀프로젝트 - [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) 리팩터링, 성능 개선
+* 　12. 20 ~ 12. 31 팀프로젝트 - [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) 코드 리팩터링 - [관련 포스팅](https://devfancy.github.io/Goodfriends-Improved/)
 
-* 　11. 26 ~ 2024. 04 [글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가
+* 　11. 26 ~ 2024. 04 커뮤니티 & 스터디 - [글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 (글또: 글쓰는 또라이가 세상을 바꾼다! 글쓰는 개발자 모임)
 
-* 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 완독 및 [정리](https://devfancy.github.io/category/#GoodCode)
+* 　11. 01 ~ 12. 31 스터디 - [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 완독 및 [정리](https://devfancy.github.io/category/#GoodCode)
 
 * 　08. 02 ~ 09. 27 팀프로젝트 - [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) : 중고거래 웹 서비스, 역할: `Backend Developer` ,[Blog Posts](https://devfancy.github.io/category/#Goodfriends),  [Pull Requests](https://github.com/woorifisa-projects/GoodFriends/pulls?q=is%3Apr+is%3Aclosed+assignee%3AdevFancy)
 
@@ -62,7 +70,7 @@ type: page
 
 * 　01. 07 ~ [Programmers : 코딩테스트 대비](https://github.com/devFancy/problem-solving)
 
-* 　01. 02 ~ 06. 30 [CS 스터디 진행](https://github.com/devSquad-study/2023-CS-Study)
+* 　01. 02 ~ 06. 30 스터디 - [신입 개발자를 위한 CS 스터디 모임](https://github.com/devSquad-study/2023-CS-Study)
 
 ### 2022
 
