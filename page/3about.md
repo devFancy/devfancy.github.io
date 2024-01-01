@@ -70,7 +70,7 @@ type: page
 
 * 　01. 07 ~ [Programmers : 코딩테스트 대비](https://github.com/devFancy/problem-solving) 진행
 
-* 　01. 02 ~ 06. 30 [신입 개발자를 위한 CS 스터디 모임](https://github.com/devSquad-study/2023-CS-Study) 운영
+* 　01. 02 ~ 05. 30 [신입 개발자를 위한 CS 스터디 모임](https://github.com/devSquad-study/2023-CS-Study) 운영
 
 ### 2022
 
