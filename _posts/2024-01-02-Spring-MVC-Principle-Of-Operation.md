@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " [Spring] Spring MVC 구조 이해 "
+title:  " Spring MVC 구조 이해 "
 categories: Spring
 author: devFancy
 ---
@@ -38,13 +38,13 @@ MVC는 하나의 서블릿이나, JSP로 처리하는 것을 Controller와 View�
 
 ## Spring MVC 구조
 
-![](/assets/img/spring/Spring-mvc-2.png)
+![](/assets/img/spring/Spring-mvc-4.png)
 
 위 그림에서 `디스패처 서블릿(DispatcherServlet)`이 Spring MVC의 핵심이다.
 
 > DispacherServlet 서블릿 등록
 
-![](/assets/img/spring/Spring-mvc-3.png)
+![](/assets/img/spring/Spring-mvc-2.png)
 
 `DispacherServlet` 도 부모 클래스에서 `HttpServlet` 을 상속 받아서 사용하고, 서블릿으로 동작한다.
 
@@ -60,7 +60,7 @@ MVC는 하나의 서블릿이나, JSP로 처리하는 것을 Controller와 View�
 
 > FrameworkServlet 클래스 - `service()`
 
-![](/assets/img/spring/Spring-mvc-4.png)
+![](/assets/img/spring/Spring-mvc-3.png)
 
 `FrameworkServlet.service()` 를 시작으로 여러 메서드가 호출되면서 `DispacherServlet.doDispatch()` 가 호출된다.
 
@@ -222,11 +222,11 @@ Spring MVC 구조를 보면서 **동작 순서**에 대해 다시 한번 확인�
 
 6. **viewResolver 호출**: 뷰 리졸버를 찾고 실행한다.
 
-* JSP의 경우: `InternalResourceViewResolver` 가 자동 등록되고, 사용된다.
+   * JSP의 경우: `InternalResourceViewResolver` 가 자동 등록되고, 사용된다.
 
 7. **View 반환**: 뷰 리졸버는 뷰의 논리 이름을 물리 이름으로 바꾸고,렌더링역할을 담당하는뷰객체를 반환한다.
 
-* JSP의 경우 `InternalResourceView(JstlView)` 를 반환하는데, 내부에 `forward()` 로직이 있다.
+   * JSP의 경우 `InternalResourceView(JstlView)` 를 반환하는데, 내부에 `forward()` 로직이 있다.
 
 8. **뷰 렌더링**: 뷰를 통해서 뷰를 렌더링 한다.
 

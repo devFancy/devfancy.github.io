@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " [Spring] Builder 패턴에 대한 이해와 사용, @Builder "
+title:  " Builder 패턴에 대한 이해와 사용, @Builder "
 categories: Spring
 author: devFancy
 ---
