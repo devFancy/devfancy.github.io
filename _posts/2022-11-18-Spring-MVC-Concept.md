@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " Spring MVC 이해와 적용 "
+title:  " Spring MVC 패턴 "
 categories: Spring
 author: devfancy
 ---
