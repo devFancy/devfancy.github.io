@@ -13,15 +13,14 @@ type: page
 
 주도적으로 문제를 해결하고, 그 과정을 기록하는 걸 좋아하는 개발자, 문준용입니다.
 
-* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : **품질 좋은 코드**를 지향합니다. 현재는 객체 지향 설계 기법과 테스트 코드에 관심을 갖고 공부하고 있습니다.
+* <img src="/assets/img/logo/desktop.png" style="max-width: 3%; vertical-align: text-bottom;"> : 품질 좋은 코드를 지향합니다. 현재는 객체 지향 설계 기법과 테스트 코드에 관심을 갖고 공부하고 있습니다.
 
-* <img src="/assets/img/logo/mentoring.png" style="max-width: 3%; vertical-align: text-bottom;"> : **기록과 공유의 가치**를 중요시합니다. 2023년 기준, 기술 블로그에 186개의 글을 작성했습니다.
+* <img src="/assets/img/logo/mentoring.png" style="max-width: 3%; vertical-align: text-bottom;"> : 기록과 공유의 가치를 중요시하며, 2023년부터 꾸준히 학습하며 현재까지 190개의 이상의 포스팅을 작성하고 있습니다.
 
-* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 더 나은 개발자가 되기 위해 **개발 스터디**에 적극적으로 참여하고 있습니다. 이전에는 우아한스터디(2023 겨울 시즌)에 참가하면서
+* <img src="/assets/img/logo/book.png" style="max-width: 3%; vertical-align: text-bottom;"> : 더 나은 개발자가 되기 위해 개발 스터디에 참여하고 있습니다. 이전에는 우아한스터디(2023 겨울 시즌)에 참가하면서
     배운 내용을 기반으로 기존 프로젝트에 적용했습니다.
 
-* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 새로운 기술과 프로젝트의 어려움에 끊임없이 도전하며, 그것을 **해결해 나가는 과정**을 즐깁니다.
-    2023년에는 Goofriends, Hibit 팀 프로젝트에 참여했으며, 올해(2024)에는 기존 Hibit 팀 프로젝트를 **개선**하기 위해 `hibit-backend-improved` 이라는 프로젝트를 진행하고 있습니다.
+* <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 새로운 기술과 프로젝트의 어려움에 끊임없이 도전하며, 그것을 해결해 나가는 과정을 즐깁니다.
 
 ---
 
