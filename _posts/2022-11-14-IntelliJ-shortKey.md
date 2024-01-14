@@ -140,7 +140,7 @@ public MemberService memberService() {
 
 * `new MemoryMemberRepository`을 드래그 한 다음에 `cmd + option + m`을 입력하고
 
-* 메서드 이름을 `memberRepository`로 입력하면 아래와 같이* 메서드 가 추출된다.
+* 메서드 이름을 `memberRepository`로 입력하면 아래와 같이 메서드가 추출된다.
 
 ``` java
 //* 메서드  추출후

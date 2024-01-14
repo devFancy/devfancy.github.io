@@ -15,9 +15,9 @@ type: page
 
 * <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 지속적으로 발전하는 학습과 경험을 기록하기 위해 개인 블로그를 운영하고 있습니다.
 
-* <img src="/assets/img/logo/mentoring.png" style="max-width: 3%; vertical-align: text-bottom;"> : 지식 공유를 통해 함께 성장하는 삶의 가치를 느끼고자, 글또, 우아한스터디 등 5개 이상의 다양한 스터디에 참여한 경험이 있습니다
+* <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 지식 공유를 통해 함께 성장하는 삶의 가치를 느끼고자, 글또, 우아한스터디 등 5개 이상의 다양한 스터디에 참여한 경험이 있습니다
 
-* <img src="/assets/img/logo/collaboration.png" style="max-width: 3%; vertical-align: text-bottom;"> : 긍정적인 분위기를 조성하며 동료들과 함께 유쾌하게 작업하는 개발자이며, 협업을 통해 일상을 활기차게 만들어가는 것을 중요시합니다.
+* <img src="/assets/img/logo/collaboration.png" style="max-width: 4%; vertical-align: text-bottom;"> : 긍정적인 분위기를 조성하며 동료들과 함께 유쾌하게 작업하는 개발자이며, 협업을 통해 일상을 재밌게 만들어가는 것을 중요시합니다.
 
 ---
 

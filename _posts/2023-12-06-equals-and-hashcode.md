@@ -161,7 +161,7 @@ public static void main(String[] args){
 }
 ```
 
-* equals를 재정의했기 때문에 Product 객체의 name이 같은 product1, product2 객체는 **논리적으로 같은 객채로 판단**된다.
+* equals를 재정의했기 때문에 Product 객체의 name이 같은 product1, product2 객체는 **논리적으로 같은 객체로 판단**된다.
 
 * 이제 아래 main 메서드의 출력 결과를 예측해보자.
 

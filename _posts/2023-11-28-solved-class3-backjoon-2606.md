@@ -225,7 +225,7 @@ class Main {
 
     * BufferedWriter 사용법
 
-        * `bw.write(int n)` 를 통해 int 형으로 문자 데이터를 출력문자 스트림으로 출력한다.
+        * `bw.write(int n)` 를 통해 int 형인 데이터를 출력문자 스트림으로 출력한다.
 
 ```java
 class Main {
