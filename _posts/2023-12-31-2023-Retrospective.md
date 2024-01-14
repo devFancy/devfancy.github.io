@@ -12,7 +12,7 @@ author: devFancy
 
 그동안 내가 무엇을 배웠고 어떤 성장을 했는지 하나씩 정리해보자. ✍🏻
 
->  2023년에 내가 공부하면서 배운 내용을 [2023 Dev History](https://devfancy.github.io/2023-Retrospective/)에도 기록해두었다.
+>  2023년에 내가 공부하면서 배운 내용을 [2023 Dev History](https://devfancy.github.io/2023-Diary/)에도 기록해두었다.
 
 ```markdown
 2023년에 참여한 모임
