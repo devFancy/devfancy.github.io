@@ -38,7 +38,9 @@ type: page
 
 ## Dev History
 
-*  [2023 Dev History](https://devfancy.github.io/2023-Retrospective/)
+*  [2024 Dev History](https://devfancy.github.io/2024-Diary/)
+
+*  [2023 Dev History](https://devfancy.github.io/2023-Diary/)
 
 ## TimeLine
 
