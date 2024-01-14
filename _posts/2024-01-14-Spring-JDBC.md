@@ -30,6 +30,8 @@ author: devFancy
 
 3. 결과 응답: DB는 전달된 SQL을 수행하고 그 결과를 응답한다. 애플리케이션 서버는 응답 결과를 활용한다.
 
+![](/assets/img/spring/Spring-JDBC-2-2.png)
+
 하지만 **각각의 데이터베이스 마다 사용법(커텍션 연결, SQL 전달, 결과 응답)이 다르다**는 문제점을 가지고 있다. (참고로 관계형 데이터베이스는 수십개가 있다)
 
 여기에는 2가지 큰 문제점이 있다.
@@ -651,9 +653,9 @@ public class MemberRepositoryV0 {
 
     만약 회원이 100명이고, 모든 회원의 데이터를 한 번에 수정하는 update sql을 실행하면 결과는 100이 되낟.
 
-> MemberRepositoryV0Test - 회원 수정, 삭제
+> MemberRepositoryV0Test - CRUD(회원 수정, 삭제 포함)
 
-```sql
+```java
 @Slf4j
 class MemberRepositoryV0Test {
 
