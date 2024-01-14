@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  " [2023년 회고] 한해를 되돌아보면서... "
-categories: Record
+title:  " [2023년 회고] 다양한 활동으로 가득한 특별한 한 해 "
+categories: Retrospective
 author: devFancy
 ---
 * content
