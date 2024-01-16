@@ -4,7 +4,6 @@ title: " 커넥션 풀과 데이터소스 이해 "
 categories: Spring
 author: devFancy
 ---
-
 * content
 {:toc}
 
@@ -48,7 +47,7 @@ DB는 물론이고, 애플리케이션 서버에서도 `TCP/IP`  **커넥션을 
 
 ![](/assets/img/spring/Spring-DB-ConnectionPool-DataSource-3.png)
 
-애플리케이션 로직에서는 이제 DB 드라이버를 통해 새로운 커넥션을 획득하는 것이 아니라 **`커넥션 풀`을 통해 이미 생성되어 있는 커넥션을 객체 참조로 그냥 가져다 쓰면 된다.
+애플리케이션 로직에서는 이제 DB 드라이버를 통해 새로운 커넥션을 획득하는 것이 아니라 **`커넥션 풀`을 통해 이미 생성되어 있는 커넥션을** 객체 참조로 그냥 가져다 쓰면 된다.
 
 커넥션 풀에 커넥션을 요청하면 커넥션 풀은 자신이 가지고 있는 커넥션 중 하나를 반환한다.
 
@@ -184,7 +183,7 @@ public class ConnectionTest {
 커넥션 풀에서 커넥션을 생성하는 작업은 **애플리케이션 실행 속도에 영향을 주지 않기 위해 별도의 쓰레드에서 작동**한다.
 그래서 위와 같이 `Thread.sleep(1000);` 을 통해 대기 시간을 주어야 쓰레드 풀에 커넥션이 생성되는 로그를 확인할 수 있다.
 
-(HikariCP 커넥션 풀에 대한 더 자세한 내용은 다음 공식 사이트를 참고 - [HikariCP](https://github.com/brettwooldridge/HikariCP))
+(HikariCP 커넥션 풀에 대한 더 자세한 내용은 다음 공식 사이트를 참고하자 - [HikariCP](https://github.com/brettwooldridge/HikariCP))
 
 ## Reference
 
