@@ -23,25 +23,29 @@ author: devFancy
 
 어느 부분에서 예외가 발생하였고, 어떤 현상이 발생했는지 아래와 같이 세부 기능별로 기록했다.
 
+> 실제 예시: 프로필 기능 중 **프로필 등록** 화면
+
 ![](/assets/img/testcode/SpringBoot-TestCode-Unit-Error.png)
 
-QA 작업은 9월부터 11월까지 계속되었고, 에러가 많아 QA Note Ver1과 QA Note Ver2로 나누어 정리하게 되었다.
+QA 작업은 10월까지 2달간 계속되었고, 에러가 많아 `QA Note Ver1`과 `QA Note Ver2`로 나누어 정리하게 되었다.
+
+> 실제 예시: QA Note Ver2
 
 ![](/assets/img/testcode/SpringBoot-TestCode-Unit-QA.png)
 
-QA 작업을 진행하면서 불편한 점은 서비스에 따라 다르겠지만, 해당 서비스 이용을 위해 필요한 단계들을 매번 반복해야 한다는 것이다.
+QA 작업을 진행하면서 불편한 점은 서비스에 따라 다르겠지만, 해당 서비스 이용을 위해 **필요한 단계들을 매번 반복해야 한다**는 것이다.
 
-우리 서비스에서는 소셜 로그인 -> 회원가입 -> 프로필 작성까지의 단계가 필수적이었다. (이 과정을 정말 100번 이상 반복한 것 같다...)
+우리 서비스에서는 `소셜 로그인 -> 회원가입 -> 프로필 작성`까지의 단계가 필수적이었다. (이 과정을 정말 100번 이상 반복한 것 같다...)
 
-이러한 반복적인 과정과 다양한 기능으로 인해 테스트하는 데 시간이 오래 걸리는 문제점이 있었다.
+이러한 반복적인 과정과 다양한 기능으로 인해 사람이 수시로 테스트하는 데 시간이 오래 걸리는 문제점이 있었다.
 
-그래서 이러한 과정을 이러한 과정을 **자동화**하고자 결심하게 되었고, 이후의 `히빗 ver.2` 에서는 단위 테스트를 적극 활용하기로 도입하게 되었다.
+그래서 이러한 과정을 **자동화**하고자 결심하게 되었고, 이후의 `히빗 (ver.2)` 에서는 `단위 테스트`를 적극 활용하기로 도입하게 되었다.
 
 ## 단위 테스트란?
 
-> `단위 테스트`는 작은 코드 단위를 독립적으로 검증하는 테스트이다. 여기서 작은 코드는 클래스 혹은 메서드를 의미한다.
+> `단위 테스트`는 작은 코드 단위를 **독립적으로 검증**하는 테스트이다. 여기서 작은 코드는 클래스 혹은 메서드를 의미한다.
 >
->  여기서 작은 코드는 클래스 혹은 메서드를 의미한다.
+>  여기서 작은 코드는 `클래스` 혹은 `메서드`를 의미한다.
 
 작년 11월부터 12월까지 [Practical Testing: 실용적인 테스트 가이드](https://www.inflearn.com/course/practical-testing-실용적인-테스트-가이드/dashboard) 강의를 듣고 정리한
 [Practical Testing: 테스트 코드 작성 방법](https://devfancy.github.io/Practical-Testing/) 을 바탕으로 단위 테스트를 작성하였다.
@@ -53,6 +57,8 @@ QA 작업을 진행하면서 불편한 점은 서비스에 따라 다르겠지�
 ## 단위 테스트 도입
 
 기존 `회원`에 대한 엔티티 클래스는 다음과 같다.
+
+> Member.class
 
 ```java
 @Entity
@@ -87,30 +93,15 @@ public class Member extends BaseEntity {
         this.displayName = displayName;
         this.socialType = socialType;
     }
-
-    private void validateEmail(final String email) {
-        Matcher matcher = EMAIL_PATTERN.matcher(email);
-        if (!matcher.matches()) {
-            throw new InvalidMemberException("이메일 형식이 올바르지 않습니다.");
-        }
-    }
-
-    /**
-     * isEmpty() 는 "" 에 대한 문자열을 확인 -> 비어있는 경우 true 반환
-     * isBlank() "", " " 에 대한 문자열을 확인 -> 비어있는 경우 true 반환
-    */
-    private void validateDisplayName(final String displayName) {
-        if (displayName.isBlank() || displayName.length() > MAX_DISPLAY_NAME_LENGTH) {
-            throw new InvalidMemberException(String.format("이름은 1자 이상 20자 %d이하여야 합니다.", MAX_DISPLAY_NAME_LENGTH));
-        }
-    }
-    // getter 생략
+    // validate, getter 생략
 }
 ```
 
 `회원` 엔티티 클래스 내부에는 `이메일`, `닉네임`, `소셜 로그인 유형`에 대한 필드값이 있고, Builder 어노테이션이 적용된 Member 메서드가 있다.
 
-해당 엔티티 클래스에 대해 단위 테스트 코드를 작성한 코드는 아래와 같다.
+해당 엔티티 클래스에 대해 `단위 테스트`를 작성한 코드는 아래와 같다.
+
+> MemberTest.class
 
 ```java
 class MemberTest {
@@ -154,7 +145,7 @@ class MemberTest {
 }
 ```
 
-좋은 단위 테스트란 무엇인지에 대해 나는 아래와 같이 핵심 기준을 두고 작성했다.
+**좋은 단위 테스트**란 무엇인지에 대해 나는 아래와 같이 핵심 기준을 두고 작성했다.
 
 1. 테스트 케이스 세분화하기
 
@@ -164,7 +155,7 @@ class MemberTest {
 
 4. 한 눈에 들어오는 Test Fixture 구성하기 (선택)
 
-위 4가지 기준에 대해서 하나씩 살펴보고자 한다.
+위 네 가지 기준에 대해서 어떻게 적용했는지 하나씩 자세히 살펴보고자 한다.
 
 ### 1. 테스트 케이스 세분화하기
 
@@ -334,9 +325,9 @@ Given / When / Then 에 대한 과정을 나눠서 정리해보면 아래와 같
 
 이번 글에서는 왜 테스트 코드를 도입하게 되었고, 단위 테스트는 무엇인지, 그리고 실제 프로젝트를 진행하면서 `회원` 엔티티에 대한 단위 테스트를 예시로 가져와서 설명했다.
 
-나는 단위 테스트를 작성할 때 4가지 기준을 적용했지만, 이 외에도 다양한 기법들이 존재할 거라 생각한다.
+나는 단위 테스트를 작성할 때 네 가지 기준을 적용했지만, 이 외에도 다양한 기법들이 존재할 거라 생각한다.
 
-우선은 이 4가지를 기준으로 삼아 단위 테스트를 작성해보고, 이후에 추가적인 기준이 있다면, 적용해보고 괜찮다 싶으면 해당 포스팅을 업로드할 예정이다.
+우선은 이 네 가지를 기준으로 삼아 단위 테스트를 작성해보고, 이후에 추가적인 기준이 있다면, 적용해보고 괜찮다 싶으면 해당 포스팅을 업로드할 예정이다.
 
 'Practical Testing: 실용적인 테스트 가이드' 강의를 들으면서 기억에 남는 말이 있는데,
 
