@@ -135,6 +135,75 @@ public class Jump_king_jelly2 {
 }
 ```
 
+## Answer Code3(24.01.17)
+
+```java
+// 점프왕 쩰리 (Small) 복습 - 24.01.17
+import java.util.*;
+import java.io.*;
+
+public class Jump_king_jelly2 {
+    static final int MAX = 100 + 10 + 3;
+    static int[][] map;
+    static boolean[][] visited;
+    static int[] dirX = {1, 0};
+    static int[] dirY = {0, 1};
+    static boolean answer = false;
+
+    public static void dfs(int y, int x) {
+        visited[y][x] = true;
+        if(map[y][x] == -1) {
+            answer = true;
+            return;
+        }
+        for(int i = 0; i < 2; i++) {
+            int newX = x + dirX[i] * map[y][x];
+            int newY = y + dirY[i] * map[y][x];
+            if(visited[newY][newX] == false) {
+                dfs(newY, newX);
+            }
+        }
+
+    }
+
+    public static void main(String[] args) throws IOException {
+    
+        // 0. 입력 및 초기화
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        map = new int[MAX][MAX];
+        visited = new boolean[MAX][MAX];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+
+        // 1. map에 정보 반영
+        for(int i = 1; i <= N; i++) {
+            int x;
+            st = new StringTokenizer(br.readLine());
+            for(int j = 1; j <= N; j++) {
+                x = Integer.parseInt(st.nextToken());
+                map[i][j] = x;
+            }
+        }
+
+        // 2. dfs
+        dfs(1, 1);
+
+        // 3. 출력
+        if(answer == true) {
+            bw.write("HaruHaru");
+        } else {
+            bw.write("Hing");
+        }
+
+        // 4. 종료
+        bw.close();
+        br.close();
+    }
+}
+```
+
 ## Review
 
 * 이번 문제에서는 중요한 Key point는 방향과 이동할 수 있는 칸의 수이다.
@@ -147,4 +216,12 @@ public class Jump_king_jelly2 {
 
   * 다음 칸을 이동할 때마다 해당 위치를 0으로 바꿔주고, 만약 끝까지 도달했을 때 값이 0이라면 "HaruHaru"를 반환하도록 구현했다.
 
+> 24.01.17
 
+* 세번째 풀이는 이전 풀이와 조금 다르게 했다.
+
+  * 게임의 승리 지점(오른쪽 맨 아래 칸)에는 `-1`이 쓰여있기 때문에, 현재 위치에 대한 값이 `-1`이 곧 오른쪽 맨 아래 칸과 같으므로 `if(map[y][x] == -1)` 과 같은 조건식을 시용했다.
+
+  * 그리고 마지막에 도착 지점에 도달했을 때만 `answer` 값을 `true`로 수정하고 return(dfs 메서드 종료)하여 `answer` 값 여부에 따라 출력 값을 다르게 두었다.
+
+  * 1,2 번과 거의 비슷하게 풀었고 마지막 조건식만 다르기 때문에 메모리와 시간은 비슷하게 나왔다.

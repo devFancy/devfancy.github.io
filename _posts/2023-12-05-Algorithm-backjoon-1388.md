@@ -80,7 +80,7 @@ class FloorDecoration {
 }
 ```
 
-## Answer Code2(23.12.06)
+## Answer Code2(24.01.17)
 
 > visited 없이 구현한 결과
 
@@ -153,7 +153,7 @@ class FloorDecoration {
 
 3. 이미 방문한 지점을 다시 방문하지 않으려면 어떤 자료구조를 사용해야 할까? -> 2차원 배열 (visited)
 
-4. visited 배열을 생략할 수는 없을까? -> visited 없익 구현
+4. visited 배열을 생략할 수는 없을까? -> visited 없이 구현
 
 5. 어느 지점에서 dfs를 시작할까? -> map에 존재하는 모든 위치
 
@@ -168,4 +168,9 @@ class FloorDecoration {
 
 * 이번 문제가 헷갈리다면, 이전 문제인 [유기농 배추](https://devfancy.github.io/solved-class3-backjoon-1012/), [섬의 개수](https://devfancy.github.io/Algorithm-backjoon-4963/)를 참고하자.
 
+> 복습 - 24.01.17
+
+* visited 없이 구현할 수 없을까? 에 대한 풀이가 이전에는 매끄럽지 못했는데, 이번에 풀 때는 하나씩 설명하면서 풀다보니 원하는 정답에 맞출 수 있게 되었다.
+
+* 단순히 문제를 푸는 것보다 한 문제에 대한 풀이를 진행할 때, 누군가에게 설명하듯이 이해되도록 쉽게 말하면서 푸는 습관을 드는 자세가 중요한 것 같다.
 
