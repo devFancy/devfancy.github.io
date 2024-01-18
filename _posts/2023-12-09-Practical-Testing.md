@@ -829,7 +829,7 @@ class OrderServiceTest {
 
 `@Transactional`이 있기 때문에 자동적으로 롤백이 되는 것이다.
 
-반면, OrderServiceTest의 경우 `@SpringBootTest` 어노테이션이 있는에, 여기에서는 @Trasaction이 없다. 그래서 롤백이 되지 않는 것이다.
+반면, OrderServiceTest의 경우 `@SpringBootTest` 어노테이션이 있는에, 여기에서는 @Trasactional이 없다. 그래서 롤백이 되지 않는 것이다.
 
 ![](/assets/img/testcode/Practical_Testing_Business_Layer_5.png)
 
@@ -837,7 +837,7 @@ class OrderServiceTest {
 
 > ProductRepositoryTest와 OrderServiceTest 차이점 정리
 
-* ProductRepositoryTest에서는` @DataJpaTest`로 인해 트랜잭션 롤백이 자동으로 이루어지므로 테스트가 데이터베이스에 영향을 미치지 않는다.
+* ProductRepositoryTest에서는 `@DataJpaTest`로 인해 트랜잭션 롤백이 자동으로 이루어지므로 테스트가 데이터베이스에 영향을 미치지 않는다.
 
 * OrderServiceTest에서는 `@SpringBootTest`로 전체 애플리케이션 컨텍스트를 로드하며, 트랜잭션 롤백이 자동으로 이루어지지 않아 테스트가 실제 데이터베이스에 영향을 줄 수 있다.
 
