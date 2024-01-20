@@ -61,13 +61,13 @@ Spring Boot 에서는 클래스 상단에 `@SpringBootTest` 어노테이션을 �
 
 하지만 모든 빈을 등록하기 때문에 아래와 같은 **단점**을 가질 수 있다.
 
-이러한 `@SpringBootTest` 는 모든 빈을 등록한 채 테스트를 진행하는 통합 테스트에 적합한 어노테이션이다.
-
 * 모든 빈을 등록하기 때문에 비교적 오랜 시간이 걸린다
 
 * 모든 빈을 등록하기 대문에 의존성을 고려하지 않고 테스트를 진행할 수 있다. -> 테스트하고자 하는 객체의 의존성을 무시한채 테스트하게 된다.
 
 * 결과적으로 웹을 실행시키지 않고 테스트 코드를 통해 빠른 피드백을 받을 수 있다는 장점이 희석된다.
+
+이러한 `@SpringBootTest` 는 모든 빈을 등록한 채 테스트를 진행하는 통합 테스트에 적합한 어노테이션이다.
 
 모든 빈을 등록하지 않으려면, `classes 속성`을 통해 빈을 생성할 클래스를 지정하면 해당 클래스와 관련된 빈만 등록하게 된다.
 
@@ -104,34 +104,34 @@ class PostServiceTest {
         memberRepository.deleteAll();
     }
 
-    @DisplayName("게시글을 등록한다.")
+    @DisplayName("게시글을 등록한 페이지를 반환한다.")
     @Test
-    void 게시글을_등록한다() {
-        // given
-        Member 팬시 = 팬시();
-        Profile 팬시_프로필 = 팬시_프로필(팬시);
-        profileRepository.save(팬시_프로필);
-
-        PostCreateRequest request = PostCreateRequest.builder()
-                .title(게시글제목1)
-                .content(게시글내용1)
-                .exhibition(전시회제목1)
-                .exhibitionAttendance(전시관람인원1)
-                .possibleTime(전시관람희망날짜1)
-                .openChatUrl(오픈채팅방Url1)
-                .togetherActivity(함께하고싶은활동1)
-                .imageName(게시글이미지1)
-                .postStatus(모집상태1)
-                .build();
-
-        // when
-        Long newPostId = postService.save(팬시_프로필.getMember().getId(), request);
-        Post savedPost = postRepository.findByMemberId(팬시.getId()).orElse(null);
-
-        // then
-        assertThat(newPostId).isNotNull();
-        assertEquals("프로젝트_해시테크", savedPost.getTitle());
-
+    void 게시글을_등록한_페이지를_반환한다() {
+      // given
+      Member 팬시 = 팬시();
+      memberRepository.save(팬시);
+      Profile 팬시_프로필 = 팬시_프로필(팬시);
+      profileRepository.save(팬시_프로필);
+    
+      PostCreateRequest request = PostCreateRequest.builder()
+              .title(게시글제목1)
+              .content(게시글내용1)
+              .exhibition(전시회제목1)
+              .exhibitionAttendance(전시관람인원1)
+              .possibleTime(전시관람희망날짜1)
+              .openChatUrl(오픈채팅방Url1)
+              .togetherActivity(함께하고싶은활동1)
+              .imageName(게시글이미지1)
+              .postStatus(모집상태1)
+              .build();
+    
+      // when
+      Long newPostId = postService.save(팬시_프로필.getMember().getId(), request);
+      Post savedPost = postRepository.findByMemberId(팬시.getId()).orElse(null);
+    
+      // then
+      assertThat(newPostId).isNotNull();
+      assertEquals("프로젝트_해시테크", savedPost.getTitle());
     }
 }
 ```
@@ -216,9 +216,9 @@ class PostControllerTest {
     @MockBean
     private AuthService authService;
 
-    @DisplayName("게시글을 등록한다.")
+    @DisplayName("신규 게시글을 등록한다.")
     @Test
-    void 게시글을_등록한다() throws Exception {
+    void 신규_게시글을_등록한다() throws Exception {
         // given
         PostCreateRequest request = PostCreateRequest.builder()
                 .title(게시글제목1)
@@ -269,51 +269,56 @@ Spring Data JPA를 사용했기 때문에, 테스트를 위해 `DataJpaTest`를 
 @ActiveProfiles("test")
 @DataJpaTest
 class PostRepositoryTest {
-
-
+    
+    @Autowired
+    private MemberRepository memberRepository;
+  
+    @Autowired
+    private ProfileRepository profileRepository;
+  
     @Autowired
     private PostRepository postRepository;
-
-    @DisplayName("등록된 모든 게시글을 조회한다.")
+  
+    private Member member;
+  
+    private Profile profile;
+  
+    private Post post;
+  
+    @BeforeEach
+    void setUp() {
+        member = 팬시();
+        memberRepository.save(member);
+        profile = 팬시_프로필(member);
+        profileRepository.save(profile);
+        post = 프로젝트_해시테크(member);
+        postRepository.save(post);
+    }
+  
+    @DisplayName("게시글과 회원 테이블이 정상적으로 매핑이 된다.")
     @Test
-    void 등록된_모든_게시글을_조회한다() {
+    void 게시글과_회원_테이블이_정상적으로_매핑이_된다() {
         // given
-        Post post1 = createPost(팬시(), 게시글제목1, 게시글내용1, 전시회제목1, 전시관람인원1, 전시관람희망날짜1, 오픈채팅방Url1, 함께하고싶은활동1, 게시글이미지1, 모집상태1);
-        Post post2 = createPost(브루스(), 게시글제목2, 게시글내용2, 전시회제목2, 전시관람인원2, 전시관람희망날짜2, 오픈채팅방Url2, 함께하고싶은활동2, 게시글이미지2, 모집상태2);
-
-        postRepository.saveAll(List.of(post1, post2));
-
+        Post foundPost = postRepository.getById(post.getId());
+    
+        // when & then
+        Assertions.assertThat(foundPost.getMember().getId()).isNotNull();
+    }
+  
+    @DisplayName("특정 회원 ID에 해당하는 게시글을 찾는다.")
+    @Test
+    void 특정_회원_ID에_해당하는_게시글을_찾는다() {
+        // given
+        Long memberId = post.getMember().getId();
+    
         // when
-        List<Post> posts = postRepository.findAllByOrderByCreatedDateTimeDesc();
-
+        Optional<Post> actual = postRepository.findByMemberId(memberId);
+    
         // then
-        Assertions.assertThat(posts).hasSize(2)
-                .extracting("title", "content", "openChatUrl")
-                .containsExactlyInAnyOrder(
-                        tuple("프로젝트_해시테크", "프로젝트 해시 태크(http://projecthashtag.net/) 보러가실 분 있으면 아래 댓글 남겨주세요~", "http://projecthashtag.net/"),
-                        tuple("오스틴리 전시회", "오스틴리 전시회 보고, 같이 담소하게 얘기 나누실 분 있으시면 아래 댓글 남겨주세요~", "http://ostin.net/")
-                );
-     }
-
-
-     private Post createPost(Member member, String title, String content,
-                             String exhibition, int exhibitionAttendance, LocalDateTime postPossibleTime,
-                             String openChatUrl, TogetherActivity togetherActivity, String imageName, PostStatus postStatus) {
-
-        Post post1 = Post.builder()
-                .member(member)
-                .title(title)
-                .content(content)
-                .exhibition(exhibition)
-                .exhibitionAttendance(exhibitionAttendance)
-                .possibleTime(postPossibleTime)
-                .openChatUrl(openChatUrl)
-                .togetherActivity(togetherActivity)
-                .imageName(imageName)
-                .postStatus(postStatus)
-                .build();
-        return post1;
-     }
+        assertThat(actual).isPresent();
+        Post foundPost = actual.get();
+        assertThat(foundPost.getMember().getId()).isEqualTo(memberId);
+    }
 }
 ```
 
