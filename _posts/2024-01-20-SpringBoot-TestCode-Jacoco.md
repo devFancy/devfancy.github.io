@@ -11,7 +11,7 @@ author: devFancy
 
 * 예상 독자: Spring Boot 기반 테스트 코드를 작성하는 개발자
 
-이 글은 히빗 프로젝트(ver.2)에 `Jacoco`를 설정한 과정에 대해 공유하고자 합니다.
+* 이 글은 히빗 프로젝트(ver.2)에 `Jacoco`를 설정한 과정에 대해 공유하고자 합니다.
 아래 글부터는 히빗 프로젝트(ver.2) 를 `히빗2`로 줄여서 작성했습니다.
 
 ---
@@ -54,14 +54,14 @@ author: devFancy
 
 ![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-2.png)
 
-[Jacoco]는 Java 코드의 커버리지를 체크하는 라이브러리이다. 
+[Jacoco](https://www.jacoco.org/jacoco/) 는 Java 코드의 커버리지를 체크하는 라이브러리이다. 
 테스트 코드를 돌리고 그 커버리지 결과를 눈으로 보기 좋도록 html이나 xml, csv와 같은 리포트로 생성한다.
 
 그리고 테스트 결과가 내가 설정한 커버리지 기준을 만족하는지 확인하는 기능도 있다.
 
-여기서는 Java 코드가 섞인 Gradle 기준의 히빗2에 `Jacoco`를 도입하여 코드 커버리지를 분석하고, 코드 커버리지가 80% 미만일 경우에 빌드가 실패되도록 설정했다.
+여기서는 Java 코드가 섞인 Gradle 기준의 **히빗2에 `Jacoco`를 도입하여 코드 커버리지를 분석하고, 코드 커버리지가 80% 미만일 경우에 빌드가 실패되도록 설정**했다.
 
-## JaCoCo 플러그인 추가
+## JaCoCo 플러그인 추가하기
 
 아래 `build.gradle` 파일에 jacoco 플러그인을 가져오고 버전을 설정한다.
 
@@ -280,11 +280,11 @@ jacocoTestCoverageVerification {
 
 test를 실행하여 총 155개의 단위 테스트에 대한 성공 결과를 보여줬다.
 
-[](/assets/img/testcode/SpringBoot-TestCode-Jacoco-5.png)
+![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-5.png)
 
 그리고 코드 커버리지 80%를 달성하게 되었다.
 
-[](/assets/img/testcode/SpringBoot-TestCode-Jacoco-6.png)
+![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-6.png)
 
 최종적으로 작성된 `build.gradle` 파일은 아래와 같다.
 
@@ -441,6 +441,8 @@ Jacoco를 사용하면 프로덕션 코드에서 어떤 부분이 아직 테스�
 * [[Tecoble] 코드 커버리지(Code Coverage)가 뭔가요?](https://tecoble.techcourse.co.kr/post/2020-10-24-code-coverage/)
 
 * [달록의 Jacoco 적용기 (feat. Gradle)](https://hudi.blog/dallog-jacoco/)
+
+* [Jacoco (Java Code Coverage Library)](https://www.jacoco.org/jacoco/)
 
 * [Gradle 공식문서 - JacocoReport](https://docs.gradle.org/current/dsl/org.gradle.testing.jacoco.tasks.JacocoReport.html)
 
