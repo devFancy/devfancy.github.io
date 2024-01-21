@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 좋은 단위 테스트란? (feat. 히빗) "
-categories: TestCode
+categories: Hibit
 author: devFancy
 ---
 * content

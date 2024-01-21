@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 히빗 프로젝트(ver.2)에 Jacoco 설정하기: 코드 커버리지 높이기 "
-categories: TestCode
+categories: Hibit
 author: devFancy
 ---
 * content
