@@ -15,7 +15,9 @@ author: devFancy
 
 Spring 프레임워크는 다양한 에러 처리 방법을 제공하는데, `굿프렌즈팀`은 기존에 어떻게 처리했고, 이후에 어떻게 개선했는지 과정을 설명해보겠습니다.
 
-## 도입 배경
+## 문제 상황
+
+### @ResponseStatus
 
 이전 굿프렌즈팀(~23.09.04)에서는 비즈니스 로직에 필요한 예외 처리를 exception 이라는 패키지를 만들어서 아래와 같이 처리했습니다. 
 
@@ -39,19 +41,16 @@ public class NotFoundTokenException extends RuntimeException {
 ```
 
 예를 들어, 토큰에 대한 값을 찾지 못할 경우 위와 같이 `@ReponseStatus`을 통해 HTTP 응답 상태 코드인 404 Not Found와 "존재하지 않는 Token 입니다"라는 메시지를 받게 됩니다.
+해당 어노테이션을 이용하여 간단하게 상태 코드를 지정할 수 있습니다.
+즉, 클라이언트 입장에서 **에러 코드가 무엇인지 확인할 수 있다는 장점**을 가집니다. 
 
+하지만 애플리케이션에 필요한 기능들을 개발하다 보면, **다양한 예외 처리**를 만들어야 합니다. 각 예외 처리 클래스마다 위에 `@ResponseStatus`을 붙여서 상태 코드를 넣어주는 것은 좋지만, **한 눈에 볼 수 없습니다.**
 
-해당 어노테이션을 이용하여 간단하게 상태 코드를 지정할 수 있습니다. 
+그리고 시간이 지날 수록 본인이 지정한 예외 처리 클래스가 **어떤 상태 코드 값인지 제대로 기억하기 쉽지 않습니다.**
+또한 **외부에서 정의한 Exception 클래스에는 `@ResponseStatus`를 붙여줄 수 없습니다.**
 
-즉, 클라이언트 입장에서 에러 코드가 무엇인지 확인할 수 있다는 장점을 가집니다. 
+### ResponseStatusException
 
-하지만 애플리케이션에 필요한 기능들을 개발하다 보면, 다양한 예외처리를 만들어야 합니다. 각 예외 처리 클래스마다 위에 @ResponseStatus을 붙여서 상태 코드를 넣어주는 것은 좋지만, 한 눈에 볼 수 없습니다. 
-
-그리고 시간이 지날 수록 본인이 지정한 예외 처리 클래스가 어떤 상태 코드 값인지 제대로 기억하기 쉽지 않습니다. 또한 외부에서 정의한 Exception 클래스에는 @ResponseStatus를 붙여줄 수 없습니다.
-
-## ResponseStatusException
-
-외부 라이브러리에서 정의한 코드는 우리가 수정할 수 없기 때문에` @ResponseStatus`를 붙여줄 수 없습니다. 
 Spring5에는 이러한 @ResponseStatus의 프로그래밍적 대안으로 손쉽게 에러를 반환할 수 있는 `ResponseStatusException`이 추가되었습니다.
 `ResponseStatusException`은 HttpStatus와 함께 선택적으로 reason과 cause를 추가할 수 있습니다.
 
@@ -67,7 +66,9 @@ API 기능을 개발하다보면 각 오류 상황에 맞는 오류 응답 스�
 그리고 같은 예외라고 하더라도 어떤 API에서 발생했는가에 따라 다른 예외 응답을 내려주어야 하는 세밀한 작업이 필요하다.
 이러한 API 예외 처리를 해결하기 위해 최근에는 스프링에서 제공하는 `@ExceptionHandler` 어노테이션을 사용하는 방식이 많아졌습니다.
 
-## @ExceptionHandler를 통한 예외 처리
+## 해결 방안
+
+### @ExceptionHandler를 통한 예외 처리
 
 스프링 부트가 기본으로 제공하는 `ExceptionResolver`는 다음과 같습니다.
 
@@ -104,15 +105,15 @@ public class ControllerAdvice {
 }
 ```
 
-> **실행 흐름** - 
+> @ExceptionHandler의 실행 흐름
 
-* 애플리케이션 실행 중에 컨트롤러나 서비스 메서드 등에서 특정 예외가 발생할 때, `NotFoundUserException` 와 일치하는 `@ExceptionHandler` 어노테이션이 선언된 메서드가 호출됩니다. (여기서는 `handleNotFoundData` 메소드가 호출됩니다)
+1. 애플리케이션 실행 중에 컨트롤러나 서비스 메서드 등에서 특정 예외가 발생할 때, `NotFoundUserException` 와 일치하는 `@ExceptionHandler` 어노테이션이 선언된 메서드가 호출됩니다. (여기서는 `handleNotFoundData` 메소드가 호출됩니다)
 
-* 예외를 처리하는 메서드(`handleNotFoundData`)에서는 해당 예외에 대한 응답을 생성합니다.
+2. 예외를 처리하는 메서드(`handleNotFoundData`)에서는 해당 예외에 대한 응답을 생성합니다.
 
-* 위의 코드에서는 `ErrorResponse` 객체를 생성하고, 해당 응답을 HTTP 상태 코드 404(NOT_FOUND)와 함께 반환합니다.
+3. 위의 코드에서는 `ErrorResponse` 객체를 생성하고, 해당 응답을 HTTP 상태 코드 404(NOT_FOUND)와 함께 반환합니다.
 
-* 생성된 응답을 클라이언트에게 전송됩니다. 이 경우, HTTP 상태 코드는 404로 설정되어 클라이언트에게 해당 자원이 발견되지 않았음을 알려줍니다.
+4. 생성된 응답을 클라이언트에게 전송됩니다. 이 경우, HTTP 상태 코드는 404로 설정되어 클라이언트에게 해당 자원이 발견되지 않았음을 알려줍니다.
 
 이렇게 `@ExceptionHandler` 어노테이션을 사용하면 특정 예외에 대한 처리 로직을 일괄적으로 정의할 수 있으며, 중복 코드를 피하고 통일된 에러 응답을 생성할 수 있습니다.
 
@@ -121,15 +122,15 @@ public class ControllerAdvice {
 위와 같이 `NOT_FOUND`와 같은 HTTP 표준 상태와 같이 가독성이 좋은 값을 사용하는 것이 클라이언트의 입장에서도 대응하기 좋고, 유지보수하는 입장에서도 좋습니다. 
 또한 각 기능별로 예외 처리에 대한 클래스를 `@ExceptionHandler`을 통해 한 곳에 관리할 수 있습니다.
 
-`@ExceptionHandler`를 사용 시에 주의할 점은 **`@ExceptionHandler`에 등록된 예외 클래스와 파라미터로 받는 예와 클래스가 동일해야 한다는 것입니다. 
-만약 값이 다르다면 스프링은 컴파일 시점에 에러를 내지 않다가 런타임 시점에 에러를 발생시킵니다.**
+`@ExceptionHandler`를 사용 시에 주의할 점은 `@ExceptionHandler`에 등록된 예외 클래스와 파라미터로 받는 예와 클래스가 동일해야 한다는 것입니다. 
+만약 값이 다르다면 스프링은 컴파일 시점에 에러를 내지 않다가 **런타임 시점에 에러를 발생시킵니다.**
 
 ```shell
 java.lang.IllegalStateException: No suitable resolver for argument [0] [type=...]
 HandlerMethod details: ...
 ```
 
-## @ControllerAdvice
+### @ControllerAdvice
 
 `@ControllerAdvice` 는 대상으로 지정한 여러 컨트롤러에 `@ExceptionHandler` , `@InitBinder` 기능을 부여해주는 역할을 합니다.
 
@@ -244,7 +245,7 @@ public class ExampleAdvice3 {}
 
 * 예시) `Exception.class` : 서버에서 예상치 못한 에러가 발생했습니다. / `OAuthException.class` : Oauth 서버와의 통신 과정에서 문제가 발생했습니다.
 
-## @RestControllerAdvice, @ExceptionHandler 적용한 결과
+## 결과
 
 아래의 `ControllerAdvice`는 여러 컨트롤러에 적용하기 때문에 굿프렌즈팀의 global - error 패키지 안에 만들었습니다.
 
