@@ -187,6 +187,10 @@ public class ViewCountManager {
 이를 통해 날짜에 어떤 포스트가 조회되었는지 추적할 수 있다.
 예를 들어, 쿠키에 "27:1/2/3&28:4/5"라는 값이 저장되어 있다면, 이는 27일에 게시글 1, 2, 3이 조회되었고, 28일에는 게시글 4, 5가 조회되었음을 나타낸다.
 
+`ViewCountManager`에 대한 테스트 코드를 작성한 결과, 아래와 같이 방문 여부에 따른 값과 다른 게시글을 방문할 때마다 log를 업데이트한 것을 확인할 수 있다.
+
+![](/assets/img/hibit/Hibit-ViewManager-Abusing-1.png)
+
 PostService는 이전에 해당 게시글을 조회하지 않았던 경우에만 조회수를 데이터베이스에 업데이트하는 로직을 구현했다.
 
 > 적용후: `PostService`
@@ -256,7 +260,7 @@ public class PostController {
 
 특정 게시글에 대한 조회 API를 `Postman`으로 확인한 결과 아래와 같이 `viewedPost` 값이 제대로 나오는 것을 확인할 수 있다.
 
-![](/assets/img/hibit/Hibit-ViewManager-Abusing-1.png)
+![](/assets/img/hibit/Hibit-ViewManager-Abusing-3.png)
 
 ## 마무리
 
@@ -275,3 +279,5 @@ public class PostController {
 * [조회수 어뷰징은 어떻게 막아야 할까?](https://ssdragon.tistory.com/118)
 
 * [커뮤니티 서비스 조회수 구현하기](https://velog.io/@hyunrrr/%EC%BB%A4%EB%AE%A4%EB%8B%88%ED%8B%B0-%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%A1%B0%ED%9A%8C%EC%88%98-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
+
+* [세션 저장소 TripleS](https://d2.naver.com/helloworld/233847)
