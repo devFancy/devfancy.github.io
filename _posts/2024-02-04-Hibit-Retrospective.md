@@ -7,7 +7,7 @@ author: devFancy
 * content
 {:toc}
 
-> 이 글은 제가 혼자서 개발한 [히빗 version 2](https://github.com/hibit-team/hibit-backend-improved) 에 대한 회고 글입니다.
+> 이 글은 제가 혼자서 개발한 [히빗 (version 2)](https://github.com/hibit-team/hibit-backend-improved) 에 대한 회고 글입니다.
 > 이전 version과 비교하여 어떤 성장을 이루었고, 그 과정에서 어떤 깨달음을 얻었는지 작성했습니다.
 
 ## 과거의 '나'와 현재의 '나'
@@ -80,13 +80,15 @@ author: devFancy
 
 그리고 토스 유튜브 채널에서 토스뱅크 이응준님이 발표하신 [SLASH21 - 테스트 커버리지 100%](https://toss.im/slash-21/sessions/1-6) 영상을 보면서 테스트 커버리지의 여러 이점들을 알게되었고, 하신 말씀 중에 가장 기억에 남는 문구가 아래와 같았다.
 
-> 테스트가 없으면 리팩터링을 할 수 없고, 리팩터링을 하지 않는 코드는 이해할 수 없게 되며, 이러한 코드는 수정할 수 없다는 확신이 없다는 말씀을 들으면서 많은 공감이 되었다. - 토스뱅크 이응준 - 
+![](/assets/img/hibit/hibit-retrospective-db-replication.png)
+
+> 테스트가 없으면 리팩터링을 할 수 없고, 리팩터링을 하지 않는 코드는 이해할 수 없게 되며, 이러한 코드는 수정할 수 없다는 확신이 없다. - 토스뱅크 이응준 - 
 
 이로 인해 테스트의 중요성을 새롭게 깨달았고, 프로덕션 코드의 품질과 신뢰를 높이기 위해 히빗 ver2 프로젝트에는 코드 커버리지를 80%를 유지하는 목표를 세우고 실천에 옮겼다.
 
 그 결과, 아래와 같이 80% 유지를 할 수 있었다.
 
-![](/assets/img/hibit/hibit-retrospective-db-replication-1.png)
+![](/assets/img/hibit/hibit-retrospective-db-replication-0.png)
 
 ### 2. 데이터베이스 레플리케이션을 통한 쿼리 성능 개선
 
@@ -98,7 +100,7 @@ author: devFancy
 
 아래와 같이 현재 RDS에 있는 데이터베이스(Source)를 기준으로 하위에 Replica 2개를 추가로 두었다.
 
-![](/assets/img/hibit/hibit-retrospective-db-replication.png)
+![](/assets/img/hibit/hibit-retrospective-db-replication-1.png)
 
 그리고 스프링 부트에도 쓰기와 읽기를 분리하기 위해 아래와 같이 DataSource를 구분지었다.
 
@@ -139,7 +141,7 @@ public class DataSourceConfiguration {
 }
 ```
 
-이후에 성능 테스트로 게시글 조회에 대한 테스트를 진행해본 결과, 20,000명을 기준으로 40TPS 에서 177.8 TPS로 **4.4배** 증가하였다.
+이후에 성능 테스트로 게시글 조회에 대한 테스트를 진행해본 결과, 2,000명을 기준으로 40TPS 에서 177.8 TPS로 **4.4배** 증가하였다.
 
 > 레플리케이션 도입 전
 
@@ -307,7 +309,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 * 추가적으로, 프로젝트를 혼자서 개발하면서, '시스템 설계'에 대해서도 관심이 가게 되었다.
 
-    현재 프로젝트에서 Jmeter 도구로 사용자 10,000명 혹은 20,000명을 기준으로 성능 테스트를 했는데, 사용자가 10만명이라면 기존 시스템 설계에서 어떻게 보완해야 할지 감이 오질 않았다.
+    현재 프로젝트에서 Jmeter 도구로 사용자 1,000명 ~ 10,000명을 기준으로 성능 테스트를 했는데, 사용자가 10만명이라면 기존 시스템 설계에서 어떻게 보완해야 할지 감이 오질 않았다.
 
     그러한 부족한 점을 채우고자 최근에 구매한 "대규모 시스템 설계 기초" 책을 읽으면서 하나씩 채워나가려고 한다.
 
@@ -323,7 +325,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 ## Reference
 
-* [[토스 | SLASH 21] 테스트 커버리지 100%](https://toss.im/slash-21/sessions/1-6)
+* [[토스 SLASH 21] 테스트 커버리지 100%](https://toss.im/slash-21/sessions/1-6)
 
 * [[우아한테크토크] 선착순 이벤트 서버 생존기! 47만 RPM에서 살아남다?!](https://www.youtube.com/watch?v=MTSn93rNPPE&ab_channel=%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC)
 
