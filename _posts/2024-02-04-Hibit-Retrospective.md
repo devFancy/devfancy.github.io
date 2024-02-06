@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 히빗 프로젝트 Version 1에서 2로의 전환: 백엔드 코드 개선과 개발자 성장의 여정 "
+title:  " 히빗 V2 업그레이드: 백엔드 개선과 개발자 성장기 "
 categories: Hibit
 author: devFancy
 ---
@@ -30,7 +30,7 @@ author: devFancy
 
 * 일단 기능 동작만 구현할 수 있을 정도의 실력
 
-히빗 프로젝트를 진행하면서, 그리고 끝난 이후에도 **과거의 '나'의 실력을 성장**시키기 위해 아래와 같은 공부를 했다.
+히빗 프로젝트(version 1)를 진행하면서, 그리고 끝난 이후에도 **과거의 '나'의 실력을 성장**시키기 위해 아래와 같은 공부를 했다.
 
 > 2024, 현재의 '나'
 
@@ -46,25 +46,101 @@ author: devFancy
 
 ## version2의 목표
 
-기존의 프로젝트를 version2를 하게된 이유는 내가 제대로 성장했는지 확인하고 싶었고, 기존 version1에 있는 코드와 구조를 개선하고 싶었다.
+기존의 프로젝트를 version2를 하게된 이유는 내가 제대로 성장했는지 확인하고 싶었고, **기존 version1에 있는 백엔드 코드와 구조를 개선*하는 것이였다.
 
 그래서 version1에서 개선하고 싶은 점들을 리스트로 정리한 결과 아래와 같았다.
 
-* 무분별한 setter 지양하고 하나의 메서드당 하나의 역할만 하도록 리팩터링하기
+1. 무분별한 setter 지양하고 하나의 메서드당 하나의 역할만 하도록 리팩터링하기
 
-* 테스트코드를 도입하여 QA 작업을 자동화하고 Jacoco를 도입하여 코드 커버리지 80% 유지하기
+2. 테스트코드를 도입하여 QA 작업을 자동화하고 Jacoco를 도입하여 코드 커버리지 80% 유지하기
 
-* 데이터베이스 레플리케이션을 통한 쿼리 성능 개선하기
+3. 데이터베이스 레플리케이션을 통한 쿼리 성능 개선하기
 
-* 동시성으로 인한 데이터베이스 정합성이 맞지 않는 문제 해결하기
+4. 동시성으로 인한 데이터베이스 정합성이 맞지 않는 문제 해결하기
 
-* 검색 기능의 개선과 보안 강화하기
+5. 검색 기능의 개선과 보안 강화하기
 
-* 게시글 조회에 대한 어뷰징을 막기 위해 조회수를 Cookie에 저장하여 관리하기
+6. 게시글 조회에 대한 어뷰징을 막기 위해 조회수를 Cookie에 저장하여 관리하기
 
 ## 개선한 점
 
-### 1. 테스트코드 도입 및 코드 커버리지 80% 유지
+### 1. setter 지양, 단일 책임 원칙 준수
+
+version1 -> version2로 개발을 진행하면서 개선한 사항 중 하나는 setter를 사용하지 않고, 단일 책임 원칙을 더욱 철저히 준수했다.
+
+> 초기 버전(ver.1) - PostService
+
+```java
+@RequiredArgsConstructor
+@Service
+public class PostService {
+    // ...
+
+    @Transactional
+    public Post save(PostSaveDto postSaveDto, Long idx) {
+        Member member = memberRepository.getById(idx);
+        postSaveDto.setMember(member);
+
+        Post post = postSaveDto.toEntity();
+        postRepository.save(post);
+
+        postHistory postHistory = new postHistory();
+        postHistory.setPost(post);
+        postHistory.setOkUsers(new ArrayList<>());
+        postHistory.setRealUsers(new ArrayList<>());
+        postHistoryRepository.save(postHistory);
+        return post;
+    }
+}
+```
+
+> 개선된 버전(ver.2) - PostService
+
+```java
+@Service
+@Transactional(readOnly = true)
+public class PostService {
+    // ...
+
+    @Transactional
+    public Long save(final Long memberId, final PostCreateRequest request) {
+        validateMember(memberId);
+        Member foundMember = memberRepository.getById(memberId);
+
+        Post post = createPost(request, foundMember);
+        Post savedPost = postRepository.save(post);
+
+        return savedPost.getId();
+    }
+}
+```
+
+기존 version1과 version2는 요구 사항이 다를 수 있어 코드상의 차이가 있다.
+
+그러나 version1에서는 엔티티 클래스와 비즈니스 로직에서 무분별하게 setter를 사용하고 있다.
+
+`왜 setter를 지양해야 할까?` 누군가 이렇게 물어본다면, 주로 다음과 같이 2 가지 이유를 들 수 있다.
+
+* **사용한 의도를 쉽게 파악하기 어렵다.**
+  - set 메서드를 통한 값 변경은 여러 곳에서 사용될 수 있으며, 비즈니스 로직이 복잡해질수록 정확한 의도를 파악하기 어렵다.
+  - 객체의 상태가 복잡하면 한눈에 이해하기도 어렵다.
+
+* **일관성을 유지하기 어렵다.**
+  - public으로 작성된 setter 메서드는 어디서든 접근 가능하여, 의도치 않게 객체의 상태를 변경할 수 있다.
+  - 이는 객체의 일관성을 해칠 수 있다.
+
+JPA에서는 setter를 통해 트랜잭션 안에서 엔티티의 변경 사항을 감지하여 update 쿼리를 수행한다.
+즉, **setter 메서드는 `update` 기능을 수행**한다.
+
+setter 없이 데이터를 수정하는 방법은 사용한 의도와 의미가 명확한 메서드명을 사용하는 것이 좋다.
+예를 들어, 게시글 정보를 변경할 경우 `updatePost` 라는 메서드를 생성하여 사용하면 setter 메서드 보다 행위의 의도를 더 명확히 할 수 있다.
+
+따라서 setter를 public으로 열어두고 사용하는 것보다는, 변경이라는 **의미가 담긴 메서드**를 통해 update 처리하는 것이 객체지향적인 접근 방식이라고 본다.
+
+그리고 version2에서는 단일 책임 원칙을 더 잘 지키기 위해, 하나의 메서드가 한 가지 일만 하도록 구현했다.
+이를 통해 각 메서드의 목적이 명확해지고 코드의 유지보수가 용이해졌다.
+
+### 2. 테스트코드 도입 및 코드 커버리지 80% 유지
 
 > 자세한 내용은 해당 [포스팅](https://devfancy.github.io/SpringBoot-TestCode-Jacoco/)에 정리했습니다.
 
@@ -90,7 +166,7 @@ author: devFancy
 
 ![](/assets/img/hibit/hibit-retrospective-db-replication-0.png)
 
-### 2. 데이터베이스 레플리케이션을 통한 쿼리 성능 개선
+### 3. 데이터베이스 레플리케이션을 통한 쿼리 성능 개선
 
 > 해당 내용과 관련된 [PR](https://github.com/hibit-team/hibit-backend-improved/pull/50) 입니다.
 
@@ -151,7 +227,7 @@ public class DataSourceConfiguration {
 
 ![](/assets/img/hibit/hibit-retrospective-db-replication-3.png)
 
-### 3. 데이터베이스 정합성이 맞지 않는 문제 해결
+### 4. 데이터베이스 정합성이 맞지 않는 문제 해결
 
 > 자세한 내용은 해당 [포스팅](https://devfancy.github.io/Hibit-Concurrency-Problem-Solving/)에 정리했습니다.
 
@@ -184,7 +260,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 위 그림에서 보는 것처럼 먼저 실행된 트랙잭션이 update 쿼리를 통해 마치고 커밋 또는 롤백할 때까지 락 획득을 위해 대기하고 있는 방식이다.
 
-### 4. 검색 기능의 개선과 보안 강화
+### 5. 검색 기능의 개선과 보안 강화
 
 > 해당 내용과 관련된 [PR](https://github.com/hibit-team/hibit-backend-improved/pull/53) 입니다.
 
@@ -194,7 +270,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 그리고 특정 키워드로 게시물을 검색하는 기능은 있지만, Page를 사용해서 구현했다.
 
-하지만 총 페이지 수에 대한 값이 필요하지 않다면 Page 대신 Slice를 적용하는게 성능 개선에 있어서 더 나은 방법을 알게되었다.
+하지만 총 페이지 수에 대한 값이 필요하지 않다면 `Page` 대신 `Slice`를 적용하는게 성능 개선에 있어서 더 나은 방법을 알게되었다.
 
 해결1. SQL 인젝션 공격과 빈 입력값에 대한 처리를 위해 `SearchQuery` 클래스 생성
 
@@ -238,11 +314,11 @@ public class SearchQuery {
 }
 ```
 
-* PostRepository 내에 구현된 메서드들은 사용자의 다양한 입력(빈 값 포함)을 처리하여 게시물을 검색할 수 있도록 @Query 어노테이션과 nativeQuery를 활용했다.
+* PostRepository 내에 구현된 메서드들은 사용자의 다양한 입력(빈 값 포함)을 처리하여 게시물을 검색할 수 있도록 `@Query` 어노테이션과 `nativeQuery`를 활용했다.
 
-* 결과적으로, SearchQuery 클래스의 구현으로 SQL 인젝션 공격의 위험을 차단하며, 빈 입력값 처리 기능을 통해 사용자에게 유용한 검색 결과 제공이 가능해졌다.
+* 결과적으로, `SearchQuery` 클래스의 구현으로 SQL 인젝션 공격의 위험을 차단하며, 빈 입력값 처리 기능을 통해 사용자에게 유용한 검색 결과 제공이 가능해졌다.
 
-해결2. 또한 사용자 10,000명을 기준으로 특정 게시물을 검색할 때 Page 대신 Slice를 적용하여 평균 TPS는 267 -> 309로, 최고 TPS는 320 -> 360 으로 증가하여 조회에 대한 성능을 조금 개선했다.
+해결2. 또한 사용자 10,000명을 기준으로 특정 게시물을 검색할 때 `Page` 대신 `Slice`를 적용하여 평균 TPS는 267 -> 309로, 최고 TPS는 320 -> 360 으로 증가하여 조회에 대한 성능을 조금 개선했다.
 
 ```java
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -267,7 +343,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 }
 ```
 
-### 5. 어뷰징을 막기 위해 Cookie에 저장하여 관리
+### 6. 어뷰징을 막기 위해 Cookie에 저장하여 관리
 
 > 자세한 내용은 해당 [포스팅](https://devfancy.github.io/Hibit-ViewManager-Abusing/)에 정리했습니다.
 
@@ -291,29 +367,29 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 ## 느낀점(아쉬운 점)
 
-* 혼자서 히빗 version2 프로젝트를 진행하면서 그동안 내가 배웠던 지식을 인풋으로만 남겨두지 않고 실전 경험을 통해 아웃풋까지 이뤄내는 경험을 했다.
+* 혼자서 히빗 version2 프로젝트를 진행하면서 그동안 내가 배웠던 지식을 실제로 활용해보는 중요한 경험을 했다.
 
-* 그리고 이전에는 전혀 고려하지 않았던 정합성 문제와 성능 개선에 대해 어떻게 해결해 나아갈지에 수많은 고민과 시도한 끝에 이뤄냈다.
+    이는 **단순히 이론(인풋)을 알고 있던 것에서 한발 더 나아가 실제로 적용해보는 과정(아웃풋)까지 이르렀다는 점**에서 큰 의미였다.
 
-    혼자서 개발하면서 '내가 해결한 방법이 과연 올바른 방법인가? ', '이러한 방법 말곤 다른 방법이 없을까 ?'에 대한 고민이 생길때마다 기술을 적용하기 이전에 최대한 여러 기술들을 비교해보고, 그 중에서 내가 생각했을 때 이 프로젝트에 맞는 기술을 선택했다.
+* 이번 프로젝트를 통해 **데이터 정합성 문제와 성능 개선**이라는 새로운 과제에 직면했다.
 
-    또한 나만 열심히 하면 그 만큼 빠르게 적용할 수 있고 성장도 할 수 있다는 점이 좋았다.
+    이를 해결하기 위해 여러 기술을 비교 분석하고, 프로젝트에 가장 적합한 기술을 선택하는 과정에서 많은 고민과 시도가 있었다.
 
-* 다만 아쉬운 점은 혼자서 개발하다보니, 새로운 기술을 접하는 것과 그런 기술을 적용하는데 시간이 꽤 많이 걸렸다는 점이다.
+    혼자서 개발하는 과정에서 과연 내가 선택한 방법이 최선인지, 혹은 다른 더 나은 방법이 있는지에 대한 끊임없는 질문 속에서도, 스스로 해결책을 찾아가는 과정이 매우 보람찼다.
 
-    version1에 있는 문제점을 해결하기 위해 스스로 고민한 끝에 적용한 기술이 과연 올바른 방법인지에 대한 엄청난 확신이 들진 않았다.
+* 하지만, 혼자서 개발하다보니, 새로운 기술을 배우고 적용하는 데 많은 시간이 소요되었고, **내가 선택한 기술이나 코드가 최선인지 확신하기 어려웠다는 점**이다.
 
-    그리고 '좋은 코드'라고 생각하고 구현한 내 코드가 과연 '진짜 좋은 코드 인가?'에 대한 의구심이 들었다.
+    "내 코드가 그렇게 이상한가요?" 라는 책에서 배운 내용을 바탕으로 구현했지만, 구현한 코드가 정말로 `좋은 코드`인지에 대해 의구심이 들었다.
 
-    그래서 이러한 의구심을 해소하고자 이후에 클린코드에 대한 책을 읽어볼 예정이다. (올해 안에는 무조건 읽고 적용까지 해보자!)
+    이러한 의문을 해소하기 위해 "[클린코드](https://product.kyobobook.co.kr/detail/S000001032980)" 와 같은 책을 통해 더 나은 코드 작성법을 학습하고, 실제로 적용해보려고 한다.
 
-* 추가적으로, 프로젝트를 혼자서 개발하면서, '시스템 설계'에 대해서도 관심이 가게 되었다.
+* 또한, 프로젝트를 진행하면서 `시스템 설계`에 대한 관심도 커졌다.
 
-    현재 프로젝트에서 Jmeter 도구로 사용자 1,000명 ~ 10,000명을 기준으로 성능 테스트를 했는데, 사용자가 10만명이라면 기존 시스템 설계에서 어떻게 보완해야 할지 감이 오질 않았다.
+    현재는 `Jmeter`를 이용해서 사용자 1,000명 ~ 10,000명으로 성능 테스트를 시도했지만, 만약 사용자가 10만명 ~ 100만명과 같이 규모가 대폭 증가했을 때 시스템을 어떻게 보완해야 할지에 대한 고민이 생겼다.
 
-    그러한 부족한 점을 채우고자 최근에 구매한 "대규모 시스템 설계 기초" 책을 읽으면서 하나씩 채워나가려고 한다.
+    그러한 부족한 점을 채우고자 최근에 구매한 "[대규모 시스템 설계 기초](https://product.kyobobook.co.kr/detail/S000001033116)" 책을 읽으면서 하나씩 채워나가려고 한다.
 
-* 트래픽과 관련해서 2019년에 우아한테크영상에서 올라온 [[우아한테크토크] 선착순 이벤트 서버 생존기! 47만 RPM에서 살아남다?!](https://www.youtube.com/watch?v=MTSn93rNPPE&ab_channel=%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC) 영상과
+* **트래픽**과 관련해서 2019년에 우아한테크영상에서 올라온 [[우아한테크토크] 선착순 이벤트 서버 생존기! 47만 RPM에서 살아남다?!](https://www.youtube.com/watch?v=MTSn93rNPPE&ab_channel=%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC) 영상과
 
     2023년에 올라온 [대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화](https://www.youtube.com/watch?v=704qQs6KoUk&ab_channel=%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC) 영상을 참고하면서 다양한 인사이트를 얻게되었다.
 
@@ -321,9 +397,13 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     `Redis`에 대한 개념과 활용도 꼭 공부해서 적용해보자!
 
-* 이렇게 한 계단씩 밟아나가면, 앞으로도 현재의 '나' 보다 더 발전된 모습이지 않을까 생각한다.
+* 이번 히빗 version2 프로젝트를 혼자서 개발하면서 한 단계 성장할 수 있었고, 앞으로도 지속적인 학습과 적용을 통해 더 발전된 모습으로 나아가고자 한다.
+
+    이렇게 한 계단씩 밟아나가면, 앞으로도 현재의 '나' 보다 더 발전된 모습이지 않을까 생각한다.
 
 ## Reference
+
+* [왜 Entity에 setter를 사용하지 말아야 할까?](https://velog.io/@langoustine/setter-%EC%A7%80%EC%96%91-%EC%9D%B4%EC%9C%A0)
 
 * [[토스 SLASH 21] 테스트 커버리지 100%](https://toss.im/slash-21/sessions/1-6)
 
