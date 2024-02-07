@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " [글또 9기] 나만의 글쓰기 파이프라인 "
-categories: Technical Writing
+categories: Technical_Writing
 author: devFancy
 ---
 * content
