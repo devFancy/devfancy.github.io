@@ -10,11 +10,13 @@ author: devFancy
 > 이 글은 제가 혼자서 개발한 [히빗 (version 2)](https://github.com/hibit-team/hibit-backend-improved) 에 대한 회고 글입니다.
 > 이전 version 1과 비교하여 어떤 성장을 이루었고, 그 과정에서 어떤 깨달음을 얻었는지 작성했습니다.
 
+## 시작하며
+
+히빗 프로젝트 version1에 참가하게된 계기와 회고는 이전에 작성했던 '[[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/#히빗)' 글에 있기 때문에, 생략했다.
+
+이번 글은 히빗 프로젝트를 version2로 다시 진행하면서 개선했던 들을 하나씩 알아보고, 느낀점(아쉬운 점)을 작성해보고자 한다.
+
 ## 과거의 '나'와 현재의 '나'
-
-히빗 프로젝트에 참가하게된 계기와 회고는 이전에 작성했던 [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/#%ED%9E%88%EB%B9%97)에 있기 때문에, 생략하고 
-
-이번 글은 히빗 프로젝트를 version2로 다시 진행하면서 개선했던 점들을 하나씩 알아보고자 한다.
 
 과거 version1 에 참가했을 때의 내 실력은 아래와 같았다.
 
@@ -156,7 +158,7 @@ setter 없이 데이터를 수정하는 방법은 사용한 의도와 의미가 
 
 그리고 토스 유튜브 채널에서 토스뱅크 이응준님이 발표하신 [SLASH21 - 테스트 커버리지 100%](https://toss.im/slash-21/sessions/1-6) 영상을 보면서 테스트 커버리지의 여러 이점들을 알게되었고, 하신 말씀 중에 가장 기억에 남는 문구가 아래와 같았다.
 
-![](/assets/img/hibit/hibit-retrospective-db-replication.png)
+![](/assets/img/hibit/Hibit-Retrospective-Version2-0.png)
 
 > 테스트가 없으면 리팩터링을 할 수 없고, 리팩터링을 하지 않는 코드는 이해할 수 없게 되며, 이러한 코드는 수정할 수 없다는 확신이 없다. - 토스뱅크 이응준 - 
 
@@ -164,7 +166,7 @@ setter 없이 데이터를 수정하는 방법은 사용한 의도와 의미가 
 
 그 결과, 아래와 같이 80% 유지를 할 수 있었다.
 
-![](/assets/img/hibit/hibit-retrospective-db-replication-0.png)
+![](/assets/img/hibit/Hibit-Retrospective-Version2-1.png)
 
 ### 3. 데이터베이스 레플리케이션을 통한 쿼리 성능 개선
 
@@ -176,7 +178,7 @@ setter 없이 데이터를 수정하는 방법은 사용한 의도와 의미가 
 
 아래와 같이 현재 RDS에 있는 데이터베이스(Source)를 기준으로 하위에 Replica 2개를 추가로 두었다.
 
-![](/assets/img/hibit/hibit-retrospective-db-replication-1.png)
+![](/assets/img/hibit/Hibit-Retrospective-Version2-2.png)
 
 그리고 스프링 부트에도 쓰기와 읽기를 분리하기 위해 아래와 같이 DataSource를 구분지었다.
 
@@ -221,11 +223,11 @@ public class DataSourceConfiguration {
 
 > 레플리케이션 도입 전
 
-![](/assets/img/hibit/hibit-retrospective-db-replication-2.png)
+![](/assets/img/hibit/Hibit-Retrospective-Version2-3.png)
 
 > 레플리케이션 도입 전
 
-![](/assets/img/hibit/hibit-retrospective-db-replication-3.png)
+![](/assets/img/hibit/Hibit-Retrospective-Version2-4.png)
 
 ### 4. 데이터베이스 정합성이 맞지 않는 문제 해결
 
@@ -235,7 +237,7 @@ public class DataSourceConfiguration {
 
 서로 다른 사용자 1000명이 해당 게시글을 조회하면, 당연히 1000회가 증가해야 했는데, 아래와 같이 117회의 조회수만 정상적으로 증가된 것을 확인할 수 있다.
 
-![](/assets/img/hibit/hibit-retrospective-db-replication-4.png)
+![](/assets/img/hibit/Hibit-Retrospective-Version2-5.png)
 
 이러한 부분을 해결하기 위해 여러가지 방법 중 쿼리(DB atomic operation)을 적용했다.
 
@@ -256,7 +258,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 `for update` 를 통해 조회하지 않고 이렇게 자기 자신의 값을 이용하여 계산한다면, 배타락 덕분에 조회수 개수에 대한 데이터 정합성을 보장할 수 있다.
 
-![](/assets/img/hibit/hibit-retrospective-db-replication-5.png)
+![](/assets/img/hibit/Hibit-Retrospective-Version2-6.png)
 
 위 그림에서 보는 것처럼 먼저 실행된 트랙잭션이 update 쿼리를 통해 마치고 커밋 또는 롤백할 때까지 락 획득을 위해 대기하고 있는 방식이다.
 
@@ -357,7 +359,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 이러한 문제를 인식하고, 조회수에 대한 어뷰징을 방지하기 위해 새로운 접근 방식을 모색하게 되었다.
 
-![](/assets/img/hibit/hibit-retrospective-db-replication-6.png)
+![](/assets/img/hibit/Hibit-Retrospective-Version2-7.png)
 
 조회수 증가에 대한 기준을 설정한 뒤 어뷰징을 막기 위해 쿠키를 이용하기로 했다.
 
@@ -366,6 +368,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 쿠키에는 한 도메인당 최대 20개의 항목만 저장할 수 있는 제한이 있기 때문에, 하나의 쿠키에 여러 게시글 ID를 문자열로 저장하고 분할하는 방식으로 조회수 관리 로직(`ViewCountManager`)를 구현했다.
 
 ## 느낀점(아쉬운 점)
+
+![](/assets/img/hibit/Hibit-Retrospective-Version2-8.png)
 
 * 혼자서 히빗 version2 프로젝트를 진행하면서 그동안 내가 배웠던 지식을 실제로 활용해보는 중요한 경험을 했다.
 
@@ -397,9 +401,18 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     `Redis`에 대한 개념과 활용도 꼭 공부해서 적용해보자!
 
-* 이번 히빗 version2 프로젝트를 혼자서 개발하면서 한 단계 성장할 수 있었고, 앞으로도 지속적인 학습과 적용을 통해 더 발전된 모습으로 나아가고자 한다.
+## 마치며
 
-    이렇게 한 계단씩 밟아나가면, 앞으로도 현재의 '나' 보다 더 발전된 모습이지 않을까 생각한다.
+히빗 version2 프로젝트를 진행하며 발견한 개선점들은 아직도 많이 남았다. 
+그럼에도 불구하고, 모든 것을 동시에 해결하기보다는 차근차근, 하나씩 개선해 나가는 전략을 택하기로 했다.
+
+이 프로젝트를 독립적으로 개발하면서 얻은 경험은 저에게 성장의 기회를 제공했으며, 앞으로도 지속적인 학습과 실천을 통해 더욱 발전된 모습을 보여드리고자 한다.
+
+이러한 점진적인 발전 과정을 통해, 한 단계씩 밟아 나간다면 앞으로도 현재의 '저' 보다 더 발전된 모습이지 않을까 생각한다.
+
+---
+
+지금까지 해당 글을 읽어주셔서 감사합니다. 😌
 
 ## Reference
 
