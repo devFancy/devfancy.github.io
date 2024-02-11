@@ -11,13 +11,13 @@ type: page
 
 ## Who am i
 
-* <img src="/assets/img/logo/about.png" style="max-width: 3%; vertical-align: text-bottom;"> : 주도적으로 기술적인 문제에 도전하며 그 과정에서 즐거움을 느끼는 개발자입니다.
+* <img src="/assets/img/logo/about.png" style="max-width: 3%; vertical-align: text-bottom;"> : 비즈니스 문제를 해결하는 과정에서 몰입하며 즐거움을 느끼는 개발자입니다.
 
 * <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 지속적으로 발전하는 학습과 경험을 기록하기 위해 개인 블로그를 운영하고 있습니다.
 
 * <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 지식 공유를 통해 함께 성장하는 삶의 가치를 느끼고자, 글또, 우아한스터디 등 5개 이상의 다양한 스터디에 참여한 경험이 있습니다
 
-* <img src="/assets/img/logo/collaboration.png" style="max-width: 4%; vertical-align: text-bottom;"> : 긍정적인 분위기를 조성하며 동료들과 함께 유쾌하게 작업하는 개발자이며, 협업을 통해 일상을 재밌게 만들어가는 것을 중요시합니다.
+* <img src="/assets/img/logo/collaboration.png" style="max-width: 4%; vertical-align: text-bottom;"> : 개발 과정에서 협업 문화와 피드백의 중요설을 깊이 이해하고 있습니다.
 
 ---
 
@@ -36,17 +36,31 @@ type: page
 
 ---
 
+## Technical Writing
+
+{% include opinion.html %}
+
+---
+
+## Retrospective
+
+*  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
+
+---
+
 ## Dev History
 
 *  [2024 Dev History](https://devfancy.github.io/2024-Diary/)
 
 *  [2023 Dev History](https://devfancy.github.io/2023-Diary/)
 
+---
+
 ## TimeLine
 
 ### 2024
 
-* 　01. 02 개인 프로젝트 - [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 [Hibit(ver 1)](https://github.com/hibit-team/hibit-backend) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선
+* 　01. 02 ~ (개인 프로젝트) [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 [Hibit(ver 1)](https://github.com/hibit-team/hibit-backend) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선
 
 ### 2023
 
