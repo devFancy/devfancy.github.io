@@ -19,7 +19,7 @@ author: devFancy
 
 예를 들어, 게시글을 등록하는 API 부분의 코드는 다음과 같습니다.
 
-> PostController
+> 기존 version1 - PostController
 
 ```java
 @Tag(name = "posts", description = "게시글")
@@ -60,7 +60,7 @@ public class PostController {
 
 Spring Rest Docs의 특징으로는 다음과 같습니다.
 
-* 테스트 코드를 통한 API 문서 자동화 도구입니다. - 내가 만든 api 명세를 테스트 코드를 작성해서 build하면 문서처럼 보여지는 것
+* 테스트 코드를 통한 API 문서 자동화 도구입니다. (제가 만든 api 명세를 테스트 코드를 작성해서 build하면 문서처럼 보여지는 것)
 
 * API 명세를 문서로 만들고 외부에 제공함으로써 협업을 원활하게 합니다.
 
@@ -106,17 +106,17 @@ Rest Docs와 Swagger의 장점과 단점을 비교하면 다음과 같습니다.
 
 현재 히빗 version2 프로젝트는 아래와 같은 기술을 사용하고 있습니다.
 
-`**Language**` | Java 11
+`Language` - Java 11
 
-`**Framework**` | Spring Boot 2.7.1, Spring MVC 5.3.2
+`Framework` - Spring Boot 2.7.1, Spring MVC 5.3.2
 
-`**ORM**` | Spring Data JPA 2.7.1, JPA Hibernate 5.6.1
+`ORM` - Spring Data JPA 2.7.1, JPA Hibernate 5.6.1
 
-`**Database**` | H2, MySQL 7.4
+`Database` - H2, MySQL 7.4
 
-`**Build Tool**` | Gradle 8.0
+`Build Tool` - Gradle 8.0
 
-`**Test**` | Junit 5, Mockito 4.5.1
+`Test` - Junit 5, Mockito 4.5.1
 
 ### MockMvc vs Rest Assured
 
