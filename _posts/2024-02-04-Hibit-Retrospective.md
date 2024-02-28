@@ -64,6 +64,8 @@ author: devFancy
 
 6. 게시글 조회에 대한 어뷰징을 막기 위해 조회수를 Cookie에 저장하여 관리하기
 
+7. 기존 API 명세서인 Swagger에서 Rest Docs로 전환하기
+
 ## 개선한 점
 
 ### 1. setter 지양, 단일 책임 원칙 준수
@@ -366,6 +368,22 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 악의적인 사용자가 쿠키를 삭제하여 어뷰징을 할 수 있지만, 현재 서비스에서는 조회수가 수익 창출이나 주요 비즈니스에 큰 영향을 미치지 않기 때문에 이 방식을 선택했다.
 
 쿠키에는 한 도메인당 최대 20개의 항목만 저장할 수 있는 제한이 있기 때문에, 하나의 쿠키에 여러 게시글 ID를 문자열로 저장하고 분할하는 방식으로 조회수 관리 로직(`ViewCountManager`)를 구현했다.
+
+### 7. Swagger에서 Rest Docs로 전환
+
+> 자세한 내용은 해당 [포스팅](https://devfancy.github.io/Spring-Rest-Docs/)에 정리했습니다.
+
+기존 version1 에 개발했던 Hibit은 Swagger로 API 문서를 만들었다.
+
+그러나 Swagger를 적용하면서 백엔드 코드에 Swagger와 관련된 어노테이션이 추가되는데, 이로 인해 코드 내부에 기능과 문서가 혼합되어 깔끔하지 않은 코드가 되었다.
+
+이러한 이유로 version2 에서는 Swagger 보다는 깔끔하고 명료한 문서를 생성할 수 있는, 주로 문서 제공 용도로 사용되는 Spring Rest Docs로의 전환을 결정하게 되었다.
+
+기존 Swagger와 관련된 어노테이션 제거, 의존성 제거하였고, `build.gradle`에 Spring Rest Docs 관련 의존성을 추가하는 것부터 시작해서 적용하기까지 구현했다. (코드에 대한 부분은 [Github](https://github.com/hibit-team/hibit-backend-improved/pull/57)에서 확인해 볼 수 있습니다)
+
+그래서 현재까지 구현된 API에 대해 아래와 같이 Spring Rest Docs로 문서화했다.
+
+![](/assets/img/hibit/hibit-spring-rest-docs-6.png)
 
 ## 느낀점(아쉬운 점)
 
