@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 히빗 프로젝트(ver.2)에 Jacoco 설정하기: 코드 커버리지 높이기 "
+title: " Gradle 프로젝트에 Jacoco 설정하기: 코드 커버리지 80% "
 categories: Hibit
 author: devFancy
 ---
