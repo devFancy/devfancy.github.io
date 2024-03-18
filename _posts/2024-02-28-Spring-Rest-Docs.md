@@ -9,7 +9,7 @@ author: devFancy
 
 > 이 글은 실제 [히빗 프로젝트(ver.2)](https://github.com/hibit-team/hibit-backend-improved)를 혼자서 개발하면서 경험한 내용을 정리한 글입니다.
 
-> 이와 관련해서 코드에 대한 부분은 [PR](https://github.com/hibit-team/hibit-backend-improved/issues/7)에 있습니다.
+> 이와 관련해서 코드에 대한 부분은 [PR](https://github.com/hibit-team/hibit-backend-improved/pull/57)에 있습니다.
 
 ## 전환하는 이유
 
