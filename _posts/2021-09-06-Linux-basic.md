@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " Linux - 다양한 명령어 정리 "
-categories: SystemProgramming
+categories: Linux
 author: devfancy
 ---
 * content
