@@ -7,7 +7,7 @@ author: devFancy
 * content
 {:toc}
 
-리눅스에서 shell script 를 보면서 새롭게 알게된 `/dev/null 2>&1` 에 대해 정리하고자 한다.
+실무에서 리눅스 환경의 shell script 를 보면서 새롭게 알게된 `/dev/null 2>&1` 에 대해 정리하고자 한다.
 
 `/dev/null 2>&1` 에 대해 알기 전에, 그 전에 리다이렉션, 파일 디스크립터에 대해 간단히 정리해보자.
 
@@ -113,4 +113,4 @@ $ ls > log.txt 2>&1 #함축한 버전
 
 * [What is /dev/null](https://www.geeksforgeeks.org/what-is-dev-null-in-linux/)
 
-* [](https://inpa.tistory.com/entry/리눅스-devnull-리다이렉션-기호-종류)
+* [/dev/null 2>&1 명령어 의미 - 완벽 이해하기](https://inpa.tistory.com/entry/리눅스-devnull-리다이렉션-기호-종류)
