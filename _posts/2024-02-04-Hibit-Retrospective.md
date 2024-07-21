@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  " 히빗 V2 업그레이드: 백엔드 개선과 개발자 성장기 "
-categories: Hibit
+title:  " [Hibit] 히빗 V2 업그레이드: 백엔드 개선과 개발자 성장기 "
+categories: Side_Project
 author: devFancy
 ---
 * content

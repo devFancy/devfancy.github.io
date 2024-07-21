@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " JMeter를 활용한 성능 테스트 도입 "
-categories: Hibit
+title: " [Hibit] JMeter를 활용한 성능 테스트 도입 "
+categories: Side_Project
 author: devFancy
 ---
 * content

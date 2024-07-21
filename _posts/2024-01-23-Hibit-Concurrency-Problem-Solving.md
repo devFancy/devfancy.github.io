@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 동시성으로 인한 데이터 정합성 문제를 쿼리를 통해 해결 "
-categories: Hibit
+title: " [Hibit] 동시성으로 인한 데이터 정합성 문제를 쿼리를 통해 해결 "
+categories: Side_Project
 author: devFancy
 ---
 * content

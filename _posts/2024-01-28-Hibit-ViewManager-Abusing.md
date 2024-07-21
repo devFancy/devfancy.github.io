@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 조회수 어뷰징 방지를 위한 쿠키 기반 로그 관리 "
-categories: Hibit
+title: " [Hibit] 조회수 어뷰징 방지를 위한 쿠키 기반 로그 관리 "
+categories: Side_Project
 author: devFancy
 ---
 * content

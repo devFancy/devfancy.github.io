@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " EC2 환경에서 도커를 활용한 젠킨스 설치하기 "
-categories: Goodfriends
+title: " [Goodfriends] EC2 환경에서 도커를 활용한 젠킨스 설치하기 "
+categories: Side_Project
 author: devFancy
 ---
 * content

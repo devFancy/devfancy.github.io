@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 좋은 단위 테스트란? (feat. 히빗) "
-categories: Hibit
+title: " [Hibit] 좋은 단위 테스트란? "
+categories: Side_Project
 author: devFancy
 ---
 * content

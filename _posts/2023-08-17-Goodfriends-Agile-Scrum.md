@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " Agile 기반 Scrum 프로세스 도입 "
-categories: Goodfriends
+title: " [Goodfriends] Agile 기반 Scrum 프로세스 도입 "
+categories: Side_Project
 author: devFancy
 ---
 * content
@@ -10,8 +10,6 @@ author: devFancy
 [굿프렌즈 기술 블로그 방문하기 🎋](https://goodfriends-team.tistory.com/)
 
 > 이 글은 우리FISA 1기 [굿프렌즈팀의 기술 블로그](https://goodfriends-team.tistory.com/5)에 게시된 글 입니다.
-
-> 이 글은 우리FISA 클라우드 서비스 개발자 굿프렌즈팀 `팬시`가 작성했습니다.
 
 ## 애자일(Agile)이란?
 

@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 시스템 장애를 미리 예방하기 위해 Amazon CloudWatch를 활용 "
-categories: Goodfriends
+title: " [Goodfriends] 시스템 장애를 미리 예방하기 위해 Amazon CloudWatch를 활용 "
+categories: Side_Project
 author: devFancy
 ---
 * content

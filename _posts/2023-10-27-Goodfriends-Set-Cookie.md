@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  " Set-Cookie의 보안 속성 적용기 "
-categories: Goodfriends
+title:  " [Goodfriends] Set-Cookie의 보안 속성 적용기 "
+categories: Side_Project
 author: devFancy
 ---
 * content

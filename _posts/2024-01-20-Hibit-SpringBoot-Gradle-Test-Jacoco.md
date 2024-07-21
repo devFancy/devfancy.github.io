@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " Gradle 프로젝트에 Jacoco 설정하기: 코드 커버리지 80% "
-categories: Hibit
+title: " [Hibit] Gradle 프로젝트에 Jacoco 설정하기: 코드 커버리지 80% "
+categories: Side_Project
 author: devFancy
 ---
 * content

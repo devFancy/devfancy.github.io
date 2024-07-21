@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  " Nginx와 Let's Encrypt로 HTTPS 웹 서비스 배포하기 "
-categories: Goodfriends
+title:  " [Goodfriends] Nginx와 Let's Encrypt로 HTTPS 웹 서비스 배포하기 "
+categories: Side_Project
 author: devFancy
 ---
 * content

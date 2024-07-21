@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 굿프렌즈팀의 DDD 기반 기능별 패키지 구조 적용기 "
-categories: Goodfriends
+title: " [Goodfriends] 우리팀의 기능별 패키지 구조 적용기 "
+categories: Side_Project
 author: devFancy
 ---
 * content

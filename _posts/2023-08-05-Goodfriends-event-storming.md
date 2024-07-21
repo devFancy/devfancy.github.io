@@ -1,7 +1,7 @@
 ---
 layout: post
-title: " 굿프렌즈팀의 이벤트 스토밍(Event Storming) 도입기 "
-categories: Goodfriends
+title: " [Goodfriends] 굿프렌즈팀의 이벤트 스토밍(Event Storming) 도입기 "
+categories: Side_Project
 author: devFancy
 ---
 * content
