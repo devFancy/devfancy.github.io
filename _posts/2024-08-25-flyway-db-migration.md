@@ -4,9 +4,8 @@ title: " Flyway와 Hibernate로 변화하는 스키마의 효율적 관리 및 �
 categories: DB
 author: devFancy
 ---
-
-- content
-  {:toc}
+* content
+{:toc}
 
 ## 문제 상황
 
@@ -116,10 +115,10 @@ public class Member extends BaseTime {
 }
 ```
 
-### Flyway 설정
+---
 
 **Spring Boot는 기본적으로 Flyway 같은 고수준의 데이터베이스 마이그레이션 도구를 지원합니다.** 이러한 도구들은 데이터베이스 스키마를 효과적으로 관리하고 자동으로 초기화할 수 있게 도와줍니다.
-[(참고)](SE/reference/html/howto-database-initialization.html#howto-use-a-higher-level-database-migration-tool)
+([참고](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/html/howto-database-initialization.html#howto-use-a-higher-level-database-migration-tool))
 
 ### MySQL 컨테이너 띄우기
 

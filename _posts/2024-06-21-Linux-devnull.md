@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " [Linux] /dev/null 2>&1 이란  "
+title: " [Linux] /dev/null 2>&1 이란  "
 categories: Linux
 author: devFancy
 ---
@@ -25,16 +25,16 @@ author: devFancy
 
 > 리다이렉션 기호 , 방향 , 의미
 
-* `>` , 표준 출력 , `명령 > 파일` : 명령의 결과를 파일로 저장
+- `>` , 표준 출력 , `명령 > 파일` : 명령의 결과를 파일로 저장
 
-* `>>` , 표준 출력(추가) , `명령 >> 파일` : 명령의 결과를 기존 파일 데이터에 추가
+- `>>` , 표준 출력(추가) , `명령 >> 파일` : 명령의 결과를 기존 파일 데이터에 추가
 
-* `<` , 표준 입력 , `명령 < 파일` : 파일의 데이터를 명령에 입력
+- `<` , 표준 입력 , `명령 < 파일` : 파일의 데이터를 명령에 입력
 
 ## File Descriptor
 
 `파일 디스크립터`는 시스템에서 할당 받은 파일을 대표하는 0이 아닌 정수 값으로, 쉘 이나 시스템 프로그래밍에서 자주 접할 수 있다.
- 
+
 즉, 음수가 아닌 0과 양수인 정수 값을 가진다.
 
 유닉스 시스템은 일반적인 파일부터 디렉토리, 소켓, 파이프 등 모든 객체들을 파일로 관리하는데, 쉘은 작업 중 필요한 파일에 **일련번호**를 붙여서 관리한다.
@@ -43,11 +43,11 @@ author: devFancy
 
 기본적으로 3가지(input, output, error)가 있다.
 
-* 표준 입력(Standard Input, STDIN): 명령어에 입력될 내용을 저장 / 일련번호: 0
+- 표준 입력(Standard Input, STDIN): 명령어에 입력될 내용을 저장 / 일련번호: 0
 
-* 표준 출력(Standard Output, STDOUT): 명령어에서 출력될 내용을 저장 / 일련번호: 1
+- 표준 출력(Standard Output, STDOUT): 명령어에서 출력될 내용을 저장 / 일련번호: 1
 
-* 표준 오류(Standard Error, STDERR) : 명령어에서서 출력될 에러 메시지를 저장 / 일련번호: 2
+- 표준 오류(Standard Error, STDERR) : 명령어에서서 출력될 에러 메시지를 저장 / 일련번호: 2
 
 그래서 사용자는 이 `일련번호`를 이용하여 입출력 장치를 리다이렉션할 수 있는 것이다.
 
@@ -100,9 +100,9 @@ $ ls > log.txt 2> log.txt #이전 버전
 $ ls > log.txt 2>&1 #함축한 버전
 ```
 
-* `&` : `&1` 에서 `&` 부분은 숫자 1을 표준 출력 일련번호로 인식하게 해주는 설정이다. 만일 `&` 기호를 안쓰게 되면 파일로 읽혀 버리기 때문이다.
+- `&` : `&1` 에서 `&` 부분은 숫자 1을 표준 출력 일련번호로 인식하게 해주는 설정이다. 만일 `&` 기호를 안쓰게 되면 파일로 읽혀 버리기 때문이다.
 
-* `2>` :  표준 에러를 표준 출력(&1)으로 재지정한다는 의미이다.
+- `2>` : 표준 에러를 표준 출력(&1)으로 재지정한다는 의미이다.
 
 ## /dev/null 이해하기
 
@@ -116,14 +116,14 @@ $ nohup.out > /dev/null 2>&1
 
 즉, `/dev/null` 로 결과를 보내는 것은 **데이터를 모두 지워서 화면에 표시하지 않는다**는 것을 말한다.
 
-따라서 **출력이 필요 없는 경우** `> /dev/null` 로 리다이렉션 시키면 된다. 
+따라서 **출력이 필요 없는 경우** `> /dev/null` 로 리다이렉션 시키면 된다.
 
 결론적으로 `> /dev/null 2>&1`은 표준 출력과 표준 에러를 모두 지우겠다는 의미이다.
 
 ## Reference
 
-* [Wikipedia: File descriptor](https://en.wikipedia.org/wiki/File_descriptor)
+- [Wikipedia: File descriptor](https://en.wikipedia.org/wiki/File_descriptor)
 
-* [What is /dev/null](https://www.geeksforgeeks.org/what-is-dev-null-in-linux/)
+- [What is /dev/null](https://www.geeksforgeeks.org/what-is-dev-null-in-linux/)
 
-* [/dev/null 2>&1 명령어 의미 - 완벽 이해하기](https://inpa.tistory.com/entry/리눅스-devnull-리다이렉션-기호-종류)
+- [/dev/null 2>&1 명령어 의미 - 완벽 이해하기](https://inpa.tistory.com/entry/리눅스-devnull-리다이렉션-기호-종류)
