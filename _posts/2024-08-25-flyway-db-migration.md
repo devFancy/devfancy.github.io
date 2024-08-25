@@ -79,7 +79,9 @@ UPDATE member SET new_column_name = 'some_value' WHERE old_column_name = 'specif
 
 ### Flyway로 결정
 
-결론적으로 저는 `Flyway` 도구를 사용하기로 했습니다. 프로젝트 상황에 따라 다르지만, 백엔드 인원이 적은 소규모 프로젝트에서는 `Flyway` 가 더 적합하다고 판단했습니다. 판단한 이유는 아래와 같습니다.
+![](/assets/img/db/flyway.png)
+
+결론적으로 저는 `Flyway` 도구를 사용하기로 했습니다. 프로젝트 상황에 따라 다르지만, 서비스 규모와 백엔드 인원이 적은 소규모 프로젝트에서는 `Flyway` 가 더 적합하다고 판단했습니다. 판단한 이유는 아래와 같습니다.
 
 - **단순하고 직관적**: SQL 파일 기반으로 동작해 학습 곡선이 낮고 빠르게 도입할 수 있습니다.
 
@@ -87,7 +89,7 @@ UPDATE member SET new_column_name = 'some_value' WHERE old_column_name = 'specif
 
 - **확장 가능성**: 추후 더 많은 테이블이 추가되더라도 Flyway로 충분히 관리가 가능하고, 이후 더 많은 테이블이 추가되어도 문제없이 확장할 수 있습니다. 향후 필요시 Liquibase로 전환하는 것도 고려할 수 있습니다.
 
-## Flyway 동작 원리 및 적용 방법
+## Flyway 적용 방법
 
 ### 환경 설정
 
