@@ -5,6 +5,9 @@ categories: DB
 author: devFancy
 ---
 
+- content
+  {:toc}
+
 ## 문제 상황
 
 - 기존 yml 파일에 `ddl-audo` 를 `update`로 설정했기 때문에, 엔티티에 새로운 필드가 추가될 때 마다, 변경 사항을 자동으로 shema.sql에 적용되고 있습니다.
