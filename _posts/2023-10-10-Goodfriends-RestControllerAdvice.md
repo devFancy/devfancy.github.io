@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " [Goodfriends] Spring에서 다양한 예외 처리를 위한 @RestControllerAdvice 도입과 적용 "
-categories: Side_Project, SpringBoot
+categories: Side_Project SpringBoot
 author: devFancy
 ---
 * content

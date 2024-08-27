@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " [Hibit] 좋은 단위 테스트란? "
-categories: Side_Project, SpringBoot
+categories: Side_Project SpringBoot
 author: devFancy
 ---
 * content
