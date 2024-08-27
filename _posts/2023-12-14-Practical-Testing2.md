@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " Practical Testing: 테스트 코드 작성 방법 - Mock, 더 나은 테스트를 위한 구체적 조언 "
-categories: TestCode
+categories: SpringBoot
 author: devFancy
 ---
 * content

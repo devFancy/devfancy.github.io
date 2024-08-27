@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " Spring Boot 기반 통합 테스트와 슬라이스 테스트: 효과적인 레이어별 코드 검증 방법 "
-categories: TestCode
+categories: SpringBoot
 author: devFancy
 ---
 * content

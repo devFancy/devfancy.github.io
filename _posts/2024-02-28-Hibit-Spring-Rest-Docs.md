@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " [Hibit] Swagger에서 Spring Rest docs로 전환하기: 이유, 개념, 그리고 적용 가이드 "
-categories: Side_Project
+categories: Side_Project, SpringBoot
 author: devFancy
 ---
 * content

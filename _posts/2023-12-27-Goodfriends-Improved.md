@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " [Goodfriends] - 사용자 기반 기능 전체 리팩터링 "
-categories: Side_Project
+categories: Side_Project, SpringBoot
 author: devFancy
 ---
 * content
