@@ -1,12 +1,11 @@
 ---
 layout: post
 title: " Flyway와 Hibernate로 변화하는 스키마의 효율적 관리 및 마이그레이션 전략을 적용하기. "
-categories: Technology
+categories: Flyway
 author: devFancy
 ---
-
-- content
-  {:toc}
+* content
+{:toc}
 
 ## 문제 상황
 
