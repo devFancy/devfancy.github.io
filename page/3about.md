@@ -46,6 +46,8 @@ type: page
 
 *  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
 
+* [[2024 상반기 회고] 5개월간 활동한 글또 9기를 마치며](https://devfancy.github.io/geultto-9th-review/)
+
 ---
 
 ## Dev History
