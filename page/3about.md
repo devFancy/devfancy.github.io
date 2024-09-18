@@ -44,9 +44,11 @@ type: page
 
 ## Retrospective
 
-*  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
+* [2024 글또 9기 회고](https://devfancy.github.io/geultto-9th-review/)
 
 * [[2024 상반기 회고] 5개월간 활동한 글또 9기를 마치며](https://devfancy.github.io/geultto-9th-review/)
+
+*  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
 
 ---
 
@@ -62,7 +64,11 @@ type: page
 
 ### 2024
 
-* 　01. 02 ~ (개인 프로젝트) [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 [Hibit(ver 1)](https://github.com/hibit-team/hibit-backend) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선
+* 　07. 01 ~ 08. 30 개인 프로젝트 "WIKI" (Kotlin, Spring Boot 기반) 
+
+* 　04. 01 ~ 05. 30 가상면접 사례로 배우는 대규모 시스템 설계 기초 스터디
+
+* 　01. 02 ~ 03. 02 개인 프로젝트 [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 [Hibit(ver 1)](https://github.com/hibit-team/hibit-backend) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선
 
 ### 2023
 

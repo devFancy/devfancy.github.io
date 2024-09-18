@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 5개월간 활동한 글또 9기를 마치며.. "
+title:  " 글또 9기 회고(5개월간 활동한 여정) "
 categories: E.T.C
 author: devFancy
 ---
