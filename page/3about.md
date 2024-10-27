@@ -44,6 +44,8 @@ type: page
 
 ## Retrospective
 
+* [균형과 성장: 2024년 3분기 회고](https://devfancy.github.io/3th-Retrospective/)
+
 * [2024 글또 9기 회고](https://devfancy.github.io/geultto-9th-review/)
 
 *  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
@@ -61,6 +63,10 @@ type: page
 ## TimeLine
 
 ### 2024
+
+* 　10. 12 ~ (2025) 02. 01 [SIPE](https://sipe.team/) 3기 참가 (개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리)
+
+* 　10. 01 ~ 03. 31 [글또](https://geultto.github.io/) 10기 참가
 
 * 　07. 01 ~ 08. 30 개인 프로젝트 "WIKI" (Kotlin, Spring Boot 기반) 
 
