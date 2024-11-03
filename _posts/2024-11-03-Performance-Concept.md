@@ -71,15 +71,15 @@ author: devFancy
 
 이 도구들(예: JProfiler, VisualVM, ELK Stack, Splunk)은 **성능 모니터링 및 분석 도구**에 해당한다. 성능 테스트는 부하를 생성해 시스템의 한계를 평가하는 과정이며, VisualVM 같은 도구는 테스트가 끝난 후 **병목 지점을 식별**하거나 **리소스 사용을 분석**하는 데 사용된다.
 
-## 3. **성능 테스트의 기본과 과정**
+## 3. 성능 테스트의 기본과 과정
 
 ### 3.1 성능 테스트 이해하기
 
-**워크로드**란, 가장 일반적인 의미에서 시스템이나 네트워크가 작업을 완료하거나 특정 출력을 생성하는 데 걸리는 시간과 사용되는 컴퓨터 리소스를 말한다. - IBM
+> `워크로드`란, 가장 일반적인 의미에서 시스템이나 네트워크가 작업을 완료하거나 특정 출력을 생성하는 데 걸리는 시간과 사용되는 컴퓨터 리소스를 말한다. - IBM
 
 **성능 테스트**는 특정 워크로드에서 소프트웨어의 응답 시간, 안정성, 확장성, 가용성, 자원 사용량 등을 평가하여 고객에게 최적의 소프트웨어 성능을 제공할 수 있는지를 측정하는 과정이다.
 
-- **응답 시간 (Response Time)**: 사용자의 요청으로부터 결과를 반환하기까지 걸리는 시간.
+- **응답 시간**: 사용자의 요청으로부터 결과를 반환하기까지 걸리는 시간.
 - **안정성**: 다양한 문제 상황에서도 일정한 품질의 서비스를 안정적으로 제공할 수 있는지 여부.
 - **확장성**: 부하가 증가하거나 시스템 용량이 한계에 도달했을 때 수직 또는 수평 확장을 통해 서비스 품질을 유지할 수 있는지 여부.
 - **가용성**: 물리적 장애나 높은 부하가 발생해도 일정한 품질을 유지하며 서비스를 제공할 수 있는지 여부.
@@ -181,11 +181,11 @@ author: devFancy
 - 이번 글에서는 성능의 기초 개념, 병목 현상, 그리고 성능 테스트에 대해 간단하게 정리해보았다. 이러한 개념을 이해함으로써 시스템의 성능을 최적화하고 문제를 사전에 예방하는 데 필요한 기반 지식을 다질 수 있었다. 글을 작성하면서 성능 테스트와 함께 활용해야 할 모니터링 도구의 중요성도 새롭게 느끼게 되었는데, 이 부분은 다음 글에서 성능 테스트와 함께 더 깊이 다뤄볼 예정이다.
 - 추가로, 앞으로 작성할 글에서는 Java/Spring Boot 환경에서 성능을 개선하기 위해 고려할 수 있는 요소들을 다루어 보려 한다.
 
-## 참고자료
+## Reference
 
 * [Linux Performance Guide](https://brendangregg.com/linuxperf.html)
 
-  * [Linux Performance Analysis in 60,000 Miliseconds](https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55) - 리눅스 서버에서 성능 이슈가 발생했을 때, 첫 60초 안에 확인해야할 사항 (넷플릭스 기술 블로그 - 넷플릭스의 성능 엔지니어링 팀)
+  * [Linux Performance Analysis in 60,000 Miliseconds](https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55) (리눅스 서버에서 성능 이슈가 발생했을 때, 첫 60초 안에 확인해야할 사항)
 
   * [Linux Systems Performance](https://brendangregg.com/Slides/LISA2019_Linux_Systems_Performance.pdf) (넷플릭스 - 시니어 성능 엔지니어 Brendan Gregg)
 
@@ -193,7 +193,7 @@ author: devFancy
 
 * [[공식문서] Grafana - Load test types](https://grafana.com/docs/k6/latest/testing-guides/test-types/)
 
-* [nGrinder를 활용한 부하테스트 | 네이버페이 기술블로그](https://blog.naver.com/naverfinancial/223493300536)
+* [nGrinder를 활용한 부하테스트 - 네이버페이 기술블로그](https://blog.naver.com/naverfinancial/223493300536)
 
 * [nGrinder 설치](https://github.com/naver/ngrinder/tree/develop/docker)
 
