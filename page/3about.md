@@ -64,6 +64,8 @@ type: page
 
 ### 2024
 
+* 　10. 29 ~ 12. 08 [Spurt](https://github.com/sipe-team/3-1_spurt (스프링 퍼포먼스 트랙) 스터디
+
 * 　10. 12 ~ (2025) 02. 01 [SIPE](https://sipe.team/) 3기 참가 (개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리)
 
 * 　10. 01 ~ 03. 31 [글또](https://geultto.github.io/) 10기 참가
