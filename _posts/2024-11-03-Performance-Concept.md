@@ -149,8 +149,8 @@ author: devFancy
 ---
 
 * `처리량` (Throughput): 단위 시간당 처리되는 작업의 양 (TPS: 초당 트랜잭션 수, RPS: 초당 요청 수).
-* 처리량 계산: TPS = Active User / 평균 응답 시간.
-* Active User 계산: Active User = 처리량 × 평균 응답 시간.
+* 처리량 계산: **TPS** = **현재 서비스 요청자(Active User) / 평균 응답 시간(Average Response Time)**
+* Active User 계산: **Active User = 처리량(TPS) × 평균 응답 시간(Average Response Time)**
 * `응답 시간` (Response Time): 사용자가 서버에 요청을 보낸 후 응답을 받기까지 걸리는 시간.
 * `요청 주기` (Request Interval): 요청 주기는 응답 시간 + 생각 시간 + 조작 시간.
 * `생각 시간` (Think Time): 사용자가 응답을 받은 후 화면을 보며 생각하는 시간.
@@ -168,13 +168,41 @@ author: devFancy
 
 4. `점검 항목`: TPS, 응답 시간, 시스템 메트릭, 에러 발생률, 네트워크 사용률, 로드 밸런서 부하 등을 점검한다.
 
-### 3.5 성능 테스트별 그래프
+### 3.5 성능 테스트 Graph
+
+![](/assets/img/technology/Performance-Concept-Common-Throughput-Curve.png)
+
+(출처: [IBM: Aspects of Performance Tuning](https://publib.boulder.ibm.com/httpserv/cookbook/Cookbook_General-Theory.html))
+
+* A: 사용자가 증가되는 시점 (Ramp Up)
+
+  * 해당 지점동안 사용자가 증가하면서 처리량도 함께 증가한다.
+
+* Saturation point: 임계지점(포화지점)
+
+  * 사용자가 증가해도 더 이상 처리량이 증가되지 않는 상태가 되는 시점
+
+  * 이 상태가 되면 현재 시스템이 처리할 수 있는 최대 Capacity 에 도달했음을 나타낸다.
+
+* B: 최대 부하 지점
+
+  * 사용자가 증가해도 처리량이 일정하게 유지되는 지점
+
+  * 이때 그래프가 고르고 안정적이라면 서비스가 최대 Capacity로 유지될 수 있음을 나타낸다.
+
+* C: Buckie 영역(성능 감소지점)
+
+  * 최대 처리를 더 이상 견뎌내니 못하고 성능이 감소되는 지점
+
+  * 이 시점은 시스템의 한계를 초과했을 때 혹은 네트워크 대역폭을 전부 사용한 경우에 이런 현상이 발생한다.
+
+### 3.6 성능 테스트별 그래프
 
 성능테스트 방법에 따라 그래프 패턴을 확인할 수 있다.
 
 (자세한 내용은 [Grafana Labs - Load test types](https://grafana.com/docs/k6/latest/testing-guides/test-types/) 에서 확인한다)
 
-![](/assets/img/technology/Load_Test_type.png)
+![](/assets/img/technology/Performance-ConCept-Load-Test-Type.png)
 
 * `Smoke 테스트`는 스크립트가 제대로 작동하는지와 시스템이 최소한의 부하에서 적절하게 성능을 발휘하는지를 검증한다.
 
@@ -188,7 +216,42 @@ author: devFancy
 
 * `Spike 테스트`는 갑작스럽고 짧으며 대규모로 증가하는 활동에서 시스템의 동작과 생존 여부를 검증한다.
 
-### 3.6 주요 성능 테스트 도구 소개
+### 3.7 워크로드 모델링
+
+* `워크로드 모델링`은 성능 테스트 대상 워크로드를 나열하고, **업무 중요도가 높은 순서로 가설을 설정해 성능 테스트 대상을 선정**하는 작업이다.
+
+* 시스템에서 사용하는 모든 워크로드를 나열한 후, **가장 많이 사용되는 70~80%** 의 워크로드만을 성능 테스트 대상으로 삼는다.
+
+| 워크로드 | Target TPS | User | Response Time (sec) | Think Time | TPS |
+|----------|------------|------|---------------------|------------|-----|
+| 메인화면 | 20         | 60   | 2                  | 1 sec      | 20  |
+| 로그인   | 15         | 45   | 1                  | 2 sec      | 15  |
+| 마이페이지| 10         | 50   | 3                  | 2 sec      | 10  |
+| 상품     | 25         | 75   | 2                  | 1 sec      | 25  |
+| 이체     | 10         | 70   | 4                  | 3 sec      | 10  |
+| 혜택     | 8          | 32   | 2                  | 2 sec      | 8   |
+| 알림     | 12         | 36   | 1                  | 2 sec      | 12  |
+| Total    | 100        | 368  | -                  | -          | 100 |
+
+* 위 워크로드는 8개의 주요 애플리케이션을 나열한 것이다. (실제 워크로드는 이보다 많지만, 여기서는 약 80%의 주요 워크로드만 모델링했다.)
+
+* 표에서 사용된 용어들은 다음과 같다. (위에 있는 "3.3 성능 테스트의 주요 용어"와 같은 내용이다)
+
+  * `Target TPS`: 목표로 하는 초당 트랜잭션 수.
+
+  * `User`: 가상 사용자 수로, 예상되는 사용자 수를 설정한다.
+
+      * 현재 서비스 사용자 수: 처리량(TPS) × 평균 응답 시간(Response Time + Think Time)
+
+  * `Reponse Time`: 응답 시간.
+
+  * `TPS`: 실제로 측정된 처리량.
+
+      * 처리량: 현재 서비스 요청자 수 / 평균 응답 시간(Response Time + Think Time)
+
+* 위와 같은 워크로드 모델을 구성하여 성능 테스트를 진행하고, 각 워크로드에 부하를 균등하게 분산해 주입할 방안을 결정한다.
+
+### 3.8 주요 성능 테스트 도구 소개
 
 오픈 소스로 공개된 성능 테스트 도구들 중 nGrinder와 K6에 대해 정리했다.
 
@@ -234,6 +297,8 @@ author: devFancy
   * [Linux Systems Performance](https://brendangregg.com/Slides/LISA2019_Linux_Systems_Performance.pdf) (넷플릭스 - 시니어 성능 엔지니어 Brendan Gregg)
 
 * [23년 2월 Tech 세미나 - 성능 테스트와 K6 도구 소개](https://www.youtube.com/live/MqdQc4vd_ws)
+
+* [IBM: Aspects of Performance Tuning](https://publib.boulder.ibm.com/httpserv/cookbook/Cookbook_General-Theory.html)
 
 * [[공식문서] Grafana - Load test types](https://grafana.com/docs/k6/latest/testing-guides/test-types/)
 

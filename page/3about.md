@@ -44,9 +44,9 @@ type: page
 
 ## Retrospective
 
-* [균형과 성장: 2024년 3분기 회고](https://devfancy.github.io/3th-Retrospective/)
+*  [균형과 성장: 2024년 3분기 회고](https://devfancy.github.io/3th-Retrospective/)
 
-* [2024 글또 9기 회고](https://devfancy.github.io/geultto-9th-review/)
+*  [2024 글또 9기 회고](https://devfancy.github.io/geultto-9th-review/)
 
 *  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
 
@@ -64,15 +64,17 @@ type: page
 
 ### 2024
 
-* 　10. 29 ~ 12. 08 [Spurt](https://github.com/sipe-team/3-1_spurt (스프링 퍼포먼스 트랙) 스터디
+* 　10. 29 ~ 12. 08 [스퍼트](https://github.com/sipe-team/3-1_spurt) (스프링 퍼포먼스 트랙) 스터디 - 스프링 기반 애플리케이션에서의 성능 측정 및 케이스에 기반한 성능 개선 실습
 
-* 　10. 12 ~ (2025) 02. 01 [SIPE](https://sipe.team/) 3기 참가 (개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리)
+* 　10. 12 ~ 02. 01 [SIPE](https://sipe.team/) 3기 참가 (개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리)
 
-* 　10. 01 ~ 03. 31 [글또](https://geultto.github.io/) 10기 참가
+* 　10. 01 ~ 03. 31 [글또](https://geultto.github.io/) 10기 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성)
+
+* 　09. 01 ~ 12. 31 '좋은 코드, 나쁜 코드' 스터디
 
 * 　07. 01 ~ 08. 30 개인 프로젝트 "WIKI" (Kotlin, Spring Boot 기반) 
 
-* 　04. 01 ~ 05. 30 가상면접 사례로 배우는 대규모 시스템 설계 기초 스터디
+* 　04. 01 ~ 05. 30 '가상면접 사례로 배우는 대규모 시스템 설계 기초' 스터디
 
 * 　01. 02 ~ 03. 02 개인 프로젝트 [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 [Hibit(ver 1)](https://github.com/hibit-team/hibit-backend) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선
 
@@ -80,13 +82,9 @@ type: page
 
 * 　12. 20 ~ 12. 31 [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) 코드 리팩터링 : [관련 포스팅](https://devfancy.github.io/Goodfriends-Improved/)
 
-* 　11. 26 ~ [글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동)
+* 　11. 26 ~ [글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성)
 
 * 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 완독 및 [정리](https://devfancy.github.io/category/#GoodCode)
-
-* 　08. 02 ~ 09. 27 팀프로젝트 - [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) : 중고거래 웹 서비스, 역할: `Backend Developer` ,[Blog Posts](https://devfancy.github.io/category/#Goodfriends),  [Pull Requests](https://github.com/woorifisa-projects/GoodFriends/pulls?q=is%3Apr+is%3Aclosed+assignee%3AdevFancy)
-
-* 　04. 24 ~ 09. 27 우리FISA 클라우드 서비스 개발 과정 - [정리](https://github.com/devFancy/devfancy-woorifisa)
 
 * 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`, [Pull Requests](https://github.com/hibit-team/hibit-backend/pulls?q=is%3Apr+assignee%3AdevFancy+is%3Aclosed)
 
