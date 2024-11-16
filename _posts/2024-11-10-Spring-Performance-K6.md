@@ -7,15 +7,26 @@ author: devFancy
 * content
 {:toc}
 
-> 아래는 [23년 2월 Tech 세미나 - 성능 테스트와 K6 도구 소개](https://www.youtube.com/live/MqdQc4vd_ws) 영상에서 본 내용을 기반으로 정리한 글입니다.
+> 아래는 K6의 [공식 문서](https://grafana.com/docs/k6/latest/) 와 [23년 2월 Tech 세미나 - 성능 테스트와 K6 도구 소개](https://www.youtube.com/live/MqdQc4vd_ws) 영상에서 본 내용을 기반으로 정리한 글입니다.
 
 ## K6 공부를 시작한 이유
 
-IT 커뮤니티 동아리인 SIPE에서 "스프링 퍼포먼스 트랙"이라는 주제로 나를 포함한 7명이 모였다. 
+`K6` 도구를 공부하게 된 계기는 접근성과 실용성 때문이다. IT 커뮤니티 동아리인 SIPE에서 [스프링 퍼포먼스 트랙](https://github.com/sipe-team/3-1_spurt) 이라는 주제로 나를 포함한 7명이 모였고, 여러 성능 테스트 도구 중에서 다수결로 K6가 선정되었다.
 
-여러 성능 테스트 도구 중에서 배우고 싶은 도구를 다수결로 선택했을 때 K6가 뽑혔다. 
+나는 현재 회사에서 `nGrinder`를 사용해 성능 테스트를 수행하고 있다. 
 
-그래서 K6에 대해 공부한 후, 실습 예제를 만들어 성능 테스트를 경험해보고자 한다.
+하지만 `nGrinder`는 Jython/Groovy 기반의 스크립트 작성을 요구해, 이러한 언어에 익숙하지 않은 사람들에게는 복잡하게 느껴질 수 있다. 
+
+반면 `K6`는 간결하고 직관적인 JavaScript 기반 스크립트 방식을 제공해 누구나 쉽게 접근할 수 있다.
+
+또한, `K6`는 사용자 친화적인 인터페이스와 효율적인 CLI 기반 환경 덕분에 새로운 사용자도 빠르게 적응할 수 있다. 
+
+`Prometheus` 같은 모니터링 도구와의 연동이 잘 되어 있어 성능 테스트와 모니터링을 통합적으로 수행할 수 있다는 점도 큰 장점이다. 
+
+[K6 공식 문서](https://grafana.com/docs/k6/latest/)가 잘 정리되어 있고, [Github](https://github.com/grafana/k6/tree/v0.55.0) 기준으로도 다른 부하 테스트 도구보다 높은 star 수(**26k**를 기록해 참고할 자료가 풍부하다는 점도 마음에 들었다. 
+(참고로, `nGrinder`는 **2k star**에 머물러 있다)
+
+이러한 이유들로 `K6`를 선정하게 되었고, 개념을 간단히라도 정리하기 위해 이 글을 작성했다.
 
 ## K6
 
@@ -115,44 +126,7 @@ k6 run first_scripts.js
 
 그러면 아래와 같이 실행 결과가 나온다.
 
-```bash
-$ k6-scripts % k6 run first_scripts.js
-
-         /\      Grafana   /‾‾/  
-    /\  /  \     |\  __   /  /   
-   /  \/    \    | |/ /  /   ‾‾\ 
-  /          \   |   (  |  (‾)  |
- / __________ \  |_|\_\  \_____/ 
-
-     execution: local
-        script: first_scripts.js
-        output: -
-
-     scenarios: (100.00%) 1 scenario, 1 max VUs, 10m30s max duration (incl. graceful stop):
-              * default: 1 iterations for each of 1 VUs (maxDuration: 10m0s, gracefulStop: 30s)
-
-
-     data_received..................: 17 kB 11 kB/s
-     data_sent......................: 442 B 273 B/s
-     http_req_blocked...............: avg=427.77ms min=427.77ms med=427.77ms max=427.77ms p(90)=427.77ms p(95)=427.77ms
-     http_req_connecting............: avg=186.9ms  min=186.9ms  med=186.9ms  max=186.9ms  p(90)=186.9ms  p(95)=186.9ms 
-     http_req_duration..............: avg=184.51ms min=184.51ms med=184.51ms max=184.51ms p(90)=184.51ms p(95)=184.51ms
-       { expected_response:true }...: avg=184.51ms min=184.51ms med=184.51ms max=184.51ms p(90)=184.51ms p(95)=184.51ms
-     http_req_failed................: 0.00% 0 out of 1
-     http_req_receiving.............: avg=79µs     min=79µs     med=79µs     max=79µs     p(90)=79µs     p(95)=79µs    
-     http_req_sending...............: avg=402µs    min=402µs    med=402µs    max=402µs    p(90)=402µs    p(95)=402µs   
-     http_req_tls_handshaking.......: avg=191.27ms min=191.27ms med=191.27ms max=191.27ms p(90)=191.27ms p(95)=191.27ms
-     http_req_waiting...............: avg=184.03ms min=184.03ms med=184.03ms max=184.03ms p(90)=184.03ms p(95)=184.03ms
-     http_reqs......................: 1     0.618512/s
-     iteration_duration.............: avg=1.61s    min=1.61s    med=1.61s    max=1.61s    p(90)=1.61s    p(95)=1.61s   
-     iterations.....................: 1     0.618512/s
-     vus............................: 1     min=1      max=1
-     vus_max........................: 1     min=1      max=1
-
-
-running (00m01.6s), 0/1 VUs, 1 complete and 0 interrupted iterations
-default ✓ [======================================] 1 VUs  00m01.6s/10m0s  1/1 iters, 1 per VU
-```
+![](/assets/img/technology/technology_k6_result.png)
 
 ### Metrics
 
@@ -189,6 +163,10 @@ default ✓ [======================================] 1 VUs  00m01.6s/10m0s  1/1 
 | `iterations`               | 반복의 총 수 및 초당 반복 수                                                        |
 | `vus`                      | 현재 활성 가상 사용자의 수                                                          |
 | `vus_max`                  | 가능한 최대 가상 사용자 수                                                          |
+
+## Scenarios
+
+
 
 ## 궁금한 점들(QA)
 
@@ -228,11 +206,11 @@ github에 stars 갯수를 바탕으로 인기를 확인하면 아래와 같다.
 
 * 이노릭스DB 말고 다른 mysql db를 사용할 수 있는지 -> mysql db를 사용할 수 있는지는 사이트 들어가서 확인해야 함.
 
-* 대규모 사용시 OS 튜닝하면 된다고 하셨는데, k6 구동되는 서버의 메모리,CPU를 최대한 효율적으로 사용하는 구조 -> 맞다. 튜닝해서 하면 최대한 효율적으로 사용할 수 있음
+* 대규모 사용시 OS 튜닝하면 된다고 하셨는데, k6 구동되는 서버의 메모리, CPU를 최대한 효율적으로 사용하는 구조인가? -> 맞다. 튜닝해서 하면 최대한 효율적으로 사용할 수 있음
 
 ## Review
 
-* K6에 대한 기본 개념에 대한 설명이 많기 때문에, 이 부분에 대해서는 추가적으로 더 조사해서 정리해봐야겠다.
+* K6에 대한 설명이 많기 때문에, 이 부분에 대해서는 추가적으로 더 조사하고 정리해 나가는 방향으로 가야겠다.
 
 * 추가적으로 메트릭 수집 및 모니터링 도구인 `Prometheus`, 데이터 소스를 시각화할 수 있는 대시보드 도구인 `Grafana` 에 대해서도 공부해서 정리해봐야겠다.
 
@@ -248,6 +226,4 @@ github에 stars 갯수를 바탕으로 인기를 확인하면 아래와 같다.
 
 * [[공식문서] Install k6](https://grafana.com/docs/k6/latest/set-up/install-k6/)
 
-* [[Github] Using K6 - Test life cycle](https://github.com/schooldevops/k6-tutorials/blob/main/UsingK6/06_test_lifecycle.md)
-
-* [[공식문서] Using k6 - Metrics - Built-in metrics](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#built-in-metrics)
+* [[공식문서] Using K6](https://grafana.com/docs/k6/latest/using-k6/)
