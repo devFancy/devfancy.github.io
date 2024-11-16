@@ -154,27 +154,41 @@ running (00m01.6s), 0/1 VUs, 1 complete and 0 interrupted iterations
 default ✓ [======================================] 1 VUs  00m01.6s/10m0s  1/1 iters, 1 per VU
 ```
 
+### Metrics
+
+메트릭은 시스템이 테스트 조건에서 어떻게 수행되는지를 측정한다. 기본적으로 k6는 내장 메트릭을 자동으로 수집한다. 내장 메트릭 외에도 사용자 정의 메트릭을 만들 수도 있다.
+
+메트릭은 네 가지 주요 유형으로 나뉜다.
+
+* `카운터(Counters)`: 값을 합산한다. (누적값을 의미한다)
+
+* `게이지(Gauges)`: 가장 작은 값, 가장 큰 값, 그리고 최신 값을 추적한다.
+
+* `비율(Rates)`: 0이 아닌 값이 얼마나 자주 발생하는지를 추적한다.
+
+* `트렌드(Trends)`: 여러 값에 대한 통계(예: 평균, 최빈값 또는 백분위수)를 계산한다.
+
 아래는 k6의 실행 결과를 설명하는 표이다. k6는 기본 내장 메트릭과 HTTP 요청 시 생성되는 메트릭으로 구분할 수 있다.
 
-> 자세한 내용은 공식문서의 [Built-in metrics](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#built-in-metrics) 를 참고하면 된다
+> 자세한 내용은 공식문서의 [Built-in metrics](https://grafana.com/docs/k6/latest/using-k6/metrics/reference/#built-in-metrics) 를 참고하면 됩니다.
 
-| 메트릭                      | 설명                                                              |
-|-----------------------------|------------------------------------------------------------------|
-| `data_received`             | 수신된 데이터의 양              |
-| `data_sent`                 | 전송된 데이터의 양                  |
-| `http_req_blocked`          | 요청을 시작하기 전에 TCP 연결 슬롯을 기다리며 차단된 시간 |
-| `http_req_connecting`       | 원격 호스트에 TCP 연결을 설정하는 데 걸린 시간 |
-| `http_req_duration`         | 요청에 걸린 총 시간 (http_req_sending + http_req_waiting + http_req_receiving의 합)                  |
-| `http_req_failed`           | setResponseCallback에 따라 실패한 요청의 비율                              |
-| `http_req_receiving`        | 원격 호스트로부터 응답 데이터를 받는 데 걸린 시간 |
-| `http_req_sending`          | 원격 호스트에 데이터를 보내는 데 걸린 시간 |
-| `http_req_tls_handshaking`  | 원격 호스트와 TLS 세션을 핸드셰이킹하는 데 걸린 시간 |
-| `http_req_waiting`          | 원격 호스트로부터 응답을 기다리는 데 걸린 시간     |
-| `http_reqs`                 | k6가 생성한 총 HTTP 요청 수                                  |
-| `iteration_duration`        | VU가 JS 스크립트(기본 함수)를 실행한 총 횟수           |
-| `iterations`                | 반복의 총 수 및 초당 반복 수                                        |
-| `vus`                       | 현재 활성 가상 사용자의 수                                        |
-| `vus_max`                   | 가능한 최대 가상 사용자 수                                                |
+| Metric Name                | Description                                                                         |
+| -------------------------- | ----------------------------------------------------------------------------------- |
+| `data_received`            | 수신된 데이터의 양                                                                  |
+| `data_sent`                | 전송된 데이터의 양                                                                  |
+| `http_req_blocked`         | 요청을 시작하기 전에 TCP 연결 슬롯을 기다리며 차단된 시간                           |
+| `http_req_connecting`      | 원격 호스트에 TCP 연결을 설정하는 데 걸린 시간                                      |
+| `http_req_duration`        | 요청에 걸린 총 시간 (http_req_sending + http_req_waiting + http_req_receiving의 합) |
+| `http_req_failed`          | setResponseCallback에 따라 실패한 요청의 비율                                       |
+| `http_req_receiving`       | 원격 호스트로부터 응답 데이터를 받는 데 걸린 시간                                   |
+| `http_req_sending`         | 원격 호스트에 데이터를 보내는 데 걸린 시간                                          |
+| `http_req_tls_handshaking` | 원격 호스트와 TLS 세션을 핸드셰이킹하는 데 걸린 시간                                |
+| `http_req_waiting`         | 원격 호스트로부터 응답을 기다리는 데 걸린 시간                                      |
+| `http_reqs`                | k6가 생성한 총 HTTP 요청 수                                                         |
+| `iteration_duration`       | VU가 JS 스크립트(기본 함수)를 실행한 총 횟수                                        |
+| `iterations`               | 반복의 총 수 및 초당 반복 수                                                        |
+| `vus`                      | 현재 활성 가상 사용자의 수                                                          |
+| `vus_max`                  | 가능한 최대 가상 사용자 수                                                          |
 
 ## 궁금한 점들(QA)
 
@@ -184,22 +198,21 @@ default ✓ [======================================] 1 VUs  00m01.6s/10m0s  1/1 
 
     * K6 이용하면 자동화는 편하고, 1대만 설치해도 왠만한 워크로드 돌릴 수 있음
 
-* k6 점유율 -> 3위 (기준: star 갯수)
+* K6에 대한 관심도 수준
 
 ```markdown
-- 워낙 많은 성능 테스트 도구가 있어서 점유율은 확인하지 못하였음
-- 다만 github에 stars 를 바탕으로 인기를 확인할 수 있을듯
+github에 stars 갯수를 바탕으로 인기를 확인하면 아래와 같다.
 
-https://testguild.com/load-testing-tools/ 
+(출처: https://testguild.com/load-testing-tools/)
 
-- JMeter: 6k stars
-- Taurus: 1.7k stars
-- Locust: 15.7k stars
-- nGrinder: 1.3k stars 
-- gatling: 5.1k stars
-- k6: 11.7k stars
-- Tsung: 2.1k stars
-- Siege: 4k stars
+2024.11.16 기준
+- k6: 26k stars
+- JMeter: 8.4k stars
+- Locust: 25.1k stars
+- nGrinder: 2k stars
+- Gatling: 6.5k stars 
+- Tsung: 2.5k stars
+- Siege: 6k stars
 ```
 
 * 인프라/네트워크/애플리케이션 측면에서 GUI 기반으로 사용이 간편한지 -> K6는 성능 테스트를 위한 부하 발생기일 뿐,
