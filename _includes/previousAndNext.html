@@ -1,15 +1,15 @@
+{% if (page.previous and page.previous.categories == page.categories) or (page.next and page.next.categories == page.categories) %}
+<h2 id="recommend">Recommend</h2>
+<!-- 2024.11.25 이전/다음 게시물 추천 기능은 카테고리를 기준으로 추천되도록 개선 -->
 <div class="post-recent">
-    
-    <div class="pre">
-        {% if page.previous %}
-        <p>Back : <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></p>
+    <ul>
+        {% if page.previous and page.previous.categories == page.categories %}
+        <li><a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title }}</a></li>
         {% endif %}
-    </div>
 
-    <div class="nex">
-        {% if page.next %}
-        <p>Next : <a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></p>
+        {% if page.next and page.next.categories == page.categories %}
+        <li><a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title }}</a></li>
         {% endif %}
-    </div>
-
+    </ul>
 </div>
+{% endif %}
