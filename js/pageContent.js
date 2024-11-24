@@ -75,8 +75,8 @@ function isMaxHeight() {
     var contentHeight = contentUl.offsetHeight
 
     // Disqus 광고 삭제
-    document.querySelectorAll('#disqus_thread iframe')[0].hidden = true
-    document.querySelectorAll('#disqus_thread iframe')[2].hidden = true
+    // document.querySelectorAll('#disqus_thread iframe')[0].hidden = true
+    // document.querySelectorAll('#disqus_thread iframe')[2].hidden = true
 
     return contentMaxHeight === contentHeight
         // console.log(contentMaxHeight);
