@@ -1,13 +1,13 @@
 ---
 layout: post
-title: " 2024 당근 테크 밋업 - 메모 및 후기 "
+title: " 2024 당근 테크 밋업 - 메모 및 후기 (SERVER)"
 categories: TechInsight
 author: devFancy
 ---
 * content
 {:toc}
 
-2024 당근 테크 밋업 중 관심있는 세션들을 들으면서 인상 깊었던 부분들과 개인 생각을 간단히 메모하고자 이 글을 작성했습니다.
+2024 당근 테크 밋업 중 `SERVER` 파트에서 관심있는 세션들을 들으면서 인상 깊었던 부분들과 개인 생각을 간단히 메모하고자 이 글을 작성했습니다.
 
 실제 세션 내용은 [2024 당근 테크 밋업](https://tech-meetup.daangn.com/) 에서 발표한 영상을 참고해 주시면 됩니다.
 
