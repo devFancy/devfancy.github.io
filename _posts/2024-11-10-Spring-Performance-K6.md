@@ -104,8 +104,6 @@ Docker Desktop를 통해 Local 에서 `grafana/k6` 이미지가 있는지 확인
 
 ![](/assets/img/technology/technology_docker_desktop_grafana_k6.png)
 
-> 아래 부터는 해당 [[깃허브] spring-performance](https://github.com/devFancy/KoJaPlayground/tree/main/spring-performance) 기준으로 작성했습니다.
-
 k6-scripts 폴더에 있는 first_scripts.js 를 아래와 같이 작성한다.
 
 ```js
