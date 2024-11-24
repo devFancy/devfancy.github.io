@@ -55,8 +55,46 @@ excerpt_separator: "\n\n\n"
 
 # paginate
 plugins: [jekyll-paginate]
-paginate: 6
+paginate: 5
 
 future: true
 incremental: false
 regenerate : true
+
+# categoties order
+## 'categories_order' 항목을 추가하여 카테고리 순서를 정적으로 설정
+## 이를 통해 메인 페이지 및 카테고리 페이지에서 카테고리 순서가 고정
+categories_order:
+  - "DevHistory"
+  - "Retrospective"
+  - "TechInsight"
+  - "Java"
+  - "Spring"
+  - "SpringBoot"
+  - "JPA"
+  - "MySQL"
+  - "Flyway"
+  - "Technology"
+  - "GoodCode"
+  - "Side_Project"
+  - "Book"
+  - "AlgorithmSkill"
+  - "LeetCode"
+  - "Algorithm"
+  - "SQL"
+  - "OS"
+  - "Database"
+  - "Network"
+  - "HTTP"
+  - "DataStructure"
+  - "Linux"
+  - "Woowacourse"
+  - "Git"
+  - "AssertJ"
+  - "IntelliJ"
+  - "Probability-Statistics"
+  - "Electronic-Finance"
+  - "Business-Statistics"
+  - "Competition"
+  - "Workout"
+  - "E.T.C"

@@ -84,19 +84,20 @@ layout: default
             </div>
 
             <!-- Categories -->
+            <!-- 2024.11.25 메인 페이지의 카테고리 목록을 표시하는 부분에서 `site.categories` 대신 `site.categories_order`를 사용하여 카테고리 순서를 반영하도록 수정 -->
             <div class="side ">
                 <div>
                     <i class="fa fa-th-list"></i>
                     Categories
                 </div>
                 <ul class="content-ul" cate>
-                    {% for category in site.categories %}
+                    {% for category in site.categories_order %}
                     <li>
-                        <a href="{{ root_url }}/{{ site.category_dir }}#{{ category | first }}" class="categories-list-item" cate="{{ category | first }}">
-                            <span class="name">
-                                {{ category | first }}
-                            </span>
-                            <span class="badge">{{ category | last | size }}</span>
+                        <a href="{{ root_url }}/{{ site.category_dir }}#{{ category }}" class="categories-list-item" cate="{{ category }}">
+                <span class="name">
+                    {{ category }}
+                </span>
+                            <span class="badge">{{ site.categories[category] | size }}</span>
                         </a>
                     </li>
                     {% endfor %}
