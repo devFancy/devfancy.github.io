@@ -11,6 +11,10 @@ author: devFancy
 
 > 이와 관련해서 코드에 대한 부분은 [PR](https://github.com/hibit-team/hibit-backend-improved/pull/57)에 있습니다.
 
+
+
+---
+
 ## 전환하는 이유
 
 `Swagger`는 **API 동작을 테스트하는 용도**에 더 특화되어 있습니다.

@@ -11,6 +11,8 @@ author: devFancy
 
 * 예상 독자: Spring Boot 기반 통합 테스트와 슬라이드 테스트 코드를 작성하는 개발자
 
+
+
 ---
 
 이전에 작성한 [좋은 단위 테스트란? (feat. 히빗)](https://devfancy.github.io/SpringBoot-TestCode-Unit/) 글에 이어서 이번에는 통합 테스트와 슬라이드 테스트에 대한 글을 작성했다.

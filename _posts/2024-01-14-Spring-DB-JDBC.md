@@ -22,6 +22,10 @@ author: devFancy
 
 일반적으로, 애플리케이션 서버와 DB는 아래와 같은 순서로 진행된다.
 
+
+
+---
+
 ![](/assets/img/spring/Spring-JDBC-2.png)
 
 1. 커넥션 연결: 주로 TCP/IP를 사용해서 커넥션을 연결한다.

@@ -23,6 +23,10 @@ ALTER TABLE member ADD COLUMN cellphone VARCHAR(255) NOT NULL;
 
 - 하지만 이러한 수동 작업은 번거롭고 실수 가능성이 크며, 형상 관리도 어려워집니다. 따라서, `Flyway`와 같은 마이그레이션 도구를 활용해 이러한 문제를 해결하는 것이 효과적 입니다.
 
+
+
+---
+
 ## Flyway
 
 ![](/assets/img/db/flyway.png)

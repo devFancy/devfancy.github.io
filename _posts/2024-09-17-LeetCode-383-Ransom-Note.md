@@ -17,6 +17,10 @@ author: devFancy
 
     * ransomNote의 각 문자를 **magazine에서 충분히 가져올 수 있는지 검사하는 것이 핵심**이다.
 
+
+
+---
+
 ## Answer 1
 
 ```java

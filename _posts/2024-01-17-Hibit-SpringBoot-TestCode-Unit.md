@@ -25,6 +25,10 @@ author: devFancy
 
 어느 부분에서 예외가 발생하였고, 어떤 현상이 발생했는지 아래와 같이 세부 기능별로 기록했다.
 
+
+
+---
+
 > 실제 예시: 프로필 기능 중 **프로필 등록** 화면
 
 ![](/assets/img/testcode/SpringBoot-TestCode-Unit-Error.png)
