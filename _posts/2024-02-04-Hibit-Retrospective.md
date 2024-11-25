@@ -150,13 +150,13 @@ setter 없이 데이터를 수정하는 방법은 사용한 의도와 의미가 
 
 ### 2. 테스트코드 도입 및 코드 커버리지 80% 유지
 
-> 자세한 내용은 해당 [포스팅](https://devfancy.github.io/SpringBoot-TestCode-Jacoco/)에 정리했습니다.
+> 자세한 내용은 해당 [포스팅](https://devfancy.github.io/Hibit-SpringBoot-Gradle-Test-Jacoco/)에 정리했습니다.
 
 우선 테스트코드에 대한 개념부터 실전까지의 경험을 쌓기위해 "Practical Testing: 실용적인 테스트 가이드" 강의를 들으면서 블로그에 [정리](https://devfancy.github.io/Practical-Testing/)해갔다.
 
 해당 강의를 들으면서 동시에 히빗 ver2 프로젝트에도 적용하였고, BDD 기반으로 코드를 작성했다.
 
-(단위 테스트 코드에 대한 자세한 내용은 이전에 작성한 [좋은 단위 테스트란?](https://devfancy.github.io/SpringBoot-TestCode-Unit/) 글에 작성했다)
+(단위 테스트 코드에 대한 자세한 내용은 이전에 작성한 [좋은 단위 테스트란?](https://devfancy.github.io/Hibit-SpringBoot-TestCode-Unit/) 글에 작성했다)
 
 단위 테스트코드를 작성하면서 동시에 통합 테스트코드를 작성했는데, `@MockBean` 이라는 어노테이션을 사용했다.
 

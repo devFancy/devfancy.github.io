@@ -73,7 +73,7 @@ author: devFancy
 
 ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-2.png)
 
-#### `1단계`: 서비스별 API 분리
+#### 해결 방안 `1단계`: 서비스별 API 분리
 
 * API를 개선하고 확장성을 확보하기 위해 기존의 거대한 API를 **각 서비스에 맞는 API로 분리**한다.
 
@@ -87,7 +87,7 @@ author: devFancy
 
     ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-3.png)
 
-#### `2단계`: 역할 기반 분리
+#### 해결 방안 `2단계`: 역할 기반 분리
 
 * 각 서비스별로 사용자 정보 조회 API 내부에서 **역할** 에 따라 분리한다.
 
@@ -103,7 +103,7 @@ author: devFancy
 
     ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-4.png)
 
-#### `3단계`: 서비스별 API 통합
+#### 해결 방안 `3단계`: 서비스별 API 통합
 
 * 분리되어 있던 각 서비스별 사용자 정보 조회 API를 하나의 API로 통합하기로 한다. (API 형태가 비슷하기 때문)
 
@@ -115,7 +115,7 @@ author: devFancy
 
     ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-5.png)
 
-#### `4단계`: 메타 프로그래밍 도입
+#### 해결 방안 `4단계`: 메타 프로그래밍 도입
 
 * 위의 문제를 해결하기 위해 `메타 프로그래밍` 기법을 도입한다.
 
