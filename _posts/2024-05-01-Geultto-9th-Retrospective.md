@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  " 글또 9기 회고(5개월간 활동한 여정) "
-categories: Retrospective
+title:  " 글또 9기 회고. 5개월간 활동한 여정 "
+categories: E.T.C
 author: devFancy
 ---
 * content
