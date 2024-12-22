@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 균형과 성장: 2024년 3분기 회고 "
+title: " 2024년 3분기 회고 (균형과 성장) "
 categories: Retrospective
 author: devFancy
 ---
@@ -38,7 +38,14 @@ author: devFancy
 
 > 글또가 무엇인지 알고 싶다면 [여기](https://geultto.github.io/)를 클릭해 주시면 됩니다.
 
-![](/assets/img/retrospective/Geultto_3_passed.png)
+![](/assets/img/retrospective/geultto_home.png){: width="500"}
+
+위 이미지는 글또의 공식 홈페이지입니다.
+
+---
+
+![](/assets/img/retrospective/Geultto_3_passed.png){: width="500"}
+
 
 * 이전 9기에 이어 이번 10기에도 참여하게 되었다. 
 
@@ -60,7 +67,14 @@ author: devFancy
 
 > SIPE에 대한 소개는 [여기](https://sipe.team/about)를 클릭해 주시면 됩니다.
 
-![](/assets/img/retrospective/SIPE_3_passed.png)
+![](/assets/img/retrospective/sipe_home.png){: width="500"}
+
+위 이미지는 SIPE 공식 홈페이지 입니다.
+
+---
+
+![](/assets/img/retrospective/SIPE_3_passed.png){: width="500"}
+
 
 * SIPE는 개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리다. 
 
@@ -78,9 +92,7 @@ author: devFancy
 
 ## 집필
 
-* 최근 출판사에서 이전에 내가 진행했던 스터디를 보고 출간 제안을 주셨고, 이 기회를 소중히 여기며 준비에 매진 중이다.
-
-    * (구체적인 내용은 아직 공유하기 어렵지만, 책이 출간되면 그때 자세히 전할 수 있을 것 같습니다..)
+* 최근 출판사에서 이전에 내가 진행했던 스터디를 보고 출간 제안을 주셨고, 이 기회를 소중히 여기며 준비에 매진 중이다. (구체적인 내용은 아직 공유하기 어렵지만, 책이 출간되면 그때 자세히 전할 수 있을 것 같습니다..)
 
 * 사실, 집필 경험이 없어 처음에는 부담감이 컸지만,
 
@@ -90,15 +102,22 @@ author: devFancy
 
 * 집필 과정에서 겪을 수 있는 다양한 현실적인 문제들을 가져오면서, 재그지그님이 이전에 경험했던 걸 기반으로 Q&A 시간을 가지게 되었다.
 
-    * 이를 통해 집필에 대한 불안감을 어느 정도 해소할 수 있었고, 구체적인 방향도 잡을 수 있었다.
-
-    * (이 자리를 빌려 재그지그님께 다시 한번 감사의 말씀을 전합니다)
+    * 이를 통해 집필에 대한 불안감을 어느 정도 해소할 수 있었고, 구체적인 방향도 잡을 수 있었다. (이 자리를 빌려 [재그지그](https://wormwlrm.github.io/)님께 다시 한번 감사의 말씀을 전합니다)
 
 ## 개인 공부
 
 ### LeetCode
 
-* 올해 4월부터 알고리즘 스터디 모임에 참여해 매주 두 문제씩 LeetCode 문제를 풀고 있다. 
+![](/assets/img/leetcode/LeetCode_Grind169_questions.png){: width="500"}
+
+* 올해 4월부터 알고리즘 스터디 모임에 참여해 매주 두 문제씩 [LeetCode](https://github.com/devFancy/LeetCode) 문제를 풀고 있다. 
+
+* LeetCode에 대해서는 잘 알지 못했기에, 여러 리서치를 참고한 결과, `Grind 169 questions` 를 주변에서 많이들 추천해서 해당 사이트에 있는 문제를 주로 풀고 있다.
+
+> [Grind 169](https://www.techinterviewhandbook.org/grind75/?hours=10&weeks=15)은 유명한 알고리즘 및 자료구조 문제 리스트로, 기술 면접 준비에 초점을 맞춘 [Grind 75](https://www.techinterviewhandbook.org/grind75/)의 확장판이다.
+>
+> Grind 75가 핵심 문제 75개를 선별한 것이라면, Grind 169는 이를 더 포괄적으로 확장해 깊이 있는 학습을 가능하게 한다. 
+> 문제들은 난이도, 주제, 빈도 등을 기준으로 선정되며, 단계별로 체계적인 학습을 유도한다.
 
 * 목표는 알고리즘 실력을 급격히 향상시키기보다는 최소한의 역량을 유지하고, 조금씩 발전해 나가는 것이다.
 
@@ -107,6 +126,8 @@ author: devFancy
 * 언제까지 지속할지는 모르겠지만, 일단 꾸준히 해보자는 마음으로 계속 진행 중이다.
 
 ### 좋은 코드, 나쁜 코드
+
+![](/assets/img/goodcode/GoodCode_BadCode_book.png){: width="400"}
 
 * 9월부터 읽기 쉬운 코드 작성하는 방법을 배우기 위해 "좋은 코드, 나쁜 코드" 책을 혼자 공부하기 시작했지만, 이후 여러 일로 인해 진도가 더딘 상태다.
 
