@@ -25,7 +25,6 @@ For the Korean version of the template, I referred to the [Github Blog Template]
 ```yaml
 categories_order:
   - "DevHistory"
-  - "Retrospective"
   - "TechInsight"
   - "Java"
   - "Spring"
