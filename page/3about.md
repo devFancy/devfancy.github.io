@@ -62,7 +62,13 @@ type: page
 
 ## TimeLine
 
+### 2025
+
+* 　01. 02 ~ 01. 23 책 '코틀린 코루틴' 스터디 - 책 읽고, 각자 업무에서의 코루틴 활용 사례 공유 or 실습해보면서 궁금한 점들 의견 나누기
+
 ### 2024
+
+* 　12. 24 ~ 02. 01 [스마트](https://github.com/sipe-team/3-2_smart_fintech) (Spring Modular Architecture Research Team) - Modular Monolithic 에 대해서 알아보고 Spring Modulith 를 적용 + 학습한 지식 공유
 
 * 　10. 29 ~ 12. 08 [스퍼트](https://github.com/sipe-team/3-1_spurt) (스프링 퍼포먼스 트랙) 스터디 - 스프링 기반 애플리케이션에서의 성능 측정 및 케이스에 기반한 성능 개선 실습
 
@@ -70,11 +76,11 @@ type: page
 
 * 　10. 01 ~ 03. 31 [글또](https://geultto.github.io/) 10기 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성)
 
-* 　09. 01 ~ 12. 31 '좋은 코드, 나쁜 코드' 스터디
+* 　09. 01 ~ 12. 31 책 '좋은 코드, 나쁜 코드' 스터디
 
 * 　07. 01 ~ 08. 30 개인 프로젝트 "WIKI" (Kotlin, Spring Boot 기반) 
 
-* 　04. 01 ~ 05. 30 '가상면접 사례로 배우는 대규모 시스템 설계 기초' 스터디
+* 　04. 01 ~ 05. 30 책 '가상면접 사례로 배우는 대규모 시스템 설계 기초' 스터디
 
 * 　01. 02 ~ 03. 02 개인 프로젝트 [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 [Hibit(ver 1)](https://github.com/hibit-team/hibit-backend) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선
 

@@ -35,3 +35,53 @@ categories_order:
   - "Technology"
   # More categories...
 ```
+
+### How to Run Locally
+
+* Follow these steps to set up and run the project on your local machine:
+
+#### 1. Install Bundler
+
+* Run the following command to install the specified version of Bundler.
+
+```bash
+$ sudo gem install bundler:2.1.4
+```
+
+#### 2. Install Dependencies and Start the Server
+
+* Use the following commands to install all dependencies and start the Jekyll server.
+
+```bash
+$ bundle install
+$ bundle exec jekyll serve
+```
+
+#### 3. Expected Output
+
+* Upon successful execution, you should see output similar to the following
+
+```bash
+$ bundle exec jekyll serve
+
+Configuration file: /path/to/_config.yml
+            Source: /path/to/source
+       Destination: /path/to/_site
+ Incremental build: disabled. Enable with --incremental
+      Generating...
+       Jekyll Feed: Generating feed for posts
+          Conflict: The following destination is shared by multiple files.
+                    - /path/to/_site/example.html
+                    - /path/to/_posts/example.md
+                    ...
+      done in X.XXX seconds.
+ Auto-regeneration: enabled for '/path/to/project'
+    Server address: http://127.0.0.1:4000/
+  Server running... press ctrl-c to stop.
+```
+
+#### 4. Access the Local Server
+
+* Open your browser and navigate to: `http://127.0.0.1:4000`
+
+![](/assets/img/github_local_server.png)
