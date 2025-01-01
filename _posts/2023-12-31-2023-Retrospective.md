@@ -61,7 +61,7 @@ Spring, JPA 부분은 [김영한의 스프링 완전 정복](https://www.inflear
 * [JPA](https://devfancy.github.io/category/#JPA) - 자바 ORM 표준 JPA 프로그래밍 - 기본편, 실전! 스프링 부트와 JPA 활용 1, 2
 
 
-## 우리FISA 클라우드 서비스 개발자
+## 클라우드 서비스 개발자
 
 ![](/assets/img/record/record-woorifisa-certificate.jpg){: width="400"}
 
@@ -487,5 +487,7 @@ SJ님이 그 당시에 제안했던 얘기를 정리하면 아래와 같다.
 ----
 
 글을 작성하는데 걸린 시간: 약 12시간
+
 * 맞춤법 수정, 자연스러운 문장이 되도록 문맥 정리: 2시간 (2024년 이후 퇴고하면서 1시간 추가)
+
 * 글 작성: 11시간
