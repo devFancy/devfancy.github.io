@@ -29,9 +29,9 @@ author: devFancy
 
 * 데이터의 개수가 N개일 때, 구현 방식에 따라서 시간 복잡도를 비교한 내용은 다음과 같다.
 
-    * 리스트 - 삽입 시간: O(1) | 삭제 시간: O(N)
+    * 리스트 - 삽입 시간: O(1), 삭제 시간: O(N)
 
-    * 힙 - 삽입 시간: O(logN) | 삭제 시간: O(logN)
+    * 힙 - 삽입 시간: O(logN), 삭제 시간: O(logN)
 
 * 단순이 N개의 데이터를 힙에 넣었다가 모두 꺼내는 작업은 정렬과 동일하다. **(힙 정렬)**
 
@@ -105,23 +105,21 @@ public class PriorityQueue() {
 ### Priority Queue 값 추가하기
 
 ```java
-import java.util.PriorityQueue;
-
 public class PriorityQueueDemo {
-	public static void main(String[] args) {		
-		PriorityQueue<Integer> pq = new PriorityQueue<>();
-		
-		// 1, 15, 10, 21, 25, 18, 8 값 추가
-		pq.add(1);
-        pq.add(15);		
-        pq.offer(10);
-		pq.add(21);
-        pq.add(25);
-        pq.offer(18);
-		pq.add(8);
-		
-		System.out.print(pq); // 결과 출력: [1, 15, 8, 21, 25, 18, 10]
-	}
+  public static void main(String[] args) {
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+    // 1, 15, 10, 21, 25, 18, 8 값 추가
+    pq.add(1);
+    pq.add(15);
+    pq.offer(10);
+    pq.add(21);
+    pq.add(25);
+    pq.offer(18);
+    pq.add(8);
+
+    System.out.print(pq); // 결과 출력: [1, 15, 8, 21, 25, 18, 10]
+  }
 }
 ```
 
@@ -148,36 +146,34 @@ public class PriorityQueueDemo {
 ### Priority Queue 값 삭제하기
 
 ```java
-import java.util.PriorityQueue;
-
 public class PriorityQueueDemo {
-	public static void main(String[] args) {		
-		PriorityQueue<Integer> pq = new PriorityQueue<>();
-		
-		// 1, 15, 10, 21, 25, 18, 8 값 추가
-		pq.add(1);
-        pq.add(15);
-        pq.offer(10);
-		pq.add(21);
-        pq.add(25);
-        pq.offer(18);
-		pq.add(8);
-		
-		System.out.println(pq); // 결과 출력: [1, 15, 8, 21, 25, 18, 10]
-		
-		pq.poll();
+  public static void main(String[] args) {
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
 
-		System.out.println(pq); // 결과 출력: [8, 15, 10, 21, 25, 18]
+    // 1, 15, 10, 21, 25, 18, 8 값 추가
+    pq.add(1);
+    pq.add(15);
+    pq.offer(10);
+    pq.add(21);
+    pq.add(25);
+    pq.offer(18);
+    pq.add(8);
 
-		pq.remove();
-		pq.remove(1);
+    System.out.println(pq); // 결과 출력: [1, 15, 8, 21, 25, 18, 10]
 
-		System.out.println(pq); // 결과 출력: [10, 15, 18, 21, 25]
-		
-		pq.clear();
+    pq.poll();
 
-		System.out.println(pq); // 결과 출력: []
-	}
+    System.out.println(pq); // 결과 출력: [8, 15, 10, 21, 25, 18]
+
+    pq.remove();
+    pq.remove(1);
+
+    System.out.println(pq); // 결과 출력: [10, 15, 18, 21, 25]
+
+    pq.clear();
+
+    System.out.println(pq); // 결과 출력: []
+  }
 }
 ```
 * 우선순위 큐에서 값을 삭제하는 방법은 여러가지가 있다.
@@ -209,28 +205,25 @@ public class PriorityQueueDemo {
 ### Priority Queue 값 출력하기
 
 ```java
-import java.util.Iterator;
-import java.util.PriorityQueue;
-
 public class PriorityQueueDemo {
-	public static void main(String[] args) {		
-		PriorityQueue<Integer> pq = new PriorityQueue<>();
-		
-		// 1, 15, 8, 21, 25, 18, 10 값 추가
-		pq.add(1);		
-        pq.add(15);		
-        pq.offer(10);
-		pq.add(21);		
-        pq.add(25);		
-        pq.offer(18);
-		pq.add(8);
-		
-		System.out.println(pq.peek()); // 결과 출력: 1
-		
-		Iterator iterator = pq.iterator();
-		while(iterator.hasNext())
-			System.out.print(iterator.next() + " "); // 결과 출력: 1 15 8 21 25 18 10
-	}
+  public static void main(String[] args) {
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+    // 1, 15, 8, 21, 25, 18, 10 값 추가
+    pq.add(1);
+    pq.add(15);
+    pq.offer(10);
+    pq.add(21);
+    pq.add(25);
+    pq.offer(18);
+    pq.add(8);
+
+    System.out.println(pq.peek()); // 결과 출력: 1
+
+    Iterator iterator = pq.iterator();
+    while(iterator.hasNext()) 
+        System.out.print(iterator.next() + " "); // 결과 출력: 1 15 8 21 25 18 10
+  }
 }
 ```
 

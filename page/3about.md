@@ -44,9 +44,11 @@ type: page
 
 ## Retrospective
 
-*  [균형과 성장: 2024년 3분기 회고](https://devfancy.github.io/3th-Retrospective/)
+*  [2024년 회고 (+2025년 계획)](https://devfancy.github.io/2024-Retrospective/)
 
-*  [2024 글또 9기 회고](https://devfancy.github.io/geultto-9th-review/)
+*  [2024년 3분기 회고. 우선순위를 정하고 균형 있게 성장하기](https://devfancy.github.io/3th-Retrospective/)
+
+*  [2024년 1분기 회고. 배움의 여정과 새로운 도약](http://127.0.0.1:4000/1th-Retrospective/)
 
 *  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
 
@@ -54,9 +56,11 @@ type: page
 
 ## Dev History
 
-*  [2024 Dev History](https://devfancy.github.io/2024-Diary/)
+*  [2025 Dev History](https://devfancy.github.io/2025-DevHistory/)
 
-*  [2023 Dev History](https://devfancy.github.io/2023-Diary/)
+*  [2024 Dev History](https://devfancy.github.io/2024-DevHistory/)
+
+*  [2023 Dev History](https://devfancy.github.io/2023-DevHistory/)
 
 ---
 
@@ -64,7 +68,7 @@ type: page
 
 ### 2025
 
-* 　01. 02 ~ 01. 23 책 '코틀린 코루틴' 스터디 - 책 읽고, 각자 업무에서의 코루틴 활용 사례 공유 or 실습해보면서 궁금한 점들 의견 나누기
+* 　01. 02 ~ 02. 06 책 '코틀린 코루틴' 스터디 - 책 읽고, 각자 업무에서의 코루틴 활용 사례 공유 or 실습해보면서 궁금한 점들 의견 나누기
 
 ### 2024
 
