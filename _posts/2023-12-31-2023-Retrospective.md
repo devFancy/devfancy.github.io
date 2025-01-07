@@ -63,8 +63,6 @@ Spring, JPA 부분은 [김영한의 스프링 완전 정복](https://www.inflear
 
 ## 클라우드 서비스 개발자
 
-![](/assets/img/record/record-woorifisa-certificate.jpg){: width="400"}
-
 4월 말부터 9월 말까지 우리FISA에 `클라우드 서비스 개발자`로 참여하면서 다양한 경험을 쌓았다.
 이 기간 동안 어떤 일들을 경험했는지를 정리하고자 한다.
 
