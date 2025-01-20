@@ -68,6 +68,10 @@ type: page
 
 ### 2025
 
+* 　01. 21 ~ 02. 25 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습하기
+
+* 　01. 18 SIPE 3기 사이프톤 - 주제: 커뮤니티를 위한 슬랙 봇 만들기 - [관련 깃허브](https://github.com/sipe-team/sipethon-3_3_helpingbot), [관련 포스팅](https://devfancy.github.io/ETC-Sipethon-Slackbot/)
+
 * 　01. 02 ~ 02. 06 책 '코틀린 코루틴' 스터디 - 책 읽고, 각자 업무에서의 코루틴 활용 사례 공유 or 실습해보면서 궁금한 점들 의견 나누기
 
 ### 2024
