@@ -20,7 +20,7 @@ author: devFancy
 
 `멀티 모듈`과 관련된 영상을 보면서 현업 개발자분들이 왜 사용하고 어떤 이점이 있는지를 알게 되면서 이와 관련된 글을 블로그에 작성한 바 있다.
 
-(멀티 모듈과 관련해서 작성한 글 - [Kotlin, SpringBoot 기반으로 멀티 모듈 설계와 적용하기](https://devfancy.github.io/SpringBoot-Multi-Module/))
+(멀티 모듈과 관련해서 이전에 작성한 글 - [Kotlin, SpringBoot 기반으로 멀티 모듈 설계와 적용하기](https://devfancy.github.io/SpringBoot-Multi-Module/))
 
 > 멀티 모듈에 대해 도움이 되었던 대표적인 영상과 자료는 아래와 같습니다. 이 외에도 다양한 영상과 자료를 참고했으나 이 글에서는 중요한 부분이 아니므로 생략했습니다.
 
@@ -30,7 +30,7 @@ author: devFancy
 
 * [[Youtube] SpringBoot + Kotlin 멀티 모듈 구성 - 단일모듈에서 멀티모듈로 변경해보기 #1](https://www.youtube.com/watch?v=PdofVTuM-tE&list=PL8RgHPKtjlBh-LU_yUxFfIq_flizPm_vZ&ab_channel=제미니의개발실무)
 
-* [[Youtube] 실전! 멀티 모듈 프로젝트 구조와 설계 | 인프콘 2022](https://www.youtube.com/watch?v=ipDzLJK-7Kc&ab_channel=인프런inflearn)
+* [[Youtube] 실전! 멀티 모듈 프로젝트 구조와 설계 - 인프콘 2022](https://www.youtube.com/watch?v=ipDzLJK-7Kc&ab_channel=인프런inflearn)
 
 멀티 모듈에 대해 이론적으로나마 어떤 내용인지는 이제 알게 되었다. 그런 다음에 'IT 회사는 현재 시점으로 지난 3년간 어떤 설계에 관심을 가지고 있을까?'에 대한 궁금증이 생겼다.
 
@@ -134,7 +134,7 @@ author: devFancy
 
 선릉역에 있는 우아한 테크코스에서 오후 2시부터 6시까지 약 4시간 동안 진행했는데, 여기는 글또 10기 백엔드/인프라 반상회때도 온 적이 있어서 친숙한 공간이기도 했다.
 
-![](/assets/img/technology/DDD-Week1-Review-And-EventStorming-1.png)
+![](/assets/img/technology/DDD-Week1-Review-And-EventStorming-1.png){: width="500"}
 
 해당 오프라인 모임을 진행하기 전에 재성님이 슬랙에 해당 주제와 비슷한 영상을 추천해 주셔서 필자는 미리 보고 왔다.
 
@@ -142,7 +142,7 @@ author: devFancy
 
 * [KCD 2020 [Track 2] 도메인 지식 탐구를 위한 이벤트 스토밍 Event Storming](https://www.youtube.com/watch?v=hUcpv5fdCIk&ab_channel=OpenUP-오픈업)
 
-![](/assets/img/technology/DDD-Week1-Review-And-EventStorming-2.png)
+![](/assets/img/technology/DDD-Week1-Review-And-EventStorming-2.png){: width="500"}
 
 필자는 `이벤트 스토밍`을 위의 영상을 이전에도 봤고 실제로 3번 정도 적용한 경험이 있어서 그런지, 4시간이면 충분히 할 수 있겠다라는 생각이 들었다.
 
