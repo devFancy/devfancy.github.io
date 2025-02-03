@@ -68,15 +68,15 @@ type: page
 
 ### 2025
 
-* 　01. 21 ~ 02. 25 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습하기
+* 　01. 21 ~ 02. 25 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습 및 [정리](https://github.com/devFancy/kotlin-java-playground/blob/main/system-design/ddd-serenade/README.md) 하기
 
 * 　01. 18 SIPE 3기 사이프톤 - 주제: 커뮤니티를 위한 슬랙 봇 만들기 - [관련 깃허브](https://github.com/sipe-team/sipethon-3_3_helpingbot), [관련 포스팅](https://devfancy.github.io/ETC-Sipethon-Slackbot/)
 
-* 　01. 02 ~ 02. 06 책 '코틀린 코루틴' 스터디 - 책 읽고, 각자 업무에서의 코루틴 활용 사례 공유 or 실습해보면서 궁금한 점들 의견 나누기
+* 　01. 02 ~ 02. 28 책 '코틀린 코루틴' 스터디 - 책 읽고, 각자 업무에서의 코루틴 활용 사례 공유 or 실습해보면서 궁금한 점들 의견 나누기
 
 ### 2024
 
-* 　12. 24 ~ 02. 01 [스마트](https://github.com/sipe-team/3-2_smart_fintech) (Spring Modular Architecture Research Team) - Modular Monolithic 에 대해서 알아보고 Spring Modulith 를 적용 + 학습한 지식 공유
+* 　12. 24 ~ 02. 01 [스마트](https://github.com/sipe-team/3-2_smart_fintech) (Spring Modular Architecture Research Team) - Modular Monolithic 에 대해서 알아보고 Spring Modulith 를 적용 + 학습한 지식 공유 -> 2차미션 8팀 중 **1등**
 
 * 　10. 29 ~ 12. 08 [스퍼트](https://github.com/sipe-team/3-1_spurt) (스프링 퍼포먼스 트랙) 스터디 - 스프링 기반 애플리케이션에서의 성능 측정 및 케이스에 기반한 성능 개선 실습
 
@@ -130,7 +130,7 @@ type: page
 
 * 　07. 04 ~ 11. 03 Competition : 2022 공개 SW 개발자 대회 OSS 우수작 선정
 
-* 　07. 01 ~ 08. 31 ESG 플랫폼 - 백엔드 개발자 인턴 근무
+* 　07. 01 ~ 08. 31 스타트업 백엔드 개발자 인턴 근무
 
 * 　07. 01 ~ 12. 15 과학기술정보통신부 주관 알파시티 마스터과정 참가
 
