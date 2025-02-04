@@ -29,7 +29,7 @@ ALTER TABLE member ADD COLUMN cellphone VARCHAR(255) NOT NULL;
 
 ## Flyway
 
-![](/assets/img/db/flyway.png)
+![](/assets/img/db/flyway.png){: width="300"}
 
 - `Flyway`는 데이터베이스 스키마 버전 관리 및 마이그레이션을 자동화하는 도구로, 주로 SQL 스크립트나 Java 코드로 작성된 스키마 변경을 관리하고 적용하는 데 사용됩니다. Flyway의 동작 원리는 다음과 같은 절차로 이루어집니다.
 
@@ -37,7 +37,7 @@ ALTER TABLE member ADD COLUMN cellphone VARCHAR(255) NOT NULL;
 
 - Flyway는 데이터베이스와 연결된 후, 해당 데이터베이스에 스키마 변경 이력이 기록될 테이블인 `flyway_schema_history` 테이블을 찾습니다.
 
-![](/assets/img/db/flyway_db_1.jpg)
+![](/assets/img/db/flyway_db_1.jpg){: width="400"}
 
 - 만약 이 테이블이 존재하지 않으면 Flyway는 이를 자동으로 생성합니다.
 - 이 테이블은 데이터베이스에 적용된 마이그레이션의 내역을 추적하고 기록하는 역할을 합니다.

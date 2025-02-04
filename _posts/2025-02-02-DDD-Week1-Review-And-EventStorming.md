@@ -201,6 +201,16 @@ author: devFancy
 
 ## Reference
 
+> (추가) Domain-Driven Design Europe 2025
+> 
+> 아래는 유럽에서 DDD 컨퍼런스 관련 부분이다. 이벤트 스토밍 가격만 `€1,000`, 환율로 계산하면 현재 기준(2025.02.05)으로 약 150만원(총 9.5시간)으로 비싼 워크샵이다.
+
+* [Domain-Driven Design Europe 2025](https://2025.dddeurope.com/)
+
+    * [EventStorming Workshop (By Stijn Vannieuwenhuyse)](https://ddd.academy/event-storming/)
+
+    * [Strategic Domain-Driven Design (By Chris Simon)](https://ddd.academy/strategic-ddd/)
+
 > DDD 관련 참고 자료
 
 * [[올리브영 테크 블로그] 10년 된 레거시를 현대화하다 - Part.2: 매장 도메인의 구현 여정](https://oliveyoung.tech/2025-01-24/store-service-journey-2/)
