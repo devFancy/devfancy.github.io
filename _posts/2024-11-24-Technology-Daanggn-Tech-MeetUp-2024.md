@@ -1,7 +1,7 @@
 ---
 layout: post
 title: " 2024 당근 테크 밋업 - 메모 및 후기 (SERVER) "
-categories: TechInsight
+categories: Technology
 author: devFancy
 ---
 * content

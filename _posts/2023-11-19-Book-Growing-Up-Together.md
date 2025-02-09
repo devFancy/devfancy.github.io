@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " [Dev] 함께 자라기 - 애자일로 가는 길 "
+title:  " [Dev] 함께 자라기 (애자일로 가는 길) "
 categories: Book
 author: devFancy
 ---
