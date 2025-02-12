@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " [Dev] 함께 자라기 (애자일로 가는 길) "
+title:  " [리뷰] 함께 자라기 (애자일로 가는 길) "
 categories: Book
 author: devFancy
 ---
@@ -9,7 +9,7 @@ author: devFancy
 
 > 이 글은 [함께 자라기](https://product.kyobobook.co.kr/detail/S000001033071) 책을 읽고 저의 생각과 같이 정리한 내용입니다.
 
-![](/assets/img/book/Book-Growing-Up-Together.jpg)
+![](/assets/img/book/Book-Growing-Up-Together.jpg){: width="400"}
 
 책을 2월에 사고 난 뒤 9개월이 지난 지금에서야 다 읽게 되었다.
 

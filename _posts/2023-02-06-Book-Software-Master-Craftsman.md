@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " [Dev] 소프트웨어 장인 리뷰 "
+title: " [리뷰] 소프트웨어 장인 리뷰 "
 categories: Book
 author: devfancy
 ---
@@ -9,7 +9,7 @@ author: devfancy
 
 ## Prologue
 
-![](/assets/img/book/book-software-master-craftsman.jpg){: width="500"}
+![](/assets/img/book/book-software-master-craftsman.jpg){: width="400"}
 
 * 우아한테크코스의 캡틴으로 불리는 `박재성`님이 0순위로 추천한 책이다.
 
