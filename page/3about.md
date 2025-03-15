@@ -11,11 +11,13 @@ type: page
 
 ## Who am i
 
+* <img src="/assets/img/logo/hand-holding-seedling.png" style="max-width: 3%; vertical-align: text-bottom;"> : '건강', '행복', '성장'을 위해 삶을 주도적으로 살아가면서, 내면의 성숙과 외면의 든든함을 함께 갖춘 사람이 되고 싶어요. 😌
+
 * <img src="/assets/img/logo/about.png" style="max-width: 3%; vertical-align: text-bottom;"> : 비즈니스 문제를 해결하는 과정에서 몰입하며 즐거움을 느끼는 개발자입니다.
 
 * <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 지속적으로 발전하는 학습과 경험을 기록하기 위해 개인 블로그를 운영하고 있습니다.
 
-* <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 지식 공유를 통해 함께 성장하는 삶의 가치를 느끼고자, '글또', '우아한스터디'를 포함한 5개 이상의 다양한 스터디에 참여한 경험이 있습니다
+* <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 지식 공유를 통해 함께 성장하는 삶의 가치를 느끼고자, '넥스트스텝', '글또', '우아한스터디'를 포함한 5개 이상의 다양한 스터디에 참여한 경험이 있습니다
 
 * <img src="/assets/img/logo/collaboration.png" style="max-width: 4%; vertical-align: text-bottom;"> : 개발 과정에서 협업 문화와 피드백의 중요성을 깊이 이해하고 있습니다.
 
@@ -68,7 +70,7 @@ type: page
 
 ### 2025
 
-* 　01. 21 ~ 02. 25 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습 및 [정리](https://github.com/devFancy/kotlin-java-playground/blob/main/system-design/ddd-serenade/README.md) 하기
+* 　01. 21 ~ 03. 02 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습 및 [정리](https://github.com/devFancy/kotlin-java-playground/blob/main/system-design/ddd-serenade/README.md)하기
 
 * 　01. 18 SIPE 3기 사이프톤 - 주제: 커뮤니티를 위한 슬랙 봇 만들기 - [관련 깃허브](https://github.com/sipe-team/sipethon-3_3_helpingbot), [관련 포스팅](https://devfancy.github.io/ETC-Sipethon-Slackbot/)
 
