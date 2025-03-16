@@ -70,7 +70,7 @@ type: page
 
 ### 2025
 
-* 　01. 21 ~ 03. 02 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습 및 [정리](https://github.com/devFancy/kotlin-java-playground/blob/main/system-design/ddd-serenade/README.md)하기
+* 　01. 21 ~ 03. 02 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습 및 [정리](https://devfancy.github.io/DDD-Serenade-7th-Review/)하기
 
 * 　01. 18 SIPE 3기 사이프톤 - 주제: 커뮤니티를 위한 슬랙 봇 만들기 - [관련 깃허브](https://github.com/sipe-team/sipethon-3_3_helpingbot), [관련 포스팅](https://devfancy.github.io/ETC-Sipethon-Slackbot/)
 
