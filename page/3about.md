@@ -72,23 +72,13 @@ type: page
 
 * 　01. 21 ~ 03. 02 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습 및 [정리](https://devfancy.github.io/DDD-Serenade-7th-Review/)하기
 
-* 　01. 18 SIPE 3기 사이프톤 - 주제: 커뮤니티를 위한 슬랙 봇 만들기 - [관련 깃허브](https://github.com/sipe-team/sipethon-3_3_helpingbot), [관련 포스팅](https://devfancy.github.io/ETC-Sipethon-Slackbot/)
-
-* 　01. 02 ~ 02. 28 책 '코틀린 코루틴' 스터디 - 책 읽고, 각자 업무에서의 코루틴 활용 사례 공유 or 실습해보면서 궁금한 점들 의견 나누기
+* 　01. 01 ~ Present 신입 개발자를 위한 CS 기초서(가제) 집필 - 파트: OS
 
 ### 2024
 
-* 　12. 24 ~ 02. 01 [스마트](https://github.com/sipe-team/3-2_smart_fintech) (Spring Modular Architecture Research Team) - Modular Monolithic 에 대해서 알아보고 Spring Modulith 를 적용 + 학습한 지식 공유 -> 2차미션 8팀 중 **1등**
+* 　10. 12 ~ 02. 01 [SIPE 3기](https://sipe.team/) 참가 (개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리)
 
-* 　10. 29 ~ 12. 08 [스퍼트](https://github.com/sipe-team/3-1_spurt) (스프링 퍼포먼스 트랙) 스터디 - 스프링 기반 애플리케이션에서의 성능 측정 및 케이스에 기반한 성능 개선 실습
-
-* 　10. 12 ~ 02. 01 [SIPE](https://sipe.team/) 3기 참가 (개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리)
-
-* 　10. 01 ~ 03. 31 [글또](https://geultto.github.io/) 10기 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성)
-
-* 　09. 01 ~ 09. 30 책 '좋은 코드, 나쁜 코드' 스터디
-
-* 　07. 01 ~ 08. 30 개인 프로젝트 "WIKI" (Kotlin, Spring Boot 기반) 
+* 　10. 01 ~ 03. 31 [글또 10기](https://geultto.github.io/) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성)
 
 * 　04. 01 ~ 05. 30 책 '가상면접 사례로 배우는 대규모 시스템 설계 기초' 스터디
 
@@ -96,13 +86,11 @@ type: page
 
 ### 2023
 
-* 　12. 20 ~ 12. 31 [Goodfriends](https://github.com/woorifisa-projects/GoodFriends) 코드 리팩터링 : [관련 포스팅](https://devfancy.github.io/Goodfriends-Improved/)
-
 * 　11. 26 ~ [글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성)
 
 * 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 완독 및 [정리](https://devfancy.github.io/category/#GoodCode)
 
-* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`, [Pull Requests](https://github.com/hibit-team/hibit-backend/pulls?q=is%3Apr+assignee%3AdevFancy+is%3Aclosed)
+* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`)
 
 * 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
 
@@ -112,9 +100,7 @@ type: page
 
 * 　01. 12 [기술 블로그](https://github.com/devfancy/devfancy.github.io) 생성
 
-* 　01. 07 ~ [Programmers : 코딩테스트 대비](https://github.com/devFancy/problem-solving) 진행
-
-* 　01. 02 ~ 05. 30 [신입 개발자를 위한 CS 스터디 모임](https://github.com/devSquad-study/2023-CS-Study) 운영
+* 　01. 02 ~ 06. 30 [신입 개발자를 위한 CS 스터디 모임](https://github.com/devSquad-study/2023-CS-Study) 운영
 
 ### 2022
 
@@ -155,8 +141,6 @@ type: page
 ### 2021
 
 * 　11. 29 ~ 12. 03 [인재개발원] 현직자 직무멘토링 프로그램 참가
-
-* 　09. 15 ~ Study Python3 
 
 * 　09 ~ [교내 동아리 데이터금융분석학회(DART)](https://www.knudart.com/) 참가
 
