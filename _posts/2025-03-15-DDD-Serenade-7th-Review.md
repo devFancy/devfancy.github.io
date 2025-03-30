@@ -21,6 +21,9 @@ DDD 세레나데 7기에 참여하면서 도메인 주도 설계(DDD)의 기본 
 
 1주차에 대한 리뷰는 이미 작성한 글인 [DDD 세레나데 7기 1주차 (feat. 이벤트 스토밍)](https://devfancy.github.io/DDD-Week1-Review-And-EventStorming/) 를 참고하시면 되므로, 이번 글에서는 2주차부터 정리하고자 합니다.
 
+
+---
+
 ## 2주차 - 전략적 설계
 
 2주차에서는 DDD의 핵심 개념인 전략적 설계(Strategic Design) 에 대해 배우며, 특히 `유비쿼터스 언어`(Ubiquitous Language)와 `바운디드 컨텍스트`(Bounded Context) 개념을 깊이 있게 다루었습니다.
