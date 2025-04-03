@@ -36,9 +36,6 @@ ALTER TABLE member ADD COLUMN cellphone VARCHAR(255) NOT NULL;
 ### 데이터베이스 연결 및 상태 추적
 
 - Flyway는 데이터베이스와 연결된 후, 해당 데이터베이스에 스키마 변경 이력이 기록될 테이블인 `flyway_schema_history` 테이블을 찾습니다.
-
-![](/assets/img/db/flyway_db_1.jpg){: width="400"}
-
 - 만약 이 테이블이 존재하지 않으면 Flyway는 이를 자동으로 생성합니다.
 - 이 테이블은 데이터베이스에 적용된 마이그레이션의 내역을 추적하고 기록하는 역할을 합니다.
 
@@ -49,7 +46,7 @@ ALTER TABLE member ADD COLUMN cellphone VARCHAR(255) NOT NULL;
 - Flyway는 `/resources/db/migration` 디렉토리에서 SQL 또는 Java로 작성된 마이그레이션 스크립트를 스캔합니다.
 - 이 스크립트들은 특정 버전 번호로 이름이 지정되며, 해당 버전 번호에 따라 실행 순서가 정해집니다.
 
-![](/assets/img/db/flyway_db_2.jpg)
+![](/assets/img/db/AI_Profile_DB_Migration.png)
 
 ### 마이그레이션 실행 및 기록
 

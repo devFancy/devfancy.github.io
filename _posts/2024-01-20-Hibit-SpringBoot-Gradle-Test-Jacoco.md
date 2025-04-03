@@ -20,7 +20,7 @@ author: devFancy
 
 ## 도입 배경
 
-히빗 프로젝트(ver.1)에서는 테스트 코드가 거의 없어서 QA 작업때 정말 많은 시간을 할애했다. (QA 작업에 대한 내용과 테스트 코드를 도입하게된 배경은 [좋은 단위 테스트란? (feat. 히빗)](https://devfancy.github.io/SpringBoot-TestCode-Unit/) 글에서 확인할 수 있습니다.)
+히빗 프로젝트(ver.1)에서는 테스트 코드가 거의 없어서 QA 작업때 정말 많은 시간을 할애했다. (QA 작업에 대한 내용과 테스트 코드를 도입하게된 배경은 [좋은 단위 테스트란? (feat. 히빗)](https://devfancy.github.io/Hibit-SpringBoot-TestCode-Unit/) 글에서 확인할 수 있습니다.)
 
 그래서 이번에 [히빗2](https://github.com/hibit-team/hibit-backend-improved) 에서는 테스트 코드를 도입하게 되면서, 테스트 커버리지도 신경써야 한다고 생각했다.
 
