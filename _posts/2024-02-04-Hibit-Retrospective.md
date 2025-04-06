@@ -375,7 +375,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 ### 7. Swagger에서 Rest Docs로 전환
 
-> 자세한 내용은 해당 [포스팅](https://devfancy.github.io/Spring-Rest-Docs/)에 정리했습니다.
+> 자세한 내용은 해당 [포스팅](https://devfancy.github.io/Hibit-Spring-Rest-Docs/)에 정리했습니다.
 
 기존 version1 에 개발했던 Hibit은 Swagger로 API 문서를 만들었다.
 
