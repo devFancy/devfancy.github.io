@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 글또 10기 회고 (글을 쓰며, 삶을 나누며) "
+title:  " 글또 10기 회고 "
 categories: E.T.C
 author: devFancy
 ---
