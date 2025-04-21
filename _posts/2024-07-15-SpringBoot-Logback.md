@@ -113,7 +113,7 @@ Spring Boot에서는 반드시 `logback-spring.xml` 또는 `logback-xxx-spring.x
 
 해당 파일은 `resources` 디렉터리에 위치시키면 된다.
 
-> 파일 구조 예시
+> 📁 파일 구조 예시
 
 ```markdown
 src/
@@ -122,7 +122,7 @@ src/
         └── logback-spring.xml
 ```
 
-> logback-spring.xml 예시
+### logback-spring.xml 구성 예시
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -145,20 +145,14 @@ src/
         </encoder>
     </appender>
 		
-	<!-- 파일 로그 Appender -->
+	<!-- 파일 로그 Appender --> 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
             <pattern>${FILE_LOG_PATTERN}</pattern>
         </encoder>
-		<!-- RollingPolicy: 로그 파일의 크기 증가로 인한 가독성 저하를 방지하기 위한 분할 전략 -->
-        <!-- SizeAndTimeBasedRollingPolicy: 로그 파일을 시간과 크기 기준으로 순차적으로 분할 및 보관하는 정책 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-			<!-- 로그 파일명 패턴 -->
-			<!-- 날짜별로 기록되며 maxFileSize를 넘기면 인덱스(i)를 증가시켜 새로운 이름의 로그파일에 기록을 이어간다 -->
-            <fileNamePattern>./log/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-			<!-- 최대 파일 사이즈 -->
+            <fileNamePattern>./logs/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>100MB</maxFileSize>
-			<!-- 최대 보관 일수 -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
@@ -175,6 +169,30 @@ src/
 
 </configuration>
 ```
+
+파일 로그는 시스템 운영에 있어 핵심적인 정보 기록 수단이다.
+
+특히 운영 환경에서는 **운영 환경에서는 로그 파일이 무한히 누적되는 것을 방지**하기 위해, **시간 및 크기 기준의 롤링 전략을 적용**하는 것이 중요하다.
+
+> 주요 구성 요소
+
+* `RollingPolicy`: 로그 파일을 일정 기준으로 분할해 가독성과 유지 관리성을 확보하는 전략
+
+* `SizeAndTimeBasedRollingPolicy`: 시간(%d)과 크기(%i)를 기준으로 로그 파일을 순차적으로 분할 및 보관
+
+  * `fileNamePattern`: 로그 파일 이름 형식. 날짜별(`%d`)로 생성되며, 크기 초과 시 인덱스(`%i`)를 붙여 분할 (e.g. 2024-07-15.0.log) (운영 환경에서는 **절대 경로**를 권장한다.)
+
+  * `maxFileSize`: 단일 로그 파일의 최대 크기 (초과 시 새로운 파일 생성)
+
+  * `maxHistory`: 로그 파일의 최대 보관 기간 (지정 일수 초과 시 자동 삭제)
+
+예를 들어 `./logs/2024-07-15.0.log`, `./logs/2024-07-15.1.log` 와 같은 형태로 저장되며,
+
+**100MB** 단위로 분할되고, **30일간** 보관된 후 자동으로 삭제된다.
+
+이러한 설정을 통해 효율적인 로그 관리로 시스템 안정성과 운영 편의성을 함께 확보할 수 있다.
+
+## 마무리
 
 이와 같은 방식으로 `logback-spring.xml` 한 개의 파일만으로도
 환경(profile)에 따라 유연한 설정이 가능하고, 콘솔 및 파일 로그를 분리해 효율적으로 관리할 수 있다.
