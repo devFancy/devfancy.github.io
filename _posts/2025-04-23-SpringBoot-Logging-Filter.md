@@ -9,7 +9,7 @@ author: devFancy
 
 ## Prologue
 
-이번 글에서는 실무에서 적용한 Logging Filter와 관련된 개념을 정리하고,
+이번 글에서는 실무에서 적용한 **Logging Filter** 와 관련된 개념을 정리하고,
 
 Spring Boot 프로젝트에 이를 적용한 실제 사례를 공유합니다.
 
@@ -85,7 +85,7 @@ HandlerInterceptor 는 다음과 같은 경우 사용합니다.
 
 실무에서 `Filter`를 적용한 이유는 다음과 같습니다.
 
-1. 요청(Request)과 응답(Response)을 **가장 먼저/마지막**으로 다룰 수 있기 때문입니다.
+1. 요청(Request)과 응답(Response)을 **가장 먼저, 그리고 마지막**으로 다룰 수 있기 때문입니다.
    * 클라이언트가 보낸 요청을 가장 먼저 받아서 로깅할 수 있고,
    * 클라이언트에게 응답을 보내기 직전 상태로 로깅할 수 있습니다.
 
@@ -99,7 +99,7 @@ HandlerInterceptor 는 다음과 같은 경우 사용합니다.
 
 ---
 
-아래부터는 Filter 적용과 관련해서 설명하겠습니다.
+아래부터는 Filter를 프로젝트에 적용하기 위해 어떤 환경을 구성했고, 어떻게 구현을 진행했는지 구체적인 과정을 설명드리겠습니다.
 
 
 ## 프로젝트 환경 구성
@@ -148,7 +148,7 @@ public record HttpLogMessage(
 
 ## RequestAndResponseLoggingFilter
 
-그런 다음,  요청(Request)과 응답(Response)을 로깅하는 Filter 클래스를 아래와 같이 작성했습니다. 
+그런 다음,  요청(Request)과 응답(Response)을 로깅하는 Filter 클래스를 아래와 같이 구현했습니다.
 
 > RequestAndResponseLoggingFilter.class
 
@@ -290,7 +290,7 @@ public abstract class OncePerRequestFilter extends GenericFilterBean {
 
 제가 오버라이딩해서 구현한 `doFilterInternal` 메서드에 내부에는 요청(Request)과 응답(Response) 본문을 로깅하기 위해 `ContentCachingRequestWrapper`, `ContentCachingResponseWrapper` 를 사용했습니다.
 
-왜 필요한가? -> Stream은 기본적으로 한 번만 읽을 수 있는 구조입니다. 한 번 데이터를 읽으면 포인터가 이동하고, 다시 읽을 수 없습니다.
+**왜 필요한가?** -> Stream은 기본적으로 한 번만 읽을 수 있는 구조입니다. 한 번 데이터를 읽으면 포인터가 이동하고, 다시 읽을 수 없습니다.
 
 > InputStream 과 관련하여 동작 원리에 대한 자세한 설명은 이 [글](https://www.programmersought.com/article/80902025083/) 을 참고해 주시기 바랍니다
 
@@ -381,7 +381,7 @@ public ServletOutputStream getOutputStream() throws IOException {
 
 > `copyBodyToResponse()` 메서드가 중요한 이유
 
-* `ContentCachingResponseWrapper` 는 응답 본문을 캐이세 쌓아놓기만 하고 자동으로 클라이언트에게 보내지 않습니다.
+* `ContentCachingResponseWrapper` 는 응답 본문을 캐시에 쌓아놓기만 하고, 자동으로 클라이언트에게 전송하지 않습니다.
 * `copyBodyToResponse()` 를 호출해야만 캐시에 저장된 응답 본문을 클라이언트로 전송합니다.
 * 만약 **이 메서드를 호출하지 않으면, 클라이언트가 응답을 받지 못하는 상황이 발생**합니다.
 
@@ -555,9 +555,9 @@ MDC의 동작 방식을 간단하게 설명드리자면,
 
 이 과정을 통해, 각 요청마다 고유한 traceId가 로그에 출력됩니다.
 
-이로써, 요청 흐름을 쉽게 구분하고 문제 추적이 용이해집니다.
+이로써, 이로써 요청 흐름을 쉽게 구분하고, 문제를 효과적으로 추적할 수 있습니다.
 
-아래와 같이 기존 `HttpRequestAndResponseLoggingFilter` 클래스에 MDC로 `traceId`를 적용해줍니다.
+위에서 작성한 `HttpRequestAndResponseLoggingFilter` 클래스에 MDC로 `traceId`를 추가하여 구현한 코드는 아래와 같습니다.
 
 ```java
 public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
@@ -669,12 +669,12 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 이번 글에서는 Spring Boot 환경에서 요청과 응답을 로깅하는 필터를 적용하고, traceId를 활용해 멀티쓰레드 환경에서도 요청 흐름을 구분하는 방법을 정리했습니다.
 
-처음에는 Filter와 HandlerInterceptor의 차이를 이해하는 것부터 시작해, ContentCachingWrapper를 이용한 요청/응답 본문 로깅, 대용량 데이터 처리 시 주의사항, 그리고 MDC를 활용한 traceId 설정까지 순차적으로 정리했습니다. 이 과정을 통해 요청별로 로그를 구분하고, Kibana나 Grafana 같은 모니터링 도구에서도 쉽게 추적할 수 있는 구조를 마련할 수 있었습니다.
+처음에는 Filter와 HandlerInterceptor의 차이를 이해하는 것부터 시작해, ContentCachingWrapper를 이용한 요청/응답 본문 로깅, 대용량 데이터 처리 시 주의사항, 그리고 MDC를 활용한 traceId 설정까지 순차적으로 정리했습니다.
+이 과정을 통해 요청별로 로그를 구분하고, Kibana나 Grafana와 같은 모니터링 도구를 통해서도 쉽게 추적할 수 있는 구조를 마련했습니다.
 
 저 역시 처음 이 작업을 시작할 때는 관련 개념들이 생소하게 느껴졌지만, 내부 동작을 하나씩 파악하고 적용해보면서 많은 것을 배울 수 있었습니다.
 
-다음 포스팅에서는 userId와 같은 사용자 식별 정보를 로그에 포함하는 방식이나, 
-
+다음 포스팅에서는 userId와 같은 사용자 식별 정보를 로그에 포함하는 방식이나,
 Sentry, Grafana 같은 외부 모니터링 도구와 연동하는 방법을 소개할 예정입니다.
 
 지금까지 읽어주셔서 감사합니다.
