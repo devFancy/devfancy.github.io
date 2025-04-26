@@ -9,19 +9,28 @@ author: devFancy
 
 ## Prologue
 
-이번 포스팅에서는 Spring Boot 프로젝트에서 HTTP 요청과 응답을 효과적으로 로깅하고, 
-멀티쓰레드 환경에서 요청 흐름을 명확히 추적할 수 있도록 traceId를 활용하는 방법을 소개합니다. 
+이번 포스팅에서는 Spring Boot 프로젝트에서 HTTP 요청과 응답을 효과적으로 로깅하고,
+멀티쓰레드 환경에서 요청 흐름을 명확히 추적할 수 있도록 `traceId` 를 활용하는 방법을 소개합니다.
 
-특히, 실무에서 적용한 내용을 중심으로 프로덕션 환경에서도 적용 가능한 실용적인 예제를 제공합니다.
+* 단일 서비스에서는 `requestId` 로 요청을 구분하고,
+* 분산 시스템(마이크로서비스) 에서는 `traceId` 로 전체 요청 흐름을 추적합니다.
 
+본문에서는 단일 서비스 기준으로 `traceId` 를 적용하지만,
+향후 분산 시스템에서도 확장 가능한 구조를 제공합니다.
+
+특히, 실무에 적용한 내용을 중심으로 프로덕션 환경에서도 활용 가능한 실용적인 예제를 설명합니다.
 
 ### 예상 독자
 
-* Spring Boot 프로젝트에 Logging Filter를 적용하는 분
+* Spring Boot 프로젝트에 Logging Filter를 적용하고자 하는 분
 
-* Filter와 HandlerInterceptor 차이점에 대해 간단히 알고자 하는 분
+* Filter와 HandlerInterceptor의 차이점을 알고 싶은 분
 
-* OncePerRequestFilter 에 대한 동작 원리와 왜 사용하는지 궁금해 하는 분
+* OncePerRequestFilter의 동작 원리와 사용 이유가 궁금한 분
+
+* 멀티쓰레드 환경에서 로그가 뒤섞이는 문제를 해결하고 싶은 분
+
+* 프로덕션 환경에 바로 적용 가능한 실용적인 예제를 찾는 분
 
 > 관련 포스팅
 
@@ -519,31 +528,36 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 ## 멀티쓰레드 환경에서 request 식별자 필요성
 
-지금까지는 각 request 마다 HTTP 요청/응답 본문을 로깅하는 작업을 진행했습니다.
-하지만, 이 상태에서는 request 을 구분할 식별자가 로그에 포함되지 않아, 멀티쓰레드 환경에서 로그가 뒤섞이는 문제가 발생할 수 있습니다.
+지금까지는 각 request마다 HTTP 요청/응답 본문을 로깅하는 작업을 진행했습니다.
+하지만 이 상태에서는 요청을 구분할 식별자가 로그에 포함되지 않아, 멀티쓰레드 환경에서는 서로 다른 요청의 로그가 뒤섞이는 문제가 발생할 수 있습니다.
 
 > 왜 request 식별자가 필요한가?
 
-Spring Boot는 **멀티쓰레드** 기반으로 요청을 처리합니다.
-겉보기에는 동시에 처리되는 것처럼 보이지만, 실제로는 운영체제(OS)가 컨텍스트 스위칭을 통해 여러 쓰레드를 번갈아가며 실행합니다.
+Spring Boot는 **멀티쓰레드** 기반으로 요청을 처리하며, 
+운영체제(OS)는 컨텍스트 스위칭을 통해 여러 쓰레드를 번갈아가며 실행합니다.
 
-이 때문에 여러 요청이 **동시에** 들어올 때  서로 다른 요청의 로그가 섞여 출력될 수 있습니다.
+이 때문에 여러 요청이 **동시에** 들어올 때, 서로 다른 요청의 로그가 섞여 출력될 수 있습니다.
 
-이를 방지하고 요청 흐름을 명확히 구분하기 위해서는 각 요청마다 **고유한 식별자**(예: traceId, requestId 등)를 로그에 남기는 것이 필수적입니다.
+이를 방지하고 요청 흐름을 명확히 구분하기 위해서는 각 요청마다 **고유한 식별자** 를 로그에 남기는 것이 필수적입니다.
 
-이렇게 하면 추후 Kibana나 Grafana 같은 모니터링 툴에서 로그를 검색할 때도 유용하게 활용할 수 있습니다.
+> requestId vs traceId
 
-> traceId, requestId가 중요한 이유
+requestId와 traceId의 역할은 아래와 같습니다.
 
-분산 시스템(마이크로서비스)에서는 하나의 요청이 여러 서비스를 거치며 처리되는데, 이때 traceId를 사용해 전체 흐름을 추적할 수 있습니다.
+* `requestId`: 단일 서비스에서 요청을 구분하는 식별자.
 
-모니터링 툴(Kibana, Grafana 등)에서 에러 추적이나 성능 분석을 할 때도, traceId나 requestId를 기준으로 관련 로그를 쉽게 조회할 수 있습니다.
+* `traceId`: 분산 시스템(마이크로서비스) 환경에서 여러 서비스를 오가는 요청 전체 흐름을 추적하는 식별자.
 
-다음 섹션에서는 **MDC(Mapped Diagnostic Context)** 를 활용해, 요청마다 `traceId`를 자동으로 설정하고 Logback 포맷에 녹여내는 방법을 설명하겠습니다.
+이 식별자는 Kibana, Grafana와 같은 모니터링 도구에서 로그를 검색하거나 요청 흐름을 추적할 때도 유용하게 활용됩니다.
 
-(참고로, 현재 제가 속한 팀에서는 userId를 추가로 활용해, 특정 사용자의 요청 흐름을 더 쉽게 추적하고 있습니다. 
-하지만 traceId, requestId는 모든 서비스 환경에서 공통적으로 활용되므로, 이번 포스팅에서는 traceId 중심으로 구성했습니다)
+> (이번 포스팅에서는 단일 서비스 기준으로 requestId 대신 `traceId` 라는 이름을 사용하지만, 
+> 향후 분산 시스템 환경에서도 확장 가능한 구조를 제공합니다.)
 
+
+다음 섹션에서는 **MDC**(Mapped Diagnostic Context) 를 활용해
+요청마다 `traceId` 를 자동으로 설정하고, 이를 Logback 포맷에 적용하는 방법을 설명하겠습니다.
+
+(참고로, 현재 제가 속한 팀에서는 userId를 추가로 활용해 특정 사용자의 요청 흐름을 더 쉽게 추적하고 있습니다.)
 
 ## MDC로 traceId 설정 및 적용
 
@@ -561,15 +575,17 @@ MDC는 ThreadLocal과 유사하게 현재 실행 중인 쓰레드에만 국한�
 
 MDC의 동작 방식을 간단하게 설명드리자면,
 
-* MDC에 식별자(traceId 등)를 저장합니다. (예시. `MDC.put("traceId", "1234-5678-qwer")`)
+(이번 포스팅에서는 단일 서비스 기준으로 requestId 대신 traceId라는 이름을 사용했습니다.)
+
+* MDC에 traceId(requestId 역할)를 저장합니다.(예시. `MDC.put("traceId", "1234-5678-qwer")`)
 
 * 그리고 logback.xml 과 같은 로그 포맷에서 `%X{traceId}` 와 같은 형태로 MDC 값을 가져와 출력합니다.
 
 * 요청 처리가 완료되면 메모리 누수 방지를 위해 해당 MDC를 제거합니다. (예시. `MDC.remove(TRACE_ID)`)
 
-이 과정을 통해, 각 요청마다 고유한 traceId가 로그에 출력됩니다.
+이 과정을 통해, 각 요청마다 고유한 traceId가 로그에 출력되며, 멀티쓰레드 환경에서도 로그가 뒤섞이지 않고 요청 흐름을 명확히 추적할 수 있습니다.
 
-이로써, 이로써 요청 흐름을 쉽게 구분하고, 문제를 효과적으로 추적할 수 있습니다.
+이로써 요청 흐름을 쉽게 구분하고, 문제를 효과적으로 추적할 수 있습니다.
 
 위에서 작성한 `HttpRequestAndResponseLoggingFilter` 클래스에 MDC로 `traceId`를 추가하여 구현한 코드는 아래와 같습니다.
 
@@ -618,7 +634,7 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <!-- traceId 적용 -->
+            <!-- traceId 적용 (현재는 단일 서비스 기준으로 requestId 역할, 분산 시스템에서는 traceId + spanId 구조로 확장 가능) -->
             <pattern>%clr(%d{HH:mm:ss.SSS}){faint}|%clr(${level:-%5p})|%32X{traceId:-},%16X{spanId:-}|%clr(%-40.40logger{39}){cyan}%clr(|){faint}%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>
             <charset>utf8</charset>
         </encoder>
