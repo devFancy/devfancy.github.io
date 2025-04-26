@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 2편. Spring Boot에서 요청 흐름 추적: Logging Filter와 traceId 적용기 "
+title:  " 2편. Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기 "
 categories: SpringBoot
 author: devFancy
 ---
@@ -9,9 +9,19 @@ author: devFancy
 
 ## Prologue
 
-이번 글에서는 실무에서 적용한 **Logging Filter** 와 관련된 개념을 정리하고,
+이번 포스팅에서는 Spring Boot 프로젝트에서 HTTP 요청과 응답을 효과적으로 로깅하고, 
+멀티쓰레드 환경에서 요청 흐름을 명확히 추적할 수 있도록 traceId를 활용하는 방법을 소개합니다. 
 
-Spring Boot 프로젝트에 이를 적용한 실제 사례를 공유합니다.
+특히, 실무에서 적용한 내용을 중심으로 프로덕션 환경에서도 적용 가능한 실용적인 예제를 제공합니다.
+
+
+### 예상 독자
+
+* Spring Boot 프로젝트에 Logging Filter를 적용하는 분
+
+* Filter와 HandlerInterceptor 차이점에 대해 간단히 알고자 하는 분
+
+* OncePerRequestFilter 에 대한 동작 원리와 왜 사용하는지 궁금해 하는 분
 
 > 관련 포스팅
 
@@ -107,6 +117,8 @@ HandlerInterceptor 는 다음과 같은 경우 사용합니다.
 > 이 글에서 다루는 모든 코드는 [깃허브](https://github.com/devFancy/kotlin-java-playground/tree/main/springboot-java-practice)에서 확인하실 수 있습니다.
 >
 > filter 코드 관련 패키지 경로: dev.be.core.api.support.filter
+> 
+> (추가 - 2025.04.26) 시간이 지남에 따라 해당 코드가 변경될 수 있습니다.
 
 * Spring Boot 3.2.5
 * Java 21
@@ -202,8 +214,6 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 ### OncePerRequestFilter
 
-> 해당 클래스에 대한 자세한 설명은 [공식 문서](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/filter/OncePerRequestFilter.html)를 참고해 주시기 바랍니다.
-
 Spring에서 필터를 적용할 때 요청(Request)이 여러 번 디스패치(Dispatch) 되는 경우가 있습니다.
 
 특히, **비동기(Async)**나 에러(Error) 처리가 발생하면 필터가 중복 실행될 수 있습니다.
@@ -219,6 +229,8 @@ Spring에서 필터를 적용할 때 요청(Request)이 여러 번 디스패치(
 
 
 > OncePerRequestFilter.class (Java 17 기준) - 핵심 동작 코드
+
+> 해당 클래스에 대한 자세한 설명은 [공식 문서](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/filter/OncePerRequestFilter.html)를 참고해 주시기 바랍니다.
 
 ```java
 public abstract class OncePerRequestFilter extends GenericFilterBean {
@@ -490,6 +502,8 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 ### Logging 출력 예시
 
+> Swagger url: `http://localhost:8080/service-docs.html`
+
 해당 SpringBoot Application 을 실행한 뒤, controller 패키지에 있는 `HealthController` 클래스에 있는 api 를 호출하면 아래와 같이 출력되는 것을 확인할 수 있습니다.
 
 - [GET] url: `http://localhost:8080/api/health`
@@ -674,8 +688,8 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 저 역시 처음 이 작업을 시작할 때는 관련 개념들이 생소하게 느껴졌지만, 내부 동작을 하나씩 파악하고 적용해보면서 많은 것을 배울 수 있었습니다.
 
-다음 포스팅에서는 userId와 같은 사용자 식별 정보를 로그에 포함하는 방식이나,
-Sentry, Grafana 같은 외부 모니터링 도구와 연동하는 방법을 소개할 예정입니다.
+다음 포스팅에서는 userId와 같은 사용자 식별 정보를 로깅하는 방법,
+그리고 Sentry, Grafana와의 연동을 통해 알림 및 대시보드를 구성하는 방법을 소개할 예정입니다.
 
 지금까지 읽어주셔서 감사합니다.
 
