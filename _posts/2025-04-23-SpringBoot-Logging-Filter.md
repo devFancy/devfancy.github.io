@@ -12,11 +12,11 @@ author: devFancy
 이번 포스팅에서는 Spring Boot 프로젝트에서 HTTP 요청과 응답을 효과적으로 로깅하고,
 멀티쓰레드 환경에서 요청 흐름을 명확히 추적할 수 있도록 `traceId` 를 활용하는 방법을 소개합니다.
 
+일반적으로
 * 단일 서비스에서는 `requestId` 로 요청을 구분하고,
 * 분산 시스템(마이크로서비스) 에서는 `traceId` 로 전체 요청 흐름을 추적합니다.
 
-본문에서는 단일 서비스 기준으로 `traceId` 를 적용하지만,
-향후 분산 시스템에서도 확장 가능한 구조를 제공합니다.
+이 글에서는 단일 서비스 환경을 다루지만, 초기부터 `traceId`를 적용하여 향후 분산 시스템에서도 확장 가능한 구조를 제공합니다.
 
 특히, 실무에 적용한 내용을 중심으로 프로덕션 환경에서도 활용 가능한 실용적인 예제를 설명합니다.
 
@@ -550,9 +550,8 @@ requestId와 traceId의 역할은 아래와 같습니다.
 
 이 식별자는 Kibana, Grafana와 같은 모니터링 도구에서 로그를 검색하거나 요청 흐름을 추적할 때도 유용하게 활용됩니다.
 
-> (이번 포스팅에서는 단일 서비스 기준으로 requestId 대신 `traceId` 라는 이름을 사용하지만, 
-> 향후 분산 시스템 환경에서도 확장 가능한 구조를 제공합니다.)
-
+> (이번 포스팅에서는 단일 서비스 기준에서는 흔히 `requestId`를 사용하지만, 본 포스팅에서는 분산 추적 확장을 고려해 `traceId` 라는 용어를 사용합니다.
+> 향후 Spring Cloud Sleuth 등을 도입할 경우 `traceId`, `spanId`로 자연스럽게 확장 가능합니다.
 
 다음 섹션에서는 **MDC**(Mapped Diagnostic Context) 를 활용해
 요청마다 `traceId` 를 자동으로 설정하고, 이를 Logback 포맷에 적용하는 방법을 설명하겠습니다.
@@ -575,7 +574,7 @@ MDC는 ThreadLocal과 유사하게 현재 실행 중인 쓰레드에만 국한�
 
 MDC의 동작 방식을 간단하게 설명드리자면,
 
-(이번 포스팅에서는 단일 서비스 기준으로 requestId 대신 traceId라는 이름을 사용했습니다.)
+(이번 포스팅에서는 단일 서비스 기준으로 `requestId` 대신 `traceId` 라는 이름을 사용했습니다.)
 
 * MDC에 traceId(requestId 역할)를 저장합니다.(예시. `MDC.put("traceId", "1234-5678-qwer")`)
 
@@ -620,6 +619,9 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
     }
 }
 ```
+
+> 참고: `MDC`는 단일 JVM 내에서만 컨텍스트를 유지하므로, 외부 API 통신이 많은 분산 환경 시 traceId 가 전파되지 않습니다.
+> 이런 분산 환경에서는 Spring Cloud Sleuth 를 도입해 traceId/spanId를 자동으로 생성하고 서비스 간에 전파할 수 있습니다.
 
 ## logback.xml 에 traceId 설정
 
