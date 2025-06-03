@@ -60,6 +60,8 @@ support/
 └── common                  # 공통 예외 처리, API 응답 구조 등
 ```
 
+![](/assets/img/coupon/coupon-system-design-multi-module.png)
+
 이번 포스팅에서 다루는 분산락 개선은 주로 `coupon-api` 모듈 내에서 이루어졌습니다.
 
 이러한 구조적 배경 위에서, 다음으로 쿠폰 발급 전체 시스템 흐름과 그 안에서 분산락이 수행하는 역할에 대해 살펴보겠습니다.
