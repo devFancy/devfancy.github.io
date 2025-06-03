@@ -171,7 +171,7 @@ public record HttpLogMessage(
 
 그런 다음,  요청(Request)과 응답(Response)을 로깅하는 Filter 클래스를 아래와 같이 구현했습니다.
 
-> RequestAndResponseLoggingFilter.class
+> RequestAndResponseLoggingFilter.java
 
 ```java
 @Component
@@ -484,7 +484,7 @@ protected void doFilterInternal(@NonNull HttpServletRequest request,
 `HttpRequestAndResponseLoggingFilter` 에서는 요청(Request)과 응답(Response)을 아래와 같은 고정된 포맷으로 출력합니다.
 (Logging 포맷 형식의 경우는 개발자 마음이기 때문에 아래 방식 외에 본인이 원하는 방식으로 적용하셔도 됩니다)
 
-> HttpRequestAndResponseLoggingFilter.class - toPrettierLog 메서드
+> HttpRequestAndResponseLoggingFilter.java - toPrettierLog 메서드
 
 ```java
 @Component
@@ -706,8 +706,7 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 저 역시 처음 이 작업을 시작할 때는 관련 개념들이 생소하게 느껴졌지만, 내부 동작을 하나씩 파악하고 적용해보면서 많은 것을 배울 수 있었습니다.
 
-다음 포스팅에서는 userId와 같은 사용자 식별 정보를 로깅하는 방법,
-그리고 Sentry, Grafana와의 연동을 통해 알림 및 대시보드를 구성하는 방법을 소개할 예정입니다.
+(나중에) 다음 포스팅에서는 Sentry, Grafana 와의 연동을 통해 알림 및 대시보드를 구성하는 방법을 소개할 예정입니다.
 
 지금까지 읽어주셔서 감사합니다.
 
