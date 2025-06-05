@@ -402,7 +402,7 @@ public class CustomSpringELParser {
 public class CouponIssueService {
     // ... 생략 ...
 
-    @DistributedLock(key = "'couponIssue:' + #command.couponId() + ':' + #command.userId()", waitTime = 5, leaseTime = 3)
+    @DistributedLock(key = "'couponIssue:' + #command.couponId() + ':' + #command.userId()", waitTime = 5, leaseTime = 30)
     @Transactional // DB 트랜잭션과 함께 사용
     public CouponIssueResult issue(final CouponIssueCommand command) {
         // ... 순수한 쿠폰 발급 비즈니스 로직 ...
@@ -490,6 +490,21 @@ Kafka Consumer 서버에서는 API 서버에서 전송한 `CouponIssueMessage`�
 분산락을 Redisson `RLock`과 Spring AOP 방식으로 개선한 이후, 시스템의 성능 지표를 분석했습니다. 특히, 기존 `SETNX` 방식과 비교하여 Redisson 도입으로 인한 영향도를 파악하는 데 중점을 두었습니다.
 
 부하 테스트 도구로는 K6를 사용했고, 모니터링 도구로는 Prometheus와 Grafana를 활용하여 주요 지표를 추려서 테스트를 진행했습니다.
+
+> 모니터링 도구에 대한 내용은 아래 링크와 같이 공식 문서를 참고했습니다.
+
+* [공식문서 - Prometheus](https://prometheus.io/docs/introduction/overview/)
+
+  * [공식문서 - prometheus 지표수집](https://prometheus.github.io/client_java/getting-started/metric-types/#counter)
+
+* [공식문서 - Grafana](https://grafana.com/docs/grafana/latest/)
+
+  * [grafana - datasource](https://grafana.com/docs/grafana/latest/datasources/)
+
+  * [grafana - dashboard](https://grafana.com/docs/grafana/latest/dashboards/)
+
+  * [grafana - alerting](https://grafana.com/docs/grafana/latest/alerting/#grafana-alerting)
+
 
 ### Before: SETNX 방식
 
