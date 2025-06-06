@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " 2편. Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기 "
-categories: SpringBoot
+categories: [SpringBoot, Technology]
 author: devFancy
 ---
 * content
@@ -706,7 +706,9 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 저 역시 처음 이 작업을 시작할 때는 관련 개념들이 생소하게 느껴졌지만, 내부 동작을 하나씩 파악하고 적용해보면서 많은 것을 배울 수 있었습니다.
 
-(나중에) 다음 포스팅에서는 Sentry, Grafana 와의 연동을 통해 알림 및 대시보드를 구성하는 방법을 소개할 예정입니다.
+이번 글에서 traceId로 개별 요청의 흐름을 추적할 수 있게 되었다면, 
+다음 포스팅에서는 한 걸음 더 나아가 Prometheus와 Grafana를 연동하여 
+애플리케이션의 전반적인 성능 상태를 한눈에 파악하는 모니터링 대시보드를 구축하는 방법을 다루어보겠습니다.
 
 지금까지 읽어주셔서 감사합니다.
 

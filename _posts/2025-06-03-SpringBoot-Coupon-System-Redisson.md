@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " 쿠폰 시스템 개선기: SETNX에서 Redisson RLock과 AOP를 활용한 분산락 적용 "
-categories: Side_Project
+categories: [SpringBoot, Technology]
 author: devFancy
 ---
 * content
@@ -15,14 +15,12 @@ author: devFancy
 
 본 글에서는 이러한 점들을 개선하기 위해 Redisson의 `RLock`과 Spring AOP를 도입하여, 비즈니스 로직과 락킹 로직을 분리하고 보다 안정적이며 재사용 가능한 분산락 코드를 작성한 과정을 상세히 설명드리겠습니다. 현재는 Redis 단일 인스턴스 환경을 기준으로 설명하며, 고가용성 환경으로의 확장은 향후 과제로 남겨두었습니다.
 
-> `참고`: 본 글에서 소개되는 코드 예시는 현재 시점의 구현을 바탕으로 작성되었으며, 프로젝트가 발전함에 따라 내용이 변경되거나 개선될 수 있음을 미리 알려드립니다.
-> 
-> 이 글에서 다루는 모든 코드는 [깃허브](https://github.com/devFancy/springboot-coupon-system)에서 확인하실 수 있습니다.
-
 
 ---
 
 ### 예상 독자
+
+이 글은 아래에 해당하는 분들께 도움이 될 것입니다.
 
 * Redis 환경에서 `SETNX`를 직접 사용하여 분산락을 구현하며 불편함을 느끼셨던 분
 
@@ -31,6 +29,10 @@ author: devFancy
 * Redisson의 `RLock`을 이용한 분산락 구현 방법에 관심 있으신 분
 
 * 보다 깔끔하고 안정적인 분산락 코드를 작성하고자 하시는 분
+
+> `참고`: 본 글에서 소개되는 코드 예시는 현재 시점의 구현을 바탕으로 작성되었으며, 프로젝트가 발전함에 따라 내용이 변경되거나 개선될 수 있음을 미리 알려드립니다.
+>
+> 이 글에서 다루는 모든 코드는 [깃허브](https://github.com/devFancy/springboot-coupon-system)에서 확인하실 수 있습니다.
 
 ---
 
