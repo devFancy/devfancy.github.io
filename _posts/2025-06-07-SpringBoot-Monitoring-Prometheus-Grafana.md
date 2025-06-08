@@ -11,7 +11,7 @@ author: devFancy
 
 이번 포스팅에서는 성능 테스트와 시스템 운영 환경에서 어떤 지표를 주시해야 하는지, 그리고 Spring Boot 환경에서 Prometheus와 Grafana를 활용해 직접 모니터링 환경을 구축한 경험을 공유하고자 합니다.
 
-결국 빠른 응답 시간은 사용자 이탈률을 낮추고, 안정적인 시스템은 비즈니스 신뢰도를 높이기 때문에, 이러한 지표를 꾸준히 관찰하고 개선하는 것은 중요하다고 생각합니다.
+빠른 응답 시간은 사용자 이탈률을 낮추고, 안정적인 시스템은 비즈니스 신뢰도를 높입니다. 그렇기 때문에 이러한 지표를 꾸준히 관찰하고 개선하는 것은 매우 중요하다고 생각합니다.
 
 이전 포스팅이었던 “[2편. Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기](https://devfancy.github.io/SpringBoot-Logging-Filter/)”에 이어, 이번 글에서는 3편을 작성해보고자 합니다.
 
@@ -231,11 +231,19 @@ Grafana는 Prometheus가 수집한 데이터를 가장 효과적으로 보여주
 
 ### 전체 아키텍처 한눈에 보기
 
-[Spring Boot App] -> [Prometheus Scrapes] -> [Grafana Visualizes] -> [Developer]
+![](/assets/img/technology/technology-archtecture-springboot-prometheus-grafana.png)
 
-(그림)
+위 아키텍처의 동작 흐름을 간단히 정리하면 다음과 같습니다.
 
-먼저 구성한 모니터링 관련 디렉토리 구조 및 파일 위치는 다음과 같습니다.
+* 먼저 Spring Boot 애플리케이션 서버는 `Actuator` 를 통해 자신의 상태 메트릭을 `/actuator/prometheus` 엔드포인트에 노출합니다.
+
+* 그 다음, Prometheus 서버는 주기적으로 이 엔드포인트에 방문하여 메트릭을 수집(Scrape)하고 자신의 시계열 데이터베이스에 저장합니다.
+
+* 마지막으로, Grafana 서버는 Prometheus를 데이터 소스로 사용하여, 저장된 메트릭 데이터를 쿼리(Query)해와서 사용자가 볼 수 있는 대시보드로 시각화합니다.
+
+결국 전체 데이터의 흐름은 **애플리케이션 -> Prometheus (수집/저장) -> Grafana (조회/시각화)** 순서로 이루어집니다.
+
+이러한 아키텍처를 구현하기 위해, 프로젝트의 모니터링 관련 디렉토리 구조는 다음과 같이 구성했습니다.
 
 ```yaml
 ├── infra
