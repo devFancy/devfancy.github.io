@@ -405,7 +405,6 @@ public class CouponIssueService {
     // ... 생략 ...
 
     @DistributedLock(key = "'couponIssue:' + #command.couponId() + ':' + #command.userId()", waitTime = 5, leaseTime = 30)
-    @Transactional // DB 트랜잭션과 함께 사용
     public CouponIssueResult issue(final CouponIssueCommand command) {
         // ... 순수한 쿠폰 발급 비즈니스 로직 ...
     }
@@ -445,7 +444,7 @@ INFO| , |d.b.c.a.c.i.redis.config.RedisConfig    |Redisson Client 생성 성공
 INFO| , |d.b.c.a.c.i.redis.config.RedisConfig    |couponRedisTemplate 빈 생성 완료
 INFO| , |dev.be.coupon.CouponApplication         |Started CouponApplication in 4.752 seconds (process running for 5.087)
 
-# --- 단일 쿠폰 발급 요청 처리 시작 (traceId: {traceId}) ---
+# --- 단일 쿠폰 발급 요청 처리 시작 ---
 
 DEBUG|{TraceId},{SpanId}|d.b.c.a.c.i.r.aop.DistributedLockAop    |락 획득 시도: 키='LOCK:coupon:{couponId}:{userId}', 대기시간=5s, 임대시간=30s
 INFO|{TraceId},{SpanId}|d.b.c.a.c.i.r.aop.DistributedLockAop    |락 획득 성공: 키='LOCK:coupon:{couponId}:{userId}'
@@ -482,7 +481,18 @@ INFO|{TraceId},{SpanId}|d.b.c.k.c.a.CouponIssueConsumer         |쿠폰 발급 �
 Kafka Consumer 서버에서는 API 서버에서 전송한 `CouponIssueMessage`를 수신하고(`발급 처리 메시지 수신`), 
 최종적으로 쿠폰 발급을 완료합니다(`쿠폰 발급 완료`). 
 
-여기서 `traceId`는 API 서버에서 전달된 것과 동일하게 유지되어, 분산 시스템 내에서 **단일 요청의 전체 흐름을 손쉽게 추적**할 수 있습니다.
+여기서 `traceId`는 API 서버의 {TraceId}와는 다른, 새로운 {NewTraceId}가 기록됩니다.
+그 이유는 Consumer가 메시지를 **비동기적으로, 그리고 별도의 트랜잭션**(`@Transactional(propagation = Propagation.REQUIRES_NEW)`)으로 처리하기 때문입니다. 
+이렇게 프로세스와 실행 컨텍스트가 완전히 분리되면 기존의 `traceId`가 자동으로 전파되지 않고 새로운 추적이 시작됩니다.
+
+이처럼 비동기 경계로 단절된 흐름을 하나의 요청으로 묶어 추적하기 위해, 
+실무에서는 **별도의 전역 추적 ID(예: `GlobalTraceId`)를 Kafka 메시지 헤더 등에 담아 명시적으로 전파하는 패턴**을 사용합니다. 
+
+이를 통해 비록 시스템 내부의 `traceId`는 다르더라도, 사용자의 최초 요청부터 최종 처리까지의 전체 여정을 쉽게 파악할 수 있습니다.
+
+> 2025.06.18 업로드
+
+* 관련 포스팅: [분산 시스템에서 MDC를 이용한 분산 추적: GlobalTraceId 적용](https://devfancy.github.io/SpringBoot-Distributed-Tracing-With-MDC/)
 
 
 ---
