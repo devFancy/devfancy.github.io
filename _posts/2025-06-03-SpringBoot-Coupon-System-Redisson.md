@@ -526,7 +526,7 @@ Kafka Consumer 서버에서는 API 서버에서 전송한 `CouponIssueMessage`�
 - Average Response Time (ms): 25ms
 - 5xx Error Rate (%): 0%
 
-![](/assets/img/coupon/coupon-issue-system-Grafana-API-Server-After.png)
+![](/assets/img/coupon/coupon-issue-system-Grafana-API-Server-Before.png)
 
 > Grafana - Kafka Consumer Server
 
@@ -534,7 +534,7 @@ Kafka Consumer 서버에서는 API 서버에서 전송한 `CouponIssueMessage`�
 - Kafka Listener Processing Time (ms): avg  6ms
 - Kafka Listener Max Processing Time (ms): avg  200ms
 
-![](/assets/img/coupon/coupon-issue-system-Grafana-Kafka-Consumer-Server-After.png)
+![](/assets/img/coupon/coupon-issue-system-Grafana-Kafka-Consumer-Server-Before.png)
 
 
 ### Redisson RLock 및 AOP 도입 후
