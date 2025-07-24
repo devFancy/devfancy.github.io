@@ -132,6 +132,10 @@ public class KafkaProducerConfig {
 
 이렇게 설정된 `ProducerFactory`를 기반으로 `KafkaTemplate`을 생성(Bean으로 등록)하면, 이제 애플리케이션 어디서든 `KafkaTemplate`을 주입받아 간편하게 메시지를 전송할 수 있다.
 
+위 코드는 프로듀서를 동작시키기 위한 가장 기본적인 설정이다.
+
+하지만 실제 운영 환경에서는 메시지 유실이나 중복을 방지하기 위해 더 많은 옵션을 고려해야 한다. 
+이어지는 '프로듀서 설정하기' 섹션에서 이러한 세부 옵션들을 알아보고, 글의 마지막에서 이 모든 것을 종합한 최종 설정 예시를 다시 살펴보자.
 
 ## 메시지 전송 방법
 
@@ -406,7 +410,10 @@ public class CouponIssueScheduler {
 
 이러한 설정들은 프로듀서의 전반적인 동작에 큰 영향을 미치므로, 애플리케이션의 요구사항과 카프카 클러스터의 환경에 맞춰 신중하게 조정해야 한다.
 
-> KafkaProducerConfig.java (세부 옵션 포함)
+아래는 필수 옵션을 포함하여 지금까지 살펴본 acks, enable.idempotence, 재시도, 타임아웃 등 여러 옵션을 종합하여, 
+앞서 봤던 기본 설정을 실무 수준의 안정적인 프로듀서 설정으로 발전시키면 아래와 같다.
+
+> KafkaProducerConfig.java (세부 옵션을 포함한 `최종 설정 예시`)
 
 ```java
 @Configuration
@@ -425,8 +432,15 @@ public class KafkaProducerConfig {
         // acks=all: 가장 높은 신뢰성을 보장하며, 메시지 유실을 방지한다.
         config.put(ProducerConfig.ACKS_CONFIG, "all");
 
-        // 재시도 횟수: 일시적인 네트워크 문제나 브로커 장애 시 메시지를 재전송할 최대 횟수이다.
-        config.put(ProducerConfig.RETRIES_CONFIG, 3);
+        // [중요] 멱등성 활성화 (Exactly-Once Semantics 에 가까운 효과)
+        // 이 옵션을 true로 설정하면, 프로듀서는 메시지 중복을 방지하기 위해
+        // 내부적으로 acks=all, retries=Integer.MAX_VALUE 등을 강제한다.
+        // 따라서 실질적인 재시도 제어는 'delivery.timeout.ms'가 담당하게 된다.
+        config.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+        
+        // 재시도 횟수: 일시적인 네트워크 문제나 브로커 장애 시 메시지를 재전송할 최대 횟수이다
+        // 멱등성 옵션이 활성화되면 이 설정은 무시되고, 내부적으로 Integer.MAX_VALUE로 설정되므로 주석 처리한다.
+        //config.put(ProducerConfig.RETRIES_CONFIG, 3);
 
         // 재시도 사이의 대기 시간
         // 재시도 간 지연 시간을 주어 브로커가 복구되거나 부하가 줄어들 시간을 벌어준다.
@@ -435,12 +449,7 @@ public class KafkaProducerConfig {
         // 프로듀서가 전송을 시도하는 총 시간 (재시도 포함)
         // 메시지가 전송 대기열에 추가된 순간부터 브로커로부터 최종 응답을 받거나 실패할 때까지의
         // 최대 시간이다. 이 시간 안에 전송이 완료되지 않으면 실패로 간주된다.
-        config.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000); // 120초 (2분)
-
-        // 멱등성 활성화 (Exactly-Once Semantics 에 가까운 효과)
-        // enable.idempotence=true 설정 시, 카프카는 내부적으로 acks=all, retries=Integer.MAX_VALUE,
-        // max.in.flight.requests.per.connection=5 이하를 강제하여 메시지 중복을 방지하고 높은 신뢰도를 보장한다.
-        config.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
+        config.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000); // 120초
 
         // 배치 처리 설정: 메시지 전송 효율을 높이기 위해 여러 메시지를 모아 배치로 전송한다.
         config.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384); // 16KB
@@ -463,3 +472,87 @@ public class KafkaProducerConfig {
 위 예시 코드는 프로듀서의 필수 설정과 함께, 메시지 전송의 신뢰성, 성능, 그리고 타임아웃 및 재시도와 관련된 세부 옵션들을 어떻게 설정하는지 보여준다. 
 
 이 설정들은 앞서 "프로듀서 설정하기" 섹션에서 설명한 내용과 직접적으로 연관된다.
+
+위 코드에서 `RETRIES_CONFIG` 를 주석 처리한 이유가 중요하다. 이 부분은 아래 테스트 코드를 통해 자세히 살펴보자.
+
+### 테스트코드로 검증하기
+
+#### 1. 잘못된 가정과 첫 번째 테스트
+
+만약 우리가 `enable.idempotence=true`와 `retries=3`을 동시에 설정했다면, 어떤 일이 벌어질까? 
+
+아래는 이 상태를 검증하는 초기 테스트 코드다.
+
+> KafkaProducerConfigTest.java (초기 가정 테스트)
+
+```java
+class KafkaProducerConfigTest {
+    @Test
+    @DisplayName("초기 프로듀서 설정값을 확인한다")
+    void check_initial_producer_configurations() {
+      // given
+      // KafkaProducerConfig에 retries=3 설정이 살아있다고 가정
+      KafkaProducerConfig config = new KafkaProducerConfig();
+      ProducerFactory<String, Object> producerFactory = config.producerFactory();
+  
+      // when
+      Map<String, Object> configs = producerFactory.getConfigurationProperties();
+  
+      // then
+      assertThat(configs.get(ProducerConfig.RETRIES_CONFIG)).isEqualTo(3); // 테스트 통과
+      assertThat(configs.get(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG)).isEqualTo(true);
+    }
+}
+```
+
+![](/assets/img/kafka/Kafka-Producer-Test-1.png)
+
+놀랍게도 이 테스트는 성공한다. 여기서 "멱등성이 켜지면 `retries`가 `Integer.MAX_VALUE`로 강제된다고 했는데 왜 테스트는 통과하지?" 라는 의문이 생긴다.
+
+그 이유는 이 테스트가 '실제 동작하는 클라이언트'가 아닌, Spring의 `ProducerFactory`가 보관 중인 **'원본 설정값'** 을 확인하기 때문이다. 
+
+실제 `KafkaProducer` 클라이언트가 생성되는 순간에는 이 `retries` 값이 **내부적으로 재정의(override)된다. **
+
+이처럼 테스트 결과와 실제 동작이 달라 혼동을 줄 수 있다.
+
+
+#### 2. 설정 코드 리팩토링과 최종 테스트
+
+이러한 혼란을 없애고 코드의 의도를 명확히 하기 위해, 우리는 `KafkaProducerConfig`의 `retries` 설정을 주석 처리했다. 
+
+우리의 의도는 **"멱등성 옵션을 켤 것이므로, `retries`는 따로 설정하지 않고 카프카의 기본 정책에 맡긴다"** 이다.
+
+따라서 최종 테스트 코드는 `retries` 값이 `3`임을 확인하는 대신, 해당 설정이 **'없음'(null)을 확인**하는 것이 정확하다.
+
+> KafkaProducerConfigTest.java (최종 수정된 테스트)
+
+```java
+class KafkaProducerConfigTest {
+  @Test
+  @DisplayName("리팩토링된 멱등성 프로듀서 설정을 올바르게 검증한다")
+  void check_refactored_idempotent_producer_configurations() {
+    // given
+    // retries가 주석 처리된 최종 KafkaProducerConfig
+    KafkaProducerConfig config = new KafkaProducerConfig();
+    ProducerFactory<String, Object> producerFactory = config.producerFactory();
+
+    // when
+    Map<String, Object> configs = producerFactory.getConfigurationProperties();
+
+    // then
+    // 멱등성 옵션이 켜져있을 때 retries는 명시적으로 설정하지 않는 것이 올바르므로,
+    // 해당 키가 없는 것을 검증하는 것이 가장 정확하다.
+    assertThat(configs.get(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG)).isEqualTo(true);
+    assertThat(configs).doesNotContainKey(ProducerConfig.RETRIES_CONFIG);
+    assertThat(configs.size()).isEqualTo(10); // retries가 빠져 전체 설정 개수는 10개
+  }
+}
+```
+
+![](/assets/img/kafka/Kafka-Producer-Test-2.png)
+
+위의 테스트 실행 결과를 보면, `RETRIES_CONFIG` 키가 존재하지 않아 `configs` 맵의 전체 크기가 **10개**로 확인된다.
+
+이처럼 설정과 테스트를 함께 뜯어보는 과정을 통해, 프로듀서의 동작 원리를 좀 더 깊이 이해하고 코드의 의도를 명확히 다듬어볼 수 있었다.
+
+아직 완벽하게 이해할 수 있다고 보기는 어렵지만 차근차근 개념과 실무 경험을 쌓아가보자.
