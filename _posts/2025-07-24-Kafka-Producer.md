@@ -374,10 +374,21 @@ public class CouponIssueScheduler {
 
 * [4] 재시도 (`retry.backoff.ms`): `request.timeout.ms`가 초과되거나 일시적인 오류를 받으면, 프로듀서는 재시도를 수행한다. 재시도와 재시도 사이의 대기 시간이 `retry.backoff.ms`다.
 
-* [5] 최종 마감 (`delivery.timeout.ms`): 가장 중요한 마스터 타임아웃이다. 위 모든 과정(배치 대기, 전송, 재시도)은 `delivery.timeout.ms`라는 최종 마감 시간 내에 완료되어야 한다. 이 시간을 초과하면 프로듀서는 최종적으로 메시지 전송 실패를 반환한다. 그림에 나온 공식(`delivery.timeout.ms >= linger.ms + request.timeout.ms`)이 이 관계를 잘 보여준다.
+* [5] 최종 마감 (`delivery.timeout.ms`): 가장 중요한 마스터 타임아웃이다. send() 호출 이후의 모든 과정(배치 대기, 전송, 모든 재시도)은 `delivery.timeout.ms` 라는 최종 마감 시간 내에 완료되어야 한다.
+  이 시간을 초과하면 프로듀서는 최종적으로 메시지 전송 실패를 반환한다. 그림의 공식 (`delivery.timeout.ms >= linger.ms + retry.backoff.ms + request.timeout.ms`)은 이 관계를 보여주는 예시이며, 실제로는 설정된 `retries` 횟수에 따른 모든 재시도 과정을 포괄할 수 있도록 충분히 길게 설정해야 한다.
 
-(책에서는 `retries`나 `retry.backoff.ms`를 직접 세세하게 조정하기보다, **클러스터가 장애로부터 복구되는 데 걸리는 시간을 고려하여 `delivery.timeout.ms`를 충분히 길게 설정하는 것을 권장한다.** 
-`delivery.timeout.ms`만 잘 설정해두면, 그 시간 안에서 프로듀서가 알아서 최적의 재시도를 수행하기 때문이다.)
+
+> 참고 
+
+* 책에서 권장하는 더 합리적인 설정 방식은 `retries`나 `retry.backoff.ms`를 직접 계산하는 것이 아니라, **전체적인 관점에서 타임아웃을 관리하는 것이다.**
+
+* 예를 들어 "클러스터 장애 복구에 2분이 걸릴 수 있으니, 
+
+* 최대 2분까지는 기다린다"는 식으로 비즈니스 요구사항에 맞춰 `delivery.timeout.ms`를 `120000`으로 넉넉하게 설정하고,
+
+* `retries`는 기본값(사실상 무한)으로 두는 방식이다. 
+
+* 이렇게 하면 프로듀서는 주어진 최종 마감 시간 안에서 스스로 끈기 있게 재시도를 수행하므로, 개발자가 복잡한 재시도 로직을 계산할 필요가 없어진다.
 
 ### 4. 데이터 포맷 설정 (Serializer)
 
@@ -511,14 +522,14 @@ class KafkaProducerConfigTest {
 
 그 이유는 이 테스트가 '실제 동작하는 클라이언트'가 아닌, Spring의 `ProducerFactory`가 보관 중인 **'원본 설정값'** 을 확인하기 때문이다. 
 
-실제 `KafkaProducer` 클라이언트가 생성되는 순간에는 이 `retries` 값이 **내부적으로 재정의(override)된다. **
+실제 `KafkaProducer` 클라이언트가 생성되는 순간에는 이 `retries` 값이 **내부적으로 재정의(override)** 된다.
 
 이처럼 테스트 결과와 실제 동작이 달라 혼동을 줄 수 있다.
 
 
 #### 2. 설정 코드 리팩토링과 최종 테스트
 
-이러한 혼란을 없애고 코드의 의도를 명확히 하기 위해, 우리는 `KafkaProducerConfig`의 `retries` 설정을 주석 처리했다. 
+이러한 혼란을 없애고 코드의 의도를 명확히 하기 위해, `KafkaProducerConfig`의 `retries` 설정을 주석 처리했다. 
 
 우리의 의도는 **"멱등성 옵션을 켤 것이므로, `retries`는 따로 설정하지 않고 카프카의 기본 정책에 맡긴다"** 이다.
 
@@ -528,24 +539,24 @@ class KafkaProducerConfigTest {
 
 ```java
 class KafkaProducerConfigTest {
-  @Test
-  @DisplayName("리팩토링된 멱등성 프로듀서 설정을 올바르게 검증한다")
-  void check_refactored_idempotent_producer_configurations() {
-    // given
-    // retries가 주석 처리된 최종 KafkaProducerConfig
-    KafkaProducerConfig config = new KafkaProducerConfig();
-    ProducerFactory<String, Object> producerFactory = config.producerFactory();
-
-    // when
-    Map<String, Object> configs = producerFactory.getConfigurationProperties();
-
-    // then
-    // 멱등성 옵션이 켜져있을 때 retries는 명시적으로 설정하지 않는 것이 올바르므로,
-    // 해당 키가 없는 것을 검증하는 것이 가장 정확하다.
-    assertThat(configs.get(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG)).isEqualTo(true);
-    assertThat(configs).doesNotContainKey(ProducerConfig.RETRIES_CONFIG);
-    assertThat(configs.size()).isEqualTo(10); // retries가 빠져 전체 설정 개수는 10개
-  }
+    @Test
+    @DisplayName("리팩토링된 멱등성 프로듀서 설정을 올바르게 검증한다")
+    void check_refactored_idempotent_producer_configurations() {
+      // given
+      // retries가 주석 처리된 최종 KafkaProducerConfig
+      KafkaProducerConfig config = new KafkaProducerConfig();
+      ProducerFactory<String, Object> producerFactory = config.producerFactory();
+  
+      // when
+      Map<String, Object> configs = producerFactory.getConfigurationProperties();
+  
+      // then
+      // 멱등성 옵션이 켜져있을 때 retries는 명시적으로 설정하지 않는 것이 올바르므로,
+      // 해당 키가 없는 것을 검증하는 것이 가장 정확하다.
+      assertThat(configs.get(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG)).isEqualTo(true);
+      assertThat(configs).doesNotContainKey(ProducerConfig.RETRIES_CONFIG);
+      assertThat(configs.size()).isEqualTo(10); // retries가 빠져 전체 설정 개수는 10개
+    }
 }
 ```
 
