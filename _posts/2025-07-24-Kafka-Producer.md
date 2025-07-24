@@ -7,7 +7,6 @@ author: devFancy
 * content
 {:toc}
 
-
 > 이 글은 [카프카 핵심 가이드](https://product.kyobobook.co.kr/detail/S000201464167?utm_source=google&utm_medium=cpc&utm_campaign=googleSearch&gad_source=1) 책을 읽고 정리한 글입니다.
 >
 > 이 글에서 다루는 모든 코드는 [깃허브](https://github.com/devFancy/springboot-coupon-system)에서 확인하실 수 있습니다.
@@ -70,7 +69,7 @@ author: devFancy
 
   * 브로커는 메시지를 성공적으로 받으면 토픽, 파티션, 오프셋 정보가 담긴 메타데이터(Metadata)를 반환한다. 
 
-  * 만약 실패하면 에러를 반환하며, 프로듀서는 설정에 따라 몇 번 더 재전송을 시도할 수 있다.
+  * 만약 실패하면 에러를 반환하며, 프로듀서는 설정에 따라 몇 번 더 재전송을 시도한다.
 
 
 ## 프로듀서를 생성하기 위한 필수 옵션
@@ -149,7 +148,7 @@ public class KafkaProducerConfig {
 
 * 비동기 전송 (Asynchronous send)
   
-  * `send()` 메서드에 **콜백(Callback) 함수**를 함께 전달하는 방식이다. 브로커로부터 응답이 오면 미리 지정한 콜백 함수가 실행된다. **애플리케이션을 차단하지 않으면서도 전송 결과를 확실하게 처리**할 수 있어 가장 널리 사용된다.
+  * `send()` 메서드에 **콜백(Callback) 함수**를 함께 전달하는 방식이다. 브로커로부터 응답이 오면 미리 지정한 콜백 함수가 실행된다. **애플리케이션을 차단하지 않으면서도 전송 결과를 확실하게 처리**할 수 있어 가장 널리 사용하는 방식이다.
 
 
 ```java
@@ -170,9 +169,9 @@ public class KafkaTemplate<K, V> implements KafkaOperations<K, V>, ApplicationCo
 
 * 참고: Spring Kafka의 `KafkaTemplate.send()` 메서드는 기본적으로 `CompletableFuture` (또는 이전 버전의 `ListenableFuture`)를 반환하여 비동기적으로 동작한다.
   
-  * 따라서 `send()`만 호출하고 반환된 `Future` 객체를 처리하지 않으면 겉보기에는 "파이어 앤 포겟"처럼 보일 수 있다. 
+  * 따라서 `send()`만 호출하고 반환된 `Future` 객체를 처리하지 않으면 겉보기에는 '파이어 앤 포겟'처럼 보일 수 있다.
 
-  * 하지만 실제로는 백그라운드에서 비동기 전송이 이루어지고 있으며, 명시적으로 `whenComplete`와 같은 콜백을 등록하여 성공 또는 실패를 처리하면 완전한 "비동기 전송" 방식으로 활용할 수 있다.
+  * 하지만 실제로는 백그라운드에서 비동기 전송이 이루어지고 있으며, 명시적으로 `whenComplete`와 같은 콜백을 등록하여 성공 또는 실패를 처리하면 완전한 '비동기 전송' 방식으로 활용할 수 있다.
 
 
 쿠폰 시스템의 경우, 사용자가 쿠폰 발급 버튼을 눌렀을 때 즉시 "`쿠폰 발급 요청이 처리 중입니다`" 라고 응답하고 실제 발급 처리는 백그라운드에서 수행하는 것이 좋다. 이는 비동기 전송 방식에 가장 적합한 시나리오다.
@@ -337,7 +336,7 @@ public class CouponIssueScheduler {
 
 * 이를 통해 '최소 한 번 전송(At-Least-Once)'에서 **'정확히 한 번 전송(Exactly-Once)'에 가까운 효과**를 낼 수 있다.
 
-* 참고: `enable.idempotence=true`로 설정하면, 카프카는 신뢰도를 보장하기 위해 내부적으로 다른 주요 설정값들을 안전한 값으로 강제한다.
+* 참고: `enable.idempotence=true`로 설정하면, 카프카는 신뢰도를 보장하기 위해 내부적으로 다른 주요 설정값들을 안전한 값으로 강제하므로, 신뢰성이 중요한 대부분의 실무 환경에서는 이 옵션을 true로 설정하는 것이 좋다.
 
   * (`retries`는 Integer.MAX_VALUE로, `acks`는 all로, `max.in.flight.requests.per.connection`은 5 이하로 유지). 
 
@@ -388,7 +387,7 @@ public class CouponIssueScheduler {
 
 * `retries`는 기본값(사실상 무한)으로 두는 방식이다. 
 
-* 이렇게 하면 프로듀서는 주어진 최종 마감 시간 안에서 스스로 끈기 있게 재시도를 수행하므로, 개발자가 복잡한 재시도 로직을 계산할 필요가 없어진다.
+* 이렇게 하면 프로듀서는 주어진 최종 마감 시간 안에서 스스로 끈기 있게 재시도를 수행하므로, 개발자가 복잡한 재시도 로직을 계산할 필요가 없어지는 장점이 있다.
 
 ### 4. 데이터 포맷 설정 (Serializer)
 
@@ -449,7 +448,7 @@ public class KafkaProducerConfig {
         // 따라서 실질적인 재시도 제어는 'delivery.timeout.ms'가 담당하게 된다.
         config.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);
         
-        // 재시도 횟수: 일시적인 네트워크 문제나 브로커 장애 시 메시지를 재전송할 최대 횟수이다
+        // 재시도 횟수: 일시적인 네트워크 문제나 브로커 장애 시 메시지를 재전송할 최대 횟수다.
         // 멱등성 옵션이 활성화되면 이 설정은 무시되고, 내부적으로 Integer.MAX_VALUE로 설정되므로 주석 처리한다.
         //config.put(ProducerConfig.RETRIES_CONFIG, 3);
 
@@ -472,7 +471,7 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(config);
     }
 
-    // 카프카 토픽에 데이터를 전송하기 위해 사용할 Kafka Template 을 생성
+    // 카프카 토픽에 데이터를 전송하기 위해 사용할 KafkaTemplate을 생성한다.
     @Bean
     public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
@@ -490,7 +489,7 @@ public class KafkaProducerConfig {
 
 #### 1. 잘못된 가정과 첫 번째 테스트
 
-만약 우리가 `enable.idempotence=true`와 `retries=3`을 동시에 설정했다면, 어떤 일이 벌어질까? 
+만약 `enable.idempotence=true`와 `retries=3`을 동시에 설정했다면, 어떤 일이 벌어질까? 
 
 아래는 이 상태를 검증하는 초기 테스트 코드다.
 
@@ -518,7 +517,7 @@ class KafkaProducerConfigTest {
 
 ![](/assets/img/kafka/Kafka-Producer-Test-1.png)
 
-놀랍게도 이 테스트는 성공한다. 여기서 "멱등성이 켜지면 `retries`가 `Integer.MAX_VALUE`로 강제된다고 했는데 왜 테스트는 통과하지?" 라는 의문이 생긴다.
+놀랍게도 이 테스트는 성공한다. 여기서 '멱등성이 켜지면 `retries`가 `Integer.MAX_VALUE`로 강제된다고 했는데 왜 테스트는 통과하지?' 라는 의문이 생긴다.
 
 그 이유는 이 테스트가 '실제 동작하는 클라이언트'가 아닌, Spring의 `ProducerFactory`가 보관 중인 **'원본 설정값'** 을 확인하기 때문이다. 
 
@@ -531,7 +530,7 @@ class KafkaProducerConfigTest {
 
 이러한 혼란을 없애고 코드의 의도를 명확히 하기 위해, `KafkaProducerConfig`의 `retries` 설정을 주석 처리했다. 
 
-우리의 의도는 **"멱등성 옵션을 켤 것이므로, `retries`는 따로 설정하지 않고 카프카의 기본 정책에 맡긴다"** 이다.
+필자의 의도는 **"멱등성 옵션을 켤 것이므로, `retries`는 따로 설정하지 않고 카프카의 기본 정책에 맡긴다"** 이다.
 
 따라서 최종 테스트 코드는 `retries` 값이 `3`임을 확인하는 대신, 해당 설정이 **'없음'(null)을 확인**하는 것이 정확하다.
 
@@ -567,3 +566,10 @@ class KafkaProducerConfigTest {
 이처럼 설정과 테스트를 함께 뜯어보는 과정을 통해, 프로듀서의 동작 원리를 좀 더 깊이 이해하고 코드의 의도를 명확히 다듬어볼 수 있었다.
 
 아직 완벽하게 이해할 수 있다고 보기는 어렵지만 차근차근 개념과 실무 경험을 쌓아가보자.
+
+
+## References
+
+* [카프카 핵심 가이드](https://product.kyobobook.co.kr/detail/S000201464167?utm_source=google&utm_medium=cpc&utm_campaign=googleSearch&gad_source=1)
+
+* [[공식문서] Kafka 3.3 Producer Configs](https://kafka.apache.org/documentation/#producerconfigs)
