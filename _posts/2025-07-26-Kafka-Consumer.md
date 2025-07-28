@@ -186,12 +186,20 @@ public class KafkaConsumerConfig {
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
         // 4. group.id
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_1");
-        // 오프셋 커밋 방식 설정 (자동/수동)
+        // 오프셋 커밋 방식 설정 (자동/수동) -> 수동
         config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         
         return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), deserializer);
     }
-    // ...
+
+  @Bean
+  public ConcurrentKafkaListenerContainerFactory<String, CouponIssueMessage> kafkaListenerContainerFactory() {
+    ConcurrentKafkaListenerContainerFactory<String, CouponIssueMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    factory.setConsumerFactory(consumerFactory());
+    factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL); // 리스너에서 Acknowledgment.acknowledge()를 명시적으로 호출해야만 오프셋이 커밋합니다.
+    factory.setConcurrency(3); // 토픽의 파티션 수와 일치시켜 병렬 처리 성능을 최적화합니다.
+    return factory;
+  }
 }
 ```
 
@@ -221,20 +229,21 @@ public class KafkaConsumerConfig {
 public class CouponIssueConsumer {
   // ...
 
-  @KafkaListener(topics = "coupon_issue", groupId = "group_1")
-  public void listener(final CouponIssueMessage message, final Acknowledgment ack) {
-    // Spring이 백그라운드에서 poll()로 가져온 '하나의 레코드'가 'message' 파라미터로 전달된다.
-    log.info("발급 처리 메시지 수신: {}", message);
-
-    try {
-      // 비즈니스 로직 수행
-      couponIssueService.issue(message);
-    } finally {
-      // 로직이 성공적으로 끝나면 수동으로 오프셋을 커밋한다.
-      ack.acknowledge();
-      // ...
+    @KafkaListener(topics = "#{T(dev.be.coupon.infra.kafka.KafkaTopic).COUPON_ISSUE.getTopicName()}", groupId = "group_1")
+    public void listener(final CouponIssueMessage message,
+                         final Acknowledgment ack) {
+      // Spring이 백그라운드에서 poll()로 가져온 '하나의 레코드'가 'message' 파라미터로 전달된다.
+      log.info("발급 처리 메시지 수신: {}", message);
+  
+      try {
+        // 비즈니스 로직 수행
+        couponIssuanceService.process(message);
+      } finally {
+        // 로직이 성공적으로 끝나면 수동으로 오프셋을 커밋한다.
+        ack.acknowledge();
+        // ...
+      }
     }
-  }
 }
 ```
 
