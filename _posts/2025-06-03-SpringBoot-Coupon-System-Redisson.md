@@ -375,16 +375,29 @@ public class CustomSpringELParser {
 
 이제 락이 필요한 서비스 메서드에 `@DistributedLock` 어노테이션을 추가하기만 하면 됩니다
 
-> CouponIssueService.class
+> IssuedCouponSaver.java (coupon-consumer 모듈에 위치)
 
 ```java
-@Service
-public class CouponIssueService {
+@Component
+public class IssuedCouponSaver {
+
+    private final IssuedCouponRepository issuedCouponRepository;
     // ... 생략 ...
 
-    @DistributedLock(key = "'couponIssue:' + #command.couponId() + ':' + #command.userId()", waitTime = 5, leaseTime = 30)
-    public CouponIssueResult issue(final CouponIssueCommand command) {
-        // ... 순수한 쿠폰 발급 비즈니스 로직 ...
+    /**
+     * DB에 쿠폰을 저장하는 구간만 분산 락으로 보호하여 동시성을 제어합니다.
+     * 순서: Lock -> Transaction -> Unlock
+     */
+    @DistributedLock(key = "'coupon:' + #couponId", waitTime = 5, leaseTime = 10)
+    @Transactional
+    public void save(final UUID userId, final UUID couponId) {
+        if (issuedCouponRepository.existsByUserIdAndCouponId(userId, couponId)) {
+            log.warn("DB에 이미 발급된 쿠폰입니다. - userId: {}", userId);
+            return;
+        }
+        IssuedCoupon issuedCoupon = new IssuedCoupon(userId, couponId);
+        issuedCouponRepository.save(issuedCoupon);
+        log.info("쿠폰 발급 DB 저장 완료: {}", issuedCoupon);
     }
 }
 ```
