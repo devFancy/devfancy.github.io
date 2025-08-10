@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  " MDC와 GlobalTraceId를 활용한 분산 추적 "
-categories: SpringBoot Technology
+title: " MDC와 GlobalTraceId를 활용한 분산 추적 "
+categories: SpringBoot
 author: devFancy
 ---
+
 * content
 {:toc}
 
@@ -15,7 +16,7 @@ author: devFancy
 
   이때 각 시스템에 분산된 로그를 하나의 흐름으로 묶어 추적할 수 없다면, 장애 발생 시 원인을 파악하기 매우 어려워진다.
 
-* 현재 진행 중인 개인 프로젝트(쿠폰 시스템)에서 쿠폰 발급 요청이 
+* 현재 진행 중인 개인 프로젝트(쿠폰 시스템)에서 쿠폰 발급 요청이
 
   API 서버에서 시작되어 카프카(Kafka)를 통해 컨슈머 서버로 전달되는 과정이 있다.
 
@@ -36,7 +37,7 @@ author: devFancy
 
 핵심 흐름은 다음과 같다.
 
-* HTTP Request -> `쿠폰 API 서버` -> Kafka Produce -> Kafka Consume -> `컨슈머 서버` -> DB 저장
+* HTTP Request -> `쿠폰 API 서버` -> Kafka Producer -> Kafka Consumer -> `컨슈머 서버` -> DB 저장
 
 이 구조에서 Spring Boot Actuator와 Micrometer Tracing 같은 라이브러리를 사용하면 각 애플리케이션 내에서는 `traceId`와 `spanId`가 자동으로 생성되어 로그에 포함된다.
 
@@ -73,7 +74,6 @@ author: devFancy
 21:29:03.488| INFO|6852b10febe4df79b383d66d36df8483,b383d66d36df8483|d.b.c.k.c.a.CouponIssueConsumer         |쿠폰 발급 완료...
 ```
 
-
 ## 해결 방안: GlobalTraceId를 이용한 수동 전파
 
 > GlobalTraceId를 개인 프로젝트에 적용한 부분과 관련된 코드는 깃허브 [PR](https://github.com/devFancy/springboot-coupon-system/pull/33) 에서 확인할 수 있다.
@@ -84,39 +84,41 @@ author: devFancy
 
 * 참고) Micrometer의 자동 전파 기능과 `GlobalTraceId`의 차이점
 
-  * Spring Boot 3.x 환경에서 `micrometer-tracing-bridge-brave`나 `micrometer-tracing-bridge-otel` 의존성을 추가하면,
-    Micrometer가 자동으로 Kafka Producer와 Consumer를 계측하여 트레이스 컨텍스트(traceId, spanId)를 전파해 준다. 
-    Spring Boot 2.x에서는 Spring Cloud Sleuth가 이 역할을 했다.
+    * Spring Boot 3.x 환경에서 `micrometer-tracing-bridge-brave`나 `micrometer-tracing-bridge-otel` 의존성을 추가하면,
+      Micrometer가 자동으로 Kafka Producer와 Consumer를 계측하여 트레이스 컨텍스트(traceId, spanId)를 전파해 준다.
+      Spring Boot 2.x에서는 Spring Cloud Sleuth가 이 역할을 했다.
 
-  * 하지만 이 글에서 다루는 `GlobalTraceId`는 필자가 **직접 만든 커스텀 필드**이므로 이러한 자동 전파의 대상이 아니다.
-    이처럼 라이브러리가 모르는 커스텀 식별자를 서비스 간에 전달해야 할 때는,
-    이 글에서 소개한 것처럼 **직접 헤더에 담아 전달하는 수동 전파 방식**이 필요하다.
+    * 하지만 이 글에서 다루는 `GlobalTraceId`는 필자가 **직접 만든 커스텀 필드**이므로 이러한 자동 전파의 대상이 아니다.
+      이처럼 라이브러리가 모르는 커스텀 식별자를 서비스 간에 전달해야 할 때는,
+      이 글에서 소개한 것처럼 **직접 헤더에 담아 전달하는 수동 전파 방식**이 필요하다.
 
-  * 이는 분산 추적의 핵심 원리를 이해하고 우리가 원하는 식별자를 직접 제어할 수 있다는 장점이 있다.
+    * 이는 분산 추적의 핵심 원리를 이해하고 우리가 원하는 식별자를 직접 제어할 수 있다는 장점이 있다.
 
 ### 1. Logback 설정: GlobalTraceId 출력 필드 추가
 
-먼저, 로그 패턴에 `GlobalTraceId`를 출력할 수 있도록 `logback-spring.xml` 설정에 globalTraceId 필드를 추가한다. 
+먼저, 로그 패턴에 `GlobalTraceId`를 출력할 수 있도록 `logback-spring.xml` 설정에 globalTraceId 필드를 추가한다.
 
 이 필드는 MDC에 해당 키가 존재할 경우 그 값을 출력한다.
 
 > logback-local.xml
 
 ```xml
+
 <configuration>
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>%clr(%d{HH:mm:ss.SSS}){faint}|%clr(${level:-%5p})|%32X{globalTraceId:-}|%32X{traceId:-},%16X{spanId:-}|%clr(%-40.40logger{39}){cyan}%clr(|){faint}%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</pattern>
-      <charset>utf8</charset>
-    </encoder>
-  </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %clr(%d{HH:mm:ss.SSS}){faint}|%clr(${level:-%5p})|%32X{globalTraceId:-}|%32X{traceId:-},%16X{spanId:-}|%clr(%-40.40logger{39}){cyan}%clr(|){faint}%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}
+            </pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
 </configuration>
 ```
 
-
 ### 2. Filter: GlobalTraceId 생성 및 MDC 적용
 
-HTTP 요청이 들어오는 가장 앞단에서 `GlobalTraceId`를 생성하거나, 
+HTTP 요청이 들어오는 가장 앞단에서 `GlobalTraceId`를 생성하거나,
 
 외부 시스템으로부터 이미 전달받았다면 해당 값을 사용하도록 필터를 구현한다.
 
@@ -133,35 +135,34 @@ HTTP 요청이 들어오는 가장 앞단에서 `GlobalTraceId`를 생성하거�
 ```java
 public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
-  private static final String GLOBAL_TRACE_ID_HEADER = "X-Global-Trace-Id";
-  private static final String GLOBAL_TRACE_ID_KEY = "globalTraceId";
+    private static final String GLOBAL_TRACE_ID_HEADER = "X-Global-Trace-Id";
+    private static final String GLOBAL_TRACE_ID_KEY = "globalTraceId";
 
-  @Override
-  protected void doFilterInternal(@NonNull final HttpServletRequest request,
-                                  @NonNull final HttpServletResponse response,
-                                  @NonNull final FilterChain filterChain) {
-    // 중간 생략 (request/response wrapper)
+    @Override
+    protected void doFilterInternal(@NonNull final HttpServletRequest request,
+                                    @NonNull final HttpServletResponse response,
+                                    @NonNull final FilterChain filterChain) {
+        // 중간 생략 (request/response wrapper)
 
-    String globalTraceId = request.getHeader(GLOBAL_TRACE_ID_HEADER);
-    if (!StringUtils.hasText(globalTraceId)) {
-      globalTraceId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 32);
+        String globalTraceId = request.getHeader(GLOBAL_TRACE_ID_HEADER);
+        if (!StringUtils.hasText(globalTraceId)) {
+            globalTraceId = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 32);
+        }
+        MDC.put(GLOBAL_TRACE_ID_KEY, globalTraceId);
+
+        try {
+            filterChain.doFilter(request, response);
+            // 중간 생략 (로깅 처리)
+        } catch (Exception e) {
+            // 중간 생략 (예외 처리)
+        } finally {
+            // 요청 처리가 끝나면 반드시 MDC에서 제거해야 한다.
+            MDC.remove(GLOBAL_TRACE_ID_KEY);
+        }
     }
-    MDC.put(GLOBAL_TRACE_ID_KEY, globalTraceId);
-
-    try {
-      filterChain.doFilter(request, response);
-      // 중간 생략 (로깅 처리)
-    } catch (Exception e) {
-      // 중간 생략 (예외 처리)
-    } finally {
-      // 요청 처리가 끝나면 반드시 MDC에서 제거해야 한다.
-      MDC.remove(GLOBAL_TRACE_ID_KEY);
-    }
-  }
-  // 뒷부분 생략
+    // 뒷부분 생략
 }
 ```
-
 
 ### 3.Kafka Producer: 메시지 헤더에 GlobalTraceId 주입
 
@@ -172,31 +173,36 @@ API 서버에서 카프카로 메시지를 보낼 때, 현재 스레드의 MDC�
 > CouponIssueProducer.java
 
 ```java
+
 @Component
 public class CouponIssueProducer {
 
-  private final KafkaTemplate<String, Object> kafkaTemplate;
-  private static final String GLOBAL_TRACE_ID_HEADER = "globalTraceId";
+    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private static final String GLOBAL_TRACE_ID_HEADER = "globalTraceId";
+    private static final Logger log = LoggerFactory.getLogger(CouponIssueProducer.class);
 
-  // 중간 생략 (생성자)
+    // 중간 생략 (생성자)
 
-  public void issue(final UUID userId, final UUID couponId) {
-    CouponIssueMessage payload = new CouponIssueMessage(userId, couponId);
-    // MDC에서 GlobalTraceId를 가져온다.
-    String globalTraceId = MDC.get("globalTraceId");
+    /**
+     * 쿠폰 발급 요청 메시지를 동기적으로 Kafka에 발행한다.
+     * .join()을 호출하여 메시지 전송이 완료될 때까지 현재 스레드를 블로킹한다.
+     */
+    public void issue(final UUID userId, final UUID couponId) {
+        CouponIssueMessage payload = new CouponIssueMessage(userId, couponId);
+        String globalTraceId = MDC.get("globalTraceId");
 
-    Message<CouponIssueMessage> message = MessageBuilder
-            .withPayload(payload)
-            .setHeader(KafkaHeaders.TOPIC, "coupon_issue")
-            // Kafka 메시지 헤더에 GlobalTraceId를 추가한다.
-            .setHeader(GLOBAL_TRACE_ID_HEADER, globalTraceId)
-            .build();
+        ProducerRecord<String, Object> record = new ProducerRecord<>(KafkaTopic.COUPON_ISSUE.getTopicName(), payload);
 
-    kafkaTemplate.send(message);
-  }
+        if (globalTraceId != null) {
+            record.headers().add(GLOBAL_TRACE_ID_HEADER, globalTraceId.getBytes(StandardCharsets.UTF_8));
+        }
+
+        kafkaTemplate.send(record).whenComplete((result, ex) -> {
+            // ...
+        }).join();
+    }
 }
 ```
-
 
 ### 4. Kafka Consumer: 헤더에서 GlobalTraceId 추출 및 MDC 탑재
 
@@ -207,37 +213,39 @@ public class CouponIssueProducer {
 > CouponIssueConsumer.java
 
 ```java
+
 @Component
 public class CouponIssueConsumer {
 
-  private final IssuedCouponRepository issuedCouponRepository;
-  private static final String GLOBAL_TRACE_ID_KEY = "globalTraceId";
-  private static final String GLOBAL_TRACE_ID_HEADER = "globalTraceId";
+    private final CouponIssuanceService couponIssuanceService;
+    private final Logger log = LoggerFactory.getLogger(CouponIssueConsumer.class);
+    private static final String GLOBAL_TRACE_ID_KEY = "globalTraceId";
 
-  // 중간 생략 (생성자, 로거)
+    // 중간 생략 (생성자)
 
-  @KafkaListener(topics = "coupon_issue", groupId = "group_1")
-  public void listener(final CouponIssueMessage message,
-                       @Header(name = GLOBAL_TRACE_ID_HEADER, required = false) String globalTraceId) {
-    try {
-      // 수신한 헤더의 globalTraceId를 컨슈머의 MDC에 설정한다.
-      if (StringUtils.hasText(globalTraceId)) {
-        MDC.put(GLOBAL_TRACE_ID_KEY, globalTraceId);
-      }
-      log.info("발급 처리 메시지 수신: {}", message);
+    /**
+     * Kafka 토픽으로부터 메시지를 수신하여 쿠폰을 발급한다.
+     */
+    @KafkaListener(topics = "...", groupId = "...")
+    public void listener(final CouponIssueMessage message,
+                         @Header(name = GLOBAL_TRACE_ID_KEY, required = false) final String globalTraceId,
+                         final Acknowledgment ack) {
 
-      // ... 쿠폰 발급 비즈니스 로직 ...
-      IssuedCoupon issuedCoupon = new IssuedCoupon(message.userId(), message.couponId());
-      issuedCouponRepository.save(issuedCoupon);
-      log.info("쿠폰 발급 완료: {}", issuedCoupon);
+        if (!Objects.isNull(globalTraceId)) {
+            MDC.put(GLOBAL_TRACE_ID_KEY, globalTraceId);
+        }
+        log.info("발급 처리 메시지 수신: {}", message);
 
-    } catch (Exception e) {
-      // 중간 생략 (예외 처리)
-    } finally {
-      // 메시지 처리가 끝나면 반드시 MDC에서 제거한다.
-      MDC.remove(GLOBAL_TRACE_ID_KEY);
+        try {
+            couponIssuanceService.process(message);
+            ack.acknowledge();
+        } catch (Exception e) {
+            log.error("메시지 처리 실패, 재처리를 위해 커밋하지 않음: {}", message, e);
+        } finally {
+            // 메시지 처리가 끝나면 반드시 MDC에서 제거한다.
+            MDC.remove(GLOBAL_TRACE_ID_KEY);
+        }
     }
-  }
 }
 ```
 
@@ -245,7 +253,7 @@ public class CouponIssueConsumer {
 
 이제 다시 애플리케이션 2대를 실행하고, API 테스트 도구(예. Postman)를 사용하여 쿠폰 발급 요청을 보낼 때, 헤더에 `X-Global-Trace-Id`를 담아 보내보자
 
-*  (예: X-Global-Trace-Id: gtxid-coupon-issue-test)
+* (예: X-Global-Trace-Id: gtxid-coupon-issue-test)
 
 > API 서버 로그 (GlobalTraceId가 gtxid-coupon-issue-test로 동일)
 
@@ -261,7 +269,6 @@ public class CouponIssueConsumer {
 21:49:30.821| INFO|         gtxid-coupon-issue-test|...|d.b.c.k.c.a.CouponIssueConsumer         |발급 처리 메시지 수신...
 21:49:30.825| INFO|         gtxid-coupon-issue-test|...|d.b.c.k.c.a.CouponIssueConsumer         |쿠폰 발급 완료...
 ```
-
 
 ---
 
@@ -281,7 +288,7 @@ public class CouponIssueConsumer {
 21:46:15.846| INFO|98ac71d934194fd59a2fb04b94021234|...|d.b.c.k.c.a.CouponIssueConsumer         |쿠폰 발급 완료...
 ```
 
-두 서버의 로그에 동일한 `GlobalTraceId`가 남음으로써, 특정 요청의 전체 처리 과정을 한눈에 추적할 수 있게 되었다. 
+두 서버의 로그에 동일한 `GlobalTraceId`가 남음으로써, 특정 요청의 전체 처리 과정을 한눈에 추적할 수 있게 되었다.
 
 이제 로그 분석 시스템에서 `globalTraceId`로 필터링하기만 하면 분산된 로그를 손쉽게 모아볼 수 있다.
 
@@ -297,11 +304,11 @@ public class CouponIssueConsumer {
 
 * `구현`
 
-  * 최초 진입점(Filter)에서 GlobalTraceId를 생성하여 MDC에 저장한다.
+    * 최초 진입점(Filter)에서 GlobalTraceId를 생성하여 MDC에 저장한다.
 
-  * 프로듀서에서 메시지 발행 시 MDC의 GlobalTraceId를 메시지 헤더에 포함시킨다.
+    * 프로듀서에서 메시지 발행 시 MDC의 GlobalTraceId를 메시지 헤더에 포함시킨다.
 
-  * 컨슈머에서 메시지 수신 시 헤더의 GlobalTraceId를 추출하여 MDC에 다시 저장한다.
+    * 컨슈머에서 메시지 수신 시 헤더의 GlobalTraceId를 추출하여 MDC에 다시 저장한다.
 
 * `결과`: 모든 분산 로그에 동일한 식별자가 기록되어, **Observability가 향상**되고 장애 추적이 용이해진다.
 

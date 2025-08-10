@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " 3편. Prometheus와 Grafana로 Spring Boot 기반 모니터링 대시보드 구축하기 "
-categories: [SpringBoot, Technology]
+categories: [SpringBoot]
 author: devFancy
 ---
 * content

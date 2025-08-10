@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  " 쿠폰 시스템 개선기: SETNX에서 Redisson RLock과 AOP를 활용한 분산락 적용 "
-categories: [SpringBoot, Technology]
+categories: [SpringBoot]
 author: devFancy
 ---
 * content
