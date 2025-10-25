@@ -13,6 +13,8 @@ author: devFancy
 
 올해 1월 넥스트스텝에서 주관한 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의를 들으면서 관련 후기 및 내용을 정리한 적이 있다.
 
+> '도메인 주도 개발 시작하기' 책 읽고 정리한 내용 관련 링크: [Github](https://github.com/devFancy/kotlin-java-playground/tree/main/book/Starting-with-Domain-Driven-Design)
+
 > 관련 포스팅
 
 * [DDD 세레나데 7기, 5주간의 여정을 돌아보며](https://devfancy.github.io/DDD-Serenade-7th-Review/)
@@ -22,10 +24,6 @@ author: devFancy
 해당 강의를 들으며 DDD 관련 책을 읽어야겠다고 다짐했지만, 이런저런 일에 밀려 미루다 9월이 되어서야 드디어 이 책을 펼치게 되었다.
 
 강의가 실무 기반의 내용 위주였다면, 이 책은 DDD의 핵심 개념을 다루는 이론적인 내용에 더 가까웠다.
-
-책을 읽으며 장마다 중요하거나 기억하고 싶은 내용들은 별도의 GitHub 레포지토리에 꾸준히 정리해두었다.
-
-*  '도메인 주도 개발 시작하기' 책 읽고 정리한 내용: [Github 레포지토리](https://github.com/devFancy/kotlin-java-playground/tree/main/book/Starting-with-Domain-Driven-Design)
 
 
 ---
