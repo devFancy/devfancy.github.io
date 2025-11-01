@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " [카프카 핵심 가이드] CHAPTER 4. 카프카 컨슈머: 컨슈머 설정 및 오프셋과 커밋  "
+title:  " [카프카 핵심 가이드] CHAPTER 4. 카프카 컨슈머: 컨슈머 설정 및 오프셋과 커밋 "
 categories: [Kafka]
 author: devFancy
 ---
@@ -64,7 +64,12 @@ author: devFancy
 
 ### session.timeout.ms
 
-컨슈머가 브로커(그룹 코디네이터)에게 하트비트(생존 신호)를 보내지 않고 버틸 수 있는 최대 시간이다. (기본값: 10,000ms = 10초)
+> [공식 문서](https://kafka.apache.org/documentation/#consumerapi) 기준으로 Kafka Consumer 에서는 `session.timeout.ms` 기본값이 45초이다.
+>
+> 2021.04.21 기준, `session.timeout.ms` 값은 기본값이 10초에서 45초로 변경된 것을 확인할 수 있다. (관련 내용: [KIP-735: Increase default consumer session timeout](https://cwiki.apache.org/confluence/display/KAFKA/KIP-735%3A+Increase+default+consumer+session+timeout))
+
+
+컨슈머가 브로커(그룹 코디네이터)에게 하트비트(생존 신호)를 보내지 않고 버틸 수 있는 최대 시간이다. (기본값: 45,000ms = 45초)
 
 만약 이 시간 동안 하트비트가 없으면, 코디네이터는 해당 컨슈머에 장애가 발생했다고 판단하고 그룹에서 제외시킨 뒤 **리밸런싱**을 시작한다.
 
@@ -78,9 +83,9 @@ author: devFancy
 
 `poll()` 호출 사이의 최대 시간 간격이다. (기본값: 300,000ms = 5분)
 
-하트비트는 백그라운드 스레드에서 보내므로, 메시지를 처리하는 메인 스레드가 멈춰도 하트비트는 계속 전송될 수 있다. 
+하트비트는 백그라운드 스레드에서 보내므로, 메시지를 처리하는 메인 스레드가 멈춰도 하트비트는 계속 전송될 수 있다.
 
-이 설정은 이런 '좀비' 상태를 방지하기 위한 안전장치다. `poll()`을 호출한 후 다음 `poll()`이 이 시간 안에 호출되지 않으면, 컨슈머는 그룹에서 이탈하고 리밸런싱이 발생한다. 
+`poll()`을 호출한 후 다음 `poll()`이 이 시간 안에 호출되지 않으면, 컨슈머는 그룹에서 이탈하고 리밸런싱이 발생한다. 
 
 메시지 처리 로직이 **5분 이상** 걸릴 가능성이 있다면 이 값을 반드시 늘려야 한다.
 
@@ -89,6 +94,15 @@ author: devFancy
 * `session.timeout.ms`은 컨슈머 **프로세스 자체**가 살아있는지(Liveness) 감시하는 역할이고,
 
 * `max.poll.interval.ms`은 컨슈머의 **메시지 처리 로직**이 일을 하고 있는지(Progress) 감시하는 역할이다.
+
+
+#### 리밸런싱 방지하기 위한 방법
+
+`max.poll.interval.ms` 설정을 잘못 다루면 컨슈머 그룹에서 리밸런싱이 발생할 수 있다.
+
+`max.poll.records`를 비정상적으로 높게 설정하고, `max.poll.interval.ms`를 총 처리 시간보다 낮게 설정하면 리밸런싱이 발생할 수 있다.
+
+이를 위해 애플리케이션의 총 처리 시간을 고려해서 `max.poll.records` 를 낮게 설정하거나 `max.poll.interval.ms` 를 늘리는 방안을 고려한다.
 
 
 ## 파티션 할당 전략
@@ -245,7 +259,7 @@ public class KafkaConsumerConfig {
 
   * 이는 메시지 유실을 방지하는 확실한 방법이다.
 
-* `AUTO_OFFSET_RESET_CONFIG`는 earliest로 설정했다.
+* `AUTO_OFFSET_RESET_CONFIG`는 `earliest`로 설정했다.
 
   * 이를 통해 새로운 컨슈머 그룹이 서비스를 시작하거나 오프셋 정보가 유실되었을 때,
 
@@ -261,7 +275,7 @@ public class KafkaConsumerConfig {
 
   * `MAX_POLL_INTERVAL_MS_CONFIG`(10분)은 메시지 처리 로직의 동작(Progress)을 감시한다.
 
-  * 이 값들을 넉넉하게 설정하여, 일시적인 부하나 긴 처리 시간으로 인해 컨슈머가 '좀비'로 오인받아 그룹에서 쫓겨나는 상황을 방지한다.
+  * 이 값들을 넉넉하게 설정하여, 일시적인 부하나 긴 처리 시간으로 인해 컨슈머가 처리가 멈춘 '실패' 상태로 간주되어 컨슈머 그룹에서 쫓겨나는 상황을 방지한다.
 
 * 또한, `PARTITION_ASSIGNMENT_STRATEGY_CONFIG`를 `CooperativeStickyAssignor`로 지정했다.
 
