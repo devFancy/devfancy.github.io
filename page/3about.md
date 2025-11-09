@@ -70,6 +70,8 @@ type: page
 
 ### 2025
 
+* 　10. 21 ~ 우아한유스방 6기 참가
+
 * 　01. 21 ~ 03. 02 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습 및 [정리](https://devfancy.github.io/DDD-Serenade-7th-Review/)하기
 
 * 　01. 01 ~ Present 신입 개발자를 위한 CS 기초서(가제) 집필 - 파트: OS
@@ -78,25 +80,21 @@ type: page
 
 * 　10. 12 ~ 02. 01 [SIPE 3기](https://sipe.team/) 참가 (개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리)
 
-* 　10. 01 ~ 03. 31 [글또 10기](https://geultto.github.io/) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성)
+* 　10. 01 ~ 2025. 03. 31 [글또 10기](https://geultto.github.io/) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성) - [10기 회고 글](https://devfancy.github.io/geultto-10th-Retrospective/)
 
 * 　04. 01 ~ 05. 30 책 '가상면접 사례로 배우는 대규모 시스템 설계 기초' 스터디
 
-* 　01. 02 ~ 03. 02 개인 프로젝트 [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 [Hibit(ver 1)](https://github.com/hibit-team/hibit-backend) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선
+* 　01. 02 ~ 03. 02 개인 프로젝트 [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 Hibit(ver 1) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선 - [회고 글](https://devfancy.github.io/Hibit-Retrospective/)
 
 ### 2023
 
-* 　11. 26 ~ [글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성)
+* 　11. 26 ~ 2024. 03. 31[글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성) - [9기 회고 글](https://devfancy.github.io/Geultto-9th-Retrospective/)
 
-* 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 완독 및 [정리](https://devfancy.github.io/category/#GoodCode)
+* 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 읽고 [정리](https://devfancy.github.io/category/#GoodCode)
 
 * 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`)
 
-* 　01. 14  Google Search Console, Naver Search Console 블로그에 적용
-
 * 　01. 14  Google 애드센스 블로그에 적용(01. 30 애드센스 계정 활성화)
-
-* 　01. 12  Tawk.to 서비스 블로그에 적용
 
 * 　01. 12 [기술 블로그](https://github.com/devfancy/devfancy.github.io) 생성
 
@@ -108,9 +106,9 @@ type: page
 
 * 　10. 26 ~ 12. 17 [우아한테크코스 5기 프리코스 과정](https://github.com/devFancy/devfancy-woowacourse) 참가
 
-* 　10. 12 ~ 11. 18 [Competition : KNU 창업 성과 경진대회 장려상 수상
+* 　10. 12 ~ 11. 18 Competition : KNU 창업 성과 경진대회 장려상 수상
 
-* 　09. 01 ~ 12. 20 [Study Operating System](https://devfancy.github.io/category/#OS)
+* 　09. 01 ~ 12. 20 ['운영체제' 공부](https://devfancy.github.io/category/#OS)
 
 * 　08. 30 ~ 08. 31 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
 
@@ -126,47 +124,35 @@ type: page
 
 * 　05. 20 [Competition : 신한 스퀘어브릿지 HERO IR DAY 대학생 창업 아이디어 경진대회](https://sehub.net/archives/2076603) 참가
 
-* 　04. 11 ~ 06. 17 [Study Git](https://devfancy.github.io/category/#Git)
+* 　04. 11 ~ 06. 17 [Git 공부](https://devfancy.github.io/category/#Git)
 
-* 　03. 15 ~ 06. 15 Study Java (명품 자바 에센셜)
+* 　03. 15 ~ 06. 15 자바 프로그래밍 공부 (책: 명품 자바 에센셜)
 
-* 　03. 02 ~ 06. 26 [Study Probability Statistics](https://devfancy.github.io/category/#Probability-Statistics)
+* 　03. 02 ~ 06. 26 ['확률과 통계' 공부](https://devfancy.github.io/category/#Probability-Statistics)
 
-* 　03. 02 ~ 06. 25 [Study Electronic Finance School of Business Administration](https://devfancy.github.io/category/#Electronic-Finance)
+* 　03. 02 ~ 06. 25 ['전자금융의 이해' 공부(부전공: 경영학)](https://devfancy.github.io/category/#Electronic-Finance)
 
-* 　03. 02 ~ 06. 17 [Study Business Statistics](https://devfancy.github.io/category/#Business-Statistics)
+* 　03. 02 ~ 06. 17 ['경영경제통계학' 공부(부전공: 경영학)](https://devfancy.github.io/category/#Business-Statistics)
 
-* 　03. 02 ~ 06. 15 [Study Algorithm Practice](https://github.com/devfancy/KNU/tree/main/algorithm)
+* 　03. 02 ~ 06. 15 ['알고리즘 실습' 공부](https://github.com/devfancy/KNU/tree/main/algorithm)
 
 ### 2021
 
 * 　11. 29 ~ 12. 03 [인재개발원] 현직자 직무멘토링 프로그램 참가
 
-* 　09 ~ [교내 동아리 데이터금융분석학회(DART)](https://www.knudart.com/) 참가
+* 　09. 01 ~ 2022. 03. 15 [교내 동아리 데이터금융분석학회(DART)](https://www.knudart.com/) 참가
 
-* 　09. 06 ~ 09. 07 [Study Linux](https://devfancy.github.io/category/#SystemProgramming)
+* 　09. 06 ~ 09. 07 [리눅스 공부](https://devfancy.github.io/category/#SystemProgramming)
 
-* 　09. 01 ~ 12. 15 [Study SystemProgramming](https://github.com/devfancy/KNU/tree/main/systemProgramming)
+* 　09. 01 ~ 12. 15 ['시스템 프로그래밍' 공부](https://github.com/devfancy/KNU/tree/main/systemProgramming)
 
-* 　09. 01 ~ 12. 15 Study Linear Algebra
+* 　09. 01 ~ 12. 15 선형대수학 공부
 
-* 　06. 20 ~ 08. 15 [Study Data Structure](https://github.com/devfancy/KNU/tree/main/dataStructure)
+* 　06. 20 ~ 08. 15 ['자료구조 응용' 공부](https://github.com/devfancy/KNU/tree/main/dataStructure)
 
-* 　05. 07 ~ 06. 19 [Algorithm problems in C language](https://github.com/devfancy/KNU/tree/main/c)
-
-* 　04. 14 [삼성 SDI] 상반기 동문선배 및 인사실무자 멘토링 참가
-
-* 　03. 02 ~ 06. 01 Study R Programming
+* 　05. 07 ~ 06. 19 ['C 프로그래밍' 공부](https://github.com/devfancy/KNU/tree/main/c)
 
 * 　01. 13 ~ 02. 09 AEP(Academic English Program) 참가 (The University of Texas at Austin English Language Center)
-
-### 2020
-
-* 　09. 01 ~ 12.15 KNU 소프트웨어설계 팀프로젝트 참가
-
-* 　09. 01 ~ 12.15 KNU 모바일앱프로그래밍 팀프로젝트 참가 
-
-* 　09. 01 ~ 교내 동아리 정보보안학회(KERT) 참가
 
 ---
 
