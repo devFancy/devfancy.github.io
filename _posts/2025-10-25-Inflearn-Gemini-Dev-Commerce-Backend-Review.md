@@ -24,6 +24,10 @@ author: devFancy
 
 ## Review
 
+![](/assets/img/technology/Inflearn-Gemini-Dev-Commerce-Backend-Review-Certificate.png)
+
+(위 사진은 인프런에서 해당 강의를 완강하면 주는 수료증이다.)
+
 * 전반적으로 이해도는 90%, 만족도는 **100%, 그 이상**이었다.
 
   * 커머스 분야에 종사하고 있지 않기 때문에, 도메인 지식에 대해 어느정도 알고는 있지만, 코드상에서 어떻게 흘러가는지에 대한 흐름은 제대로 몰랐기 때문에 90%라고 했다.
