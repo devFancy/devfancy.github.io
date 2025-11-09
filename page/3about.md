@@ -48,10 +48,6 @@ type: page
 
 *  [2024년 회고 (+2025년 계획)](https://devfancy.github.io/2024-Retrospective/)
 
-*  [2024년 3분기 회고. 우선순위를 정하고 균형 있게 성장하기](https://devfancy.github.io/3th-Retrospective/)
-
-*  [2024년 1분기 회고. 배움의 여정과 새로운 도약](http://127.0.0.1:4000/1th-Retrospective/)
-
 *  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
 
 ---

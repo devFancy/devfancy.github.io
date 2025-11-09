@@ -9,7 +9,7 @@ author: devFancy
 
 > 이 글은 [요즘 당근 AI 개발](https://product.kyobobook.co.kr/detail/S000217613503) 책을 읽고 느낀 필자의 주관적인 생각입니다.
 >
-> 해당 책에서 인상깊게 봤던 부분은 [깃허브](https://github.com/devFancy/kotlin-java-playground/blob/main/book/Modern-AI-Development-at-Karrot.md)에 자세히 정리했습니다.
+> 해당 책에서 인상깊게 봤던 부분은 [깃허브](https://github.com/devFancy/WIL/blob/main/book/요즘_당근_AI_개발.md)에 자세히 정리했습니다.
 
 ## Prologue
 

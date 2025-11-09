@@ -13,7 +13,7 @@ author: devFancy
 
 올해 1월 넥스트스텝에서 주관한 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의를 들으면서 관련 후기 및 내용을 정리한 적이 있다.
 
-> '도메인 주도 개발 시작하기' 책 읽고 정리한 내용 관련 링크: [Github](https://github.com/devFancy/kotlin-java-playground/tree/main/book/Starting-with-Domain-Driven-Design)
+> '도메인 주도 개발 시작하기' 책 읽고 정리한 내용 관련 링크: [Github](https://github.com/devFancy/WIL/blob/main/ddd/도메인_주도_개발_시작하기.md)
 
 > 관련 포스팅
 
