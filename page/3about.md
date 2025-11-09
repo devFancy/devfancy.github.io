@@ -72,15 +72,15 @@ type: page
 
 * 　10. 21 ~ 우아한유스방 6기 참가
 
-* 　01. 21 ~ 03. 02 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 듣고 실습 및 [정리](https://devfancy.github.io/DDD-Serenade-7th-Review/)하기
+* 　01. 21 ~ 03. 02 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 실습 및 [정리](https://devfancy.github.io/DDD-Serenade-7th-Review/)
 
 * 　01. 01 ~ Present 신입 개발자를 위한 CS 기초서(가제) 집필 - 파트: OS
 
 ### 2024
 
-* 　10. 12 ~ 02. 01 [SIPE 3기](https://sipe.team/) 참가 (개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리)
+* 　10. 12 ~ 02. 01 [SIPE 3기](https://sipe.team/) 참가
 
-* 　10. 01 ~ 2025. 03. 31 [글또 10기](https://geultto.github.io/) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성) - [10기 회고 글](https://devfancy.github.io/geultto-10th-Retrospective/)
+* 　10. 01 ~ 2025. 03. 31 [글또 10기](https://geultto.github.io/) 참가 - [회고 글](https://devfancy.github.io/geultto-10th-Retrospective/)
 
 * 　04. 01 ~ 05. 30 책 '가상면접 사례로 배우는 대규모 시스템 설계 기초' 스터디
 
@@ -88,11 +88,11 @@ type: page
 
 ### 2023
 
-* 　11. 26 ~ 2024. 03. 31[글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 (글또: 글쓰기 습관 형성을 위한 커뮤니티 활동, 2주에 1개의 글 작성) - [9기 회고 글](https://devfancy.github.io/Geultto-9th-Retrospective/)
+* 　11. 26 ~ 2024. 03. 31[글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 - [회고 글](https://devfancy.github.io/Geultto-9th-Retrospective/)
 
 * 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 읽고 [정리](https://devfancy.github.io/category/#GoodCode)
 
-* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`)
+* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit (ver.1)](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`)
 
 * 　01. 14  Google 애드센스 블로그에 적용(01. 30 애드센스 계정 활성화)
 
