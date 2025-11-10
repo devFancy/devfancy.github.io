@@ -162,11 +162,13 @@ author: devFancy
 
   * 이때 컨슈머는 메시지의 실제 처리 성공 여부는 확인하지 않으므로 처리 중 장애가 발생하면 해당 메시지는 유실될 수 있다.
 
-* `false` (수동 커밋): 개발자가 직접 커밋 시점을 제어하여 신뢰성을 높인다. 
+* `false` (수동 커밋): 대부분의 개발자는 직접 커밋 시점을 제어하여 신뢰성을 높이고자 한다. 
+
+  * **애플리케이션이 명시적으로 커밋하려 할 때만 오프셋이 커밋**되게 할 수 있다.
 
   * `commitSync()`나 `commitAsync()` 같은 API를 사용하여, 메시지 처리가 성공적으로 완료되었음을 보장한 후에만 오프셋을 커밋한다. 
 
-  * 이는 메시지 유실을 방지하지만, 처리 로직과 커밋 사이에 장애가 발생하면 중복이 발생할 수 있다 (유실보다는 중복이 더 안전한 선택일 때가 많다).
+  * 이는 메시지 유실을 방지하지만, 처리 로직과 커밋 사이에 장애가 발생하면 중복이 발생할 수 있다.
 
 
 ## 실제 프로젝트에 적용하기: 쿠폰 시스템 Consumer 설정
@@ -201,15 +203,15 @@ public class KafkaConsumerConfig {
       // 1. 신뢰성 관련 설정
       // 1-1) 오프셋 수동 커밋 설정 -> 메시지 처리 완료 후 애플리케이션이 직접 커밋 시점을 제어하여, 메시지 유실을 방지.
       config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
-      // 1-2) 새로운 컨슈머 그룹이 처음 토픽을 읽을 때, 가장 오래된 메시지부터 읽도록 설정
-      config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+      // 1-2) 가장 최신 메시지, 즉 컨슈머가 실행된 이후에 들어오는 메시지부터 읽기 시작한다.
+      config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 
       // 2. 안정성 관련 설정
-      // 2-1) 컨슈머가 브로커(그룹 코디네이터)에게 하트비트를 보내지 않고 버틸 수 있는 최대 시간(기본값: 10,000 ms = 10초)
-      config.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
+      // 2-1) 컨슈머가 브로커(그룹 코디네이터)에게 하트비트를 보내지 않고 버틸 수 있는 최대 시간 (기본값: 45,000 ms = 45초)
+      config.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000); // 30초로 설정
       // 2-2) 컨슈머가 얼마자 자주 하트비트를 보낼지 결정하는 주기. (기본값: 3,000ms = 3초)
-      config.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG, 10000);
-      // 2-3) poll() 간 최대 시간. 메시지 처리 시간보다 넉넉하게 설정. (기본값: 300,000ms = 5분)
+      config.put(ConsumerConfig.HEARTBEAT_INTERVAL_MS_CONFIG, 10000); // 10초로 설정
+      // 2-3) poll()로 가져온 메시지를 처리하는 데 허용된 최대 시간. (기본값: 300,000ms = 5분)
       config.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, 600000); // 10분
       // 2-4) 리밸런싱 시 중단을 최소화하는 '협력적 리밸런스' 전략 사용.
       config.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, "org.apache.kafka.clients.consumer.CooperativeStickyAssignor");
@@ -259,11 +261,11 @@ public class KafkaConsumerConfig {
 
   * 이는 메시지 유실을 방지하는 확실한 방법이다.
 
-* `AUTO_OFFSET_RESET_CONFIG`는 `earliest`로 설정했다.
+* `AUTO_OFFSET_RESET_CONFIG`는 `latest`로 설정했다.
 
   * 이를 통해 새로운 컨슈머 그룹이 서비스를 시작하거나 오프셋 정보가 유실되었을 때,
 
-  * 토픽의 가장 처음부터 모든 메시지를 처리하도록 하여 의도치 않게 데이터를 건너뛰는 상황을 방지한다.
+  * 컨슈머가 실행된 이후에 들어오는 메시지부터 읽기 시작한다.
 
 > 안정성
 
