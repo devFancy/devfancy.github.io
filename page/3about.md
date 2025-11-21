@@ -9,7 +9,7 @@ type: page
 * content
 {:toc}
 
-## Who am i
+## Who am I
 
 * <img src="/assets/img/logo/hand-holding-seedling.png" style="max-width: 3%; vertical-align: text-bottom;"> : '건강', '행복', '성장'을 위해 삶을 주도적으로 살아가면서, 내면의 성숙과 외면의 든든함을 함께 갖춘 사람이 되고 싶어요. 😌
 
@@ -17,9 +17,30 @@ type: page
 
 * <img src="/assets/img/logo/edit.png" style="max-width: 3%; vertical-align: text-bottom;"> : 지속적으로 발전하는 학습과 경험을 기록하기 위해 개인 블로그를 운영하고 있습니다.
 
-* <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 지식 공유를 통해 함께 성장하는 삶의 가치를 느끼고자, '넥스트스텝', '글또', '우아한스터디'를 포함한 5개 이상의 다양한 스터디에 참여한 경험이 있습니다
+* <img src="/assets/img/logo/mentoring.png" style="max-width: 4%; vertical-align: text-bottom;"> : 지식 공유를 통해 함께 성장하는 삶의 가치를 느끼고자, '넥스트스텝', '글또', '우아한스터디'를 포함한 5개 이상의 다양한 스터디에 참여한 경험이 있습니다.
 
 * <img src="/assets/img/logo/collaboration.png" style="max-width: 4%; vertical-align: text-bottom;"> : 개발 과정에서 협업 문화와 피드백의 중요성을 깊이 이해하고 있습니다.
+
+---
+
+## Introduce
+
+제가 공부한 내용들 중에 기억하고 싶은 부분들에 대해 기록하고자 이 블로그를 만들게 되었습니다.
+
+개발자로 일하면서 느낀 점은, 배워야 할 기술은 끝이 없고 끊임없이 변화하는 환경에 적응해야 한다는 것입니다.
+
+그래서 앞으로도 개발자로 살아가기 위해 현재에 집중하고, 미래에 어떤 모습으로 성장할지 고민하며 조금씩 나아가려 합니다.
+
+또한 기술만큼이나 태도 역시 중요하다고 생각합니다.
+
+개발자는 혼자가 아니라, 다양한 직군의 동료분들과 한 팀을 이뤄 공동의 목표를 위해 나아가는 사람이라고 생각합니다.
+
+그렇기에 이곳에는 단순히 어떤 기술을 정리하는 것뿐만 아니라,
+협업 과정과 개발자로서의 태도와 자세에 대해 배운 점들도 함께 기록하고자 합니다.
+
+이 블로그는 한 개발자의 성장 과정과 개인적인 생각이 담긴 공간입니다.
+
+화려한 글솜씨보다는 담백하고 솔직한 기록들이니, '이런 개발자도 있구나' 하는 마음으로 가볍고 편안하게 봐주시면 감사하겠습니다.
 
 ---
 
@@ -34,7 +55,6 @@ type: page
 * <img src="/assets/img/logo/kakaotalk.png" style="max-width: 3%; vertical-align: text-bottom;"> : [Kakao Open Chat](https://open.kakao.com/o/swXZ9B2e)
 
 * <img src="/assets/img/logo/email.png" style="max-width: 3%; vertical-align: text-bottom;"> : fancy.junyongmoon@gmail.com
-
 
 ---
 
@@ -88,7 +108,7 @@ type: page
 
 * 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 읽고 [정리](https://devfancy.github.io/category/#GoodCode)
 
-* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit (ver.1)](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`)
+* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit (ver.1)](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`
 
 * 　01. 14  Google 애드센스 블로그에 적용(01. 30 애드센스 계정 활성화)
 
