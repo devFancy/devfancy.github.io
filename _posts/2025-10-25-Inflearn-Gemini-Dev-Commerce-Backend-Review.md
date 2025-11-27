@@ -11,7 +11,7 @@ author: devFancy
 
 ## Prologue
 
-> 해당 강의를 들으면서 중요하거나 기억하고 싶은 부분들을 [Github](https://github.com/devFancy/WIL/blob/main/inflearn/제미니의_개발실무_커머스_백엔드_기본편.md)에 정리했습니다.
+> 해당 강의를 들으면서 중요하거나 기억하고 싶은 부분들을 [Github](https://github.com/devFancy/WIL/blob/main/제미니의_개발실무_커머스_백엔드_기본편.md)에 정리했습니다.
 
 > 해당 강의를 듣게된 배경
 
