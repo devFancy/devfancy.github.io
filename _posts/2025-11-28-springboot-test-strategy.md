@@ -53,7 +53,7 @@ author: devFancy
 
 하지만 그럼에도 불구하고 테스트는 필요했습니다.
 
-테스트 코드는 단순한 버그 방지턱이 아니라, 가장 먼저 내 코드를 사용해 보고 가차 없이 피드백을 주는 '첫 번째 고객'이었기 때문입니다.
+테스트 코드는 단순한 버그 방지턱이 아니라, 가장 먼저 내 코드를 사용해 보고 가차 없이 피드백을 주는 `첫 번째 고객`이었기 때문입니다.
 
 실제 고객이 버그를 발견하기 전에 테스트 코드가 먼저 문제를 지적해 줌으로써, 
 저는 반복되는 노동에서 벗어나 시스템의 안정성과 비즈니스 가치에 더 집중할 수 있게 되었습니다.
@@ -513,7 +513,7 @@ class CouponServiceImplTest {
 > * 주문 시스템처럼 상품, 회원, 쿠폰, 결제 등 수십 개의 객체가 얽혀있는 경우
 > * 대량의 데이터를 Aggregation 하는 배치(Batch) 애플리케이션을 테스트해야 하는 경우
 
-이럴 때 억지로 코드를 객체로 생성하려고 하면, `Given` 절만 수십~수백 줄이 되고 객체 간의 의존성을 맞추느라 정작 테스트 로직에 집중하기 어려워집니다.
+이럴 때 억지로 코드를 객체로 생성하려고 하면, `Given` 절만 수십 줄이 되고 객체 간의 의존성을 맞추느라 정작 테스트 로직에 집중하기 어려워집니다.
 
 이런 복잡도가 높은 상황에서는 테스트 전용 `@Sql` 어노테이션이나 `@SqlGroup` 어노테이션을 활용하는 것이 더 효율적일 수 있습니다.
 
@@ -799,7 +799,7 @@ Mocking을 통해 특정 메서드가 호출되었는지(행위)를 검증하게
 
 실제로 구글 엔지니어링 블로그에서도 과거의 시행착오를 바탕으로 "모의 객체 사용을 줄이고 실제 객체를 활용하여 테스트 충실도를 높이라"고 강조합니다.
 
-(관련해서 구글 공식 기술 블로그에 있는 해당 포스팅을 참고했습니다.)
+(관련해서 구글 공식 Testing 블로그에 있는 해당 포스팅을 참고했습니다.)
   
 * [Increase Test Fidelity By Avoiding Mocks (2024)](https://testing.googleblog.com/2024/02/increase-test-fidelity-by-avoiding-mocks.html)
 
@@ -885,7 +885,7 @@ class CouponIssueFailureHandlerTest {
 
 ## 함께 읽으면 좋은 글
 
-> 이전에 제가 Java, Spring Boot 기반으로 테스트와 관련된 포스팅을 작성한 글은 아래와 같습니다.
+> 해당 포스팅과 관련해서 이전에 제가 Java, Spring Boot 기반으로 테스트와 관련된 포스팅을 작성한 글은 아래와 같습니다.
 
 * [Practical Testing: 테스트 코드 작성 방법 - 1부](https://devfancy.github.io/Practical-Testing/)
 
@@ -897,10 +897,14 @@ class CouponIssueFailureHandlerTest {
 
 ## Reference
 
+* [[책] 테스트 주도 개발 시작하기 (저자: 최범균)](https://product.kyobobook.co.kr/detail/S000001248962)
+
+* [[인프런] 강의 - Practical Testing: 실용적인 테스트 가이드 (강의자: 박우빈)](https://www.inflearn.com/course/practical-testing-실용적인-테스트-가이드/)
+
 * [[토스] 기술 블로그 -  가치있는 테스트를 위한 전략과 구현](https://toss.tech/article/test-strategy-server) (발행 날짜: 2024. 10)
 
 * [[카카오페이] 기술 블로그 - 실무에서 적용하는 테스트 코드 작성 방법과 노하우](https://tech.kakaopay.com/tag/test-code/) (발행 날짜: 2023. 07 -  2025. 02)
 
 * [Kotlin Default and Named Arguments](https://www.programiz.com/kotlin-programming/default-named-arguments)
 
-* [Increase Test Fidelity By Avoiding Mocks](https://testing.googleblog.com/2024/02/increase-test-fidelity-by-avoiding-mocks.html) (발행 날짜: 2024. 02)
+* [[Google] Testing Blog - Increase Test Fidelity By Avoiding Mocks](https://testing.googleblog.com/2024/02/increase-test-fidelity-by-avoiding-mocks.html) (발행 날짜: 2024. 02)
