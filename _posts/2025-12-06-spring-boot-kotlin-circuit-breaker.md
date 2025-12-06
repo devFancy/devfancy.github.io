@@ -588,6 +588,6 @@ class CircuitBreakerUtilsTest {
 - [[공식문서] Spring Cloud Circuit Breaker](https://spring.io/projects/spring-cloud-circuitbreaker#overview)
 - [[공식문서] Kotlin - runCatching](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/run-catching.html)
 - [[우아한형제들] 개발자 의식의 흐름대로 적용해보는 서킷브레이커](https://techblog.woowahan.com/15694/) - 2024.01.11
-- [[당근테크] 서킷브레이커 사용 방식 개선하기 | 당근 SERVER 밋업 2회](https://www.youtube.com/watch?v=ThLfHtoEe1I) - 2023.11.23
+- [[당근테크] 서킷브레이커 사용 방식 개선하기 - 당근 SERVER 밋업 2회](https://www.youtube.com/watch?v=ThLfHtoEe1I) - 2023.11.23
 - [[올리브영] Circuitbreaker를 사용한 장애 전파 방지](https://oliveyoung.tech/2023-08-31/circuitbreaker-inventory-squad/) - 2023.08.31
 - [[개인 블로그] Spring - CircuitBreaker](https://backtony.tistory.com/83)
