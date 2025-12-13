@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기"
-categories: [ Tech ]
+categories: [ Technology ]
 author: devFancy
 ---
 

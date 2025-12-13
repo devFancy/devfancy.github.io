@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Spring Boot, Kotlin 함수형으로 안전하게 서킷 브레이커 구현하기"
-categories: [ Tech ]
+categories: [ Technology ]
 author: devFancy
 ---
 
