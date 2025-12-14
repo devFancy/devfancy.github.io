@@ -24,6 +24,7 @@ author: devFancy
 
 * 단순한 에러 수집을 넘어, 태그를 활용해 알림 규칙을 정교하게 관리하고 싶은 분
 
+
 ---
 
 ## 왜 Sentry를 사용하는가?
@@ -153,9 +154,9 @@ public class GlobalExceptionHandler {
 }
 ```
 
-이 경우 모든 예외가 ExceptionHandler에 의해 잡히기 때문에 SentryExceptionResolver 까지 전달되지 않습니다.
+이 경우 모든 예외가 `ExceptionHandler`에 의해 잡히기 때문에 `SentryExceptionResolver` 까지 전달되지 않습니다.
 
-물론 catch 블록마다 Sentry.captureException(e)를 명시적으로 호출할 수도 있습니다.
+물론 catch 블록마다 `Sentry.captureException(e)`를 명시적으로 호출할 수도 있습니다.
 하지만 이렇게 되면 비즈니스 로직과 모니터링 로직이 강하게 결합되는 또다른 문제가 생깁니다.
 
 그래서 만약 `log.error` 와 같은 에러 로그를 남기고 있다면, 코드 수정 없이 로그 레벨에 따라 자동으로 이벤트를 수집해주는 `SentryAppender` 방식을 도입하는 것이 효율적이라고 생각합니다.
@@ -269,7 +270,7 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 }
 ```
 
-> 구현 참고: `ContentCachingWrapper`를 사용하여 요청/응답 본문(Body)을 안전하게 캐싱하고 MDC`를 통해 쓰레드 컨텍스트를 관리하는 구체적인 원리는
+> 구현 참고: `ContentCachingWrapper`를 사용하여 요청/응답 본문(Body)을 안전하게 캐싱하고 `MDC`를 통해 쓰레드 컨텍스트를 관리하는 구체적인 원리는
 > 이전에 작성한 [Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기](https://devfancy.github.io/SpringBoot-Logging-Filter/)
 > 포스팅에서 자세히 다루었으므로 해당 글을 참고해 주시기 바랍니다.)
 
@@ -290,7 +291,7 @@ Sentry에서 확보한 `globalTraceId`를 Grafana Loki의 레이블 필터로 �
 
 ### errorCode: 동적 태깅으로 검색 및 알림 설정
 
-에러를 검색하거나 정교한 알림 규칙을 만들 때 "쿠폰이 존재하지 않습니다."와 같은 에러 메시지를 기준으로 삼으면, 나중에 해당 에러메시지가 조금만 바뀌어도 규칙이 깨질 수 있습니다.
+에러를 검색하거나 정교한 알림 규칙을 만들 때 "쿠폰이 존재하지 않습니다."와 같은 에러 메시지를 기준으로 삼으면, 나중에 해당 에러 메시지가 조금만 바뀌어도 규칙이 깨질 수 있습니다.
 
 따라서 변하기 쉬운 메시지 대신 `E500` 와 같은 고유 값인 `errorCode`를 태그로 달아 관리하는 것이 유리합니다.
 
@@ -300,7 +301,7 @@ Sentry에서 확보한 `globalTraceId`를 Grafana Loki의 레이블 필터로 �
 
 - beforeSend: "이벤트가 발생했네? 잠깐 멈춰봐. 내용을 뜯어보고 태그를 달거나 버릴지 결정하자" (동적)
 
-아래와 같이 beforeSend 콜백을 구현하여, `CouponException` 이 발생 시 내부에 담긴 에러 코드를 추출해 태그로 등록하고, 불필요한 INFO 레벨의 예외는 필터링하여 비용을 줄이는 로직을
+아래와 같이 beforeSend 콜백을 구현하여, `CouponException` 이 발생 시 내부에 담긴 에러 코드를 추출해 태그로 등록하고, 불필요한 `INFO` 레벨의 예외는 필터링하여 비용을 줄이는 로직을
 구현했습니다.
 
 ```java
