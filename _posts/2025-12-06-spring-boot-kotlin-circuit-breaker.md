@@ -26,7 +26,7 @@ author: devFancy
 
 ## CircuitBreaker란
 
-![](/assets/img/technology/circuit-breaker-concept-and-apply-springboot-kotlin-1.png)
+![](/assets/img/technology/circuit-breaker/circuit-breaker-concept-and-apply-springboot-kotlin-1.png)
 
 `CircuitBreaker`(서킷 브레이커)는 문제가 발생한 지점을 감지하여 실패하는 요청을 차단하고(Open),
 이를 통해 시스템의 장애 확산을 막고 장애 복구를 도와주는 기능을 제공합니다.
@@ -53,7 +53,7 @@ Resilience4j는 두 가지 타입을 제공합니다.
 
 서킷 브레이커는 일반적으로 3가지 상태를 가지며, 이외에 특수 상태로 2가지를 가집니다.
 
-![](/assets/img/technology/circuit-breaker-concept-and-apply-springboot-kotlin-2.png)
+![](/assets/img/technology/circuit-breaker/circuit-breaker-concept-and-apply-springboot-kotlin-2.png)
 
 - `Closed` (정상 상태)
     - 평소 정상적으로 요청을 처리하는 상태입니다.
@@ -489,7 +489,7 @@ class CircuitUtilControllerTest {
 }
 ```
 
-![](/assets/img/technology/circuit-breaker-concept-and-apply-springboot-kotlin-3.png)
+![](/assets/img/technology/circuit-breaker/circuit-breaker-concept-and-apply-springboot-kotlin-3.png)
 
 > CircuitBreakerUtilsTest.kt
 
@@ -556,7 +556,7 @@ class CircuitBreakerUtilsTest {
 }
 ```
 
-![](/assets/img/technology/circuit-breaker-concept-and-apply-springboot-kotlin-4.png)
+![](/assets/img/technology/circuit-breaker/circuit-breaker-concept-and-apply-springboot-kotlin-4.png)
 
 ## 마무리하기
 

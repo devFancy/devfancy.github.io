@@ -54,7 +54,7 @@ author: devFancy
 
 아래는 네이버 쇼핑을 통해서 화장품 제품인 '제로이드 수딩 크림 100ml'를 결제할 때의 사진입니다.
 
-![](/assets/img/technology/springboot-kotlin-external-api-circuit-breaker-naverpay-order.png)
+![](/assets/img/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-naverpay-order.png)
 
 이때, '결제하기' 버튼을 클릭했을 때 외부 시스템 PG사로부터 장애가 발생한다면 어떤 일이 발생할까요?
 
@@ -73,7 +73,7 @@ author: devFancy
 
 코드로 넘어가기 전에, 간단하게 내부 서비스인 '결제'와 외부 서비스인 'PG'사와의 관계를 먼저 살펴보겠습니다.
 
-![](/assets/img/technology/springboot-kotlin-external-api-circuit-breaker-payment-pg.png)
+![](/assets/img/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-pg.png)
 
 위 그림은 내부 결제 서비스와 외부 PG사 간의 상호작용을 나타냅니다.
 구조적으로 보면, PG사로부터 결제 결과(성공/실패)를 콜백(Callback) 형태로 전달받고,
@@ -413,7 +413,7 @@ Beeceptor Console > Mocking Rules 메뉴에서 아래 규칙을 등록해야 합
 
 테스트를 위해 적용할 API 부분만 아래 그림과 같이 체크 표시를 하면 됩니다.
 
-![](/assets/img/technology/springboot-kotlin-external-api-circuit-breaker-payment-mocking-rule.png)
+![](/assets/img/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-mocking-rule.png)
 
 > Case 1: 결제 승인 성공 (Success)
 
@@ -431,7 +431,7 @@ Beeceptor Console > Mocking Rules 메뉴에서 아래 규칙을 등록해야 합
 }
 ```
 
-![](/assets/img/technology/springboot-kotlin-external-api-circuit-breaker-payment-mocking-200-success.png)
+![](/assets/img/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-mocking-200-success.png)
 
 > Case 2: 결제 승인 실패 (Failure)
 
@@ -447,7 +447,7 @@ Beeceptor Console > Mocking Rules 메뉴에서 아래 규칙을 등록해야 합
 }
 ```
 
-![](/assets/img/technology/springboot-kotlin-external-api-circuit-breaker-payment-mocking-400-fail.png)
+![](/assets/img/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-mocking-400-fail.png)
 
 ### 2. 테스트용 데이터 작성하기
 
@@ -503,7 +503,7 @@ Content-Type: application/json
 13:20:29.626| INFO|{{traceId}},{{spanId}}|i.d.c.c.a.client.BeeceptorPaymentClient |[PAYMENT_CLIENT] 응답 성공 - Result: PaymentResult(externalPaymentKey=payment_key_test, method=CARD, approveNo=12345678, message=결제 성공)
 ```
 
-## 테스트 코드로 확인해보기
+## 테스트 코드로 확인하기
 
 마지막으로, 앞서 Beeceptor에 설정해둔 500 에러 응답 규칙을 기반으로, 실제 코드에서 서킷 브레이커가 정상적으로 동작하는지 테스트 코드로 검증해보겠습니다.
 
@@ -558,11 +558,11 @@ class BeeceptorPaymentClientTest(
 
 테스트 실행 결과, 아래 그림과 같이 모든 검증 과정을 통과한 것을 확인할 수 있습니다.
 
-![](/assets/img/technology/springboot-kotlin-external-api-circuit-breaker-testcode-success.png)
+![](/assets/img/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-testcode-success.png)
 
 Beeceptor Mock 서버의 로그를 확인해보면, 의도한 대로 10번의 500 에러 요청이 발생했음을 알 수 있습니다.
 
-![](/assets/img/technology/springboot-kotlin-external-api-circuit-breaker-payment-500-error.png)
+![](/assets/img/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-500-error.png)
 
 마지막으로 애플리케이션 로그를 통해 서킷 브레이커의 상태 변화를 확인할 수 있습니다.
 로그를 자세히 보시면 10번째 실패 이후 `CallNotPermittedException`이 발생하며, 이후
@@ -576,6 +576,21 @@ Beeceptor Mock 서버의 로그를 확인해보면, 의도한 대로 10번의 50
 io.github.resilience4j.circuitbreaker.CallNotPermittedException: CircuitBreaker 'beeceptor-payment' is OPEN and does not permit further calls
 13:53:43.099| WARN|{traceId}, {spanId}|i.d.c.c.a.client.BeeceptorPaymentClient |[Circuit Open] Beeceptor 결제 서비스 차단됨. 잠시 후 재시도 필요.
 ```
+
+## 모니터링 연동하기
+
+앞서 테스트 코드를 통해 서킷 브레이커가 정상적으로 동작하는 것을 검증했습니다. 
+하지만 실제 운영 환경에서는 로그만으로 서킷의 상태 변화나 실패율 추이를 실시간으로 파악하기 어렵습니다.
+
+따라서 장애 발생 시 빠르게 인지하고 대응하기 위해 Prometheus와 Grafana를 활용하여 모니터링 시스템을 구축했습니다.
+(연동 코드에 대한 자세한 내용은 [해당 PR](https://github.com/devFancy/kotlin-java-playground/pull/9)을 참고해 주시기 바랍니다.)
+
+Resilience4j는 Micrometer를 통해 서킷 브레이커의 상태(OPEN, HALF_OPEN, CLOSED), 실패율, 호출 횟수 등의 다양한 메트릭을 Prometheus로 노출할 수 있도록 지원합니다.
+이를 Grafana 대시보드와 연동하면 아래와 같이 시각화된 데이터를 확인할 수 있습니다.
+
+![](/assets/img/technology/circuit-breaker/circuit-breeaker-monitoring-metrics.png)
+
+이처럼 모니터링을 구축해 두면, 외부 시스템 장애 발생 시 서킷이 정상적으로 차단되었는지, 혹은 회복 상태(Half-Open)로 진입했는지를 대시보드를 통해 직관적으로 확인할 수 있어 운영 안정성을 높일 수 있습니다
 
 ## 마무리하기
 
