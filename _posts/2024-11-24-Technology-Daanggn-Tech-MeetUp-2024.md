@@ -61,7 +61,7 @@ author: devFancy
 
     * [3] 화면에 표시하기 위한 뷰 작성 (ex. 문의 처리 화면)
 
-![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-1.png)
+![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-1.png)
 
 #### 문제 상황
 
@@ -71,7 +71,7 @@ author: devFancy
 
     * 코드를 추가하거나 수정할 위치를 찾기 어렵고, 응답 시간이 길어지면서 성능이 저하된다.
 
-![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-2.png)
+![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-2.png)
 
 #### 해결 방안 `1단계`: 서비스별 API 분리
 
@@ -85,7 +85,7 @@ author: devFancy
 
     * 하지만 각 서비스 정보 조회 API를 보면, 여전히 너무 많은 코드가 API 메서드 1개에 작동되고 있다.
 
-    ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-3.png)
+    ![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-3.png)
 
 #### 해결 방안 `2단계`: 역할 기반 분리
 
@@ -101,7 +101,7 @@ author: devFancy
 
     * 역할이 분리하고 난 뒤에 다른 서비스에 있는 `사용자 정보 조회` 를 봤더니, 결국에는 모든 API가 비슷한 형태로 된 것을 확인할 수 있다.
 
-    ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-4.png)
+    ![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-4.png)
 
 #### 해결 방안 `3단계`: 서비스별 API 통합
 
@@ -113,7 +113,7 @@ author: devFancy
 
     * 하지만 이는 서비스가 추가될 때마다 이 분기문 길이가 길어지면서 다시 코드가 복잡해지는 문제가 발생한다.
 
-    ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-5.png)
+    ![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-5.png)
 
 #### 해결 방안 `4단계`: 메타 프로그래밍 도입
 
@@ -123,7 +123,7 @@ author: devFancy
 
     * 여러 언어(JavaScript, Java, C++ 등)에서도 이 `메타 프로그래밍` 을 쓸 수 있다.
 
-    ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-6.png)
+    ![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-6.png)
 
     * 정리하면, 초기에 문제가 되었던 200줄이 넘는 코드와 평균 응답 시간이 2초(2000ms)가 걸렸고, 한 메서드 안에서 여러 서비스에 대한 사용자 정보를 순서대로 요청하고 응답받는 구조이다.
 
@@ -137,7 +137,7 @@ author: devFancy
 
     * 새로운 서비스를 추가하더라도 한 번 API 호출 할 때 하나의 서비스 정보만 불러오기 때문에, 응답 시간에는 영향을 미치지 않는다. 이는 확장성의 의미인 **최소한의 사이드 이펙트** 로 새로운 기능을 추가할 수 있는 상태가 되었다.
 
-    ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-7.png)
+    ![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-7.png)
 
 * 규칙 기반 UI 생성
 
@@ -257,13 +257,13 @@ author: devFancy
 
     * 발생 빈도가 높지 않거나 핵심 기능에 미치는 영향이 적다면 바로 대응하지 않고 모니터링을 걸어둔 채, 현재 하고 있던 작업을 빠르게 마치도록 한다.
 
-    ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-8.png)
+    ![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-8.png)
 
     * 반대로, 발생 빈도가 높거나 핵심 기능에 미치는 영향이 크다면 빠르게 원인 파악을 들어가고, 현재 작업과 에러에 대한 대응하는 두 가지 중 **사용자에게 더 큰 가치를 전달하는 것인지를 고민**하고
 
     * 그 과정에서 현재 작업을 완료하는 것이 더 중요하다면, 현재 작업을 완료하고 에러를 대응하기로 한다.
 
-    ![](/assets/img/tech_insight/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-9.png)
+    ![](/assets/img/technology/daanggn/Daanggn-Tech-MeetUp-2024-Ops-Dev-Team-9.png)
 
 * 이 에러 대응 프로세스에서 가장 중요했던 지점은 **이 에러가 어떠한 양상으로 서비스에 영향을 미치는지 파악**하는 것이다.
 
