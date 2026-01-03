@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 2024년 1분기 회고. 배움의 여정과 새로운 도약 "
+title:  " 2024년 1분기 회고 "
 categories: Retrospective
 author: devFancy
 ---

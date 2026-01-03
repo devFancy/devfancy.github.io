@@ -1,6 +1,6 @@
 ---
 layout: post
-title: " 2024년 3분기 회고. 우선순위를 정하고 균형 있게 성장하기 "
+title: " 2024년 3분기 회고 "
 categories: Retrospective
 author: devFancy
 ---

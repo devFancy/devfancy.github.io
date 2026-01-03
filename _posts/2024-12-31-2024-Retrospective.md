@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 2024년 회고 (+2025년 계획) "
+title:  " 2024년 회고 "
 categories: Retrospective
 author: devFancy
 ---

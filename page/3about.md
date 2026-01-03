@@ -66,9 +66,9 @@ type: page
 
 ## Retrospective
 
-*  [2024년 회고 (+2025년 계획)](https://devfancy.github.io/2024-Retrospective/)
+*  [2024년 회고](https://devfancy.github.io/2024-Retrospective/)
 
-*  [[2023년 회고] 다양한 활동으로 가득한 특별한 한 해](https://devfancy.github.io/2023-Retrospective/)
+*  [2023년 회고](https://devfancy.github.io/2023-Retrospective/)
 
 ---
 
@@ -84,13 +84,15 @@ type: page
 
 ## TimeLine
 
+### 2026
+
 ### 2025
+
+* 　10. 29 ~ 책 '코틀린 인 액션 (2/e)' 스터디 참가 - [정리](https://github.com/devFancy/WIL/tree/main/kotlin/kotlin-in-action)
 
 * 　10. 21 ~ 우아한유스방 6기 참가
 
-* 　01. 21 ~ 03. 02 넥스트스텝 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 실습 및 [정리](https://devfancy.github.io/DDD-Serenade-7th-Review/)
-
-* 　01. 01 ~ Present 신입 개발자를 위한 CS 기초서(가제) 집필 - 파트: OS
+* 　01. 21 ~ 03. 02 [[넥스트스텝] DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv) 강의 실습 및 [정리](https://devfancy.github.io/DDD-Serenade-7th-Review/)
 
 ### 2024
 
@@ -98,33 +100,37 @@ type: page
 
 * 　10. 01 ~ 2025. 03. 31 [글또 10기](https://geultto.github.io/) 참가 - [회고 글](https://devfancy.github.io/geultto-10th-Retrospective/)
 
-* 　04. 01 ~ 05. 30 책 '가상면접 사례로 배우는 대규모 시스템 설계 기초' 스터디
+* 　09. 01 ~ Present 신입 개발자를 위한 CS 기초서(가제) 집필 - 파트: 운영체제(OS)
 
-* 　01. 02 ~ 03. 02 개인 프로젝트 [Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 Hibit(ver 1) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선 - [회고 글](https://devfancy.github.io/Hibit-Retrospective/)
+* 　05. 30 ~ 책 '카프카 핵심 가이드' 읽고 [정리](https://github.com/devFancy/WIL/tree/main/kafka/kafka-the-definitive-guide)
+
+* 　04. 01 ~ 05. 30 책 '가상면접 사례로 배우는 대규모 시스템 설계 기초1' 스터디 참가
+
+* 　01. 02 ~ 03. 02 개인 프로젝트 [[Github] Hibit (ver.2)](https://github.com/hibit-team/hibit-backend-improved) : 이전 Hibit(ver 1) 프로젝트를 기반으로 코드 리팩터링 및 성능 개선 - [회고 글](https://devfancy.github.io/Hibit-Retrospective/)
 
 ### 2023
 
-* 　11. 26 ~ 2024. 03. 31[글또 9기](https://www.notion.so/zzsza/ac5b18a482fb4df497d4e8257ad4d516) 참가 - [회고 글](https://devfancy.github.io/Geultto-9th-Retrospective/)
+* 　11. 26 ~ 2024. 03. 31[글또 9기](https://geultto.github.io/) 참가 - [회고 글](https://devfancy.github.io/Geultto-9th-Retrospective/)
 
-* 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 내 코드가 그렇게 이상한가요? 책 읽고 [정리](https://devfancy.github.io/category/#GoodCode)
+* 　11. 01 ~ 12. 31 [우아한 스터디 2023 겨울 시즌](https://techblog.woowahan.com/14224/): (주제) 책 '내 코드가 그렇게 이상한가요?' 읽고 [정리](https://devfancy.github.io/category/#GoodCode)
 
-* 　03. 07 ~ 10. 22 팀프로젝트 - [Hibit (ver.1)](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`
+* 　03. 07 ~ 10. 22 팀프로젝트 - [[Github] Hibit (ver.1)](https://github.com/hibit-team/hibit-backend) : 예술 전시회 소셜 매칭 웹 서비스, 역할: `Backend Developer`
 
 * 　01. 14  Google 애드센스 블로그에 적용(01. 30 애드센스 계정 활성화)
 
-* 　01. 12 [기술 블로그](https://github.com/devfancy/devfancy.github.io) 생성
+* 　01. 12 [[Github] 기술 블로그](https://github.com/devfancy/devfancy.github.io) 생성
 
-* 　01. 02 ~ 06. 30 [신입 개발자를 위한 CS 스터디 모임](https://github.com/devSquad-study/2023-CS-Study) 운영
+* 　01. 02 ~ 06. 30 [[Github] 신입 개발자를 위한 CS 스터디 모임](https://github.com/devSquad-study/2023-CS-Study) 운영
 
 ### 2022
 
 * 　12. 24 ~ 12. 31 [[Coursera] 5개 수료증 취득](https://devfancy.github.io/Coursera-Certificates/)
 
-* 　10. 26 ~ 12. 17 [우아한테크코스 5기 프리코스 과정](https://github.com/devFancy/devfancy-woowacourse) 참가
+* 　10. 26 ~ 12. 17 [[Github] 우아한테크코스 5기 프리코스 과정](https://github.com/devFancy/devfancy-woowacourse) 참가
 
 * 　10. 12 ~ 11. 18 Competition : KNU 창업 성과 경진대회 장려상 수상
 
-* 　09. 01 ~ 12. 20 ['운영체제' 공부](https://devfancy.github.io/category/#OS)
+* 　09. 01 ~ 12. 20 [운영체제 공부](https://devfancy.github.io/category/#OS)
 
 * 　08. 30 ~ 08. 31 [컴퓨터학부/PRIME 사업단]하계 KNU-CSE 창업캠프 참가
 
@@ -150,7 +156,7 @@ type: page
 
 * 　03. 02 ~ 06. 17 ['경영경제통계학' 공부(부전공: 경영학)](https://devfancy.github.io/category/#Business-Statistics)
 
-* 　03. 02 ~ 06. 15 ['알고리즘 실습' 공부](https://github.com/devfancy/KNU/tree/main/algorithm)
+* 　03. 02 ~ 06. 15 [[Github] '알고리즘 실습' 공부](https://github.com/devfancy/KNU/tree/main/algorithm)
 
 ### 2021
 
