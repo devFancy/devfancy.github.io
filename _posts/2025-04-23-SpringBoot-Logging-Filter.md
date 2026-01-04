@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 2편. Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기 "
+title:  " Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기 "
 categories: [SpringBoot]
 author: devFancy
 ---

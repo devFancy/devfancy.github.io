@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 1편. Spring Boot 환경의 Multi Module에서 logback 환경별 설정하기 "
+title:  "Spring Boot 환경의 Multi Module에서 logback 환경별 설정하기 "
 categories: SpringBoot
 author: devFancy
 ---
@@ -17,7 +17,7 @@ author: devFancy
 
 > 관련 포스팅
 
-* [2편. Spring Boot에서 요청 흐름 추적: Logging Filter와 traceId 적용기](https://devfancy.github.io/SpringBoot-Logging-Filter/)
+* [Spring Boot에서 요청 흐름 추적: Logging Filter와 traceId 적용기](https://devfancy.github.io/SpringBoot-Logging-Filter/)
 
 ---
 

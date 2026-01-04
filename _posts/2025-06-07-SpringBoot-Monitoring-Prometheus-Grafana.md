@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  " 3편. Prometheus와 Grafana로 Spring Boot 기반 모니터링 대시보드 구축하기 "
+title:  "Prometheus와 Grafana로 Spring Boot 기반 모니터링 대시보드 구축하기 "
 categories: [SpringBoot]
 author: devFancy
 ---
@@ -13,7 +13,7 @@ author: devFancy
 
 빠른 응답 시간은 사용자 이탈률을 낮추고, 안정적인 시스템은 비즈니스 신뢰도를 높입니다. 그렇기 때문에 이러한 지표를 꾸준히 관찰하고 개선하는 것은 매우 중요하다고 생각합니다.
 
-이전 포스팅이었던 “[2편. Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기](https://devfancy.github.io/SpringBoot-Logging-Filter/)”에 이어, 이번 글에서는 3편을 작성해보고자 합니다.
+이전 포스팅이었던 “[Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기](https://devfancy.github.io/SpringBoot-Logging-Filter/)”에 이어, 이번 글에서는 3편을 작성해보고자 합니다.
 
 이 글은 경험을 바탕으로 한 하나의 접근법이며, 정답이라기보다는 여러분이 각자의 상황에 맞는 최적의 방법을 찾아가는 데 도움이 되기를 바라는 마음으로 작성했습니다.
 
