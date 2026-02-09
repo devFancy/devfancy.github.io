@@ -66,6 +66,7 @@ regenerate : true
 ## 이를 통해 메인 페이지 및 카테고리 페이지에서 카테고리 순서가 고정
 categories_order:
   - "DevHistory"
+  - "Essay"
   - "Java"
   - "Spring"
   - "SpringBoot"
