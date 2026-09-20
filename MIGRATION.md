@@ -10,6 +10,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 - v5 갱신: 2026-09-20 (Phase 2 완료. 카드 시안 A 확정, Hero 배경 이미지 채용, Recommend 이관 확정, 목차 파리티 기재)
 - v6 갱신: 2026-09-20 (검색을 `/category/` 안으로, 이메일 노출 허용, 헤더 네비 3개 확정, `/about/` 선행 구현 기록)
 - v7 갱신: 2026-09-20 (파비콘 신설, 태그 칩 형태 확정, 목차 접기 항목 추가)
+- v8 갱신: 2026-09-20 (카테고리 34개 → 9개로 재편, 기존 이름은 태그로 이전)
 - 대상 저장소: `devfancy.github.io` (GitHub Pages user site, 퍼블릭)
 
 ---
@@ -312,11 +313,46 @@ Tailwind v3는 쓰지 않는다. 마지막 기능 릴리스가 2023년 12월(v3.
 
 `@astrojs/sitemap`의 출력 파일명을 억지로 `/sitemap.xml`로 되돌리지 않는다. 표준 동작을 따르고 Search Console을 한 번 갱신하는 편이 싸다.
 
+#### 4-2-1. 카테고리 재편 (v8에서 신설)
+
+34종은 방문자가 훑기에 너무 많다. 9개로 묶고 **기존 이름을 태그로 내린다.**
+`tags` 는 부록 A 에 이미 예약돼 있어 스키마 변경이 없다.
+
+| 카테고리 | 편수 | 묶은 것 |
+|---|---|---|
+| 서버 | 95 | SpringBoot, Spring, JPA, Java, Kafka, GoodCode, AssertJ, Technology, Flyway, Linux |
+| 알고리즘 | 75 | Algorithm, AlgorithmSkill, LeetCode |
+| CS | 53 | OS, Network, HTTP, DataStructure, Database, SQL, MySQL |
+| 대학교 | 31 | Business-Statistics, Probability-Statistics, Electronic-Finance |
+| 프로젝트 | 24 | Side_Project, Woowacourse |
+| 기타 | 19 | E.T.C, Workout, Competition, Technology 중 블로그 운영 글 3편 |
+| 도구 | 14 | Git, IntelliJ |
+| 회고 | 8 | Retrospective, DevHistory |
+| 에세이 | 8 | Essay, Book |
+
+가장 큰 서버가 29%다. 4개(개발/에세이/회고/기타)로 줄이면 "개발"에 300편 가까이 몰려
+카테고리가 사실상 하나가 되므로 9개로 잡았다.
+
+**Technology 예외 3편**: `Technology-GitHub-Readme`, `Technology-Google-Research-Console-Verification`,
+`Technology-utterances` 는 블로그 운영 글이라 기타로 보낸다. 변환 스크립트의 `CATEGORY_OVERRIDE` 에 있다.
+
+**태그 표기**: 고유명사·제품명은 영문, 일반 개념은 한글로 적는다. 나중에 다국어를 넣을 때
+한 번에 바꾸기 쉽도록 한글을 기본으로 둔다.
+
+- 영문 — Spring, Spring Boot, JPA, Java, Kafka, AssertJ, SQL, MySQL, Flyway, HTTP, Git, IntelliJ, LeetCode
+- 한글 — 알고리즘, 운영체제, 네트워크, 데이터베이스, 자료구조, 리눅스, 확률통계, 경영통계,
+  전자금융, 사이드프로젝트, 우아한테크코스, 회고, 개발기록, 책, 에세이, 운동, 공모전, 기술,
+  클린코드, 문제해결, 기타
+
+**`/category/#Kafka` 앵커에 영향이 있다.** 4-1이 보존하기로 한 앵커인데 Kafka 가 태그로
+내려가면 가리킬 카테고리가 없다. `/category/` 페이지에서 **태그도 같은 방식으로 필터링**되게 만들고
+해시를 카테고리와 태그 양쪽에서 찾도록 한다 (4-4-2 와 함께 03-pages 에서 구현).
+
 ### 4-2. 콘텐츠 구조
 
 | 항목 | 결정 |
 |---|---|
-| 카테고리 34개 | 유지. 표기 4종만 정규화 |
+| 카테고리 | **9개로 재편** (v8에서 변경. 4-2-1). 기존 34종은 태그로 내린다 |
 | 문제풀이 75편 | 설정 배열로 분리. 프론트매터 변경 없음 |
 | 분리 방식 | 메인과 `/posts`에서 제외, `/solutions/`에 모아 표시 |
 | `/category/` | 34개 전부 표시 |
@@ -984,6 +1020,7 @@ posts:
 |---|---|---|
 | v1 | 2026-09-20 | 최초 작성 |
 | v2 | 2026-09-20 | Phase 0 결과 반영. 글 수 327 -> 319 정정, 썸네일 근거 정정, 태그 부재 반영, KaTeX 도입, AdSense 제거, 이미지 압축 Phase 추가, 의존성 목표 재정의 |
+| v8 | 2026-09-20 | 카테고리 34개 → 9개 재편(4-2-1), 기존 이름을 태그로 이전, 태그 표기 규칙(고유명사 영문/일반 개념 한글) 신설, `/category/#Kafka` 앵커를 태그에서도 찾도록 기재 |
 | v7 | 2026-09-20 | 파비콘 신설(4-3, 검정 배경 + 흰 펜촉), 태그 칩을 라운드 사각형으로 확정, 목차 접기/펼치기를 03-pages 항목으로 추가(4-4-4) |
 | v6 | 2026-09-20 | 검색을 `/search/` 페이지에서 `/category/` 안으로 이동(4-4-2), `/search/` 를 의도된 URL 변경 4번째로 추가, 헤더 네비 3개 확정(4-4-3), 이메일 노출 허용·전화번호 제외·Instagram 제외(4-5), `/about/` 선행 구현과 `/archive/`·`/category/` 404 상태 기록(8-2-2), 폰트 self-host 방침 기재(3-1) |
 | v5 | 2026-09-20 | Phase 2 완료 반영. 카드 시안 A 확정(제목-날짜-칩), Hero 배경 이미지 채용(4-3 "배경 사진 없음" 뒤집음), 목차·Recommend·소셜 인라인 SVG를 이관 대상으로 확정, Astro 7/Tailwind v4 함정 8-2-1 신설, 빌드 타임 의존성 목표 6 -> 9 정정 |
