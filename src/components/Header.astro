@@ -1,9 +1,10 @@
 ---
 /* NOTE 헤더는 항상 고정이다. Hero 위에서는 투명했다가 지나면 배경이 떠오른다
  * - 색은 header 의 color 를 자식이 물려받게 해서 전환 한 번으로 전부 따라오게 한다
- * - Hero 가 끝나는 지점(data-hero-end)을 IntersectionObserver 로 본다. 스크롤 이벤트를 쓰지 않는다
+ * - 스크롤이 시작되면 바로 배경과 구분선을 띄운다. 히어로 글자와 겹쳐 보이지 않게 한다
+ * - 모바일은 이름과 테마 버튼만 남기고 메뉴는 햄버거 안으로 접는다 (4-4-3)
  */
-import { SITE } from '../config';
+import { NAV, SITE } from '../config';
 
 interface Props {
   overlay?: boolean;
@@ -11,18 +12,16 @@ interface Props {
 const { overlay = false } = Astro.props;
 ---
 <header id="site-header" class:list={['site-header', overlay && 'is-overlay']}>
-  {/* NOTE: 375px에서 한 줄에 들어가도록 모바일 타입을 줄인다. wrap 은 안전장치 (9-3) */}
-  <div class="mx-auto flex max-w-3xl flex-wrap items-center gap-x-3 gap-y-2 px-4 py-4 sm:gap-x-5">
-    <a href="/" class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl">{SITE.title}</a>
+  <div class="mx-auto flex max-w-3xl items-center gap-x-1 px-4 py-4 sm:gap-x-5">
+    <a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl">{SITE.title}</a>
 
-    <nav class="ml-auto flex gap-3 text-xs whitespace-nowrap sm:gap-5 sm:text-base">
-      <a href="/archive/">Archives</a>
-      <a href="/category/">Categories</a>
-      <a href="/about/">About</a>
+    {/* NOTE: sm 미만에서는 숨기고 햄버거 패널이 같은 링크를 보여준다 */}
+    <nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex">
+      {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
     </nav>
 
     <button id="theme-toggle" type="button" aria-label="테마 전환"
-      class="inline-flex size-11 items-center justify-center rounded-full">
+      class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0">
       {/* NOTE: 라이트일 때 해, 다크일 때 달 하나만 보인다 */}
       <svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -34,7 +33,27 @@ const { overlay = false } = Astro.props;
         <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
       </svg>
     </button>
+
+    <button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel"
+      class="inline-flex size-11 items-center justify-center rounded-full sm:hidden">
+      {/* NOTE: 열리면 위아래 선이 가운데로 모여 X 가 된다 */}
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path class="bar bar-top" d="M4 7h16"></path>
+        <path class="bar bar-mid" d="M4 12h16"></path>
+        <path class="bar bar-bot" d="M4 17h16"></path>
+      </svg>
+    </button>
   </div>
+
+  {/* NOTE: 햄버거가 오른쪽에 있으니 메뉴도 오른쪽에 맞춘다 */}
+  <nav id="menu-panel" class="sm:hidden" hidden>
+    <ul class="mx-auto max-w-3xl px-4 pb-3 text-right">
+      {NAV.map((n) => (
+        <li><a href={n.href} class="block py-3 text-base">{n.label}</a></li>
+      ))}
+    </ul>
+  </nav>
 </header>
 
 <style>
@@ -68,6 +87,13 @@ const { overlay = false } = Astro.props;
     backdrop-filter: blur(6px);
   }
 
+  /* 히어로를 지나면 로고만 브랜드 색으로 바뀐다 */
+  [data-logo] {
+    color: var(--color-brand);
+    transition: color .3s ease;
+  }
+  .site-header.is-overlay:not(.is-solid):not(:has(#menu-panel.is-open)) [data-logo] { color: #fff; }
+
   .site-header nav a { opacity: .8; }
   .site-header nav a:hover,
   .site-header a:hover { color: var(--color-accent); opacity: 1; }
@@ -87,12 +113,72 @@ const { overlay = false } = Astro.props;
   :global(:root[data-theme='dark']) [data-icon='sun'] { opacity: 0; transform: rotate(90deg) scale(.6); }
   :global(:root[data-theme='dark']) [data-icon='moon'] { opacity: 1; transform: none; }
 
+  /* 햄버거 -> X. 위아래 선이 가운데로 모여 교차한다 */
+  #menu-toggle .bar {
+    transform-origin: center;
+    transition: transform .28s cubic-bezier(.4, 0, .2, 1), opacity .18s ease;
+  }
+  #menu-toggle[aria-expanded='true'] .bar-top { transform: translateY(5px) rotate(45deg); }
+  #menu-toggle[aria-expanded='true'] .bar-bot { transform: translateY(-5px) rotate(-45deg); }
+  #menu-toggle[aria-expanded='true'] .bar-mid { opacity: 0; }
+
+  /* 링크 3개라 고정 상한으로 충분하다. grid 0fr/1fr 은 트랙 계산이 엇갈렸다 */
+  #menu-panel {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height .32s cubic-bezier(.4, 0, .2, 1), opacity .2s ease;
+  }
+  #menu-panel.is-open {
+    max-height: 16rem;
+    opacity: 1;
+  }
+
+  /* NOTE 메뉴가 열리면 헤더를 불투명하게 덮는다
+   * - 반투명(--color-header)으로 두면 히어로 제목이 메뉴 글자 사이로 비친다
+   */
+  .site-header:has(#menu-panel.is-open) {
+    color: var(--color-fg);
+    background-color: var(--color-bg);
+    border-bottom-color: var(--color-rule);
+    backdrop-filter: none;
+  }
+
+  #menu-panel a { opacity: .85; }
+  #menu-panel a:hover { color: var(--color-accent); opacity: 1; }
+
   @media (prefers-reduced-motion: reduce) {
-    .site-header, #theme-toggle, #theme-toggle svg { transition: none; }
+    .site-header, #theme-toggle, #theme-toggle svg,
+    #menu-toggle .bar, #menu-panel { transition: none; }
   }
 </style>
 
 <script>
+  /* NOTE 모바일 메뉴. hidden 을 JS 가 걷어내 스크립트가 없으면 링크가 그냥 보이게 둔다 */
+  const menuBtn = document.getElementById('menu-toggle');
+  const panel = document.getElementById('menu-panel');
+  if (menuBtn && panel) {
+    panel.hidden = false;
+    const setOpen = (open: boolean) => {
+      menuBtn.setAttribute('aria-expanded', String(open));
+      panel.classList.toggle('is-open', open);
+    };
+    menuBtn.addEventListener('click', () => {
+      setOpen(menuBtn.getAttribute('aria-expanded') !== 'true');
+    });
+    // 바깥을 누르거나 Esc 를 누르면 닫는다
+    document.addEventListener('click', (e) => {
+      if (!(e.target as HTMLElement).closest('#site-header')) setOpen(false);
+    });
+    addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    // 데스크톱 폭으로 넓어지면 패널 상태를 초기화한다
+    matchMedia('(min-width: 640px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+
   document.getElementById('theme-toggle')?.addEventListener('click', () => {
     const root = document.documentElement;
     const dark = root.dataset.theme === 'dark';
@@ -103,24 +189,21 @@ const { overlay = false } = Astro.props;
 
   const header = document.getElementById('site-header');
   if (header?.classList.contains('is-overlay')) {
-    const sentinel = document.querySelector('[data-hero-end]');
-    if (sentinel) {
-      // NOTE: 헤더 높이만큼 위로 지나가면 배경을 띄운다
-      let queued = false;
-      const update = () => {
-        queued = false;
-        header.classList.toggle('is-solid', sentinel.getBoundingClientRect().top <= 72);
-      };
-      const onScroll = () => {
-        if (queued) return;
-        queued = true;
-        requestAnimationFrame(update);
-      };
-      update();
-      addEventListener('scroll', onScroll, { passive: true });
-      addEventListener('resize', onScroll);
-    } else {
-      header.classList.add('is-solid');
-    }
+    /* NOTE 히어로가 끝나는 지점이 아니라 스크롤 시작 지점에서 배경을 띄운다
+     * - 히어로 위에 얹힌 채로 스크롤하면 제목이 헤더 글자와 겹쳐 읽혔다
+     */
+    let queued = false;
+    const update = () => {
+      queued = false;
+      header.classList.toggle('is-solid', scrollY > 8);
+    };
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    };
+    update();
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
   }
 </script>
