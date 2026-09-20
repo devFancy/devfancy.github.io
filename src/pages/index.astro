@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import heroMain from '../assets/hero-main.jpg';
+import Hero from '../components/Hero.astro';
+import PostCard from '../components/PostCard.astro';
+import { SITE, SOLUTION_CATEGORIES } from '../config';
+
+const solution = new Set<string>(SOLUTION_CATEGORIES);
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  // NOTE: 문제풀이 글은 메인에서 뺀다. /solutions/는 Phase 3에서 (4-2)
+  .filter((p) => !p.data.categories.some((c) => solution.has(c)))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<Base overHero>
+  <Hero image={heroMain} title={SITE.hero.title} subtitle={SITE.hero.subtitle} />
+  <div class="mx-auto max-w-3xl px-4 py-10">
+  <h2 class="text-lg font-semibold text-muted">전체 글 {posts.length}편</h2>
+  {posts.map((p) => (
+    <PostCard slug={p.id} title={p.data.title} date={p.data.date}
+      categories={p.data.categories} />
+  ))}
+  </div>
+</Base>
