@@ -1,4 +1,4 @@
-# devfancy.github.io 개편 지시서 v11
+# devfancy.github.io 개편 지시서 v12
 
 Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 저장소 루트에 두고, Claude Code 세션 시작 시 전체를 읽힌 뒤 작업한다.
@@ -11,6 +11,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 - v6 갱신: 2026-09-20 (검색을 `/category/` 안으로, 이메일 노출 허용, 헤더 네비 3개 확정, `/about/` 선행 구현 기록)
 - v7 갱신: 2026-09-20 (파비콘 신설, 태그 칩 형태 확정, 목차 접기 항목 추가)
 - v11 갱신: 2026-09-20 (Phase 3 완료. 이미지 이관, 분류 재편, /category/·/archive/·/solutions/ 구현)
+- v12 갱신: 2026-09-20 (검색 단계 철회. 배포를 04 로 앞당김)
 - v8 갱신: 2026-09-20 (카테고리 34개 → 9개로 재편, 기존 이름은 태그로 이전)
 - v9 갱신: 2026-09-20 (카테고리를 2단 계층으로. 기술 아래 서버·알고리즘·CS·프로젝트·도구)
 - v10 갱신: 2026-09-20 (Phase 3 마크다운 변환 완료. 이미지 압축 전제 정정, 저장소 위치 이동, 확장자 불일치 35건 기재)
@@ -630,6 +631,18 @@ Phase 3 완료 후 `$`가 포함된 전체 파일을 렌더링 결과로 재확�
 
 ## 5. 미결 항목
 
+### 5-1. 검색 단계를 접는다 (v12에서 결정)
+
+`feat/astro-04-search` 를 만들지 않는다. 검색은 4-4-2 대로 `/category/` 안에 이미 있고,
+제목·카테고리·태그를 훑는 것으로 충분하다.
+
+| 검토한 것 | 접은 이유 |
+|---|---|
+| 전역 검색 모달 (`Cmd+K`) | `/category/` 안의 검색으로 충분하다. 어느 페이지에서나 열 필요가 없다 |
+| 본문 전문 검색 | 인덱스를 만들어 내려받게 해야 한다. 319편 본문은 무겁고 얻는 게 적다 |
+
+따라서 배포가 마지막 작업 브랜치이고 이름은 `feat/astro-04-deploy` 다.
+
 | 항목 | 선택지 | 결정 시점 |
 |---|---|---|
 | 이미지 압축 수준 | `pngquant` 품질 파라미터 | Phase 3 샘플 확인 후 |
@@ -685,8 +698,7 @@ main  (라이브 Jekyll. Phase 5까지 Astro 코드 없음)
     ├── feat/astro-01-scaffold   Astro 골격, 토큰, 레이아웃, 파일럿 5편
     ├── feat/astro-02-content    변환 스크립트 + 319편 + 이미지 (01 위에 스택)
     ├── feat/astro-03-pages      목록/카테고리/아카이브/solutions (02 위)
-    ├── feat/astro-04-search     검색 인덱스 + 모달 (03 위)
-    └── feat/astro-05-deploy     GitHub Actions + RSS/sitemap (04 위)
+    └── feat/astro-04-deploy     GitHub Actions + RSS/robots + GA4 (03 위)
 ```
 
 ### 7-3. Stacked PR 운용
@@ -962,7 +974,7 @@ git 히스토리는 재작성하지 않는다. 퍼블릭 저장소라 위험 대
 
 ### Phase 4. URL 검증 — 완료
 
-브랜치: `feat/astro-04-search` 이후 또는 별도 검증 커밋
+브랜치: `feat/astro-03-pages` 에서 수행 (검색 단계를 접었다, 5-1)
 
 스냅샷 1648건 대 산출물 1608건을 대조했다. **글 URL 누락 0건.**
 
@@ -987,13 +999,28 @@ git 히스토리는 재작성하지 않는다. 퍼블릭 저장소라 위험 대
 
 ### Phase 5. 배포
 
-브랜치: `feat/astro-05-deploy` -> `feat/astro` -> `main`
+브랜치: `feat/astro-04-deploy` -> `feat/astro` -> `main`
 
-- GitHub Actions 워크플로 작성 (`node-version-file: .nvmrc`)
+검색 단계를 접었으므로 배포가 마지막 작업 브랜치다 (5-1).
+
+**Jekyll 이 내보내던 것 중 Astro 에 없는 것**
+
+| URL | Jekyll | Astro | 조치 |
+|---|---|---|---|
+| `/feed.xml` | 있음 | 없음 | `@astrojs/rss` 로 **같은 경로**에 만든다. RSS 구독자가 끊기면 안 된다 |
+| `/robots.txt` | 있음 | 없음 | `public/robots.txt` 로 추가. `Sitemap:` 줄을 새 경로로 |
+| `/sitemap.xml` | 있음 | `sitemap-index.xml` | **URL 이 바뀐다.** 4-1 의도된 변경에 추가하고 Search Console 재등록 |
+| GA4 `G-7BMWW1711K` | `_config.yml` 로 주입 | 없음 | `Base.astro` 에 이식. **없으면 통계가 끊긴다** (4-4-6 전제) |
+
+**작업 순서**
+
+- GitHub Actions 워크플로 작성 (`node-version-file: .nvmrc`, Node 22)
+- Pages 소스를 **branch 에서 Actions 로 전환**
 - 프리뷰 배포로 확인
 - 컷오버 전 승인
 - 컷오버 후 `jekyll-final` 태그를 남기고 Jekyll 파일 삭제
-- **Search Console에 `sitemap-index.xml` 재등록**
+  (`_posts/` 319편, `scripts/convert-posts.mjs`, `_config.yml`, `_layouts/` 등)
+- **Search Console 에 `sitemap-index.xml` 재등록**
 - 색인 변화 2주 모니터링
 
 ---
@@ -1176,6 +1203,7 @@ posts:
 
 | 버전 | 날짜 | 내용 |
 |---|---|---|
+| v12 | 2026-09-20 | 검색 단계를 접는다(5-1). 전역 모달과 본문 전문 검색 모두 얻는 게 적어 `/category/` 안의 검색으로 갈음한다. 이에 따라 작업 브랜치가 `feat/astro-04-deploy` 로 끝나고 7-2 구조를 갱신. Phase 5 에 Jekyll 이 내보내던 `/feed.xml`·`/robots.txt`·`/sitemap.xml` 과 GA4 태그 이식을 명시 |
 | v11 | 2026-09-20 | Phase 3·4 완료. 이미지 1,238개를 `git mv` 로 `public/assets/img` 이관(8-3-2-1), 약어 폴더 5개 개명, dev 전용 이미지 플러그인 제거. 태그를 카테고리 한 곳에만 두는 규칙 신설(4-2-2)로 카테고리 2개인 글 0편·태그 중복 0종 달성. `/category/`·`/archive/`·`/solutions/` 구현과 홈을 최근 3편으로 축소(4-4-5). 원본에서 깨져 있던 이미지 경로·개발 서버 링크 교정. Phase 4 URL 검증으로 글 URL 누락 0건 확인하고 리눅스에서만 404 나는 대소문자 불일치 1건 발견·수정. 인기 포스트를 GA4 빌드 시점 주입으로 만들 계획 신설(4-4-6) |
 | v1 | 2026-09-20 | 최초 작성 |
 | v2 | 2026-09-20 | Phase 0 결과 반영. 글 수 327 -> 319 정정, 썸네일 근거 정정, 태그 부재 반영, KaTeX 도입, AdSense 제거, 이미지 압축 Phase 추가, 의존성 목표 재정의 |
