@@ -27,7 +27,7 @@ git flow 전략을 들어본 사람은 알겠지만, 배포 주기가 길고 팀
 
 ## 결과: 굿프렌즈팀의 Git-flow
 
-![](/assets/img/goodfriends/Goodfriends-Git-Flow-result.png)
+![](/assets/img/project/goodfriends/Goodfriends-Git-Flow-result.png)
 
 결론적으로 우리 굿프렌즈팀이 Git-flow을 적용한 사진입니다.
 
@@ -37,7 +37,7 @@ git flow 전략을 들어본 사람은 알겠지만, 배포 주기가 길고 팀
 
 프로젝트 시작하기에 앞서, 현재 Git Repository 구성부터 살펴보겠습니다.
 
-![](/assets/img/woorifisa/git-flow-repository.jpg)
+![](/assets/img/project/woorifisa/git-flow-repository.jpg)
 
 위 그림은 Git Repository 구성과 워크플로우를 설명하고 있습니다.
 
@@ -66,7 +66,7 @@ Git-flow는 기본적으로 **5가지** 종류의 브랜치가 존재합니다.
 - release: 이번 출시 버전을 준비하는 브랜치
 - hotfix: 출시 버전에서 발생한 버그를 수정하는 브랜치
 
-![](/assets/img/woorifisa/git-flow-1.jpeg)
+![](/assets/img/project/woorifisa/git-flow-1.jpeg)
 
 `main` 브랜치에서 'git checkout -b' 명령어를 통해 develop 브랜치를 생성합니다.
 
@@ -85,17 +85,17 @@ feature 브랜치에서 해당 기능 개발 작업을 완료했으면, pull req
 
 그 이유는 feature 브랜치에서 기능을 개발하기 위한 커밋 내역을 하나의 커밋으로 묶어 develop에 **병합**시킴으로써, develop에는 **기능 단위**로 커밋이 추가되도록 정리할 수 있다는 장점이 있기 때문입니다.
 
-![](/assets/img/woorifisa/git-flow-2.jpeg)
+![](/assets/img/project/woorifisa/git-flow-2.jpeg)
 
 `release` 브랜치는 배포하기 전에 충분한 검증(테스트)을 하기 위해 생성하는 브랜치입니다.
 QA 작업을 진행하면서 발생한 버그를 수정하기 위해 사용합니다. **QA 작업이 끝나고 배포할 준비가 완료**되었다고 판단되면, release 브랜치를 main 브랜치와 develop 브랜치에 **merge** 후에 main 브랜치에서 **tag** 명령을 통해 버전 태그를 추가합니다.
 
-![](/assets/img/woorifisa/git-flow-3.jpeg)
+![](/assets/img/project/woorifisa/git-flow-3.jpeg)
 
 `hotfix` 브랜치는 main 브랜치에서 배포하는 중에 버그가 생겨서 긴급하게 수정할 때 사용하는 브랜치입니다.
 배포 이후에 이루어지는 브랜치이고, 버그를 해결한 이후에 해당 변경 사항을 **main 브랜치와 develop 브랜치에 merge** 합니다.
 
-![](/assets/img/woorifisa/git-flow-4.jpeg)
+![](/assets/img/project/woorifisa/git-flow-4.jpeg)
 
 앞에서 말씀드렸듯이, 나머지 보조 브랜치들은 해당 작업을 모두 마치게 되면 삭제하여 정리합니다.
 
@@ -136,7 +136,7 @@ main 브랜치는 지금까지 개발한 모든 기능을 병합할 때 사용�
 
 우선 `Upstream Remote Repository` (원격 저장소)를 기반으로 원격 개인 저장소에 `Fork` 해야 합니다.
 
-![](/assets/img/woorifisa/git-flow-fork.png)
+![](/assets/img/project/woorifisa/git-flow-fork.png)
 
 Organization에 생성한 repository에서 Fork를 누르면 본인의 개인 repository에서 `Origin Remote Repository` 이 생성된 것을 확인할 수 있습니다.
 
@@ -178,7 +178,7 @@ upstream	https://github.com/{organization 이름}/{repository 이름}.git (push)
 
 간단한 예시를 들자면,
 
-![](/assets/img/woorifisa/git-flow-issue.png)
+![](/assets/img/project/woorifisa/git-flow-issue.png)
 
 이슈를 생성할 때 제목은 구현해야 할 기능에서 세부 기능 작업 단위로 작성합니다. 오른쪽은 아래의 예시 사항에 맞게 선택합니다.
 

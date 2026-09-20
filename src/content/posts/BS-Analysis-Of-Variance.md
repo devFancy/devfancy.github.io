@@ -18,7 +18,7 @@ use_math: true
 
 ## F분포
 
-<img src="/assets/img/business-statistics/bs-analysis-of-variance_1.png" alt="" width="500" />
+<img src="/assets/img/university/business-statistics/bs-analysis-of-variance_1.png" alt="" width="500" />
 
 ### F-분포의 특성
 
@@ -68,7 +68,7 @@ use_math: true
   
   * SST(총 변동) = SSB(처리에 의한 변동) + SSW(처리와 관계 없는 임의 변동)
 
-<img src="/assets/img/business-statistics/bs-analysis-of-variance_2.png" alt="" width="500" />
+<img src="/assets/img/university/business-statistics/bs-analysis-of-variance_2.png" alt="" width="500" />
 
 
 * **제곱평균**(MS, Mean Squares (= SS/df = 제곱합/자유도))
@@ -97,7 +97,7 @@ use_math: true
 
 5. 분산분석표(ANOVA Table)작성 및 결론
 
-<img src="/assets/img/business-statistics/bs-analysis-of-variance_3.png" alt="" width="500" />
+<img src="/assets/img/university/business-statistics/bs-analysis-of-variance_3.png" alt="" width="500" />
 
 
 ## Reference

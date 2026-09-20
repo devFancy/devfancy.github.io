@@ -417,7 +417,7 @@ class OrganicCabbage {
 
 ### visited 없이 map으로만 문제를 푸는 경우
 
-![](/assets/img/algorithm/Algorithm-Baekjoon-1012.jpeg)
+![](/assets/img/algorithm/algorithm/Algorithm-Baekjoon-1012.jpeg)
 
 * 그런데 문제를 풀어나가다 보면, **`visited` 2차원 배열이 `map` 2차원 배열과 같은 구조인 것을 확인**할 수 있다.
 

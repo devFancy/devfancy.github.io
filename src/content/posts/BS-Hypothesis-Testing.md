@@ -84,7 +84,7 @@ use_math: true
 
   * 한쪽꼬리(단측)검정 : 대립가설의 기호의 방향을 따름.
 
-  <img src="/assets/img/business-statistics/bs-hypothesis-testing_1.png" alt="" width="600" />
+  <img src="/assets/img/university/business-statistics/bs-hypothesis-testing_1.png" alt="" width="600" />
 
 * 가설검정의 목적 및 결론
 
@@ -111,7 +111,7 @@ use_math: true
 
   * 임계값:  $\alpha$에 대항하는 양측일 때 → $z_{\alpha/2}$ or $t_{\alpha/2}$ / 한쪽일 때 → $z_{\alpha}$  or $t_{\alpha}$
 
-<img src="/assets/img/business-statistics/bs-hypothesis-testing_2.png" alt="" width="600" />
+<img src="/assets/img/university/business-statistics/bs-hypothesis-testing_2.png" alt="" width="600" />
 
 * 기각영역: 임계값이 결정
 
@@ -121,9 +121,9 @@ use_math: true
 
   * 임계값 또는 기각영역과 비교
 
-  <img src="/assets/img/business-statistics/bs-hypothesis-testing_3.png" alt="" width="500" />
+  <img src="/assets/img/university/business-statistics/bs-hypothesis-testing_3.png" alt="" width="500" />
 
-  <img src="/assets/img/business-statistics/bs-hypothesis-testing_4.png" alt="" width="500" />
+  <img src="/assets/img/university/business-statistics/bs-hypothesis-testing_4.png" alt="" width="500" />
 
 
 ## 한쪽 꼬리검정과 양쪽 꼬리 검정
@@ -134,7 +134,7 @@ use_math: true
 
 * 예) 정규분포의 면적은 1이다.
 
-<img src="/assets/img/business-statistics/bs-hypothesis-testing_5.png" alt="" width="600" />
+<img src="/assets/img/university/business-statistics/bs-hypothesis-testing_5.png" alt="" width="600" />
 
 
 ## 모평균에 대한 가설검정

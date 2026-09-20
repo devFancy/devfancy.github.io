@@ -133,11 +133,11 @@ public class PriorityQueueDemo {
 
 추가할 때 우선순위 큐의 동작은 아래와 같은 과정을 통해 정렬이 된다.
 
-![](/assets/img/datastructure/Priority-Queue-1.png)
+![](/assets/img/cs/datastructure/Priority-Queue-1.png)
 
 * [1] 우선순위 큐에 숫자 8을 추가한다. 숫자 8은 부모와 비교해서 부모보다 작은 값인 경우 스왑한다. -> 10과 8의 위치가 변경된다.
 
-![](/assets/img/datastructure/Priority-Queue-2.png)
+![](/assets/img/cs/datastructure/Priority-Queue-2.png)
 
 * [2] 8은 다시 부모의 값과 비교한다. 하지만 자식 값이 더 크므로 스왑하지 않는다.
 
@@ -188,15 +188,15 @@ public class PriorityQueueDemo {
 
 삭제할 때, 우선순위 큐의 동작은 아래와 같은 과정을 통해 정렬이 된다.
 
-![](/assets/img/datastructure/Priority-Queue-3.png)
+![](/assets/img/cs/datastructure/Priority-Queue-3.png)
 
 * [1] 우선순위 가장 높은 루트 노드인 (1)를 반환하고, 마지막 노드인 (10)이 스왑하고 난 뒤에 제거한다.
 
-![](/assets/img/datastructure/Priority-Queue-4.png)
+![](/assets/img/cs/datastructure/Priority-Queue-4.png)
 
 * [2] (1)을 제거하고 부모 노드 (10), 자식 노드(15, 8)과 비교하여 더 작은 값이 부모 노드로 올라간다.
 
-![](/assets/img/datastructure/Priority-Queue-5.png)
+![](/assets/img/cs/datastructure/Priority-Queue-5.png)
 
 * 이렇게 다시 우선순위가 정렬된다.
 

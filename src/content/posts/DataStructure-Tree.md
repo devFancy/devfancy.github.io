@@ -14,7 +14,7 @@ use_math: true
 
 * 트리를 그림으로 표현하면 아래와 같다.
 
-![](/assets/img/datastructure/tree-1.png)
+![](/assets/img/cs/datastructure/tree-1.png)
 
 * 연결 리스트에서와 마찬가지로 `노드`는 구조체 또는 클래스로 표현되며, 트리는 포인터 또는 레퍼런스만 있다면 어떤 언어로든 구현할 수 있다.
 
@@ -57,7 +57,7 @@ public class IntNode extends Node {
 
 * 다음은 [그림 6-1]을 참고해서 트리와 관련된 용어들을 몇 가지 정리했다.
 
-![](/assets/img/datastructure/tree-2.jpg)
+![](/assets/img/cs/datastructure/tree-2.jpg)
 
 * 부모(Parent) : 다른 노드를 가리키는 노드는 그 노드의 부모가 된다. 루트를 제외한 모든 노드에는 부모가 하나씩 있다.
 
@@ -86,7 +86,7 @@ public class IntNode extends Node {
 
 * [그림 6-2]에 이진 트리의 예가 나와있다.
 
-![](/assets/img/datastructure/tree-3.jpg)
+![](/assets/img/cs/datastructure/tree-3.jpg)
 
 * 이진 트리를 간단하게 구현하면 다음과 같다. 편의상 한 클래스에 모든 것을 집어넣었다.
 
@@ -120,7 +120,7 @@ public class Node {
 
 * 교재마다 시작 레벨을 다르게 하는 경우가 많은데, 여기서는 시작 레벨을 `1`로 가정한다고 치자.
 
-![](/assets/img/datastructure/tree-4.png)
+![](/assets/img/cs/datastructure/tree-4.png)
 
 * [1] 이진 트리의 레벨 i번째의 최대 노드 개수는 **$2^{i-1}$** 이다. (단, i >=1 인 경우) 예를 들어 레벨이 3인 경우, 레벨 3의 최대 노드 개수는 $2^{3-1} = 4$이다.
 
@@ -136,11 +136,11 @@ public class Node {
 
 * 즉, BST의 데이터는 값으로 정렬된다.
 
-![](/assets/img/datastructure/tree-5.png)
+![](/assets/img/cs/datastructure/tree-5.png)
 
 * Key = {5, 3, 1, 4, 10, 7, 12}로 주어진다면, 아래와 같이 [그림 6-3]으로 나타낼 수 있다.
 
-![](/assets/img/datastructure/tree-6.jpg)
+![](/assets/img/cs/datastructure/tree-6.jpg)
 
 * 이진 검색 트리의 장점 가운데 하나로 **룩업 연산**(lookup, 트리에 있는 특정 노드의 위치를 알아내는 연산)을 빠르고 간단하게 처리할 수 있다는 점을 들 수 있다.
 
@@ -195,7 +195,7 @@ element* iterSearch(treePointer tree, int k)
 
 * 힙은 이진 트리로, 노드의 각 자식의 값은 노드 자신의 값 이하여야 하며, 이를 보통 `max heap`이라고 부른다.
 
-![](/assets/img/datastructure/tree-7.png)
+![](/assets/img/cs/datastructure/tree-7.png)
 
 * 결과적으로 루트 노드의 값은 그 트리에서 가장 큰 값이며, **`우선순위 큐`(Priority queues)를 구현하기 위해 `max heap`을 사용**한다.
 
@@ -205,7 +205,7 @@ element* iterSearch(treePointer tree, int k)
 
 * 하지만 문제에 따라서 `min heap`이 주어지는 경우도 있다. `min heap`은 반대로 가장 작은 값이 루트에 오는 경우이다.
 
-![](/assets/img/datastructure/tree-8.png)
+![](/assets/img/cs/datastructure/tree-8.png)
 
 * 시간복잡도에 대해서 삽입과 삭제는 **O(log(n))** 이지만, 룩업은 **O(n)** 이다.
 

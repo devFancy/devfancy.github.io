@@ -251,7 +251,7 @@ asciidoctor {
 
 > Preference - Plugins - `AsciiDoc` 설치
 
-![](/assets/img/hibit/spring-rest-docs-plugin-ascii.png)
+![](/assets/img/server/hibit/spring-rest-docs-plugin-ascii.png)
 
 ### 예제(테스트 코드 작성)
 
@@ -331,29 +331,29 @@ class PostControllerTest extends ControllerTestSupport {
 
 오른쪽 Gradle - Tasks - documentation - asciidoctor 실행하면 성공이 되고,
 
-![](/assets/img/hibit/hibit-spring-rest-docs-1.png)
+![](/assets/img/server/hibit/hibit-spring-rest-docs-1.png)
 
 build 안에 `posts` 폴더가 생기고, `find/all/success` 폴더 안에 문서 조각들이 생깁니다.
 
-![](/assets/img/hibit/hibit-spring-rest-docs-2.png)
+![](/assets/img/server/hibit/hibit-spring-rest-docs-2.png)
 
 이 다음에 해야할 작업은 문서 조각을 하나로 합쳐서 **하나의 문서**로 만드는 작업 입니다.
 
 src 폴더 하위에 docs 라는 폴더를 만든 뒤, 그 안에 asciidoc 폴더를 생성한 뒤에 `index.adoc` 이라는 파일을 만듭니다.
 
-![](/assets/img/hibit/hibit-spring-rest-docs-3.png)
+![](/assets/img/server/hibit/hibit-spring-rest-docs-3.png)
 
 `index.adoc` 파일 안에 아래와 같이 작성하면 미리보기를 통해 확인할 수 있습니다.
 
-![](/assets/img/hibit/hibit-spring-rest-docs-4.png)
+![](/assets/img/server/hibit/hibit-spring-rest-docs-4.png)
 
 오른쪽 Gradle - build (또는 documentation - asciidoctor)를 눌러주면, 왼쪽 docs 폴더 - asciidoc 폴더 안에 `index.html` 파일이 생성됩니다.
 
-![](/assets/img/hibit/hibit-spring-rest-docs-5.png)
+![](/assets/img/server/hibit/hibit-spring-rest-docs-5.png)
 
 그리고 Chrome 창으로 열어보면 아래와 같이 API 문서가 나오게 됩니다.
 
-![](/assets/img/hibit/hibit-spring-rest-docs-6.png)
+![](/assets/img/server/hibit/hibit-spring-rest-docs-6.png)
 
 ## 마무리
 

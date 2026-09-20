@@ -11,7 +11,7 @@ Nginx 등장이전에는 Apache가 웹서버로써의 높은 인기를 가졌습
 
 잘 사용되던 아파치 웹 서버는 어느 순간 어떠한 문제를 가져왔습니다.
 
-![](/assets/img/technology/NGINX-1.png)
+![](/assets/img/server/technology/NGINX-1.png)
 
 아파치의 초기 요청 처리 메커니즘과 함께 어떠한 문제를 가져왔는지 살펴보면, 그림과 같이 요청(Request)가 들어올 때마다 **새로운 Process를 생성하여 네트워크를 연결하고, 요청을 처리**했습니다. (이러한 처리 방식을 `prefork`라고 합니다)
 
@@ -21,7 +21,7 @@ Nginx 등장이전에는 Apache가 웹서버로써의 높은 인기를 가졌습
 
 일단 `동시 Connection`을 자세히 살펴보면,
 
-![](/assets/img/technology/NGINX-2.png)
+![](/assets/img/server/technology/NGINX-2.png)
 
 **`웹서버`** 는 `클라이언트` 로부터 요청이 들어오면 `Connection`을 생성하고 유지합니다. 그리고 위의 그림과 같이 `클라이언트`는 생성된 `Connection`을 통해 또 다른 요청을 `서버`에게 전달합니다.
 
@@ -33,7 +33,7 @@ Nginx 등장이전에는 Apache가 웹서버로써의 높은 인기를 가졌습
 
 이때 Apach 서버는 C10K문제를 가져왔습니다.
 
-![](/assets/img/technology/NGINX-3.png)
+![](/assets/img/server/technology/NGINX-3.png)
 
 그림과 같이 Apache 서버는 요청이 들어올 때마다, Process를 생성했는데, 요청이 만단위를 넘어가면서 어느 순간부터 요청에 대한 Connection을 생성하지 못한 것입니다.
 
@@ -53,7 +53,7 @@ Nginx 등장이전에는 Apache가 웹서버로써의 높은 인기를 가졌습
 
 ## NGINX 자세히 알아보기
 
-![](/assets/img/technology/NGINX-4.png)
+![](/assets/img/server/technology/NGINX-4.png)
 
 Nginx는 `MasterProcess` 를 통해 설정 파일을 읽고 `**WokerProcess**`와 같은 자식 `Process` 2종류를 생성합니다.
 
@@ -65,7 +65,7 @@ Nginx는 `MasterProcess` 를 통해 설정 파일을 읽고 `**WokerProcess**`�
 
 > 💡`Event-Driven`이란? NGINX는 형성된 Connection에 아무런 요청이 없으면 새로운 요청에 대한 Connection을 형성하여 요청을 처리한다. 또는 이미 만들어진 다른 Connection으로부터 요청을 처리한다. Nginx에서의 Conneciton 형성, Connection 제거, 새로운 요청 처리를 Event라고 부른다. 또한, Event를 비동기 방식으로 처리하는 것을 Event-Driven이라고 한다.
 
-![](/assets/img/technology/NGINX-5.png)
+![](/assets/img/server/technology/NGINX-5.png)
 
 Nginx는 그림과 같이 큐 형태의 저장소에 `Event`들을 담아 `Worker Process`가 순차적으로 작업을 처리합니다.
 

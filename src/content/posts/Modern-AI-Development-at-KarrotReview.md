@@ -28,7 +28,7 @@ AI 기술이 빠르게 발전하면서 IT 서비스 회사 중 하나인 당근�
 
 ## Review
 
-![](/assets/img/book/Modern-AI-Development-at-Karrot.png)
+![](/assets/img/essay/book/Modern-AI-Development-at-Karrot.png)
 
 * 해당 책을 읽으면서 전반적인 이해도는 80%, 만족도는 90%였다.
 

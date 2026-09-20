@@ -93,7 +93,7 @@ tags: ["데이터베이스"]
 
 * 관계 데이터 모델에서 릴레이션은 [그림 5-2]와 같이 `릴레이션 스키마`와 `릴레이션 인스턴스`로 구성되어 있다.
 
-![](/assets/img/db/db-rdb-concept-1.jpg)
+![](/assets/img/cs/db/db-rdb-concept-1.jpg)
 
 ### 릴레이션 스키마
 
@@ -121,7 +121,7 @@ tags: ["데이터베이스"]
 
 * [그림 5-3]와 같이 인터넷 쇼핑몰 데이터베이스는 여러 릴레이션으로 구성되어 있다.
 
-![](/assets/img/db/db-rdb-concept-2.jpg)
+![](/assets/img/cs/db/db-rdb-concept-2.jpg)
 
 * `데이터베이스 스키마`는 데이터베이스를 구성하는 릴레이션들의 스키마를 모아놓은 것이다.
 

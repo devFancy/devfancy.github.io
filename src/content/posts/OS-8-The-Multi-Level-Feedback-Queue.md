@@ -27,11 +27,11 @@ tags: ["운영체제"]
 
 * **`Rule 2`** : 만약 우선순위가 같으면, 라운드 로빈 스케줄링(RR)을 사용한다.
 
-![](/assets/img/os/os-8-The-Multi-Level-Feedback-Queue_1.png)
+![](/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_1.png)
 
 * ML(F)Q Example : Static Snapshot
 
-![](/assets/img/os/os-8-The-Multi-Level-Feedback-Queue_2.png)
+![](/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_2.png)
 
 * MLQ는 관찰된 동작에 따라 작업의 우선순위를 변경한다.
 
@@ -84,7 +84,7 @@ tags: ["운영체제"]
   
   * 우선순위가 높을수록 time slice가 작다.
 
-  ![](/assets/img/os/os-8-The-Multi-Level-Feedback-Queue_3.png)
+  ![](/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_3.png)
 
   * job이 최고 우선순위인 Q2에 진입한다. 이후 time slice를 소진하면, 다음 Q1 -> Q0으로 진입하게 된다.
 
@@ -97,7 +97,7 @@ tags: ["운영체제"]
   
   * A가 얼마 동안 실행되고 있다가 B가 시간 T=100에 도착한다.
 
-  ![](/assets/img/os/os-8-The-Multi-Level-Feedback-Queue_4.png)
+  ![](/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_4.png)
 
   * 위 예시에서 스케줄러는 B를 먼저 선호(높은 우선순위 부여)하는 것을 볼 수 있다.
 
@@ -115,7 +115,7 @@ tags: ["운영체제"]
   * 규칙 4b가 말하는 것처럼, **프로세스가 타임 슬라이스를 소진하기 전에 프로세서를 양도하면 같은 우선순위를 유지**하게 된다.
   즉, 대화형 작업이 키보드나 마우스로부터 사용자 입력을 대기하며 자주 입출력을 수행하면 time slice가 종료되기 전에 CPU를 양도하게 될 것이다. 그러면 동일한 우선순위를 유지하게 된다.
 
-  ![](/assets/img/os/os-8-The-Multi-Level-Feedback-Queue_5.png)
+  ![](/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_5.png)
 
   * B는 입출력을 수행하기 전에 CPU를 1ms만 사용한다.
   
@@ -167,7 +167,7 @@ tags: ["운영체제"]
   
   * **S값이 너무 크면 긴 실행 시간을 가진 작업은 굶을 수 있으며, S값이 너무 작으면 대화형 작업이 적절한 양의 CPU 시간을 사용할 수 없게 된다.**
 
-  ![](/assets/img/os/os-8-The-Multi-Level-Feedback-Queue_6.png)
+  ![](/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_6.png)
 
 ---
 
@@ -184,7 +184,7 @@ MLFQ의 각 단계에서 CPU 총 사용 시간을 측정하는 것
   * **Rule 4**(Rule 4a와 Rule 4b를 합쳐 규칙을 재정의)
   : 주어진 단계에서 **시간 할당량(time allotment)을 소진하면** (CPU를 몇 번 양도하였는지 상관없이), **우선순위는 낮아진다.** (아래 단계의 큐로 이동한다.)
 
-  ![](/assets/img/os/os-8-The-Multi-Level-Feedback-Queue_7.png)
+  ![](/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_7.png)
 
 ## Reference
 

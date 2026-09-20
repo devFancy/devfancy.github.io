@@ -17,7 +17,7 @@ tags: ["운영체제"]
 
 ## Per Process Address Space
 
-![](/assets/img/os/os-15-address-translation-1.png)
+![](/assets/img/cs/os/os-15-address-translation-1.png)
 
 * 위의 그림처럼 OS가 Address space를 Physical memory 주소로 변환하는 과정에 대해 알아보자.
 
@@ -51,7 +51,7 @@ tags: ["운영체제"]
 
 * 참고로 base, bound 레지스터 모두 CPU에 존재하는 하드웨어(DRAM)라는 점을 잊지 말자.
 
-![](/assets/img/os/os-15-address-translation-2.png)
+![](/assets/img/cs/os/os-15-address-translation-2.png)
 
 * 위의 그림과 같이 `bound register` 는 16KB로 가상 주소 공간의 크기를 알려준다. 그리고 `base register` 는 32KB로 실제 메모리 주소 공간의 시작 부분을 가리킨다.
 
@@ -85,7 +85,7 @@ tags: ["운영체제"]
 
 * 가상 주소가 실제 주소로 주소 변환 기법을 사용할 때 도와주는 역할이다.
 
-![](/assets/img/os/os-15-address-translation-3.png)
+![](/assets/img/cs/os/os-15-address-translation-3.png)
 
 * MMU는 bound 레지스터의 범위 안에 들어가면 가상 주소(virtual address)가 실제 주소(physical address)로 변환해 준다.
 
@@ -93,7 +93,7 @@ tags: ["운영체제"]
 
 * 정리하자면, MMU를 통해 가상 주소와 Base 레지스터의 합이 bound 레지스터(=Limit 레지스터)의 범위 안에 들었으면 실제 주소로 변환해 주고, 범위에 벗어나면 예외 처리를 해준다.
 
-![](/assets/img/os/os-15-address-translation-4.png)
+![](/assets/img/cs/os/os-15-address-translation-4.png)
 
 ## OS Issues for Memory Virtualizing
 
@@ -115,7 +115,7 @@ tags: ["운영체제"]
 
 * `Free list`는 사용되지 않는 physical memory의 범위 목록을 의미한다. 쉽게 말해 **사용할 수 있는 여유 공간**이다.
 
-![](/assets/img/os/os-15-address-translation-5.png)
+![](/assets/img/cs/os/os-15-address-translation-5.png)
 
 * 즉, 왼쪽의 Free list가 가리키고 있는 (동그라미로 표시된) `16KB`, `48KB`는 사용되지 않는 여유 공간을 의미한다. 
 
@@ -126,7 +126,7 @@ tags: ["운영체제"]
 
 * 프로세스가 종료될 때, OS는 종료된 프로세스를 반드시 Free list(사용 가능한 목록)에 다시 올려야 한다.
 
-![](/assets/img/os/os-15-address-translation-6.png)
+![](/assets/img/cs/os/os-15-address-translation-6.png)
 
 * `Process A`가 exit 되면, 이후에 사용할 수 있도록 Free list에 추가해 준다.
 
@@ -136,7 +136,7 @@ tags: ["운영체제"]
 
 * 개별 Process의 base, bound 레지스터의 값은 OS에 의해서 Process 별로 `process structure`(프로세스 구조) 또는 `PCB`(프로세스 제어 블록)에 관리가 된다.
 
-![](/assets/img/os/os-15-address-translation-7.png)
+![](/assets/img/cs/os/os-15-address-translation-7.png)
 
 * 예를 들어, `Process A` 가 실행하는 도중에 Context Switching 이 되면, `Process A`의 base 레지스터와 bound 레지스터를 본인의 PCB에 저장을 한다.
 

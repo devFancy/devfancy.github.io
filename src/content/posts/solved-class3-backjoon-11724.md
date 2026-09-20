@@ -197,7 +197,7 @@ class Main {
 4 6
 ```
 
-![](/assets/img/algorithm/solved-class3-backjoon-11724-1.jpeg)
+![](/assets/img/algorithm/algorithm/solved-class3-backjoon-11724-1.jpeg)
 
 * 처음에는 1,2,5에서 끝나기 때문에 여기서 연결 요소의 개수가 +1 증가하고
 

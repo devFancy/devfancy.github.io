@@ -23,7 +23,7 @@ tags: ["네트워크"]
 
 * `쿠키`(Cookie)는 사용자(클라이언트)가 어떤 웹 사이트를 방문할 때, 사용자의 **웹 브라우저**를 통해 사용자 로컬에 **키(Key)와 값(Value)** 을 저장하는 **작은 데이터 파일**이다.
 
-![](/assets/img/network/network-cookie-and-session-1.png)
+![](/assets/img/cs/network/network-cookie-and-session-1.png)
 
 * 서버는 클라이언트의 로그인 요청에 대한 응답을 작성할 때, 클라이언트 측에 저장하고 싶은 정보를 **응답 헤더의 `Set-Cookie`에 담아 전달**한다.
 
@@ -87,7 +87,7 @@ Set-Cookie: <쿠키 이름>=<쿠키 값>; HttpOnly
 
 * 클라이언트가 서버측에 요청을 보내면, 해당 서버의 엔진이 클라이언트에게 **유일한 ID**를 부여하는데, 이때 이 유일한 ID가 `세션ID`이다.
 
-![](/assets/img/network/network-cookie-and-session-2.png)
+![](/assets/img/cs/network/network-cookie-and-session-2.png)
 
 1. 클라이언트가 서버에게 로그인 요청(ID, Password)을 보낸다. 
 2. 서버는 로그인 요청이 정상적으로 처리된다면, 유일한 ID인 `세션ID`을 생성하여 서버의 메모리에 저장한다.

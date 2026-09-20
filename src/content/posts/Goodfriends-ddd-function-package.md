@@ -14,7 +14,7 @@ tags: ["사이드프로젝트"]
 
 ## 계층형 패키지 구조
 
-![](/assets/img/goodfriends/ddd_function_package_1.png)
+![](/assets/img/project/goodfriends/ddd_function_package_1.png)
 
 계층형 구조는 각 계층을 대표하는 디렉터리를 기준으로 코드들이 구성됩니다. 계층형 구조의 장점은 해당 프로젝트에 이해가 상대적으로 낮아도 전체적인 구조를 빠르게 파악할 수 있다는 장점이 있습니다.
 
@@ -43,7 +43,7 @@ DDD의 계층 구조(Layered Archtecture), 말 그대로 계층이 나뉘어 있
 
 일반적으로 3 계층 또는 4 계층으로 나누어 사용합니다.
 
-![](/assets/img/goodfriends/ddd_function_package_2.png)
+![](/assets/img/project/goodfriends/ddd_function_package_2.png)
 
 Layered Architecture에서 지켜야 할 두 가지 규칙은 아래와 같습니다.
 
@@ -64,7 +64,7 @@ DDD의 계층 구조를 완벽히 이해하고 적용하는 것도 좋지만, �
 (Presentation-Application-Domain-Infrastructure)
 
 
-![](/assets/img/goodfriends/ddd_function_package_3.png)
+![](/assets/img/project/goodfriends/ddd_function_package_3.png)
 
 ### Application(애플리케이션)
 

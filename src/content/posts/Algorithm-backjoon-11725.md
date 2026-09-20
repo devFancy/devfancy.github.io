@@ -122,7 +122,7 @@ class TreeParentSearch {
 
 * 해당 문제를 아래와 같이, 그림을 그리면서 푸니까 확실히 이해가 되면서 정답을 맞출 수 있었다.
 
-![](/assets/img/algorithm/Algorithm-backjoon-11725.jpeg)
+![](/assets/img/algorithm/algorithm/Algorithm-backjoon-11725.jpeg)
 
 *  매번 이러한 유형의 문제를 접할때 마다 `그래프`라는 자료구조를 어떻게 잡아야 할지, 
     

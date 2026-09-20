@@ -22,7 +22,7 @@ tags: ["후기"]
 
 ## Review
 
-![](/assets/img/technology/Inflearn-Gemini-Dev-Commerce-Backend-Review-Certificate.png)
+![](/assets/img/server/technology/Inflearn-Gemini-Dev-Commerce-Backend-Review-Certificate.png)
 
 (위 사진은 인프런에서 해당 강의를 완강하면 주는 수료증이다.)
 

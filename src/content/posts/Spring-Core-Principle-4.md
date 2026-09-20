@@ -49,13 +49,13 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
 
 ### 1. 스프링 컨테이너 생성
 
-![](/assets/img/spring/Spring-Core-Principle-4-1.png)
+![](/assets/img/server/spring/Spring-Core-Principle-4-1.png)
 
 * 스프링 컨테이너를 생성할 때는 구성 정보를 지정해주어야 하므로 여기서는 `AppConfig.class`로 구성 정보를 지정했다.
 
 ### 2. 스프링 빈 등록
 
-![](/assets/img/spring/Spring-Core-Principle-4-2.png)
+![](/assets/img/server/spring/Spring-Core-Principle-4-2.png)
 
 * 스프링 컨테이너는 파라미터로 넘어온 설정 클래스 정보를 사용해서 스프링 빈을 등록한다.
 
@@ -69,7 +69,7 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
 
 ### 3. 스프링 빈 의존관계 설정 - 준비 & 완료
 
-![](/assets/img/spring/Spring-Core-Principle-4-3.png)
+![](/assets/img/server/spring/Spring-Core-Principle-4-3.png)
 
 * 스프링 컨테이너는 설정 정보를 참고해서 의존관계를 주입(DI)한다.
 

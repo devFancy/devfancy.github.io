@@ -71,7 +71,7 @@ tags: ["데이터베이스"]
 1. 수평 분할 - 주로 사용
 2. 수직 분할
 
-![](/assets/img/db/what_is_horizontal_partitioning_in_database.png)
+![](/assets/img/cs/db/what_is_horizontal_partitioning_in_database.png)
 
 ### 수평 분할 방식
 

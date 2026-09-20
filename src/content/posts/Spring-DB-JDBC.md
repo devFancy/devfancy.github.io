@@ -13,7 +13,7 @@ tags: ["Spring"]
 
 애플리케이션을 개발할 때 중요한 데이터는 대부분 `데이터베이스`에 보관한다.
 
-![](/assets/img/spring/Spring-JDBC-1.png)
+![](/assets/img/server/spring/Spring-JDBC-1.png)
 
 클라이언트가 애플리케이션 서버를 통해 데이터를 저장하거나 조회하면, `애플리케이션 서버`는 다음 과정을 통해 `데이터베이스`를 사용한다.
 
@@ -23,7 +23,7 @@ tags: ["Spring"]
 
 ---
 
-![](/assets/img/spring/Spring-JDBC-2.png)
+![](/assets/img/server/spring/Spring-JDBC-2.png)
 
 1. 커넥션 연결: 주로 TCP/IP를 사용해서 커넥션을 연결한다.
 
@@ -31,7 +31,7 @@ tags: ["Spring"]
 
 3. 결과 응답: DB는 전달된 SQL을 수행하고 그 결과를 응답한다. 애플리케이션 서버는 응답 결과를 활용한다.
 
-![](/assets/img/spring/Spring-JDBC-2-2.png)
+![](/assets/img/server/spring/Spring-JDBC-2-2.png)
 
 하지만 **각각의 데이터베이스 마다 사용법(커텍션 연결, SQL 전달, 결과 응답)이 다르다**는 문제점을 가지고 있다. (참고로 관계형 데이터베이스는 수십개가 있다)
 
@@ -48,7 +48,7 @@ tags: ["Spring"]
 > JDBC(Java Database Connectivity)는 자바에서 데이터베이스에 접속할 수 있도록 하는 자바 API다.
 > JDBC는 데이터베이스에서 자료를 쿼리하거나 업데이트하는 방법을 제공한다. - 위키백과 -
 
-![](/assets/img/spring/Spring-JDBC-3.png)
+![](/assets/img/server/spring/Spring-JDBC-3.png)
 
 대표적으로 다음 3가지 기능을 `표준 인터페이스`로 정의해서 제공한다.
 
@@ -62,7 +62,7 @@ tags: ["Spring"]
 
 `MySQL 드라이버`를 사용하면 아래와 같은 그림을 볼 수 있다.
 
-![](/assets/img/spring/Spring-JDBC-4.png)
+![](/assets/img/server/spring/Spring-JDBC-4.png)
 
 정리하면 `JDBC`의 등장으로 두 가지 주요 문제가 해결되었다.
 
@@ -82,7 +82,7 @@ tags: ["Spring"]
 
 그래서 최근에는 `JDBC`를 직접 사용하기 보다는 `JDBC`를 편리하게 사용하는 다양한 기술이 존재한다. 대표적으로 `SQL Mapper`와 `ORM` 기술로 나눌 수 있다.
 
-![](/assets/img/spring/Spring-JDBC-5.png)
+![](/assets/img/server/spring/Spring-JDBC-5.png)
 
 SQL Mapper
 
@@ -92,7 +92,7 @@ SQL Mapper
 * 단점: 개발자가 SQL을 직접 작성해야한다.
 * 대표 기술: 스프링 JdbcTemplate, MyBatis
 
-![](/assets/img/spring/Spring-JDBC-6.png)
+![](/assets/img/server/spring/Spring-JDBC-6.png)
 
 ORM 기술
 
@@ -129,7 +129,7 @@ chmod 755 h2.sh #2. 권한 주기
 ./h2.sh #3. 실행
 ```
 
-![](/assets/img/spring/Spring-JDBC-7.png)
+![](/assets/img/server/spring/Spring-JDBC-7.png)
 
 그런 다음, 데이터베이스 파일을 생성한다. (참고로, 주소 맨 앞에 `localhost` 가 아니라면, `localhost`로 입력하고 Enter를 입력한다, 나머지 부분은 변경해선 안된다)
 
@@ -163,7 +163,7 @@ from member;
 
 그런 다음, 쿼리를 실행해서 저장한 데이터가 잘 나오는지 결과를 확인한다.
 
-![](/assets/img/spring/Spring-JDBC-8.png)
+![](/assets/img/server/spring/Spring-JDBC-8.png)
 
 ## 데이터베이스 연결하기
 
@@ -228,7 +228,7 @@ class DBConnectionUtilTest {
 }
 ```
 
-![](/assets/img/spring/Spring-JDBC-9.png)
+![](/assets/img/server/spring/Spring-JDBC-9.png)
 
 실행 결과를 보면, `class=class org.h2.jdbc.JdbcConnection` 부분을 확인할 수 있다. 이것이 바로 H2 데이터베이스 드라이버가 제공하는 H2 전용 커넥션이다.
 물론 이 커넥션은 JDBC 표준 커넥션 인터페이스인 `java.sql.Connection` 인터페이스를 구현하고 있다.
@@ -237,7 +237,7 @@ class DBConnectionUtilTest {
 
 ### JDBC DriverManager 연결 이해
 
-![](/assets/img/spring/Spring-JDBC-10.png)
+![](/assets/img/server/spring/Spring-JDBC-10.png)
 
 JDBC는 `java.sql.Connection` 표준 커넥션 인터페이스를 정의한다.
 
@@ -245,7 +245,7 @@ H2 데이터베이스 드라이버는 JDBC Connection 인터페이스를 구현�
 
 ### DriverManager 커넥션 요청 흐름
 
-![](/assets/img/spring/Spring-JDBC-11.png)
+![](/assets/img/server/spring/Spring-JDBC-11.png)
 
 JDBC가 제공하는 `DriverManager`는 라이브러리에 등록된 DB 라이브러리를 관리하고, 커넥션을 획득하는 기능을 제공한다.
 
@@ -389,7 +389,7 @@ public class MemberRepositoryV0 {
 > `PrepareStatement` 는 `Statement` 를 상속받아서 `close()` 메서드를 호출할 때, 파라미터로 넘길 수 있는 것이다.
 > 추가적으로 SQL Injection 공격을 예방하려면 `PreparedStatement` 를 통한 파라미터 바인딩 방식을 사용해야 한다.
 
-![](/assets/img/spring/Spring-JDBC-12.png)
+![](/assets/img/server/spring/Spring-JDBC-12.png)
 
 이제 테스트 코드를 통해 JDBC로 회원을 데이터베이스에 등록하는 코드를 작성하면 아래와 같다.
 
@@ -513,7 +513,7 @@ public class MemberRepositoryV0 {
     
         * `rs.next()` 의 결과가 `false` 면 더이상 커서가 가리키는 데이터가 없다는 뜻이다.
 
-![](/assets/img/spring/Spring-JDBC-13.png)
+![](/assets/img/server/spring/Spring-JDBC-13.png)
 
 참고로 이 `ResultSet`의 결과 예시는 **회원이 2명 조회되는 경우**이다.
 
@@ -549,7 +549,7 @@ class MemberRepositoryV0Test {
 
 실행 결과, member 객체의 참조 값이 아니라 **실제 데이터가 보이는 이유는 lombok의 `@Data` 가 `toString()`을 적절히 오버라이딩해서 보여줬기 때문**이다.
 
-![](/assets/img/spring/Spring-JDBC-14.png)
+![](/assets/img/server/spring/Spring-JDBC-14.png)
 
 * `isEqualTo()` : `findMember.equals(member)` 를 비교한다. 
 

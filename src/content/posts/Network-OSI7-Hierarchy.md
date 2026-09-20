@@ -15,11 +15,11 @@ tags: ["네트워크"]
 
     * 각 계층은 하위 계층의 기능만을 이용, 상위 계층에게 기능을 제공한다.
 
-    ![](/assets/img/network/network-OSI7-hierarchy-1.png)
+    ![](/assets/img/cs/network/network-OSI7-hierarchy-1.png)
 
 * 레퍼런스 모델
 
-    ![](/assets/img/network/network-OSI7-hierarchy-2.png)
+    ![](/assets/img/cs/network/network-OSI7-hierarchy-2.png)
 
 ## 1계층 : Physical Layer
 
@@ -33,7 +33,7 @@ tags: ["네트워크"]
 
 * 장비 - 통신 케이블, 리피터, 허브 등
 
-![](/assets/img/network/network-OSI7-hierarchy-3.png)
+![](/assets/img/cs/network/network-OSI7-hierarchy-3.png)
 
 
 ## 2계층 : Data Link Layer
@@ -50,7 +50,7 @@ tags: ["네트워크"]
 
 * 장비 - 브리지, 스위치 (스위칭 브리지) 등
 
-![](/assets/img/network/network-OSI7-hierarchy-4.png)
+![](/assets/img/cs/network/network-OSI7-hierarchy-4.png)
 
 
 ## 3계층: Network Layer
@@ -67,7 +67,7 @@ tags: ["네트워크"]
 
 * 장비 - 라우터
 
-![](/assets/img/network/network-OSI7-hierarchy-5.png)
+![](/assets/img/cs/network/network-OSI7-hierarchy-5.png)
 
 ## 그 외 계층들
 
@@ -103,11 +103,11 @@ tags: ["네트워크"]
 
 ## Socket API
 
-![](/assets/img/network/network-OSI7-hierarchy-6.png)
+![](/assets/img/cs/network/network-OSI7-hierarchy-6.png)
 
 ## 계층간 데이터 송수신 과정
 
-![](/assets/img/network/network-OSI7-hierarchy-7.png)
+![](/assets/img/cs/network/network-OSI7-hierarchy-7.png)
 
 * HTTP를 통해 웹 서버에 있는 데이터를 요청하면 다음과 같은 일이 일어난다.
 
@@ -117,13 +117,13 @@ tags: ["네트워크"]
 
 * 캡슐화 과정은 **상위 계층의 헤더와 데이터를 하위 계층의 데이터 부분에 포함**시키고 해당 계층의 헤더를 삽입하는 과정을 말한다.
 
-![](/assets/img/network/network-OSI7-hierarchy-8.png)
+![](/assets/img/cs/network/network-OSI7-hierarchy-8.png)
 
 ### 비캡슐화 과정
 
 * 비캡슐화 과정은 하위 계층에서 상위 계층으로 가며 각 계층의 헤더 부분을 제거하는 과정을 말한다.
 
-![](/assets/img/network/network-OSI7-hierarchy-9.png)
+![](/assets/img/cs/network/network-OSI7-hierarchy-9.png)
 
 * 최종적으로 사용자에게 애플리케이션의 `PDU`인 메시지로 전달된다.
 

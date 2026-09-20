@@ -5,7 +5,7 @@ categories: ["서버"]
 tags: ["우아한테크코스"]
 ---
 
-![](/assets/img/woowacourse/woowacourse_name.png)
+![](/assets/img/server/woowacourse/woowacourse_name.png)
 
 * 이 글은 프리코스 과정 이후에 한번 더 복습한 과정을 담긴 내용이며, 기존에 제출했던 코드와 다를 수 있습니다.
 
@@ -46,7 +46,7 @@ tags: ["우아한테크코스"]
 
 * [변경 전]
 
-![](/assets/img/woowacourse/4th_bridgeGame_1_logic.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_1_logic.png)
 
 * 위와 같이, 비즈니스 로직과 UI로직을 분리하지 않은 상태다.
 
@@ -54,7 +54,7 @@ tags: ["우아한테크코스"]
 
 * [변경 후]
 
-![](/assets/img/woowacourse/4th_bridgeGame_2_logic.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_2_logic.png)
 
 * 이처럼 비즈니스 로직과 UI 로직을 분리하였다.
 
@@ -64,7 +64,7 @@ tags: ["우아한테크코스"]
 
 #### 예시 1) BridgeGame 클래스 - init() 메서드
 
-![](/assets/img/woowacourse/4th_bridgeGame_3_one_function.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_3_one_function.png)
 
 * 위의 init() 메서드는 BridgeGame() 클래스에서 다리 건너기 게임의 초기세팅을 해주는 역할이다.
 
@@ -74,25 +74,25 @@ tags: ["우아한테크코스"]
 
 [Application 클래스] - init()
 
-![](/assets/img/woowacourse/4th_bridgeGame_4_one_function.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_4_one_function.png)
 
 * 사용자 입력을 받기 위해서 Application 클래스안에 init() 메서드를 새로 생성하였다.
 
 [BridgeGame 클래스] - init()
 
-![](/assets/img/woowacourse/4th_bridgeGame_5_one_function.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_5_one_function.png)
 
 * 유효값 검증과 다리를 생성하기 위해 BridgeGame 클래스 안에 init() 메서드를 위와 같이 코드를 수정했다.
 
 #### 예시 2) BridgeGame 클래스 - move() 메서드
 
-![](/assets/img/woowacourse/4th_bridgeGame_6_one_function.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_6_one_function.png)
 
 * 위의 move() 메서드는 다리 건너기 게임에서 사용자가 칸을 입력할 때마다 결과를 출력해주는 역할이다.
 
 * move() 메서드 예시(입출력)
 
-![](/assets/img/woowacourse/4th_bridgeGame_7_one_function.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_7_one_function.png)
 
 * 하지만, 해당 메서드는 사용자 입력, 유효값 검증, 출력을 하고 있다.
 
@@ -100,7 +100,7 @@ tags: ["우아한테크코스"]
 
 [Application 클래스] - move(), printBridge()
 
-![](/assets/img/woowacourse/4th_bridgeGame_8_one_function.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_8_one_function.png)
 
 * Application 클래스 안에 move()와 printBridge()를 새로 생성하였다.
 
@@ -108,7 +108,7 @@ tags: ["우아한테크코스"]
 
 [Bridge 클래스] - move()
 
-![](/assets/img/woowacourse/4th_bridgeGame_9_one_function.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_9_one_function.png)
 
 * Bridge 클래스안에 move() 메서드를 위와 같이 수정했다.
 
@@ -124,7 +124,7 @@ tags: ["우아한테크코스"]
 
 * 해당 기능을 통해 전체 다이어그램을 아래와 같이 나타냈다.(참고로, 해당 다이어그램은 Layout-Orthogonal-Orthogonal Group을 기준으로 만든 다이어그램입니다)
 
-![](/assets/img/woowacourse/4th_bridgeGame_10_class_diagram.png)
+![](/assets/img/server/woowacourse/4th_bridgeGame_10_class_diagram.png)
 
 * BridgeGame 클래스 다이어그램을 기준으로 구성해보니 머릿속에서 생각하는 것보다 눈으로 쉽게 볼 수 있어서 확실히 이해되기 쉬웠다.
 

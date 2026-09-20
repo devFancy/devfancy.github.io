@@ -33,7 +33,7 @@ tags: ["JPA"]
 
 **객체 지향적인 모델링**(객체 연관관계 사용)을 하면 아래 그림과 같다.
 
-![](/assets/img/jpa/JPA-Relationship-Mapping-1.png)
+![](/assets/img/server/jpa/JPA-Relationship-Mapping-1.png)
 
 * 객체의 참조와 테이블의 외래 키를 매핑하면 아래와 같은 코드로 짜야한다.
 
@@ -62,7 +62,7 @@ public class Member {
 
 * ORM 매핑되어 아래 그림과 같이 된다.
 
-![](/assets/img/jpa/JPA-Relationship-Mapping-2.png)
+![](/assets/img/server/jpa/JPA-Relationship-Mapping-2.png)
 
 * 아래는 Java 코드로 연관관계를 저장하고, 객체의 참조로 연관관계를 조회(객체 그래프 탐색)한 부분이다.
 
@@ -89,7 +89,7 @@ Team findTeam = findMember.getTeam();
 
 * 양방향 연관관계에 대해 정확한 이해를 위해 회원과 팀에 대한 예시를 아래와 같이 가정해본다.
 
-![](/assets/img/jpa/JPA-Relationship-Mapping-3.png)
+![](/assets/img/server/jpa/JPA-Relationship-Mapping-3.png)
 
 * Member 엔티티는 단방향과 동일하다.
 
@@ -143,7 +143,7 @@ public class Team {
 
     * 테이블) 회원 <-> 팀의 연관관계 1개(양방향)
 
-![](/assets/img/jpa/JPA-Relationship-Mapping-4.png)
+![](/assets/img/server/jpa/JPA-Relationship-Mapping-4.png)
 
 * 객체의 양방향 관계는 사실 양방향 관계가 아니라 **서로 다른 단방향 관계 `2개`다.**
 
@@ -169,7 +169,7 @@ public class Team {
 
 * 여기서는 `Member.team`이 연관관계의 주인이다.
 
-![](/assets/img/jpa/JPA-Relationship-Mapping-5.png)
+![](/assets/img/server/jpa/JPA-Relationship-Mapping-5.png)
 
 * 그래서 양방향 매핑시 **연관관계의 주인에 값을 입력**해야 한다.
 
@@ -188,7 +188,7 @@ member.setTeam(team); //**중요**
 em.persist(member);
 ```
 
-![](/assets/img/jpa/JPA-Relationship-Mapping-6.png)
+![](/assets/img/server/jpa/JPA-Relationship-Mapping-6.png)
 
 ### 양방향 매핑 정리
 

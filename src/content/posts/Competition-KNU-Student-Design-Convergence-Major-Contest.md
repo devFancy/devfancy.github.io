@@ -14,9 +14,9 @@ use_math: true
 
 공모전 개요
 
-![](/assets/img/competition/knu-student-design-convergence-major-contest.png)
+![](/assets/img/etc/competition/knu-student-design-convergence-major-contest.png)
 
-![](/assets/img/competition/knu-student-design-convergence-major-contest_1.png)
+![](/assets/img/etc/competition/knu-student-design-convergence-major-contest_1.png)
 
 * 우리 팀은 총 3명으로 기계공학부와 컴퓨터학부로 구성되었고, 나는 컴퓨터공학부 전공으로 참여하게 되었다.
 
@@ -25,7 +25,7 @@ use_math: true
 
 ## 진행 일정
 
-![](/assets/img/competition/knu-student-design-convergence-major-contest_2.png)
+![](/assets/img/etc/competition/knu-student-design-convergence-major-contest_2.png)
 
 * 진행 일정은 약 3개월이였다.
 
@@ -33,7 +33,7 @@ use_math: true
 
 ## 1차 합격
 
-<img src="/assets/img/competition/knu-student-design-convergence-major-contest_3.png" alt="" width="400" />
+<img src="/assets/img/etc/competition/knu-student-design-convergence-major-contest_3.png" alt="" width="400" />
 
 * 우리 팀은 운이 좋게도 면접관분들이 좋게 봐주셔서, **상위 6개 팀안에 선정**되어 1차 심사를 통과했다.
 
@@ -43,7 +43,7 @@ use_math: true
 
 ## 2차 심사일
 
-<img src="/assets/img/competition/knu-student-design-convergence-major-contest_4.png" alt="" width="400" />
+<img src="/assets/img/etc/competition/knu-student-design-convergence-major-contest_4.png" alt="" width="400" />
 
 * 2차 심사를 보는 날이었다.
 
@@ -51,7 +51,7 @@ use_math: true
 
 * 해당 공모전 담당자님이 어떻게 진행되는지 친절하게 알려주셨다.
 
-<img src="/assets/img/competition/knu-student-design-convergence-major-contest_5.png" alt="" width="400" />
+<img src="/assets/img/etc/competition/knu-student-design-convergence-major-contest_5.png" alt="" width="400" />
 
 * 이 문을 열고 2차심사에서 PPT 발표가 진행되었다.
 
@@ -65,7 +65,7 @@ use_math: true
 
 * (개인적으로 좋은 징조이지 않을까..라는 긍정적인 기대감이 있었다)
 
-![](/assets/img/competition/knu-student-design-convergence-major-contest_6.png)
+![](/assets/img/etc/competition/knu-student-design-convergence-major-contest_6.png)
 
 * 끝나고, 같이 공모전에 참가한 팀원 두 명과 같이 근처에서 점심으로 찜닭을 먹었다.
 
@@ -73,7 +73,7 @@ use_math: true
 
 * 10월 중순 무렵, 오후에 도서관에서  공부하다가 잠깐 카톡을 봤는데, 팀원이 최종 순위 자료를 보내줬다.
 
-![](/assets/img/competition/knu-student-design-convergence-major-contest_result.png)
+![](/assets/img/etc/competition/knu-student-design-convergence-major-contest_result.png)
 
 * 운이 좋게도.. **최종 1위**를 하게 되었다!
 
@@ -81,6 +81,6 @@ use_math: true
 
 * 공모전 기간 동안 셋이서 **아이디어부터 끊임없이 연구하고 개발**한 보람이 있었다.
 
-<img src="/assets/img/competition/knu-student-design-Grand-Prize-Award.png" alt="" width="500" />
+<img src="/assets/img/etc/competition/knu-student-design-Grand-Prize-Award.png" alt="" width="500" />
 
 * 상장하고 돈 받으니 뿌듯하면서 행복했다.

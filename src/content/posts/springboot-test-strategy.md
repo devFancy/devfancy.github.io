@@ -415,7 +415,7 @@ dependencies {
 
 * 예를 들어, Coupon 클래스의 위치가 CouponFixtures 클래스의 **패키지 위치와 같아야 합니다.** (위치: package dev.be.coupon.domain.coupon)
 
-<img src="/assets/img/clean-code/TestCode-Strategy-Consideration-1.png" width="40%" height="40%" alt="TestCode-Strategy-Consideration-1">
+<img src="/assets/img/server/clean-code/TestCode-Strategy-Consideration-1.png" width="40%" height="40%" alt="TestCode-Strategy-Consideration-1">
 
 Fixture 클래스는 기본적으로 인자 없이 구성할 수도 있으나, 아래와 같이 테스트하고자 하는 요구사항에 따라 필요한 값만 인자로 받아 유연하게 생성할 수 있도록 구성했습니다.
 

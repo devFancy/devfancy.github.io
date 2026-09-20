@@ -25,13 +25,13 @@ tags: []
 
 > 글또가 무엇인지 알고 싶다면 [여기](https://geultto.github.io/)를 클릭해 주시면 됩니다.
 
-<img src="/assets/img/retrospective/geultto_home.png" alt="" width="500" />
+<img src="/assets/img/retrospective/retrospective/geultto_home.png" alt="" width="500" />
 
 위 이미지는 글또의 공식 홈페이지입니다.
 
 ---
 
-<img src="/assets/img/retrospective/Geultto_3_passed.png" alt="" width="500" />
+<img src="/assets/img/retrospective/retrospective/Geultto_3_passed.png" alt="" width="500" />
 
 
 * 이전 9기에 이어 이번 10기에도 참여하게 되었다. 
@@ -54,13 +54,13 @@ tags: []
 
 > SIPE에 대한 소개는 [여기](https://sipe.team/about)를 클릭해 주시면 됩니다.
 
-<img src="/assets/img/retrospective/sipe_home.png" alt="" width="500" />
+<img src="/assets/img/retrospective/retrospective/sipe_home.png" alt="" width="500" />
 
 위 이미지는 SIPE 공식 홈페이지 입니다.
 
 ---
 
-<img src="/assets/img/retrospective/SIPE_3_passed.png" alt="" width="500" />
+<img src="/assets/img/retrospective/retrospective/SIPE_3_passed.png" alt="" width="500" />
 
 
 * SIPE는 개발자들이 교류하며 성장하는 IT 커뮤니티를 지향하는 동아리다. 
@@ -95,7 +95,7 @@ tags: []
 
 ### LeetCode
 
-<img src="/assets/img/leetcode/LeetCode_Grind169_questions.png" alt="" width="500" />
+<img src="/assets/img/algorithm/leetcode/LeetCode_Grind169_questions.png" alt="" width="500" />
 
 * 올해 4월부터 알고리즘 스터디 모임에 참여해 매주 두 문제씩 [LeetCode](https://github.com/devFancy/LeetCode) 문제를 풀고 있다. 
 
@@ -114,7 +114,7 @@ tags: []
 
 ### 좋은 코드, 나쁜 코드
 
-<img src="/assets/img/clean-code/GoodCode_BadCode_book.png" alt="" width="400" />
+<img src="/assets/img/server/clean-code/GoodCode_BadCode_book.png" alt="" width="400" />
 
 * 9월부터 읽기 쉬운 코드 작성하는 방법을 배우기 위해 "좋은 코드, 나쁜 코드" 책을 혼자 공부하기 시작했지만, 이후 여러 일로 인해 진도가 더딘 상태다.
 

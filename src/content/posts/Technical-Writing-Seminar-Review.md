@@ -155,7 +155,7 @@ tags: ["글또"]
 
 개선할 점을 반영한 글쓰기 파이프라인을 그림으로 표현하면 아래와 같아요.
 
-![](/assets/img/technical_writing/Technical-Writing-Seminar-Review-1.png)
+![](/assets/img/retrospective/technical_writing/Technical-Writing-Seminar-Review-1.png)
 
 1. **소재 정하기** - 출/퇴근 시간, 휴일에 어떤 주제를 작성할까 고민하기 / 유레카처럼 갑자기 생각나면 바로 `Notion`에 정리하기
 

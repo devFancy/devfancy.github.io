@@ -15,7 +15,7 @@ tags: ["운영체제"]
 
 * 다음은 초기 컴퓨터 메모리 구성은 다음과 같다.
 
-![](/assets/img/os/os-13-address-space-1.png)
+![](/assets/img/cs/os/os-13-address-space-1.png)
 
 * 초기 컴퓨터의 메모리 구성은 **추상화**라는 것이 없었다.
 
@@ -29,7 +29,7 @@ tags: ["운영체제"]
 
 * 그래서 해결방안으로 Time Sharing 기법을 사용하여 여러 개의 프로그램을 실행하도록 메모리 구성을 다음과 같이 바꿨다.
 
-![](/assets/img/os/os-13-address-space-2.png)
+![](/assets/img/cs/os/os-13-address-space-2.png)
 
 * 하나의 메모리 공간에서 여러 개의 프로세스(multiple processes)가 실행할 수 있도록 메모리 안에 프로세스가 사용할 수 있는 공간을 나눴다.
 
@@ -41,7 +41,7 @@ tags: ["운영체제"]
 
 * `Address space`(주소 공간)은 **OS가 실제 메모리를 `추상화(abstraction)` 해서 현재 실행 중인 프로그램(process)에게 나눠 주는 것**을 의미한다.
 
-![](/assets/img/os/os-13-address-space-3.png)
+![](/assets/img/cs/os/os-13-address-space-3.png)
 
 * 예를 들어, OS가 실제 메모리를 추상화해서 Process A에게 주소 공간을 나눠준다.
 
@@ -55,7 +55,7 @@ tags: ["운영체제"]
 
 * Address space에는 현재 실행중인 프로그램, 즉 프로세스에 대한 모든 것이 들어있다.
 
-![](/assets/img/os/os-13-address-space-4.png)
+![](/assets/img/cs/os/os-13-address-space-4.png)
 
 * Address space 안에는 `Program code`, `Heap`, `Stack` 그리고 etc 등이 있다.
 

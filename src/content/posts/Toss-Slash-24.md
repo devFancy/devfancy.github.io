@@ -16,7 +16,7 @@ tags: ["후기"]
 
 ## 보상 트랜잭션으로 분산 환경에서도 안전하게 환전하기
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-1.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-1.png)
 
 > 문제 정의 및 동기
 
@@ -44,7 +44,7 @@ tags: ["후기"]
 
 SAGA 패턴의 경우 각 서비스의 작은 트랜잭션들을 실행하면서 진행하고, 특정 단계에서 실패하면 **보상 트랜잭션** 이 실행된다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-2.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-2.png)
 
 SAGA 패턴을 도입한 이유는 다음과 같다.
 
@@ -52,7 +52,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 환전 서비스가 높은 트래픽을 견뎌야 하고 카드나 회계등 다양한 트랜잭션 참여자들이 추가될 수 있다는 점에서 SAGA 패턴을 선택했다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-3.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-3.png)
 
 사가 패턴의 종류는 `코레오그래피 사가`와 `오케스트레이션 사가`가 있다.
 
@@ -68,7 +68,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
   
   * 단점: 오케스트레이터가 단일장애지점이 되고 모든 서비스에게 결합된다는 단점이 있다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-4.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-4.png)
 
 * **`오케스트레이션`** 방식을 선택한 이유: 클라이언트 요청을 받아 환전을 시작하는 `환전 서버`가 필요했고, 현재 진행중인 환전 상태를 관리해 있기 때문이다.
 
@@ -84,7 +84,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 ### HTTP vs Messaging
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-5.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-5.png)
 
 입출금 요청에는 HTTP, 메시징 방식이 존재하는데, 이 두 가지 방식을 사용했다.
 
@@ -92,7 +92,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 그래서 대부분 SAGA 패턴의 경우, 메시징 방식으로 구현된다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-6.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-6.png)
 
 입급과 출금은 HTTP 방식으로 이루어진다. 
 
@@ -102,7 +102,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
   만약 예상외로 입출금이 너무 길어지면 환전이 지연됐다는 것을 유저에게 알려줘야 되는데, 이런 경우에는 타임아웃 기능이 필요하다.
   타임아웃을 비동기로 메시징으로 구현하려면 입출금 결과를 다시 메시지로 받는 등 폴링하는 등 구현이 복잡해진다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-7.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-7.png)
 
 반면 출금 취소는 메시징 방식을 사용했다.
 
@@ -112,7 +112,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 ### 비정상적인 실패(에러 핸들링)
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-8.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-8.png)
 
 * 환전 서버에서 원화 계좌 서버로 출금 요청을 보내는데 서버 에러나 타임아웃이 발생하게 되면 → 정상적인 실패로 보기 어렵다.
 
@@ -122,13 +122,13 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 예를 들어, 출금이 성공했더라면 보상 트랜잭션인 출금 취소 처리를 하고, 출금이 실패했더라면 환전을 실패처리할 수 있다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-9.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-9.png)
 
 * 상대 계좌 서버나 네트워크에 문제가 생겨 입출금 요청에 에러가 발생한 경우에는 입출금 결과 확인 요청도 실패할 확률이 높다. 
 
 * 이런 경우에는 어떻게 처리해야할까?
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-10.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-10.png)
 
 * 메시지를 지연시켜 발행시켜줄 수 있는 **`카프카 메시지 스케줄러`** 라는 서버가 존재한다.
 
@@ -138,7 +138,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 이때 프로듀서와 컨슈머 모두 ‘환전’ 서버가 된다면 **특정 동작을 지연 시간만큼 뒤로 예약하는 효과**가 된다. 이 기능을 활용하여 상대 입출금 계좌 서버에 회복할 시간을 줄 수 있다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-11.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-11.png)
 
 * 예를 들어 `환전 서버`가 `원화 계좌 서버`로 출금 결과 확인에 실패했을 때 그 즉시 재확인을 시도하는 것이 아니라 **카프카 메시지 스케줄러를 통해 30초만큼 환전을 지연시킨 후**에 `출금 결과 확인을 재시도`할 수 있다.
 
@@ -148,7 +148,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 정해진 횟수를 모두 초과하는 경우에도 개발자가 문제 해결을 확인 후 `수동`으로 메시지를 다시 발행할 수 있어 출금 결과를 확인할 수 있다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-12.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-12.png)
 
 * 만약 만약 환전 서버의 문제로 `환전 지연 이벤트`를 발행하지도 못하고 서버가 죽은 경우 → `배치 재처리`를 한다.
 
@@ -163,13 +163,13 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
   * 그런데 이런 환전 지연까지 못했을 경우에는 최종적으로 (3) 배치를 통해 환전을 재처리하게 된다.
 
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-13.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-13.png)
 
 * 토스뱅크는 카프카 메시지의 `결과적 정합성`을 보장하고 있다.
 
 * 원화 계좌 서버가 출금 취소를 처리하다가 에러가 발생하게 되면 컨슈머 DL 메시지 브로커를 통해 메시지를  DL 서버로 전달한다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-14.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-14.png)
 
 * 그리고 DL 서버는 정해진 `재시도 횟수와 간격`으로 서비스 메시지 브로커로 메시지를 다시 전달하여 원화 계좌의 `출금 취소 재시도`를 실행한다.
 
@@ -183,25 +183,25 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 그런데 서비스 메시지 브로커 장애 등으로 메시지 발행 자체가 안되면 이것을 어떻게 보장할 수 있을까?
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-15.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-15.png)
 
 * 트랜잭셔널 메시징을 보장하는 방법에는 `트랜잭셔널 아웃박스 패턴` 등 다양한 방법들이 알려져 있지만, 토스뱅크에서는 `프로듀서 데드 레터`(PDL) 를 이용하고 있다.
 
 * 환전 서버가 `서비스 메시지 브로커`의 장애로 메시지 발행에 실패했을 경우에는 프로듀서 데드 레터로 메시지를 발행하여 DL 서버로 전달한다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-16.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-16.png)
 
 * 그리고 DL 서버는 일정 시간이 흐른 후 회복된 서비스 메시지 브로커로 메시지를 다시 전달하여 원화계좌 컨슈머가 가져갈 수 있도록 한다.
 
 ### 모니터링
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-17.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-17.png)
 
 * 오케스트레이션 SAGA에서 `오케스트레이터`는 각 트랜잭션 상태별 명령이 정해져 있기 때문에 State Machine 으로 나타내곤 한다.
 
 * 위와 같은 환전 플로우는 `State Machine` 이 된다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-18.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-18.png)
 
 * 이때 데이터는 위와 같이 적용된다.
 
@@ -209,13 +209,13 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 그리고 환전이 거쳐가는 상태들은 `exchange_state_log` 이라는 테이블에 변경이 아닌 **추가 삽입**으로만 저장된다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-19.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-19.png)
 
 * 이렇게 저장했을 때 장점은 현재 상태 뿐만 아니라 **환전이 거쳐가는 모든 상태를 확인 가능하다는 점**이다.
 
 * 예를 들어, 환전 시작 후 출금 실패로 끝난 환전과 출금 성공 후 입금이 실패하여 출금이 취소된 환전을 구분하여 모니터링이 가능하다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-20.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-20.png)
 
 * 중간에 멈춰버린 환전이 없다는 것도 모니터링이 필요하다.
 
@@ -223,7 +223,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 따라서 일정 시간이 흐른 뒤에도 끝나지 않은 환전들을 탐지할 수 있다. 이는 개발자들에게 Alert(알림) 를 통해 알려주게 된다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-21.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-21.png)
 
 * 계좌 서버들에는 입출금의 쌍이 맞는지를 비교할 수 있다.
 
@@ -235,7 +235,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 ### 결론 및 성과
 
-![](/assets/img/technology/slash/Toss-Slash-24-Compensating-Transaction-22.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Compensating-Transaction-22.png)
 
 * 앞서 SAGA 패턴의 장점으로 확장성을 얘기했다. 토스뱅크에서는 매일 발생하는 입금과 출금을 기록하여 회계처리를 하게된다. 즉 `회계 서버`가 환전 트랜잭션에 참여자로 추가된다고 볼 수 있다.
 
@@ -258,7 +258,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 ### 1단계. 대상 선정
 
-![](/assets/img/technology/slash/Toss-Slash-24-Migration-1.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Migration-1.png)
 
 * 1단계인 대상 선정에서 `대출 상환` 도메인을 선정했고, 해당 도메인에서 복잡도가 낮은 UseCase 부터 순차적으로 전환하기로 결정했다.
 
@@ -280,11 +280,11 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 * 귀납적 분석은 정적 분석과 동적 분석으로 나뉜다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Migration-2.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Migration-2.png)
 
 * 정적 분석으로는 `함수 호출 그래프 분석`이 있다. 함수간의 호출을 시각화하여 전체 시스템 구조를 쉽게 파악할 수 있다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Migration-3.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Migration-3.png)
 
 * 동적 분석으로는 Kafka를 통해 메서드별 `I/O 수집을 통한 기존 시스템 분석 및 활용`이 있다. 
 
@@ -294,16 +294,16 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 대표적으로 도메인 캡슐화를 통해 데이터를 표준화하는 방법, 테스트 케이스 작성, 도메인 문서화가 있다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Migration-4.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Migration-4.png)
 
 * `도메인 캡슐화를 통해 데이터를 표준화하는 방법`: 다양한 형태의 데이터 타입을 도메인 캡슐화를 통해 효율적으로 데이터를 관리하며, 중요한 도메인은 별도로 **캡슐화하여 가독성 및 데이터 관리 용이성**을 높인다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Migration-5.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Migration-5.png)
 
 * `테스트 케이스 작성`: 분석 과정을 통해 도출한 도메인을 기반으로 예상 가능한 모든 테스트 케이스와 시나리오를 작성한다.
    그 후에 단위 테스트코드를 구현하여 도메인 로직을 더욱 견고하게 만들어 도메인의 안정성과 신뢰성을 확보하게 된다. 대출 상환 도메인 에서는 테스트 커버리지를 90% 를 유지하고 있다.
 
-![](/assets/img/technology/slash/Toss-Slash-24-Migration-6.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Migration-6.png)
 
 * `도메인 문서화`: 문서를 잘 작성하고 꾸준히 관리해야하는 이유는 마이그레이션이 일회성 작업이 아니라 지속적으로 관리되고 유지되어야 한다. 담당자가 바뀌더라도 빠르게 파악하고 최적화된 로직을 꾸준히 유지될 수 있도록 도와준다. 효과적으로 문서화를 하기 위해서는 글 뿐만 아니라 `다이어그램`을 활용하면 좋다.
    이는 팀원들이 쉽게 이해할 수 있고, 의사소통이 원활해지며 개발속도와 완성도가 높아진다. 또한 잘 작성된 문서화는 비즈니스 로직을 한 눈에 파악할 수 있게 되었다.
@@ -324,7 +324,7 @@ SAGA 패턴을 도입한 이유는 다음과 같다.
 
 - 순서: Dispatch -> Parallel Execution -> Compare -> Validation
 
-![](/assets/img/technology/slash/Toss-Slash-24-Migration-7.png)
+![](/assets/img/server/technology/slash/Toss-Slash-24-Migration-7.png)
 
 개발자는 Alert 를 통해 비교 결과를 인지하고, 어드민의 모니터링을 통해 잘못된 부분을 인지하여 수정한다. 
 

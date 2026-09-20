@@ -130,7 +130,7 @@ tags: ["문제해결"]
 
 ## Stack
 
-![](/assets/img/java/stack.png)
+![](/assets/img/server/java/stack.png)
 
 * 스택은 `LIFO`(List In First Out, 후입선출) 구조로 데이터를 쌓아올린 형태의 자료구조를 뜻한다. ex) 쓰레기통, 마트용 음료수 진열대, 프링X스(과자)
 
@@ -208,7 +208,7 @@ public class StackExample {
 
 ## Queue
 
-![](/assets/img/java/queue.png)
+![](/assets/img/server/java/queue.png)
 
 * 큐는 `FIFO`(First In First Out, 선입선출) 데이터를 순서대로 줄을 세운 형태의 자료구조를 뜻한다. ex) 놀이공원 이나 매표소 등 줄을 서서 차례로 업무를 처리하는 경우
 

@@ -5,7 +5,7 @@ categories: ["서버"]
 tags: ["우아한테크코스"]
 ---
 
-![](/assets/img/woowacourse/woowacourse_cosuta_review.png)
+![](/assets/img/server/woowacourse/woowacourse_cosuta_review.png)
 
 * 우아한테크코스에서 왼손님과 포비님이 유튜브로 진행한 **코수타**에서
 

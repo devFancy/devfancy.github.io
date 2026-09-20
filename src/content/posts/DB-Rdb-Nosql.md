@@ -31,11 +31,11 @@ tags: ["데이터베이스"]
 
 * RDBMS 종류에는 `MySQL`, `PostgreSQL`, `Oracle`, `Microsoft SQL Server`, `MariaDB` 등이 있다.
 
-![](/assets/img/db/db-rdb-nosql-1.png)
+![](/assets/img/cs/db/db-rdb-nosql-1.png)
 
 * 현재 기준(2023.02.13) 가장 인기있는 10가지 `DBMS`는 다음과 같다.
 
-![](/assets/img/db/db-rdb-nosql-2.png)
+![](/assets/img/cs/db/db-rdb-nosql-2.png)
 
 * 관계 데이터베이스의 경우 표준 SQL은 지키기는 하지만, 각각의 제품에 특화시킨 `SQL`을 사용한다.
 
@@ -53,7 +53,7 @@ tags: ["데이터베이스"]
 
 * MySQL의 스토리지 엔진 아키텍쳐는 다음과 같다.
 
-![](/assets/img/db/db-rdb-nosql-3.png)
+![](/assets/img/cs/db/db-rdb-nosql-3.png)
 
 * 데이터베이스의 심장과도 같은 역할을 하는 곳이 바로 `스토리지 엔진`인데, **모듈식 아키텍쳐**로 쉽게 스토리지 엔진을 바꿀 수 있으며, 데이터 웨어하우징, 트랜잭션 처리, 고가용성 처리에 강점을 두고 있다.
 
@@ -73,7 +73,7 @@ tags: ["데이터베이스"]
 
 * `PostgreSQL` 역시 개발자들이 선호하는 데이터베이스 기술로 널리 인정받고 있다.(세계 4위)
 
-![](/assets/img/db/db-rdb-nosql-4.png)
+![](/assets/img/cs/db/db-rdb-nosql-4.png)
 
 * PostgreSQL 은 수년간 압도적인 성장 속도를 보여주며 3위와의 격차를 좁혀나가고 있다. 
 
@@ -146,7 +146,7 @@ tags: ["데이터베이스"]
 
 * NoSQL 종류에는 대표적으로 `MongoDB`, `Redis` 등이 있다.
 
-* ![](/assets/img/db/db-rdb-nosql-5.png)
+* ![](/assets/img/cs/db/db-rdb-nosql-5.png)
 
 ### MongoDB
 

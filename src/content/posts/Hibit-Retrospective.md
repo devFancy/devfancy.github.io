@@ -162,7 +162,7 @@ setter 없이 데이터를 수정하는 방법은 사용한 의도와 의미가 
 
 그리고 토스 유튜브 채널에서 토스뱅크 이응준님이 발표하신 [SLASH21 - 테스트 커버리지 100%](https://toss.im/slash-21/sessions/1-6) 영상을 보면서 테스트 커버리지의 여러 이점들을 알게되었고, 하신 말씀 중에 가장 기억에 남는 문구가 아래와 같았다.
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-0.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-0.png)
 
 > 테스트가 없으면 리팩터링을 할 수 없고, 리팩터링을 하지 않는 코드는 이해할 수 없게 되며, 이러한 코드는 수정할 수 없다는 확신이 없다. - 토스뱅크 이응준 - 
 
@@ -170,7 +170,7 @@ setter 없이 데이터를 수정하는 방법은 사용한 의도와 의미가 
 
 그 결과, 아래와 같이 80% 유지를 할 수 있었다.
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-1.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-1.png)
 
 ### 3. 데이터베이스 레플리케이션을 통한 쿼리 성능 개선
 
@@ -182,7 +182,7 @@ setter 없이 데이터를 수정하는 방법은 사용한 의도와 의미가 
 
 아래와 같이 현재 RDS에 있는 데이터베이스(Source)를 기준으로 하위에 Replica 2개를 추가로 두었다.
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-2.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-2.png)
 
 그리고 스프링 부트에도 쓰기와 읽기를 분리하기 위해 아래와 같이 DataSource를 구분지었다.
 
@@ -227,11 +227,11 @@ public class DataSourceConfiguration {
 
 > 레플리케이션 도입 전
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-3.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-3.png)
 
 > 레플리케이션 도입 전
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-4.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-4.png)
 
 ### 4. 데이터베이스 정합성이 맞지 않는 문제 해결
 
@@ -241,7 +241,7 @@ public class DataSourceConfiguration {
 
 서로 다른 사용자 1000명이 해당 게시글을 조회하면, 당연히 1000회가 증가해야 했는데, 아래와 같이 117회의 조회수만 정상적으로 증가된 것을 확인할 수 있다.
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-5.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-5.png)
 
 이러한 부분을 해결하기 위해 여러가지 방법 중 쿼리(DB atomic operation)을 적용했다.
 
@@ -262,7 +262,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 `for update` 를 통해 조회하지 않고 이렇게 자기 자신의 값을 이용하여 계산한다면, 배타락 덕분에 조회수 개수에 대한 데이터 정합성을 보장할 수 있다.
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-6.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-6.png)
 
 위 그림에서 보는 것처럼 먼저 실행된 트랙잭션이 update 쿼리를 통해 마치고 커밋 또는 롤백할 때까지 락 획득을 위해 대기하고 있는 방식이다.
 
@@ -363,7 +363,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 이러한 문제를 인식하고, 조회수에 대한 어뷰징을 방지하기 위해 새로운 접근 방식을 모색하게 되었다.
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-7.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-7.png)
 
 조회수 증가에 대한 기준을 설정한 뒤 어뷰징을 막기 위해 쿠키를 이용하기로 했다.
 
@@ -385,11 +385,11 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 그래서 현재까지 구현된 API에 대해 아래와 같이 Spring Rest Docs로 문서화했다.
 
-![](/assets/img/hibit/hibit-spring-rest-docs-6.png)
+![](/assets/img/server/hibit/hibit-spring-rest-docs-6.png)
 
 ## 느낀점(아쉬운 점)
 
-![](/assets/img/hibit/Hibit-Retrospective-Version2-8.png)
+![](/assets/img/server/hibit/Hibit-Retrospective-Version2-8.png)
 
 * 혼자서 히빗 version2 프로젝트를 진행하면서 그동안 내가 배웠던 지식을 실제로 활용해보는 중요한 경험을 했다.
 

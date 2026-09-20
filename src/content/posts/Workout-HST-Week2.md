@@ -54,29 +54,29 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 [수정한 프로그램]
 
-![](/assets/img/workout/hst_week2_edited_program.png)
+![](/assets/img/etc/workout/hst_week2_edited_program.png)
 
 [Table - Exercises]
 
-![](/assets/img/workout/hst_week2_exercise_1.png)
+![](/assets/img/etc/workout/hst_week2_exercise_1.png)
 
 [Exercises]
 
-![](/assets/img/workout/hst_week2_exercise_2.png)
+![](/assets/img/etc/workout/hst_week2_exercise_2.png)
 
 ---
 
 [Week2 - 하체]
 
-![](/assets/img/workout/hst_week2_1.png)
+![](/assets/img/etc/workout/hst_week2_1.png)
 
 [Week2 - 상체]
 
-![](/assets/img/workout/hst_week2_2.png)
+![](/assets/img/etc/workout/hst_week2_2.png)
 
 풀업, 딥스는 **주 4일** 항상 할 것
 
-<img src="/assets/img/workout/hst_week2_record.png" alt="" width="400" />
+<img src="/assets/img/etc/workout/hst_week2_record.png" alt="" width="400" />
 
 ## 정리
 

@@ -40,7 +40,7 @@ tags: ["운영체제"]
 
     * 사전 정의) Low watermark = 2, High watermark = 3
 
-![](/assets/img/os/os-21-swapping-1.png)
+![](/assets/img/cs/os/os-21-swapping-1.png)
 
 * 왼쪽 그림은 Free memory = 1이므로 Low watermark(=2) 보다 작기 때문에, pages을 swap out 된다.
 
@@ -51,7 +51,7 @@ tags: ["운영체제"]
 
 * free memory < low watermark인 일때, free memory > high watermark 까지 Swap daemon process는 하나 이상의 page를 **swap out** 하는 것을 다음 그림을 통해 확인할 수 있다.
 
-![](/assets/img/os/os-21-swapping-2.png)
+![](/assets/img/cs/os/os-21-swapping-2.png)
 
 * Low watermark 의 경계선보다 내려가면 Swapping을 시작해서 High watermark 경계선까지 swap out 한다.
 
@@ -62,7 +62,7 @@ tags: ["운영체제"]
 
 * 예) Page 6 이 참조되었을 경우
 
-![](/assets/img/os/os-21-swapping-3.png)
+![](/assets/img/cs/os/os-21-swapping-3.png)
 
 * Page 6이 실제 메모리에 없을 경우 **Page fault**가 발생하여 swap in 하게 된다.
 
@@ -76,7 +76,7 @@ tags: ["운영체제"]
 
     * `Present bit = 0` : 해당 page가 **swap space**에 존재한다는 것을 의미한다.
 
-![](/assets/img/os/os-21-swapping-4.png)
+![](/assets/img/cs/os/os-21-swapping-4.png)
 
 
 ## Implementation: Swap In
@@ -93,12 +93,12 @@ tags: ["운영체제"]
 
 > 그림 1) Page fault 발생 하기 전
 
-![](/assets/img/os/os-21-swapping-5.png)
+![](/assets/img/cs/os/os-21-swapping-5.png)
 
 
 > 그림 2) Page fault 발생하였을 때
 
-![](/assets/img/os/os-21-swapping-6.png)
+![](/assets/img/cs/os/os-21-swapping-6.png)
 
 > 그림 3) Page fault handler가 해당 page를 swap in 한다.
 
@@ -108,17 +108,17 @@ Disk I/O 진행하는 동안, **해당 process는 차단 상태(blocked state)�
 
 **Page가 swap in 되면 PTE를 업데이트** 한다. (OS는 disk 주소에 대한 정보를 page의 PTE에서 알아낼 수 있다. 이렇게 알아낸 주소로 page를 가져오면 메모리에 할당하고 page table의 present bit을 업데이트하여 page가 메모리에 존재한다는 것을 기억한다)
 
-![](/assets/img/os/os-21-swapping-7.png)
+![](/assets/img/cs/os/os-21-swapping-7.png)
 
 > 그림 4) PTE 업데이트가 된 이후에는 page 4를 참조한 process는 **실제 메모리에 page 정보가 존재하기 때문에, page fault가 발생하지 않는다**.
 
-![](/assets/img/os/os-21-swapping-8.png)
+![](/assets/img/cs/os/os-21-swapping-8.png)
 
 ## Page Fault Control Flow
 
 * 다음은 page가 physical memory(실제 메모리)에 존재하지 않을 경우 발생하는 **Page fault의 처리 과정**을 예시를 통해 알아보자.
 
-![](/assets/img/os/os-21-swapping-9.png)
+![](/assets/img/cs/os/os-21-swapping-9.png)
 
 [1 ~ 2] : CPU가 데이터를 요청했는데 TLB에 없고(=TLB miss) page table에도 없는 경우(Present bit = 0), page fault가 발생한다.
 
@@ -142,7 +142,7 @@ Disk I/O 진행하는 동안, **해당 process는 차단 상태(blocked state)�
 
 * 현대 시스템에서는 이러한 역할을 **Hard disk drive** 가 수행해준다.
 
-![](/assets/img/os/os-21-swapping-10.png)
+![](/assets/img/cs/os/os-21-swapping-10.png)
 
 ## Reference
 

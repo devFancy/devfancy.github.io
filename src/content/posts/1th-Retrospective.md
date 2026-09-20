@@ -62,17 +62,17 @@ TIL 모임은 글또에서 활동하고 계신 NY님이 올린 모집글을 통�
 
 1월에는 6명이서 시작했던 TIL 모임이 이제(3월 기준)는 12명이 되어갔습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-1.png" alt="" width="150" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-1.png" alt="" width="150" />
 
 2월부터는 TIL 인증 뿐만 아니라, 매주 금요일 혹은 일요일 저녁에 30분 정도 '주간 회고'를 진행하면서 KPT 회고를 작성하고, 서로 얘기하는 시간을 가졌습니다.
 
 확실히 이런 TIL 모임을 하니까, 다른 구성원분들로부터 자극을 받고, 스스로 동기부여를 하면서 매일 공부하는 습관을 유지할 수 있었던 점이 좋았습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-2.png" alt="" width="300" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-2.png" alt="" width="300" />
 
 1월부터 3월까지 3개월 동안 한 결과, 총 60번의 제출 중 41번을 제출하였습니다. 제출하지 못한 날이 꽤 있어서 아쉽긴 하지만, 그래도 제출한 내용 만큼은 현재뿐 아니라 앞으로도 도움이 되는 기술적 지식 또는 경험 위주로 정리하려고 노력했습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-3.png" alt="" width="400" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-3.png" alt="" width="400" />
 
 이전까지는 1달 단위로 TIL 모임을 운영해왔지만, 앞으로는 분기별로 진행하면서 꾸준히 공부하면서 성장해가는 개발자가 되도록 노력할 예정입니다 😌.
 
@@ -80,7 +80,7 @@ TIL 모임은 글또에서 활동하고 계신 NY님이 올린 모집글을 통�
 
 > 스터디 진행기간: 2024.01 ~ 2024.02
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-4.png" alt="" width="500" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-4.png" alt="" width="500" />
 
 글또에서 활동하고 계신 YH님께서 “이력서, 포트폴리오 개선 스터디원”을 구하신다는 모집글을 보고, 바로 참여하게 되었습니다.
 
@@ -88,33 +88,33 @@ TIL 모임은 글또에서 활동하고 계신 NY님이 올린 모집글을 통�
 또한 제가 조금이라도 도움이 드릴 수 있는 부분이 있다면 적극적으로 도와드리고 싶었습니다.
 해당 스터디를 통해 더 나은 이력서를 만들고자 참여를 하게 되었습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-5.png" alt="" width="700" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-5.png" alt="" width="700" />
 
 YH님이 주도적으로 스터디를 이끌어주시면서 어떻게 진행할지 알려주셨고, 더 나은 방법이 있다면 스터디에 참여하는 구성원분들이 의견을 제시해서 조금씩 개선하는 방향으로 나아갔습니다.
 
 피그마를 이용하여 2주마다 총 3개의 버전을 만들면서 이전 대비 더 나아지는 이력서를 만드는 것이 목표였습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-6.png" alt="" width="300" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-6.png" alt="" width="300" />
 
 2주 간격으로 온라인 회의(Google Meet)를 진행하면서, YH님이 그때마다 필요한 내용들을 Notion에 정리해주셔서 구성원 모두에게 공유하고 얘기하는 시간을 가졌습니다. 
 해당 스터디 이후에 서류에 합격하는 사람이 있으면, 위와 같이 스터디원 분들이 모두 축하해줬습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-7.png" alt="" width="300" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-7.png" alt="" width="300" />
 
 스터디 마지막 날에는 이번 모임의 목적을 다시 생각하면서, 부족했던 부분, 좋았던 부분, 개선할 부분들을 정리하는 시간을 가졌습니다.
 다음에 또 이력서 스터디를 모집한다면, 지금보다 더 효과를 누릴 수 있지 않을까 생각합니다.
 
 ### 최종 이력서
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-8.png" alt="" width="400" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-8.png" alt="" width="400" />
 
 피그마에서 각 직군별로 분류하였고, 본인의 직무에 있는 곳에 이력서를 올리는 식으로 진행했습니다. 그리고 2주 동안 본인의 이력서를 다른 버전으로 업데이트 하는 동시에, 다른 사람의 이력서를 보고 피드백하는 식으로 했습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-9.png" alt="" width="400" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-9.png" alt="" width="400" />
 
 저는 해당 스터디를 시작하기 전부터 기존의 이력서가 있었고, 스터디를 진행하면서 서류합격 받은 회사들로부터 면접을 진행하고 있었습니다. (이때가 정말 바빴고, 정신없이 시간을 보냈던 것 같습니다 😂)
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter.png" alt="" width="500" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter.png" alt="" width="500" />
 
 그렇게 열심히 노력한 결과, 운이 좋게도 한 회사에 최종합격을 받게 되었습니다. 일부 기술 면접 질문에 대해 제대로 답변을 못한 경우도 있었는데, 그러한 부분을 관대하게 넘어가주셨고, 인성 부분에서 좋게 봐주셔서 ‘합격’해주셨다고 생각합니다. 
 앞으로 새로운 회사에 다니면서 꾸준히 성장해서 더 나은 개발자가 되도록 노력하겠습니다.
@@ -123,7 +123,7 @@ YH님이 주도적으로 스터디를 이끌어주시면서 어떻게 진행할�
 
 글또에 참여하면서, 글을 제출하는 것 외에 글또에 도움이 되는 활동에 참여하고 싶다는 생각이 들었습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-10.png" alt="" width="400" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-10.png" alt="" width="400" />
 
 그렇게 생각만 하다가 어느 날, 백엔드/인프라 반상회를 위한 준비 위원회 모집 참여글을 확인하게 되었고, 참여 의사를 전달하면서 준비위원회에 합류하게 되었습니다.
 
@@ -132,11 +132,11 @@ YH님이 주도적으로 스터디를 이끌어주시면서 어떻게 진행할�
 저는 굿즈팀에서 키캡을 제작하는 걸 담당했고, 음식팀에서는 TJ님과 메뉴 선정부터 배송 과정까지 기획하는 걸 담당했습니다.
 키캡을 제작하면서, 굿즈팀의 YE님께서 디자인 부분을 많이 도와주셔서 일사천리로 끝내서 정말 감사했습니다. 음식팀에서는 TJ님이 적극적으로 임해주셨고, 성윤님이 뒤에서 많은 부분을 도와주셔서 감사했습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-12.jpg" alt="" width="300" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-12.jpg" alt="" width="300" />
 
 결과적으로 키캡은 위와 같이 제작되었습니다.
 
-<img src="/assets/img/retrospective/Retrospective-2024-first-quarter-13.jpg" alt="" width="400" />
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-13.jpg" alt="" width="400" />
 
 그리고 굿즈팀의 YE님과 SM님이 포스터를 정성스럽고 이쁘게 만들어주셨습니다. (비록 백엔드 직무이시만, 취미로 디자인을 하시는 YE님 짱입니다..!)
 이 외에도 여러 팀에서 본인이 맡으신 부분들을 적극적으로 임해주셔서, 결과적으로 백엔드/인프라 반상회 준비가 문제없이 잘 되었다고 생각합니다.

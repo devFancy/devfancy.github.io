@@ -15,11 +15,11 @@ tags: ["블로그"]
 
 (현재) 결과물 : 나의 GitHub README.md(2023.02.06)
 
-![](/assets/img/technology/technology-github-readme_main.png)
+![](/assets/img/server/technology/technology-github-readme_main.png)
 
 ## README repo 생성
 
-![](/assets/img/technology/technology-github-readme_1.png)
+![](/assets/img/server/technology/technology-github-readme_1.png)
 
 * repository name을 github user name(본인의 계정 이름)으로 입력하면, `special` repository를 확인할 수 있다.
 
@@ -27,7 +27,7 @@ tags: ["블로그"]
 
 * 그 밑에 `Public` 부분과 `Add a README file` 클릭하고 확인 버튼을 누른다. (README.md 파일은 직접 만들어도 된다)
 
-![](/assets/img/technology/technology-github-readme_2.png)
+![](/assets/img/server/technology/technology-github-readme_2.png)
 
 * 확인 버튼을 클릭하게 되면 다음과 같이 새로운 repository가 생성되고 README.md 파일에 **Hi there 👋**이 보인다.
 
@@ -35,7 +35,7 @@ tags: ["블로그"]
 
 ## README Header
 
-![](/assets/img/technology/technology-github-readme_header.png)
+![](/assets/img/server/technology/technology-github-readme_header.png)
 
 * [Readme Header : capsule-render](https://github.com/kyechan99/capsule-render)에 가서 `Markdown` 아래에 있는 코드를 복사한다.
 
@@ -48,7 +48,7 @@ tags: ["블로그"]
 
 ## GitHub Profile Views Counter
 
-![](/assets/img/technology/technology-github-readme_profile_view.png)
+![](/assets/img/server/technology/technology-github-readme_profile_view.png)
 
 * [GitHub Profile Views Counter](https://github.com/antonkomarev/github-profile-views-counter)에 가서 `Named color` 아래에 있는 코드를 복사해서 나의 `README.md`파일로 가져왔다.
 
@@ -61,7 +61,7 @@ tags: ["블로그"]
 
 ## Languages and Tech stack
 
-![](/assets/img/technology/technology-github-readme_5.png)
+![](/assets/img/server/technology/technology-github-readme_5.png)
 
 * [Shields.io](https://shields.io/)에 가서 본인이 직접 입력해서 사용하는 방법이 있다. 
 
@@ -94,7 +94,7 @@ tags: ["블로그"]
 
 * [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)에 가면, 다양한 번역이 있다.
 
-![](/assets/img/technology/technology-github-readme_github_stats.png)
+![](/assets/img/server/technology/technology-github-readme_github_stats.png)
 
 * 영어가 불편하면 `한국어` 버전을 클릭한 다음에 `GitHub 통계` 아래에 있는 코드를 복사 해준다. (기본 값)
 
@@ -111,7 +111,7 @@ tags: ["블로그"]
 
 최종 결과
 
-![](/assets/img/technology/technology-github-readme_result.png)
+![](/assets/img/server/technology/technology-github-readme_result.png)
 
 * 이렇게 해서 나만의 **GitHub README.md**를 만들었다.
 

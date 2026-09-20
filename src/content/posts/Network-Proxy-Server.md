@@ -9,7 +9,7 @@ tags: ["네트워크"]
 
 * `프락시 서버`는 클라이언트와 서버 사이에 위치하여 그들 사이의 HTTP 메시지를 정리하는 **웹 중개자** 역할을 한다.
 
-![](/assets/img/network/network-proxy-server-1.png)
+![](/assets/img/cs/network/network-proxy-server-1.png)
 
 ## 프락시 서버 동작 원리 
 
@@ -31,7 +31,7 @@ tags: ["네트워크"]
 
 * `프락시`는 브라우자와 서버가 **다른 버전의 HTTP를 구현**하는 경우 또는 `상용 프락시`는 SSL 보안 프로토콜, SOCKS 방화벽, FTP 접근, 웹 기반 애플리케이션을 지원하는 경우 등 **게이트웨이 기능을 구현하는 경우**도 있으므로 사실상 차이를 논하기 모호하다.
 
-![](/assets/img/network/network-proxy-server-2.png)
+![](/assets/img/cs/network/network-proxy-server-2.png)
 
 ## 프락시 서버는 왜 필요할까?
 
@@ -39,7 +39,7 @@ tags: ["네트워크"]
 
 * 보안을 개선하고 성능을 향상하며, 비용을 절약해주고 트래픽 감시 및 수정이 가능하다.(모든 HTTP 트래픽에 접근이 가능하다)
 
-![](/assets/img/network/network-proxy-server-3.png)
+![](/assets/img/cs/network/network-proxy-server-3.png)
 
 * 위 그림에서 알 수 있듯이 프락시를 통해 **필터링(제어)** 를 중앙 집권적으로 해결할 수 있다.
 
@@ -65,7 +65,7 @@ tags: ["네트워크"]
 
 ### 웹 캐시
 
-![](/assets/img/network/network-proxy-server-4.png)
+![](/assets/img/cs/network/network-proxy-server-4.png)
 
 * 프락시 캐시는 문서의 로컬 사본을 관리하고 해당 문서에 대한 요청이 오면 빠르게 제공하여, 느리고 비싼 인터넷 커뮤니케이션을 줄여준다. (전송시간 절약, 외부트래픽 감소)
 
@@ -75,7 +75,7 @@ tags: ["네트워크"]
 
 ### Forward 프락시
 
-![](/assets/img/network/network-proxy-server-5.png)
+![](/assets/img/cs/network/network-proxy-server-5.png)
 
 * **포워딩 프락시**(Forwarding Proxy)를 일반적으로 프락시라고 부른다.
 
@@ -87,7 +87,7 @@ tags: ["네트워크"]
 
 ### Reverse 프락시
 
-![](/assets/img/network/network-proxy-server-6.png)
+![](/assets/img/cs/network/network-proxy-server-6.png)
 
 * `리버스 프락시`는 포워딩 프락시가 서버쪽에도 존재한다고 생각하면 된다.
 

@@ -33,7 +33,7 @@ tags: ["운영체제"]
 
 * **64-byte address space** with 16 bytes `pages`
 
-<img src="/assets/img/os/os_paging_1.png" alt="" width="600" />
+<img src="/assets/img/cs/os/os_paging_1.png" alt="" width="600" />
 
 * 위의 그림에서 4개의 page로 구성된 가상 주소 공간을 8개의 page frame으로 쪼갠 것을 볼 수 있다.
 
@@ -41,7 +41,7 @@ tags: ["운영체제"]
 
 * Paging 기법을 사용하기 위해서 가상 주소 공간에 있는 프로세스의 `page`들이 실제 메모리의 어디에 위치를 하는 지를 기억하는 `Page table`을 가지고 있어야 한다. 
 
-<img src="/assets/img/os/os_paging_1_2.png" alt="" width="350" />
+<img src="/assets/img/cs/os/os_paging_1_2.png" alt="" width="350" />
 
 * `Page table` 이란 가상 주소 공간의 page가 실제 메모리(주소 공간)에 어디에 위치해 있는 지를 기록한다.
 
@@ -59,15 +59,15 @@ tags: ["운영체제"]
 
     * Offset : page 안에 있는 offset -> 나머지 4개의 bit이 offset을 표현한다.
 
-<img src="/assets/img/os/os_paging_2.png" alt="" width="350" />
+<img src="/assets/img/cs/os/os_paging_2.png" alt="" width="350" />
 
 * Example: virtual address **21** in 64-byte address space
 
-<img src="/assets/img/os/os_paging_3.png" alt="" width="350" />
+<img src="/assets/img/cs/os/os_paging_3.png" alt="" width="350" />
 
 A Simple 64-byte Address Space
 
-<img src="/assets/img/os/os_paging_4.png" alt="" width="400" />
+<img src="/assets/img/cs/os/os_paging_4.png" alt="" width="400" />
 
 * Page table을 통해서 Virtual Page, Physical Page frame 의 i번째를 찾는다.
 
@@ -82,7 +82,7 @@ A Simple 64-byte Address Space
 
 * The virtual address 21 in 64-byte address space
 
-<img src="/assets/img/os/os_paging_5.png" alt="" width="600" />
+<img src="/assets/img/cs/os/os_paging_5.png" alt="" width="600" />
 
 * 가상 주소 공간에서 VPN 값을 Page Table을 통해 해당하는 값을 찾아서 실제 주소 공간의 PFN 값을 찾는다.
 
@@ -124,7 +124,7 @@ A Simple 64-byte Address Space
 
 ## Example: x86 Page Table Entry
 
-![](/assets/img/os/os-page-table-entry.png)
+![](/assets/img/cs/os/os-page-table-entry.png)
 
 * Page table entries(PTE)에는 다양한 정보가 있다.
 
@@ -150,7 +150,7 @@ A Simple 64-byte Address Space
 
 * 가상 주소를 실제 메모리 주소로 변환하는 과정을 다음과 같이 요약할 수 있다.
 
-![](/assets/img/os/os-paging-too-slow.png)
+![](/assets/img/cs/os/os-paging-too-slow.png)
 
 1. 프로세스의 가상 주소로 VPN과 offset을 알아낸 뒤, 해당 프로세스의 VPN 값으로 프로세스의 page table에서 `PTE` 정보를 가지고 온다.
 

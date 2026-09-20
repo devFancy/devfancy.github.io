@@ -273,7 +273,7 @@ public class ApplicationContextSameBeanFindTest {
 
 * 참고로 스프링의 최상위 부모 `Object` 타입을 조회하면, 모든 스프링 빈을 조회하게 된다. 
 
-![](/assets/img/spring/spring-core-principle-4-2-1.md.png)
+![](/assets/img/server/spring/spring-core-principle-4-2-1.md.png)
 
 ### ApplicationContextExtendsFindTest 클래스
 

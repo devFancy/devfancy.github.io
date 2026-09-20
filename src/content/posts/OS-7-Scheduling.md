@@ -124,7 +124,7 @@ tags: ["운영체제"]
 
 * 이에 비해, `I/O 버스트`는 **I/O 작업이 요청된 후 완료되어 다시 CPU 버스트로 돌아가기**까지 일어나는 일련의 작업이다.
 
-![](/assets/img/os/os-7-Scheduling_0.png)
+![](/assets/img/cs/os/os-7-Scheduling_0.png)
 
 * 각 프로그램마다 CPU 버스트, I/O 버스트가 차지하는 비율이 균일하지 않다.
 
@@ -166,7 +166,7 @@ tags: ["운영체제"]
 
   * 어떤 job이 시스템에 도착해서 끝날때까지의 시간
 
-  ![](/assets/img/os/os-7-Scheduling_1.png)
+  ![](/assets/img/cs/os/os-7-Scheduling_1.png)
 
 ---
 
@@ -190,7 +190,7 @@ tags: ["운영체제"]
   
   * 프로세스 C 끝나는 시간 : 30 sec
 
-  ![](/assets/img/os/os-7-Scheduling_2.png)
+  ![](/assets/img/cs/os/os-7-Scheduling_2.png)
 
   * 평균 소요시간 : (10 + 20 + 30) / 3 = 20 sec가 된다.
 
@@ -216,14 +216,14 @@ tags: ["운영체제"]
 
   * A, B, C가 모두 동시에 도착했다고 가정하자.
 
-  ![](/assets/img/os/os-7-Scheduling_3.png)
+  ![](/assets/img/cs/os/os-7-Scheduling_3.png)
 
 
 * **Example 2** :
 
   * A가 먼저 도착하고 10초후에 B,C가 도착했다고 가정하자.
 
-  ![](/assets/img/os/os-7-Scheduling_4.png)
+  ![](/assets/img/cs/os/os-7-Scheduling_4.png)
 
 #### Shortest Time-to-Completion First(STCF)
 
@@ -237,7 +237,7 @@ tags: ["운영체제"]
   
   * B와 C는 도착시간이 10초이며, 각각 run-time이 10초이다.
 
-  ![](/assets/img/os/os-7-Scheduling_5.png)
+  ![](/assets/img/cs/os/os-7-Scheduling_5.png)
 
   * A를 실행하다가 run-time이 더 짧은 B,C가 도착했으므로, B,C 먼저 끝낸 이후에 남은 A를 실행한다.
 
@@ -247,7 +247,7 @@ tags: ["운영체제"]
 
 * job이 도착한 시점부터 처음 시작하는 시간까지의 시간을 의미한다.
 
-  ![](/assets/img/os/os-7-Scheduling_6.png)
+  ![](/assets/img/cs/os/os-7-Scheduling_6.png)
 
 
 #### Round Robin (RR) Sheduling
@@ -267,7 +267,7 @@ tags: ["운영체제"]
   
   * 그들은 5초의 run-time이 있다.
 
-  ![](/assets/img/os/os-7-Scheduling_7.png)
+  ![](/assets/img/cs/os/os-7-Scheduling_7.png)
 
   * Response time(응답 시간)으로 봤을 때, RR이 SJF보다 더 짧은 시간을 보여준 것을 나타낸다.
   즉, 1초의 time-slice를 갖는 RR이 SJF보다 Response time에 더 좋다.

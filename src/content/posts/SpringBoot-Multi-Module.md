@@ -103,13 +103,13 @@ tags: ["Spring Boot"]
 
 * 아래 그림은 멀티 모듈 프로젝트의 Gradle 의존성 구조를 나타낸다. 화살표는 의존 방향을 의미하며, 각 모듈의 역할과 책임에 따라 설계된 관계를 보여준다.
 
-![](/assets/img/springboot/springboot-multi-module.png)
+![](/assets/img/server/springboot/springboot-multi-module.png)
 
 * 위의 그림을 바탕으로 Kotlin 1.6.21, Spring Boot 2.7.1 기반으로 실제 프로젝트를 구성해보았다.
 
 > 실제 프로젝트에 대한 코드가 궁금하다면 [[Github] kotlin-springboot-multi-module](https://github.com/devFancy/kotlin-springboot-multi-module) 에서 확인한다.
 
-![](/assets/img/springboot/springboot-multi-module-intelliJ.png)
+![](/assets/img/server/springboot/springboot-multi-module-intelliJ.png)
 
 ### 프로젝트 설정 파일
 
@@ -272,7 +272,7 @@ subprojects {
 
 * `core-api` 모듈의 `build.gradle.kts` 를 살펴보면 다음과 같은 의존성과 설정이 있다.
 
-![](/assets/img/springboot/springboot-multi-module-core-api.png)
+![](/assets/img/server/springboot/springboot-multi-module-core-api.png)
 
 * 빌드 설정에서 `core-api` 모듈은 **실행 가능한 JAR 파일을 생성** 하기 위해 `bootJar` 작업을 활성화했고, 일반적인 라이브러리 JAR 파일 생성은 비활성화했다. 
 
@@ -286,7 +286,7 @@ subprojects {
 
 * 다시 위에서 보여준 그림을 확인하면 아래와 같다.
 
-![](/assets/img/springboot/springboot-multi-module.png)
+![](/assets/img/server/springboot/springboot-multi-module.png)
 
 * 위와 같이 멀티 모듈을 적용함으로써 이전 단일 모듈에 비해 여러 이점을 아래와 같이 정리했다.
 
@@ -306,7 +306,7 @@ subprojects {
 
 * 따라서 제품 출시 전이나 서비스 초기라면 `domain` 모듈을 `core-api` 모듈에 통합하는 구조로 가는 것이 더 효율적일 수 있다. 이를 그림으로 표현하면 아래와 같다.
 
-![](/assets/img/springboot/springboot-multi-module-domain-in-core-api.png)
+![](/assets/img/server/springboot/springboot-multi-module-domain-in-core-api.png)
 
 * 이 외에도 다양한 상황에 따라 적합한 구조가 달라질 수 있으므로, 아래와 같이 선택 기준을 정리했다.
 

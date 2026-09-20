@@ -310,7 +310,7 @@ Shutting down MySQL
 
 (8.0.32 이상으로 하면 나중에 mysql 실행할 때`MySQLWorkbench 응용 프로그램이 예기치 않게 종료되었습니다`라는 문구가 뜨게 된다)
 
-![](/assets/img/mysql/mysql-installation-workbench.png)
+![](/assets/img/server/mysql/mysql-installation-workbench.png)
 
 * 다운로드가 완료되었다면, `commend + space` (검색창 여는 단축키) 로 MySQL Workbench 앱을 실행시킨다.
 
@@ -318,7 +318,7 @@ Shutting down MySQL
 
   (참고로, `mysql-local` 부분은 내가 임시로 입력한 Connection name 이다)
 
-![](/assets/img/mysql/mysql-installation-workbench-2.png)
+![](/assets/img/server/mysql/mysql-installation-workbench-2.png)
 
 * 원하는 Connection name(`mysql-local`)을 입력한다.
 
@@ -330,7 +330,7 @@ Shutting down MySQL
 
 * close 버튼을 클릭하고 내가 지정한 Connection name인 `mysql-local`를 클릭하면 실행 중인 MySQL과 연결된다.
 
-![](/assets/img/mysql/mysql-installation-workbench-3.png)
+![](/assets/img/server/mysql/mysql-installation-workbench-3.png)
 
 ## Sakila 설치
 
@@ -340,7 +340,7 @@ Shutting down MySQL
 
   * https://dev.mysql.com/doc/index-other.html
 
-![](/assets/img/mysql/mysql-installation-sakila-download.png)
+![](/assets/img/server/mysql/mysql-installation-sakila-download.png)
 
 * 해당 버전을 다운로드한 뒤에 Mac에서 인식하기 위해서는 터미널에서 경로를 직접 설정해줘야 한다.
 
@@ -376,7 +376,7 @@ mysql>
 
 * 해당 폴더에서 `sakila-data.sql` 과 `sakila-schema.sql` 정보의 위치를 복사한 뒤,
 
-![](/assets/img/mysql/mysql-installation-sakila-path.png)
+![](/assets/img/server/mysql/mysql-installation-sakila-path.png)
 
 * mysql 창에 경로명을 붙여준다.
 
@@ -409,7 +409,7 @@ show databses;
 
 * 그러면 아래와 같이 sakila가 mysql databse에 포함된 걸 확인할 수 있다.
 
-![](/assets/img/mysql/mysql-installation-sakila-show-db.png)
+![](/assets/img/server/mysql/mysql-installation-sakila-show-db.png)
 
 * 확인이 되었으면 다시 mysql를 종료하고, mysql server 종료하는 명령어를 입력한다.
 

@@ -39,7 +39,7 @@ tags: ["Kafka"]
 
 대규모 트래픽 처리를 위해 API 서버가 Kafka로 메시지를 발행하고, Consumer가 이를 수신하여 DB에 저장하는 단방향 흐름을 가지도록 구현했습니다.
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-1.png)
 
 하지만 비동기 구간에서 DB 장애가 발생하면 메시지가 유실될 위험이 존재합니다. 이를 해결하기 위해 다음과 같이 **3단계 장애 대응 체계**를 설계했습니다.
 
@@ -49,7 +49,7 @@ tags: ["Kafka"]
 
 DLQ가 적용된 전체 구조는 다음과 같습니다.
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-2.png)
 
 ### DLQ 도입 시 고려해야 할 점
 
@@ -64,7 +64,7 @@ DLQ 도입 시 고려해야 할 사항들이 있습니다.
 현재는 Consumer 서버에 DLQ 처리 로직을 포함했지만,
 실제 운영 환경에서 트래픽이 많은 상황에서는 아래 그림처럼 별도의 DL 서버로 분리해서 관리하면 더 안정적입니다.
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-3.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-3.png)
 
 ## 재시도 정책 및 DLQ 처리
 
@@ -117,7 +117,7 @@ public class KafkaConsumerConfig {
 
 해당 재처리 및 DLQ 전송에 대한 동작 과정을 `시퀀스 다이어그램`으로 표현하면 아래와 같습니다.
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-sequence-diagram.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-sequence-diagram.png)
 
 ### DLQ 리스너와 최종적 일관성
 
@@ -268,7 +268,7 @@ class CouponIssueConsumerTest {
 
 테스트 코드를 작성하고 실행한 결과, 아래와 같이 정상적으로 성공한 것을 확인할 수 있습니다.
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-test-code-success.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-test-code-success.png)
 
 ## 부하 테스트 및 모니터링으로 확인
 
@@ -290,13 +290,13 @@ class CouponIssueConsumerTest {
 
 DB 연결이 끊기자마자 재시도 로직이 동작하며 처리 시간이 급증하고, 이에 따라 컨슈머 랙(Lag)이 쌓이기 시작합니다.
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-monitoring-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-monitoring-1.png)
 
 > MySQL 컨테이너 재시작 이후 (자동 복구)
 
 DB가 살아나자마자 대기하던 메시지들이 빠르게 처리되면서 랙이 해소되고, 실패한 건들은 DLQ로 격리됩니다.
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-monitoring-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-monitoring-2.png)
 
 > 주요 지표 분석
 
@@ -326,17 +326,17 @@ DB가 살아나자마자 대기하던 메시지들이 빠르게 처리되면서 
 
 > K6 - 총 요청 수: 29,693건
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-k6-result.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-k6-result.png)
 
 해당 횟수에 맞게 쿠폰 발급 테이블 및 실패 이력 테이블의 합이 맞는지 테이블에서 조회한 결과, 아래와 같이 정확히 일치함을 확인했습니다.
 
 > 쿠폰 발급 완료: 29,683건
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-db-coupon-issue-table.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-db-coupon-issue-table.png)
 
 > 최종 실패 이력: 10건
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-db-coupon-issue-failed-event-table.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-db-coupon-issue-failed-event-table.png)
 
 여기서 인상 깊은 지표는 대시보드상 DLQ Count는 22였지만 **최종 실패는 10건**이라는 점입니다.
 이는 장애 상황에서 DLQ로 격리된 22건 중, DB가 복구된 후 DLQ 리스너가 다시 시도했을 때 12건이 정상적으로 **자동 복구** 되었음을 의미합니다.
@@ -345,11 +345,11 @@ DB가 살아나자마자 대기하던 메시지들이 빠르게 처리되면서 
 
 > Consumer 서버 - DLQ 관련 성공 로그 (복구 성공)
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-consumer-success.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-consumer-success.png)
 
 > Consumer 서버 - DLQ 관련 실패 로그 (최종 실패)
 
-![](/assets/img/technology/kudadak/coupon-issue-system-kafka-dlq-consumer-failure.png.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-kafka-dlq-consumer-failure.png.png)
 
 ## 마무리하며
 

@@ -38,17 +38,17 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 [ 5주 차 월 - 하체 /  화 - 상체 ]
 
-![](/assets/img/workout/hst_week5_1.png)
+![](/assets/img/etc/workout/hst_week5_1.png)
 
 [ 5주 차 목 - 하체 /  금 - 상체 ]
 
-![](/assets/img/workout/hst_week5_2.png)
+![](/assets/img/etc/workout/hst_week5_2.png)
 
 ### Week5 Review
 
 * %RM 부분이 이제는 70후반에서 80초라서 H(근비대), P(순발력), 그리고 S(근력)이 많은 주차였습니다.
 
-![](/assets/img/workout/hst_week5_review.png)
+![](/assets/img/etc/workout/hst_week5_review.png)
 
 * 5주 차를 하면서 느낀 점은 컨디션도 좋았고, Sets * Reps이 적절하게 배치되어서 끝나고 난 느낌은 전체적으로 밸런스 있게 근육들에게 자극과 펌핑이 와서 좋았습니다.
 
@@ -83,7 +83,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 * 휴식시간은 `%RM` 기준으로 **75 - 80초반 사이**였기 때문에 단순하게 `1분` 쉬었습니다.
 
-![](/assets/img/workout/hst_recovery_time.png)
+![](/assets/img/etc/workout/hst_recovery_time.png)
 
 * 운동 끝내기 전 복근 운동으로 행잉 레그레이즈, 윗몸일으키기, 크런치, 플랭크 4가지 섞어서 진행했습니다. => **총 200개 목표**
 
@@ -105,17 +105,17 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 [ 6주 차 월 - 하체 /  화 - 상체 ]
 
-![](/assets/img/workout/hst_week6_1.png)
+![](/assets/img/etc/workout/hst_week6_1.png)
 
 [ 6주 차 목 - 하체 /  금 - 상체 ]
 
-![](/assets/img/workout/hst_week6_2.png)
+![](/assets/img/etc/workout/hst_week6_2.png)
 
 ### Week6 Review
 
 * 6주 차 때는 `%RM`이 80 이상이라 S(근력), P(순발력) 위주로 운동을 했습니다.
 
-![](/assets/img/workout/hst_week6_review.png)
+![](/assets/img/etc/workout/hst_week6_review.png)
 
 * 6주 차부터는 "집중을 한순간이라도 놓치면 부상당하겠구나"라는 마음이 있어서 매 순간 집중하였고, 스트레칭을 오래 풀었습니다.
 

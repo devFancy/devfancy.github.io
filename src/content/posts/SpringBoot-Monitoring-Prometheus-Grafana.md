@@ -229,7 +229,7 @@ Grafana는 Prometheus가 수집한 데이터를 가장 효과적으로 보여주
 
 ### 전체 아키텍처 한눈에 보기
 
-![](/assets/img/technology/technology-archtecture-springboot-prometheus-grafana.png)
+![](/assets/img/server/technology/technology-archtecture-springboot-prometheus-grafana.png)
 
 위 아키텍처의 동작 흐름을 간단히 정리하면 다음과 같습니다.
 
@@ -275,13 +275,13 @@ Grafana는 Prometheus가 수집한 데이터를 가장 효과적으로 보여주
 
 * `micrometer-registry-prometheus`
 
-![](/assets/img/technology/technology-monitoring-build-gradle.png)
+![](/assets/img/server/technology/technology-monitoring-build-gradle.png)
 
 다음으로, `monitoring.yml` 파일을 통해 어떤 메트릭을 어떻게 노출할지 설정합니다.
 
 #### monitoring.yml 상세 설명
 
-![](/assets/img/technology/technology-monitoring-yml.png)
+![](/assets/img/server/technology/technology-monitoring-yml.png)
 
 위 설정 파일의 각 부분이 어떤 역할을 하는지 자세히 살펴보겠습니다.
 
@@ -317,14 +317,14 @@ Grafana는 Prometheus가 수집한 데이터를 가장 효과적으로 보여주
 이제 Prometheus가 어떤 애플리케이션의 메트릭을 수집할지 알려줄 차례입니다. `prometheus.yml` 파일에 수집 대상(target)을 등록합니다.
 (쿠폰 발급 요청을 비동기로 처리하기 위해 Kafka 컨슈머 애플리케이션도 함께 추가했습니다.)
 
-![](/assets/img/technology/technology-prometheus-yml.png)
+![](/assets/img/server/technology/technology-prometheus-yml.png)
 
 * 참고: 실제 운영 환경에서는 `targets`에 `['{server_ip}:{server_port}']`와 같이 서버의 실제 IP 주소를 기입해야 합니다. 
   이 글의 로컬 Docker 테스트 환경에서는 Prometheus 컨테이너가 호스트 머신에서 실행 중인 애플리케이션에 접근할 수 있도록 특별한 주소인 `host.docker.internal`을 사용했습니다.
 
 설정 후 Prometheus UI(`http://localhost:9090`)의 `Status > Targets` 메뉴에서 두 서비스가 `UP` 상태로 잘 연결되었는지 확인합니다.
 
-![](/assets/img/technology/technology-prometheus-target-up.png)
+![](/assets/img/server/technology/technology-prometheus-target-up.png)
 
 
 ### Grafana 대시보드 만들기
@@ -333,7 +333,7 @@ Grafana는 Prometheus가 수집한 데이터를 가장 효과적으로 보여주
 
 `docker-compose.yml`의 `volumes` 설정을 통해 Grafana 컨테이너가 시작될 때 이 설정들을 자동으로 로드하도록 구성하여 편의성을 높였습니다.
 
-![](/assets/img/technology/technology-docker-compose-yml-grafana.png)
+![](/assets/img/server/technology/technology-docker-compose-yml-grafana.png)
 
 이렇게 로드되는 대시보드 파일은 다음과 같습니다.
 
@@ -370,7 +370,7 @@ docker container와 애플리케이션이 모두 정상적으로 동작되면, l
 
 * 명령어: k6 run --out influxdb=http://localhost:8086/k6 coupon-create-test.js
 
-![](/assets/img/technology/technology-k6-coupon-create-test-js.png)
+![](/assets/img/server/technology/technology-k6-coupon-create-test-js.png)
 
 
 ##### 2. 부하 테스트 실행
@@ -383,17 +383,17 @@ docker container와 애플리케이션이 모두 정상적으로 동작되면, l
 
 * 명령어: k6 run --out influxdb=http://localhost:8086/k6 coupon-issue-test.js
 
-![](/assets/img/technology/technology-k6-coupon-issue-test-js.png)
+![](/assets/img/server/technology/technology-k6-coupon-issue-test-js.png)
 
 그러면 아래와 같이 coupon-api 와 coupon-kafka-consumer 애플리케이션으로부터 수집된 지표를 Grafana 대시보드(`http://localhost:3000`)에서 실시간으로 변화하는 지표들을 확인할 수 있습니다.
 
 > 부하 테스트 중인 `coupon-api` 애플리케이션 대시보드 예시
 
-![](/assets/img/technology/technology-grafana-coupon-api-dashboard.png)
+![](/assets/img/server/technology/technology-grafana-coupon-api-dashboard.png)
 
 > 부하 테스트 중인 `coupon-kafka-consumer` 애플리케이션 대시보드 예시
 
-![](/assets/img/technology/technology-grafana-coupon-kafka-consumer-dashboard.png)
+![](/assets/img/server/technology/technology-grafana-coupon-kafka-consumer-dashboard.png)
 
 
 ## 5. 성능 분석 노하우 및 결론

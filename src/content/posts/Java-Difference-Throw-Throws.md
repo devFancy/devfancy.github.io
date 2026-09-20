@@ -37,7 +37,7 @@ try {
 
 * 여기서 min은 3, max는 20을 의미한다.
 
-![](/assets/img/java/Java-Difference-Throw-Throws-1.png)
+![](/assets/img/server/java/Java-Difference-Throw-Throws-1.png)
 
 * 예외가 발생하면, IllegalArgumentException()으로 처리된다.
 

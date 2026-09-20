@@ -22,7 +22,7 @@ String str2 = new String("home"); // str2과 str3은 모두 "home" 문자열
 
 * 스트링 리터럴과 new String()으로 생성된 스트링은 서로 다르게 관리된다. 
 
-![스트링 리터럴과 new String()으로 생성된 스트링 객체 비교](/assets/img/java/java_string_methods.png)
+![스트링 리터럴과 new String()으로 생성된 스트링 객체 비교](/assets/img/server/java/java_string_methods.png)
 
 * `스트링 리터럴`은 자바 내부에서 리터럴 테이블로 특별히 관리하여, 동일한 리터럴은 공유시킨다.
 

@@ -95,7 +95,7 @@ feat: User 클래스가 수정!
 
 * 그리고 세부 기능에 대해서 Branch를 **연계적으로 생성**한다.
 
-![](/assets/img/git/Git-Version-Control-1.jpeg)
+![](/assets/img/tool/git/Git-Version-Control-1.jpeg)
 
 ## Review
 
@@ -107,7 +107,7 @@ feat: User 클래스가 수정!
 
   (물론, 10월 이후부터는 팀원들을 제외한 나 혼자만의 리팩터링을 진행해서 더 신경을 안쓴것도 맞다..ㅎㅎ 😅)
 
-![](/assets/img/git/Git-Version-Control-2.png)
+![](/assets/img/tool/git/Git-Version-Control-2.png)
 
 * 다음에 팀 프로젝트를 진행한다면, `커밋`에 대해서도 신경쓰면서 작업을 진행하면 좋겠다는 생각이 들었다.
 

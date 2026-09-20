@@ -7,7 +7,7 @@ tags: ["책"]
 
 > 이 글은 [함께 자라기](https://product.kyobobook.co.kr/detail/S000001033071) 책을 읽고 저의 생각과 같이 정리한 내용입니다.
 
-<img src="/assets/img/book/Book-Growing-Up-Together.jpg" alt="" width="400" />
+<img src="/assets/img/essay/book/Book-Growing-Up-Together.jpg" alt="" width="400" />
 
 책을 2월에 사고 난 뒤 9개월이 지난 지금에서야 다 읽게 되었다.
 
@@ -41,9 +41,9 @@ tags: ["책"]
 
 위의 내용과 완전히 일치하진 않지만, 최근 개발바닥 채널에서 "용기를 잃지않는 개발자 이력서"에서도 향로님이 말씀해주신 내용을 가져와 봤다.
 
-![](/assets/img/book/Book-Growing-Up-Together-1.png)
+![](/assets/img/essay/book/Book-Growing-Up-Together-1.png)
 
-![](/assets/img/book/Book-Growing-Up-Together-2.png)
+![](/assets/img/essay/book/Book-Growing-Up-Together-2.png)
 
 나는 ~~을 위해 이걸 했고, 그래서 그 결과가 ~~이다 이어져야 개인의 실력이 성장하지 않을까 생각한다. 흔히 이력서를 작성할 때에도 `Why - What - How - Result`과 같이 작성해야 보는 사람에게도 더 읽기 쉬워진다.
 
@@ -67,7 +67,7 @@ IT 기업에서 종사하시는 여러 직무의 분들이 연말에 한 해를 
 
 ## 적절한 실력과 작업 난이도를 조절하면서 성장한다.
 
-![](/assets/img/book/Book-Growing-Up-Together-3.png)
+![](/assets/img/essay/book/Book-Growing-Up-Together-3.png)
 
 위 그림은 `실력`과 `작업 난이도`를 기준으로 심리 상태를 그린 도식이다.
 
@@ -79,7 +79,7 @@ IT 기업에서 종사하시는 여러 직무의 분들이 연말에 한 해를 
 
 ## 실수는 예방하는 것이 아니라 **관리**하는 것이다.
 
-![](/assets/img/book/Book-Growing-Up-Together-4.png)
+![](/assets/img/essay/book/Book-Growing-Up-Together-4.png)
 
 **`실수 관리 문화`** 에서는 실수가 나쁜 결과를 내기 전에 빨리 회복하도록 돕고, 실수를 공개하고, 실수에 대해 서로 이야기하고 거기에서 배우는 분위기가 생긴다.
 

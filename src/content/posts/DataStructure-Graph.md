@@ -26,19 +26,19 @@ use_math: true
 
 * [그림 6-4]에는 방향성 그래프, [그림 6-5]에는 무방향성 그래프가 나와 있다.
 
-![](/assets/img/datastructure/graph-1.jpg)
+![](/assets/img/cs/datastructure/graph-1.jpg)
 
 * 그래프 자료구조에서 많이 쓰이는 방법 가운데 하나로 인접 리스트(Adjacency list) 또는 인접 행렬(Adjacency Matrix)를 들 수 있다.
 
 * `인접 리스트`는 그래프의 각 노드에 인접한 노드들을 연결 리스트로 표현하는 자료구조다.
 
-![](/assets/img/datastructure/graph-2.png)
+![](/assets/img/cs/datastructure/graph-2.png)
 
 * n개의 vertics와 e개의 edges를 가진 무방향성 그래프인 G에서 edge의 최대 수는 **O(n+e)** 이다.
 
 * `인접 행렬`은 노드 개수만큼의 차원 수로 만들어지는 정사각형 형태의 2차원 배열로 표현하는 자료구조다.
 
-![](/assets/img/datastructure/graph-3.png)
+![](/assets/img/cs/datastructure/graph-3.png)
 
 * n개의 vertics와 e개의 edges를 가진 무방향성 그래프인 G에서 edge의 최대 수는 **O(n^2)** 이다.
 

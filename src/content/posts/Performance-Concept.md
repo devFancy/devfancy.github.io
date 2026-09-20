@@ -171,7 +171,7 @@ tags: ["성능테스트"]
 
 ### 3.5 성능 테스트 Graph
 
-![](/assets/img/technology/Performance-Concept-Common-Throughput-Curve.png)
+![](/assets/img/server/technology/Performance-Concept-Common-Throughput-Curve.png)
 
 (출처: [IBM: Aspects of Performance Tuning](https://publib.boulder.ibm.com/httpserv/cookbook/Cookbook_General-Theory.html))
 
@@ -203,7 +203,7 @@ tags: ["성능테스트"]
 
 (자세한 내용은 [Grafana Labs - Load test types](https://grafana.com/docs/k6/latest/testing-guides/test-types/) 에서 확인한다)
 
-![](/assets/img/technology/Performance-ConCept-Load-Test-Type.png)
+![](/assets/img/server/technology/Performance-ConCept-Load-Test-Type.png)
 
 * `Smoke 테스트`는 스크립트가 제대로 작동하는지와 시스템이 최소한의 부하에서 적절하게 성능을 발휘하는지를 검증한다.
 

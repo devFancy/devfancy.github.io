@@ -11,7 +11,7 @@ tags: ["Java"]
 
 LinkedList<E>와 같은 저장 구조를 지니게 되면 얻을 수 있는 이점이 무엇일까?
 
-![](/assets/img/java/java-arrayList-linkedList-1.jpg)
+![](/assets/img/server/java/java-arrayList-linkedList-1.jpg)
 
 `가정1`:  7개의 데이터를 가진 `ArrayList<E>` 객체에서 2번 인덱스에 데이터를 추가하고자 한다. 
 
@@ -33,7 +33,7 @@ LinkedList<E>와 같은 저장 구조를 지니게 되면 얻을 수 있는 이�
 
 정리하자면, **데이터의 추가 또는 삭제**를 하는 경우는 `LinkedList<E>`의 속도가 빠르며, **데이터를 검색**하는 경우에는 `ArrayList<E>`의 속도가 빠를 것이다.
 
-![](/assets/img/java/java-arrayList-linkedList-2.png)
+![](/assets/img/server/java/java-arrayList-linkedList-2.png)
 
 ## 실습 - 성능 비교(데이터 추가/검색/삭제)
 

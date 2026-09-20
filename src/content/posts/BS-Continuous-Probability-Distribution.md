@@ -56,7 +56,7 @@ use_math: true
   
   * f(x) : **pdf(probability density function)  : 확률밀도함수**
 
-  ![](/assets/img/business-statistics/bs-continuous-probability-distribution_1.png)
+  ![](/assets/img/university/business-statistics/bs-continuous-probability-distribution_1.png)
 
 
 ### 균등분포(Uniform Probability distribution)
@@ -71,7 +71,7 @@ use_math: true
     
   * **평균 = 중위수 (동일)**
 
-  ![](/assets/img/business-statistics/bs-continuous-probability-distribution_2.png)
+  ![](/assets/img/university/business-statistics/bs-continuous-probability-distribution_2.png)
 
 * 예1) 뉴욕에 있는 퀵 필 사에서 **하루에 판매되는 가솔린의 양은 최소 2,000 ~ 최대 5,000 갤런사이의 균등분포를 따른다고 한다.**
 
@@ -95,7 +95,7 @@ use_math: true
 
   > 구간 내 ⇒ 최소값: a, 최대값: b
 
-  ![](/assets/img/business-statistics/bs-continuous-probability-distribution_3.png)
+  ![](/assets/img/university/business-statistics/bs-continuous-probability-distribution_3.png)
 
 * 균등분포의 평균, 분산, 표준편차
 
@@ -131,7 +131,7 @@ use_math: true
     
   * 수평축 양 끝으로 갈수록 곡선은 수평축에 점근하나(asymptotic), 절대 만나지 않으며 **무한대까지 이어진다.**
 
-  ![](/assets/img/business-statistics/bs-continuous-probability-distribution_4.png)
+  ![](/assets/img/university/business-statistics/bs-continuous-probability-distribution_4.png)
 
 * 정규분포의 모양 및 위치
   
@@ -163,7 +163,7 @@ use_math: true
 
 ### 경험적 법칙
 
-![](/assets/img/business-statistics/bs-continuous-probability-distribution_5.png)
+![](/assets/img/university/business-statistics/bs-continuous-probability-distribution_5.png)
 
 * 정규분포데서 관측값의 약 68%는 평균을 중심으로 표준편차 1배의 값 사이에 있다.
 
@@ -197,7 +197,7 @@ use_math: true
     
   * 이렇게 보정된 0.5의 값을 연속성 보정계수라고 한다.
 
-![](/assets/img/business-statistics/bs-continuous-probability-distribution_6.png)
+![](/assets/img/university/business-statistics/bs-continuous-probability-distribution_6.png)
   
 * 보정계수 적용방법
   

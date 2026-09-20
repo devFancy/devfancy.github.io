@@ -19,7 +19,7 @@ tags: ["운영체제"]
 
 * 예) 4KB(2^12) 크기의 `Page`와 4-byte 크기의 `Page table entry`를 가지는 32-bit 크기의 `가상 주소(address space)`가 있다.
 
-![](/assets/img/os/os-20-paging-smaller-tables-1.png)
+![](/assets/img/cs/os/os-20-paging-smaller-tables-1.png)
 
 * 여기서 `Page table size`를 구하는 방법은 **(가상 주소 공간의 크기 / page의 크기 ) x page table entry의 크기**로 구하면 된다.
 
@@ -45,7 +45,7 @@ tags: ["운영체제"]
 
   (이전에는 page 크기는 4KB이고, 현재의 page 크기는 16KB 이다)
 
-![](/assets/img/os/os-20-paging-smaller-tables-2.png)
+![](/assets/img/cs/os/os-20-paging-smaller-tables-2.png)
 
 * 위의 예시를 통해 `Page table size` = **1MByte**로 이전 예시보다 Page table 크기가 작아져서 메모리를 절약할 수 있다는 점을 확인할 수 있다.
 
@@ -61,11 +61,11 @@ tags: ["운영체제"]
 
 * 예) 1KB 크기의 Page와 16KB 크기를 갖는 가상 주소 공간이 있다.
 
-![](/assets/img/os/os-20-paging-smaller-tables-3.png)
+![](/assets/img/cs/os/os-20-paging-smaller-tables-3.png)
 
 * code 영역에서 1개, heap 영역에서 1개, stack 영역에서 2개로 총 4개의 page table를 사용하는 것을 확인할 수 있다.
 
-![](/assets/img/os/os-20-paging-smaller-tables-4.png)
+![](/assets/img/cs/os/os-20-paging-smaller-tables-4.png)
 
 * 위의 예시를 통해 알게 된 점은 4개를 제외한 **나머지의 Page table이 안쓰는 것(un-used)을 확인**할 수 있다. (어두운 색깔 : 안쓰는 영역)
 
@@ -79,13 +79,13 @@ tags: ["운영체제"]
 
   `bound` 레지스터는 해당 page table의 끝을 나타내는데 사용한다.
 
-![](/assets/img/os/os-20-paging-smaller-tables-5.png)
+![](/assets/img/cs/os/os-20-paging-smaller-tables-5.png)
 
 ### Simple Example
 
 * 다음 예시를 통해 `Paging과 Segments`을 같이 사용하는 방법에 대해 알아보자.
 
-![](/assets/img/os/os-20-paging-smaller-tables-6.png)
+![](/assets/img/cs/os/os-20-paging-smaller-tables-6.png)
 
 * 예) 각각의 Process는 연관된 3개의 Page table을 가진다고 가정한다.
 
@@ -102,7 +102,7 @@ tags: ["운영체제"]
 
   * 그런 다음 하드웨어는 **실제 주소(physical address)** 를 가져와서 다음과 같이 VPN과 결합하여 page table entry(PTE)의 주소를 형성한다.
 
-![](/assets/img/os/os-20-paging-smaller-tables-7.png)
+![](/assets/img/cs/os/os-20-paging-smaller-tables-7.png)
 
 * 위의 예시는 `Code segment`(10)와 VPN 값 4를 가지고 있다.
 
@@ -136,7 +136,7 @@ tags: ["운영체제"]
 
 * 다음 예시를 통해 `Multi-level Page Tables`을 이해하자.
 
-![](/assets/img/os/os-20-paging-smaller-tables-8.png)
+![](/assets/img/cs/os/os-20-paging-smaller-tables-8.png)
 
 * 위의 **개념 설명**에서 Page table을 `page`로 자른 뒤 하나라도 유효한 entry가 없다면, page table을 유지하지 않는다고 했다.
 

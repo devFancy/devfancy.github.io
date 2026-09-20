@@ -26,7 +26,7 @@ tags: []
 
 ## 신입 개발자를 위한 CS 스터디 모임
 
-![](/assets/img/dev-history/record-cs-study.png)
+![](/assets/img/retrospective/dev-history/record-cs-study.png)
 
 2023년 1월에 시작한 [신입 개발자를 위한 CS 스터디](https://github.com/devSquad-study) 5월 말까지  5개월 동안 지속적으로 운영해왔다.
 그 당시에는 컴퓨터 기반 지식이 부족했고, 배워야 할 것이 너무 많아서 운영체제, 데이터베이스, 네트워크와 같은 컴퓨터 공학의 필수 과목을 매월 1개씩 스터디원들과 공부해나갔다.
@@ -110,20 +110,20 @@ JPA는 이러한 ORM 기술을 Java에서 쉽게 사용할 수 있도록 표준�
 이 과정에서 굉장히 많은 피로감이 쌓였지만, 이러한 과정이 '미래의 나에게 도움이 많이 될거야' 라는 생각으로 임했다.
 그리고 이때, 같이 준비한 팀원끼리도 서로 좋은 에너지를 주고 받았기 때문에 힘들었지만 재밌었다.
 
-![](/assets/img/dev-history/record-why-we-use-vueJs.png)
+![](/assets/img/retrospective/dev-history/record-why-we-use-vueJs.png)
 
 3개의 주제를 발표하면서, 운이 좋게도 '왜 우리는 Vue.js를 사용하는가?'에 대한 우수상을 받게 되었고, 
 수상금으로 같이 발표 준비를 했던 팀원들이랑 맛있는 저녁을 먹었다 😋.
 
 ### 굿프렌즈
 
-![](/assets/img/dev-history/record-goodfriends-service_introduction.png)
+![](/assets/img/retrospective/dev-history/record-goodfriends-service_introduction.png)
 
 8월부터 2달간 '굿프렌즈' 이라는 팀 프로젝트를 진행하며, **제대로된 협업과 장기간 프로젝트 경험**을 손에 넣었다.
 굿프렌즈 팀에서는 훌륭한 팀원들을 만나서 대체적으로 큰 트러블이 없었고, 기쁨과 즐거움 속에서 프로젝트를 마무리할 수 있었다.
 이 기간 동안 함께 성장하고 배우면서, 협업의 소중함과 함께 얼마나 행복한 일인지를 다시 한번 깨닫게 되었다.
 
-![](/assets/img/goodfriends/event-storming-end.png)
+![](/assets/img/project/goodfriends/event-storming-end.png)
 
 팀 모두가 서비스에 대한 공통된 이해를 가지기 위해 **이벤트 스토밍**을 도입하면서 많은 토론을 진행했다.
 도메인에 대해 서로가 알고 있는 내용을 포스트잇으로 정리하고, 하나로 합치는 과정에서 많은 경험을 쌓았다.
@@ -149,7 +149,7 @@ EC2 t2.micro 기본 인스턴스를 사용하다보니 빌드를 하다가 서�
 그 외에도 시스템 장애를 미리 예방하기 위해 `Amazon CloudWatch`를 활용한 모니터링, 다양한 예외를 하나의 클래스에서 효율적으로 관리하기 위해 RestControllerAdvice, ExceptionHandler 어노테이션 활용 등
 실무에서 적용할 법한 고민과 기술을 도입하게 되었다.
 
-![](/assets/img/dev-history/record-goodfriends-tech-blog.png)
+![](/assets/img/retrospective/dev-history/record-goodfriends-tech-blog.png)
 
 > 해당 팀 프로젝트를 진행하면서 작성한 글은 [Side Project](/category/#사이드프로젝트) 에서 Goodfriends 부분을 참고해 주세요.
 
@@ -163,7 +163,7 @@ EC2 t2.micro 기본 인스턴스를 사용하다보니 빌드를 하다가 서�
 프로젝트에 대해 개인적으로 아쉬웠던 점은 코드 품질이 좋지 못하다고 생각했고, 
 '과연 우리가 만든 코드가 지속 성장 가능한 코드인가?'에 대한 의구심이 들었다.
 
-![](/assets/img/dev-history/record-toss-slash22-jemin.png)
+![](/assets/img/retrospective/dev-history/record-toss-slash22-jemin.png)
 
 토스 유튜브에 업로드된 토스 SLASH 22에서 토스페이먼츠 재민님께서 발표하신 ['지속 성장 가능한 코드를 만들어가는 방법'](https://toss.im/slash-22/sessions/1-6) 영상을 팀 프로젝트 기간이 종료된 후에 시청하게 되었다.
 이 영상에서 가장 기억에 남은 문구가 '토스페이먼츠에서는 **코드 한 줄 한 줄의 의미를 곱씹고 코드에 대해서 "왜?"라는 질문을 하는 것을 권장**하는데, 개인적으로 가장 중요한 것은 **코드**라고 생각합니다.' 라는 내용이었다.
@@ -179,7 +179,7 @@ EC2 t2.micro 기본 인스턴스를 사용하다보니 빌드를 하다가 서�
 
 ## 대학교 졸업
 
-![](/assets/img/dev-history/record-knu-diploma.jpg)
+![](/assets/img/retrospective/dev-history/record-knu-diploma.jpg)
 
 2020년부터 2023년 상반기까지 약 3년 반동안 대학 시절을 보내면서 대학에서만 누릴 수 있는 소중한 경험들을 쌓았다.
 더 이상 대학교 수업을 안들어도 되어서 신났지만, 이젠 학생도 아니고 아무 소속도 없었기 때문에 백수가 되어버렸지만 말이다.
@@ -224,7 +224,7 @@ C언어에 대한 기본 문법만 알고 있었는데, 매주 과제로 나오�
 서면 평가에 합격한 그날 저녁에 팀원 모두가 모여서 서로 고생했다면서 박수와 함께 행복한 시간을 보냈다. 
 그 이후에도 프로젝트에 대해 진지하게 임하였고, 11월 서울 코엑스에서 우리 서비스에 대해 PPT를 통해 최종 발표를 진행하게 되었다.
 
-![](/assets/img/dev-history/record-karrier-oss-sw-competition.png)
+![](/assets/img/retrospective/dev-history/record-karrier-oss-sw-competition.png)
 
 위의 사진은 최종 발표를 위해 코엑스에 같이 와준 팀원들과 기념으로 같이 찍은 사진이다.
 결과적으로 우수작에만 선정되고 수상은 받지 못했지만, 대회 기간 동안 모두 열심히 참여해 줘서 너무 고맙게 생각한다.
@@ -247,7 +247,7 @@ C언어에 대한 기본 문법만 알고 있었는데, 매주 과제로 나오�
 
 ### 히빗
 
-![](/assets/img/dev-history/record-hibit-profile.png)
+![](/assets/img/retrospective/dev-history/record-hibit-profile.png)
 
 올해 3월, 지인으로부터 팀 프로젝트를 같이 하자는 제안이 와서, 좋은 기회라 생각해서 같이 하게 되었다.
 좋은 기회라고 생각한 이유는 아이디어 적으로 참신했고, 기획과 디자인이 어느 정도 완성되어 있어서 바로 개발에 들어갈 수 있어서였다.
@@ -310,11 +310,11 @@ SJ님이 그 당시에 제안했던 얘기를 정리하면 아래와 같다.
 물론, 매번 히빗 프로젝트에서 작업할 때마다 체크인-체크아웃 채널에 무얼 하고 있는지 작성하는 게 귀찮을 때도 있다.
 하지만 돌이켜봤을 때, 지난 과거에 내가 무얼 했는지 알 수 있는 증명할 수 있는 자료라서, 주간 회의 때 다른 팀원이 무엇을 했는지 참고할 수 있게 되었다.
 
-![](/assets/img/dev-history/record-ob-team-hibit-introduction.png)
+![](/assets/img/retrospective/dev-history/record-ob-team-hibit-introduction.png)
 
 11월에는 한국대학생IT경영학회에서 초청을 받아, 28기 학회원들과 함께 우리 서비스에 대한 **소개와 회고**를 공유하는 소중한 시간을 가졌다.
 
-![](/assets/img/dev-history/record-hibit-presentation.jpg)
+![](/assets/img/retrospective/dev-history/record-hibit-presentation.jpg)
 
 처음에는 우리 팀의 기획자 JM님이 히빗 서비스에 대한 간략한 소개를 진행했고, 그 후에는 토크 세션(토크쇼 30분 + 현장 질의응답 5분) 시간을 가졌다.
 이 때, 사전에 준비한 질문들에 대해 우리 팀원들이 번갈아가면서 답변을 드렸고, 프로젝트와 관련된 현실적인 조언들을 최대한 많이 공유하려고 노력했다.
@@ -333,13 +333,13 @@ SJ님이 그 당시에 제안했던 얘기를 정리하면 아래와 같다.
 
 ### 우아한스터디
 
-![](/assets/img/dev-history/record-woowa_study.png)
+![](/assets/img/retrospective/dev-history/record-woowa_study.png)
 
 10월 초에 `우아한스터디 2023 겨울 시즌`이 시작되었다는 걸 메일을 통해 알게 되었다.
 이 당시에 9월 27일까지 굿프렌즈 프로젝트에 대한 공식 일정을 마쳤지만, 프로젝트에서 구현된 코드에 대해 개인적인 아쉬움이 있었다.
 그래서 기존 코드를 좋은 코드로 리팩터링하는 경험을 쌓고 싶었는데, 우연한 타이밍에 우아한스터디가 열리게 된 것이였다.
 
-![](/assets/img/dev-history/record-woowastudy-my-code.png)
+![](/assets/img/retrospective/dev-history/record-woowastudy-my-code.png)
 
 여러 스터디 주제 중에 나에게 딱 맞는게 **'내 코드가 그렇게 이상한가요?'** 였다.
 `대상`에 나와있는 내용이 나의 상황과 매우 부합하다고 생각했고, 무엇보다도 우아한스터디라는 기회를 놓치고 싶지 않았다.
@@ -365,7 +365,7 @@ SJ님이 그 당시에 제안했던 얘기를 정리하면 아래와 같다.
 
 ### 글또(글쓰는 개발자 모임)
 
-![](/assets/img/dev-history/record-tech-writing.png)
+![](/assets/img/retrospective/dev-history/record-tech-writing.png)
 
 11월에는 글또(글 쓰는 또라이가 세상을 바꾼다) 9기를 모집한다는 소식을 메일을 통해 알게되었다. 
 이전부터 관심갔지만, 언제 모집할지 몰랐기에 미리 알림을 설정되도록 했다.
@@ -398,7 +398,7 @@ SJ님이 그 당시에 제안했던 얘기를 정리하면 아래와 같다.
 
 ## 블로그
 
-![](/assets/img/dev-history/record-my-blog-2023.png)
+![](/assets/img/retrospective/dev-history/record-my-blog-2023.png)
 
 2023, 올 한 해동안 개인 블로그에 총 **186**(이 포스팅은 제외한)개의 포스팅을 업로드했다.
 

@@ -28,7 +28,7 @@ tags: ["HTTP"]
 
 ## HTTP 메세지 구조
 
-![](/assets/img/http/http-2-basic-1.png)
+![](/assets/img/cs/http/http-2-basic-1.png)
 
 ### 시작 라인
 
@@ -70,7 +70,7 @@ tags: ["HTTP"]
 
 ### HTTP 헤더
 
-![](/assets/img/http/http-2-basic-2.png)
+![](/assets/img/cs/http/http-2-basic-2.png)
 
 * 용도 : HTTP 전송에 필요한 모든 부가정보
 
@@ -78,7 +78,7 @@ tags: ["HTTP"]
 
 ### HTTP 메세지 바디
 
-![](/assets/img/http/http-2-basic-3.png)
+![](/assets/img/cs/http/http-2-basic-3.png)
 
 * 용도 : 실제 전송할 데이터
 

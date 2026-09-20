@@ -76,7 +76,7 @@ tags: ["HTTP"]
 
     * 서버는 복잡한 비즈니스 로직, 아키텍쳐 설계에 집중
 
-![](/assets/img/http/http-1-basic-1.png)
+![](/assets/img/cs/http/http-1-basic-1.png)
 
 #### 2. 무상태 프로토콜(Stateless)
 

@@ -43,7 +43,7 @@ tags: ["네트워크"]
 
 * 이러한 확장성 문제를 다루기 위해 DNS는 많은 서버를 이용하여 **계층 형태로 분산**시킨다.
 
-![](/assets/img/network/network-dns-1.png)
+![](/assets/img/cs/network/network-dns-1.png)
 
 * `루트 DNS 서버` : 1000개 이상의 루트 서버 인스턴스가 전세계에 흩어져 있다. 루트 네임 서버는 TLD 서버의 IP 주소들을 제공한다.
 
@@ -63,7 +63,7 @@ tags: ["네트워크"]
 
 ### DNS query 기본 동작
 
-![](/assets/img/network/network-dns-2.png)
+![](/assets/img/cs/network/network-dns-2.png)
 
 * `www.google.com` 주소를 검색할 때,
 
@@ -79,7 +79,7 @@ tags: ["네트워크"]
 
 * DNS query 종류에는 Recursive Query, Iterative Query가 있다.
 
-![](/assets/img/network/network-dns-3.png)
+![](/assets/img/cs/network/network-dns-3.png)
 
 * 그림 2.19의 예는 **재귀적 질의와 반복적 질의**를 사용한다. `cse.nyu.edu`로부터 `dns.nyu.edu`로 보내는 질의는 자신을 대신하여 필요한 매핑을 얻도록 `dns.nyu.edu`에게 요구하므로 **재귀적 질의**이다.
 
@@ -87,7 +87,7 @@ tags: ["네트워크"]
 
 * 이론상, DNS 질의는 반복적이고 재귀적일 수 있다. 
 
-![](/assets/img/network/network-dns-4.png) 
+![](/assets/img/cs/network/network-dns-4.png) 
 
 * 그림 2.20의 예에서 모든 질의가 **재귀적인 DNS 질의 사슬**을 따른다.
 

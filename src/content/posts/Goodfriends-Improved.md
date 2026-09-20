@@ -31,7 +31,7 @@ tags: ["Spring Boot"]
 
 > 리팩터링 전) `주문` 도메인에서 주문서 전체를 조회하는 API에 대한 비즈니스 로직(OrderService.class) - findAllOrder
 
-![](/assets/img/goodfriends/order-refactor-findAllMyProductOrders-0.png)
+![](/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-0.png)
 
 * 리팩터링을 하기전에, 지켜야할 부분을 아래와 같이 정리했다.
 
@@ -46,7 +46,7 @@ tags: ["Spring Boot"]
 
 * [1] 먼저 **구조를 파악할 수 있도록 기존의 클래스/메서드 변수명을 수정**하기 위해 `findAllOrder()` 메서드명을 `findAllMyProductOrders()`로 수정했다.
 
-![](/assets/img/goodfriends/order-refactor-findAllMyProductOrders-1.png)
+![](/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-1.png)
 
 * [2] 그리고 `findAllMyProductOrders()` 메서드에서 유효성을 검사하는 로직을 `validateOffenderAndMyProduct()` 메서드를 생성해서 처리해주도록 수정했다.
 
@@ -56,7 +56,7 @@ tags: ["Spring Boot"]
 
   * 기존) `NotOwnProductException` -> 변경) `InvalidProductOrderAccessException` - 예외 메시지: '본인이 등록하지 않은 상품의 주문서는 조회할 수 없습니다.'
 
-![](/assets/img/goodfriends/order-refactor-findAllMyProductOrders-2.png)
+![](/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-2.png)
 
 * [3] `findAllMyProductOrders()`에는 **여러 로직을 처리하고 있어서 `단일 책임 원칙`에 위배**되고 있다. 
 
@@ -64,7 +64,7 @@ tags: ["Spring Boot"]
 
   * 이때, 상태 체크와 해당 상태에 따른 주문서를 조회하는 로직을 분리했다. -> `handleNonSellProduct()`
 
-![](/assets/img/goodfriends/order-refactor-findAllMyProductOrders-3-1.png)
+![](/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-3-1.png)
 
 * [4] 그런 다음, 두 번째로 map 부분에서 `OrderProductResponse` 클래스(이전 클래스명: `OrderViewOneResponse`) **`정적 팩토리 메서드`(of)를 추가하여 중복되는 부분을 최소화**했다.
 
@@ -76,15 +76,15 @@ tags: ["Spring Boot"]
 
   * `of` 메서드는 주로 정적(static) 팩터리 메서드로 사용되며, **해당 객체를 생성하고 초기화하는데 사용**된다. 불변성(Immutability)을 강조하거나 특정한 시나리오에서 명확하게 사용할 수 있도록 하는데 주로 쓰인다.
 
-![](/assets/img/goodfriends/order-refactor-findAllMyProductOrders-3-2.png)
+![](/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-3-2.png)
 
 * [5] `findAllMyProductOrders()`, `handleNonSellProduct()` 두 메서드의 return 하는 부분에서 true/false 값은 판매 상태 여부를 나타내는 걸 의미하는데, 이를 `private static final`로 상수화로 선언해서 아래와 같이 수정했다.
 
-![](/assets/img/goodfriends/order-refactor-findAllMyProductOrders-4.png)
+![](/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-4.png)
 
 * [6] `findAllMyProductOrders()` 메서드에서 **주문 응답을 가져오는 로직**을 `getOrderProductResponses()` 메서드로 추출했다.
 
-![](/assets/img/goodfriends/order-refactor-findAllMyProductOrders-5.png)
+![](/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-5.png)
 
 * 마지막으로 `findAllMyProductOrders()` 메서드에서 로직을 처리하는 순서에 맞게 조정했다.
 
@@ -103,7 +103,7 @@ tags: ["Spring Boot"]
 
 > 리팩터링 후) `주문` 도메인에서 주문서 전체를 조회하는 API에 대한 비즈니스 로직(OrderService.class) - `findAllMyProductOrders()`
 
-![](/assets/img/goodfriends/order-refactor-findAllMyProductOrders-6.png)
+![](/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-6.png)
 
 ## 리팩터링을 마치며
 

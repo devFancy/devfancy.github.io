@@ -113,7 +113,7 @@ public class SingletonTest {
 
 * 스프링 컨테이너 덕분에 싱글톤 컨테이너를 적용하여 이미 만들어진 객체를 공유해서 효율적으로 재사용할 수 있다.
 
-![](/assets/img/spring/spring-core-principle-5-1.png)
+![](/assets/img/server/spring/spring-core-principle-5-1.png)
 
 ## 싱글톤 방식의 주의점
 
@@ -231,7 +231,7 @@ bean = class hello.core.AppConfig$$EnhancerBySpringCGLIB$$c329221c
 
 * 그림으로 보면 다음과 같다.
 
-![](/assets/img/spring/spring-core-principle-5-2.png)
+![](/assets/img/server/spring/spring-core-principle-5-2.png)
 
 * 그 임의의 다른 클래스인 `AppConfig@CGLIB`가 싱글톤이 보장되도록 해준다. 
 

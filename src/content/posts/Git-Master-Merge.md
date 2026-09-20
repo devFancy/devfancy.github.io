@@ -46,15 +46,15 @@ git mergetool #opens merge tool
 
 * merge를 했을 때, conflict상황이 발생했다면  다음과 같은 상황이 발생한다.
 
-![](/assets/img/git/git-master-merge-1.png)
+![](/assets/img/tool/git/git-master-merge-1.png)
 
 * git status → 입력하게 되면 아래와 같이 나타나게 된다.
 
-![](/assets/img/git/git-master-merge-2.png)
+![](/assets/img/tool/git/git-master-merge-2.png)
 
 * cat main.txt → 아래와 같은 <<<< HEAD ~~~ >>>>> feature 이라는 메세지가 추가된다.
 
-![](/assets/img/git/git-master-merge-3.png)
+![](/assets/img/tool/git/git-master-merge-3.png)
 
 ### 해결방안 1) 수동적 해결
 
@@ -68,7 +68,7 @@ git mergetool #opens merge tool
 
 * **git add main.txt** → git status를 하면 수정이 되었고, merge을 이어서 계속하면 → `git merge --continue` 입력하면 아래와 같이 **merge가 성공**적으로 되는 것을 볼 수 있다.
 
-![](/assets/img/git/git-master-merge-4.png)
+![](/assets/img/tool/git/git-master-merge-4.png)
 
 * 추가 설명) `git merge --continue` 이것은 fast-forward merge가 아니기 때문에,  merge commit이 만들어진다.  타이틀을 입력한 다음에, 파일을 끄면 **merge가 완성**되는 것을 볼 수 있다.
 
@@ -89,13 +89,13 @@ cmd = code --wait $MERGED
 
 * 다음 과 같은 **4가지 옵션중에 한가지를 고르면 된다**. → A선택, B선택, 둘다선택, 두개 비교 (예시 - Accept Current Chage = A선택) 
 
-![](/assets/img/git/git-master-merge-5.png)
+![](/assets/img/tool/git/git-master-merge-5.png)
 
 * 선택 후 닫으면 conflict해결되면서 merge완료되는 것을 알 수 있다. → `git status`로 확인한다.
 
-![](/assets/img/git/git-master-merge-6.png)
+![](/assets/img/tool/git/git-master-merge-6.png)
 
-![](/assets/img/git/git-master-merge-7.png)
+![](/assets/img/tool/git/git-master-merge-7.png)
 
 * 그러면 git status 에서 **main.txt.orig** (오리지널 파일)보이는데, 이것은 이전에 merge conflict이 발생하였을 때, 내용이 포함된 것을 볼 수 있다.
 
@@ -146,11 +146,11 @@ keepBackup = false
     path = "/Applications/p4merge.app/Contents/MacOS/p4merge"
 ```
 
-![](/assets/img/git/git-master-merge-8.png))
+![](/assets/img/tool/git/git-master-merge-8.png))
 
 * `git mergetool` 입력하면 → p4merge에 대한 창이 나오게 된다.
 
-![](/assets/img/git/git-master-merge-9.png)
+![](/assets/img/tool/git/git-master-merge-9.png)
 
 * **p4merge창 설명**
 
@@ -163,13 +163,13 @@ keepBackup = false
 
 * **변경 사항**) 밑에 있는 main.txt 우측에 동그라미 버튼이 있는데, 거기서 파랑색 버튼을 클릭하거나 초록색 버튼을 클릭할 수 있다. **만약 두가지 동시에 선택**하고 싶으면 `Shift`키을 누르면서 동그라미 버튼을 클릭하면 된다.
 
-![](/assets/img/git/git-master-merge-10.png)
+![](/assets/img/tool/git/git-master-merge-10.png)
 
 * **저장**)  왼쪽 상탄 저장버튼을 클릭하거나 `command + s` 누르면 된다. 
 
 * 그리고 해당 창을 나간 후에 터미널에 돌아오면, 여전히 명령어를 수행하는 것을 볼 수 있는데, 여기서 `Ctrl + c` 을 누르고 `git status` 입력하면 main.txt가 **modified 되었다**는 것을 알 수 있다.
 
-![](/assets/img/git/git-master-merge-11.png)
+![](/assets/img/tool/git/git-master-merge-11.png)
 
 * `git merge --continue` 입력 → (해당 창에 메세지 입력후 저장후 창 나가면) merge가 정상적으로 완료된다.
 

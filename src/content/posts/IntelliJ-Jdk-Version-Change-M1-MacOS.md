@@ -23,9 +23,9 @@ tags: ["IntelliJ"]
 ### 1. IntelliJ에서 JDK버전 바꾸기
 
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_1.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_1.png)
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_2.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_2.png)
 
 * IntelliJ환경에서 File -> Project Structure 클릭한다.
 
@@ -40,17 +40,17 @@ tags: ["IntelliJ"]
 
 * https://www.azul.com/
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_3.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_3.png)
 
 * 우측에 있는 "Download Now" 클릭한다.
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_3_2.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_3_2.png)
 
 * 밑에 내려가다보면 이런 화면이 보이게 된다.
 
 * 왼쪽 "Java Version"에 11버전을 선택한다.
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_4.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_4.png)
 
 * 11 버전과 macOS, ARM 프로세스를 확인 후 다운로드를 한다.
 
@@ -73,7 +73,7 @@ cd /Library/Java/JavaVirtualMachines/
 
 **2) JDK 폴더명 확인 후 경로 복사**
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_5.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_5.png)
 
 * ls로 다운로드된 JDK 폴더명이 있는지 확인한다.
 
@@ -97,7 +97,7 @@ vi ~/.bash_profile
 저장후 나가기: wq
 (저장하지 않은 채, 강제로 나가기: q!)
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_6.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_6.png)
 
 * 위와 같이 수정한다.
 
@@ -111,7 +111,7 @@ vi ~/.bash_profile
 vi ~/.zshrc
 ```
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_7.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_7.png)
 
 * 위에 있는 export 두줄을 추가해준다.
 * 그리고 저장 후 나간다.(wq)
@@ -135,7 +135,7 @@ java -version
 
 * 터미널에 위에 명령어를 입력한다.
 
-![](/assets/img/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_8.png)
+![](/assets/img/tool/intellij/IntelliJ-Jdk-Version-Change-M1-MacOS_8.png)
 
 * 그럼 다음과 같이 version이 11로 바뀌는 것을 볼 수 있다.
 

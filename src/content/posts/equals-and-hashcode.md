@@ -199,7 +199,7 @@ public static void main(String[] args) {
 
 * hash 값을 사용하는 Collction(HashMap, HashSet)은 객체가 논리적으로 같은지 비교할 때 아래 그림과 같은 과정을 거친다.
 
-![](/assets/img/java/hashCode-equals.png)
+![](/assets/img/server/java/hashCode-equals.png)
 
 * **[1] hashCode 메서드의 리턴 값이 우선 일치하고 [2] equals 메서드의 리턴 값이 true**여야 논리적으로 `같은 객체`라고 판단한다.
 

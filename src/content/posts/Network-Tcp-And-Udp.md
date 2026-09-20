@@ -29,7 +29,7 @@ tags: ["네트워크"]
 
     * 가상 회선 패킷 교환방식 - 각 패킷에는 가상회선 식별자가 포함되며, 모든 패킷을 전송하면 가상회선이 해제되고 패킷들은 전송된 **순서대로** 도착하는 방식을 말한다.
 
-    ![](/assets/img/network/network-tcp-and-udp-1.jpg)
+    ![](/assets/img/cs/network/network-tcp-and-udp-1.jpg)
 
 * 예) HTTP, Email, File transfer
 
@@ -41,7 +41,7 @@ tags: ["네트워크"]
 
     * 데이터 패킷 교환 방식 - 패킷이 독립적으로 이동하며 최적의 경로를 선택하여 간다. 하나의 메시지에서 분할된 여러 패킷은 도착한 **순서가 다를 수** 있는 방식을 말한다.
 
-    ![](/assets/img/network/network-tcp-and-udp-2.jpg)
+    ![](/assets/img/cs/network/network-tcp-and-udp-2.jpg)
 
 * 1대1 통신 또는 1대 N 통신 또는 N:N 통신이 있다.
 
@@ -61,7 +61,7 @@ tags: ["네트워크"]
 
 * `ACK` 프레임이 도착하면 다음 프레임을 전송하는 기법이다.
 
-![](/assets/img/network/network-tcp-and-udp-3.png)
+![](/assets/img/cs/network/network-tcp-and-udp-3.png)
 
 ### Sliding Window 동작 방법
 
@@ -71,7 +71,7 @@ tags: ["네트워크"]
 
 * ACK 프레임이 도착하면, 전송측 윈도우는 ACK 프레임 수에 따라 오른쪽 경계가 이동하여 윈도우 크기가 늘어난다.
 
-![](/assets/img/network/network-tcp-and-udp-4.png)
+![](/assets/img/cs/network/network-tcp-and-udp-4.png)
 
 ## TCP의 내부동작 원리1: 연결 설정 단계
 
@@ -87,7 +87,7 @@ tags: ["네트워크"]
 
 **SYN** - SYN + ACK - **ACK**
 
-![](/assets/img/network/network-tcp-and-udp-5.png)
+![](/assets/img/cs/network/network-tcp-and-udp-5.png)
 
 * 처음 시작 SEQ번호는 **랜덤하게 생성**된다. 그 이유는 연결을 맺을 때 사용하는 포트(Port)는 **유한 범위 내에서 사용하고 시간이 지남에 따라 재사용**된다.
 
@@ -97,7 +97,7 @@ tags: ["네트워크"]
 
 ## TCP의 내부동작 원리2: 상대 소켓과의 데이터 송수신
 
-![](/assets/img/network/network-tcp-and-udp-6.png)
+![](/assets/img/cs/network/network-tcp-and-udp-6.png)
 
 * ACK의 값을 전송된 바이트 크기만큼 증가시키는 이유는 **패킷의 전송유무 뿐만 아니라, 데이터 손실유무까지 확인**하기 때문이다.
 
@@ -125,7 +125,7 @@ tags: ["네트워크"]
 
 **FIN** – ACK – FIN - **ACK**
 
-![](/assets/img/network/network-tcp-and-udp-7.png)
+![](/assets/img/cs/network/network-tcp-and-udp-7.png)
 
 * TCP의 연결 성립 과정과 연결 해제 과정의 **단계수가 차이 나는 이유**는 클라이언트가 데이터 전송을 마쳤다고 해도 서버는 아직 보낼 데이터가 남아있을 수 있기 때문에 일단 FIN에 대한 ACK만 보내고, 데이터를 모두 전송한 후 자신(서버)도 FIN 메시지를 보내기 때문이다.
 

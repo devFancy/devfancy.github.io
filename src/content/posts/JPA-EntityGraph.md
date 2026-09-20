@@ -43,7 +43,7 @@ tags: ["JPA"]
 
 `JMeter`를 통한 성능 테스트에서 요약 보고서를 확인했을 때, 아래와 같이 평균 처리량(TPS)이 `27.9/sec` 나오는 걸 확인할 수 있다.
 
-![](/assets/img/jpa/JPA-EntityGraph-1.png)
+![](/assets/img/server/jpa/JPA-EntityGraph-1.png)
 
 TPS가 `27.9`라는 것은 Traffic Per Second(초당 처리 건수)가 27.9건이라는 의미이다.
 
@@ -51,7 +51,7 @@ TPS가 `27.9`라는 것은 Traffic Per Second(초당 처리 건수)가 27.9건�
 
 TPS에 대한 그래프를 확인했을 때, 최대 `30` 이 나왔다.
 
-![](/assets/img/jpa/JPA-EntityGraph-2.png)
+![](/assets/img/server/jpa/JPA-EntityGraph-2.png)
 
 현재 게시글(Post)와 게시글을 작성한 회원(Member)의 관계는 **다대일 단방향 매핑** 으로 이루어져 있고, 지연 로딩을 사용했다.
 
@@ -260,11 +260,11 @@ Hibernate:
 
 결과를 확인해보니, 평균 TPS 값이 `39.1`로 이전 평균 TPS(27.9) 보다 **40.14%** 개선된 것을 확인할 수 있다.
 
-![](/assets/img/jpa/JPA-EntityGraph-3.png)
+![](/assets/img/server/jpa/JPA-EntityGraph-3.png)
 
 TPS에 대한 그래프에서는 최대 TPS 값이 `42`로 이전 최대 TPS(30)보다 **40%** 개선된 것을 확인할 수 있다.
 
-![](/assets/img/jpa/JPA-EntityGraph-4.png)
+![](/assets/img/server/jpa/JPA-EntityGraph-4.png)
 
 이처럼 쿼리를 명시적으로 작성하지 않아도 `fetch join` 과 같은 효과를 나타낼 수 있으나, 약간의 차이점이 있다.
 

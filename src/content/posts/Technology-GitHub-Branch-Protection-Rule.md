@@ -7,7 +7,7 @@ tags: ["Git"]
 
 ## Prologue
 
-![](/assets/img/technology/GitHub-Branch-Protection-Rule_1.png)
+![](/assets/img/server/technology/GitHub-Branch-Protection-Rule_1.png)
 
 * CS 스터디를 진행하면서 저장소를 관리하기 위해 커밋 메시지 Rule을 정했지만, Branch에 대한 Rule을 정하진 않았다.
 
@@ -15,7 +15,7 @@ tags: ["Git"]
 
 ## Branch protection rule
 
-![](/assets/img/technology/GitHub-Branch-Protection-Rule_2.png)
+![](/assets/img/server/technology/GitHub-Branch-Protection-Rule_2.png)
 
 * GitHub에서 GitHub에 올라간 Branch들에 대해 Rule을 지정할 수 있게 도와준다.
 
@@ -33,7 +33,7 @@ tags: ["Git"]
 
 * 다음으로 Protection Rule이 적용될 Branch의 패턴을 만들고, 해당 Branch에 대해 8가지 Rule을 설정한다.
 
-![](/assets/img/technology/GitHub-Branch-Protection-Rule_3.png)
+![](/assets/img/server/technology/GitHub-Branch-Protection-Rule_3.png)
 
 ### Require a pull request before merging
 
@@ -47,7 +47,7 @@ tags: ["Git"]
 
 #### Require approvals
 
-![](/assets/img/technology/GitHub-Branch-Protection-Rule_4.png)
+![](/assets/img/server/technology/GitHub-Branch-Protection-Rule_4.png)
 
 * 개인이 PR를 보내고 Merge를 하기 전에 승인해주는 인원을 정하는 의미다. 
 
@@ -67,7 +67,7 @@ tags: ["Git"]
 
 ## Rules applied to everyone including administrators
 
-![](/assets/img/technology/GitHub-Branch-Protection-Rule_5.png)
+![](/assets/img/server/technology/GitHub-Branch-Protection-Rule_5.png)
 
 * 이 두 가지는 특별한 일이 아니면 사용하지 않는 게 좋다.
 

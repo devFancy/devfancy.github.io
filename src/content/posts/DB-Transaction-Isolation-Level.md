@@ -17,7 +17,7 @@ tags: ["데이터베이스"]
 
 * 격리 수준은 아래와 같이 4개가 있다.
 
-![](/assets/img/db/db-transaction-isolation-level-1.jpg)
+![](/assets/img/cs/db/db-transaction-isolation-level-1.jpg)
 
 * 위로 갈수록 동시성이 강해지지만 격리성은 약해지고, 아래로 갈수록 동시성은 약해지지만 격리성은 강해진다.
 
@@ -75,7 +75,7 @@ tags: ["데이터베이스"]
 
 ## 격리 수준
 
-![](/assets/img/db/db-transaction-isolation-level-2.png)
+![](/assets/img/cs/db/db-transaction-isolation-level-2.png)
 
 * 위의 표에서 알 수 있듯이 엄격해질수록 이상 현상을 허용하지 않는다.
 
@@ -163,7 +163,7 @@ tags: ["데이터베이스"]
 
 > REPEATABLE READ의 스냅샷 동작 원리
 
-![](/assets/img/db/DB-Concurrency-Issue-Scenario.png)
+![](/assets/img/cs/db/DB-Concurrency-Issue-Scenario.png)
 
 시나리오 분석: 아래 타임라인을 통해 두 트랜잭션이 어떻게 상호작용하는지 자세히 살펴보자.
 

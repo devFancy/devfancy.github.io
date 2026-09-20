@@ -27,7 +27,7 @@ tags: ["Spring Boot"]
 
 ## 문제 상황
 
-![](/assets/img/hibit/Hibit-Concurrency-Problem-Solving-1.png)
+![](/assets/img/server/hibit/Hibit-Concurrency-Problem-Solving-1.png)
 
 기존 `히빗 서비스(ver.1)` 에서는 '게시글 전체보기' 에서 사용자가 하나의 게시글을 클릭할 때, 조회수 1이 증가되도록 구현했다.
 
@@ -87,11 +87,11 @@ public class PostService {
 
 이제 동시성 이슈를 발생시켜 문제를 확인해본다. 아래는 동시성 이슈 확인을 위해 성능 테스트 도구인 `JMeter` 를 사용했다.
 
-![](/assets/img/hibit/Hibit-Concurrency-Problem-Solving-2.png)
+![](/assets/img/server/hibit/Hibit-Concurrency-Problem-Solving-2.png)
 
 동시 사용자 1000명이 1초동안 1번 반복한 이후에 `Postman`을 이용해서 결과를 확인해봤다.
 
-![](/assets/img/hibit/Hibit-Concurrency-Problem-Solving-3.png)
+![](/assets/img/server/hibit/Hibit-Concurrency-Problem-Solving-3.png)
 
 예상 결과가 1000이여야 하는데, 고작 117회의 조회수만 정상적으로 증가된 것을 확인할 수 있다. 
 정확히 말하자면, 해당 `Postman` 을 이용해서 한번 더 조회했기 때문에 실제로는 **116회**의 조회수가 나온 것이다.
@@ -124,7 +124,7 @@ public class PostService {
 
 그림으로 표현하면 아래와 같다.
 
-![](/assets/img/hibit/Hibit-Concurrency-Problem-Solving-4.png)
+![](/assets/img/server/hibit/Hibit-Concurrency-Problem-Solving-4.png)
 
 두 개의 요청이 들어와 조회수 2로 증가하길 기대했지만 자원이 동시에 접근하는 시점에 같은 수량을 읽게 되므로 업데이트 하는 시점에 `갱신 손실`이 발생하게 된다.
 
@@ -381,7 +381,7 @@ where
 이러한 비관적 락 방식의 가장 큰 장점은 데이터의 충돌이 빈번한 상황에서도 정확한 데이터 정합성을 유지할 수 있다는 점이다.
 이로 인해 데이터의 무결성을 보장하는 수준이 높아진다. 그러나 이러한 방식의 단점은 **대기 시간이 발생한다**는 것이다.
 
-![](/assets/img/hibit/Hibit-Concurrency-Problem-Solving-5.png)
+![](/assets/img/server/hibit/Hibit-Concurrency-Problem-Solving-5.png)
 
 위 그림에서 확인할 수 있듯이, 트랜잭션의 시작이 배타락을 획득하는 조회이므로 **각 트랜잭션은 먼저 시작된 트랜잭션이 커밋 또는 롤백될 때까지 로직을 실행하지 못하고 대기 상태에 들어가게 된다.** 
 이는 사실상 하나의 트랜잭션이 전체 락을 점유하는 것과 유사합니다. 
@@ -526,7 +526,7 @@ public class OptimisticLockProductFacade {
 }
 ```
 
-![](/assets/img/hibit/Hibit-Concurrency-Problem-Solving-6.png)
+![](/assets/img/server/hibit/Hibit-Concurrency-Problem-Solving-6.png)
 
 이러한 낙관적 락을 활용하게 되면 버전 정보를 활용하여 버전이 일치하는 경우에만 커밋을 하고, 일치하지 않는 경우에는 롤백 처리를 하게 된다.
 이 경우 위 그림처럼 실제로 생성되는 조회수는 트랜잭션A로 인한 1로 데이터 정합성에는 문제가 생기지 않는다.
@@ -601,7 +601,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 }
 ```
 
-![](/assets/img/hibit/Hibit-Concurrency-Problem-Solving-7.png)
+![](/assets/img/server/hibit/Hibit-Concurrency-Problem-Solving-7.png)
 
 `for update` 를 통해 조회하지 않고 이렇게 자기 자신의 값을 이용하여 계산한다면, 배타락 덕분에 조회수 개수에 대한 데이터 정합성을 보장할 수 있다.
 
@@ -625,7 +625,7 @@ update만 되어도 동시성이 보장된다고 의구심이 들었는데, 단�
 
 쿼리를 통해 데이터 정합성 문제는 해결했지만, 여전히 개선이 필요한 부분이 있습니다. 성능 테스트 도구인 JMeter를 활용하여 정합성 문제가 해결되었는지 확인했다.
 
-![](/assets/img/hibit/Hibit-Concurrency-Problem-Solving-8.png)
+![](/assets/img/server/hibit/Hibit-Concurrency-Problem-Solving-8.png)
 
 테스트 결과, HTTP 요청을 통해 동시 접속자 1000명이 1초 동안 접속할 때의 TPS(초당 처리량)는 약 40.7으로 확인된다.
 (참고로, `TPS`(Throughput Per Second)는 초당 시스템의 처리량 (Throughput)을 나타낸다)

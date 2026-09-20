@@ -38,7 +38,7 @@ Spring의 Transaction에 대한 심층적인 이해를 위해 "Spring의 Transac
 
 트랜잭션을 더 자세히 이해하기 위해 데이터베이스 서버 연결 구조와 DB 세션에 대해 알아보자.
 
-![](/assets/img/spring/Spring-DB-Transaction-1.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-1.png)
 
 사용자는 `웹 애플리케이션 서버`(WAS)나 `DB 접근 툴` 같은 클라이언트를 사용해 데이터베이스 서버에 접근할 수 있다.
 
@@ -55,7 +55,7 @@ Spring의 Transaction에 대한 심층적인 이해를 위해 "Spring의 Transac
 
 가장 단순하면서 많이 사용하는 방법은 역할에 따라 3가지 계층으로 나누는 거이다.
 
-![](/assets/img/spring/Spring-DB-Transaction-2.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-2.png)
 
 * `프리젠테이션 계층`은 **UI와 관련된 처리를 담당**한다. 그외 다른 역할들은 다음과 같다.
 
@@ -91,7 +91,7 @@ Spring의 Transaction에 대한 심층적인 이해를 위해 "Spring의 Transac
 
 ## 트랜잭션 추상화
 
-![](/assets/img/spring/Spring-DB-Transaction-3.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-3.png)
 
 데이터베이스에는 여러 접근 기술이 존재한다.
 
@@ -101,7 +101,7 @@ Spring의 Transaction에 대한 심층적인 이해를 위해 "Spring의 Transac
 
 이 문제를 해결하려면 스프링이 제공하는 **트랜잭션 추상화 기술**을 사용하면 된다.
 
-![](/assets/img/spring/Spring-DB-Transaction-4.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-4.png)
 
 스프링 트랜잭션 추상화의 핵심인 `PlatformTransactionManager` 인터페이스는 **트랜잭션 매니저**라고 부르는데 트랜잭션 시작, 종료, 커밋, 롤백에 대한 내용이 있고, 이에 대한 각 접근 기술인 구현체를 제공한다.
 
@@ -136,7 +136,7 @@ package org.springframework.transaction;
 
 트랜잭션 매니저는 내부에서 이 `트랜잭션 동기화 매니저`를 사용한다. 내부 동작 방식은 아래와 같다.
 
-![](/assets/img/spring/Spring-DB-Transaction-5.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-5.png)
 
 클라이언트의 요청으로 서비스 로직을 실행한다.
 
@@ -150,7 +150,7 @@ package org.springframework.transaction;
 
 [5] 트랜잭션 동기화 매니저는 쓰레드 로컬에 커넥션을 보관한다. (멀티 쓰레드 환경에서는 안전하게 커넥션을 보관할 수 있다)
 
-![](/assets/img/spring/Spring-DB-Transaction-6.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-6.png)
 
 [6] 서비스 계층은 비즈니스 로직을 실행하면서 리포지토리 메서들을 호출한다.
 
@@ -158,7 +158,7 @@ package org.springframework.transaction;
 
 [8] 획득한 커넥션을 사용해서 SQL을 데이터베이스에 전달해서 실행한다.
 
-![](/assets/img/spring/Spring-DB-Transaction-7.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-7.png)
 
 [9] 비즈니스 로직이 끝나고 트랜잭션 종료를 요청한다.
 
@@ -211,7 +211,7 @@ public class MemberServiceV3_1 {
 코드를 확인해보면 `트랜잭션을 처리하는 객체`와 `비즈니스 로직을 처리하는 서비스 객체`가 섞여있는 것을 확인할 수 있다.
 이는 가독성을 떨어뜨리며 유지 보수도 여려워지게 만든다.
 
-![](/assets/img/spring/Spring-DB-Transaction-8.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-8.png)
 
 스프링에서 `프록시`를 사용하면 트랜잭션을 처리하는 객체와 비즈니스 로직을 처리하는 서비스 객체를 **명확하게 분리**할 수 있다.
 
@@ -285,7 +285,7 @@ public class MemberServiceV3_3 {
 
 트랜잭션 AOP가 사용된 전체 흐름을 그림과 글로 다시 한번 정리해보자.
 
-![](/assets/img/spring/Spring-DB-Transaction-9.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-9.png)
 
 1. 클라이언트로부터 API 요청이 들어오면 `프록시`가 호출된다.
 
@@ -309,7 +309,7 @@ public class MemberServiceV3_3 {
 
 > AOP 프록시 적용 확인 - MemberServiceV3_3Test
 
-![](/assets/img/spring/Spring-DB-Transaction-10.png)
+![](/assets/img/server/spring/Spring-DB-Transaction-10.png)
 
 다음 테스트 코드를 통해 `MemberService` 클래스에 프록시가 적용된 걸 확인할 수 있다.
 

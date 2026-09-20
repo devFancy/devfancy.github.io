@@ -31,7 +31,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 하체 하는 날
 
-![](/assets/img/workout/hst_week3_1.png)
+![](/assets/img/etc/workout/hst_week3_1.png)
 
 ### Feedback
 
@@ -47,7 +47,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 상체 하는 날
 
-![](/assets/img/workout/hst_week3_2.png)
+![](/assets/img/etc/workout/hst_week3_2.png)
 
 ### Feedback
 

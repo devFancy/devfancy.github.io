@@ -18,7 +18,7 @@ tags: ["리눅스"]
 
 터미널에 `nvidia-smi` 를 입력하면 현재 시스템에 설치된 모든 NVIDIA GPU의 상태 요약 정보를 볼 수 있다.
 
-![](/assets/img/linux/Linux-Nvidia-Smi.png)
+![](/assets/img/server/linux/Linux-Nvidia-Smi.png)
 
 각 항목의 의미는 다음과 같다.
 
@@ -90,7 +90,7 @@ tags: ["리눅스"]
 watch -d -n 1 nvidia-smi
 ```
 
-![](/assets/img/linux/Linux-Nvidia-Smi-watch.png)
+![](/assets/img/server/linux/Linux-Nvidia-Smi-watch.png)
 
 * `watch`: 명령어를 주기적으로 실행한다. 
 * `-n 1`: 1초 간격으로 실행한다.
@@ -109,7 +109,7 @@ nvidia-smi -q -i 0 -d MEMORY,UTILIZATION,TEMPERATURE -l 10
 
   * 메모리 (FB Memory Usage): GPU 메모리(VRAM)는 딥러닝 모델, 학습 데이터 등 실제 작업에 필요한 모든 것을 올려두는 작업 공간이다. 이 수치를 통해 메모리가 부족하지는 않은지 확인할 수 있다.
 
-    ![](/assets/img/linux/Linux-Nvidia-Smi-memory.png)
+    ![](/assets/img/server/linux/Linux-Nvidia-Smi-memory.png)
 
     * `Total`: GPU의 전체 메모리 용량이다.
 
@@ -119,7 +119,7 @@ nvidia-smi -q -i 0 -d MEMORY,UTILIZATION,TEMPERATURE -l 10
 
   * 사용률 (Utilization): GPU의 각 부분이 얼마나 활발하게 일하고 있는지를 나타낸다. GPU가 일을 제대로 하고 있는지, 아니면 병목 현상이 있는지 파악하는 핵심 지표이다.
     
-    ![](/assets/img/linux/Linux-Nvidia-Smi-utilization.png)
+    ![](/assets/img/server/linux/Linux-Nvidia-Smi-utilization.png)
 
     * `Gpu`: GPU의 핵심 연산 장치(코어)가 실제로 계산 작업을 처리하는 비율이다.
 
@@ -127,7 +127,7 @@ nvidia-smi -q -i 0 -d MEMORY,UTILIZATION,TEMPERATURE -l 10
 
   * 온도 (Temperature)
     
-    ![](/assets/img/linux/Linux-Nvidia-Smi-temperature.png)
+    ![](/assets/img/server/linux/Linux-Nvidia-Smi-temperature.png)
 
     * `GPU`: GPU 칩의 현재 온도이다. 일반적으로 유휴 상태에서는 30~50°C, 작업 시에는 70~85°C 사이를 유지한다. 90°C를 넘어가면 성능 저하(Throttling)가 발생하거나 하드웨어 수명에 영향을 줄 수 있다.
   

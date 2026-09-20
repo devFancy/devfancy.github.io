@@ -191,7 +191,7 @@ public class ViewCountManager {
 
 `ViewCountManager`에 대한 테스트 코드를 작성한 결과, 아래와 같이 방문 여부에 따른 값과 다른 게시글을 방문할 때마다 log를 업데이트한 것을 확인할 수 있다.
 
-![](/assets/img/hibit/Hibit-ViewManager-Abusing-1.png)
+![](/assets/img/server/hibit/Hibit-ViewManager-Abusing-1.png)
 
 PostService는 이전에 해당 게시글을 조회하지 않았던 경우에만 조회수를 데이터베이스에 업데이트하는 로직을 구현했다.
 
@@ -231,7 +231,7 @@ public class PostService {
 
 `PostService`에 대한 테스트 코드로 검증한 결과 정상적으로 나오는 걸 확인할 수 있다.
 
-![](/assets/img/hibit/Hibit-ViewManager-Abusing-2.png)
+![](/assets/img/server/hibit/Hibit-ViewManager-Abusing-2.png)
 
 `PostController`에서는 `PostService`를 통해 게시글 상세 정보를 가져오고, 쿠키를 업데이트하여 조회 로그를 관리한다.
 
@@ -262,7 +262,7 @@ public class PostController {
 
 특정 게시글에 대한 조회 API를 `Postman`으로 확인한 결과 아래와 같이 `viewedPost` 값이 제대로 나오는 것을 확인할 수 있다.
 
-![](/assets/img/hibit/Hibit-ViewManager-Abusing-3.png)
+![](/assets/img/server/hibit/Hibit-ViewManager-Abusing-3.png)
 
 ## 마무리
 

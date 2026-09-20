@@ -27,7 +27,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 > HST 프로그램에 맞게 저만의 운동 루틴을 세웠고, 2분할로 상체-하체를 일주일에 2번 반복으로 총 주 4회로 구성했습니다.
 
-![](/assets/img/workout/hst_week1_1.png)
+![](/assets/img/etc/workout/hst_week1_1.png)
 
 * 1일차 프로그램입니다.
 
@@ -61,7 +61,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 * 풀업, 딥스, 복근 운동은 제 개인적인 생각으로 말씀드리면, 2018년부터 지금까지 여러 가지 운동 루틴을 한 결과, 분할해서 하기보단 그냥 단순하게 꾸준히 하는 게 근육량 증가, 운동수행능력 향상에 더 도움이 되어서 운동하는 날마다 하기로 했습니다.
 
-![](/assets/img/workout/hst_week1_2.png)
+![](/assets/img/etc/workout/hst_week1_2.png)
 
 * 2일차 프로그램입니다.
 
