@@ -1,0 +1,32 @@
+---
+/* NOTE 기존 Jekyll previousAndNext.html 의 Recommend 를 대체한다
+ * - 태그 기반 Similar Posts 는 태그 데이터가 없어 렌더된 적이 없다. 이관하지 않는다 (4-6)
+ * - 카테고리가 겹치는 최신 글을 최대 3개 보여주고, 없으면 섹션 자체를 그린다
+ */
+import { getCollection } from 'astro:content';
+
+interface Props {
+  currentId: string;
+  categories: string[];
+}
+const { currentId, categories } = Astro.props;
+const mine = new Set(categories);
+
+const related = (await getCollection('posts', ({ data }) => !data.draft))
+  .filter((p) => p.id !== currentId && p.data.categories.some((c) => mine.has(c)))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+{related.length > 0 && (
+  <section class="mt-16 border-t border-rule pt-8">
+    <h2 id="recommend" class="text-sm font-bold tracking-wide text-muted">Recommend</h2>
+    <ul class="mt-4 space-y-3">
+      {related.map((p) => (
+        <li>
+          <a href={`/${p.id}/`} class="font-medium hover:text-accent">{p.data.title}</a>
+          <span class="ml-2 text-xs text-muted">{p.data.date.toISOString().slice(0, 10)}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

@@ -1,7 +1,14 @@
-.sass-cache/*
-.DS_Store
-_site/*
-.jekyll-cache/*
+# Astro
+dist/
+.astro/
+node_modules/
+
+# Jekyll (Phase 5 컷오버까지 유지)
+_site/
+.jekyll-cache/
 .jekyll-metadata
-*.xml
+.sass-cache/
+
+# OS / IDE
+.DS_Store
 .idea/
