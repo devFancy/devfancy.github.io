@@ -6,6 +6,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 - v1 작성: 2026-09-20
 - v2 갱신: 2026-09-20 (Phase 0 조사 결과 반영)
 - v3 갱신: 2026-09-20 (수식/이미지/URL 항목 실측 정정, 브랜치 전략 복원)
+- v4 갱신: 2026-09-20 (Phase 1 완료. URL 스냅샷 확정, `/2026-DevHistory/` 미결 해소, 빌드 로케일·css 충돌 신규 기재)
 - 대상 저장소: `devfancy.github.io` (GitHub Pages user site, 퍼블릭)
 
 ---
@@ -13,7 +14,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 ## 0. 이 문서 사용법
 
 1. 저장소 루트에서 Claude Code를 실행한다
-2. 첫 지시: `MIGRATION.md 를 읽고 Phase 1을 수행해라.` (Phase 0은 완료됨)
+2. 첫 지시: `MIGRATION.md 를 읽고 Phase 2를 수행해라.` (Phase 0·1은 완료됨)
 3. 각 Phase가 끝나면 사람의 승인을 받고 다음으로 넘어간다
 4. 확정 내용이 바뀌면 이 문서를 먼저 고치고 코드를 고친다
 
@@ -22,7 +23,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 | Phase | 상태 | 산출물 |
 |---|---|---|
 | Phase 0. 현황 파악 | **완료** | `_migration/PHASE0.md` |
-| Phase 1. URL 스냅샷 | 대기 | `_migration/urls-before.txt` |
+| Phase 1. URL 스냅샷 | **완료** | `_migration/urls-before.txt` (1648 URL) |
 | Phase 2. 스캐폴딩 + 파일럿 | 대기 | |
 | Phase 3. 전체 변환 | 대기 | |
 | Phase 4. URL 검증 | 대기 | `_migration/urls-after.txt`, diff 리포트 |
@@ -154,7 +155,31 @@ MathJax 설정의 `equationNumbers: { autoNumber: "AMS" }`는 `\begin{}` 환경�
 | 외부 CDN | `cdn.bootcss.com` (font-awesome), `at.alicdn.com` (아이콘) |
 | Similar Posts | `post.html`에 있으나 `page.tags` 기반이라 실제로 렌더링되지 않음 |
 | 이미지 경로 | 절대 `/assets/...` 1167건 (99.7%), 외부 URL 3, 상대/빈 값 1 |
-| `_site` | **2026-02-09 빌드. 신뢰 불가.** 미커밋 초안 `/2025-Retrospective/` 잔재 포함 |
+| `_site` | ~~2026-02-09 빌드~~ **Phase 1에서 삭제·재빌드 완료.** `/2025-Retrospective/` 잔재 사라짐 |
+| 빌드 로케일 | **셸 `LANG`이 `en_KR.UTF-8`. 존재하지 않는 로케일이라 Ruby가 `US-ASCII`로 폴백해 빌드가 죽는다** (2-7) |
+| `css/main.css` 충돌 | **`css/main.scss`와 체크인된 `css/main.css`가 같은 URL을 만들고, 정적 파일이 이긴다. `_sass`는 죽은 코드** |
+
+### 2-7. 빌드 로케일 (v4에서 추가)
+
+`bundle exec jekyll build`가 다음으로 죽는다.
+
+```
+Encoding::UndefinedConversionError: "\xE1" from ASCII-8BIT to UTF-8
+  jekyll/url.rb:161:in `unescape_path'
+  jekyll/static_file.rb:59:in `destination'
+```
+
+셸의 `LANG`이 `en_KR.UTF-8`인데 이런 로케일은 존재하지 않는다. 그래서 Ruby가
+`Encoding.default_external`을 `US-ASCII`로 폴백하고, 경로에 비ASCII 바이트가
+하나라도 있으면 변환에 실패한다. **저장소 문제가 아니라 머신 환경 문제다.**
+
+```bash
+export LC_ALL=en_US.UTF-8
+bundle exec jekyll build --trace
+```
+
+Jekyll을 부르는 모든 명령에 위 환경변수를 준다. 근본 해결은 셸 프로파일의
+`LANG`을 `en_US.UTF-8`이나 `ko_KR.UTF-8`로 고치는 것이며, 이건 사람이 결정한다.
 
 ---
 
@@ -396,6 +421,8 @@ Phase 3 완료 후 `$`가 포함된 전체 파일을 렌더링 결과로 재확�
 | Similar Posts | 동작하지 않던 기능. 이관 안 함 |
 | `robots.txt` | `https://devfancy.github.io/sitemap-index.xml`로 정정 |
 | `.gitignore` | Astro 기준 재작성. `dist/`, `.astro/` 추가, `*.xml` 규칙 제거 |
+| `css/main.scss` + `_sass` | 이관 안 함. 정적 `css/main.css`에 덮여 렌더링에 쓰인 적이 없다 (2-6) |
+| `page/1dev.html` | 이관 안 함. post에 밀려 출력된 적이 없다 (5) |
 
 ### 4-7. 기타 확정
 
@@ -416,10 +443,13 @@ Phase 3 완료 후 `$`가 포함된 전체 파일을 렌더링 결과로 재확�
 | 항목 | 선택지 | 결정 시점 |
 |---|---|---|
 | 카드 한 줄 설명 | 넣는다 / 카테고리+제목+날짜만 | Phase 2 시안 A/B |
-| `/2026-DevHistory/` 충돌 | page 우선 / post 우선 | Phase 1 빌드 결과 확인 후 |
 | 이미지 압축 수준 | `pngquant` 품질 파라미터 | Phase 3 샘플 확인 후 |
 
-`page/1dev.html`의 `permalink: /2026-DevHistory/`와 `_posts/2026-01-01-2026-DevHistory.md`가 같은 URL을 만든다. Jekyll이 어느 쪽을 출력했는지 Phase 1에서 확인하고 Astro도 같은 쪽으로 맞춘다.
+**해소됨 — `/2026-DevHistory/` 충돌은 post가 이긴다.** `page/1dev.html`의
+`permalink: /2026-DevHistory/`와 `_posts/2026-01-01-2026-DevHistory.md`가 같은 URL을
+만들고, Jekyll이 충돌을 경고한 뒤 **post를 출력했다.** 생성된 `<title>`이 post 제목
+`" 2026 Dev History "`와 앞뒤 공백까지 일치한다 (page 제목은 `2026 Dev`). Astro도
+post 쪽으로 맞추고 `page/1dev.html`은 이관하지 않는다.
 
 카드 한 줄 설명은 태그 데이터 부재로 **넣는 쪽이 유리해졌다.** 카테고리 칩과 제목만으로는 Algorithm 70편을 구분할 수 없다.
 
@@ -512,14 +542,37 @@ Phase 0은 완료됐다. 각 Phase가 끝나면 멈추고 보고한다.
 
 결과는 `_migration/PHASE0.md`. 브랜치 `docs/migration-plan`.
 
-### Phase 1. 기존 URL 스냅샷
+### Phase 1. 기존 URL 스냅샷 — 완료
 
-브랜치: `chore/url-baseline` (base `main`)
+브랜치: `chore/url-baseline` (base `main`). 커밋 `6c11484`.
 
-- **`_site`를 먼저 삭제한다.** 현재 `_site`는 2026-02-09 빌드라 신뢰할 수 없다. `/2025-Retrospective/` 같은 미커밋 초안의 잔재가 섞여 있다
-- `bundle exec jekyll build --trace`로 새로 빌드
-- 전체 URL 목록을 **`_migration/urls-before.txt`**로 저장, 정렬해서 커밋
-- **`/2026-DevHistory/`가 page와 post 중 어느 쪽으로 생성됐는지 확인해 보고한다**
+수행한 것:
+
+- `_site`와 `.jekyll-cache`를 삭제하고 `LC_ALL=en_US.UTF-8 bundle exec jekyll build --trace`로 재빌드 (2-7)
+- 전체 URL 목록을 정렬해 **`_migration/urls-before.txt`**로 커밋. **1648줄**
+- `/2026-DevHistory/` 판정 완료
+
+**스냅샷 구성 1648건**
+
+| 구분 | 건수 |
+|---|---|
+| 글 (`_posts/*.md` 319편과 일치) | 319 |
+| 고정 페이지 `/about/` `/archive/` `/category/` `/search/` | 4 |
+| 페이지네이션 `/page2/` ~ `/page64/` | 63 |
+| 루트 `/` | 1 |
+| 정적 파일 (css · js · xml · txt · 소유권 인증 html) | 23 |
+| 이미지 (png 1174 · jpg 43 · jpeg 12 · JPG 8 · gif 1) | 1238 |
+
+이미지까지 전부 포함했다. 11절이 이미지 경로 변경을 금지하므로 Phase 4 diff가 이를 함께
+검증한다. 삭제 전 `_site`에 있던 `/2025-Retrospective/`는 재빌드 후 사라져, 미커밋 초안
+잔재라는 전제가 확인됐다.
+
+**빌드가 경고한 destination 충돌 2건**
+
+| 충돌 URL | 소스 | 출력된 쪽 |
+|---|---|---|
+| `/2026-DevHistory/` | `page/1dev.html` · `_posts/2026-01-01-2026-DevHistory.md` | **post** (5절) |
+| `/css/main.css` | `css/main.scss` · `css/main.css` | **정적 `css/main.css`** (2-6) |
 
 ### Phase 2. 스캐폴딩 + 파일럿 5편 + 시안 비교
 
@@ -801,4 +854,5 @@ posts:
 |---|---|---|
 | v1 | 2026-09-20 | 최초 작성 |
 | v2 | 2026-09-20 | Phase 0 결과 반영. 글 수 327 -> 319 정정, 썸네일 근거 정정, 태그 부재 반영, KaTeX 도입, AdSense 제거, 이미지 압축 Phase 추가, 의존성 목표 재정의 |
+| v4 | 2026-09-20 | Phase 1 완료 반영. URL 스냅샷 1648건 구성 확정, `/2026-DevHistory/` 미결 해소(post 우선), 빌드 로케일(2-7) 신설, `css/main.css` 충돌과 `page/1dev.html` 정리 대상 추가 |
 | v3 | 2026-09-20 | 수식 전역 적용 정정(`$` 이스케이프 11건 명시), Phase 1.5를 Phase 3에 흡수(`pngquant`, 손실 압축), 의도된 URL 변경 목록 신설, 브랜치 전략(§7) 복원, Node 22.12 선행 조건 명시, 카테고리 표기 4종 정정 |
