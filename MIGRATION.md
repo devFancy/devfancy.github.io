@@ -7,6 +7,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 - v2 갱신: 2026-09-20 (Phase 0 조사 결과 반영)
 - v3 갱신: 2026-09-20 (수식/이미지/URL 항목 실측 정정, 브랜치 전략 복원)
 - v4 갱신: 2026-09-20 (Phase 1 완료. URL 스냅샷 확정, `/2026-DevHistory/` 미결 해소, 빌드 로케일·css 충돌 신규 기재)
+- v5 갱신: 2026-09-20 (Phase 2 완료. 카드 시안 A 확정, Hero 배경 이미지 채용, Recommend 이관 확정, 목차 파리티 기재)
 - 대상 저장소: `devfancy.github.io` (GitHub Pages user site, 퍼블릭)
 
 ---
@@ -24,7 +25,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 |---|---|---|
 | Phase 0. 현황 파악 | **완료** | `_migration/PHASE0.md` |
 | Phase 1. URL 스냅샷 | **완료** | `_migration/urls-before.txt` (1648 URL) |
-| Phase 2. 스캐폴딩 + 파일럿 | 대기 | |
+| Phase 2. 스캐폴딩 + 파일럿 | **완료** | `feat/astro-01-scaffold` |
 | Phase 3. 전체 변환 | 대기 | |
 | Phase 4. URL 검증 | 대기 | `_migration/urls-after.txt`, diff 리포트 |
 | Phase 5. 배포 | 대기 | |
@@ -222,6 +223,12 @@ v1의 "런타임 의존성 3개"는 부정확한 목표였다. 다음으로 대�
 | **런타임 JS 의존성** | **0개** (아일랜드는 순수 브라우저 JS) |
 | 빌드 타임 의존성 | 6개 이내 |
 
+Phase 2 실측: 런타임 JS **0개** 달성(`dist`에 `.js` 파일 없음). 빌드 타임은 9개로 목표를 넘었다.
+`astro`, `@astrojs/rss`, `@astrojs/sitemap`, `@astrojs/markdown-remark`, `@tailwindcss/vite`,
+`tailwindcss`, `remark-math`, `rehype-katex`, `katex`. 이 중 `@astrojs/markdown-remark`는
+Astro 7의 프로세서 교체로 새로 필요해진 것이다(8-2-1). 3절이 확정한 스택을 그대로 구현한
+결과이므로 "6개 이내" 목표 쪽을 실측에 맞춰 **9개 이내로 정정한다.**
+
 `remark-math`와 `rehype-katex`는 빌드 타임 마크다운 플러그인이며 **런타임 JS를 0바이트 추가한다.** 다만 KaTeX CSS(약 23KB gzip)와 woff2 폰트 20여 개가 정적 자산으로 들어간다. 수식이 있는 페이지에서만 로드되도록 `use_math` 기준으로 CSS를 조건부 삽입한다. 현재 쓰는 MathJax CDN이 런타임에 훨씬 무겁다.
 
 ### 3-2. 선택 근거 (요약)
@@ -325,13 +332,14 @@ export const SOLUTION_CATEGORIES = ['Algorithm', 'AlgorithmSkill', 'LeetCode'] a
 
 | 항목 | 결정 |
 |---|---|
-| Hero | 타이포 중심 + 프로필 사진. 배경 사진 없음 |
+| Hero | 타이포 중심 + **배경 이미지** (v5에서 변경). 프로필 사진은 `/about/`으로 이동 |
 | 슬로건 | `흔들리지 않고, 후회 없이 / My path, my pace, no regrets.` |
 | 메인 구조 | 헤더 -> Hero -> 대표 포스트 -> 전체 포스트 그리드 -> 푸터 |
 | 대표 포스트 | 테마 제목 + 수동 큐레이션 3개 (`curation.yml`) |
 | 카드 썸네일 | **없음** |
 | 카드 구성 | **카테고리 칩 + 제목 + 날짜** (태그 데이터 부재로 v1에서 변경) |
-| 카드 한 줄 설명 | 미결. Phase 2에서 시안 A/B 비교 후 결정 |
+| 카드 한 줄 설명 | **넣지 않는다** (v5에서 시안 A 확정) |
+| 카드 구성 순서 | **제목 -> 날짜 -> 카테고리 칩** (v5에서 확정) |
 | OG 이미지 | 공통 1장 |
 | 다크/라이트 | 토큰 재정의 방식 |
 | 광고 | **제거** |
@@ -339,6 +347,19 @@ export const SOLUTION_CATEGORIES = ['Algorithm', 'AlgorithmSkill', 'LeetCode'] a
 **썸네일 미채용 근거**: v1은 "319편에 이미지가 없다"고 썼으나 실제로는 59.2%가 이미지를 가진다. 결론은 유지하되 근거를 바꾼다. 본문 첫 이미지는 대표성이 없다. 알고리즘 글은 문제 스크린샷, 기술 글은 다이어그램이나 에러 로그 캡처이며, 40.8%는 여전히 폴백이 필요하다.
 
 **태그 처리**: `tags` 데이터가 없으므로 카드에서 태그를 빼고 카테고리 칩이 그 역할을 한다. 8편은 칩이 2개 붙는다. 스키마에는 `tags`를 빈 배열로 예약해 신규 글부터 쓸 수 있게 한다.
+
+**Hero 배경 이미지 (v5에서 신설)**: v1~v4의 "배경 사진 없음"을 뒤집는다. 한강 야경 사진을
+`src/assets/hero-hangang.jpg`에 두고 `astro:assets`로 반응형 WebP를 생성한다 (823KB -> 292KB).
+
+| 항목 | 값 |
+|---|---|
+| `object-position` | **`center`.** 이 사진은 하늘이 중상단이라 `bottom`을 주면 하늘이 잘려 텍스트가 다리 위에 얹힌다 |
+| 스크림 | `bg-black/45`. 야경이라도 하늘 밝기가 일정치 않아 대비를 고정한다 |
+| 높이 | `min-h` 24rem / sm 32rem |
+| 슬로건 | 영문이 위·큰 글씨, 한글이 아래·작은 글씨 |
+
+프로필 사진은 Hero에 넣지 않는다. 배경 사진 + 프로필 + 슬로건이 겹치면 시선이 셋으로 갈린다.
+4-5의 방침대로 `/about/`에 원형 프로필과 소셜 링크를 둔다.
 
 ### 4-4. 기능
 
@@ -352,6 +373,9 @@ export const SOLUTION_CATEGORIES = ['Algorithm', 'AlgorithmSkill', 'LeetCode'] a
 | 뉴스레터 | Stibee. 계정 없음. 컴포넌트 자리만 잡고 iframe 주소는 비워둔다 |
 | 후원 | 기존 카카오페이 QR 이미지 재사용, 모달로 표시 |
 | 메타 설명 | 본문 첫 문단 자동 추출. 화면 미표시, SEO 전용 |
+| 목차 | **이관한다.** 기존 `{:toc}`가 319편 전부에 있다. h2/h3만, lg 이상에서 우측 sticky |
+| Recommend | **이관한다.** 카테고리가 겹치는 최신 글 최대 3개. 없으면 섹션을 그리지 않는다 |
+| 소셜 링크 | GitHub / LinkedIn / Instagram. **인라인 SVG** (4-6의 CDN 제거와 짝) |
 
 #### 4-4-1. 수식은 전역 적용된다 (v3에서 정정)
 
@@ -418,7 +442,7 @@ Phase 3 완료 후 `$`가 포함된 전체 파일을 렌더링 결과로 재확�
 | 수동 `feed.xml` 템플릿 | 제거. `@astrojs/rss` 단일 생성 |
 | 수동 `search.json` | 제거. 빌드 타임 `search-index.json`으로 대체 |
 | `demo.html` 레이아웃 | 미사용. 이관 안 함 |
-| Similar Posts | 동작하지 않던 기능. 이관 안 함 |
+| Similar Posts (태그 기반) | 동작하지 않던 기능. 이관 안 함. **Recommend와 혼동하지 말 것** |
 | `robots.txt` | `https://devfancy.github.io/sitemap-index.xml`로 정정 |
 | `.gitignore` | Astro 기준 재작성. `dist/`, `.astro/` 추가, `*.xml` 규칙 제거 |
 | `css/main.scss` + `_sass` | 이관 안 함. 정적 `css/main.css`에 덮여 렌더링에 쓰인 적이 없다 (2-6) |
@@ -442,8 +466,11 @@ Phase 3 완료 후 `$`가 포함된 전체 파일을 렌더링 결과로 재확�
 
 | 항목 | 선택지 | 결정 시점 |
 |---|---|---|
-| 카드 한 줄 설명 | 넣는다 / 카테고리+제목+날짜만 | Phase 2 시안 A/B |
 | 이미지 압축 수준 | `pngquant` 품질 파라미터 | Phase 3 샘플 확인 후 |
+
+**해소됨 — 카드는 시안 A로 간다.** 한 줄 설명을 넣지 않고 **제목 -> 날짜 -> 카테고리 칩**
+순으로 쌓는다. 썸네일(대표 이미지)은 1차에서 넣지 않되 2차에 추가할 예정이므로,
+스키마에 `thumbnail` 예약 필드를 두어 319편 재작업을 피한다.
 
 **해소됨 — `/2026-DevHistory/` 충돌은 post가 이긴다.** `page/1dev.html`의
 `permalink: /2026-DevHistory/`와 `_posts/2026-01-01-2026-DevHistory.md`가 같은 URL을
@@ -574,7 +601,7 @@ Phase 0은 완료됐다. 각 Phase가 끝나면 멈추고 보고한다.
 | `/2026-DevHistory/` | `page/1dev.html` · `_posts/2026-01-01-2026-DevHistory.md` | **post** (5절) |
 | `/css/main.css` | `css/main.scss` · `css/main.css` | **정적 `css/main.css`** (2-6) |
 
-### Phase 2. 스캐폴딩 + 파일럿 5편 + 시안 비교
+### Phase 2. 스캐폴딩 + 파일럿 5편 + 시안 비교 — 완료
 
 브랜치: `feat/astro-01-scaffold` (base `feat/astro`)
 
@@ -600,7 +627,37 @@ Phase 0은 완료됐다. 각 Phase가 끝나면 멈추고 보고한다.
 - A: 카테고리 칩 + 제목 + 날짜
 - B: A + 한 줄 설명
 
-나란히 볼 수 있게 하고 멈춘다. 로컬 프리뷰 주소를 알린다.
+**결과: 시안 A 채택.** 비교 페이지(`/proto/`)와 `variant` prop은 결정 후 제거했다.
+
+선정한 파일럿 5편 (데이터로 골랐다)
+
+| 글 | 선정 근거 |
+|---|---|
+| `MySQL-DML-Practice-2` | 코드블록 최다 (40개) |
+| `spring-boot-coupon-system-performance-improvement` | 이미지 최다 (43장) |
+| `PS-02-Random-Variable` | 수식 최다 (`$` 160개), `use_math: true` |
+| `EF-06-Digital-Money` | `$` 충돌 (지시서 지정) |
+| `Linux-basic` | 최古 (2021-09-06) |
+
+#### 8-2-1. Phase 2에서 드러난 함정 (v5에서 신설)
+
+Astro 7과 Tailwind v4에서 지시서 작성 시점과 달라진 것들이다. Phase 3 이후에도 적용된다.
+
+| 항목 | 내용 |
+|---|---|
+| 마크다운 프로세서 | Astro 7의 기본은 **Sätteri**다. `markdown.remarkPlugins`는 deprecated이며 `@astrojs/markdown-remark`를 설치하고 `processor: unified({...})`로 넘겨야 한다. Sätteri에 내장 math는 없으므로 확정 스택은 유지된다 |
+| 슬러그 대소문자 | glob loader의 **기본 `generateId`가 소문자화한다.** 커스텀 `generateId`가 없으면 319편 URL이 전부 깨진다 (2-2) |
+| Tailwind v4 문법 | `@theme` 토큰이 유틸리티를 자동 생성한다 (`--color-rule` -> `border-rule`). v3의 `border-[--color-rule]` 임의값 문법은 **조용히 무시된다** |
+| 본문 타이포 | Preflight가 `h1~h6`를 `font-size:inherit`으로 리셋한다. `.prose` 규칙을 직접 쓰지 않으면 제목과 본문이 구분되지 않는다 |
+| 표 가로 스크롤 | `<table>`에 `overflow-x:auto`만 주면 스크롤 컨테이너가 생기지 않는다. **`display:block`을 함께** 줘야 375px에서 페이지가 안 밀린다 (9-3) |
+| 그리드 아이템 | `justify-self`를 쓰면 아이템 폭이 `max-content`가 되어 `minmax(0,1fr)` 트랙을 넘는다. `margin-*: auto`로 정렬한다 |
+| Biome | `.astro` 템플릿을 읽지 못해 템플릿에서만 쓰는 변수를 미사용으로 오탐한다. **Biome는 `.ts`/`.mjs`, `.astro`와 타입은 `astro check`**로 나눈다. `biome migrate`가 `recommended: true`를 `preset: "none"`(전체 비활성)으로 바꾸므로 확인이 필요하다 |
+
+#### 8-2-2. 이미지 임시 서빙
+
+`assets/img`는 Phase 3에서 복사한다. 그전까지 파일럿 확인용으로 dev 서버에서만
+기존 경로를 서빙하는 Vite 플러그인(`legacyJekyllImages`)을 `astro.config.mjs`에 두었다.
+**Phase 3에서 이 플러그인과 `vite.plugins` 등록을 함께 지운다.**
 
 ### Phase 3. 전체 변환 + 이미지 이관
 
@@ -623,7 +680,8 @@ Phase 0은 완료됐다. 각 Phase가 끝나면 멈추고 보고한다.
 | 코드블록 안 `{{traceId}}` | **건드리지 않는다** |
 | 파일명 공백 1건 | `2022-05-04-PS-␣03-...`. 슬러그 생성 시 공백 제거해 `/PS-03-.../`로 Jekyll과 동일하게 |
 | 날 HTML 4개 파일 | Astro 7 컴파일러 통과하는지 확인 |
-| 슬러그 대소문자 | **보존.** 소문자화 금지 |
+| `* content` + `{:toc}` | **제거하되 기능은 대체한다.** 319편 전부에 있다. Astro는 목차 컴포넌트가 렌더 결과의 heading에서 만든다 (4-4) |
+| 슬러그 대소문자 | **보존.** 소문자화 금지. 기본 `generateId`가 소문자화하므로 커스텀 필수 (8-2-1) |
 
 Zod 스키마 검증 에러를 전부 해소한다. 변환 경고는 리포트로 남긴다.
 
@@ -768,6 +826,7 @@ const posts = defineCollection({
     // 예약 필드
     featured: z.boolean().default(false),
     featuredOrder: z.number().optional(),
+    thumbnail: z.string().optional(),       // 카드 대표 이미지. 2차에서 사용 (4-3)
 
     // 선택
     summary: z.string().optional(),   // 없으면 본문 첫 문단 자동 추출
@@ -855,5 +914,6 @@ posts:
 |---|---|---|
 | v1 | 2026-09-20 | 최초 작성 |
 | v2 | 2026-09-20 | Phase 0 결과 반영. 글 수 327 -> 319 정정, 썸네일 근거 정정, 태그 부재 반영, KaTeX 도입, AdSense 제거, 이미지 압축 Phase 추가, 의존성 목표 재정의 |
+| v5 | 2026-09-20 | Phase 2 완료 반영. 카드 시안 A 확정(제목-날짜-칩), Hero 배경 이미지 채용(4-3 "배경 사진 없음" 뒤집음), 목차·Recommend·소셜 인라인 SVG를 이관 대상으로 확정, Astro 7/Tailwind v4 함정 8-2-1 신설, 빌드 타임 의존성 목표 6 -> 9 정정 |
 | v4 | 2026-09-20 | Phase 1 완료 반영. URL 스냅샷 1648건 구성 확정, `/2026-DevHistory/` 미결 해소(post 우선), 빌드 로케일(2-7) 신설, `css/main.css` 충돌과 `page/1dev.html` 정리 대상 추가, **이미지 파일 수 1230 → 1238 정정**(PHASE0 합계 산술 오류. `.JPG` 대소문자 주의 추가) |
 | v3 | 2026-09-20 | 수식 전역 적용 정정(`$` 이스케이프 11건 명시), Phase 1.5를 Phase 3에 흡수(`pngquant`, 손실 압축), 의도된 URL 변경 목록 신설, 브랜치 전략(§7) 복원, Node 22.12 선행 조건 명시, 카테고리 표기 4종 정정 |
