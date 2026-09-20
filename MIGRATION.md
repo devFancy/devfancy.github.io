@@ -11,6 +11,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 - v6 갱신: 2026-09-20 (검색을 `/category/` 안으로, 이메일 노출 허용, 헤더 네비 3개 확정, `/about/` 선행 구현 기록)
 - v7 갱신: 2026-09-20 (파비콘 신설, 태그 칩 형태 확정, 목차 접기 항목 추가)
 - v8 갱신: 2026-09-20 (카테고리 34개 → 9개로 재편, 기존 이름은 태그로 이전)
+- v9 갱신: 2026-09-20 (카테고리를 2단 계층으로. 기술 아래 서버·알고리즘·CS·프로젝트·도구)
 - 대상 저장소: `devfancy.github.io` (GitHub Pages user site, 퍼블릭)
 
 ---
@@ -318,20 +319,27 @@ Tailwind v3는 쓰지 않는다. 마지막 기능 릴리스가 2023년 12월(v3.
 34종은 방문자가 훑기에 너무 많다. 9개로 묶고 **기존 이름을 태그로 내린다.**
 `tags` 는 부록 A 에 이미 예약돼 있어 스키마 변경이 없다.
 
-| 카테고리 | 편수 | 묶은 것 |
-|---|---|---|
-| 서버 | 95 | SpringBoot, Spring, JPA, Java, Kafka, GoodCode, AssertJ, Technology, Flyway, Linux |
-| 알고리즘 | 75 | Algorithm, AlgorithmSkill, LeetCode |
-| CS | 53 | OS, Network, HTTP, DataStructure, Database, SQL, MySQL |
-| 대학교 | 31 | Business-Statistics, Probability-Statistics, Electronic-Finance |
-| 프로젝트 | 24 | Side_Project, Woowacourse |
-| 기타 | 19 | E.T.C, Workout, Competition, Technology 중 블로그 운영 글 3편 |
-| 도구 | 14 | Git, IntelliJ |
-| 회고 | 8 | Retrospective, DevHistory |
-| 에세이 | 8 | Essay, Book |
+**2단 계층이다** (v9). 위는 성격을 가르고, 아래는 실제로 훑는 단위다.
 
-가장 큰 서버가 29%다. 4개(개발/에세이/회고/기타)로 줄이면 "개발"에 300편 가까이 몰려
-카테고리가 사실상 하나가 되므로 9개로 잡았다.
+| 상위 | 하위 | 편수 | 묶은 것 |
+|---|---|---|---|
+| **기술** (261) | 서버 | 95 | SpringBoot, Spring, JPA, Java, Kafka, GoodCode, AssertJ, Technology, Flyway, Linux |
+| | 알고리즘 | 75 | Algorithm, AlgorithmSkill, LeetCode |
+| | CS | 53 | OS, Network, HTTP, DataStructure, Database, SQL, MySQL |
+| | 프로젝트 | 24 | Side_Project, Woowacourse |
+| | 도구 | 14 | Git, IntelliJ |
+| **대학교** | — | 31 | Business-Statistics, Probability-Statistics, Electronic-Finance |
+| **기타** | — | 19 | E.T.C, Workout, Competition, Technology 중 블로그 운영 글 3편 |
+| **회고** | — | 8 | Retrospective, DevHistory |
+| **에세이** | — | 8 | Essay, Book |
+
+**프론트매터에는 잎만 적는다.** `categories: ["서버"]` 이지 `["기술", "서버"]` 가 아니다.
+부모를 같이 넣으면 카드마다 "기술" 칩이 붙는데, 261편(80%)에 붙는 칩은 정보가 없고
+필터로도 거의 전체를 고르는 셈이 된다. 계층은 `src/config.ts` 의 `CATEGORY_GROUPS` 에
+선언하고 `/category/` 가 그 순서대로 그룹을 그린다.
+
+4개(개발/에세이/회고/기타)로 줄이는 안은 버렸다. "개발"에 300편 가까이 몰려
+카테고리가 사실상 하나가 되기 때문이다.
 
 **Technology 예외 3편**: `Technology-GitHub-Readme`, `Technology-Google-Research-Console-Verification`,
 `Technology-utterances` 는 블로그 운영 글이라 기타로 보낸다. 변환 스크립트의 `CATEGORY_OVERRIDE` 에 있다.
@@ -1020,6 +1028,7 @@ posts:
 |---|---|---|
 | v1 | 2026-09-20 | 최초 작성 |
 | v2 | 2026-09-20 | Phase 0 결과 반영. 글 수 327 -> 319 정정, 썸네일 근거 정정, 태그 부재 반영, KaTeX 도입, AdSense 제거, 이미지 압축 Phase 추가, 의존성 목표 재정의 |
+| v9 | 2026-09-20 | 카테고리를 2단 계층으로 정리(4-2-1). 기술 아래 서버·알고리즘·CS·프로젝트·도구를 두고, 프론트매터에는 잎만 적는다. 계층은 `CATEGORY_GROUPS` 에 선언 |
 | v8 | 2026-09-20 | 카테고리 34개 → 9개 재편(4-2-1), 기존 이름을 태그로 이전, 태그 표기 규칙(고유명사 영문/일반 개념 한글) 신설, `/category/#Kafka` 앵커를 태그에서도 찾도록 기재 |
 | v7 | 2026-09-20 | 파비콘 신설(4-3, 검정 배경 + 흰 펜촉), 태그 칩을 라운드 사각형으로 확정, 목차 접기/펼치기를 03-pages 항목으로 추가(4-4-4) |
 | v6 | 2026-09-20 | 검색을 `/search/` 페이지에서 `/category/` 안으로 이동(4-4-2), `/search/` 를 의도된 URL 변경 4번째로 추가, 헤더 네비 3개 확정(4-4-3), 이메일 노출 허용·전화번호 제외·Instagram 제외(4-5), `/about/` 선행 구현과 `/archive/`·`/category/` 404 상태 기록(8-2-2), 폰트 self-host 방침 기재(3-1) |
