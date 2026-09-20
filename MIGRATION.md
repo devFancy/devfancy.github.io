@@ -1,0 +1,804 @@
+# devfancy.github.io 개편 지시서 v3
+
+Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
+저장소 루트에 두고, Claude Code 세션 시작 시 전체를 읽힌 뒤 작업한다.
+
+- v1 작성: 2026-09-20
+- v2 갱신: 2026-09-20 (Phase 0 조사 결과 반영)
+- v3 갱신: 2026-09-20 (수식/이미지/URL 항목 실측 정정, 브랜치 전략 복원)
+- 대상 저장소: `devfancy.github.io` (GitHub Pages user site, 퍼블릭)
+
+---
+
+## 0. 이 문서 사용법
+
+1. 저장소 루트에서 Claude Code를 실행한다
+2. 첫 지시: `MIGRATION.md 를 읽고 Phase 1을 수행해라.` (Phase 0은 완료됨)
+3. 각 Phase가 끝나면 사람의 승인을 받고 다음으로 넘어간다
+4. 확정 내용이 바뀌면 이 문서를 먼저 고치고 코드를 고친다
+
+### 진행 현황
+
+| Phase | 상태 | 산출물 |
+|---|---|---|
+| Phase 0. 현황 파악 | **완료** | `_migration/PHASE0.md` |
+| Phase 1. URL 스냅샷 | 대기 | `_migration/urls-before.txt` |
+| Phase 2. 스캐폴딩 + 파일럿 | 대기 | |
+| Phase 3. 전체 변환 | 대기 | |
+| Phase 4. URL 검증 | 대기 | `_migration/urls-after.txt`, diff 리포트 |
+| Phase 5. 배포 | 대기 | |
+
+---
+
+## 1. 목적
+
+Jekyll 탈출 자체가 목적이 아니다.
+남의 테마(HyG H2O)에 통째로 올라타 있어서 손대기 어려운 상태를,
+읽고 고칠 수 있는 코드로 소유권을 가져오는 것이 목적이다.
+
+작성자는 백엔드 개발자이고 프론트엔드 프레임워크 경험은 적다.
+추상화가 적고 표준 HTML/CSS에 가까운 구조를 선호한다.
+
+---
+
+## 2. Phase 0 조사 결과 (확정 사실)
+
+상세 근거는 `_migration/PHASE0.md`에 있다.
+
+### 2-1. 규모
+
+| 항목 | 값 |
+|---|---|
+| 글 수 | **319편** |
+| 카테고리 배정 합계 | 327 (8편이 2개 카테고리) |
+| 카테고리 | 원시 문자열 45종 -> 정규화 시 **34개** |
+| 목록 페이지 | 64 (`paginate: 5`) |
+| 이미지 참조 | 1171건 |
+| 이미지 보유 글 | 189 / 319 = **59.2%** |
+| `assets/img` | **586MB / 1230개 파일** |
+
+상위 카테고리: Algorithm 70, Technology 22, Side_Project 20, SpringBoot 17, Spring 15, OS 14, JPA 13, Electronic-Finance 13, Business-Statistics 13, Java 10
+
+### 2-2. URL 규칙 (가장 중요)
+
+```yaml
+permalink: /:title/     # 날짜 없는 플랫 슬러그, 후행 슬래시
+url: ""
+baseurl: ""
+```
+
+Jekyll이 `/slug/index.html`을 생성한다. Astro 설정은 이것으로 확정한다.
+
+```js
+// astro.config.mjs
+export default defineConfig({
+  site: 'https://devfancy.github.io',
+  trailingSlash: 'always',
+  build: { format: 'directory' },  // 기본값
+});
+```
+
+**슬러그는 대소문자를 보존한다.** `/Algorithm-Baekjoon-24479/`, `/BS-Analysis-Of-Variance/`처럼 대문자가 섞인 URL이 실재하므로 소문자화하면 전부 깨진다.
+
+### 2-3. 변환 난이도: 예상보다 훨씬 낮음
+
+| 패턴 | 건수 |
+|---|---|
+| kramdown 전용 문법 (`{: .class}`, 각주, 테이블 정렬) | **0건** |
+| `{% highlight %}` | 0건 |
+| `{% raw %}` | 2개 파일 |
+| `{{ site.* }}` | 3개 파일 |
+| 날 HTML | 4개 파일 (`<br>` 1, `<img>` 4) |
+
+Astro는 `.md`에서 `{}`를 해석하지 않는다 (`.mdx`만 해석). 따라서 빌드 에러는 나지 않고 문자 그대로 출력되므로, 변환 스크립트에서 문자열 제거만 하면 된다.
+
+대상 파일:
+
+- `2023-10-23-Algorithm-Summary.md`: `{{site.url}}` 약 40건 (내부 링크). `site.url`이 빈 값이라 제거만 하면 `/Programmers-150370/`로 동작
+- `2023-02-17-Network-Load-Balancing.md`: `{{site.url}}` 1건
+- `2023-02-10-ETC-Liquid-syntax-error.md`, `2023-02-10-Programmers-64065.md`: `{% raw %}` (본문이 Liquid 이스케이프를 설명하는 글이므로 결과가 깨지지 않게 주의)
+- `2023-02-04-Technology-utterances.md`: HTML 주석 안의 Disqus 스니펫
+- `2025-12-12-...circuit-breaker.md`: 코드블록 안 로그의 `{{traceId}}` (건드리지 말 것)
+
+`page/3about.md`의 `{:toc}` 1건이 저장소 전체에서 유일한 kramdown 전용 문법이다. `_posts`에는 없다.
+
+### 2-4. 프론트매터 현황
+
+| 키 | 빈도 |
+|---|---|
+| `title` | 319 |
+| `layout` | 319 |
+| `categories` | 319 |
+| `author` | 319 |
+| `use_math` | 21 |
+
+- **`date` 필드가 없다.** 파일명 `YYYY-MM-DD-` 에서 파생하며, 319개 전부 형식을 지킨다
+- **`tags` 필드가 아예 없다.** 태그 데이터가 존재하지 않는다
+- `author`는 `devFancy` 184 / `devfancy` 135로 갈려 있다. 어차피 제거하므로 정규화하지 않는다
+
+`categories` 표기가 **4가지**로 혼재한다. 변환 시 정규화한다.
+
+```
+Algorithm                    # bare
+[Kafka] / [Technology]       # YAML 배열
+[ Technology ] / [ Essay ]   # 공백 포함 배열
+Side_Project SpringBoot      # 공백 구분 다중값 (8편)
+```
+
+### 2-5. 수식 현황 (v3에서 추가 조사)
+
+| 항목 | 값 |
+|---|---|
+| `use_math: true` | 21편 |
+| 인라인 수식 `$...$` | 434건 |
+| 블록 수식 `$$...$$` | 1건 |
+| `\begin{}` 환경 | **0건** |
+| KaTeX 미지원 명령 | **0건** |
+
+빈출 명령: `\frac` 97, `\sigma` 56, `\mu` 40, `\cap` 39, `\pi` 35, `\bar` 30, `\sqrt` 30, `\alpha` 29, `\lambda` 23, `\over` 19, `\sum` 17.
+
+MathJax 설정의 `equationNumbers: { autoNumber: "AMS" }`는 `\begin{}` 환경이 0건이라 실제로 동작한 적이 없다. **KaTeX 전환은 안전하다.**
+
+### 2-6. 기타 현황
+
+| 항목 | 상태 |
+|---|---|
+| 커스텀 플러그인 | 없음 (`_plugins` 디렉터리 부재) |
+| Jekyll 플러그인 | `jekyll-feed`, `jekyll-paginate` |
+| RSS | `/feed.xml`. 루트의 수동 Liquid 템플릿, 최근 30편. jekyll-feed와 중복 |
+| 댓글 | 미사용 (Disqus 주석 처리, utterances 전체 주석) |
+| GA4 | `G-7BMWW1711K` (gtag.js) |
+| Universal Analytics | `analytics.js` 동시 삽입. 서비스 종료된 죽은 코드 |
+| AdSense | `ca-pub-1091577586291045` + 루트 `ads.txt` |
+| 조회수 스크립트 | `js/pageCounting.js` 전량 주석 처리된 죽은 코드 |
+| 외부 CDN | `cdn.bootcss.com` (font-awesome), `at.alicdn.com` (아이콘) |
+| Similar Posts | `post.html`에 있으나 `page.tags` 기반이라 실제로 렌더링되지 않음 |
+| 이미지 경로 | 절대 `/assets/...` 1167건 (99.7%), 외부 URL 3, 상대/빈 값 1 |
+| `_site` | **2026-02-09 빌드. 신뢰 불가.** 미커밋 초안 `/2025-Retrospective/` 잔재 포함 |
+
+---
+
+## 3. 확정 스택
+
+변경하지 말 것. 3축(유지보수성 / 확장성 / 안정성)으로 비교 검토를 마쳤다.
+
+| 레이어 | 선택 |
+|---|---|
+| 프레임워크 | Astro 7.x |
+| 언어 | TypeScript (strict) |
+| 콘텐츠 | Content Layer API + glob loader + Zod 스키마 |
+| 스타일 | Tailwind CSS v4 (`@tailwindcss/vite`) |
+| 검색 | 빌드 타임 JSON 인덱스 + 정규화 부분 문자열 매칭 (외부 라이브러리 없음) |
+| 수식 | `remark-math` + `rehype-katex` |
+| RSS | `@astrojs/rss` |
+| Sitemap | `@astrojs/sitemap` |
+| 린트/포맷 | Biome |
+| 패키지 매니저 | npm |
+| 배포 | GitHub Actions -> GitHub Pages |
+
+### 3-0. 선행 조건 (Phase 2 착수 전 필수)
+
+**현재 로컬 Node는 `v20.20.1`이고 Astro 7은 22.12 이상을 요구한다. 지금 이대로는 스캐폴딩이 불가하다.**
+
+| 항목 | 값 |
+|---|---|
+| 필요 버전 | Node 22.12 이상 |
+| 버전 고정 파일 | **`.nvmrc`에 `22` 한 줄.** `.node-version`은 만들지 않는다 |
+| GitHub Actions | `actions/setup-node`의 `node-version-file: .nvmrc` |
+
+Phase 2 첫 작업은 `node -v` 확인이다. 22.12 미만이면 거기서 멈추고 사람에게 업그레이드를 요청한다.
+
+### 3-1. 의존성 목표
+
+v1의 "런타임 의존성 3개"는 부정확한 목표였다. 다음으로 대체한다.
+
+| 목표 | 값 |
+|---|---|
+| **런타임 JS 의존성** | **0개** (아일랜드는 순수 브라우저 JS) |
+| 빌드 타임 의존성 | 6개 이내 |
+
+`remark-math`와 `rehype-katex`는 빌드 타임 마크다운 플러그인이며 **런타임 JS를 0바이트 추가한다.** 다만 KaTeX CSS(약 23KB gzip)와 woff2 폰트 20여 개가 정적 자산으로 들어간다. 수식이 있는 페이지에서만 로드되도록 `use_math` 기준으로 CSS를 조건부 삽입한다. 현재 쓰는 MathJax CDN이 런타임에 훨씬 무겁다.
+
+### 3-2. 선택 근거 (요약)
+
+- **Gatsby 제외**: Netlify 인수 이후 활발한 개발 중단. 참고 블로그(wormwlrm)가 Gatsby 4.24.5를 쓰지만 디자인만 참고한다
+- **Next.js 제외**: GitHub Pages는 정적 파일만 서빙하므로 `output: 'export'`가 강제되고 SSR / ISR / 서버 액션 / API Routes / `next/image` 최적화가 전부 불가하다. React 런타임 비용과 20개 규모 의존성만 남는다
+- **Hugo 차점**: 의존성 0, 안정성 최고. 다만 프론트매터 스키마 검증이 없어 319편 이관 시 깨진 글을 눈으로 찾아야 하고, 인터랙티브 UI를 Go 템플릿 + 바닐라 JS로 짜야 한다
+- **Astro 채택**: Zod 스키마로 빌드 타임에 프론트매터 오류를 파일명과 함께 잡아준다. 인터랙티브 요소만 아일랜드로 격리한다. 2026년 1월 Cloudflare 합류로 자금과 인력이 안정됐고 MIT 오픈소스 유지를 명시했다
+
+### 3-3. Pagefind를 쓰지 않는 이유
+
+한국어는 교착어라 조사와 어미가 단어에 붙는다. 단어 경계 색인 방식에서는 "러스트는", "러스트를", "러스트가"가 서로 다른 항으로 들어가고 "러스트" 질의가 그중 아무것도 매칭하지 못한다. 319편 규모에서는 제목 + 카테고리 인덱스에 부분 문자열 매칭이면 충분하다.
+
+### 3-4. Tailwind v4 사용 규칙 (필수)
+
+Tailwind를 토큰 위에 얹힌 얇은 층으로만 쓴다.
+
+```css
+/* src/styles/global.css */
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #ffffff;
+  --color-fg: #1a1a1a;
+  --color-accent: #2a78d6;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #14161a;
+  --color-fg: #e8e8e6;
+}
+```
+
+| 규칙 | 이유 |
+|---|---|
+| 색은 `@theme` 토큰으로만 정의. `bg-zinc-900` 같은 팔레트 클래스 직접 사용 금지 | Tailwind를 걷어내도 토큰이 살아남음 |
+| 다크모드는 `dark:` 접두사 대신 `data-theme` 토큰 재정의 | 컴포넌트마다 반복 방지 |
+| 3회 이상 반복되는 클래스 뭉치는 컴포넌트로 추출 | HTML 클래스 누적 차단 |
+
+Tailwind v3는 쓰지 않는다. 마지막 기능 릴리스가 2023년 12월(v3.4)이고 어차피 v4 마이그레이션을 나중에 해야 한다.
+
+---
+
+## 4. 확정된 결정 사항
+
+### 4-1. URL
+
+| 항목 | 결정 |
+|---|---|
+| 도메인 | `devfancy.github.io` 유지 |
+| 개별 글 URL | **전부 1:1 보존** (대소문자 포함) |
+| `trailingSlash` | `'always'` |
+| `build.format` | `'directory'` |
+| `/page2` ~ `/page64` | 버린다 |
+| `/archive/`, `/category/`, `/search/`, `/about/` | 유지 |
+| `/category/#Kafka` 앵커 | 유지. `/category/`에 `id="Kafka"` 형태 앵커를 그대로 둔다 |
+| `/category/:slug/` | 신규 추가 (순증) |
+| `/solutions/` | 신규 추가 (목록 페이지만) |
+| `/feed.xml` | 유지. 단일 소스로 통합 |
+| `/resume` | 신규 추가 (2차) |
+
+#### 의도된 URL 변경 (v3에서 신설)
+
+아래 3건은 **의도적으로 바뀌며, 글 URL이 아니므로 허용한다.** Phase 4 diff에서 "누락"으로 잡히지만 수정 대상이 아니다. 대신 후속 조치가 필요하다.
+
+| 기존 | 변경 후 | 후속 조치 |
+|---|---|---|
+| `/sitemap.xml` | `/sitemap-index.xml` + `/sitemap-0.xml` | `robots.txt`를 새 주소로 고치고 **Search Console에 사이트맵 재등록** |
+| `/search.json` | `/search-index.json` | 외부 참조 없음. 내부 검색만 사용 |
+| `/page2` ~ `/page64` | 없음 | 무한 스크롤/전체 그리드로 대체. 색인 가치가 낮다 |
+
+`robots.txt`는 지금 `http://devFancy.github.io/sitemap.xml`로 되어 있다. 프로토콜(http -> https), 대소문자, 경로 세 가지를 모두 고친다.
+
+`@astrojs/sitemap`의 출력 파일명을 억지로 `/sitemap.xml`로 되돌리지 않는다. 표준 동작을 따르고 Search Console을 한 번 갱신하는 편이 싸다.
+
+### 4-2. 콘텐츠 구조
+
+| 항목 | 결정 |
+|---|---|
+| 카테고리 34개 | 유지. 표기 4종만 정규화 |
+| 문제풀이 75편 | 설정 배열로 분리. 프론트매터 변경 없음 |
+| 분리 방식 | 메인과 `/posts`에서 제외, `/solutions/`에 모아 표시 |
+| `/category/` | 34개 전부 표시 |
+| `/archive/` | 전수 표시 |
+| 개별 글 URL | 문제풀이도 기존 플랫 슬러그 유지 |
+
+```ts
+// src/config.ts
+export const SOLUTION_CATEGORIES = ['Algorithm', 'AlgorithmSkill', 'LeetCode'] as const;
+```
+
+카테고리 표시 순서는 `_config.yml`의 `categories_order` 34개를 그대로 옮기지 않는다. 글 수 내림차순으로 자동 정렬해 수동 유지보수를 없앤다.
+
+표시 규칙:
+
+- 글 수 내림차순 정렬
+- 글 수를 칩에 함께 표기
+- 헤더 드롭다운에는 상위 8개 + "전체 보기"
+
+### 4-3. 디자인
+
+| 항목 | 결정 |
+|---|---|
+| Hero | 타이포 중심 + 프로필 사진. 배경 사진 없음 |
+| 슬로건 | `흔들리지 않고, 후회 없이 / My path, my pace, no regrets.` |
+| 메인 구조 | 헤더 -> Hero -> 대표 포스트 -> 전체 포스트 그리드 -> 푸터 |
+| 대표 포스트 | 테마 제목 + 수동 큐레이션 3개 (`curation.yml`) |
+| 카드 썸네일 | **없음** |
+| 카드 구성 | **카테고리 칩 + 제목 + 날짜** (태그 데이터 부재로 v1에서 변경) |
+| 카드 한 줄 설명 | 미결. Phase 2에서 시안 A/B 비교 후 결정 |
+| OG 이미지 | 공통 1장 |
+| 다크/라이트 | 토큰 재정의 방식 |
+| 광고 | **제거** |
+
+**썸네일 미채용 근거**: v1은 "319편에 이미지가 없다"고 썼으나 실제로는 59.2%가 이미지를 가진다. 결론은 유지하되 근거를 바꾼다. 본문 첫 이미지는 대표성이 없다. 알고리즘 글은 문제 스크린샷, 기술 글은 다이어그램이나 에러 로그 캡처이며, 40.8%는 여전히 폴백이 필요하다.
+
+**태그 처리**: `tags` 데이터가 없으므로 카드에서 태그를 빼고 카테고리 칩이 그 역할을 한다. 8편은 칩이 2개 붙는다. 스키마에는 `tags`를 빈 배열로 예약해 신규 글부터 쓸 수 있게 한다.
+
+### 4-4. 기능
+
+| 항목 | 결정 |
+|---|---|
+| 검색 | 의존성 0. `/search/` 페이지와 헤더 모달이 같은 컴포넌트 재사용 |
+| 인기순 / 조회수 | 제외. `featured`, `featuredOrder` 필드만 예약 |
+| 댓글 | 없음 |
+| 통계 | GA4 `G-7BMWW1711K` 이식 |
+| 수식 | `remark-math` + `rehype-katex`. **전역 적용** (4-4-1 참조) |
+| 뉴스레터 | Stibee. 계정 없음. 컴포넌트 자리만 잡고 iframe 주소는 비워둔다 |
+| 후원 | 기존 카카오페이 QR 이미지 재사용, 모달로 표시 |
+| 메타 설명 | 본문 첫 문단 자동 추출. 화면 미표시, SEO 전용 |
+
+#### 4-4-1. 수식은 전역 적용된다 (v3에서 정정)
+
+v1·v2는 `use_math: true` 21편만 수식을 처리한다고 썼다. **이 전제는 성립하지 않는다.**
+
+`remark-math`는 `astro.config.mjs`의 `markdown.remarkPlugins`에 등록되며 **모든 `.md`에 적용된다.** 프론트매터로 글마다 켜고 끌 수 없다. Jekyll은 `{% if page.use_math %}`로 MathJax 스크립트 삽입 자체를 제어했지만 Astro에는 대응물이 없다.
+
+결과:
+
+- `use_math`가 없는 298편에서도 `$...$` 쌍이 수식으로 해석된다
+- 금액 표기 `$100`처럼 `$`가 두 번 나오면 그 사이가 수식이 된다
+
+실측 결과 **5개 파일 11건**이 깨진다. Phase 3 변환 스크립트에서 `\$`로 이스케이프한다.
+
+| 파일 | 건수 | 예시 |
+|---|---|---|
+| `2022-04-25-EF-06-Digital-Money.md` | 6 | `$90이 남았고, Bob은 $100 을 예금하였고` |
+| `2022-12-05-Git-Commit-Message.md` | 2 | `$location, $compile` |
+| `2022-04-21-EF-The-Rise-Of-Fintech_2.md` | 1 | `$1,000 ~ $10,000` |
+| `2023-02-20-DB-Transaction-Isolation-Level.md` | 1 | `$100을 ...` |
+| `2023-08-31-Goodfriends-PR-Label-Jenkins-Build.md` | 1 | `$MERGED ...` |
+
+**이스케이프하면 안 되는 파일 2개.** `use_math`가 빠졌지만 진짜 수식이 들어 있어, 전역 적용이 오히려 기존 버그를 고쳐준다.
+
+| 파일 | 내용 |
+|---|---|
+| `2022-06-01-EF-07-Cryptography.md` | `$2^{256}$` |
+| `2023-02-05-OS-19-TLB.md` | `$\alpha$` |
+
+`use_math` 필드는 스키마에 남긴다. 수식 렌더링 제어용이 아니라 **KaTeX CSS/폰트를 조건부 로드하는 용도**로 재정의한다. 위 2개 파일에는 `use_math: true`를 추가한다 (총 23편).
+
+Phase 3 완료 후 `$`가 포함된 전체 파일을 렌더링 결과로 재확인한다.
+
+### 4-5. 이력서 (2차)
+
+참고 구조: `https://wormwlrm.github.io/resume`
+
+- 회사와 업무 중심. 개인 신상 최소화
+- 이메일 직접 노출 안 함. GitHub / LinkedIn / Instagram 링크만
+- JSON 데이터 + Astro 컴포넌트 렌더링
+- `@media print` 대응
+
+| 섹션 | 내용 |
+|---|---|
+| 소개 | 이름, 연차, 커리어 요약, 추구하는 가치, 소셜 링크 |
+| Careers | 회사명(링크), 직무, 기간, 총 근속, 회사 한 줄 설명 |
+| 프로젝트 | 프로젝트명, 한 줄 설명, 기간, 기술 스택 태그, 요약, 성과 불릿 |
+| Open Sources | 개인 프로젝트를 같은 구조로 |
+| Activities | 연도별 외부 활동 |
+| Educations | 학력 |
+
+**핵심 패턴**: 성과 불릿에 관련 블로그 글을 링크한다. `postSlug` 필드를 두고 빌드 타임에 실재 여부를 검증한다.
+
+### 4-6. 정리 대상 (Phase 2에서 일괄 제거)
+
+| 대상 | 처리 |
+|---|---|
+| AdSense 스크립트 | 제거 |
+| `ads.txt` | 삭제 |
+| Universal Analytics `analytics.js` | 제거 (서비스 종료) |
+| `js/pageCounting.js` | 제거 (전량 주석) |
+| `cdn.bootcss.com` (font-awesome) | 제거. 필요한 아이콘만 인라인 SVG |
+| `at.alicdn.com` (아이콘) | 제거. 인라인 SVG |
+| 수동 `feed.xml` 템플릿 | 제거. `@astrojs/rss` 단일 생성 |
+| 수동 `search.json` | 제거. 빌드 타임 `search-index.json`으로 대체 |
+| `demo.html` 레이아웃 | 미사용. 이관 안 함 |
+| Similar Posts | 동작하지 않던 기능. 이관 안 함 |
+| `robots.txt` | `https://devfancy.github.io/sitemap-index.xml`로 정정 |
+| `.gitignore` | Astro 기준 재작성. `dist/`, `.astro/` 추가, `*.xml` 규칙 제거 |
+
+### 4-7. 기타 확정
+
+| 항목 | 결정 | 근거 |
+|---|---|---|
+| 마크다운 포맷 | `.md`만. MDX 사용 안 함 | 글이 코드에 종속되면 다음 이사가 비싸진다 |
+| 기존 이미지 | `public/assets/img/`에 복사, 경로·파일명 유지 | 319편 본문 무수정 |
+| 이미지 압축 | **복사 시점에 수행** (Phase 3) | 별도 커밋으로 하면 저장소가 커진다. 8-3 참조 |
+| 신규 글 이미지 | `astro:assets` 최적화 적용 | 하이브리드 |
+| 컷오버 | 프리뷰 배포로 확인 후 교체 | |
+| 기존 Jekyll 파일 | `jekyll-final` 태그 남기고 삭제 | git 히스토리에 남음 |
+| Node | 22.12 이상. `.nvmrc`에 `22` 고정 | Astro 7 요구사항. 3-0 참조 |
+
+---
+
+## 5. 미결 항목
+
+| 항목 | 선택지 | 결정 시점 |
+|---|---|---|
+| 카드 한 줄 설명 | 넣는다 / 카테고리+제목+날짜만 | Phase 2 시안 A/B |
+| `/2026-DevHistory/` 충돌 | page 우선 / post 우선 | Phase 1 빌드 결과 확인 후 |
+| 이미지 압축 수준 | `pngquant` 품질 파라미터 | Phase 3 샘플 확인 후 |
+
+`page/1dev.html`의 `permalink: /2026-DevHistory/`와 `_posts/2026-01-01-2026-DevHistory.md`가 같은 URL을 만든다. Jekyll이 어느 쪽을 출력했는지 Phase 1에서 확인하고 Astro도 같은 쪽으로 맞춘다.
+
+카드 한 줄 설명은 태그 데이터 부재로 **넣는 쪽이 유리해졌다.** 카테고리 칩과 제목만으로는 Algorithm 70편을 구분할 수 없다.
+
+---
+
+## 6. 작업 범위 분할
+
+1차의 완료 조건은 "예쁘다"가 아니라 "안 깨졌다"이다.
+
+| 영역 | 1차 (컷오버까지) | 2차 (컷오버 이후) |
+|---|---|---|
+| 콘텐츠 | 319편 이관, 글 URL 100% 보존 | |
+| 페이지 | 메인, `/posts`, `/category/`, `/category/:slug/`, `/archive/`, `/search/`, `/about/`, `/solutions/` | `/resume` |
+| 기능 | 검색, 다크모드, RSS, sitemap, GA4, 수식 | 뉴스레터, 후원 모달 |
+| 디자인 | 카드 목록, 토큰 정의, 읽기 화면 | Hero 완성, 대표 포스트 섹션, 애니메이션 |
+| 정리 | 광고/죽은 코드/외부 CDN 제거, 이미지 압축 | |
+| 검증 | URL diff 0건(의도된 변경 제외), 모바일 375px | |
+
+---
+
+## 7. 브랜치 전략
+
+### 7-1. 원칙
+
+- `main`은 **컷오버 전까지 라이브 Jekyll 사이트**다. Astro 코드를 섞지 않는다.
+- `feat/astro`를 장수 통합 브랜치로 두고, 모든 Astro 작업을 그 위에 쌓는다.
+- 문서·검증 산출물처럼 Jekyll 빌드에 영향이 없는 것만 `main`에 직접 PR한다.
+- 검증 산출물은 `_migration/`에 둔다. 밑줄 시작 디렉터리라 Jekyll이 자동으로 무시한다. 루트에 두면 `_site`로 그대로 배포된다.
+
+### 7-2. 구조
+
+```
+main  (라이브 Jekyll. Phase 5까지 Astro 코드 없음)
+│
+├── docs/migration-plan ─────────► main     MIGRATION.md + _migration/PHASE0.md
+├── chore/url-baseline ─────────► main     _migration/urls-before.txt
+│
+└── feat/astro  (장수 통합 브랜치. Phase 5에서만 main으로)
+    │
+    ├── feat/astro-01-scaffold   Astro 골격, 토큰, 레이아웃, 파일럿 5편
+    ├── feat/astro-02-content    변환 스크립트 + 319편 + 이미지 (01 위에 스택)
+    ├── feat/astro-03-pages      목록/카테고리/아카이브/solutions (02 위)
+    ├── feat/astro-04-search     검색 인덱스 + 모달 (03 위)
+    └── feat/astro-05-deploy     GitHub Actions + RSS/sitemap (04 위)
+```
+
+### 7-3. Stacked PR 운용
+
+**언제 쌓는가**: 아래 브랜치의 코드가 없으면 리뷰가 불가능할 때만.
+`01-scaffold` 없이는 `02-content`를 읽을 수 없으므로 스택이 맞다.
+
+**언제 쌓지 않는가**: 서로 파일이 겹치지 않고 독립적으로 이해되는 작업.
+
+운용 규칙:
+
+| 규칙 | 내용 |
+|---|---|
+| PR base | 각 PR의 base는 **바로 아래 브랜치**로 지정한다. `02-content`의 base는 `01-scaffold` |
+| 머지 순서 | 아래부터 위로. `01` 머지 -> GitHub가 `02`의 base를 `feat/astro`로 자동 조정 |
+| 리베이스 | 아래 브랜치가 수정되면 위 브랜치는 `git rebase --onto`로 따라 올린다 |
+| PR 크기 | 리뷰 가능한 단위로 자른다. 319편 일괄 변환은 diff가 크므로 **스크립트 커밋과 생성물 커밋을 분리**한다 |
+| 승인 게이트 | Phase 경계 = PR 경계. 승인 없이 다음 브랜치를 만들지 않는다 |
+
+**스택 리베이스 예시**
+
+```bash
+# 01-scaffold에 리뷰 반영이 들어간 뒤
+git checkout feat/astro-02-content
+git rebase --onto feat/astro-01-scaffold <이전_01_HEAD> feat/astro-02-content
+git push --force-with-lease
+```
+
+`--force-with-lease`를 쓴다. `--force`는 쓰지 않는다.
+
+### 7-4. 커밋 규칙
+
+- 커밋 메시지는 **제목 1줄**로 간결하게. 본문은 꼭 필요할 때만, 핵심만
+- `feat:` / `fix:` / `chore:` / `docs:` 접두사
+- 비슷한 성격의 작업은 묶는다. 과도하게 쪼개지 않는다
+- 예외: **변환 스크립트와 그 대량 생성물은 별도 커밋** (diff 성격이 다르다)
+- `Co-Authored-By` 트레일러를 넣지 않는다
+
+---
+
+## 8. Phase별 작업
+
+Phase 0은 완료됐다. 각 Phase가 끝나면 멈추고 보고한다.
+
+### Phase 0. 현황 파악 (읽기 전용) — 완료
+
+결과는 `_migration/PHASE0.md`. 브랜치 `docs/migration-plan`.
+
+### Phase 1. 기존 URL 스냅샷
+
+브랜치: `chore/url-baseline` (base `main`)
+
+- **`_site`를 먼저 삭제한다.** 현재 `_site`는 2026-02-09 빌드라 신뢰할 수 없다. `/2025-Retrospective/` 같은 미커밋 초안의 잔재가 섞여 있다
+- `bundle exec jekyll build --trace`로 새로 빌드
+- 전체 URL 목록을 **`_migration/urls-before.txt`**로 저장, 정렬해서 커밋
+- **`/2026-DevHistory/`가 page와 post 중 어느 쪽으로 생성됐는지 확인해 보고한다**
+
+### Phase 2. 스캐폴딩 + 파일럿 5편 + 시안 비교
+
+브랜치: `feat/astro-01-scaffold` (base `feat/astro`)
+
+- `main`은 건드리지 않는다. 기존 Jekyll 파일도 아직 지우지 않는다
+- **`node -v`로 22.12 이상 확인. 미달이면 멈추고 사람에게 요청한다**
+- `.nvmrc` 생성 (`22`)
+- Astro 공식 blog 스타터 기준으로 구성
+- **`site`, `trailingSlash: 'always'`, `build.format: 'directory'`를 가장 먼저 설정한다**
+- Content Layer 스키마 정의 (부록 A)
+- `remark-math` + `rehype-katex` 설정, KaTeX CSS 조건부 로드
+- 4-6의 정리 대상 일괄 제거
+
+파일럿 5편:
+
+1. 코드 블록이 많은 글
+2. 이미지가 많은 글
+3. **`use_math: true` 글 1편** (수식 렌더링 확인)
+4. **`$` 충돌이 있는 글 1편** (`2022-04-25-EF-06-Digital-Money.md`, 이스케이프 검증)
+5. 가장 오래된 글
+
+**시안 A/B**: 카드 목록을 두 벌 만든다.
+
+- A: 카테고리 칩 + 제목 + 날짜
+- B: A + 한 줄 설명
+
+나란히 볼 수 있게 하고 멈춘다. 로컬 프리뷰 주소를 알린다.
+
+### Phase 3. 전체 변환 + 이미지 이관
+
+브랜치: `feat/astro-02-content` (base `feat/astro-01-scaffold`)
+
+변환 스크립트를 작성해 319편을 일괄 변환한다. 수작업 금지.
+
+#### 8-3-1. 프론트매터 / 본문 처리
+
+| 항목 | 규칙 |
+|---|---|
+| `date` | 파일명 `YYYY-MM-DD-`에서 파생 |
+| `categories` | 4종 표기 정규화. 공백 구분 다중값(8편)은 배열로 분해 |
+| `tags` | 빈 배열로 생성 |
+| `layout`, `author` | 제거 (Astro 레이아웃이 대체) |
+| `use_math` | 유지 + 2편 추가 (4-4-1). CSS 로드 제어용으로 의미 재정의 |
+| `$` 이스케이프 | **5개 파일 11건을 `\$`로.** 대상은 4-4-1 표. 나머지 2개 파일은 건드리지 않는다 |
+| `{{site.url}}` | 문자열 제거 |
+| `{% raw %}` / `{% endraw %}` | 제거. 단 2편은 본문이 Liquid를 설명하는 글이므로 결과 확인 필수 |
+| 코드블록 안 `{{traceId}}` | **건드리지 않는다** |
+| 파일명 공백 1건 | `2022-05-04-PS-␣03-...`. 슬러그 생성 시 공백 제거해 `/PS-03-.../`로 Jekyll과 동일하게 |
+| 날 HTML 4개 파일 | Astro 7 컴파일러 통과하는지 확인 |
+| 슬러그 대소문자 | **보존.** 소문자화 금지 |
+
+Zod 스키마 검증 에러를 전부 해소한다. 변환 경고는 리포트로 남긴다.
+
+#### 8-3-2. 이미지 이관 + 압축 (v3에서 Phase 1.5를 흡수)
+
+**`assets/img` -> `public/assets/img` 복사 시점에 압축한다.** 별도 Phase로 분리하지 않는다.
+
+이유: `main`에서 1230개 파일을 압축해 커밋하면 1230개 blob이 **새로** 생긴다. 기존 586MB는 히스토리에 그대로 남으므로 `clone` 크기가 줄기는커녕 900MB 규모로 **늘어난다.** 복사본에만 압축을 적용하면 신규 blob은 압축된 것 하나뿐이다.
+
+| 항목 | 내용 |
+|---|---|
+| 대상 | 1230개 파일 / 586MB |
+| 도구 | **`pngquant`** (팔레트 양자화) + `jpegoptim` |
+| 손실 여부 | **손실 압축이다.** v2의 "무손실" 표기는 오류 |
+| 기대 절감 | 스크린샷 PNG 기준 60~80% |
+| 파일명·확장자 | **유지.** 본문 319편 무수정이 목적 |
+| WebP | **쓰지 않는다.** 확장자가 바뀌어 본문을 고쳐야 한다 |
+
+`oxipng` 같은 무손실 도구는 스크린샷에서 10~30%밖에 줄지 않아 목적에 미달한다.
+
+절차:
+
+1. 10MB 초과 PNG 13개(최대 15MB)를 먼저 처리해 품질 파라미터를 정한다
+2. 샘플 10장을 육안 비교하고 승인을 받는다
+3. 전체 적용, 압축 전후 용량과 파일 수를 보고한다
+
+git 히스토리는 재작성하지 않는다. 퍼블릭 저장소라 위험 대비 이득이 적다.
+
+### Phase 4. URL 검증
+
+브랜치: `feat/astro-04-search` 이후 또는 별도 검증 커밋
+
+- `astro build` 결과에서 `_migration/urls-after.txt` 추출
+- `_migration/urls-before.txt`와 diff
+- **글 URL 누락 0건**까지 수정
+- 4-1 "의도된 URL 변경" 3건과 `/page2`~`/page64`는 누락 허용. 표시만 한다
+- diff 결과를 보고하고 멈춘다
+
+### Phase 5. 배포
+
+브랜치: `feat/astro-05-deploy` -> `feat/astro` -> `main`
+
+- GitHub Actions 워크플로 작성 (`node-version-file: .nvmrc`)
+- 프리뷰 배포로 확인
+- 컷오버 전 승인
+- 컷오버 후 `jekyll-final` 태그를 남기고 Jekyll 파일 삭제
+- **Search Console에 `sitemap-index.xml` 재등록**
+- 색인 변화 2주 모니터링
+
+---
+
+## 9. 제약 조건
+
+### 9-1. URL
+
+개별 글 퍼머링크를 1:1로 보존한다. 검색 유입 319편이 걸려 있다.
+
+### 9-2. 한국어 본문
+
+```css
+word-break: keep-all;
+overflow-wrap: break-word;
+```
+
+### 9-3. 모바일
+
+- `<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">`
+- 안전 영역: `env(safe-area-inset-*)`
+- `100vh` 대신 `100dvh`
+- 터치 타깃 최소 44x44px
+- 코드 블록, 표, **KaTeX 수식 블록**은 래퍼에 `overflow-x: auto`
+
+### 9-4. 다크모드
+
+- FOUC 방지용 인라인 스크립트
+- `<meta name="theme-color">`를 라이트/다크 각각 지정
+- KaTeX 렌더링이 다크 배경에서 읽히는지 확인
+
+### 9-5. 보안
+
+- 퍼블릭 저장소다. 토큰, 키를 절대 커밋하지 않는다
+- 광고 스크립트, 임의의 트래킹 스크립트를 추가하지 않는다
+
+### 9-6. 작업 방식
+
+- 단계별로 커밋한다 (7-4 규칙)
+- 루트에 `CLAUDE.md`를 만들어 확정 스택과 제약을 기록한다
+
+---
+
+## 10. 완료 기준
+
+1. `_migration/urls-before.txt` 대비 **글 URL 누락 0건** (페이지네이션·의도된 변경 제외)
+2. 319편 전부 렌더링 깨짐 없음
+3. Zod 스키마 검증 에러 0건
+4. `use_math: true` 23편의 수식이 정상 렌더링
+5. **`$`가 포함된 비수식 글에서 수식 오인식 0건**
+6. 한국어 검색에서 "러스트" 입력 시 "러스트는"이 포함된 글이 검색됨
+7. 모바일 375px 폭에서 가로 스크롤 발생 안 함
+8. 다크/라이트 전환 시 깜빡임 없음
+9. 런타임 JS 의존성 0개
+10. `/search/`, `/archive/`, `/category/`, `/about/`, `/feed.xml`이 기존 URL로 접근 가능
+11. 페이지 소스에 AdSense, UA, 외부 CDN 참조가 남아 있지 않음
+12. `robots.txt`가 `https://devfancy.github.io/sitemap-index.xml`를 가리킴
+
+---
+
+## 11. 금지 사항
+
+- 승인 없이 Phase를 건너뛰지 않는다
+- 확정 스택을 다른 것으로 바꾸자고 제안하지 않는다
+- `main` 브랜치에 직접 커밋하지 않는다
+- Phase 5 승인 전까지 기존 Jekyll 파일을 삭제하지 않는다
+- 오픈소스 테마를 통째로 가져오지 않는다
+- Pagefind를 도입하지 않는다
+- MDX를 도입하지 않는다
+- 개별 글의 URL을 바꾸지 않는다 (문제풀이 글 포함, 대소문자 포함)
+- 이미지 파일명과 경로를 바꾸지 않는다 (WebP 변환 포함)
+- 319편의 프론트매터를 손으로 일괄 편집하지 않는다. 반드시 스크립트로
+- git 히스토리를 재작성하지 않는다
+- `--force` push를 쓰지 않는다 (`--force-with-lease`만)
+
+---
+
+## 부록 A. Content Layer 스키마
+
+```ts
+// src/content.config.ts
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const posts = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),            // 파일명에서 파생해 주입
+    categories: z.array(z.string()).min(1),
+    tags: z.array(z.string()).default([]),   // 현재 데이터 없음. 신규 글용 예약
+    use_math: z.boolean().default(false),    // KaTeX CSS 조건부 로드용
+
+    // 예약 필드
+    featured: z.boolean().default(false),
+    featuredOrder: z.number().optional(),
+
+    // 선택
+    summary: z.string().optional(),   // 없으면 본문 첫 문단 자동 추출
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { posts };
+```
+
+`layout`과 `author`는 스키마에 없다. 변환 스크립트에서 제거한다.
+
+## 부록 B. curation.yml
+
+```yaml
+theme: "장애를 견디는 시스템은 어떻게 만드나"
+posts:
+  - spring-boot-kafka-dlq
+  - spring-boot-kotlin-external-api-circuit-breaker
+  - spring-boot-coupon-system-performance-improvement
+```
+
+빌드 타임에 슬러그 실재 여부를 검증한다. 오타가 있으면 빌드를 세운다.
+
+## 부록 C. resume.json 구조
+
+```jsonc
+{
+  "name": "문준용",
+  "headline": "백엔드 개발자",
+  "intro": ["...", "..."],
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/devFancy" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/junyong-moon-479385264" }
+  ],
+  "careers": [
+    {
+      "company": "포스타입",
+      "role": "Backend Engineer",
+      "period": { "from": "2026-03", "to": null },
+      "summary": "콘텐츠 플랫폼",
+      "projects": [
+        {
+          "name": "",
+          "summary": "",
+          "period": { "from": "", "to": null },
+          "stack": ["Kotlin", "Spring Boot", "MySQL"],
+          "highlights": [
+            { "text": "", "postSlug": "spring-boot-kafka-dlq" }
+          ]
+        }
+      ]
+    }
+  ],
+  "openSources": [],
+  "activities": [],
+  "educations": [],
+  "updatedAt": "2026-09"
+}
+```
+
+## 부록 D. 검색 인덱스 설계
+
+```
+빌드 타임:
+  319편 -> { slug, title, categories, date } 배열 -> public/search-index.json
+
+런타임:
+  질의 정규화 (NFC 통일, 공백 제거, 소문자화)
+  대상 정규화 후 부분 문자열 매칭
+  카테고리 필터와 조합 가능
+```
+
+- 외부 라이브러리를 쓰지 않는다
+- 본문 전문 검색은 범위 밖이다
+- `tags`는 현재 비어 있으므로 인덱스에서 제외한다. 데이터가 생기면 추가한다
+- 인덱스 크기를 측정해 보고한다. 300KB를 넘으면 필드를 줄인다
+- 기존 루트 `search.json`(Liquid 생성)은 제거한다
+
+---
+
+## 변경 이력
+
+| 버전 | 날짜 | 내용 |
+|---|---|---|
+| v1 | 2026-09-20 | 최초 작성 |
+| v2 | 2026-09-20 | Phase 0 결과 반영. 글 수 327 -> 319 정정, 썸네일 근거 정정, 태그 부재 반영, KaTeX 도입, AdSense 제거, 이미지 압축 Phase 추가, 의존성 목표 재정의 |
+| v3 | 2026-09-20 | 수식 전역 적용 정정(`$` 이스케이프 11건 명시), Phase 1.5를 Phase 3에 흡수(`pngquant`, 손실 압축), 의도된 URL 변경 목록 신설, 브랜치 전략(§7) 복원, Node 22.12 선행 조건 명시, 카테고리 표기 4종 정정 |
