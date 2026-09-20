@@ -9,6 +9,7 @@ interface Props {
   overlay?: boolean;
 }
 const { overlay = false } = Astro.props;
+const here = Astro.url.pathname;
 ---
 <header id="site-header" class:list={['site-header', overlay && 'is-overlay']}>
   <div class="mx-auto flex max-w-3xl items-center gap-x-1 px-4 py-4 sm:gap-x-5">
@@ -44,9 +45,11 @@ const { overlay = false } = Astro.props;
   </div>
 
   <nav id="menu-panel" class="sm:hidden" hidden>
-    <ul class="mx-auto max-w-3xl px-4 pb-3 text-right">
-      {NAV.map((n) => (
-        <li><a href={n.href} class="block py-3 text-base">{n.label}</a></li>
+    <ul class="mx-auto max-w-3xl px-4 pb-2">
+      {NAV.map((n, i) => (
+        <li style={`--i:${i}`}>
+          <a href={n.href} aria-current={here === n.href ? 'page' : undefined}>{n.label}</a>
+        </li>
       ))}
     </ul>
   </nav>
@@ -108,11 +111,16 @@ const { overlay = false } = Astro.props;
   :global(:root[data-theme='dark']) [data-icon='sun'] { opacity: 0; transform: rotate(90deg) scale(.6); }
   :global(:root[data-theme='dark']) [data-icon='moon'] { opacity: 1; transform: none; }
 
-  /* 햄버거 -> X */
+  /* NOTE 햄버거 -> X. 회전축을 막대마다 직접 지정한다 [SVG 변형 기준점]
+   * - SVG <path> 의 transform-origin: center 는 막대가 아니라 viewBox 중심(12,12)을 가리킨다
+   * - HTML 요소와 달라서 세 막대가 전부 같은 점을 돌아 X 가 오른쪽으로 밀려 있었다
+   */
   #menu-toggle .bar {
-    transform-origin: center;
     transition: transform .28s cubic-bezier(.4, 0, .2, 1), opacity .18s ease;
   }
+  #menu-toggle .bar-top { transform-origin: 12px 7px; }
+  #menu-toggle .bar-mid { transform-origin: 12px 12px; }
+  #menu-toggle .bar-bot { transform-origin: 12px 17px; }
   #menu-toggle[aria-expanded='true'] .bar-top { transform: translateY(5px) rotate(45deg); }
   #menu-toggle[aria-expanded='true'] .bar-bot { transform: translateY(-5px) rotate(-45deg); }
   #menu-toggle[aria-expanded='true'] .bar-mid { opacity: 0; }
@@ -137,12 +145,32 @@ const { overlay = false } = Astro.props;
     backdrop-filter: none;
   }
 
-  #menu-panel a { opacity: .85; }
-  #menu-panel a:hover { color: var(--color-accent); opacity: 1; }
+  /* NOTE 항목을 줄로 나눈다. 글자만 띄워 두면 세 개가 한 덩어리로 읽힌다 [모바일 네비게이션] */
+  #menu-panel li + li { border-top: 1px solid var(--color-rule); }
+  #menu-panel a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 52px;
+    font-size: 17px;
+    opacity: .85;
+  }
+  #menu-panel a:hover, #menu-panel a:active { color: var(--color-accent); opacity: 1; }
+
+  /* 지금 보고 있는 페이지 */
+  #menu-panel a[aria-current='page'] { color: var(--color-accent); opacity: 1; font-weight: 600; }
+
+  /* 열릴 때 위에서부터 한 칸씩 */
+  #menu-panel.is-open li { animation: menu-in .28s ease both; animation-delay: calc(var(--i) * .05s); }
+  @keyframes menu-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: none; }
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .site-header, #theme-toggle, #theme-toggle svg,
     #menu-toggle .bar, #menu-panel { transition: none; }
+    #menu-panel.is-open li { animation: none; }
   }
 </style>
 

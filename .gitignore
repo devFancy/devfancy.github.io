@@ -3,6 +3,9 @@ dist/
 .astro/
 node_modules/
 
+# 빌드 때 만드는 대표 이미지. 원본은 assets/img 에 있다
+public/assets/cover/
+
 # Jekyll (Phase 5 컷오버까지 유지)
 _site/
 .jekyll-cache/

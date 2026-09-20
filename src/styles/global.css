@@ -60,6 +60,12 @@ html {
   color-scheme: light;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  /* NOTE iOS·안드로이드는 좁은 화면에서 글자를 제멋대로 키운다 [모바일 글자 확대]
+   * - 데스크톱 브라우저에는 없는 동작이라 개발 중에는 드러나지 않는다
+   * - 100% 로 못박아 어느 기기에서나 지정한 크기로 보이게 한다
+   */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -90,7 +96,7 @@ body * {
 }
 
 /* NOTE Preflight가 제목·목록 기본값을 전부 지우므로 본문 타이포는 직접 정의한다
- * - Jekyll 대비 읽기 화면 파리티를 맞추는 최소 규칙이다 (6절 1차 범위)
+ * - Jekyll 과 읽는 화면이 같아 보이게 하는 최소 규칙이다 [본문 타이포그래피]
  * - scroll-margin-top은 목차 앵커로 점프할 때 제목이 상단에 붙는 것을 막는다
  */
 /* NOTE 본문은 회색이다. 흰 바탕에 순검정은 긴 글에서 눈이 빨리 피로해진다
@@ -177,6 +183,52 @@ blockquote.quote {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+/* NOTE 칩은 두 곳에서 만들어진다. Chip.astro 가 서버에서, category.astro 가 innerHTML 로 [칩]
+ * - 그래서 치수를 유틸리티 클래스에 흩어 두지 않고 여기 한 곳에만 둔다. 한쪽만 고쳐지는 일을 막는다
+ * - 높이를 고정한다. line-height 해석과 폰트 메트릭이 기기마다 달라 상자 높이가 흔들렸다
+ *   (iOS 에서 44px, 데스크톱에서 25px 로 갈렸다). inline-flex + 고정 높이면 어디서나 같다
+ */
+:root {
+  --chip-h: 26px;
+  --chip-px: 10px;
+  --chip-fs: 14px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--chip-h);
+  padding-inline: var(--chip-px);
+  border: 1px solid var(--color-rule);
+  border-radius: 3px;
+  font-size: var(--chip-fs);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--color-muted);
+}
+.chip:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.chip[aria-pressed='true'] {
+  background: var(--color-fg);
+  border-color: var(--color-fg);
+  color: var(--color-bg);
+}
+
+.chip-tag {
+  background: var(--color-tag);
+  border-color: transparent;
+  color: var(--color-tag-fg);
+}
+.chip-tag:hover { border-color: var(--color-accent); }
+.chip-tag[aria-pressed='true'] {
+  background: var(--color-tag-on);
+  border-color: var(--color-tag-on);
+  color: var(--color-bg);
 }
 
 /* NOTE: 터치 타깃 최소 44px [모바일 터치 타깃] */

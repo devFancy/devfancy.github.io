@@ -26,7 +26,7 @@ npm run dev        # http://localhost:4321
 ## 글 쓰기
 
 글은 `src/content/posts/*.md` 에 둡니다. **파일명이 곧 URL** 입니다.
-`src/content/posts/Spring-Transaction.md` → `/Spring-Transaction/`
+`src/content/posts/Spring-DB-Transaction.md` -> `/Spring-DB-Transaction/`
 
 ```yaml
 ---
@@ -47,10 +47,10 @@ use_math: true   # 수식이 있을 때만
 ```
 src/
   components/   Hero, Header, Chip 같은 공용 조각
-  layouts/      Base.astro — 모든 페이지의 껍데기
+  layouts/      Base.astro - 모든 페이지의 껍데기
   pages/        라우트. [...slug].astro 가 글 상세를 만든다
   content/      posts/ 아래 마크다운
-  styles/       global.css — 색 토큰과 .prose 본문 스타일
+  styles/       global.css - 색 토큰과 .prose 본문 스타일
   config.ts     사이트 정보, 네비, 카테고리·태그 순서
 public/assets/img/    글 본문 이미지
 ```
@@ -58,7 +58,7 @@ public/assets/img/    글 본문 이미지
 ## 배포
 
 `main` 에 푸시되면 `.github/workflows/deploy.yml` 이 GitHub Pages 로 배포합니다.
-저장소 설정의 Pages → Source 는 **GitHub Actions** 여야 합니다.
+저장소 설정의 Pages -> Source 는 **GitHub Actions** 여야 합니다.
 
 ---
 
