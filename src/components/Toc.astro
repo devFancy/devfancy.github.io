@@ -11,16 +11,16 @@ interface Props {
 const items = Astro.props.headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 {items.length >= 2 && (
-  <nav aria-label="목차" class="text-sm">
-    <p class="mb-3 text-xs font-bold tracking-wide text-muted">목차</p>
-    <ul class="space-y-1.5 border-l border-rule">
+  <nav aria-label="목차" class="text-[15px]">
+    <p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p>
+    <ul class="space-y-1 border-l border-rule">
       {items.map((h) => (
         <li>
           <a
             href={`#${h.slug}`}
             data-toc={h.slug}
             class:list={[
-              '-ml-px block border-l-2 border-transparent py-0.5 leading-snug text-muted',
+              '-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted',
               'hover:border-rule hover:text-accent',
               h.depth === 2 ? 'pl-3' : 'pl-6',
             ]}

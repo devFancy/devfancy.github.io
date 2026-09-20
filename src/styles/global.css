@@ -23,7 +23,14 @@
   --color-card: #ffffff;
   --color-accent: #2a78d6;
   --color-quote: #b8bcbf;
-  --color-header: rgb(255 255 255 / .85);
+  --color-header: rgb(255 255 255 / .94);
+  /* 로고 전용. accent(링크 파랑) 와 같은 계열의 짙은 남색. 호버하면 accent 로 밝아진다 */
+  --color-brand: #17547f;
+  /* 태그 칩은 면으로 채워 테두리만 있는 카테고리 칩과 구분한다 */
+  --color-tag: #f0f2f3;
+  --color-tag-fg: #4b5157;
+  --color-tag-on: #3f464d;
+  --color-quote-bg: #f4f5f6;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
@@ -39,7 +46,12 @@
   --color-card: #1a1d22;
   --color-accent: #6aa9f0;
   --color-quote: #4a5158;
-  --color-header: rgb(20 22 26 / .85);
+  --color-header: rgb(20 22 26 / .94);
+  --color-brand: #8cbceb;
+  --color-tag: #252a31;
+  --color-tag-fg: #a9b1b9;
+  --color-tag-on: #aeb6be;
+  --color-quote-bg: #1c2026;
 }
 
 /* NOTE 목차나 Recommend 앵커로 이동할 때 끊기지 않고 미끄러지게 한다
@@ -83,15 +95,32 @@ body * {
  * - Jekyll 대비 읽기 화면 파리티를 맞추는 최소 규칙이다 (6절 1차 범위)
  * - scroll-margin-top은 목차 앵커로 점프할 때 제목이 상단에 붙는 것을 막는다
  */
-.prose { line-height: 1.8; }
+/* NOTE 본문은 검정 대신 회색이다. About 과 같은 톤으로 읽힌다
+ * - 흰 바탕에 순검정은 대비가 세서 긴 글에서 눈이 빨리 피로해진다
+ * - 제목과 강조는 본문색(진한 회색)으로 남겨 위계를 지킨다
+ */
+.prose { line-height: 1.8; color: var(--color-muted); }
+.prose h2,
+.prose h3,
+.prose h4,
+.prose strong { color: var(--color-fg); }
 .prose > * + * { margin-top: 1.15em; }
 
 .prose h2,
 .prose h3,
-.prose h4 { font-weight: 700; line-height: 1.4; scroll-margin-top: 1.5rem; text-wrap: balance; }
-.prose h2 { margin-top: 2.5em; font-size: 1.55rem; }
-.prose h3 { margin-top: 2em; font-size: 1.25rem; }
-.prose h4 { margin-top: 1.6em; font-size: 1.08rem; }
+.prose h4 {
+  /* 굵기 대신 크기와 여백으로 단계를 준다. 굵은 제목이 본문 흐름을 끊었다 */
+  font-weight: 500;
+  line-height: 1.4;
+  scroll-margin-top: 1.5rem;
+  text-wrap: balance;
+}
+/* NOTE 제목 크기는 소수점 없이 px 로 고정한다. rem 소수점은 계산이 헷갈린다
+ * - 25 / 20 / 17 세 단계. 본문이 17px 이라 h4 는 여백으로만 구분한다
+ */
+.prose h2 { margin-top: 2.5em; font-size: 25px; }
+.prose h3 { margin-top: 2em; font-size: 20px; }
+.prose h4 { margin-top: 1.6em; font-size: 17px; }
 .prose h2 + *, .prose h3 + *, .prose h4 + * { margin-top: .6em; }
 
 .prose ul, .prose ol { padding-left: 1.35em; }
@@ -100,15 +129,34 @@ body * {
 .prose li + li { margin-top: .35em; }
 .prose li > ul, .prose li > ol { margin-top: .35em; }
 
-.prose a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+/* NOTE 본문 링크는 색으로 티내지 않는다. 점선 밑줄만 두고 커서를 올릴 때 색이 든다
+ * - 링크가 많은 글에서 파란 글씨가 문단을 얼룩지게 만들었다
+ * - text-decoration: dotted 는 점 간격을 정할 수 없어 점이 촘촘하다
+ *   그래서 지름 2.4px 점을 5px 간격으로 직접 그린다
+ */
+.prose a {
+  color: inherit;
+  text-decoration: none;
+  background-image: radial-gradient(circle, currentColor 1.2px, transparent 1.3px);
+  background-size: 5px 2px;
+  background-repeat: repeat-x;
+  background-position: 0 calc(100% - 1px);
+  padding-bottom: 3px;
+  transition: color .15s ease;
+}
+.prose a:hover { color: var(--color-accent); }
 .prose strong { font-weight: 700; }
 .prose hr { border-top: 1px solid var(--color-rule); margin: 2.5em 0; }
 
-/* NOTE 노션 인용구를 따른다. 회색 굵은 좌측 바에 본문색 텍스트 */
+/* NOTE 노션 인용구를 따른다. 회색 면에 좌측 바, 본문색 텍스트
+ * - 글과 About 이 같은 모양을 쓰도록 선택자를 둘 다 건다
+ */
 .prose blockquote,
 blockquote.quote {
   border-left: 4px solid var(--color-quote);
-  padding: .15em 0 .15em .9em;
+  border-radius: 0 3px 3px 0;
+  background: var(--color-quote-bg);
+  padding: 12px 16px;
   color: inherit;
 }
 
@@ -119,7 +167,7 @@ blockquote.quote {
   font-size: .9em;
   font-family: var(--font-mono);
 }
-.prose pre { padding: 1em; border-radius: 4px; font-size: .875rem; line-height: 1.6; }
+.prose pre { padding: 1em; border-radius: 4px; font-size: 14px; line-height: 1.6; }
 
 .prose th, .prose td { border: 1px solid var(--color-rule); padding: .5em .75em; text-align: left; }
 .prose th { font-weight: 700; }
