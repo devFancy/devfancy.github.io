@@ -1,8 +1,8 @@
 ---
 title: "06. Digital Money"
 date: 2022-04-25
-categories: ["Electronic-Finance"]
-tags: []
+categories: ["대학교"]
+tags: ["전자금융"]
 ---
 
 > 이 카테고리는 경영학부 전자금융의 이해 수업을 듣고 정리한 내용을 바탕으로 글을 작성하였습니다.

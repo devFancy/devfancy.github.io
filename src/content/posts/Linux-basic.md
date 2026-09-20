@@ -1,8 +1,8 @@
 ---
 title: "Linux - 다양한 명령어 정리"
 date: 2021-09-06
-categories: ["Linux"]
-tags: []
+categories: ["서버"]
+tags: ["리눅스"]
 ---
 
 ## Prologue
@@ -44,7 +44,7 @@ tags: []
   
   * 관리자    : [root@localhost~ ]#
     
-  * 사용자    : [user@localhost~ ]\$
+  * 사용자    : [user@localhost~ ]$
     
   * [ , ]    : prompt 구분 기호
     

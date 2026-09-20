@@ -1,0 +1,33 @@
+---
+title: "[Programmers] 12919. 서울에서 김서방 찾기"
+date: 2023-01-10
+categories: ["알고리즘"]
+tags: ["알고리즘"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12919)
+
+### 성능 요약
+
+메모리: 75.2 MB, 시간: 11.50 ms
+
+### 구분
+
+코딩테스트 연습 > 연습문제
+
+### Answer Code1(23.01.10)
+
+``` java
+class Solution {
+    public String solution(String[] seoul) {
+        String answer = "";
+        for(int i = 0; i < seoul.length; i++) {
+            if(seoul[i].equals("Kim")) {
+                answer = "김서방은 " + i + "에 있다";
+                break;
+            }
+        }
+        return answer;
+    }
+}
+```

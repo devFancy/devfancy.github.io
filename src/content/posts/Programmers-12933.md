@@ -1,0 +1,38 @@
+---
+title: "[Programmers] 12933. 정수 내림차순으로 배치하기"
+date: 2023-01-09
+categories: ["알고리즘"]
+tags: ["알고리즘"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12933)
+
+### 성능 요약
+
+메모리: 70 MB, 시간: 0.033 ms
+
+### 구분
+
+코딩테스트 연습 > 연습문제
+
+### Answer Code1(23.01.09)
+
+``` java
+import java.util.*;
+
+class Solution {
+    public long solution(long n) {
+
+        String [] list = String.valueOf(n).split("");
+        Arrays.sort(list);
+
+        StringBuilder sb = new StringBuilder();
+        for(String alist : list) {
+            sb.append(alist);
+        }
+
+        return Long.parseLong(sb.reverse().toString());
+
+    }
+}
+```
