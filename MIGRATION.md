@@ -8,6 +8,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 - v3 갱신: 2026-09-20 (수식/이미지/URL 항목 실측 정정, 브랜치 전략 복원)
 - v4 갱신: 2026-09-20 (Phase 1 완료. URL 스냅샷 확정, `/2026-DevHistory/` 미결 해소, 빌드 로케일·css 충돌 신규 기재)
 - v5 갱신: 2026-09-20 (Phase 2 완료. 카드 시안 A 확정, Hero 배경 이미지 채용, Recommend 이관 확정, 목차 파리티 기재)
+- v6 갱신: 2026-09-20 (검색을 `/category/` 안으로, 이메일 노출 허용, 헤더 네비 3개 확정, `/about/` 선행 구현 기록)
 - 대상 저장소: `devfancy.github.io` (GitHub Pages user site, 퍼블릭)
 
 ---
@@ -223,6 +224,11 @@ v1의 "런타임 의존성 3개"는 부정확한 목표였다. 다음으로 대�
 | **런타임 JS 의존성** | **0개** (아일랜드는 순수 브라우저 JS) |
 | 빌드 타임 의존성 | 6개 이내 |
 
+**폰트는 self-host 한다** (v6). Pretendard variable 을 한글+라틴으로 서브셋해 `public/fonts/` 에 둔다
+(2.06MB -> 1.77MB). 4-6이 외부 CDN 을 걷어내기로 했으므로 jsDelivr 등을 쓰지 않는다.
+`font-display: swap` 이라 폰트 로드 전에도 시스템 폰트로 읽힌다. 더 줄이려면 Pretendard 공식
+dynamic subset(unicode-range 분할, 페이지당 100~200KB)을 vendoring 해야 하며 파일이 수백 개가 된다.
+
 Phase 2 실측: 런타임 JS **0개** 달성(`dist`에 `.js` 파일 없음). 빌드 타임은 9개로 목표를 넘었다.
 `astro`, `@astrojs/rss`, `@astrojs/sitemap`, `@astrojs/markdown-remark`, `@tailwindcss/vite`,
 `tailwindcss`, `remark-math`, `rehype-katex`, `katex`. 이 중 `@astrojs/markdown-remark`는
@@ -292,13 +298,14 @@ Tailwind v3는 쓰지 않는다. 마지막 기능 릴리스가 2023년 12월(v3.
 
 #### 의도된 URL 변경 (v3에서 신설)
 
-아래 3건은 **의도적으로 바뀌며, 글 URL이 아니므로 허용한다.** Phase 4 diff에서 "누락"으로 잡히지만 수정 대상이 아니다. 대신 후속 조치가 필요하다.
+아래 4건은 **의도적으로 바뀌며, 글 URL이 아니므로 허용한다.** Phase 4 diff에서 "누락"으로 잡히지만 수정 대상이 아니다. 대신 후속 조치가 필요하다.
 
 | 기존 | 변경 후 | 후속 조치 |
 |---|---|---|
 | `/sitemap.xml` | `/sitemap-index.xml` + `/sitemap-0.xml` | `robots.txt`를 새 주소로 고치고 **Search Console에 사이트맵 재등록** |
 | `/search.json` | `/search-index.json` | 외부 참조 없음. 내부 검색만 사용 |
 | `/page2` ~ `/page64` | 없음 | 무한 스크롤/전체 그리드로 대체. 색인 가치가 낮다 |
+| `/search/` | 없음. 기능은 `/category/` 안으로 | **v6에서 신설.** 근거는 4-4-2 |
 
 `robots.txt`는 지금 `http://devFancy.github.io/sitemap.xml`로 되어 있다. 프로토콜(http -> https), 대소문자, 경로 세 가지를 모두 고친다.
 
@@ -365,7 +372,7 @@ export const SOLUTION_CATEGORIES = ['Algorithm', 'AlgorithmSkill', 'LeetCode'] a
 
 | 항목 | 결정 |
 |---|---|
-| 검색 | 의존성 0. `/search/` 페이지와 헤더 모달이 같은 컴포넌트 재사용 |
+| 검색 | 의존성 0. **`/category/` 페이지 안에 둔다** (v6에서 변경. 4-4-2) |
 | 인기순 / 조회수 | 제외. `featured`, `featuredOrder` 필드만 예약 |
 | 댓글 | 없음 |
 | 통계 | GA4 `G-7BMWW1711K` 이식 |
@@ -409,12 +416,50 @@ v1·v2는 `use_math: true` 21편만 수식을 처리한다고 썼다. **이 전�
 
 Phase 3 완료 후 `$`가 포함된 전체 파일을 렌더링 결과로 재확인한다.
 
+#### 4-4-2. 검색은 `/category/` 안에 둔다 (v6에서 신설)
+
+독립 `/search/` 페이지와 헤더 모달을 두지 않는다. 카테고리를 고르면 같은 화면에서
+글 수와 목록이 바로 갱신되고, 검색 입력도 그 자리에 있다. 화면 이동이 한 번 줄어든다.
+
+| 항목 | 내용 |
+|---|---|
+| 구성 | 카테고리 칩(글 수 표기, 내림차순) + 검색 입력 + 결과 목록 |
+| 동작 | 칩 선택과 검색어 입력 모두 그 자리에서 거른다. 페이지 이동 없음 |
+| 앵커 | `/category/#Kafka` 를 읽어 초기 선택에 쓴다. 4-1이 보존하기로 한 앵커가 살아난다 |
+| 의존성 | 외부 라이브러리 없음. 한국어는 공백 제거 후 부분 문자열 매칭 (3-3) |
+
+**`/search/` 는 사라진다.** 판단 근거는 다음과 같다.
+
+- 기존 `/search/` 는 `<input>` 과 `/search.json` 을 조회하는 스크립트뿐인 **UI 전용 페이지**다. 고유 콘텐츠가 없다
+- 루트 `sitemap.xml` 템플릿은 `{% for post in site.posts %}` 하나뿐이라 **posts만** 담는다. `/search/` 는 색인 제출된 적이 없다
+- 다만 헤더 네비에 있어 전 페이지에서 링크됐으므로 크롤링은 됐을 것이다
+
+리다이렉트 스텁은 두지 않는다. GitHub Pages는 서버 리다이렉트가 불가해 `<meta http-equiv="refresh">`
+파일이 영구히 남고, 301이 아니라 신호 전달도 약하다. 기능이 사라진 것이 아니라 자리를 옮긴 것이므로
+4-1에 "의도된 변경"으로 적고 끝낸다.
+
+#### 4-4-3. 헤더 네비게이션은 3개다 (v6에서 신설)
+
+**Archives / Categories / About.** 기존 Jekyll은 `page/` 의 `type: page` 5개로 네비를 자동 생성했다.
+
+| 기존 항목 | v6 처리 |
+|---|---|
+| Archives (`/archive/`) | 유지. **라벨은 `Archive` 가 아니라 `Archives`** |
+| Categories (`/category/`) | 유지 |
+| About (`/about/`) | 유지 |
+| 2026 Dev (`/2026-DevHistory/`) | **뺀다.** `/2025-`, `/2024-`, `/2023-DevHistory/` 와 나란한 글 하나다. 매년 손봐야 하고 Archives·Categories로 도달 가능하다 |
+| Search (`/search/`) | **뺀다.** 4-4-2 |
+
+`/archive/` 는 **연도별로 묶고 최신순**으로 나열한다.
+
 ### 4-5. 이력서 (2차)
 
 참고 구조: `https://wormwlrm.github.io/resume`
 
 - 회사와 업무 중심. 개인 신상 최소화
-- 이메일 직접 노출 안 함. GitHub / LinkedIn / Instagram 링크만
+- **이메일을 노출한다** (v6에서 변경). `mailto:` 링크로 GitHub / LinkedIn 과 함께 둔다
+- **전화번호는 넣지 않는다.** 이력서에는 있으나 퍼블릭 저장소라 제외한다
+- Instagram 은 넣지 않는다 (v6에서 제외)
 - JSON 데이터 + Astro 컴포넌트 렌더링
 - `@media print` 대응
 
@@ -653,7 +698,19 @@ Astro 7과 Tailwind v4에서 지시서 작성 시점과 달라진 것들이다. 
 | 그리드 아이템 | `justify-self`를 쓰면 아이템 폭이 `max-content`가 되어 `minmax(0,1fr)` 트랙을 넘는다. `margin-*: auto`로 정렬한다 |
 | Biome | `.astro` 템플릿을 읽지 못해 템플릿에서만 쓰는 변수를 미사용으로 오탐한다. **Biome는 `.ts`/`.mjs`, `.astro`와 타입은 `astro check`**로 나눈다. `biome migrate`가 `recommended: true`를 `preset: "none"`(전체 비활성)으로 바꾸므로 확인이 필요하다 |
 
-#### 8-2-2. 이미지 임시 서빙
+#### 8-2-2. 범위를 넘어 먼저 만든 것 (v6에서 기록)
+
+아래는 6절·8절 기준으로 `feat/astro-03-pages` 작업인데 Phase 2 브랜치에서 먼저 만들었다.
+사진과 문구를 화면으로 확인하려면 페이지가 있어야 했기 때문이다. **문서보다 코드가 앞선 사례다.**
+
+| 대상 | 상태 |
+|---|---|
+| `/about/` | 구현 완료. Hero 배경(파리) + 프로필 카드 + Who am I + Introduce |
+| `/archive/`, `/category/` | **미구현.** 헤더에 링크만 있어 현재 404다. 03-pages 에서 해소한다 |
+
+`/category/` 구현안(칩 + 검색 + 즉시 필터, 4-4-2)은 설계를 마쳤고 03-pages 에서 넣는다.
+
+#### 8-2-3. 이미지 임시 서빙
 
 `assets/img`는 Phase 3에서 복사한다. 그전까지 파일럿 확인용으로 dev 서버에서만
 기존 경로를 서빙하는 Vite 플러그인(`legacyJekyllImages`)을 `astro.config.mjs`에 두었다.
@@ -914,6 +971,7 @@ posts:
 |---|---|---|
 | v1 | 2026-09-20 | 최초 작성 |
 | v2 | 2026-09-20 | Phase 0 결과 반영. 글 수 327 -> 319 정정, 썸네일 근거 정정, 태그 부재 반영, KaTeX 도입, AdSense 제거, 이미지 압축 Phase 추가, 의존성 목표 재정의 |
+| v6 | 2026-09-20 | 검색을 `/search/` 페이지에서 `/category/` 안으로 이동(4-4-2), `/search/` 를 의도된 URL 변경 4번째로 추가, 헤더 네비 3개 확정(4-4-3), 이메일 노출 허용·전화번호 제외·Instagram 제외(4-5), `/about/` 선행 구현과 `/archive/`·`/category/` 404 상태 기록(8-2-2), 폰트 self-host 방침 기재(3-1) |
 | v5 | 2026-09-20 | Phase 2 완료 반영. 카드 시안 A 확정(제목-날짜-칩), Hero 배경 이미지 채용(4-3 "배경 사진 없음" 뒤집음), 목차·Recommend·소셜 인라인 SVG를 이관 대상으로 확정, Astro 7/Tailwind v4 함정 8-2-1 신설, 빌드 타임 의존성 목표 6 -> 9 정정 |
 | v4 | 2026-09-20 | Phase 1 완료 반영. URL 스냅샷 1648건 구성 확정, `/2026-DevHistory/` 미결 해소(post 우선), 빌드 로케일(2-7) 신설, `css/main.css` 충돌과 `page/1dev.html` 정리 대상 추가, **이미지 파일 수 1230 → 1238 정정**(PHASE0 합계 산술 오류. `.JPG` 대소문자 주의 추가) |
 | v3 | 2026-09-20 | 수식 전역 적용 정정(`$` 이스케이프 11건 명시), Phase 1.5를 Phase 3에 흡수(`pngquant`, 손실 압축), 의도된 URL 변경 목록 신설, 브랜치 전략(§7) 복원, Node 22.12 선행 조건 명시, 카테고리 표기 4종 정정 |
