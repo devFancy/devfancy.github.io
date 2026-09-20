@@ -1,9 +1,7 @@
 ---
-/* NOTE 카테고리를 고르면 그 아래가 펼쳐지고 목록이 바로 바뀐다. 페이지 이동이 없다 (4-4-2)
- * - 상위를 고르면 하위 카테고리 줄이 나타난다. 처음부터 다 늘어놓지 않는다 (4-2-1)
- * - 태그도 고른 카테고리 안에 있는 것만 보여 목록과 어긋나지 않는다
- * - 개수는 칩마다 붙이지 않고 결과 한 줄로 모은다
- * - 4-1 이 보존하기로 한 /category/#Kafka 앵커를 카테고리와 태그 양쪽에서 찾는다
+/* NOTE 카테고리를 고르면 목록이 바로 바뀐다. 페이지 이동이 없다 (4-4-2)
+ * - 태그는 고른 카테고리 안에 쓰인 것만 보여 목록과 어긋나지 않는다
+ * - 4-1 이 보존하기로 한 /category/#Kafka 앵커를 카테고리·태그 양쪽에서 찾는다
  */
 import { getCollection } from 'astro:content';
 import Hero from '../components/Hero.astro';
@@ -43,7 +41,6 @@ const groupMap = Object.fromEntries(
         ))}
       </div>
 
-      {/* NOTE: 고른 그룹의 하위만 채워 넣는다. 비면 줄 자체를 숨긴다 */}
       <div id="subs" class="mt-3 flex-wrap gap-2 border-t border-rule pt-3" hidden></div>
 
       <div class="relative mt-4">
@@ -70,10 +67,7 @@ const groupMap = Object.fromEntries(
 </Base>
 
 <style is:global>
-  /* NOTE 칩은 스크립트가 innerHTML 로도 만든다. 스코프 스타일은 거기 안 붙는다
-   * - 전역으로 두되 이 페이지 안으로 선택자를 가둔다
-   */
-  /* NOTE 글자 대비 여백이 크면 모바일에서 버튼만 커 보인다. 글자에 붙인다 */
+  /* 칩은 스크립트가 innerHTML 로도 만든다. 스코프 스타일은 거기 안 붙는다 */
   [data-category] .chip {
     border: 1px solid var(--color-rule);
     border-radius: 3px;
@@ -92,7 +86,6 @@ const groupMap = Object.fromEntries(
   }
   [data-category] .chip-sub { font-size: 14px; padding: 3px 10px; }
 
-  /* 태그는 면으로 채운다. 카테고리는 테두리만 */
   [data-category] .chip-tag {
     background: var(--color-tag);
     border-color: transparent;
@@ -115,9 +108,7 @@ const groupMap = Object.fromEntries(
     document.getElementById('group-map')?.textContent ?? '{}',
   );
 
-  /* NOTE 처음에 펼칠 태그 수. 넘치면 "+N" 을 눌러 마저 연다
-   * - 14 면 태그 26종인 "기술" 만 접힌다. 서버(12종) 이하는 그대로 다 보인다
-   */
+  /* 14 면 태그 26종인 "기술" 만 접힌다. 서버(12종) 이하는 다 보인다 */
   const TAG_PREVIEW = 14;
   let tagsOpen = false;
 
@@ -132,9 +123,7 @@ const groupMap = Object.fromEntries(
   const list = document.getElementById('list') as HTMLElement;
   const summary = document.getElementById('summary') as HTMLElement;
 
-  /* NOTE 한국어는 조사가 붙는다. 공백을 지우고 부분 문자열로 맞춘다
-   * - "러스트" 로 "러스트는" 이 걸려야 한다 (3-3)
-   */
+  /* 한국어는 조사가 붙는다. "러스트" 로 "러스트는" 이 걸리게 공백을 지운다 (3-3) */
   const norm = (s: string) => s.normalize('NFC').toLowerCase().replace(/\s+/g, '');
   const esc = (s: string) =>
     s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] ?? c);
@@ -165,7 +154,6 @@ const groupMap = Object.fromEntries(
   const inCat = (r: Row) => !cat || leavesOf(cat).some((c) => r.cats.includes(c));
 
   function render() {
-    // 태그만 고른 상태면 그 태그가 속한 카테고리를 펼쳐 맥락을 보여준다
     const openGroup = cat ? (groupMap[cat] ? cat : groupOf(cat)) : '';
     const children = openGroup && groupMap[openGroup].length > 1 ? groupMap[openGroup] : [];
     subs.hidden = children.length === 0;
@@ -175,11 +163,9 @@ const groupMap = Object.fromEntries(
       .join('');
 
     const scoped = rows.filter(inCat);
-    // 아무것도 안 고른 상태에서 태그 39종을 펼치면 화면이 태그로 덮인다
     const seen = new Set<string>();
     if (cat || tag) for (const r of scoped) for (const t of r.tags) seen.add(t);
     if (tag) seen.add(tag);
-    // TAG_ORDER 에 적힌 순서가 먼저, 나머지는 이 카테고리에서 글이 많은 순
     const counts = new Map<string, number>();
     for (const r of scoped) for (const t of r.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
     const tagList = [...seen].sort((a, b) => {
@@ -223,7 +209,6 @@ const groupMap = Object.fromEntries(
       )
       .join('');
 
-    // 카테고리와 태그는 같이 걸린다. 태그를 골라도 카테고리 표시는 남긴다
     for (const b of document.querySelectorAll<HTMLButtonElement>('[data-k]')) {
       const on = b.dataset.k === 'cat' ? (b.dataset.v ?? '') === cat : b.dataset.v === tag;
       b.setAttribute('aria-pressed', String(on));

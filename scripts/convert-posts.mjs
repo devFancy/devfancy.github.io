@@ -48,8 +48,7 @@ const TAG = {
 };
 
 /* NOTE Technology 와 E.T.C 는 주제가 섞인 보관함이라 태그 하나로 줄일 수 없다
- * - 슬러그와 제목에서 주제를 읽어 태그를 정한다. 글 목록을 손으로 적지 않는다
- * - 위에서부터 처음 맞는 규칙을 쓰므로 좁은 주제를 먼저 둔다
+ * - 슬러그와 제목에서 주제를 읽는다. 위에서부터 처음 맞는 규칙을 쓴다
  */
 const TAG_RULES = [
   { tag: '블로그', test: /jekyll|utterances|readme|search console|파비콘|북마크|블로그/i },
@@ -102,10 +101,8 @@ function sourceOf(slug) {
  */
 const CONTEXT_CATEGORY = new Set(['프로젝트']);
 
-/* NOTE 태그는 카테고리 한 곳에만 살게 한다
- * - 같은 태그가 두 카테고리에 걸리면 /category/ 에서 같은 칩이 두 번 보인다
+/* NOTE 태그는 카테고리 한 곳에만 산다. 두 곳에 걸리면 같은 칩이 두 번 보인다
  * - 태그가 주제를 더 정확히 말해주면 글을 그 태그의 집으로 보낸다
- * - REST·쿠키·HTTPS·NGINX 는 특정 서버 기술이 아니라 웹 공통 지식이라 CS 다
  */
 const TAG_HOME = {
   네트워크: 'CS',

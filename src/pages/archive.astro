@@ -1,7 +1,5 @@
 ---
-/* NOTE 연도별로 묶고 최신순으로 나열한다 (4-4-3)
- * - 문제풀이 글도 전수 표시한다. /solutions/ 와 달리 여기는 전체 아카이브다 (4-2)
- */
+// NOTE: 문제풀이까지 전수 표시한다. /solutions/ 와 달리 여기는 전체 아카이브다 (4-2)
 import { getCollection } from 'astro:content';
 import Chip from '../components/Chip.astro';
 import Hero from '../components/Hero.astro';
@@ -23,7 +21,6 @@ for (const p of posts) {
 const years = [...byYear.entries()].sort((a, b) => b[0] - a[0]);
 ---
 <Base description={SUBTITLE} overHero>
-  {/* NOTE: 수평선이 사진 가운데라 center 로 둬야 해가 안 잘린다 */}
   <Hero image={heroArchive} title="Archives" subtitle={SUBTITLE} align="bottom" />
 
   <div class="mx-auto max-w-3xl px-4 py-12">

@@ -1,8 +1,7 @@
 ---
-/* NOTE 헤더는 항상 고정이다. Hero 위에서는 투명했다가 지나면 배경이 떠오른다
- * - 색은 header 의 color 를 자식이 물려받게 해서 전환 한 번으로 전부 따라오게 한다
- * - 스크롤이 시작되면 바로 배경과 구분선을 띄운다. 히어로 글자와 겹쳐 보이지 않게 한다
- * - 모바일은 이름과 테마 버튼만 남기고 메뉴는 햄버거 안으로 접는다 (4-4-3)
+/* NOTE 헤더는 항상 고정이다. Hero 위에서는 투명했다가 스크롤하면 배경이 떠오른다
+ * - 색은 header 의 color 를 자식이 물려받게 해 전환 한 번으로 전부 따라오게 한다
+ * - 모바일은 이름과 테마 버튼만 남기고 메뉴는 햄버거로 접는다 (4-4-3)
  */
 import { NAV, SITE } from '../config';
 
@@ -22,7 +21,6 @@ const { overlay = false } = Astro.props;
 
     <button id="theme-toggle" type="button" aria-label="테마 전환"
       class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0">
-      {/* NOTE: 라이트일 때 해, 다크일 때 달 하나만 보인다 */}
       <svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
         <circle cx="12" cy="12" r="4"></circle>
@@ -36,7 +34,6 @@ const { overlay = false } = Astro.props;
 
     <button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel"
       class="inline-flex size-11 items-center justify-center rounded-full sm:hidden">
-      {/* NOTE: 열리면 위아래 선이 가운데로 모여 X 가 된다 */}
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
         <path class="bar bar-top" d="M4 7h16"></path>
@@ -46,7 +43,6 @@ const { overlay = false } = Astro.props;
     </button>
   </div>
 
-  {/* NOTE: 햄버거가 오른쪽에 있으니 메뉴도 오른쪽에 맞춘다 */}
   <nav id="menu-panel" class="sm:hidden" hidden>
     <ul class="mx-auto max-w-3xl px-4 pb-3 text-right">
       {NAV.map((n) => (
@@ -87,7 +83,6 @@ const { overlay = false } = Astro.props;
     backdrop-filter: blur(6px);
   }
 
-  /* 히어로를 지나면 로고만 브랜드 색으로 바뀐다 */
   [data-logo] {
     color: var(--color-brand);
     transition: color .3s ease;
@@ -113,7 +108,7 @@ const { overlay = false } = Astro.props;
   :global(:root[data-theme='dark']) [data-icon='sun'] { opacity: 0; transform: rotate(90deg) scale(.6); }
   :global(:root[data-theme='dark']) [data-icon='moon'] { opacity: 1; transform: none; }
 
-  /* 햄버거 -> X. 위아래 선이 가운데로 모여 교차한다 */
+  /* 햄버거 -> X */
   #menu-toggle .bar {
     transform-origin: center;
     transition: transform .28s cubic-bezier(.4, 0, .2, 1), opacity .18s ease;
@@ -134,9 +129,7 @@ const { overlay = false } = Astro.props;
     opacity: 1;
   }
 
-  /* NOTE 메뉴가 열리면 헤더를 불투명하게 덮는다
-   * - 반투명(--color-header)으로 두면 히어로 제목이 메뉴 글자 사이로 비친다
-   */
+  /* 반투명으로 두면 히어로 제목이 메뉴 글자 사이로 비친다 */
   .site-header:has(#menu-panel.is-open) {
     color: var(--color-fg);
     background-color: var(--color-bg);
@@ -154,7 +147,7 @@ const { overlay = false } = Astro.props;
 </style>
 
 <script>
-  /* NOTE 모바일 메뉴. hidden 을 JS 가 걷어내 스크립트가 없으면 링크가 그냥 보이게 둔다 */
+  /* hidden 을 JS 가 걷어낸다. 스크립트가 없으면 링크가 그냥 보인다 */
   const menuBtn = document.getElementById('menu-toggle');
   const panel = document.getElementById('menu-panel');
   if (menuBtn && panel) {
@@ -166,14 +159,12 @@ const { overlay = false } = Astro.props;
     menuBtn.addEventListener('click', () => {
       setOpen(menuBtn.getAttribute('aria-expanded') !== 'true');
     });
-    // 바깥을 누르거나 Esc 를 누르면 닫는다
     document.addEventListener('click', (e) => {
       if (!(e.target as HTMLElement).closest('#site-header')) setOpen(false);
     });
     addEventListener('keydown', (e) => {
       if (e.key === 'Escape') setOpen(false);
     });
-    // 데스크톱 폭으로 넓어지면 패널 상태를 초기화한다
     matchMedia('(min-width: 640px)').addEventListener('change', (e) => {
       if (e.matches) setOpen(false);
     });
@@ -189,9 +180,7 @@ const { overlay = false } = Astro.props;
 
   const header = document.getElementById('site-header');
   if (header?.classList.contains('is-overlay')) {
-    /* NOTE 히어로가 끝나는 지점이 아니라 스크롤 시작 지점에서 배경을 띄운다
-     * - 히어로 위에 얹힌 채로 스크롤하면 제목이 헤더 글자와 겹쳐 읽혔다
-     */
+    /* 히어로가 끝나는 지점이 아니라 스크롤 시작에서 띄운다. 제목과 겹쳐 읽혔다 */
     let queued = false;
     const update = () => {
       queued = false;
