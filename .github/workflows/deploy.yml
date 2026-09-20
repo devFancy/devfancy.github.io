@@ -13,11 +13,12 @@ permissions:
   pages: write
   id-token: write
 
-# 배포는 한 번에 하나만 돈다. 진행 중인 배포는 끝까지 보낸다
-# - 중간에 끊으면 Pages 가 반쯤 올라간 상태로 남을 수 있다
+# NOTE 연달아 병합하면 중간 커밋까지 전부 배포된다. 그 사이 라이브가 미완성 상태를 보여준다
+# - 그래서 빌드는 최신 것만 남기고 앞의 것을 취소한다. 아직 Pages 에 올리기 전이라 안전하다
+# - 배포(deploy job)는 취소하지 않는다. 중간에 끊으면 Pages 가 반쯤 올라간 상태로 남는다
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-build
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -50,6 +51,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # 실제 배포는 한 번에 하나만, 시작한 것은 끝까지 보낸다
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
