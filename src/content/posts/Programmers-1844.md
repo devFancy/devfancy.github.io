@@ -1,0 +1,188 @@
+---
+title: "[Programmers] 1844. 게임 맵 최단거리(bfs)"
+date: 2023-12-15
+categories: ["알고리즘"]
+tags: ["알고리즘"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1844)
+
+## 성능 요약
+
+* 메모리: 68.8 MB, 시간: 4.79 ms
+
+## 구분
+
+* 코딩테스트 연습 > 깊이／너비 우선 탐색（DFS／BFS）
+
+## Answer Code1(2023.02.14)
+
+```java
+import java.util.*;
+
+class Solution {
+  public class position {
+    int x;
+    int y;
+
+    public position(int x, int y) {
+      this.x = x;
+      this.y = y;
+    }
+  }
+
+  int[] nx = {-1, 1, 0, 0};
+  int[] ny = {0, 0, -1, 1};
+  public int solution(int[][] maps) {
+    int h = maps.length;
+    int w = maps[0].length;
+
+    Queue<position> q = new LinkedList<>();
+    q.add(new position(0,0));
+
+    boolean[][] visited = new boolean[h][w];
+    visited[0][0] = true;
+
+    position p;
+    while (!q.isEmpty()) {
+      p = q.poll();
+      int x = p.x;
+      int y = p.y;
+
+      for(int i=0; i<4; i++) {
+        int next_x = x + nx[i];
+        int next_y = y + ny[i];
+
+        if (0 <= next_x && next_x < h && 0 <= next_y && next_y < w){
+          if(visited[next_x][next_y] == false && maps[next_x][next_y] > 0) {
+            visited[next_x][next_y] = true;
+            maps[next_x][next_y] = maps[x][y] + 1;
+            q.add(new position(next_x, next_y));
+          }
+        }
+      }
+    }
+    return maps[h-1][w-1] == 1 ? -1 : maps[h-1][w-1];
+  }
+}
+```
+
+### 문제 풀이(Answer Code1)
+
+* **최소의 길을 구하기 위해서**는 `BFS`를 사용하는게 더 효율적이다. `DFS`는 깊게 탐색하는 탐색 알고리즘으로 잘못된 길을 탐색하다간 오히려 효율적이지 못할 수도 있다.
+
+* 반면에 `BFS`는 너비를 탐색하는 알고리즘으로 주변부터 탐색하기 때문에 DFS보다는 최소의 길을 찾을 수 있다.
+
+* 참고로, `DFS`는 Stack, 재귀함수를 이용하여 구현하며, BFS는 Queue를 이용하여 구현한다.
+
+* `Queue`는 데이터를 꺼낼 때마다 항상 첫 번째 지정된 데이터를 삭제하므로, **데이터의 추가/삭제가 쉬운 `LinkedList`로 구현하는 것이 더 적합**하다.
+
+## Answer Code2(23.11.08)
+
+```java
+import java.util.*;
+
+class Solution {
+    int[] dx = {-1, 1, 0, 0};
+    int[] dy = {0, 0, -1, 1};
+    
+    public int solution(int[][] maps) {
+        int answer = 0;
+        // 행의 길이, 열의 길이
+        int[][] visited = new int[maps.length][maps[0].length];
+        visited[0][0] = 1; // 시작 위치 방문체크
+        
+        // bfs 탐색
+        bfs(maps, visited);
+        
+        // 도착지 값을 넣어주기
+				// 배열의 인덱스는 0부터 시작하므로, 도착 위치(n-1, m-1)이 된다.
+        answer = visited[maps.length -1][maps[0].length -1];
+        
+        // 갈 수 없다면 -1 리턴
+        if (answer == 0) {
+            answer = -1;
+        }
+        return answer;
+    }
+    public void bfs(int[][] maps, int[][] visited) {
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[]{0,0});
+        
+        while(!q.isEmpty()) {
+            int[] now = q.poll();
+            int x = now[0];
+            int y = now[1];
+            
+            // 4방 탐색
+            for(int i = 0; i < 4; i++) {
+                // 이동했을 때 위치
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+                
+                // 범위 벗어나는지 체크
+                // 방문했는지 체크
+                // 갈 수 있는 곳인지 체크
+                if(nx >= 0 && nx < maps.length && ny >= 0 && ny < maps[0].length && visited[nx][ny] == 0 && maps[nx][ny] == 1) {
+                    // 방문했다고 체크해주기
+                    visited[nx][ny] = visited[x][y] + 1;
+                    // 큐에 넣기
+                    q.add(new int[]{nx, ny});
+                } 
+            }
+        }
+    }
+}
+```
+
+### 문제풀이 - Answer Code2
+
+> 풀이 접근 방법
+
+1. 4방 탐색을 위한 dx, dy 배열을 만들어준다.
+
+2. 방문 체크를 위한 배열을 만들어준다.
+
+3. 시작 위치를 1로 만들어 방문 체크를 해준다.
+
+4. bfs 탐색을 한다.
+
+5. 범위를 벗어나는지, 방문 했는지, 갈수 있는 곳인지를 체크한다.
+
+6. 체크해서 문제가 없다면 해당 위치까지 방문한 수 + 1을 넣어준다.
+
+7. bfs를 추가적으로 탐색한다.
+
+8. 결과를 answer에 넣는다.
+
+9. answer가 0이라면 도착할 수 없는 곳이므로 -1로 넣어준다.
+
+10. 결과를 출력한다.
+
+---
+
+1. **`visited[nx][ny] = visited[x][y] + 1;`**: 여기서 **`nx`**, **`ny`**는 현재 위치에서 이동한 새로운 위치를 나타냅니다. **`visited[x][y]`**는 현재 위치까지의 이동 횟수를 나타내고, 여기에 1을 더해 **`visited[nx][ny]`**에 저장한다. 이렇게 하면 새로운 위치까지의 이동 횟수가 기존 위치보다 1 더 많아지게 된다.
+
+   예를 들어, 현재 위치에서 **`(nx, ny)`**로 이동했을 때, 이동 횟수가 3이었다면, **`visited[nx][ny]`**에는 4가 저장된다.
+
+2. **`q.add(new int[]{nx, ny});`**: 새로운 위치 **`(nx, ny)`**를 큐에 추가합니다. 이렇게 하면 다음에 이 위치를 기준으로 탐색이 이어지게 된다.
+
+이 두 단계를 통해, BFS 알고리즘이 현재 위치에서 갈 수 있는 모든 이동 가능한 위치를 탐색하고, 그 위치들을 큐에 추가하여 계속해서 탐색을 진행합니다. 이 과정을 통해 최단거리를 찾게 된다.
+
+## Review
+
+* BFS 개념은 알았지만 구현 방식에 있어서 알고리즘이 어떻게 짤지 구체적으로 떠오르지 못했다.
+
+* 두번째로 할 때가 첫번째보다 이해가 더 쉬웠다.
+
+* 다음에는 바로 생각날 수 있도록 + 접근 방식대로 풀어보도록 하자!
+
+> 23.12.04
+
+* 항상 dfs로만 풀어왔어서 bfs로 푸는 방법이 기억이 나질 않아, 결국 이전 풀이를 참고하게 되었다.
+
+* 해당 풀이 방식보다 조금 더 나은게 있을 거 같은데, 생각나면 업데이트를 해보자!
+
+## Reference
+
+* https://blackvill.tistory.com/177 - Answer Code2

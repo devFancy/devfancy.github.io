@@ -1,0 +1,42 @@
+---
+title: "[Programmers] 17681. [1차] 비밀지도"
+date: 2023-01-20
+categories: ["알고리즘"]
+tags: ["알고리즘"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17681)
+
+### 성능 요약
+
+메모리: 75 MB, 시간: 0.03 ms
+
+### 구분
+
+코딩테스트 연습 > 2018 KAKAO BLIND RECRUITMENT
+
+### Answer Code1(23.01.29)
+
+```java
+class Solution {
+    public String[] solution(int n, int[] arr1, int[] arr2) {
+        String[] answer = new String[n];
+    
+        for(int i = 0; i < n; i++) {
+            answer[i] = Integer.toBinaryString(arr1[i] | arr2[i]);
+            answer[i] = answer[i].replace('0', ' ');
+            answer[i] = answer[i].replace('1', '#');
+            
+            while(answer[i].length() < n) {
+                answer[i] = ' ' + answer[i];
+            }
+        }
+        return answer;
+    }
+}
+```
+
+
+## Review
+
+* Stirng 클래스의 주요 메서드와 Binary를 String으로 변환하는 방법을 알아서 쉽게 풀었다.

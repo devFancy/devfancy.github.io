@@ -1,8 +1,8 @@
 ---
 title: "02. Random Variables"
 date: 2022-05-03
-categories: ["Probability-Statistics"]
-tags: []
+categories: ["대학교"]
+tags: ["확률통계"]
 use_math: true
 ---
 

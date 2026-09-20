@@ -1,8 +1,8 @@
 ---
 title: "[MySQL] SELECT, JOIN, SubQuery - Practice"
 date: 2023-06-09
-categories: ["MySQL"]
-tags: []
+categories: ["CS"]
+tags: ["MySQL"]
 ---
 
 > 이 글은 MySQL 기반의 SELECT, JOIN, SubQuery 문제에 대한 정리를 바탕으로 작성했습니다.
