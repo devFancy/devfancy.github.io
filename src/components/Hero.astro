@@ -25,7 +25,7 @@ const {
 <section
   class:list={[
     'relative isolate flex overflow-hidden',
-    height === 'tall' ? 'min-h-[28rem] sm:min-h-[40rem]' : 'min-h-[24rem] sm:min-h-[32rem]',
+    height === 'tall' ? 'min-h-[24rem] sm:min-h-[40rem]' : 'min-h-[20rem] sm:min-h-[32rem]',
     align === 'bottom' ? 'items-end' : 'items-start',
   ]}
 >
@@ -51,7 +51,7 @@ const {
       ]}
     >
       {title && (
-        <h1 class="hero-type text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">{title}</h1>
+        <h1 class="hero-type text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl">{title}</h1>
       )}
       {subtitle && <p class="hero-type mt-5 text-lg text-white/85 sm:text-xl">{subtitle}</p>}
     </div>

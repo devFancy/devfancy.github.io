@@ -71,41 +71,6 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
   <script type="application/json" id="group-map" set:html={json(groupMap)}></script>
   <script type="application/json" id="tag-order" set:html={json(TAG_ORDER)}></script>
 </Base>
-
-<style is:global>
-  /* 칩은 스크립트가 innerHTML 로도 만든다. 스코프 스타일은 거기 안 붙는다 */
-  [data-category] .chip {
-    border: 1px solid var(--color-rule);
-    border-radius: 3px;
-    padding: 3px 10px;
-    font-size: 14px;
-    line-height: 1.2;
-    white-space: nowrap;
-    color: var(--color-muted);
-    transition: background-color .18s ease, color .18s ease, border-color .18s ease;
-  }
-  [data-category] .chip:hover { color: var(--color-accent); border-color: var(--color-accent); }
-  [data-category] .chip[aria-pressed='true'] {
-    background: var(--color-fg);
-    border-color: var(--color-fg);
-    color: var(--color-bg);
-  }
-  [data-category] .chip-sub { font-size: 14px; padding: 3px 10px; }
-
-  [data-category] .chip-tag {
-    background: var(--color-tag);
-    border-color: transparent;
-    color: var(--color-tag-fg);
-  }
-  [data-category] .chip-tag:hover { border-color: var(--color-accent); }
-
-  [data-category] .chip-tag[aria-pressed='true'] {
-    background: var(--color-tag-on);
-    border-color: var(--color-tag-on);
-    color: var(--color-bg);
-  }
-</style>
-
 <script>
   type Row = { slug: string; title: string; cats: string[]; tags: string[]; date: string };
 
@@ -165,7 +130,7 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
     subs.hidden = children.length === 0;
     subs.classList.toggle('flex', children.length > 0);
     subs.innerHTML = children
-      .map((c) => `<button type="button" class="chip chip-sub" data-k="cat" data-v="${esc(c)}">${esc(c)}</button>`)
+      .map((c) => `<button type="button" class="chip" data-k="cat" data-v="${esc(c)}">${esc(c)}</button>`)
       .join('');
 
     const scoped = rows.filter(inCat);
@@ -186,10 +151,10 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
     const rest = tagList.length - shown.length;
     tagBox.innerHTML =
       shown
-        .map((t) => `<button type="button" class="chip chip-sub chip-tag" data-k="tag" data-v="${esc(t)}">#${esc(t)}</button>`)
+        .map((t) => `<button type="button" class="chip chip-tag" data-k="tag" data-v="${esc(t)}">#${esc(t)}</button>`)
         .join('') +
-      (rest > 0 ? `<button type="button" class="chip chip-sub" data-more>+${rest}</button>` : '') +
-      (tagsOpen && tagList.length > TAG_PREVIEW ? '<button type="button" class="chip chip-sub" data-more>접기</button>' : '');
+      (rest > 0 ? `<button type="button" class="chip" data-more>+${rest}</button>` : '') +
+      (tagsOpen && tagList.length > TAG_PREVIEW ? '<button type="button" class="chip" data-more>접기</button>' : '');
 
     const q = norm(input.value);
     const hit = scoped.filter(
