@@ -10,6 +10,18 @@ export const SITE = {
   },
 } as const;
 
+/* NOTE 카테고리는 2단이다. 프론트매터에는 잎만 적고 묶음은 여기서 선언한다 (4-2-1)
+ * - 부모를 프론트매터에 같이 넣으면 카드마다 "기술" 칩이 붙어 정보가 없는 칩이 된다
+ * - /category/ 는 이 순서대로 그룹을 그리고, 그룹 선택 시 자식 전체를 보여준다
+ */
+export const CATEGORY_GROUPS = [
+  { name: "기술", children: ["서버", "알고리즘", "CS", "프로젝트", "도구"] },
+  { name: "대학교", children: [] },
+  { name: "회고", children: [] },
+  { name: "에세이", children: [] },
+  { name: "기타", children: [] },
+] as const;
+
 // NOTE: 문제풀이 글은 메인/목록에서 빼고 /solutions/에 모은다. 개별 글 URL은 그대로 (4-2)
 export const SOLUTION_CATEGORIES = ["Algorithm", "AlgorithmSkill", "LeetCode"] as const;
 
