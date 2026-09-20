@@ -80,5 +80,5 @@ export const SOCIAL = [
 export const PROFILE = {
   name: "문준용",
   intro:
-    "글 쓰는 것을 좋아하는 소프트웨어 개발자입니다. 같은 실수를 반복하지 않기 위해 경험을 기록으로 남깁니다.",
+    "글 쓰는 것을 좋아하는 소프트웨어 개발자입니다.",
 } as const;
