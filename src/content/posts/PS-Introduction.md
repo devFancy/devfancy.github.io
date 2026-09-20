@@ -13,7 +13,7 @@ use_math: true
 
 * [Probability and Statistics for Engineers and Scientists, 4/E](https://www.amazon.com/Probability-Statistics-Engineers-Scientists-Anthony/dp/1111827044)
 
-![](/assets/img/probability-statistics/probability-and-statistics-for-engineers-and-scientists_textbook.png){: width="200"}
+<img src="/assets/img/probability-statistics/probability-and-statistics-for-engineers-and-scientists_textbook.png" alt="" width="200" />
 
 
 ## Syllabus (Weekly Schedule)

@@ -967,7 +967,7 @@ class StockTest {
 
 > 전체 테스트 수행: Gredle -> Tasks -> verification -> test를 통해 수행할 수 있다.
 
-`test`를 더블 클릭해서 전체 테스트 갯수 및 서버가 몇번 실행되는지 확인할 수 있다.
+`test`를 더블 클릭해서 전체 테스트 개수 및 서버가 몇번 실행되는지 확인할 수 있다.
 
 ![](/assets/img/testcode/Practical-Testing2-14.png)
 
@@ -1071,7 +1071,7 @@ class ProductControllerTest extends ControllerTestSupport {
 
 이제 전체 테스트를 수행해주면 Spring Boot, **서버가 총 2번** 나오는 걸 확인할 수 있다. (OrderControllerTest, OrderServiceTest)
 
-* 서버 갯수를 줄일수록 테스트 시간을 줄일 수 있게 된다.
+* 서버 개수를 줄일수록 테스트 시간을 줄일 수 있게 된다.
 
 ![](/assets/img/testcode/Practical-Testing2-15.png)
 

@@ -84,7 +84,7 @@ use_math: true
     
   * 가중평균 $\frac{\Sigma 판매량 * 개당이익}{\Sigma 판매량} = \frac{\sum_{i=1}^N W_iX_i}{\sum_{i=1}^N W_i}$
     
-  * W: 가중치(갯수) , X: 관측치(값)
+  * W: 가중치(개수), X: 관측치(값)
 
 * 기하평균**(geometric mean)**
   

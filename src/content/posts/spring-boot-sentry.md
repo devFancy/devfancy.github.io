@@ -45,7 +45,7 @@ tags: ["Spring Boot"]
 
 ### 설정(Configure)
 
-예시를 위해 Spring boot 3.2.5 버전과 호환되는 라이브러리를 사용했습니다.
+예시를 위해 Spring Boot 3.2.5 버전과 호환되는 라이브러리를 사용했습니다.
 
 > build.gradle
 

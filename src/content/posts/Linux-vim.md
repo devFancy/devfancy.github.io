@@ -28,7 +28,7 @@ tags: ["리눅스"]
   
   * Command mode is the mode you are in when you start
     
-  * Move cursor, Move page, Delete, Copy, Paste,,,
+  * Move cursor, Move page, Delete, Copy, Paste 등
 
 * Insert(or Text) Mode ( Edit )
   

@@ -35,7 +35,7 @@ Nginx 등장이전에는 Apache가 웹서버로써의 높은 인기를 가졌습
 
 ![](/assets/img/technology/NGINX-3.png)
 
-그림과 같이 Apache 서버는 요청이 들어올 때마다, Process를 생성했는데,, 요청이 만단위를 넘어가면서 어느 순간부터 요청에 대한 Connection을 생성하지 못한 것입니다.
+그림과 같이 Apache 서버는 요청이 들어올 때마다, Process를 생성했는데, 요청이 만단위를 넘어가면서 어느 순간부터 요청에 대한 Connection을 생성하지 못한 것입니다.
 
 이러한 문제를 가져온 원인은 다음과 같습니다.
 

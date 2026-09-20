@@ -1,15 +1,8 @@
 ---
-/* NOTE 배경 사진 위에 타이포만 얹는다. 페이지마다 같은 구조를 쓴다 (4-3)
- * - src/assets 에 둬서 astro:assets 가 반응형 srcset 과 최신 포맷을 만든다 (4-7)
- * - 사진 밝기가 일정치 않으므로 스크림을 깔아 대비를 고정한다
- * - 헤더가 히어로 위에 떠 있어 위쪽을 한 겹 더 덮는다. 밝은 사진에서 메뉴가 묻혔다
- * - dim 은 밝거나 복잡한 사진에서 올린다
- * - 글자에 그림자를 깔면 스크림을 덜 쓰고도 읽힌다. 사진이 그만큼 덜 어두워진다
- * - 처음엔 사진을 밝게 보여주고 스크림을 덮는다. 사진이 먼저 눈에 들어온다
- * - 움직임을 줄이는 설정이면 애니메이션 없이 최종 상태로 둔다
- * - object-position 은 사진마다 다르다. 한강은 center, 파리는 인물이 하단이라 bottom
- * - align 은 문구 위치다. 모든 페이지가 bottom 으로 통일돼 있다
- * - 바닥에 딱 붙이지 않고 아래 여백을 넉넉히 둬 살짝 띄운다
+/* NOTE 배경 사진 위에 타이포만 얹는다. 페이지마다 같은 구조를 쓴다 [Hero 공통]
+ * - 사진 밝기가 제각각이라 스크림으로 대비를 고정한다. dim 은 밝은 사진에서 올린다
+ * - 헤더가 위에 떠 있어 상단을 한 겹 더 덮는다. 밝은 사진에서 메뉴가 묻혔다
+ * - position 은 사진마다 다르다. 인물이 하단이면 bottom
  */
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -21,12 +14,18 @@ interface Props {
   position?: 'center' | 'bottom' | 'top';
   align?: 'top' | 'bottom';
   dim?: 'normal' | 'strong';
+  /* tall 은 사진을 더 넓게 보여준다. 세로로 긴 피사체가 잘릴 때 쓴다 */
+  height?: 'normal' | 'tall';
 }
-const { image, title, subtitle, position = 'center', align = 'top', dim = 'normal' } = Astro.props;
+const {
+  image, title, subtitle,
+  position = 'center', align = 'top', dim = 'normal', height = 'normal',
+} = Astro.props;
 ---
 <section
   class:list={[
-    'relative isolate flex min-h-[24rem] overflow-hidden sm:min-h-[32rem]',
+    'relative isolate flex overflow-hidden',
+    height === 'tall' ? 'min-h-[28rem] sm:min-h-[40rem]' : 'min-h-[24rem] sm:min-h-[32rem]',
     align === 'bottom' ? 'items-end' : 'items-start',
   ]}
 >
@@ -61,19 +60,13 @@ const { image, title, subtitle, position = 'center', align = 'top', dim = 'norma
 <div data-hero-end aria-hidden="true" class="h-px"></div>
 
 <style>
-  /* 사진이 밝은 자리에 걸려도 글자 윤곽이 남는다 */
   .hero-type { text-shadow: 0 1px 14px rgb(0 0 0 / .55); }
 
-  /* NOTE 스크림이 뒤늦게 덮이면서 사진이 밝은 상태에서 가라앉는다
-   * - 제목은 0ms 부터 떠 있다. 막이 옅은 동안은 흰 글씨가 잘 안 읽힌다
-   * - 그래서 덮이는 시간은 넉넉히 두되 첫 대기는 짧게 잡는다
-   */
+  /* 제목은 0ms 부터 떠 있다. 막이 옅은 동안은 글씨가 잘 안 읽혀 대기를 짧게 둔다 */
   .hero-scrim {
     animation: scrim-in 2.4s cubic-bezier(.33, 1, .68, 1) .2s both;
   }
-  /* NOTE 줌은 훨씬 길게 끈다. 스크림과 같이 끝나면 "아직 로딩 중" 처럼 보인다
-   * - 5초에 2% 라 눈에 띄지 않고 화면이 살아 있다는 느낌만 남는다
-   */
+  /* 줌은 훨씬 길게 끈다. 스크림과 같이 끝나면 "아직 로딩 중" 처럼 보인다 */
   .hero-img {
     animation: hero-settle 5s cubic-bezier(.33, 1, .68, 1) both;
   }

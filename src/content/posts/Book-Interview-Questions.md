@@ -10,7 +10,7 @@ tags: ["책"]
 
 ## 시작하며
 
-![](/assets/img/book/Book_Interview_Questions_for_Reflecting_on_Life_and_Attitude.png){:width="400"}
+<img src="/assets/img/book/Book_Interview_Questions_for_Reflecting_on_Life_and_Attitude.png" alt="" width="400" />
 
 이 책의 제목을 보면 처음에는 ‘면접을 어떻게 잘 볼 수 있을까?’라는 궁금증에서 읽기 시작했다.
 

@@ -1050,7 +1050,7 @@ JPA에서는 CUD 스냅샷 저장과 변경감지를 안하기 때문에 성능 
 
 `CQRS`는 **'Command와 Query에 대한 Responsibility,즉 책임을 분리(Seperate)하자'** 는 의미로, 여기서 `Command`는 CUD를 의미하고, `Query`는 R인 Read를 의미한다.
 
-  * 통상적인 서비스에서 보통은 `Command`(데이터를 생성, 변경 ,삭제)보다 Read의 빈도수가 훨씬 높다. → 거의 2:8(8이 Read에 속한다)
+  * 통상적인 서비스에서 보통은 `Command`(데이터를 생성, 변경, 삭제)보다 Read의 빈도수가 훨씬 높다. → 거의 2:8(8이 Read에 속한다)
 
   * 보통의 서비스(프로덕션)의 경우 **Read 작업이 많다**. Command는 그에 비해 적은편이다.
 

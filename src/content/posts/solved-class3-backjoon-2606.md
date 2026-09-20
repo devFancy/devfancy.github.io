@@ -237,7 +237,7 @@ public static void main(String[] args) throws IOException {
 }
 ```
 
-* 여기서는 `bw.write(answer -1)`을 통해 1번과 연결과 관련된 컴퓨터가 몇개 인지 출력한다는 의미이고, 1을 제외한 연결된 갯수를 구하는 문제이기 때문에 `-1`를 해주는 것이다.
+* 여기서는 `bw.write(answer -1)`을 통해 1번과 연결과 관련된 컴퓨터가 몇개 인지 출력한다는 의미이고, 1을 제외한 연결된 개수를 구하는 문제이기 때문에 `-1`를 해주는 것이다.
 
     다만, `BufferedWriter`도 **String으로 전달**해줘야 하기 때문에, `String.valueOf()` 함수를 통해 해당 Object의 값을 String으로 변환해주고,
 

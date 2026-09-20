@@ -101,7 +101,7 @@ tags: []
 
 * 크리스마스에는 솔로분들끼리 모임을 가지면서, `2024 한해 KPT 회고`와 `2025 멀티 버스`를 진행했다. 이 부분에 대한 자세한 내용은 아래 `KPT 회고`와 `2025 멀티버스` 파트에 작성했다.
 
-![](/assets/img/retrospective/Retrospective-2024-Chrismas.png){: width="400"}
+<img src="/assets/img/retrospective/Retrospective-2024-Chrismas.png" alt="" width="400" />
 
 
 ---
@@ -138,7 +138,7 @@ tags: []
 
 * 해당 모임은 인원이 많은 관계로 온라인으로 진행했고, 스터디가 끝나고 난 이후에 강남의 오프라인 모임을 가지면서 재밌는 네트워킹 시간도 보냈다. ✨
 
-![](/assets/img/retrospective/Retrospective-2024_TIL_after_party.png){: width="600"}
+<img src="/assets/img/retrospective/Retrospective-2024_TIL_after_party.png" alt="" width="600" />
 
 (스터디가 끝난 이후에도 8월까지 `인증은-계속된다` 채널에 계속 진행하긴 했는 사실은 비밀)
 
@@ -196,7 +196,7 @@ tags: []
 
 ### 집필
 
-![](/assets/img/retrospective/Retrospective-Writing.png){: width="500"}
+<img src="/assets/img/retrospective/Retrospective-Writing.png" alt="" width="500" />
 
 * 2023년 1월부터 12월까지 진행했던 스터디를 보고 출판사로부터 메일을 통해 집필 제안이 들어왔다. 그 당시에, 느꼈던 반응은 기쁨과 동시에 두려움이였다.
 
@@ -224,7 +224,7 @@ tags: []
 * 마침 하반기에 IT 커뮤니티 동아리인 [SIPE](https://sipe.team/)에서 3기를 모집한다는 글을 보고, 망설임 없이 지원하게 되었다.
   (SIPE는 이전 2기 사담콘을 통해 게스트로 참여하게 되면서 '언젠간 나도 지원해봐야겠다' 고 생각이 들었는데, 우연하게도 모집글이 나오면서 운명이라 생각했다)
 
-![](/assets/img/retrospective/Retrospective-SIPE-3th-Recruiting.png){: width="600"}
+<img src="/assets/img/retrospective/Retrospective-SIPE-3th-Recruiting.png" alt="" width="600" />
 
 * 결론적으로 SIPE 3기에 최종 합격하게 되었고, 현재 2차 미션을 진행하면서 느낀 점은 내가 생각한 그 이상으로 많은 기술적인 영감과 지식을 축적하고 있다.
 이전 1차 미션에서는 스퍼트(스프링 퍼포먼스 트랙) 라는 주제로, 성능 테스트에 기반하여 관련 기술 지식과 실습 경험을 쌓았고 그것을 현재의 회사에 적용하는 경험까지 얻게 되었다.
@@ -234,13 +234,13 @@ tags: []
 
 > 아래는 3기 OT때 받았던 굿즈인데, 마음에 들어서 백팩에 끼워서 들고 다니고 있다. 🙂
 
-![](/assets/img/retrospective/Retrospective-SIPE-3th-OT.png){: width="600"}
+<img src="/assets/img/retrospective/Retrospective-SIPE-3th-OT.png" alt="" width="600" />
 
 ---
 
 ### LeetCode
 
-![](/assets/img/retrospective/Retrospective-Leetcode.png){: width="600"}
+<img src="/assets/img/retrospective/Retrospective-Leetcode.png" alt="" width="600" />
 
 * 개발 분야에서 내가 존경하는 멘토님이 운영하시는 LeetCode에 4월부터 참여하게 되었다.
 알고리즘 실력은 앞으로 개발자로 살아가면서 꼭 갖춰야 할 중요한 역량 중 하나라고 생각한다.
@@ -256,7 +256,7 @@ tags: []
 
 * 하지만, 스터디를 진행하면서 알고리즘과 관련된 부분은 블로그가 아닌 노션에 정리하기로 했다. 그래서 그 이후부터는 노션에 관련 문제 유형, 문제 풀이를 테이블 형식으로 정리해갔다.
 
-![](/assets/img/retrospective/Retrospective-Leetcode-Notion.png){: width="600"}
+<img src="/assets/img/retrospective/Retrospective-Leetcode-Notion.png" alt="" width="600" />
 
 * 11월부터는 다른 스터디 대비 우선순위가 낮아서 잠시 중단했지만, 2025년 2월부터는 다시 시작하지 않을까 싶다. (알고리즘 실력은 향상해야 하니까)
 
@@ -265,7 +265,7 @@ tags: []
 
 ### KPT 회고
 
-![](/assets/img/retrospective/Retrospective-kpt.png){: width="500"}
+<img src="/assets/img/retrospective/Retrospective-kpt.png" alt="" width="500" />
 
 * 크리스마스 날에 글또 분들과 같이 올해 2024년에 대한 KPT 회고를 아래와 같이 정리했다. (회사에 대한 부분은 제외했다)
   (`서버 개발자`와 `일상`을 분리하여 작성했다)
@@ -469,7 +469,7 @@ tags: []
 
 ## 2025년 계획
 
-![](/assets/img/retrospective/Retrospective-2025.png){: width="500"}
+<img src="/assets/img/retrospective/Retrospective-2025.png" alt="" width="500" />
 
 2025년 목표는 작년과 다르게 단순하게 정리해보고자 한다. 2025년이 되어봐야 알겠지만, 구체적으로 작성하는 것은 큰 의미가 없을 것 같다. 
 2주 단위로 목표를 세우는 것이 성공 확률을 높이는 데 더 효과적이었기 때문에, 여기서는 단순하게 정리하는 것이 더 유의미하다고 생각한다. 
@@ -495,7 +495,7 @@ tags: []
 
 * 건강, 행복, 성장 이라는 키워드로 노션을 통해 `2025년 나만의 멀티버스`를 정리했다.
 
-![](/assets/img/retrospective/Retrospective-Multiverse.png){: width="600"}
+<img src="/assets/img/retrospective/Retrospective-Multiverse.png" alt="" width="600" />
 
 * 2024년에는 많은 활동과 경험을 통해 '나'라는 사람에 대해 더 많이 알게 된 한 해였다. 
 2025년에는 어떻게 흘러갈지 알 수 없지만, 건강, 행복, 성장이라는 세 가지를 모두 이루기를 바라며`2024년 회고`를 마친다.

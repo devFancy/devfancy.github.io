@@ -50,7 +50,7 @@ tags: []
 > 신입 개발자를 위한 CS 스터디 모임에서 진행했던 내용
 > 
 > 1. 데이터베이스 - 학교에서 배운 전공 서적, [데이터베이스 개론](https://product.kyobobook.co.kr/detail/S000001743852), 면접을 위한 CS 전공지식 노트 + 그 외에 각종 레퍼런스 자료들
-> 2. 운영체제 - 학교에서 배운 전공 서적, [Operating Systems: Three Easy Pieces](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X) , [운영체제와 정보기술의 원리](https://www.yes24.com/Product/Goods/90124877), 면접을 위한 CS 전공지식 노트 + 그 외에 각종 레퍼런스 자료들
+> 2. 운영체제 - 학교에서 배운 전공 서적, [Operating Systems: Three Easy Pieces](https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X), [운영체제와 정보기술의 원리](https://www.yes24.com/Product/Goods/90124877), 면접을 위한 CS 전공지식 노트 + 그 외에 각종 레퍼런스 자료들
 > 3. 네트워크 - 학교에서 배운 전공 서적, 면접을 위한 CS 전공지식 노트 + 그 외에 각종 레퍼런스 자료들
 > 4. 자료구조 - 학교에서 배운 전공 서적, 면접을 위한 CS 전공지식 노트 + 그 외에 각종 레퍼런스 자료들
 

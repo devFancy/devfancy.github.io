@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* NOTE 폰트는 self-host 한다. 외부 CDN을 쓰지 않는다 (4-6)
+/* NOTE 폰트는 self-host 한다. 외부 CDN을 쓰지 않는다 [외부 의존 제거]
  * - Pretendard v1.3.9 variable 을 한글+라틴으로 서브셋 (2.06MB -> 1.77MB)
  * - swap 이라 폰트 로드 전에도 시스템 폰트로 바로 읽힌다
  */
@@ -11,9 +11,8 @@
   font-display: swap;
 }
 
-/* NOTE 색은 토큰으로만 정의한다. 팔레트 클래스를 직접 쓰지 않는다 (3-4)
- * - Tailwind를 걷어내도 토큰이 살아남게 하기 위한 규칙이다
- * - @theme 토큰은 유틸리티를 자동 생성한다. --color-rule -> border-rule
+/* NOTE 색은 토큰으로만 정의한다 [테마 토큰]. @theme 토큰은 유틸리티를 자동 생성한다
+ * - --color-rule -> border-rule
  */
 @theme {
   --color-bg: #ffffff;
@@ -24,9 +23,8 @@
   --color-accent: #2a78d6;
   --color-quote: #b8bcbf;
   --color-header: rgb(255 255 255 / .94);
-  /* 로고 전용. accent(링크 파랑) 와 같은 계열의 짙은 남색. 호버하면 accent 로 밝아진다 */
+  /* 로고 전용. 호버하면 accent 로 밝아진다 */
   --color-brand: #17547f;
-  /* 태그 칩은 면으로 채워 테두리만 있는 카테고리 칩과 구분한다 */
   --color-tag: #f0f2f3;
   --color-tag-fg: #4b5157;
   --color-tag-on: #3f464d;
@@ -37,7 +35,7 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-/* NOTE: 다크모드는 dark: 접두사 대신 data-theme 토큰 재정의로 처리한다 (3-4) */
+/* NOTE: 다크모드는 dark: 접두사 대신 data-theme 토큰 재정의로 처리한다 [테마 토큰] */
 :root[data-theme="dark"] {
   --color-bg: #14161a;
   --color-fg: #e8e8e6;
@@ -74,7 +72,7 @@ body {
   font-family: var(--font-sans);
   /* NOTE: 배경 사진 스케일에 맞춰 전반적으로 키웠다 */
   font-size: 17px;
-  /* NOTE: 한국어 본문 (9-2) */
+  /* NOTE: 한국어 본문 [한국어 타이포그래피] */
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -95,9 +93,8 @@ body * {
  * - Jekyll 대비 읽기 화면 파리티를 맞추는 최소 규칙이다 (6절 1차 범위)
  * - scroll-margin-top은 목차 앵커로 점프할 때 제목이 상단에 붙는 것을 막는다
  */
-/* NOTE 본문은 검정 대신 회색이다. About 과 같은 톤으로 읽힌다
- * - 흰 바탕에 순검정은 대비가 세서 긴 글에서 눈이 빨리 피로해진다
- * - 제목과 강조는 본문색(진한 회색)으로 남겨 위계를 지킨다
+/* NOTE 본문은 회색이다. 흰 바탕에 순검정은 긴 글에서 눈이 빨리 피로해진다
+ * - 제목과 강조만 진하게 남겨 위계를 지킨다
  */
 .prose { line-height: 1.8; color: var(--color-muted); }
 .prose h2,
@@ -109,15 +106,12 @@ body * {
 .prose h2,
 .prose h3,
 .prose h4 {
-  /* 굵기 대신 크기와 여백으로 단계를 준다. 굵은 제목이 본문 흐름을 끊었다 */
   font-weight: 500;
   line-height: 1.4;
   scroll-margin-top: 1.5rem;
   text-wrap: balance;
 }
-/* NOTE 제목 크기는 소수점 없이 px 로 고정한다. rem 소수점은 계산이 헷갈린다
- * - 25 / 20 / 17 세 단계. 본문이 17px 이라 h4 는 여백으로만 구분한다
- */
+/* NOTE 크기는 정수 px 로 적는다. 25 / 20 / 17 세 단계 */
 .prose h2 { margin-top: 2.5em; font-size: 25px; }
 .prose h3 { margin-top: 2em; font-size: 20px; }
 .prose h4 { margin-top: 1.6em; font-size: 17px; }
@@ -129,10 +123,8 @@ body * {
 .prose li + li { margin-top: .35em; }
 .prose li > ul, .prose li > ol { margin-top: .35em; }
 
-/* NOTE 본문 링크는 색으로 티내지 않는다. 점선 밑줄만 두고 커서를 올릴 때 색이 든다
- * - 링크가 많은 글에서 파란 글씨가 문단을 얼룩지게 만들었다
- * - text-decoration: dotted 는 점 간격을 정할 수 없어 점이 촘촘하다
- *   그래서 지름 2.4px 점을 5px 간격으로 직접 그린다
+/* NOTE 링크는 점선 밑줄만 두고 커서를 올릴 때 색이 든다. 파란 글씨가 문단을 얼룩지게 했다
+ * - text-decoration: dotted 는 점 간격을 정할 수 없어 직접 그린다
  */
 .prose a {
   color: inherit;
@@ -148,9 +140,7 @@ body * {
 .prose strong { font-weight: 700; }
 .prose hr { border-top: 1px solid var(--color-rule); margin: 2.5em 0; }
 
-/* NOTE 노션 인용구를 따른다. 회색 면에 좌측 바, 본문색 텍스트
- * - 글과 About 이 같은 모양을 쓰도록 선택자를 둘 다 건다
- */
+/* NOTE 노션 인용구를 따른다. 글과 About 이 같은 모양을 쓰도록 선택자를 둘 다 건다 */
 .prose blockquote,
 blockquote.quote {
   border-left: 4px solid var(--color-quote);
@@ -172,14 +162,14 @@ blockquote.quote {
 .prose th, .prose td { border: 1px solid var(--color-rule); padding: .5em .75em; text-align: left; }
 .prose th { font-weight: 700; }
 
-/* NOTE: 코드·표·수식은 가로 스크롤을 자기 안에서 처리한다 (9-3) */
+/* NOTE: 코드·표·수식은 가로 스크롤을 자기 안에서 처리한다 [모바일 가로 넘침] */
 .prose pre,
 .prose .katex-display { overflow-x: auto; }
 
-/* NOTE: table은 display:block 없이는 overflow가 먹지 않아 페이지가 가로로 밀린다 (9-3) */
+/* NOTE: table은 display:block 없이는 overflow가 먹지 않아 페이지가 가로로 밀린다 [모바일 가로 넘침] */
 .prose table { display: block; overflow-x: auto; max-width: 100%; }
 
-/* NOTE: 본문 이미지 폭 제한 (9-3) */
+/* NOTE: 본문 이미지 폭 제한 [모바일 가로 넘침] */
 .prose img { max-width: 100%; height: auto; }
 
 /* NOTE 키보드 이동 시 현재 위치가 보이게 한다. 마우스 클릭에는 나타나지 않는다 */
@@ -189,7 +179,7 @@ blockquote.quote {
   border-radius: 2px;
 }
 
-/* NOTE: 터치 타깃 최소 44px (9-3) */
+/* NOTE: 터치 타깃 최소 44px [모바일 터치 타깃] */
 @media (pointer: coarse) {
   a, button { min-height: 44px; }
 }

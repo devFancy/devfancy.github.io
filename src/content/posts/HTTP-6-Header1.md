@@ -36,7 +36,7 @@ tags: ["HTTP"]
 
 * `text/html;charset=UTF-8` : OWS field-value OWS (OWS: 띄어쓰기 허용)
 
-* 예) ![](/assets/img/http/http-6-header1_1.png){: width="400"}
+* 예) <img src="/assets/img/http/http-6-header1_1.png" alt="" width="400" />
 
 * HTTP 헤더 용도 : **HTTP 전송에 필요한 모든 부가정보**
 
@@ -50,7 +50,7 @@ tags: ["HTTP"]
 
 * 여기서 `표현`은  표현 헤더와 표현 데이터의 합을 나타내고, **요청이나 응답에서 전달할 실제 데이터**를 의미한다.
 
-![](/assets/img/http/http-6-header1_2.png){: width="400"}
+<img src="/assets/img/http/http-6-header1_2.png" alt="" width="400" />
 
 * 메시지 본문을 통해 표현 데이터를 전달하고, 메시지 본문은 `페이로드(payload)`라고 부르기도 한다.
 
@@ -59,7 +59,7 @@ tags: ["HTTP"]
 
 ## 표현
 
-![](/assets/img/http/http-6-header2_0.png){: width="400"}
+<img src="/assets/img/http/http-6-header2_0.png" alt="" width="400" />
 
 * `Content-Type` : 표현 데이터의 형식
 
@@ -73,7 +73,7 @@ tags: ["HTTP"]
 
 ### Content-Type
 
-![](/assets/img/http/http-6-header2_1.png){: width="400"}
+<img src="/assets/img/http/http-6-header2_1.png" alt="" width="400" />
 
 * 미디어 타입, 문자 인코딩을 나타낸다.
 
@@ -87,7 +87,7 @@ tags: ["HTTP"]
 
 ### Content-Encoding
 
-![](/assets/img/http/http-6-header2_2.png){: width="400"}
+<img src="/assets/img/http/http-6-header2_2.png" alt="" width="400" />
 
 * 표현 데이터를 압축하기 위해 사용한다.
 
@@ -105,7 +105,7 @@ tags: ["HTTP"]
 
 ### Content-Language
 
-![](/assets/img/http/http-6-header2_3.png){: width="400"}
+<img src="/assets/img/http/http-6-header2_3.png" alt="" width="400" />
 
 * 표현 데이터의 자연 언어를 표현한다.
 
@@ -119,7 +119,7 @@ tags: ["HTTP"]
 
 ### Content-Length
 
-![](/assets/img/http/http-6-header2_4.png){: width="400"}
+<img src="/assets/img/http/http-6-header2_4.png" alt="" width="400" />
 
 * 표현 데이터의 길이를 나타낸다. (바이트 단위)
 
@@ -153,7 +153,7 @@ tags: ["HTTP"]
 
 * 만약 q 값을 생략하면 값이 1로 사용된다.
 
-![](/assets/img/http/http-6-header3_2.png){: width="400"}
+<img src="/assets/img/http/http-6-header3_2.png" alt="" width="400" />
 
 * 예) `Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7`
 

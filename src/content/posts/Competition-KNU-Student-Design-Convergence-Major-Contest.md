@@ -33,7 +33,7 @@ use_math: true
 
 ## 1차 합격
 
-![](/assets/img/competition/knu-student-design-convergence-major-contest_3.png){: width="400"}
+<img src="/assets/img/competition/knu-student-design-convergence-major-contest_3.png" alt="" width="400" />
 
 * 우리 팀은 운이 좋게도 면접관분들이 좋게 봐주셔서, **상위 6개 팀안에 선정**되어 1차 심사를 통과했다.
 
@@ -43,7 +43,7 @@ use_math: true
 
 ## 2차 심사일
 
-![](/assets/img/competition/knu-student-design-convergence-major-contest_4.png){: width="400"}
+<img src="/assets/img/competition/knu-student-design-convergence-major-contest_4.png" alt="" width="400" />
 
 * 2차 심사를 보는 날이었다.
 
@@ -51,7 +51,7 @@ use_math: true
 
 * 해당 공모전 담당자님이 어떻게 진행되는지 친절하게 알려주셨다.
 
-![](/assets/img/competition/knu-student-design-convergence-major-contest_5.png){: width="400"}
+<img src="/assets/img/competition/knu-student-design-convergence-major-contest_5.png" alt="" width="400" />
 
 * 이 문을 열고 2차심사에서 PPT 발표가 진행되었다.
 
@@ -81,6 +81,6 @@ use_math: true
 
 * 공모전 기간 동안 셋이서 **아이디어부터 끊임없이 연구하고 개발**한 보람이 있었다.
 
-![](/assets/img/competition/knu-student-design-Grand-Prize-Award.png){: width="500"}
+<img src="/assets/img/competition/knu-student-design-Grand-Prize-Award.png" alt="" width="500" />
 
 * 상장하고 돈 받으니 뿌듯하면서 행복했다.

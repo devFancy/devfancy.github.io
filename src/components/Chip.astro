@@ -1,8 +1,6 @@
 ---
-/* NOTE 카테고리·태그 칩은 전부 /category/ 의 해당 선택으로 간다
- * - 글에서 태그를 누르면 같은 태그의 목록이 바로 열린다
+/* NOTE 칩을 누르면 /category/ 가 그 값으로 걸러진 채 열린다
  * - 카테고리는 테두리만, 태그는 회색 면으로 채워 한눈에 갈린다
- * - 크기는 한 가지다. 자리마다 다르게 두면 어디를 고쳐야 할지 매번 찾아야 한다
  */
 interface Props {
   value: string;
@@ -13,9 +11,6 @@ const { value, kind = 'category' } = Astro.props;
 <a
   href={`/category/#${encodeURIComponent(value)}`}
   class:list={[
-    /* NOTE 칩은 한 크기만 쓴다. 화면 폭마다 다르게 두면 손댈 곳이 늘어난다
-     * - 글자 14px, 세로 여백 3px, 가로 여백 10px -> 상자 25px
-     */
     'rounded-[3px] border px-[10px] py-[3px] text-[14px] leading-[1.2]',
     'whitespace-nowrap transition-colors hover:border-accent hover:text-accent',
     kind === 'tag'

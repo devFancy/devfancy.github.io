@@ -27,7 +27,7 @@ ALTER TABLE member ADD COLUMN cellphone VARCHAR(255) NOT NULL;
 
 ## Flyway
 
-![](/assets/img/db/flyway.png){: width="300"}
+<img src="/assets/img/db/flyway.png" alt="" width="300" />
 
 - `Flyway`는 데이터베이스 스키마 버전 관리 및 마이그레이션을 자동화하는 도구로, 주로 SQL 스크립트나 Java 코드로 작성된 스키마 변경을 관리하고 적용하는 데 사용됩니다. Flyway의 동작 원리는 다음과 같은 절차로 이루어집니다.
 

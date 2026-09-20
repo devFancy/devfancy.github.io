@@ -78,7 +78,7 @@ String b = a.trim(); // b = "Hellonicetomeetyou". 스페이스와 `\t` 제거됨
 
 * 참고로, 배열로 선언된 String은 `length`로 사용한다.
   
-예시) 문자열 내 p와 y의 개수 (갯수가 같으면 true, 다르면 false 리턴)
+예시) 문자열 내 p와 y의 개수 (개수가 같으면 true, 다르면 false 리턴)
   
 ``` java
 // 프로그래머스 Lv1

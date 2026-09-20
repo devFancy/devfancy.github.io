@@ -33,9 +33,9 @@ tags: ["글또"]
 
 6개월간 2주마다 1개씩 글을 제출하는 미션인데, 이 글을 포함해서 총 12개중 10개의 글을 제출했고, 2개는 패스권을 사용했다.
 
-![](/assets/img/etc/geultto_10th_write_2.png){:width="500"}
+<img src="/assets/img/etc/geultto_10th_write_2.png" alt="" width="500" />
 
-![](/assets/img/etc/geultto_10th_write_1.png){:width="500"}
+<img src="/assets/img/etc/geultto_10th_write_1.png" alt="" width="500" />
 
 초반에는 기술적인 글 위주로 작성할 계획이었지만, 다양한 활동을 병행하다 보니 그 과정도 함께 기록하고 싶어져 중간중간 회고나 책 리뷰도 쓰게 되었다. 😅
 
@@ -50,7 +50,7 @@ tags: ["글또"]
 
 글또 10기에는 총 17번의 커피챗을 진행했다. 
 
-![](/assets/img/etc/geultto_10th_coffeechat.png){:width="500"}
+<img src="/assets/img/etc/geultto_10th_coffeechat.png" alt="" width="500" />
 
 개인적으로는 ‘5번이면 충분하지 않을까’ 생각했는데, 예상보다 3배 이상 많이 하게 되어 스스로도 놀랍고 뿌듯했다. ✨
 
@@ -66,7 +66,7 @@ tags: ["글또"]
 우선 관악또 김장모임을 통해 처음 만난 분들과 글또를 통해 처음 만난 분들과 함께 김장을 하게 될 줄은 정말 상상도 못했다. 
 그래서 김장을 하기로 한 날에는 살짝 긴장도 되었지만 김장 모임을 기획하고 진행해주신 JS님이 잘 이끌어주셔서 끝으로 갈 수록 긴장은 서서히 풀리고, 재미와 편안함으로 가득채웠다. 
 
-![](/assets/img/etc/geultto_10th_kimjang.jpg){:width="400"}
+<img src="/assets/img/etc/geultto_10th_kimjang.jpg" alt="" width="400" />
 
 김장을 끝내고 마무리로 보쌈 고기와 김치와 같이 먹었는데, 다시 또 해먹고 싶을 정도로 맛있었다.
 
@@ -81,7 +81,7 @@ tags: ["글또"]
 
 그리고 12월 28일 넥스또 채널에서 이벤트 성으로 만든 “미룬이 챌린지” 모임에 참여하게 되었다. 
 
-![](/assets/img/etc/geultto_10th_No_More_Delays_Challenge.png){:width="400"}
+<img src="/assets/img/etc/geultto_10th_No_More_Delays_Challenge.png" alt="" width="400" />
 
 > 미룬이 챌린지란?
 > 
@@ -101,7 +101,7 @@ tags: ["글또"]
 
 그 외에도 일기써또에도 올해(2025) 2월부터 1달간 꾸준히 참여해오면서 매일 내가 해왔던 일들을 상기시키면서 하루를 정리해오는 습관을 가졌다. 
 
-![](/assets/img/etc/geultto_10th_note.png){:width="500"}
+<img src="/assets/img/etc/geultto_10th_note.png" alt="" width="500" />
 
 하지만, 시간이 갈 수록 일기 쓰는건 좋지만, 항상 좋은 일들만 일어나는 것은 아니기에, 행복한 일 혹은 특별한 일에 한해서만 일기를 써야겠다고 바꾸게 되면서 해당 채널에는 따로 올리지는 않게 되었다.
 

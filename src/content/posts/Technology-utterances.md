@@ -41,7 +41,7 @@ tags: ["블로그"]
 
 * Github -> GitHub App에서 [utterances](https://github.com/apps/utterances) 페이지로 이동한다.
 
-![](/assets/img/technology/utterances_2.png){: width="700"}
+<img src="/assets/img/technology/utterances_2.png" alt="" width="700" />
 
 * 이미 설치된 경우 `Configure` 버튼으로 보이는데, 설치되지 않았다면 `Install`버튼이 보일 것이다.
 
@@ -55,7 +55,7 @@ tags: ["블로그"]
 
 ### repo
 
-![](/assets/img/technology/utterances_setting_1.png){: width="600"}
+<img src="/assets/img/technology/utterances_setting_1.png" alt="" width="600" />
 
 * `repo:` 아래 입력 칸에는 본인의 "Github-ID/GitBlog-repository name"을 입력하면 된다.
 
@@ -69,7 +69,7 @@ tags: ["블로그"]
 
 ### Issue Label
 
-![](/assets/img/technology/utterances_setting_2.png){: width="600"}
+<img src="/assets/img/technology/utterances_setting_2.png" alt="" width="600" />
 
 * `Issue Label` 에는 밑에 나와있는 설명대로 Issue 부분에 Label 이름을 정하는 건데, 선택 사항이므로 안해도 상관 없다.
 
@@ -151,19 +151,19 @@ git push origin main
 
 * 마지막으로 `utterances` 부분이 **해당 GitHub Blog 에 적용**이 되었는지 확인만 하면 된다.
 
-![](/assets/img/technology/utterances_test.png){: width="500"}
+<img src="/assets/img/technology/utterances_test.png" alt="" width="500" />
 
 * [About](https://devfancy.github.io/about/#comments) 댓글 부분에 테스트 용도로 댓글을 입력했다.
 
-![](/assets/img/technology/utterances_issues.png){: width="500"}
+<img src="/assets/img/technology/utterances_issues.png" alt="" width="500" />
 
 * 그리고 내 GitHub Blog 의 Issues 에 가서 확인해보니, Post 제목이 Issues 에 표기되었다.
 
-![](/assets/img/technology/utterances_issues_2.png){: width="600"}
+<img src="/assets/img/technology/utterances_issues_2.png" alt="" width="600" />
 
 * 해당 Issues 부분을 클릭해서 안에 확인해보니, **해당 Post의 제목과 경로(URL)를 Issues에 표기** 된 것을 확인할 수 있다.
 
-![](/assets/img/technology/utterances_issues_mail.png){: width="500"}
+<img src="/assets/img/technology/utterances_issues_mail.png" alt="" width="500" />
 
 * 추가적으로 **GitHub Blog와 연동되는 이메일**에도 댓글이 왔다는 알림(Post의 제목과 경로(URL)을 확인할 수 있다.
 

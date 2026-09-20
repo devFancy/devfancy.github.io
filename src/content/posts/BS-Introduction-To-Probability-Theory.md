@@ -96,7 +96,7 @@ use_math: true
           
     * $*_{n}\mathrm{P}_{r} = \frac{n!}{(n-r)!}*$
     
-    * n : 전체 갯수, r: 선택한 갯수
+    * n : 전체 개수, r: 선택한 개수
   
   * 조합 $*_{n}\mathrm{C}_{r}$* (Combination)
   

@@ -4,7 +4,7 @@ import Post from '../layouts/Post.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
-  // NOTE: id가 곧 URL이다. 날짜 없는 플랫 슬러그, 대소문자 보존 (2-2)
+  // NOTE: id가 곧 URL이다. 날짜 없는 플랫 슬러그, 대소문자 보존 [URL 보존]
   return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 

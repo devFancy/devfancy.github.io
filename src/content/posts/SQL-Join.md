@@ -135,7 +135,7 @@ ORDER BY A.PUBLISHED_DATE ASC
 > 문제를 풀기 위해서 해야할 작업들
 
 1. '경제' 카테고리에 속하는 도서들을 -> WHERE
-2. AUTHOR 테이블과 조인한 뒤 , BOOK_ID, AUTHOR_NAME, PUBLISHED_DATE 조회 -> SELECT
+2. AUTHOR 테이블과 조인한 뒤, BOOK_ID, AUTHOR_NAME, PUBLISHED_DATE 조회 -> SELECT
 3. PUBLISHED_DATE 기준으로 오름차순 -> ORDER BY
 4. PUBLISHED_DATE를 예시와 같이 DATE_FORMAT을 사용하여 조회한다.
 

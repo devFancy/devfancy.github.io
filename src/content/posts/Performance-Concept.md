@@ -269,7 +269,7 @@ tags: ["성능테스트"]
     - **모니터링**: 부하를 생성하는 Agent의 상태와 부하를 받는 대상 시스템을 실시간으로 모니터링할 수 있다.
   - **장점**: 직관적인 UI 제공과 글로벌 부하 테스트 환경을 지원하며, 대규모 시스템 테스트에 적합한 검증된 솔루션이다.
   - **단점**: Jython/Groovy에 대한 지식이 부족할 경우 복잡한 스크립트 작성이 어려울 수 있다. 또한, 분산 테스트 시 여러 Agent를 사용하는 경우 많은 시스템 자원이 필요하다.
-  - **참고자료**: [nGrinder 설치 (GitHub)](https://github.com/naver/ngrinder/tree/develop/docker) , [nGrinder(공식문서)](https://naver.github.io/ngrinder/)
+  - **참고자료**: [nGrinder 설치 (GitHub)](https://github.com/naver/ngrinder/tree/develop/docker), [nGrinder(공식문서)](https://naver.github.io/ngrinder/)
 
 * K6
   - **특징**: 웹 애플리케이션과 API의 부하 및 성능 테스트를 위해 설계된 오픈 소스 성능 테스트 도구로, **개발자 친화적**이고 **확장 가능**하다.

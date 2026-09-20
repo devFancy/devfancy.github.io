@@ -31,7 +31,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 ## Problems
 
-* 사이드 래터럴 레이즈 같은 (낮은 무게 X 갯수 20개 이상) 운동들, 맨몸 운동에 대해서 프로그램을 아무리 수정해도 맞지 않은 무게로 설정이 됩니다. 
+* 사이드 래터럴 레이즈 같은 (낮은 무게 X 개수 20개 이상) 운동들, 맨몸 운동에 대해서 프로그램을 아무리 수정해도 맞지 않은 무게로 설정이 됩니다. 
 
   이 부분과 관련된 운동들은 프로그램에서 제외하고, 맨몸 운동은 일단 넣으면서 계속 지켜볼 예정입니다.
 
@@ -76,7 +76,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 풀업, 딥스는 **주 4일** 항상 할 것
 
-![](/assets/img/workout/hst_week2_record.png){: width="400"}
+<img src="/assets/img/workout/hst_week2_record.png" alt="" width="400" />
 
 ## 정리
 

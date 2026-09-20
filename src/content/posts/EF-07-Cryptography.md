@@ -23,7 +23,7 @@ use_math: true
   
 ## Cryptography - 잘못된 예시
 
-![](/assets/img/electronic-finance/ef-07-cryptography_1.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-07-cryptography_1.png" alt="" width="500" />
 
 
 ## Encryption and Decryption
@@ -52,7 +52,7 @@ use_math: true
 
 ## Symmetric Encryption
 
-![](/assets/img/electronic-finance/ef-07-cryptography_2.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-07-cryptography_2.png" alt="" width="500" />
 
 
 ## Asymmetric Encryption
@@ -70,7 +70,7 @@ use_math: true
 
 ## Asymmetric Encryption 
 
-![](/assets/img/electronic-finance/ef-07-cryptography_3.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-07-cryptography_3.png" alt="" width="500" />
 
 
 * Elliptic Curve Digital Signature Algorithm (`ESCADA`)

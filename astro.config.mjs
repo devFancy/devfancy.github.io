@@ -14,7 +14,7 @@ export default defineConfig({
   integrations: [sitemap()],
 
   markdown: {
-    // NOTE: 수식은 전역 적용된다. 프론트매터로 끌 수 없다 (4-4-1)
+    // NOTE: 수식은 전역 적용된다. 프론트매터로 끌 수 없다 [수식 전역 적용]
     processor: unified({
       remarkPlugins: [remarkMath],
       rehypePlugins: [[rehypeKatex, { throwOnError: false }]],
