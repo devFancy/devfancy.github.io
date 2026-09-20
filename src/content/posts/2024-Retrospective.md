@@ -3,7 +3,7 @@ title: "2024년 회고"
 date: 2024-12-31
 categories: ["회고"]
 tags: []
-thumbnail: /assets/img/retrospective/cover/lake-bled.jpg
+thumbnail: /assets/img/retrospective/cover/night-sky.jpg
 ---
 
 올해 2024년은 작년(2023)보다 더 빠르게 흘러간 느낌이다.

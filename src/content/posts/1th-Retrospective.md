@@ -3,7 +3,7 @@ title: "2024년 1분기 회고"
 date: 2024-03-31
 categories: ["회고"]
 tags: []
-thumbnail: /assets/img/retrospective/cover/lake-bled.jpg
+thumbnail: /assets/img/retrospective/cover/night-sky.jpg
 ---
 
 그동안 1년 단위로 회고를 진행해왔는데, 최근 3개월은 여러가지 활동들을 보내서 처음으로 분기별 회고를 작성해보려고 합니다.

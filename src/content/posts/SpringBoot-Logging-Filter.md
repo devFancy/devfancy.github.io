@@ -3,6 +3,7 @@ title: "Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기"
 date: 2025-04-23
 categories: ["서버"]
 tags: ["Spring Boot"]
+thumbnail: /assets/img/server/cover/beach-tracks.jpg
 ---
 
 ## Prologue

@@ -7,10 +7,19 @@ export const SITE = {
   /* NOTE Hero 는 한글 문구가 제목, 영문 슬로건이 부제목이다
    * - 문구를 바꾸려면 여기만 고치면 된다
    */
+  /* NOTE 배경 사진 위에는 짧은 한 줄만 둔다 [히어로 문구]
+   * - 인사말은 사람을 맞는 말이라 배경 사진이 아니라 본문 가까이(intro)에 둔다
+   * - 한글은 영문의 직역이 아니다. 두 마디로 줄여 우리말로 읽히게 한다
+   */
   hero: {
-    title: "팬시의 개발 블로그에 와주셔서 감사합니다",
+    title: "나답게, 후회 없이",
     subtitle: "My path, my pace, no regrets.",
   },
+  /* NOTE 배경 사진과 대표 포스트 글 사이에 놓는 두 줄 [홈 머리글]
+   * - 위는 인사, 아래는 지금 이 블로그를 어떻게 쓰고 있는지다
+   */
+  intro: "팬시의 개발 블로그에 와주셔서 감사합니다.",
+  introNote: "무엇을 쓸지 정해 두기보다, 그때그때 기억하고 싶은 것을 작성하고 있습니다.",
 } as const;
 
 /* NOTE 네비게이션은 3개로 고정한다 [네비게이션]
@@ -62,6 +71,18 @@ export const TAG_ORDER = [
   "운동",
   "생각정리",
   "책",
+] as const;
+
+/* NOTE 홈 맨 위에 세우는 대표 포스트 글. 최신순이 아니라 손으로 고른다 [대표 포스트 글]
+ * - 값은 글 URL 의 슬러그다. 화면에는 최신순으로 선다. 순서는 신경 쓰지 않아도 된다
+ * - 기술 2편 + 그 밖 2편으로 균형을 맞춘다. 네 편 모두 thumbnail 이 있어야 한다
+ * - 오타나 슬러그 변경은 빌드 때 경고로 알려준다 (src/pages/index.astro)
+ */
+export const FEATURED = [
+  "SpringBoot-Logging-Filter",
+  "springboot-test-strategy",
+  "2024-Retrospective",
+  "Book-Interview-Questions",
 ] as const;
 
 // NOTE: 문제풀이는 메인/목록에서 빼고 /solutions/ 에 모은다. 글 URL 은 그대로 [문제풀이 분리]

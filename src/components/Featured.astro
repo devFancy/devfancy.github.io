@@ -1,0 +1,113 @@
+---
+/* NOTE 홈 맨 위의 대표 포스트 글 캐러셀. 목록은 config 의 FEATURED 가 정한다 [대표 포스트 글]
+ * - 한 번에 한 편만 크게 보여준다. 아래 최신 포스트 글 격자가 2열이라 여기까지 2열이면 둘이 구분되지 않는다
+ * - 이동은 CSS 스크롤 스냅이 맡는다. 화살표 버튼이 없어도(JS 실패) 밀어서 넘길 수 있다
+ * - 누르면 글로 가는 곳은 사진과 제목뿐이다 [홈은 글로만]
+ * - 태그는 두지 않는다. 홈에서 고를 거리를 줄이고 제목이 먼저 읽히게 한다
+ * - 높이는 min-height 다. 비율로 고정하면 제목이 길어질 때 글자가 잘린다 [높이 고정 금지]
+ */
+import { blankLight } from '../lib/blank';
+
+interface Item {
+  slug: string;
+  title: string;
+  date: Date;
+  categories: string[];
+  cover?: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+{items.length > 0 && (
+  <section aria-roledescription="carousel" aria-label="대표 포스트 글" class="fx">
+    <div class="fx-track" id="fx-track" tabindex="0">
+      {items.map((it, i) => (
+        <article
+          class:list={['fx-slide', !it.cover && 'blank-cover']}
+          style={it.cover ? undefined : blankLight(it.slug)}
+          aria-roledescription="slide"
+          aria-label={`${i + 1} / ${items.length}`}
+        >
+          {/* NOTE: 사진이 없으면 기본 이미지 색만 깔고 스크림을 생략한다. 이미 짙은 판이다 [기본 이미지] */}
+          {it.cover && (
+            <>
+              <img src={it.cover} alt="" loading={i === 0 ? 'eager' : 'lazy'} decoding="async"
+                class="media-zoom absolute inset-0 -z-10 size-full object-cover" />
+              {/* NOTE: 위는 헤더 글자를, 아래는 제목을 읽히게 한다. 한 겹으로 덮으면 사진이 탁해진다 [스크림] */}
+              <div class="media-scrim absolute inset-0 -z-10 bg-black/20"></div>
+              <div class="media-scrim absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-black/55 to-transparent"></div>
+              <div class="media-scrim absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent"></div>
+            </>
+          )}
+
+          {/* NOTE: 사진을 덮는 링크. 글자 블록보다 아래에 깔려 사진 아무 데나 눌러도 글로 간다 [홈은 글로만]
+              - 화살표는 .fx 에 붙어 있고 z-index 가 위라 이 덮개에 가리지 않는다 */}
+          <a href={`/${it.slug}/`} aria-label={it.title} class="absolute inset-0"></a>
+
+          {/* NOTE: 글자 블록은 덮개 위에 있다. 그래서 카테고리·날짜·태그는 눌러도 아무 일이 없고,
+              글로 가는 길은 사진과 제목 둘뿐이다. 다른 화면의 칩 동작과 어긋나지 않게 하려는 것이다 [홈은 글로만] */}
+          <div class="relative">
+            <p class="hero-type flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-white/80">
+              {it.categories.map((c) => <span>{c}</span>)}
+            </p>
+            <h3 class="hero-type mt-3 text-2xl leading-snug font-bold text-white sm:text-3xl">
+              <a href={`/${it.slug}/`} class="hover:underline">{it.title}</a>
+            </h3>
+            <time datetime={it.date.toISOString().slice(0, 10)} class="hero-type mt-4 block text-sm text-white/75">
+              {it.date.toISOString().slice(0, 10)}
+            </time>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {/* NOTE: 버튼은 JS 가 붙어야 동작한다. 없어도 스냅 스크롤로 밀어서 넘길 수 있다
+        - 점 표시는 두지 않는다. 좁은 화면에도 화살표가 있어 하는 일이 겹친다 */}
+    {items.length > 1 && (
+      <>
+        <button type="button" class="fx-arrow fx-prev" data-fx="prev" aria-controls="fx-track" aria-label="이전 대표 포스트 글">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg>
+        </button>
+        <button type="button" class="fx-arrow fx-next" data-fx="next" aria-controls="fx-track" aria-label="다음 대표 포스트 글">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+        </button>
+      </>
+    )}
+  </section>
+)}
+
+<script>
+  /* NOTE 캐러셀 조작. 위치는 스크롤이 진실이고 스크립트는 그것을 읽기만 한다 [대표 포스트 글]
+   * - 인덱스를 따로 들고 있으면 손으로 민 뒤 버튼을 누를 때 어긋난다
+   */
+  const track = document.getElementById('fx-track');
+  if (track) {
+    const count = track.children.length;
+    const slow = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const at = () => Math.round(track.scrollLeft / track.clientWidth);
+    const go = (i: number) =>
+      track.scrollTo({
+        left: Math.max(0, Math.min(count - 1, i)) * track.clientWidth,
+        behavior: slow ? 'auto' : 'smooth',
+      });
+
+    for (const b of document.querySelectorAll<HTMLButtonElement>('[data-fx]')) {
+      b.addEventListener('click', () => go(at() + (b.dataset.fx === 'next' ? 1 : -1)));
+    }
+    let tick = 0;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(tick);
+      tick = requestAnimationFrame(() => {
+        const i = at();
+        for (const b of document.querySelectorAll<HTMLButtonElement>('[data-fx]')) {
+          b.toggleAttribute('disabled', b.dataset.fx === 'next' ? i >= count - 1 : i <= 0);
+        }
+      });
+    }, { passive: true });
+    track.dispatchEvent(new Event('scroll'));
+  }
+</script>

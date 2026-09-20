@@ -3,6 +3,7 @@ title: "AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 �
 date: 2025-12-30
 categories: ["서버"]
 tags: ["성능테스트"]
+thumbnail: /assets/img/server/cover/earth-at-night.jpg
 ---
 
 ## Prologue

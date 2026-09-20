@@ -3,7 +3,6 @@ title: "2026 Dev History"
 date: 2026-01-01
 categories: ["회고"]
 tags: ["개발기록"]
-thumbnail: /assets/img/retrospective/cover/swiss-alps.jpg
 ---
 
 > 2026 Dev History
