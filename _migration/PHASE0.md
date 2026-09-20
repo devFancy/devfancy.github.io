@@ -220,7 +220,7 @@ Side_Project SpringBoot      ← 공백 구분 다중값 (8편)
 | 항목 | 값 |
 |---|---|
 | `assets/img` 총량 | **586MB** |
-| 파일 수 | **1230개** (png 1174, jpg 51, jpeg 12, gif 1) |
+| 파일 수 | **1238개** (png 1174, jpg 51 = `.jpg` 43 + `.JPG` 8, jpeg 12, gif 1) |
 | 10MB 초과 파일 | 13개 |
 | 최대 파일 | `book/The-One-Who-Leaves-People-Behind.png` 15MB |
 
@@ -308,7 +308,7 @@ URL 대소문자가 섞여 있다 (`/Algorithm-Baekjoon-24479/`, `/BS-Analysis-O
 | G | **수식 21편** | `use_math: true` 21편이 MathJax 사용. 지시서에 수식 계획 없음. `remark-math` + `rehype-katex` 도입 시 의존성 +2 |
 | H | **광고 존재** | 지시서는 "광고 없음 / 광고 스크립트 추가 금지"인데 현재 AdSense가 실제로 활성 |
 | — | 글 수 | 327 → 실제 319편 |
-| — | 이미지 수 | "300여 장" → 실제 1230개 / 586MB |
+| — | 이미지 수 | "300여 장" → 실제 1238개 / 586MB |
 
 ### 저장소 위생
 
