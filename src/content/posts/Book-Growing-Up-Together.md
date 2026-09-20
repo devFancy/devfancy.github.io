@@ -3,6 +3,7 @@ title: "[리뷰] 함께 자라기 (애자일로 가는 길)"
 date: 2023-11-19
 categories: ["에세이"]
 tags: ["책"]
+thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 
 > 이 글은 [함께 자라기](https://product.kyobobook.co.kr/detail/S000001033071) 책을 읽고 저의 생각과 같이 정리한 내용입니다.

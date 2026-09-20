@@ -1,22 +1,33 @@
 ---
-// NOTE: 썸네일 없이 제목 -> 날짜 -> 칩 순으로 쌓는다 (Phase 2 시안 A)
+/* NOTE 제목 -> 날짜 -> 칩 순으로 쌓고, 대표 이미지가 있으면 오른쪽에 붙인다 [대표 이미지]
+ * - 이미지가 없는 글이 129편이라 없을 때도 줄이 흐트러지지 않아야 한다
+ */
 import Chip from './Chip.astro';
+import Cover from './Cover.astro';
 
 interface Props {
   slug: string;
   title: string;
   date: Date;
   categories: string[];
+  cover?: string;
 }
-const { slug, title, date, categories } = Astro.props;
+const { slug, title, date, categories, cover } = Astro.props;
 const iso = date.toISOString().slice(0, 10);
 ---
-<article class="border-b border-rule py-5">
-  <h2 class="text-2xl leading-snug">
-    <a href={`/${slug}/`} class="hover:text-accent">{title}</a>
-  </h2>
-  <time datetime={iso} class="mt-2 block text-[15px] text-muted">{iso}</time>
-  <div class="mt-2 flex flex-wrap gap-2">
-    {categories.map((c) => <Chip value={c} />)}
+<article class="flex items-start gap-4 border-b border-rule py-5 sm:gap-6">
+  <div class="min-w-0 flex-1">
+    <h2 class="text-2xl leading-snug">
+      <a href={`/${slug}/`} class="hover:text-accent">{title}</a>
+    </h2>
+    <time datetime={iso} class="mt-2 block text-[15px] text-muted">{iso}</time>
+    <div class="mt-2 flex flex-wrap gap-2">
+      {categories.map((c) => <Chip value={c} />)}
+    </div>
   </div>
+  {cover && (
+    <a href={`/${slug}/`} class="mt-1 block" aria-hidden="true" tabindex="-1">
+      <Cover src={cover} />
+    </a>
+  )}
 </article>

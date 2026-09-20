@@ -3,6 +3,7 @@ title: "'도메인 주도 개발 시작하기' 책 후기"
 date: 2025-10-10
 categories: ["에세이"]
 tags: ["책"]
+thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 
 > 이 글은 [도메인 주도 개발 시작하기](https://product.kyobobook.co.kr/detail/S000001810495) 책을 읽고 느낀 필자의 주관적인 생각입니다.

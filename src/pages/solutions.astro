@@ -2,6 +2,7 @@
 /* NOTE 문제풀이 글을 모아 보여준다. 개별 글 URL 은 기존 플랫 슬러그 그대로다 [문제풀이 분리] */
 import { getCollection } from 'astro:content';
 import PostCard from '../components/PostCard.astro';
+import { coverOf } from '../lib/cover';
 import Base from '../layouts/Base.astro';
 import { SOLUTION_CATEGORIES } from '../config';
 
@@ -16,7 +17,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
     <p class="mt-2 text-muted">총 {posts.length}개의 포스트가 있어요</p>
     <div class="mt-8">
       {posts.map((p) => (
-        <PostCard slug={p.id} title={p.data.title} date={p.data.date} categories={p.data.categories} />
+        <PostCard slug={p.id} title={p.data.title} date={p.data.date} categories={p.data.categories} cover={coverOf(p)} />
       ))}
     </div>
   </div>

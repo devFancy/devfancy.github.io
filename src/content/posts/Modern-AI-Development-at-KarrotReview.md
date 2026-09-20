@@ -3,6 +3,7 @@ title: "'요즘 당근 AI 개발' 책 후기"
 date: 2025-10-30
 categories: ["에세이"]
 tags: ["책"]
+thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 
 > 이 글은 [요즘 당근 AI 개발](https://product.kyobobook.co.kr/detail/S000217613503) 책을 읽고 느낀 필자의 주관적인 생각입니다.

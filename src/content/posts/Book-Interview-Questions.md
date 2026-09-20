@@ -3,6 +3,7 @@ title: "[리뷰] 삶의 태도를 돌아보는 면접의 질문들 - 면접을 �
 date: 2025-02-12
 categories: ["에세이"]
 tags: ["책"]
+thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 
 > 이 글을 [삶의 태도를 돌아보는 **면접의 질문들**](https://product.kyobobook.co.kr/detail/S000214779954) 책을 읽고, 

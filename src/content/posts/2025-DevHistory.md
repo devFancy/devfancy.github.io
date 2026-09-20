@@ -3,6 +3,7 @@ title: "2025 Dev History"
 date: 2025-01-01
 categories: ["회고"]
 tags: ["개발기록"]
+thumbnail: /assets/img/retrospective/cover/swiss-alps.jpg
 ---
 
 > 2025 Dev History

@@ -8,6 +8,7 @@ import Base from '../layouts/Base.astro';
 import heroMain from '../assets/hero-main.jpg';
 import Hero from '../components/Hero.astro';
 import PostCard from '../components/PostCard.astro';
+import { coverOf } from '../lib/cover';
 import { SITE, SOLUTION_CATEGORIES } from '../config';
 
 const RECENT = 3;
@@ -29,7 +30,7 @@ const recent = (await getCollection('posts', ({ data }) => !data.draft))
       </div>
       {recent.map((p) => (
         <PostCard slug={p.id} title={p.data.title} date={p.data.date}
-          categories={p.data.categories} />
+          categories={p.data.categories} cover={coverOf(p)} />
       ))}
     </section>
   </div>

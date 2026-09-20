@@ -7,7 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "predev": "node scripts/make-covers.mjs",
     "build": "astro build",
+    "prebuild": "node scripts/make-covers.mjs",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "biome check .",

@@ -22,7 +22,8 @@
   --color-card: #ffffff;
   --color-accent: #2a78d6;
   --color-quote: #b8bcbf;
-  --color-header: rgb(255 255 255 / .94);
+  /* 본문보다 살짝 어둡게 둬 헤더가 글 위에 얹힌 판처럼 읽히게 한다 */
+  --color-header: rgb(246 246 244 / .94);
   /* 로고 전용. 호버하면 accent 로 밝아진다 */
   --color-brand: #17547f;
   --color-tag: #f0f2f3;
@@ -178,6 +179,26 @@ blockquote.quote {
 /* NOTE: 본문 이미지 폭 제한 [모바일 가로 넘침] */
 .prose img { max-width: 100%; height: auto; }
 
+/* NOTE 사진이 밝게 떴다가 천천히 가라앉는 연출 [사진 페이드]
+ * - Hero 배경과 글 대표 이미지가 같은 결을 쓴다. 정의는 여기 한 곳에만 둔다
+ * - 막이 2.4s 에 걸쳐 덮이고, 확대는 더 길게 끌어 "아직 로딩 중" 처럼 보이지 않게 한다
+ */
+.media-scrim { animation: media-scrim-in 2.4s cubic-bezier(.33, 1, .68, 1) .2s both; }
+.media-zoom  { animation: media-settle 5s cubic-bezier(.33, 1, .68, 1) both; }
+
+@keyframes media-scrim-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes media-settle {
+  from { transform: scale(1.05); }
+  to   { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-scrim, .media-zoom { animation: none; }
+}
+
 /* NOTE 키보드 이동 시 현재 위치가 보이게 한다. 마우스 클릭에는 나타나지 않는다 */
 :focus-visible {
   outline: 2px solid var(--color-accent);
@@ -210,8 +231,9 @@ blockquote.quote {
   color: var(--color-muted);
 }
 .chip:hover {
-  color: var(--color-accent);
   border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-bg);
 }
 .chip[aria-pressed='true'] {
   background: var(--color-fg);
@@ -224,7 +246,25 @@ blockquote.quote {
   border-color: transparent;
   color: var(--color-tag-fg);
 }
-.chip-tag:hover { border-color: var(--color-accent); }
+.chip-tag:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* 사진 위에 얹는 칩. 배경이 어두우므로 토큰 대신 흰색 계열을 쓴다 */
+.chip-on-dark,
+.chip-on-dark.chip-tag {
+  border-color: rgb(255 255 255 / .4);
+  background: rgb(255 255 255 / .15);
+  color: #fff;
+}
+.chip-on-dark:hover,
+.chip-on-dark.chip-tag:hover {
+  border-color: #fff;
+  background: #fff;
+  color: #000;
+}
 .chip-tag[aria-pressed='true'] {
   background: var(--color-tag-on);
   border-color: var(--color-tag-on);

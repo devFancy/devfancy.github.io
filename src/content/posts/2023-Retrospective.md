@@ -3,6 +3,7 @@ title: "2023년 회고"
 date: 2023-12-31
 categories: ["회고"]
 tags: []
+thumbnail: /assets/img/retrospective/cover/lake-bled.jpg
 ---
 
 2023년은 20대 동안 `개발` 면에서 가장 활발하게 다양한 활동을 경험한 한 해이자, 휴식이 적은 한 해였다.

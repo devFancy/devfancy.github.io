@@ -6,10 +6,12 @@
 interface Props {
   value: string;
   kind?: 'category' | 'tag';
+  /* 사진 위에 얹을 때. 테두리와 글자를 흰색 계열로 바꾼다 */
+  onDark?: boolean;
 }
-const { value, kind = 'category' } = Astro.props;
+const { value, kind = 'category', onDark = false } = Astro.props;
 ---
 <a
   href={`/category/#${encodeURIComponent(value)}`}
-  class:list={['chip', kind === 'tag' && 'chip-tag']}
+  class:list={['chip', kind === 'tag' && 'chip-tag', onDark && 'chip-on-dark']}
 >{kind === 'tag' ? `#${value}` : value}</a>

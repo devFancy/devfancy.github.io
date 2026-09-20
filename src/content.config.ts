@@ -20,6 +20,8 @@ const posts = defineCollection({
     tags: z.array(z.string()).default([]),
     // NOTE: 수식 제어용이 아니라 KaTeX CSS 조건부 로드용 [수식 전역 적용]
     use_math: z.boolean().default(false),
+    // NOTE: 대표 이미지. 적은 글에만 붙는다. 본문 이미지를 자동으로 쓰지 않는다 [대표 이미지]
+    thumbnail: z.string().optional(),
     summary: z.string().optional(),
     draft: z.boolean().default(false),
   }),
