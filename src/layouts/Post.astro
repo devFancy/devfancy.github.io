@@ -2,6 +2,7 @@
 import type { MarkdownHeading } from 'astro';
 import Base from './Base.astro';
 import Chip from '../components/Chip.astro';
+import Hero from '../components/Hero.astro';
 import Recommend from '../components/Recommend.astro';
 import Toc from '../components/Toc.astro';
 
@@ -14,30 +15,97 @@ interface Props {
   useMath: boolean;
   headings: MarkdownHeading[];
   description?: string;
+  cover?: string;
 }
-const { id, title, date, categories, tags, useMath, headings, description } = Astro.props;
+const { id, title, date, categories, tags, useMath, headings, description, cover } = Astro.props;
 const iso = date.toISOString().slice(0, 10);
 ---
-<Base title={title} description={description} useMath={useMath}>
+{/* NOTE 커버가 있으면 상단 헤더를 사진 위에 띄운다. 메인 페이지와 같은 구조다 [Hero 공통] */}
+<Base title={title} description={description} useMath={useMath} overHero={!!cover}>
+  {/* NOTE 대표 이미지는 다른 페이지 배경과 같은 Hero 를 쓴다 [Hero 공통] */}
+  {cover && (
+    <Hero src={cover} title={title} align="bottom">
+      {/* 카테고리는 제목 위, 날짜와 태그는 아래. 자리로 갈라 동급으로 읽히지 않게 한다 */}
+      <p slot="eyebrow" class="hero-type mb-4 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-white/80">
+        {categories.map((c) => (
+          <a href={`/category/#${encodeURIComponent(c)}`}
+            class="underline-offset-4 transition-colors hover:text-white hover:underline">{c}</a>
+        ))}
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-2">
+        <time datetime={iso} class="hero-type mr-1 text-sm text-white/75">{iso}</time>
+        {tags.map((t) => <Chip value={t} kind="tag" onDark />)}
+      </div>
+    </Hero>
+  )}
+
   {/* NOTE: grid-cols-1 이 없으면 lg 미만에서 트랙이 auto 로 잡혀 코드블록 폭만큼 늘어난다 */}
-  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-10 lg:grid-cols-[minmax(0,1fr)_15rem]">
+  <div
+    class:list={[
+      'mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem]',
+      'pt-10',
+    ]}
+  >
     {/* NOTE: justify-self를 쓰면 아이템 폭이 max-content가 되어 트랙을 넘는다. ml-auto로 민다 */}
     <article class="min-w-0 lg:ml-auto lg:max-w-3xl">
-      <h1 class="text-[26px] leading-snug text-balance sm:text-4xl">{title}</h1>
-      <time datetime={iso} class="mt-3 block text-base text-muted">{iso}</time>
-      <div class="mt-3 flex flex-wrap gap-2">
-        {categories.map((c) => <Chip value={c} />)}
-        {tags.map((t) => <Chip value={t} kind="tag" />)}
-      </div>
-      <div class="prose mt-10"><slot /></div>
+      {!cover && (
+        <div>
+          <p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent">
+            {categories.map((c) => (
+              <a href={`/category/#${encodeURIComponent(c)}`} class="hover:underline">{c}</a>
+            ))}
+          </p>
+          <h1 class="text-[26px] leading-snug text-balance sm:text-4xl">{title}</h1>
+          <div class="mt-4 flex flex-wrap items-center gap-2">
+            <time datetime={iso} class="mr-1 text-sm text-muted">{iso}</time>
+            {tags.map((t) => <Chip value={t} kind="tag" />)}
+          </div>
+        </div>
+      )}
+      <div class:list={['prose', cover ? 'mt-0' : 'mt-10']}><slot /></div>
       <Recommend currentId={id} categories={categories} />
     </article>
 
-    <aside class="hidden lg:block">
-      {/* NOTE: 헤더가 fixed 라 그 높이(약 68px)만큼 비켜야 가려지지 않는다 */}
+    {/* NOTE 목차는 처음부터 띄우지 않는다. 글을 읽기 시작해야 필요해진다 [목차] */}
+    <aside id="toc-rail" class="hidden lg:block">
+      {/* NOTE: 헤더가 fixed 라 그 높이만큼 비켜야 가려지지 않는다 */}
       <div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto">
         <Toc headings={headings} />
       </div>
     </aside>
   </div>
+
+<style>
+  /* 스크롤을 내리기 전에는 자리만 잡고 보이지 않는다 */
+  #toc-rail {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .35s ease, transform .35s ease;
+  }
+  #toc-rail.is-on {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #toc-rail { transition: none; }
+  }
+</style>
+
+<script>
+  const rail = document.getElementById('toc-rail');
+  if (rail) {
+    let queued = false;
+    const update = () => {
+      queued = false;
+      rail.classList.toggle('is-on', scrollY > 240);
+    };
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    };
+    update();
+    addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>
 </Base>

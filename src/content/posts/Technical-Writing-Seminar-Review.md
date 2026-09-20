@@ -3,6 +3,7 @@ title: "[글또 9기] 나만의 글쓰기 파이프라인"
 date: 2024-02-07
 categories: ["회고"]
 tags: ["글또"]
+thumbnail: /assets/img/retrospective/cover/open-book-garden.jpg
 ---
 
 * 예상 독자: 저의 글쓰기 파이프라인 전/후를 궁금해하는 분

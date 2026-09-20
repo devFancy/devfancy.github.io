@@ -3,6 +3,7 @@ title: "글또 10기 회고"
 date: 2025-03-30
 categories: ["회고"]
 tags: ["글또"]
+thumbnail: /assets/img/retrospective/cover/open-book-garden.jpg
 ---
 
 > 글또는 글 쓰는 개발자 모임의 줄임말입니다. 궁금하시다면 글또 운영진분들이 만든 [홈페이지](https://geultto.github.io/)에 가보시면 자세히 확인할 수 있습니다.

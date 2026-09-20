@@ -3,6 +3,7 @@ title: "글또 9기 회고. 5개월간 활동한 여정"
 date: 2024-05-01
 categories: ["회고"]
 tags: ["글또"]
+thumbnail: /assets/img/retrospective/cover/open-book-garden.jpg
 ---
 
 글또는 **글 쓰는 개발자 모임**이며, 이번 9기에 활동했던 인원은 약 450명일 정도로 다양한 개발자 모임들 중에 큰 규모로 운영중인 모임이지 않을까 싶어요.

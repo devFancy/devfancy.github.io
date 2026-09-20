@@ -3,6 +3,7 @@ title: "[리뷰] 소프트웨어 장인 리뷰"
 date: 2023-02-06
 categories: ["에세이"]
 tags: ["책"]
+thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 
 ## Prologue

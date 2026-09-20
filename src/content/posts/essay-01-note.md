@@ -3,6 +3,7 @@ title: "2026년 1월 생각 정리"
 date: 2026-01-31
 categories: ["에세이"]
 tags: ["생각정리"]
+thumbnail: /assets/img/essay/cover/rainy-window.jpg
 ---
 
 > 이 글은 필자의 지극히 개인적인 생각을 정리한 내용임을 감안하여 읽어주시면 감사하겠습니다.

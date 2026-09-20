@@ -1,0 +1,16 @@
+---
+/* NOTE 목록 카드의 대표 이미지 [대표 이미지]
+ * - 파일은 scripts/make-covers.mjs 가 빌드 전에 16:9 로 만들어 둔다
+ * - 비율을 고정해 이미지가 늦게 와도 아래 글이 밀리지 않는다
+ * - 글 상세는 이 조각이 아니라 Hero 를 쓴다. 배경으로 깔리는 자리라 구조가 다르다
+ */
+interface Props {
+  src: string;
+  alt?: string;
+}
+const { src, alt = '' } = Astro.props;
+---
+<div class="relative aspect-[16/10] w-[104px] shrink-0 overflow-hidden rounded-md bg-card sm:w-[168px]">
+  <img src={src} alt={alt} loading="lazy" decoding="async" class="media-zoom size-full object-cover" />
+  <div class="media-scrim pointer-events-none absolute inset-0 bg-black/10"></div>
+</div>

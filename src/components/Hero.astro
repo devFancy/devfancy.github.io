@@ -8,7 +8,9 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
-  image: ImageMetadata;
+  /* 글 대표 이미지는 public 에 있어 astro:assets 를 못 거친다. 그래서 경로 문자열도 받는다 */
+  image?: ImageMetadata;
+  src?: string;
   title?: string;
   subtitle?: string;
   position?: 'center' | 'bottom' | 'top';
@@ -18,42 +20,52 @@ interface Props {
   height?: 'normal' | 'tall';
 }
 const {
-  image, title, subtitle,
+  image, src, title, subtitle,
   position = 'center', align = 'top', dim = 'normal', height = 'normal',
 } = Astro.props;
+const fit = position === 'bottom' ? 'object-bottom' : position === 'top' ? 'object-top' : 'object-center';
+const imgClass = `media-zoom absolute inset-0 -z-10 size-full object-cover ${fit}`;
 ---
 <section
   class:list={[
     'relative isolate flex overflow-hidden',
-    height === 'tall' ? 'min-h-[24rem] sm:min-h-[40rem]' : 'min-h-[20rem] sm:min-h-[32rem]',
+    /* NOTE 높이는 최소값만 준다 [Hero 공통]
+     * - 비율(aspect-ratio)로 잡으면 높이가 고정되어, 내용이 넘칠 때
+     *   overflow-hidden 이 그것을 잘라 제목이 헤더와 겹친다
+     * - 넓은 화면에서는 vw 를 섞어 같이 키운다. 안 그러면 27인치에서 5:1 띠가 된다
+     */
+    height === 'tall'
+      ? 'min-h-[24rem] sm:min-h-[clamp(40rem,32vw,48rem)]'
+      : 'min-h-[20rem] sm:min-h-[clamp(32rem,26vw,40rem)]',
     align === 'bottom' ? 'items-end' : 'items-start',
   ]}
 >
-  <Image
-    src={image}
-    alt=""
-    widths={[640, 1024, 1600, 2400]}
-    sizes="100vw"
-    loading="eager"
-    fetchpriority="high"
-    class:list={[
-      'hero-img absolute inset-0 -z-10 size-full object-cover',
-      position === 'bottom' ? 'object-bottom' : position === 'top' ? 'object-top' : 'object-center',
-    ]}
-  />
-  <div class:list={['hero-scrim absolute inset-0 -z-10', dim === 'strong' ? 'bg-black/60' : 'bg-black/45']}></div>
-  <div class="hero-scrim absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/55 to-transparent"></div>
+  {image ? (
+    <Image src={image} alt="" widths={[640, 1024, 1600, 2400]} sizes="100vw"
+      loading="eager" fetchpriority="high" class={imgClass} />
+  ) : (
+    <img src={src} alt="" loading="eager" fetchpriority="high" decoding="async" class={imgClass} />
+  )}
+  {/* NOTE 막을 균일하게 덮지 않고 위아래로 몰아준다 [사진 대비]
+   * - 균일한 막은 사진을 탁하게 만들면서 정작 글자 자리의 대비는 보장하지 못한다
+   * - 위는 헤더 메뉴, 아래는 제목이 앉는 자리다. 가운데는 사진을 그대로 둔다
+   */}
+  <div class:list={['media-scrim absolute inset-0 -z-10', dim === 'strong' ? 'bg-black/40' : 'bg-black/20']}></div>
+  <div class="media-scrim absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/60 to-transparent"></div>
+  <div class="media-scrim absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent"></div>
   {(title || subtitle) && (
     <div
       class:list={[
         'mx-auto w-full max-w-3xl px-4',
-        align === 'bottom' ? 'pt-28 pb-24 sm:pb-28' : 'pt-28 pb-16 sm:pt-32',
+        align === 'bottom' ? 'pt-28 pb-14 sm:pb-28' : 'pt-28 pb-14 sm:pt-32 sm:pb-16',
       ]}
     >
+      <slot name="eyebrow" />
       {title && (
         <h1 class="hero-type text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl">{title}</h1>
       )}
       {subtitle && <p class="hero-type mt-5 text-lg text-white/85 sm:text-xl">{subtitle}</p>}
+      <slot />
     </div>
   )}
 </section>
@@ -62,26 +74,5 @@ const {
 <style>
   .hero-type { text-shadow: 0 1px 14px rgb(0 0 0 / .55); }
 
-  /* 제목은 0ms 부터 떠 있다. 막이 옅은 동안은 글씨가 잘 안 읽혀 대기를 짧게 둔다 */
-  .hero-scrim {
-    animation: scrim-in 2.4s cubic-bezier(.33, 1, .68, 1) .2s both;
-  }
-  /* 줌은 훨씬 길게 끈다. 스크림과 같이 끝나면 "아직 로딩 중" 처럼 보인다 */
-  .hero-img {
-    animation: hero-settle 5s cubic-bezier(.33, 1, .68, 1) both;
-  }
-
-  @keyframes scrim-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  @keyframes hero-settle {
-    from { transform: scale(1.05); }
-    to { transform: scale(1); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-scrim,
-    .hero-img { animation: none; }
-  }
+  /* 페이드는 global.css 의 .media-scrim / .media-zoom 이 맡는다 [사진 페이드] */
 </style>

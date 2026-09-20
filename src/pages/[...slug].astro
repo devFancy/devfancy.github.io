@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Post from '../layouts/Post.astro';
+import { coverOf } from '../lib/cover';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -10,6 +11,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+const cover = coverOf(post);
 ---
 <Post
   id={post.id}
@@ -20,6 +22,7 @@ const { Content, headings } = await render(post);
   useMath={post.data.use_math}
   headings={headings}
   description={post.data.summary}
+  cover={cover}
 >
   <Content />
 </Post>

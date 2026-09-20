@@ -3,6 +3,7 @@ title: "2024년 3분기 회고"
 date: 2024-10-27
 categories: ["회고"]
 tags: []
+thumbnail: /assets/img/retrospective/cover/lake-bled.jpg
 ---
 
 > 최근 내가 하고 있는 일이 너무 많아서 머릿속이 복잡해졌다. 그래서 생각을 정리하고자 2024년 3분기 회고 글을 작성하게 되었다.
@@ -95,7 +96,7 @@ tags: []
 
 ### LeetCode
 
-<img src="/assets/img/algorithm/leetcode/LeetCode_Grind169_questions.png" alt="" width="500" />
+<img src="/assets/img/retrospective/leetcode/LeetCode_Grind169_questions.png" alt="" width="500" />
 
 * 올해 4월부터 알고리즘 스터디 모임에 참여해 매주 두 문제씩 [LeetCode](https://github.com/devFancy/LeetCode) 문제를 풀고 있다. 
 
