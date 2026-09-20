@@ -36,7 +36,7 @@ const WHO = [
       />
       <div>
         <h1 class="text-2xl font-bold">{PROFILE.name}</h1>
-        <p class="mt-3 max-w-prose leading-relaxed">{PROFILE.intro}</p>
+        <p class="mt-3 max-w-prose leading-relaxed text-muted">{PROFILE.intro}</p>
         <div class="mt-5"><SocialLinks size={26} /></div>
       </div>
     </section>
@@ -46,7 +46,7 @@ const WHO = [
       {/* NOTE: 문장이 흩어지지 않도록 인용 하나로 묶는다 */}
       <blockquote class="quote mt-6">
         {WHO.map((line) => (
-          <p class="mt-3 leading-relaxed first:mt-0">{line}</p>
+          <p class="mt-3 leading-relaxed text-muted first:mt-0">{line}</p>
         ))}
       </blockquote>
     </section>
