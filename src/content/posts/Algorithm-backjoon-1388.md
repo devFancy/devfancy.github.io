@@ -2,7 +2,7 @@
 title: "[백준] 1388. 바닥장식"
 date: 2023-12-05
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/1388)

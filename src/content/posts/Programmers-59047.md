@@ -1,8 +1,8 @@
 ---
 title: "[Programmers] 59047. 이름에 el이 들어가는 동물 찾기(Lv.2) (String, Date)"
 date: 2023-02-24
-categories: ["CS"]
-tags: ["SQL"]
+categories: ["알고리즘"]
+tags: ["SQL", "프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59047)

@@ -1,8 +1,8 @@
 ---
 title: "쿠키와 세션"
 date: 2023-10-24
-categories: ["서버"]
-tags: ["기술"]
+categories: ["CS"]
+tags: ["네트워크"]
 ---
 
 ## 쿠키를 사용하게 된 배경

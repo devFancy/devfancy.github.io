@@ -2,7 +2,7 @@
 title: "DDD 세레나데 7기, 5주간의 여정을 돌아보며"
 date: 2025-03-15
 categories: ["서버"]
-tags: ["기술"]
+tags: ["후기"]
 ---
 
 > 이 글은 넥스트스텝의 [DDD 세레나데](https://edu.nextstep.camp/c/GwN2MSqv) 7기 교육을 5주간 참여하며 배운 경험과 느낀 점을 정리한 후기입니다.

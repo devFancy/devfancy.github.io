@@ -2,7 +2,7 @@
 title: "[Programmers] 12951. JadenCase 문자열 만들기"
 date: 2023-02-03
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12951)

@@ -1,8 +1,8 @@
 ---
 title: "[Hibit] JMeter를 활용한 성능 테스트 도입"
 date: 2024-01-22
-categories: ["프로젝트", "서버"]
-tags: ["사이드프로젝트", "Spring Boot"]
+categories: ["서버"]
+tags: ["Spring Boot"]
 ---
 
 > 이 글은 실제 [히빗 프로젝트(ver.2)](https://github.com/hibit-team/hibit-backend-improved)를 혼자서 개발하면서 경험한 내용을 정리한 글입니다.

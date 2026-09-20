@@ -2,7 +2,7 @@
 title: "나만의 GitHub README.md 꾸미기"
 date: 2023-02-06
 categories: ["기타"]
-tags: ["기술"]
+tags: ["블로그"]
 ---
 
 ## Prologue

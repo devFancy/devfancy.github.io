@@ -53,7 +53,7 @@ tags: ["클린코드"]
 
     삼각형을 나타내는 Triangle 클래스, 타원을 나타내는 Ellipse 클래스 등 새로운 도형을 추가할 수도 있다.
 
-![](/assets/img/goodcode/Is-My-Code-That-Weird-6-1.png)
+![](/assets/img/clean-code/Is-My-Code-That-Weird-6-1.png)
 
 * 이처럼 **인터페이스를 사용해서 처리를 한꺼번에 전환하는 설계를 `전략 패턴`(strategy pattern)** 이라고 한다.
 
@@ -175,6 +175,6 @@ class GoldCustomerPolicy {
 
 * 여기서 골드 회원 뿐만 아니라, 실버 회원을 추가해도 구조를 크게 바꾸지 않은 채로 필요한 클래스만 추가해주면 된다.
 
-![](/assets/img/goodcode/Is-My-Code-That-Weird-6-2.png)
+![](/assets/img/clean-code/Is-My-Code-That-Weird-6-2.png)
 
 * 이처럼 조건 분기 중복과 중첩을 제거하기 위해 정책 패턴으로 규칙을 구조화한 상태로 만들면 된다.

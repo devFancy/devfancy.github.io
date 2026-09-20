@@ -2,7 +2,7 @@
 title: "Google Search Console에 GitHub 블로그 등록하기"
 date: 2023-01-14
 categories: ["기타"]
-tags: ["기술"]
+tags: ["블로그"]
 ---
 
 *  Google 서치 콘솔(구글 웹마스터 도구)을 사용해 내 사이트의 검색 트래픽 및 실적을 측정하고, 문제를 해결하며, Google 검색결과에서 내 사이트가 돋보이게 할 수 있다.

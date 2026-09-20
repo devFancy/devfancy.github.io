@@ -2,7 +2,7 @@
 title: "AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기"
 date: 2025-12-30
 categories: ["서버"]
-tags: ["기술"]
+tags: ["성능테스트"]
 ---
 
 ## Prologue

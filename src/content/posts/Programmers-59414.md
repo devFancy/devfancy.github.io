@@ -1,8 +1,8 @@
 ---
 title: "[Programmers] 59414. DATETIME에서 DATE로 형 변환(Lv.2) (String, Date)"
 date: 2023-02-24
-categories: ["CS"]
-tags: ["SQL"]
+categories: ["알고리즘"]
+tags: ["SQL", "프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59414)

@@ -1,8 +1,8 @@
 ---
 title: "NGINX란?"
 date: 2023-10-28
-categories: ["서버"]
-tags: ["기술"]
+categories: ["CS"]
+tags: ["네트워크"]
 ---
 
 ## NGINX 등장 배경: Apache 의 문제점

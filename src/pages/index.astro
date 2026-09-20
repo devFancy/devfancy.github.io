@@ -1,4 +1,8 @@
 ---
+/* NOTE 홈은 섹션을 쌓는 자리다. 목록 전체는 /archive/ 와 /category/ 가 맡는다 (4-4-2)
+ * - 319편을 한 페이지에 쏟으면 첫 화면이 목록으로 덮인다. 최근 글만 추린다
+ * - 대표 글·인기 글 섹션은 이 아래에 같은 모양으로 덧붙인다
+ */
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import heroMain from '../assets/hero-main.jpg';
@@ -6,19 +10,27 @@ import Hero from '../components/Hero.astro';
 import PostCard from '../components/PostCard.astro';
 import { SITE, SOLUTION_CATEGORIES } from '../config';
 
+const RECENT = 3;
+
 const solution = new Set<string>(SOLUTION_CATEGORIES);
-const posts = (await getCollection('posts', ({ data }) => !data.draft))
-  // NOTE: 문제풀이 글은 메인에서 뺀다. /solutions/는 Phase 3에서 (4-2)
+const recent = (await getCollection('posts', ({ data }) => !data.draft))
+  // NOTE: 문제풀이는 한 번에 여러 편이 올라가 최근 글을 독점한다. /solutions/ 로 뺀다 (4-2)
   .filter((p) => !p.data.categories.some((c) => solution.has(c)))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, RECENT);
 ---
 <Base overHero>
-  <Hero image={heroMain} title={SITE.hero.title} subtitle={SITE.hero.subtitle} />
+  <Hero image={heroMain} title={SITE.hero.title} subtitle={SITE.hero.subtitle} align="bottom" />
   <div class="mx-auto max-w-3xl px-4 py-10">
-  <h2 class="text-lg font-semibold text-muted">전체 글 {posts.length}편</h2>
-  {posts.map((p) => (
-    <PostCard slug={p.id} title={p.data.title} date={p.data.date}
-      categories={p.data.categories} />
-  ))}
+    <section>
+      <div class="flex items-baseline justify-between gap-4">
+        <h2 class="text-lg font-semibold text-muted">최근 글</h2>
+        <a href="/archive/" class="text-[15px] text-muted hover:text-accent">전체 보기 &rarr;</a>
+      </div>
+      {recent.map((p) => (
+        <PostCard slug={p.id} title={p.data.title} date={p.data.date}
+          categories={p.data.categories} />
+      ))}
+    </section>
   </div>
 </Base>

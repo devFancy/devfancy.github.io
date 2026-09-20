@@ -2,7 +2,7 @@
 title: "[우아한테크토크] 선착순 이벤트 서버 생존기! 47만 RPM에서 살아남다?!"
 date: 2024-02-03
 categories: ["서버"]
-tags: ["기술"]
+tags: ["후기"]
 ---
 
 ## 선착순 이벤트 배너
@@ -13,7 +13,7 @@ tags: ["기술"]
 - 어떤 반응인지 커뮤니티를 참고
 - 그 중에서 “배민 또 장애 나겠네..” 반응도 있었음
 
-![](/assets/img/tech_insight/Woowa-Tech-Talk-First-Come-First-Served-Event-2.png)
+![](/assets/img/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-2.png)
 
 - 장애나는 날 전화가 폭주함
 

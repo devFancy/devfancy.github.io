@@ -2,7 +2,7 @@
 title: "[KNU] 학생설계 융합전공 공모전(대상 수상)"
 date: 2022-10-31
 categories: ["기타"]
-tags: ["공모전"]
+tags: ["커리어"]
 use_math: true
 ---
 

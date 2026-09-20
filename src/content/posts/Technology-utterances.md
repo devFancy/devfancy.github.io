@@ -2,7 +2,7 @@
 title: "GitHub Blog에 댓글 기능 추가(utterances)"
 date: 2023-02-04
 categories: ["기타"]
-tags: ["기술"]
+tags: ["블로그"]
 ---
 
 > 해당 글은 Jekyll 기반 GitHub Blog 중심으로 작성한 내용입니다.

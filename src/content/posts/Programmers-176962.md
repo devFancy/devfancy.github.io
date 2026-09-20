@@ -2,7 +2,7 @@
 title: "[Programmers] 176962. 과제 진행하기"
 date: 2023-11-03
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/176962)

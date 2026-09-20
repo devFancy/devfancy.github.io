@@ -23,7 +23,7 @@ use_math: true
 
 * 점추정(Point estimate): 표본 통계량으로부터 **모수의 단일 값**을 추정
 
-![](/assets/img/bs/bs-estimation-and-confidence-interval_1.png){: width="500"}
+![](/assets/img/business-statistics/bs-estimation-and-confidence-interval_1.png){: width="500"}
 
 
 ## 모평균에 대한 신뢰구간
@@ -86,7 +86,7 @@ use_math: true
   
 * t분포는 z분포에 비해 평평한 분포를 가짐.
 
-![](/assets/img/bs/bs-estimation-and-confidence-interval_2.png){: width="500"}
+![](/assets/img/business-statistics/bs-estimation-and-confidence-interval_2.png){: width="500"}
 
 
 * 표본크기 n의 증가함에 따라 폭이 좁아져 z분포에 가까워짐
@@ -109,7 +109,7 @@ use_math: true
         
 * t 분포표 에서 해당 신뢰구간에 대한 t값을 구한다.
 
-![](/assets/img/bs/bs-estimation-and-confidence-interval_3.png){: width="500"}
+![](/assets/img/business-statistics/bs-estimation-and-confidence-interval_3.png){: width="500"}
 
 ## 모비율에 대한 신뢰구간 **(중요)**
 

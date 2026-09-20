@@ -2,7 +2,7 @@
 title: "토스 SLASH 22 Server '왜 은행은 무한스크롤이 안되나요' 정리"
 date: 2025-09-24
 categories: ["서버"]
-tags: ["기술"]
+tags: ["후기"]
 ---
 
 > 토스뱅크에서 Server Developer 이응준님이 발표한 "[왜 은행은 무한스크롤이 안되나요](https://www.youtube.com/watch?v=v9rcKpUZw4o)" 영상을 듣고 정리한 내용입니다.

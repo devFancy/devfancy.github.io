@@ -2,7 +2,7 @@
 title: "[백준] 1937. 욕심쟁이 판다"
 date: 2023-03-06
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/1937)

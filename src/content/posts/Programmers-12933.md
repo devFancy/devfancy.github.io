@@ -2,7 +2,7 @@
 title: "[Programmers] 12933. 정수 내림차순으로 배치하기"
 date: 2023-01-09
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12933)

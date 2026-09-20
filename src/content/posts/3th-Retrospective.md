@@ -2,7 +2,7 @@
 title: "2024년 3분기 회고"
 date: 2024-10-27
 categories: ["회고"]
-tags: ["회고"]
+tags: []
 ---
 
 > 최근 내가 하고 있는 일이 너무 많아서 머릿속이 복잡해졌다. 그래서 생각을 정리하고자 2024년 3분기 회고 글을 작성하게 되었다.
@@ -114,7 +114,7 @@ tags: ["회고"]
 
 ### 좋은 코드, 나쁜 코드
 
-![](/assets/img/goodcode/GoodCode_BadCode_book.png){: width="400"}
+![](/assets/img/clean-code/GoodCode_BadCode_book.png){: width="400"}
 
 * 9월부터 읽기 쉬운 코드 작성하는 방법을 배우기 위해 "좋은 코드, 나쁜 코드" 책을 혼자 공부하기 시작했지만, 이후 여러 일로 인해 진도가 더딘 상태다.
 

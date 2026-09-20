@@ -1,8 +1,8 @@
 ---
 title: "SIPE 커뮤니티를 위한 슬랙 봇 만들기 (feat. 사이프톤)"
 date: 2025-01-19
-categories: ["기타"]
-tags: ["기타"]
+categories: ["프로젝트"]
+tags: ["사이드프로젝트"]
 ---
 
 ## Prologue

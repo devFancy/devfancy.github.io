@@ -2,7 +2,7 @@
 title: "[Programmers] 118667. 두 큐 합 같게 만들기(queue)"
 date: 2023-12-28
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/118667)

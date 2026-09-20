@@ -1,0 +1,53 @@
+---
+/* NOTE 연도별로 묶고 최신순으로 나열한다 (4-4-3)
+ * - 문제풀이 글도 전수 표시한다. /solutions/ 와 달리 여기는 전체 아카이브다 (4-2)
+ */
+import { getCollection } from 'astro:content';
+import Chip from '../components/Chip.astro';
+import Hero from '../components/Hero.astro';
+import heroArchive from '../assets/hero-archive.jpg';
+import Base from '../layouts/Base.astro';
+
+const SUBTITLE = '지금까지 쌓아온 기록을 연도별로 둘러보세요';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const byYear = new Map<number, typeof posts>();
+for (const p of posts) {
+  const y = p.data.date.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y)?.push(p);
+}
+const years = [...byYear.entries()].sort((a, b) => b[0] - a[0]);
+---
+<Base description={SUBTITLE} overHero>
+  {/* NOTE: 수평선이 사진 가운데라 center 로 둬야 해가 안 잘린다 */}
+  <Hero image={heroArchive} title="Archives" subtitle={SUBTITLE} align="bottom" />
+
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <p class="text-muted">총 {posts.length}개의 포스트가 있어요</p>
+
+    {years.map(([year, list]) => (
+      <section class="mt-12">
+        <h2 class="border-b border-rule pb-2 text-xl">
+          {year}
+          <span class="ml-2 text-base text-muted">{list.length}편</span>
+        </h2>
+        <ul class="mt-4">
+          {list.map((p) => (
+            <li class="flex flex-wrap items-baseline gap-x-3 border-b border-rule py-3">
+              <time datetime={p.data.date.toISOString().slice(0, 10)}
+                class="w-14 shrink-0 text-sm tabular-nums text-muted">
+                {p.data.date.toISOString().slice(5, 10)}
+              </time>
+              <a href={`/${p.id}/`} class="min-w-0 flex-1 hover:text-accent">{p.data.title}</a>
+              <Chip value={p.data.categories[0]} />
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>

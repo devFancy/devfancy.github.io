@@ -2,7 +2,7 @@
 title: "[Programmers] 12924. 숫자의 표현"
 date: 2023-03-07
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12924)

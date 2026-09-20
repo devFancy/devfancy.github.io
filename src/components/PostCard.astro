@@ -1,8 +1,9 @@
 ---
-/* NOTE 썸네일 없이 제목 -> 날짜 -> 태그 순으로 쌓는다 (Phase 2 시안 A 확정)
- * - 태그 데이터가 없어 카테고리 칩이 그 역할을 대신한다 (4-3)
+/* NOTE 썸네일 없이 제목 -> 날짜 -> 칩 순으로 쌓는다 (Phase 2 시안 A 확정)
  * - 8편은 카테고리가 2개라 칩이 두 개 붙는다
  */
+import Chip from './Chip.astro';
+
 interface Props {
   slug: string;
   title: string;
@@ -18,8 +19,6 @@ const iso = date.toISOString().slice(0, 10);
   </h2>
   <time datetime={iso} class="mt-2 block text-[15px] text-muted">{iso}</time>
   <div class="mt-2 flex flex-wrap gap-2">
-    {categories.map((c) => (
-      <span class="rounded border border-rule px-2 py-0.5 text-sm text-muted">{c}</span>
-    ))}
+    {categories.map((c) => <Chip value={c} />)}
   </div>
 </article>

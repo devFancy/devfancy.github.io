@@ -1,0 +1,256 @@
+---
+/* NOTE 카테고리를 고르면 그 아래가 펼쳐지고 목록이 바로 바뀐다. 페이지 이동이 없다 (4-4-2)
+ * - 상위를 고르면 하위 카테고리 줄이 나타난다. 처음부터 다 늘어놓지 않는다 (4-2-1)
+ * - 태그도 고른 카테고리 안에 있는 것만 보여 목록과 어긋나지 않는다
+ * - 개수는 칩마다 붙이지 않고 결과 한 줄로 모은다
+ * - 4-1 이 보존하기로 한 /category/#Kafka 앵커를 카테고리와 태그 양쪽에서 찾는다
+ */
+import { getCollection } from 'astro:content';
+import Hero from '../components/Hero.astro';
+import heroCategory from '../assets/hero-category.jpg';
+import Base from '../layouts/Base.astro';
+import { CATEGORY_GROUPS, TAG_ORDER } from '../config';
+
+const SUBTITLE = '궁금한 주제를 골라 관련 글을 찾아보세요';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const index = posts.map((p) => ({
+  slug: p.id,
+  title: p.data.title,
+  cats: p.data.categories,
+  tags: p.data.tags,
+  date: p.data.date.toISOString().slice(0, 10),
+}));
+
+// NOTE: 잎이 없는 그룹은 그룹 이름이 곧 카테고리다
+const groupMap = Object.fromEntries(
+  CATEGORY_GROUPS.map((g) => [g.name, g.children.length ? [...g.children] : [g.name]]),
+);
+---
+<Base description={SUBTITLE} overHero>
+  {/* NOTE: 흰 벽이 밝아 기본 스크림으로는 헤더 메뉴가 묻힌다 */}
+  <Hero image={heroCategory} title="Categories" subtitle={SUBTITLE} dim="strong" align="bottom" />
+
+  <div data-category class="mx-auto max-w-3xl px-4 py-12">
+    <div class="rounded-xl border border-rule bg-card p-5 sm:p-6">
+      <div class="flex flex-wrap gap-2">
+        <button type="button" data-k="cat" data-v="" class="chip">전체</button>
+        {CATEGORY_GROUPS.map((g) => (
+          <button type="button" data-k="cat" data-v={g.name} class="chip">{g.name}</button>
+        ))}
+      </div>
+
+      {/* NOTE: 고른 그룹의 하위만 채워 넣는다. 비면 줄 자체를 숨긴다 */}
+      <div id="subs" class="mt-3 flex-wrap gap-2 border-t border-rule pt-3" hidden></div>
+
+      <div class="relative mt-4">
+        <svg class="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted" viewBox="0 0 20 20"
+          fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="9" cy="9" r="6"></circle><path d="M13.5 13.5 17.5 17.5" stroke-linecap="round"></path>
+        </svg>
+        <input id="q" type="search" placeholder="제목, 카테고리, 태그로 검색" autocomplete="off"
+          class="w-full rounded-lg border border-rule bg-bg py-2.5 pr-3 pl-9 text-base
+                 outline-none focus:border-accent" />
+      </div>
+
+      {/* NOTE: 고른 카테고리 안에 실제로 쓰인 태그만 남긴다 */}
+      <div id="tags" class="mt-4 flex-wrap gap-2 border-t border-rule pt-4" hidden></div>
+    </div>
+
+    <p id="summary" class="mt-8 text-muted"></p>
+    <ul id="list" class="mt-1"></ul>
+  </div>
+
+  <script type="application/json" id="post-index" set:html={JSON.stringify(index)}></script>
+  <script type="application/json" id="group-map" set:html={JSON.stringify(groupMap)}></script>
+  <script type="application/json" id="tag-order" set:html={JSON.stringify(TAG_ORDER)}></script>
+</Base>
+
+<style is:global>
+  /* NOTE 칩은 스크립트가 innerHTML 로도 만든다. 스코프 스타일은 거기 안 붙는다
+   * - 전역으로 두되 이 페이지 안으로 선택자를 가둔다
+   */
+  /* NOTE 글자 대비 여백이 크면 모바일에서 버튼만 커 보인다. 글자에 붙인다 */
+  [data-category] .chip {
+    border: 1px solid var(--color-rule);
+    border-radius: 3px;
+    padding: 3px 10px;
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--color-muted);
+    transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+  }
+  [data-category] .chip:hover { color: var(--color-accent); border-color: var(--color-accent); }
+  [data-category] .chip[aria-pressed='true'] {
+    background: var(--color-fg);
+    border-color: var(--color-fg);
+    color: var(--color-bg);
+  }
+  [data-category] .chip-sub { font-size: 14px; padding: 3px 10px; }
+
+  /* 태그는 면으로 채운다. 카테고리는 테두리만 */
+  [data-category] .chip-tag {
+    background: var(--color-tag);
+    border-color: transparent;
+    color: var(--color-tag-fg);
+  }
+  [data-category] .chip-tag:hover { border-color: var(--color-accent); }
+
+  [data-category] .chip-tag[aria-pressed='true'] {
+    background: var(--color-tag-on);
+    border-color: var(--color-tag-on);
+    color: var(--color-bg);
+  }
+</style>
+
+<script>
+  type Row = { slug: string; title: string; cats: string[]; tags: string[]; date: string };
+
+  const rows: Row[] = JSON.parse(document.getElementById('post-index')?.textContent ?? '[]');
+  const groupMap: Record<string, string[]> = JSON.parse(
+    document.getElementById('group-map')?.textContent ?? '{}',
+  );
+
+  /* NOTE 처음에 펼칠 태그 수. 넘치면 "+N" 을 눌러 마저 연다
+   * - 14 면 태그 26종인 "기술" 만 접힌다. 서버(12종) 이하는 그대로 다 보인다
+   */
+  const TAG_PREVIEW = 14;
+  let tagsOpen = false;
+
+  const tagOrder = new Map<string, number>(
+    (JSON.parse(document.getElementById('tag-order')?.textContent ?? '[]') as string[])
+      .map((t, i) => [t, i]),
+  );
+
+  const subs = document.getElementById('subs') as HTMLElement;
+  const tagBox = document.getElementById('tags') as HTMLElement;
+  const input = document.getElementById('q') as HTMLInputElement;
+  const list = document.getElementById('list') as HTMLElement;
+  const summary = document.getElementById('summary') as HTMLElement;
+
+  /* NOTE 한국어는 조사가 붙는다. 공백을 지우고 부분 문자열로 맞춘다
+   * - "러스트" 로 "러스트는" 이 걸려야 한다 (3-3)
+   */
+  const norm = (s: string) => s.normalize('NFC').toLowerCase().replace(/\s+/g, '');
+  const esc = (s: string) =>
+    s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] ?? c);
+
+  // 그룹 이름이면 자식 전체, 잎 이름이면 자기 자신
+  const leavesOf = (v: string) => groupMap[v] ?? [v];
+  const groupOf = (leaf: string) =>
+    Object.keys(groupMap).find((g) => groupMap[g].includes(leaf)) ?? '';
+
+  let cat = '';
+  let tag = '';
+
+  // NOTE: 해시는 카테고리·그룹·태그 어디서든 찾는다. 기존 /category/#Kafka 앵커가 살아난다
+  function readHash() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    cat = '';
+    tag = '';
+    if (!h) return;
+    if (groupMap[h] || rows.some((r) => r.cats.includes(h))) cat = h;
+    else if (rows.some((r) => r.tags.includes(h))) tag = h;
+  }
+
+  function writeHash() {
+    const v = tag || cat;
+    history.replaceState(null, '', v ? `#${encodeURIComponent(v)}` : location.pathname);
+  }
+
+  const inCat = (r: Row) => !cat || leavesOf(cat).some((c) => r.cats.includes(c));
+
+  function render() {
+    // 태그만 고른 상태면 그 태그가 속한 카테고리를 펼쳐 맥락을 보여준다
+    const openGroup = cat ? (groupMap[cat] ? cat : groupOf(cat)) : '';
+    const children = openGroup && groupMap[openGroup].length > 1 ? groupMap[openGroup] : [];
+    subs.hidden = children.length === 0;
+    subs.classList.toggle('flex', children.length > 0);
+    subs.innerHTML = children
+      .map((c) => `<button type="button" class="chip chip-sub" data-k="cat" data-v="${esc(c)}">${esc(c)}</button>`)
+      .join('');
+
+    const scoped = rows.filter(inCat);
+    // 아무것도 안 고른 상태에서 태그 39종을 펼치면 화면이 태그로 덮인다
+    const seen = new Set<string>();
+    if (cat || tag) for (const r of scoped) for (const t of r.tags) seen.add(t);
+    if (tag) seen.add(tag);
+    // TAG_ORDER 에 적힌 순서가 먼저, 나머지는 이 카테고리에서 글이 많은 순
+    const counts = new Map<string, number>();
+    for (const r of scoped) for (const t of r.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
+    const tagList = [...seen].sort((a, b) => {
+      const ia = tagOrder.get(a) ?? Infinity;
+      const ib = tagOrder.get(b) ?? Infinity;
+      if (ia !== ib) return ia - ib;
+      return (counts.get(b) ?? 0) - (counts.get(a) ?? 0) || a.localeCompare(b, 'ko');
+    });
+    tagBox.hidden = tagList.length === 0;
+    tagBox.classList.toggle('flex', tagList.length > 0);
+    const shown = tagsOpen ? tagList : tagList.slice(0, TAG_PREVIEW);
+    const rest = tagList.length - shown.length;
+    tagBox.innerHTML =
+      shown
+        .map((t) => `<button type="button" class="chip chip-sub chip-tag" data-k="tag" data-v="${esc(t)}">#${esc(t)}</button>`)
+        .join('') +
+      (rest > 0 ? `<button type="button" class="chip chip-sub" data-more>+${rest}</button>` : '') +
+      (tagsOpen && tagList.length > TAG_PREVIEW ? '<button type="button" class="chip chip-sub" data-more>접기</button>' : '');
+
+    const q = norm(input.value);
+    const hit = scoped.filter(
+      (r) =>
+        (!tag || r.tags.includes(tag)) &&
+        (!q ||
+          norm(r.title).includes(q) ||
+          r.cats.some((c) => norm(c).includes(q)) ||
+          r.tags.some((t) => norm(t).includes(q))),
+    );
+
+    const label = tag || cat;
+    summary.textContent = hit.length
+      ? `${label ? `'${label}'에 ` : ''}총 ${hit.length}개의 포스트가 있어요`
+      : '조건에 맞는 포스트가 없어요';
+
+    list.innerHTML = hit
+      .map(
+        (r) => `<li class="border-b border-rule py-5">
+          <a href="/${encodeURIComponent(r.slug)}/" class="text-2xl leading-snug hover:text-accent">${esc(r.title)}</a>
+          <time datetime="${r.date}" class="mt-2 block text-[15px] text-muted">${r.date}</time>
+        </li>`,
+      )
+      .join('');
+
+    // 카테고리와 태그는 같이 걸린다. 태그를 골라도 카테고리 표시는 남긴다
+    for (const b of document.querySelectorAll<HTMLButtonElement>('[data-k]')) {
+      const on = b.dataset.k === 'cat' ? (b.dataset.v ?? '') === cat : b.dataset.v === tag;
+      b.setAttribute('aria-pressed', String(on));
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    const more = (e.target as HTMLElement).closest('[data-more]');
+    if (more) { tagsOpen = !tagsOpen; render(); return; }
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-k]');
+    if (!b) return;
+    const v = b.dataset.v ?? '';
+    if (b.dataset.k === 'cat') {
+      // 같은 카테고리를 다시 누르면 접는다
+      cat = cat === v ? (groupMap[v] ? '' : groupOf(v)) : v;
+      tag = '';
+      tagsOpen = false;
+    } else {
+      tag = tag === v ? '' : v;
+    }
+    writeHash();
+    render();
+  });
+
+  input.addEventListener('input', render);
+  addEventListener('hashchange', () => { readHash(); render(); });
+
+  readHash();
+  render();
+</script>

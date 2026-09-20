@@ -2,7 +2,7 @@
 title: "[Programmers] 17686. [3차] 파일명 정렬"
 date: 2023-10-10
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17686#)

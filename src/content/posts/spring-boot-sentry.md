@@ -2,7 +2,7 @@
 title: "Spring Boot에서 Sentry를 이용한 에러 추적 시스템 개선하기"
 date: 2025-10-17
 categories: ["서버"]
-tags: ["기술"]
+tags: ["Spring Boot"]
 ---
 
 ## Prologue

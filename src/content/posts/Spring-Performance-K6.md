@@ -2,7 +2,7 @@
 title: "부하테스트 - K6 도구 소개"
 date: 2024-11-10
 categories: ["서버"]
-tags: ["기술"]
+tags: ["성능테스트"]
 ---
 
 > 아래는 K6의 [공식 문서](https://grafana.com/docs/k6/latest/) 와 [23년 2월 Tech 세미나 - 성능 테스트와 K6 도구 소개](https://www.youtube.com/live/MqdQc4vd_ws) 영상에서 본 내용을 기반으로 정리한 글입니다.

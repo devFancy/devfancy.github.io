@@ -2,7 +2,7 @@
 title: "[백준] 11725. 트리의 부모찾기"
 date: 2023-12-01
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/11725)

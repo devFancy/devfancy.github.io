@@ -2,7 +2,7 @@
 title: "[백준] 13565. 침투"
 date: 2023-12-04
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/13565)

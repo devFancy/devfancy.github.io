@@ -2,7 +2,7 @@
 title: "[Programmers] 118666. 성격 유형 검사하기"
 date: 2023-01-29
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/118666)

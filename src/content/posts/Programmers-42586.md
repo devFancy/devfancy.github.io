@@ -2,7 +2,7 @@
 title: "[Programmers] 42586. 기능개발"
 date: 2023-03-28
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42586)

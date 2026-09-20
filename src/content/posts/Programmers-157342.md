@@ -1,8 +1,8 @@
 ---
 title: "[Programmers] 157342. 자동차 평균 대여 기간 구하기(Lv.2) (String, Date)"
 date: 2023-03-05
-categories: ["CS"]
-tags: ["SQL"]
+categories: ["알고리즘"]
+tags: ["SQL", "프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/157342)

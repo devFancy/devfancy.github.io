@@ -2,7 +2,7 @@
 title: "Spring Boot, Kotlin 함수형으로 안전하게 서킷 브레이커 구현하기"
 date: 2025-12-06
 categories: ["서버"]
-tags: ["기술"]
+tags: ["Spring Boot"]
 ---
 
 ## Prologue

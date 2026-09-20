@@ -1,8 +1,8 @@
 ---
 title: "[Programmers] 59046. 루시와 엘라 찾기(Lv.2) (String, Date)"
 date: 2023-03-05
-categories: ["CS"]
-tags: ["SQL"]
+categories: ["알고리즘"]
+tags: ["SQL", "프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59046)

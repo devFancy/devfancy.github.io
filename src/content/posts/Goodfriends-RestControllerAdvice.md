@@ -1,8 +1,8 @@
 ---
 title: "[Goodfriends] Spring에서 다양한 예외 처리를 위한 @RestControllerAdvice 도입과 적용"
 date: 2023-10-10
-categories: ["프로젝트", "서버"]
-tags: ["사이드프로젝트", "Spring Boot"]
+categories: ["서버"]
+tags: ["Spring Boot"]
 ---
 
 [굿프렌즈 기술 블로그 방문하기 🎋](https://goodfriends-team.tistory.com/)
