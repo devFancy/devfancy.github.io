@@ -206,6 +206,186 @@ blockquote.quote {
   border-radius: 2px;
 }
 
+/* NOTE 사진 위에 얹는 글자. Hero 와 대표 글 캐러셀이 같이 쓴다 [사진 위 글자]
+ * - 스크림만으로는 밝은 사진에서 흰 글자가 묻힌다
+ */
+.hero-type { text-shadow: 0 1px 14px rgb(0 0 0 / .55); }
+
+/* NOTE 대표 포스트 글 캐러셀 [대표 포스트 글]
+ * - 이동은 스크롤 스냅이 맡는다. 스크립트가 죽어도 밀어서 넘길 수 있다
+ * - 높이는 min-height 다. 비율로 고정하면 제목이 길어질 때 글자가 잘린다
+ */
+.fx { position: relative; }
+.fx-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 12px;
+  /* 스크롤 막대는 숨기고 스냅만 남긴다 */
+  scrollbar-width: none;
+}
+.fx-track::-webkit-scrollbar { display: none; }
+.fx-slide {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex: 0 0 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  scroll-snap-align: start;
+  min-height: 17rem;
+  /* 아래 여백은 화살표 자리를 피해 글자가 겹치지 않게 둔다 */
+  padding: 1.5rem 1.25rem;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--color-card);
+}
+@media (min-width: 640px) {
+  .fx-slide { min-height: 24rem; padding: 2rem 2rem 1.75rem; }
+}
+
+.fx-arrow {
+  position: absolute;
+  /* 칸 전체를 덮는 링크(.fx-slide 안)보다 위에 있어야 눌린다 [홈은 글로만] */
+  z-index: 2;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 손가락으로 눌러도 빗나가지 않을 크기다. 좁은 화면에서는 사진을 덜 가리게 조금 줄인다 */
+  width: 34px;
+  height: 34px;
+  margin-top: -17px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / .42);
+  color: #fff;
+  transition: background .15s ease, opacity .15s ease;
+}
+.fx-arrow:hover { background: rgb(0 0 0 / .72); }
+.fx-arrow[disabled] { opacity: .3; pointer-events: none; }
+.fx-prev { left: 10px; }
+.fx-next { right: 10px; }
+@media (min-width: 640px) {
+  .fx-arrow { width: 40px; height: 40px; margin-top: -20px; }
+  .fx-prev { left: 12px; }
+  .fx-next { right: 12px; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-arrow { transition: none; }
+}
+
+/* NOTE 헤더·푸터·목록 페이지가 같이 쓰는 바깥 폭. 폭은 여기 한 곳에서 바꾼다 [바깥 폭]
+ * - 읽는 화면(글 본문·About)은 줄이 길어지면 읽기 나쁘므로 이 폭을 쓰지 않는다
+ */
+.shell {
+  width: 100%;
+  max-width: 56rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* NOTE 홈 카드에서 제목 위에 서는 카테고리 [칩]
+ * - 대표 포스트 글 칸의 카테고리 머리글과 같은 자리, 같은 크기다. 태그와 헷갈리지 않게 칩 모양을 쓰지 않는다
+ */
+.tile-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--color-muted);
+}
+
+/* NOTE 홈 카드의 제목 끝에 붙는 화살표. 누를 수 있다는 신호다 [홈 격자]
+ * - 제목 마지막 줄에 붙어 흐르도록 inline 이다. 절대 위치로 띄우면 두 줄짜리 제목에서 어긋난다
+ */
+.tile-go {
+  flex: none;
+  /* 마지막 글자의 밑선에 맞춘다. 화살표가 글자보다 커 보이면 제목이 밀려 보인다 */
+  padding-bottom: .12em;
+  color: var(--color-quote);
+  transition: transform .18s ease, color .18s ease;
+}
+.group:hover .tile-go { transform: translateX(3px); color: var(--color-accent); }
+@media (prefers-reduced-motion: reduce) {
+  .tile-go { transition: none; }
+}
+
+/* NOTE 대표 이미지가 없는 글에 까는 기본 이미지 [기본 이미지]
+ * - 사진을 지어내는 대신 짙은 남색 판에 카테고리와 제목을 얹어 표지처럼 세운다
+ * - 색은 사이트 accent 와 같은 계열 하나로 간다. 카테고리마다 색을 달리하면
+ *   독자가 색과 갈래의 짝을 외워야 하는데, 갈래는 카드 바로 아래 칩에 이미 적혀 있다
+ * - 판이 항상 짙어서 글자는 흰색 하나면 된다. 밝은 테마와 어두운 테마를 따로 두지 않는다
+ * - 칸 크기는 쓰는 쪽(PostTile / Featured)이 정한다. 여기서는 면과 글자만 맡는다
+ */
+:root {
+  /* 오로라. 짙은 밤하늘 위에 초록에서 청록, 남보라로 넘어가는 띠 세 줄기 */
+  --au-sky: #0e1a2b;
+  --au-green: #2fbf9a;
+  --au-teal: #35a7c9;
+  --au-violet: #5f6fd0;
+}
+
+.blank-cover {
+  position: relative;
+  /* 아래 ::before 가 부모 배경 위에만 깔리게 가둔다 */
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1.1rem 1.15rem;
+  background: var(--au-sky);
+  color: #fff;
+}
+/* NOTE 오로라 띠. 흐리게 번진 덩어리 셋이 겹쳐 흐르는 결을 만든다 [기본 이미지]
+ * - inset 을 음수로 줘 blur 가 모서리에서 옅어지는 것을 감춘다
+ * - 가로 위치는 글마다 --au-1..3 으로 어긋난다 (src/lib/blank.ts)
+ */
+.blank-cover::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  z-index: -1;
+  filter: blur(34px);
+  background:
+    radial-gradient(48% 34% at var(--au-1, 22%) 30%, var(--au-green) 0%, transparent 70%),
+    radial-gradient(44% 30% at var(--au-2, 58%) 20%, var(--au-teal) 0%, transparent 72%),
+    radial-gradient(40% 32% at var(--au-3, 84%) 42%, var(--au-violet) 0%, transparent 72%);
+}
+/* 제목이 띠에 닿아도 읽히도록 아래를 눌러 둔다 */
+.blank-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgb(0 0 0 / .5), transparent 58%);
+}
+.blank-cat {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: rgb(255 255 255 / .72);
+}
+.blank-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin-top: .3rem;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+@media (min-width: 640px) {
+  .blank-title { font-size: 18px; }
+}
+
+/* 캐러셀 칸은 판 자체가 배경이다. 크기와 여백은 .fx-slide 가 정한다 */
+.fx-slide.blank-cover { width: auto; height: auto; }
+
 /* NOTE 칩은 두 곳에서 만들어진다. Chip.astro 가 서버에서, category.astro 가 innerHTML 로 [칩]
  * - 그래서 치수를 유틸리티 클래스에 흩어 두지 않고 여기 한 곳에만 둔다. 한쪽만 고쳐지는 일을 막는다
  * - 높이를 고정한다. line-height 해석과 폰트 메트릭이 기기마다 달라 상자 높이가 흔들렸다

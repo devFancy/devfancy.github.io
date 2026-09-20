@@ -23,7 +23,7 @@ const years = [...byYear.entries()].sort((a, b) => b[0] - a[0]);
 <Base description={SUBTITLE} overHero>
   <Hero image={heroArchive} title="Archives" subtitle={SUBTITLE} align="bottom" />
 
-  <div class="mx-auto max-w-3xl px-4 py-12">
+  <div class="shell py-12">
     {years.map(([year, list]) => (
       <section class="mt-12">
         <h2 class="border-b border-rule pb-2 text-xl">

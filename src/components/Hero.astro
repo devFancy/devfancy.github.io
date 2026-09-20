@@ -56,7 +56,7 @@ const imgClass = `media-zoom absolute inset-0 -z-10 size-full object-cover ${fit
   {(title || subtitle) && (
     <div
       class:list={[
-        'mx-auto w-full max-w-3xl px-4',
+        'shell',
         align === 'bottom' ? 'pt-28 pb-14 sm:pb-28' : 'pt-28 pb-14 sm:pt-32 sm:pb-16',
       ]}
     >
@@ -71,8 +71,5 @@ const imgClass = `media-zoom absolute inset-0 -z-10 size-full object-cover ${fit
 </section>
 <div data-hero-end aria-hidden="true" class="h-px"></div>
 
-<style>
-  .hero-type { text-shadow: 0 1px 14px rgb(0 0 0 / .55); }
-
-  /* 페이드는 global.css 의 .media-scrim / .media-zoom 이 맡는다 [사진 페이드] */
-</style>
+{/* NOTE: .hero-type 과 페이드(.media-scrim / .media-zoom)는 global.css 에 있다.
+    대표 포스트 글 캐러셀도 같은 글자 그림자를 써야 해서 한 곳에 모아 뒀다 [사진 위 글자] */}
