@@ -23,7 +23,7 @@ tags: ["Spring"]
 
 ### MVC 구조 맛보기
 
-![](/assets/img/spring/spring-mvc-concept_1.png)
+![](/assets/img/server/spring/spring-mvc-concept_1.png)
 
 * **M**odel : 데이터와 관련된 부분
 
@@ -72,7 +72,7 @@ tags: ["Spring"]
 
 * Controller, Service, Repository에 대해 개념을 정리해보자.
 
-![](/assets/img/spring/spring-mvc-concept_2.png)
+![](/assets/img/server/spring/spring-mvc-concept_2.png)
 
 ### Controller 란?
 
@@ -132,7 +132,7 @@ tags: ["Spring"]
 
 * IntelliJ에서 제공하는 다이어그램 기능을 통해 클래스 다이어그램을 다음과 같이 만들었다.
 
-![](/assets/img/spring/spring-mvc-concept_3.png)
+![](/assets/img/server/spring/spring-mvc-concept_3.png)
 
 * Application()을 중심으로 Controller(빨간색 표시)와 Service(파랑색 표시)를 구분하였다.
 
@@ -141,7 +141,7 @@ tags: ["Spring"]
 
 * 코드를 작성한 체계는 다음과 같이 구성했다.
 
-![](/assets/img/spring/spring-mvc-concept_4.png)
+![](/assets/img/server/spring/spring-mvc-concept_4.png)
 
 * **Controller** : View 와 Service 에 위치한 메서드를 호출하여 최종적인 단일 기능의 메서드를 생성하는 부분.
 

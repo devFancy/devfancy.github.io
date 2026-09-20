@@ -23,7 +23,7 @@ tags: ["Spring Boot"]
 
 (실무에서는 주문완료 시간과 별도로 결제완료 시간에 대한 필드가 있어야 하는데, 이 토이 프로젝트에서는 모의로 구현하는 것이기때문에 일단 주문완료 시간을 가지고 구현한다)
 
-![](/assets/img/testcode/Practical-Testing2-1.png)
+![](/assets/img/server/testcode/Practical-Testing2-1.png)
 
 ---
 
@@ -35,13 +35,13 @@ tags: ["Spring Boot"]
 
 여기서 `Stubbing`을 하기 위해 MailSendClient 클래스를 `@MockBean`을 통해 Mockito에서 만든 Mock 객체를 주입한 다음, 원하는 행위를 정의해준다.
 
-![](/assets/img/testcode/Practical-Testing2-2.png)
+![](/assets/img/server/testcode/Practical-Testing2-2.png)
 
 `MockBean`은 **기존에 사용되던 Bean의 껍데기만 가져오고 내부의 구현 부분은 모두 사용자에게 위임한 형태**이다. 실제 빈의 동작과는 별개로 사용자(개발자)가 원하는 행동을 정의할 수 있다.
 
 (`@MockBean`은 `@SpringBootTest`에서 사용되며, 테스트에서 사용할 Mock 객체를 주입하는 데에 쓰인다)
 
-![](/assets/img/testcode/Practical-Testing2-3.png)
+![](/assets/img/server/testcode/Practical-Testing2-3.png)
 
 이렇게 `@MockBean`을 이용하여 Stubbing 하는 행위는 `given` 절에서 작성한다.
 
@@ -144,11 +144,11 @@ Mockito의 mock 메서드에 가보면 아래와 같이 withSettings() 메서드
 
 여기서 withSettings() 메서드에서 리턴하는 부분에서 `RETURNS_DEFAULTS`에 가보면
 
-![](/assets/img/testcode/Practical-Testing2-4.png)
+![](/assets/img/server/testcode/Practical-Testing2-4.png)
 
-![](/assets/img/testcode/Practical-Testing2-5.png)
+![](/assets/img/server/testcode/Practical-Testing2-5.png)
 
-![](/assets/img/testcode/Practical-Testing2-6.png)
+![](/assets/img/server/testcode/Practical-Testing2-6.png)
 
 Integer인 경우 zero을 리턴하고, null이 반환되는 값들은 null을 반환하고, Collection의 경우 empty 를 반환하도록 기본 정책이 걸려있는 걸 확인할 수 있다.
 
@@ -341,7 +341,7 @@ class MailServiceTest {
 }
 ```
 
-![](/assets/img/testcode/Practical-Testing2-7.png)
+![](/assets/img/server/testcode/Practical-Testing2-7.png)
 
 sendEmail()만 원하는 Stubbing이 된거고, 나머지 a,b,c 라는 실제 객체는 그대로 동작이 되었다. 
 
@@ -410,7 +410,7 @@ class MailServiceTest {
 }
 ```
 
-![](/assets/img/testcode/Practical-Testing2-8.png)
+![](/assets/img/server/testcode/Practical-Testing2-8.png)
 
 `BDDMockito` 를 가보면 Mockito를 감싸고 있다. (상속받고 있다)
 
@@ -426,13 +426,13 @@ class MailServiceTest {
 
 이번 강의에서는 Controller 테스트할 때는 Service와 Repository를 Mocking하여 단위 테스트를 진행했고, Service 테스트 할 때는 Repository의 실제 객체를 사용한 통합 테스트를 진행했다.
 
-![](/assets/img/testcode/Practical-Testing2-9.png)
+![](/assets/img/server/testcode/Practical-Testing2-9.png)
 
 Mockist 입장에서 바라보면 Service 테스트 할 때에도 Repository에도 실제 객체가 아닌 Mocking을 하여 단위 테스트로 신속히 테스트를 해야 한다. -> 어느 것이 더 좋은 방법일까?
 
 > 이 강의를 만드신 우빈님의 생각
 
-![](/assets/img/testcode/Practical-Testing2-10.png)
+![](/assets/img/server/testcode/Practical-Testing2-10.png)
 
 * 메일 전송같은 외부 시스템을 요청하거나 연결할 때 Mocking을 쓴다. -> 외부 시스템은 우리가 개발한 게 아니기 때문이다.
 
@@ -703,7 +703,7 @@ class OrderServiceTest {
 
 createOrder() 메서드에 대해 테스트를 실행하면, **연관된 테이블을 한번에 삭제하게 해준다.**
 
-![](/assets/img/testcode/Practical-Testing2-11.png)
+![](/assets/img/server/testcode/Practical-Testing2-11.png)
 
 ```sql
 // 시스템 로그
@@ -742,7 +742,7 @@ delete from product [23503-214]]; nested exception is org.hibernate.exception.Co
 
 `deleteAllBatch()` 대신 `deleteAll()`로 바꾸고 실행하면 **테스트는 성공해도, 조회하는 쿼리가 많아졌다.**
 
-![](/assets/img/testcode/Practical-Testing2-12.png)
+![](/assets/img/server/testcode/Practical-Testing2-12.png)
 
 ```sql
 // 시스템 로그
@@ -832,7 +832,7 @@ Hibernate:
 
 deleteAll()을 자세히 들어가보면(단축키: option + command + b)
 
-![](/assets/img/testcode/Practical-Testing2-13.png)
+![](/assets/img/server/testcode/Practical-Testing2-13.png)
 
 전체 테이블을 읽어온다음에, 반복문을 돌면서 건 by 건으로 delete하고 있다.
 
@@ -969,7 +969,7 @@ class StockTest {
 
 `test`를 더블 클릭해서 전체 테스트 개수 및 서버가 몇번 실행되는지 확인할 수 있다.
 
-![](/assets/img/testcode/Practical-Testing2-14.png)
+![](/assets/img/server/testcode/Practical-Testing2-14.png)
 
 여기서 “Spring Boot” 라는 키워드를 검색했을 때 총 6번이 나온다. → 서버가 뜨는 횟수
 
@@ -1073,7 +1073,7 @@ class ProductControllerTest extends ControllerTestSupport {
 
 * 서버 개수를 줄일수록 테스트 시간을 줄일 수 있게 된다.
 
-![](/assets/img/testcode/Practical-Testing2-15.png)
+![](/assets/img/server/testcode/Practical-Testing2-15.png)
 
 ## Reference
 

@@ -36,7 +36,7 @@ tags: ["HTTP"]
 
 * `text/html;charset=UTF-8` : OWS field-value OWS (OWS: 띄어쓰기 허용)
 
-* 예) <img src="/assets/img/http/http-6-header1_1.png" alt="" width="400" />
+* 예) <img src="/assets/img/cs/http/http-6-header1_1.png" alt="" width="400" />
 
 * HTTP 헤더 용도 : **HTTP 전송에 필요한 모든 부가정보**
 
@@ -50,7 +50,7 @@ tags: ["HTTP"]
 
 * 여기서 `표현`은  표현 헤더와 표현 데이터의 합을 나타내고, **요청이나 응답에서 전달할 실제 데이터**를 의미한다.
 
-<img src="/assets/img/http/http-6-header1_2.png" alt="" width="400" />
+<img src="/assets/img/cs/http/http-6-header1_2.png" alt="" width="400" />
 
 * 메시지 본문을 통해 표현 데이터를 전달하고, 메시지 본문은 `페이로드(payload)`라고 부르기도 한다.
 
@@ -59,7 +59,7 @@ tags: ["HTTP"]
 
 ## 표현
 
-<img src="/assets/img/http/http-6-header2_0.png" alt="" width="400" />
+<img src="/assets/img/cs/http/http-6-header2_0.png" alt="" width="400" />
 
 * `Content-Type` : 표현 데이터의 형식
 
@@ -73,7 +73,7 @@ tags: ["HTTP"]
 
 ### Content-Type
 
-<img src="/assets/img/http/http-6-header2_1.png" alt="" width="400" />
+<img src="/assets/img/cs/http/http-6-header2_1.png" alt="" width="400" />
 
 * 미디어 타입, 문자 인코딩을 나타낸다.
 
@@ -87,7 +87,7 @@ tags: ["HTTP"]
 
 ### Content-Encoding
 
-<img src="/assets/img/http/http-6-header2_2.png" alt="" width="400" />
+<img src="/assets/img/cs/http/http-6-header2_2.png" alt="" width="400" />
 
 * 표현 데이터를 압축하기 위해 사용한다.
 
@@ -105,7 +105,7 @@ tags: ["HTTP"]
 
 ### Content-Language
 
-<img src="/assets/img/http/http-6-header2_3.png" alt="" width="400" />
+<img src="/assets/img/cs/http/http-6-header2_3.png" alt="" width="400" />
 
 * 표현 데이터의 자연 언어를 표현한다.
 
@@ -119,7 +119,7 @@ tags: ["HTTP"]
 
 ### Content-Length
 
-<img src="/assets/img/http/http-6-header2_4.png" alt="" width="400" />
+<img src="/assets/img/cs/http/http-6-header2_4.png" alt="" width="400" />
 
 * 표현 데이터의 길이를 나타낸다. (바이트 단위)
 
@@ -139,7 +139,7 @@ tags: ["HTTP"]
 
 ### Accept-Language 적용 후
 
-![](/assets/img/http/http-6-header3_1.png)
+![](/assets/img/cs/http/http-6-header3_1.png)
 
 * 위의 그림과 같이 클라이언트가 `Accept-Language`에서 언어를 `ko`(한국어)로 요청했기 때문에 서버가 그에 맞게 한국어로 응답을 해줬다.
 
@@ -153,7 +153,7 @@ tags: ["HTTP"]
 
 * 만약 q 값을 생략하면 값이 1로 사용된다.
 
-<img src="/assets/img/http/http-6-header3_2.png" alt="" width="400" />
+<img src="/assets/img/cs/http/http-6-header3_2.png" alt="" width="400" />
 
 * 예) `Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7`
 
@@ -292,7 +292,7 @@ tags: ["HTTP"]
     또는 하나의 IP 주소에 여러 도메인이 적용되어 있을 때 **요청한 호스트 정보(도메인)** 을 반드시 넣어줘야 한다.
 
 
-![](/assets/img/http/http-6-header6_1.png)
+![](/assets/img/cs/http/http-6-header6_1.png)
 
 ### Location
 
@@ -338,11 +338,11 @@ tags: ["HTTP"]
 
 * HTTP는 **무상태(Stateless) 프로토콜**로 클라이언트와 서버가 요청과 응답을 주고 받으면 연결이 끊어지기 때문에 **서로 상태를 유지하지 않는다.**
 
-![](/assets/img/http/http-6-header8-1.png)
+![](/assets/img/cs/http/http-6-header8-1.png)
 
 * 웹 브라우저 내부에는 쿠키 저장소가 있는데, 그 저장소로 `user=홍길동`을 저장한다.
 
-![](/assets/img/http/http-6-header8-2.png)
+![](/assets/img/cs/http/http-6-header8-2.png)
 
 * 로그인 이후에 웹 브라우저가 welcome 페이지에 접근한다. 그리고 요청을 보낼 때마다 자동으로 쿠키 저장소를 확인해서 `Cookie:user=홍길동` 이라는 값을 꺼내서 서버에 전송한다.
 

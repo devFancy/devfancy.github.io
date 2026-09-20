@@ -15,7 +15,7 @@ Concurrency(동시성)을 구현하기 전에, 먼저 `Thread`에 대해 알아�
 
 * `Thread`(스레드)란 하나의 프로세스 안에서 독립적으로 실행될 수 있는 개별 실행 단위(Each execution unit)이다.
 
-![](/assets/img/os/os-concurrency-thread-concept.png)
+![](/assets/img/cs/os/os-concurrency-thread-concept.png)
 
 * 위의 그림처럼 스레드는 단일 실행 프로세스에 대한 새로운 추상화 개념이다.
 
@@ -29,7 +29,7 @@ Concurrency(동시성)을 구현하기 전에, 먼저 `Thread`에 대해 알아�
 
     * 그리고 각 스레드의 실행 상태(execution state)는 OS에 의해 관리되는 **TCB**(Tread Control Block)에 저장된다.
 
-![](/assets/img/os/os-concurrency-switching-thread.png)
+![](/assets/img/cs/os/os-concurrency-switching-thread.png)
 
 * 실행하고 있는 T1에서 다른 T2로 Switching이 발생했을 때,
 
@@ -41,11 +41,11 @@ Concurrency(동시성)을 구현하기 전에, 먼저 `Thread`에 대해 알아�
 
 * 프로세스안에 있는 스레드들은 **주소공간을 공유**하는 특징을 가지고 있다. 
 
-![](/assets/img/os/os-concurrency-process-thread.png)
+![](/assets/img/cs/os/os-concurrency-process-thread.png)
 
 * 프로세스는 각자 독립적인 주소 공간을 가지는데 비해 스레드들은 주소공간을 공유한다. 여기서 눈여겨 볼 부분이 `Stack`이다
 
-![](/assets/img/os/os-concurrency-process-single-multi-thread.png)
+![](/assets/img/cs/os/os-concurrency-process-single-multi-thread.png)
 
 * 왼쪽 그림에서는 싱글 스레드고, 오른쪽 그림은 멀티 스레드다.
 
@@ -63,7 +63,7 @@ Concurrency(동시성)을 구현하기 전에, 먼저 `Thread`에 대해 알아�
 
 * 두 번째는 I/O로 인해 프로그램 수행이 차단되는 것을 막기 위해서이다. 다양한 유형의 I/O가 수행하는 프로그램이 있을 때, 프로그램의 자식 스레드가 오류가 나거나 긴 작업으로 인해 중단되었을 때 다른 스레드로 Context Switching하여 수행하면 I/O와 다른 작업들을 함께 수행할 수 있다.
 
-![](/assets/img/os/os-concurrency-process-why-multi-thread.png)
+![](/assets/img/cs/os/os-concurrency-process-why-multi-thread.png)
 
 ## Problem and Solution 
 
@@ -73,7 +73,7 @@ Concurrency(동시성)을 구현하기 전에, 먼저 `Thread`에 대해 알아�
 
 * 다음 그림을 통해 제대로 이해해보자.
 
-![](/assets/img/os/os-concurrency-problem-1.png)
+![](/assets/img/cs/os/os-concurrency-problem-1.png)
 
 * 여기서 순서를 다음과 같은 경우의 수를 들 수 있다.
 
@@ -109,7 +109,7 @@ Concurrency(동시성)을 구현하기 전에, 먼저 `Thread`에 대해 알아�
 
 * 다음 그림을 통해 제대로 이해해보자.
 
-![](/assets/img/os/os-concurrency-problem-2.png)
+![](/assets/img/cs/os/os-concurrency-problem-2.png)
 
 * 여기서 `counter`는 data 영역(전역 변수)라고 가정한다.
 
@@ -144,7 +144,7 @@ Hardware 지원에서는 `Super instruction`이 있다.
 
     * 영어로 표현하면, **Could not be interrupted(all or nothing)** 이라고 말한다.
 
-![](/assets/img/os/os-concurrency-solution.png)
+![](/assets/img/cs/os/os-concurrency-solution.png)
 
 Software 지원에는 다양한 종류들이 있다.
 

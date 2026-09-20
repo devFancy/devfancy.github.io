@@ -27,7 +27,7 @@ ALTER TABLE member ADD COLUMN cellphone VARCHAR(255) NOT NULL;
 
 ## Flyway
 
-<img src="/assets/img/db/flyway.png" alt="" width="300" />
+<img src="/assets/img/cs/db/flyway.png" alt="" width="300" />
 
 - `Flyway`는 데이터베이스 스키마 버전 관리 및 마이그레이션을 자동화하는 도구로, 주로 SQL 스크립트나 Java 코드로 작성된 스키마 변경을 관리하고 적용하는 데 사용됩니다. Flyway의 동작 원리는 다음과 같은 절차로 이루어집니다.
 
@@ -44,7 +44,7 @@ ALTER TABLE member ADD COLUMN cellphone VARCHAR(255) NOT NULL;
 - Flyway는 `/resources/db/migration` 디렉토리에서 SQL 또는 Java로 작성된 마이그레이션 스크립트를 스캔합니다.
 - 이 스크립트들은 특정 버전 번호로 이름이 지정되며, 해당 버전 번호에 따라 실행 순서가 정해집니다.
 
-![](/assets/img/db/AI_Profile_DB_Migration.png)
+![](/assets/img/cs/db/AI_Profile_DB_Migration.png)
 
 ### 마이그레이션 실행 및 기록
 
@@ -184,7 +184,7 @@ Flyway는 스크립트를 순차적으로 실행하므로, 마이그레이션 �
 
 애플리케이션을 실행하면 `Flyway`가 정상적으로 마이그레이션 스크립트를 실행하고, 스키마 변경이 적용됩니다.
 
-![](/assets/img/db/flyway-db-migration-1.png)
+![](/assets/img/cs/db/flyway-db-migration-1.png)
 
 > 로그에서 Flyway의 실행 상태를 확인할 수 있습니다.
 
@@ -195,7 +195,7 @@ INFO org.flywaydb.core.internal.command.DbMigrate - Schema test is up to date. N
 
 ### 마이그레이션 스크립트 명명 규칙
 
-![](/assets/img/db/flyway-db-migration-script-name.png)
+![](/assets/img/cs/db/flyway-db-migration-script-name.png)
 
 Flyway의 마이그레이션 스크립트는 버전 순서대로 실행됩니다. 숫자가 작은 파일부터 순서대로 실행되며, 숫자가 동일한 경우 파일명이 알파벳순으로 실행됩니다. 버전 관리가 중요하므로 명명 규칙을 지키는 것이 중요합니다.
 
@@ -287,7 +287,7 @@ Migrating schema `{데이터베이스 내의 스키마 이름}` to version "2 - 
 
 #### flyway schema history
 
-![](/assets/img/db/flyway-db-migration-2.png)
+![](/assets/img/cs/db/flyway-db-migration-2.png)
 
 위와 같이 데이터베이스를 확인해보면, 새로운 테이블이 하나 생성된 것을 확인할 수 있습니다. `flyway_schema_history` 라는 테이블을 통해 Flyway는 마이그레이션에 대한 버전 관리를 합니다.
 

@@ -11,7 +11,7 @@ tags: ["성능테스트"]
 또한 이 테스트를 통해 제품의 리소스 사용량, 확장성 및 신뢰성을 확인할 수 있다.
 이 테스트는 소프트웨어 제품의 설계 및 아키텍처에서 **성능 문제를 해결**하는 데 중점을 둔 성능 엔지니어링의 하위 집합이다.
 
-![](/assets/img/technology/Technology-Performance-Testing-1.png)
+![](/assets/img/server/technology/Technology-Performance-Testing-1.png)
 
 위의 이미지는 성능 테스트가 부하 및 스트레스 테스트 모두에 대한 상위 집합이라는 것을 명확하게 설명한다.
 성능 테스트에 포함된 다른 유형의 테스트는 스파이크 테스트, 볼륨 테스트, 내구성 테스트 및 확장성 테스트가 있다.
@@ -83,7 +83,7 @@ tags: ["성능테스트"]
 
 ## 부하 테스트
 
-![](/assets/img/technology/Technology-Performance-Testing-2.png)
+![](/assets/img/server/technology/Technology-Performance-Testing-2.png)
 
 `부하 테스트`는 성능 테스트의 하위 집합으로, **임계값에 도달할 때까지 시스템의 부하를 지속적으로 꾸준히 증가시켜 시스템을 테스트**하는 것을 의미한다.
 
@@ -102,7 +102,7 @@ tags: ["성능테스트"]
 
 ## 스트레스 테스트
 
-![](/assets/img/technology/Technology-Performance-Testing-3.png)
+![](/assets/img/server/technology/Technology-Performance-Testing-3.png)
 
 `스트레스 테스트`에서는 기존 자원에 초과 작업으로 **과부하를 주는 다양한 활동을 수행하며 시스템을 무너졌을 때 어떤 동작을 보이는지 확인하는 테스트**이다.
 

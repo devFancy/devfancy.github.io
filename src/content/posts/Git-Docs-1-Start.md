@@ -20,7 +20,7 @@ tags: ["Git"]
 
 * 로컬 버전 관리 시스템은 아주 간단한 데이터베이스를 사용해서 파일의 변경 정보를 관리했다.
 
-![](/assets/img/git/git-docs-1-start-1.png)
+![](/assets/img/tool/git/git-docs-1-start-1.png)
 
 * 많이 쓰는 VCS 도구 중에 RCS(Revision Control System)라고 오늘날까지도 아직 많은 회사가 사용하고 있다.
 
@@ -34,7 +34,7 @@ tags: ["Git"]
 
 * `CVCS`는 파일을 관리하는 서버가 별도로 있고 클라이언트가 중앙 서버에서 파일을 받아서 사용(Checkout)한다.
 
-![](/assets/img/git/git-docs-1-start-2.png)
+![](/assets/img/tool/git/git-docs-1-start-2.png)
 
 * CVCS는 로컬 VCS에 비해 장점이 많다.
 
@@ -58,7 +58,7 @@ tags: ["Git"]
 
 * 클라이언트 중에서 아무거나 골라도 서버를 복원할 수 있다. `Clone`은 모든 데이터를 가진 진정한 백업이다.
 
-![](/assets/img/git/git-docs-1-start-3.png)
+![](/assets/img/tool/git/git-docs-1-start-3.png)
 
 * 그리고 대부분의 DVCS 환경에서는 리모트 저장소가 존재한다.
 
@@ -90,7 +90,7 @@ tags: ["Git"]
 
 * Git은 커밋하거나 프로젝트의 상태를 저장할 때마다 **파일이 존재하는 그 순간**을 중요하게 여긴다.
 
-![](/assets/img/git/git-docs-1-start-4.png)
+![](/assets/img/tool/git/git-docs-1-start-4.png)
 
 * 성능을 위해서 파일이 달라지는 경우에만 새로 저장한다. Git은 데이터를 **스냅샷의 스트림**처럼 취급한다.
 
@@ -106,7 +106,7 @@ tags: ["Git"]
 
 * 이 세 가지 상태는 Git 프로젝트의 세 가지 단계와 연결되어 있다.
 
-![](/assets/img/git/git-docs-1-start-5.png)
+![](/assets/img/tool/git/git-docs-1-start-5.png)
 
 * `Git directory` 는 Git이 **프로젝트의 메타데이터와 객체 데이터베이스를 저장하는 곳**을 말한다. 이 `.git directory`가 Git의 핵심이다.
 

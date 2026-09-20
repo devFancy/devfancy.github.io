@@ -162,7 +162,7 @@ logging.config: classpath:logback/logback-${spring.profiles.active}.xml
 
 > 실행 결과 예시
 
-![](/assets/img/springboot/springboot-multi-module-logback-xml.png)
+![](/assets/img/server/springboot/springboot-multi-module-logback-xml.png)
 
 위 로그에서 traceId, spanId 값이 비어 있는 이유는 **Spring Cloud Sleuth 등 분산 추적 라이브러리를 적용하지 않았기 때문**입니다.
 
@@ -192,7 +192,7 @@ public class ExamplePostController implements ExamplePostControllerDocs {
 
 > API 실행 결과
 
-![](/assets/img/springboot/springboot-multi-module-logback-xml-loglevel.png)
+![](/assets/img/server/springboot/springboot-multi-module-logback-xml-loglevel.png)
 
 ## Summary
 

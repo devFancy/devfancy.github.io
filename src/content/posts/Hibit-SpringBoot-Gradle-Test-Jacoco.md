@@ -24,7 +24,7 @@ tags: ["Spring Boot"]
 
 (여기서 말하는 `테스트 커버리지`란 시스템 및 소프트웨어 대해 충분한 테스트가 되었는지를 나태내는 정도를 말한다.)
 
-![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-1.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Jacoco-1.png)
 
 토스 유튜브 채널에서 토스뱅크 이응준님이 발표하신 [SLASH21 - 테스트 커버리지 100%](https://toss.im/slash-21/sessions/1-6) 영상을 우연히 보게 되었다.
 
@@ -52,7 +52,7 @@ tags: ["Spring Boot"]
 
 ## Jacoco란
 
-![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-2.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Jacoco-2.png)
 
 [Jacoco](https://www.jacoco.org/jacoco/) 는 Java 코드의 커버리지를 체크하는 라이브러리이다. 
 테스트 코드를 돌리고 그 커버리지 결과를 눈으로 보기 좋도록 html이나 xml, csv와 같은 리포트로 생성한다.
@@ -82,7 +82,7 @@ jacoco에 플러그인을 불러왔다면, 프로젝트의 테스트 코드를 �
 
 > jacoco 폴더 안에 indext.html, index.csv, index.xml 파일은 밑에서 설명할 `jacocoTestReport` 을 이미 실행했기 때문에 생긴 파일이다.
 
-![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-3.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Jacoco-3.png)
 
 Jacoco Gradle 플러그인에는 `jacocoTestReport` 와 `jacocoTestCoverageVerification` task가 있다.
 
@@ -113,7 +113,7 @@ jacocoTestReport {
 
 위에 이미 실행되어 `test.exec` 파일이 생성되었다고 가정하고 아래 명령어를 통해 `jacocoTestReport` 태스크를 실행하면 html, csv, xml 파일이 생기게 된다.
 
-![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-4.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Jacoco-4.png)
 
 build.gradle -> jacoco에서 `index.html` 폴더와 `index.csv`, `index.xml` 파일이 생성된 것을 확인할 수 있다.
 
@@ -280,11 +280,11 @@ jacocoTestCoverageVerification {
 
 test를 실행하여 총 155개의 단위 및 통합 테스트에 대한 성공 결과를 보여줬다.
 
-![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-5.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Jacoco-5.png)
 
 그리고 코드 커버리지 **80%** 를 달성하게 되었다.
 
-![](/assets/img/testcode/SpringBoot-TestCode-Jacoco-6.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Jacoco-6.png)
 
 최종적으로 작성된 `build.gradle` 파일은 아래와 같다.
 

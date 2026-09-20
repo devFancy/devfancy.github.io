@@ -23,7 +23,7 @@ use_math: true
   
 ## Cryptography - 잘못된 예시
 
-<img src="/assets/img/electronic-finance/ef-07-cryptography_1.png" alt="" width="500" />
+<img src="/assets/img/university/electronic-finance/ef-07-cryptography_1.png" alt="" width="500" />
 
 
 ## Encryption and Decryption
@@ -52,7 +52,7 @@ use_math: true
 
 ## Symmetric Encryption
 
-<img src="/assets/img/electronic-finance/ef-07-cryptography_2.png" alt="" width="500" />
+<img src="/assets/img/university/electronic-finance/ef-07-cryptography_2.png" alt="" width="500" />
 
 
 ## Asymmetric Encryption
@@ -70,7 +70,7 @@ use_math: true
 
 ## Asymmetric Encryption 
 
-<img src="/assets/img/electronic-finance/ef-07-cryptography_3.png" alt="" width="500" />
+<img src="/assets/img/university/electronic-finance/ef-07-cryptography_3.png" alt="" width="500" />
 
 
 * Elliptic Curve Digital Signature Algorithm (`ESCADA`)
@@ -169,7 +169,7 @@ use_math: true
 
 * Here, you encrypt data with private key and decrypt it with a public key.
 
-![](/assets/img/electronic-finance/ef-07-cryptography_4.png)
+![](/assets/img/university/electronic-finance/ef-07-cryptography_4.png)
 
 
 ### Wet-ink-on-paper signature

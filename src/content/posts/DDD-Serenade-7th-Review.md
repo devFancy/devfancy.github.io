@@ -11,7 +11,7 @@ tags: ["후기"]
 
 > 아래는 DDD 세레나데 7기 교육을 무사히 끝마친 후 받은 수료증입니다.
 
-![](/assets/img/technology/DDD-Serenade-7th-Certificate.png)
+![](/assets/img/server/technology/DDD-Serenade-7th-Certificate.png)
 
 DDD 세레나데 7기에 참여하면서 도메인 주도 설계(DDD)의 기본 개념부터 실전 적용까지 다양한 내용을 배울 수 있었습니다.
 
@@ -48,7 +48,7 @@ DDD 세레나데 7기에 참여하면서 도메인 주도 설계(DDD)의 기본 
 >
 > 아래는 이전에 작성한 `용어 사전` 중 일부를 가져왔습니다.
 
-![](/assets/img/technology/DDD_Serenade_7th_Week2_1.png)
+![](/assets/img/server/technology/DDD_Serenade_7th_Week2_1.png)
 
 ### 모델링하기
 
@@ -66,7 +66,7 @@ DDD 세레나데 7기에 참여하면서 도메인 주도 설계(DDD)의 기본 
 
 > 아래는 이전에 작성한 `모델링하기` 중 일부를 가져왔습니다.
 
-![](/assets/img/technology/DDD_Serenade_7th_Week2_2.png)
+![](/assets/img/server/technology/DDD_Serenade_7th_Week2_2.png)
 
 ### 2주차 복습하기
 

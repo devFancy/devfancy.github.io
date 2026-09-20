@@ -37,11 +37,11 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 [Monday]
 
-![](/assets/img/workout/hst_week4_1.png)
+![](/assets/img/etc/workout/hst_week4_1.png)
 
 [Thursday]
 
-![](/assets/img/workout/hst_week4_2.png)
+![](/assets/img/etc/workout/hst_week4_2.png)
 
 ### Lower Body Review 
 
@@ -61,11 +61,11 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 [Tuesday]
 
-![](/assets/img/workout/hst_week4_3.png)
+![](/assets/img/etc/workout/hst_week4_3.png)
 
 [Friday]
 
-![](/assets/img/workout/hst_week4_4.png)
+![](/assets/img/etc/workout/hst_week4_4.png)
 
 ### Upper Body Review 
 

@@ -73,11 +73,11 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 ## Introduction
 
-![](/assets/img/workout/hst_introduction.png)
+![](/assets/img/etc/workout/hst_introduction.png)
 
 * 해당 액셀에서는 전부 영어로 되어있기 때문에 해석하기 번거로웠지만,
 
-![](/assets/img/workout/hst_introduction_2.png)
+![](/assets/img/etc/workout/hst_introduction_2.png)
 
 * 하단에는 이렇게 구분지었습니다.
 
@@ -85,7 +85,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 ## Exercise
 
-![](/assets/img/workout/hst_exercise_1.png)
+![](/assets/img/etc/workout/hst_exercise_1.png)
 
 * 이게 [Exercise] 해당 부분인데 저는 "근비대"를 원했기 때문에 "근비대"에 관한 것으로 초점을 맞췄습니다.
 
@@ -93,7 +93,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 [운동종류 4가지 중 Hypertrophy zone (86%) 선택)
 
-![](/assets/img/workout/hst_exercise_2.png)
+![](/assets/img/etc/workout/hst_exercise_2.png)
 
 * 맨위의 표 중에서 **운동 종류 4가지**를 다시 캡쳐해서 가져와봤습니다.
 
@@ -107,7 +107,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 > 
 > Strength: 근력
 
-![](/assets/img/workout/hst_exercise_3.png)
+![](/assets/img/etc/workout/hst_exercise_3.png)
 
 * 위에서 86에 해당하는 start / end percentage ( 58%, 95% )를 위의 first session, last session에 넣었고, 
 
@@ -115,7 +115,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 * (3분할은 '3'으로 표기하면 됩니다)
 
-![](/assets/img/workout/hst_exercise_4.png)
+![](/assets/img/etc/workout/hst_exercise_4.png)
 
 * 이 표는 운동 종류에 관한 것인데, 원래 있었던 운동 종류는 없애고 저만의 운동 종류로 바꿨습니다.
 
@@ -125,7 +125,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 * (예를 들면 등 운동하는 날에는 시티 두 로우와 데드리프트를 했다면, 다른 등 운동하는 다른 날에는 랫 풀다운과 원암 덤벨 로우를 구분 짓는 것처럼 말이죠)
 
-![](/assets/img/workout/hst_exercise_5.png)
+![](/assets/img/etc/workout/hst_exercise_5.png)
 
 * 그다음으로는 각 운동 종류에 맞게 저만의 **무게와 개수**를 설정하였습니다.
 
@@ -133,7 +133,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 * `Weight lifted` -> 무게, `Number of Regs` -> 개수로 표기하시면 됩니다.'
 
-![](/assets/img/workout/hst_exercise_6.png)
+![](/assets/img/etc/workout/hst_exercise_6.png)
 
 * 이 부분도 마찬가지로 했습니다.
 
@@ -145,11 +145,11 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 [Cycle1] - 1/17 Monday
 
-![](/assets/img/workout/hst_cycle_1.png)
+![](/assets/img/etc/workout/hst_cycle_1.png)
 
 [Cycle1] - 1/19 Wednesday
  
-![](/assets/img/workout/hst_cycle_2.png)
+![](/assets/img/etc/workout/hst_cycle_2.png)
 
 * 다음은 [Cycle] 부분입니다. 위에서 **운동 종류와 Yes/No**에 맞게 구분 짓게 되었습니다.
 
@@ -179,7 +179,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 * 결론적으로 말씀드리면, 저는 대체적으로 58% ~ 63% 사이라서 1분이하 쉬면 됩니다. (이유는 밑에 있습니다)
 
-![](/assets/img/workout/hst_recovery_time.png)
+![](/assets/img/etc/workout/hst_recovery_time.png)
 
 * RM 부분에 대해 설명하자면, 위의 표처럼 50% 이하이면 30초 이전을 쉬고, 50% ~ 75% 사이이면 1분 이전을 쉬면 됩니다.
 
@@ -187,17 +187,17 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 [Cycle3] 2/18
 
-![](/assets/img/workout/hst_cycle_3.png)
+![](/assets/img/etc/workout/hst_cycle_3.png)
 
 * 여기서는 `%RM`이 77% ~ 79%이므로 1분에서 1분 30초 이하로 쉬면 된다는 의미입니다.
 
-![](/assets/img/workout/hst_cycle_4.png)
+![](/assets/img/etc/workout/hst_cycle_4.png)
 
 * 프로그램은 **총 8주**로 진행되고, Sets 수를 늘리고 싶으면 위의 `Personal`말고 다른 것을 선택하면 됩니다.
 
 * 프로그램이 끝나면 1-2주 쉬고 다시 '그런 비대' 운동을 하든지 아니면 다른 운동 종류(근지구력, 순발력, 근력)을 하시면 됩니다.
 
-![](/assets/img/workout/hst_personal.png)
+![](/assets/img/etc/workout/hst_personal.png)
 
 * 누군가 저에게 운동을 왜 하냐고 묻냐면, 저는 "그냥 재밌고 좋아서" 라고 대답합니다.
 

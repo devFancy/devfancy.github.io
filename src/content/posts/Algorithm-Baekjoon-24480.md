@@ -93,4 +93,4 @@ public class DFS_2 {
 
 * 내림차순 정렬을 하기 위해서는 sort()의 인자에 추가로 `Collections.reverseOrder()` 를 전달해주면 된다.
 
-![](/assets/img/algorithm/Algorithm-Baekjoon-24480-1.jpeg)
+![](/assets/img/algorithm/algorithm/Algorithm-Baekjoon-24480-1.jpeg)

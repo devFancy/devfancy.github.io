@@ -112,7 +112,7 @@ use_math: true
 
 * The Poisson distribution can be used to approximate the $B(n, p)$ distribution
 
-![](/assets/img/probability-statistics/ps-03-discrete-probability-distributions_1.png)
+![](/assets/img/university/probability-statistics/ps-03-discrete-probability-distributions_1.png)
 
 * when 1) $n$ is very large (larger than 150, say) and 2) the success probability $p$ is very small (smaller than 0.01, say).
 

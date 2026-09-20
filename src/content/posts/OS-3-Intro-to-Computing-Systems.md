@@ -11,7 +11,7 @@ tags: ["운영체제"]
 
 * 컴퓨터 시스템의 구조는 컴퓨터 내부장치인 CPU, 메모리와 컴퓨터 외부장치인 디스크, 키보드, 마우스, 모니터, 네트워크 장치 등으로 구성된다.
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_1.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_1.png)
 
 * Processor와 Memory 부분이 컴퓨터 내부장치에 해당하고, 입출력 장치을 컴퓨터 외부장치라 부른다.
 
@@ -49,7 +49,7 @@ tags: ["운영체제"]
 
 * Timer는 특정 시간이 지나면 **CPU를 중단시키는 것**이다.
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_2.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_2.png)
 
 * Timer가 동작되면 기존 프로그램을 멈춘 다음, User 모드에서 Kernel 모드로 이동시킨 후 그 다음 프로그램을 수행시킨다.
 
@@ -61,7 +61,7 @@ tags: ["운영체제"]
 
 ## 2. CPU 연산과 I/O 연산
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_1.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_1.png)
 
 * 컴퓨터에서 연산을 한다는 것은 CPU가 무언가 일을 한다는 뜻이다.
 
@@ -73,7 +73,7 @@ tags: ["운영체제"]
 
 * 로컬버퍼로 읽어오는 작업이 끝났는지를 메인 CPU가 지속적으로 체크하는 것이 아니라 장치에 있는 **컨트롤러가 인터럽트를 발생시켜 CPU에 보고**하게 된다.
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_3.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_3.png)
 
 * 이때 `인터럽트(interrupt)`란 **컨트롤러들이 CPU의 서비스가 필요할 때 이를 통보하는 방법**을 말한다.
 
@@ -144,7 +144,7 @@ PCB는 각각의 프로그램마다 **하나씩** 존재하며 **해당 프로�
 
 * 입출력(I/O)이란 컴퓨터 시스템이 컴퓨터 외부의 입출력 장치들과 데이터를 주고받는 것을 말한다.
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_4.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_4.png)
 
 ### 동기식 입출력(Synchronous I/O)
 
@@ -158,7 +158,7 @@ PCB는 각각의 프로그램마다 **하나씩** 존재하며 **해당 프로�
 
 #### 예시
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_5.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_5.png)
 
 * 왼쪽이 비동기식 입출력, 오른쪽이 동기식 입출력이다.
 
@@ -178,7 +178,7 @@ DMA(Diredt Memory Access)
 
 * 이러한 비효율성을 극복하기 위해 CPU 이외에 메모리 접근이 가능한 장치를 `DMA`라고 부른다.
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_6.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_6.png)
 
 * DMA는 일종의 컨트롤러로서, **CPU가 입출력 장치들의 메모리 접근 요청에 의해 자주 인터럽트 당하는 것을 막아주는 역할**을 한다.
 
@@ -190,7 +190,7 @@ DMA(Diredt Memory Access)
 
 ## 7. Bus
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_7.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_7.png)
 
 * Northbridge(= Memory Controller Hub) : PC motherboard 에 있는 핵심 로직 칩셋에서 두개의 칩 중 하나이다.
 
@@ -206,7 +206,7 @@ DMA(Diredt Memory Access)
   
   * CPU에 직접적으로 연결 X
 
-![](/assets/img/os/os-3-Intro-to-Computing-Systems_8.png)
+![](/assets/img/cs/os/os-3-Intro-to-Computing-Systems_8.png)
 
 ## Reference
 

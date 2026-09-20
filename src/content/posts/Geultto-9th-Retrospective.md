@@ -23,7 +23,7 @@ tags: ["글또"]
 
 글또에 대한 궁금한 점들은 [글또 소개](https://geultto.github.io/docs/intro) 페이지에서 확인해주시면 될 것 같아요 ! (기존에는 `Notion`으로 되어져있었는데, 이번 9기에서 글또 운영진분들의 열정과 노력 덕분에 `홈페이지`로 개선되었어요)
 
-![](/assets/img/etc/geultto-9th-review-1.png)
+![](/assets/img/etc/etc/geultto-9th-review-1.png)
 
 ## 글또 활동
 
@@ -33,7 +33,7 @@ tags: ["글또"]
 
 글또를 막 시작했을 12월에는 '2주에 한번 글을 쓰고 제출하는 거면 충분히 할 수 있겠네 !' 라고 다짐했었는데, 글또 9기를 활동하는 중간에 스타트업 회사로 옮기면서, 그 다짐을 지키지 못했어요 🥲.
 
-![](/assets/img/etc/geultto-9th-review-2.png)
+![](/assets/img/etc/etc/geultto-9th-review-2.png)
 
 그래서 **총 10회 차에 7번 제출, 2번 패스를 사용**했고, 마지막 주차에는 제출하지 못했어요.
 
@@ -102,7 +102,7 @@ tags: ["글또"]
 제가 생각하기에 `글또` 라는 모임은 단순히 글을 작성하는 스킬 향상에 그치지 않고, 그 외 다양한 활동이 있고 그러한 점들을 통해 개인적인 성장 뿐만 아니라 서로가 도와주면서 함께 성장하는 분위기 같아요.
 시간적 여유가 되신다면 다음 글또 10기에 참여하시는 걸 적극 추천드립니다.
 
-![](/assets/img/etc/geultto-9th-review-3.png)
+![](/assets/img/etc/etc/geultto-9th-review-3.png)
 
 (위에는 예시이고, 실제로 이 밖에도 다양한 활동들이 있습니다)
 

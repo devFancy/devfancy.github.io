@@ -11,7 +11,7 @@ tags: ["운영체제"]
 
 `OS`는 컴퓨터 하드웨어 바로 윗단에 설치되는 소프트웨어.
 
-![](/assets/img/os/os-1-and-2-Introduction_1.png)
+![](/assets/img/cs/os/os-1-and-2-Introduction_1.png)
 
 * 각종 SW들은 위의 그림과 같이 HW와 OS가 한 몸으로 존재하는 컴퓨터 시스템 위에서 수행되는 것으로 볼 수 있다.
 
@@ -19,7 +19,7 @@ tags: ["운영체제"]
 
 * OS 중 항상 필요한 부분만을 전원이 On과 동시에 메모리에 올려놓고 그렇지 않은 부분은 필요할 때 메모리에 올려서 사용하게 된다.
 
-![](/assets/img/os/os-1-and-2-Introduction_2.png)
+![](/assets/img/cs/os/os-1-and-2-Introduction_2.png)
 
 * 이때 메모리에 상주하는 운영체제의 부분을 `커널(kernel)`이라고 부르며 이를 좁은 의미의 운영체제라고도 부른다.
 
@@ -29,7 +29,7 @@ tags: ["운영체제"]
 
 ## 2. 운영체제의 기능
 
-![](/assets/img/os/os-1-and-2-Introduction_1.png)
+![](/assets/img/cs/os/os-1-and-2-Introduction_1.png)
 
 컴퓨터 HW와 User 사이에 OS가 존재하므로, OS의 역할은 `HW를 위한 역할`과 `User를 위한 역할`의 두 가지로 나누어볼 수 있다.
 
@@ -45,7 +45,7 @@ tags: ["운영체제"]
 
   * 여기서 `자원`이란 CPU, Memory, HardDisk 등 HW 자원뿐 아니라 SW 자원까지를 통칭해서 부르는 말이다.
 
-![](/assets/img/os/os-1-and-2-Introduction_3.png)
+![](/assets/img/cs/os/os-1-and-2-Introduction_3.png)
 
 * OS는 사용자 및 프로그램들 간에 **자원이 형평성 있게 분배**되도록 하는 `균형자` 역할도 함께 수행해야 한다.
 
@@ -137,7 +137,7 @@ OS를 분류하는 또 다른 기준은 `작업을 처리하는 방식`이다.
 
 * 보조기억장치로 사용되는 대표적인 매체로는 **하드디스크**가 있으며, 이외에도 **키보드, 모니터**가 있다.
 
-![](/assets/img/os/os-1-and-2-Introduction_4.png)
+![](/assets/img/cs/os/os-1-and-2-Introduction_4.png)
 
 ---
 

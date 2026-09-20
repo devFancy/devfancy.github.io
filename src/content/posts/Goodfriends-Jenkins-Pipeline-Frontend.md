@@ -13,7 +13,7 @@ tags: ["사이드프로젝트"]
 
 ## 프론트엔드 CD 다이어그램
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-frontend-1.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-frontend-1.png)
 
 프론트엔드의 지속적 배포 환경은 백엔드와 크게 다른점은 없습니다. PR이 생성되고, 병합되어 Webhook을 통해 젠킨스 서버에 전달됩니다. 
 젠킨스 서버는 Webhook을 이용하여 뷰(Vue) 프로젝트를 빌드하고, 
@@ -33,7 +33,7 @@ index.html과 관련 js 파일을 생성합니다. 그리고 생성된 정적 �
 
 다시 Dashboard - Jenkins 관리 - Tools 에서 아래 그림과 같이 설정한 뒤 저장합니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-frontend-2.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-frontend-2.png)
 
 굿프렌즈팀은 개발 환경에서 node.js 18.12.0 버전을 사용하므로 18.12.0 버전을 선택하고 이름을 **`NodeJS 18.12.0`** 으로 지정했습니다.
 
@@ -45,15 +45,15 @@ Global credentials 클릭 → 우측 상단 Add Credentials 선택(Add domain �
 
 > Credentials
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-frontend-3.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-frontend-3.png)
 
 > Systyem
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-frontend-4.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-frontend-4.png)
 
 > Global credentials
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-frontend-5.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-frontend-5.png)
 
 - `Kind`: SSH Username with private key
 - `Scope`: Global
@@ -228,11 +228,11 @@ pipeline {
 
 >  2023.08.26(이전)
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-frontend-6.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-frontend-6.png)
 
 >  2023.10.14(최근)
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-frontend-7.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-frontend-7.png)
 
 위의 pipeline에 맞게 수정된 jenkins 부분입니다!
 (9월 말에 우리FISA로부터 지원이 끊겨서 갑작스럽게 모든 서버 구축(프론트, 백엔드, 젠킨스)을 처음부터 다시 하게 되었습니다ㅠㅠ

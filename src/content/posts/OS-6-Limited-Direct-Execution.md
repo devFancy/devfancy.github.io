@@ -13,7 +13,7 @@ tags: ["운영체제"]
 
 * CPU가 만들어내는(표현할 수 있는) 주소 개수 : 2^32
 
-![](/assets/img/os/os-6-Limited-Direct-Execution_1.png)
+![](/assets/img/cs/os/os-6-Limited-Direct-Execution_1.png)
 
 * Stack : 지역 변수
 
@@ -28,7 +28,7 @@ tags: ["운영체제"]
 
   * (single-core system으로 가장한다면) 물리적인 CPU 개수는 1개이다.
 
-![](/assets/img/os/os-6-Limited-Direct-Execution_2.png)
+![](/assets/img/cs/os/os-6-Limited-Direct-Execution_2.png)
 
 * **`Time-sharing`** -> 핵심: **시간을 나눠서 사용한다**
   
@@ -36,7 +36,7 @@ tags: ["운영체제"]
   
   * Round robin 방식에 의해서 하나의 프로세스를 실행하고, 멈춘 다음에 다른 프로세스를 실행한다.
 
-![](/assets/img/os/os-6-Limited-Direct-Execution_3.png)
+![](/assets/img/cs/os/os-6-Limited-Direct-Execution_3.png)
 
 * CPU Virtualization을 구현하기 위해서 필요한 2가지
 
@@ -50,7 +50,7 @@ tags: ["운영체제"]
 
 * **`Direct execution`** : CPU가 프로세스를 수행하는 동안에는 OS가 간섭하지 않는다.
 
-![](/assets/img/os/os-6-Limited-Direct-Execution_4.png)
+![](/assets/img/cs/os/os-6-Limited-Direct-Execution_4.png)
 
 * 위의 표와 같이 한 번 실행하면 종료될 때까지 프로세스는 멈추지 않는다.
 
@@ -103,7 +103,7 @@ tags: ["운영체제"]
 
 * 제한된 작업이 완료되면, **OS**는 `return-from-trap` 명령을 호출(call)하여 user mode로 권한 수준(0->1)을 내려준다.
 
-![](/assets/img/os/os-6-Limited-Direct-Execution_5.png)
+![](/assets/img/cs/os/os-6-Limited-Direct-Execution_5.png)
 
 
 * **trap** 명령이 실행되면, processor는 program counter, falgs, 그리고 다른 register을 process별로 **kernel stack**으로 `push`한다.
@@ -114,7 +114,7 @@ tags: ["운영체제"]
 
 * 아래 그림에서 user mode에서 kernel mode로 이동할 때 trap 명령을 실행하는 것을 확인할 수 있다.
 
-![](/assets/img/os/os-6-Limited-Direct-Execution_6.png)
+![](/assets/img/cs/os/os-6-Limited-Direct-Execution_6.png)
 
 ### Problem#2: Switching between processes
 
@@ -151,13 +151,13 @@ tags: ["운영체제"]
 
 #### [Saving and Restoring Context]
 
-![](/assets/img/os/os-6-Limited-Direct-Execution_7.png)
+![](/assets/img/cs/os/os-6-Limited-Direct-Execution_7.png)
 
 * 위와 같은 방식으로 Schedular가 switch를 원하면 context switch를 통해 Process A에서 Process B로 이동하게 된다.
 
 #### [Example Of Context Switching]
 
-![](/assets/img/os/os-6-Limited-Direct-Execution_8.png)
+![](/assets/img/cs/os/os-6-Limited-Direct-Execution_8.png)
 
 * 위의 예시처럼 Context Switching도 시간이 걸리며 오버헤드가 발생한다.
 

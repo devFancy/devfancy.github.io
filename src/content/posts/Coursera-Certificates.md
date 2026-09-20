@@ -36,32 +36,32 @@ tags: ["커리어"]
 
 * 학점 : 97.67%
 
-![](/assets/img/etc/Foundations-of-Project-Management_certificate.png)
+![](/assets/img/etc/etc/Foundations-of-Project-Management_certificate.png)
 
 ### Foundations of User Experience (UX) Design
 
 * 학점 : 100%
 
-![](/assets/img/etc/Foundations-of-User-Experience-_UX_-Design_certificate.png)
+![](/assets/img/etc/etc/Foundations-of-User-Experience-_UX_-Design_certificate.png)
 
 ### Foundations: Data, Data, Everywhere
 
 * 학점 : 92.25%
 
-![](/assets/img/etc/Foundations-Data_-Data_-Everywhere_certificate.png)
+![](/assets/img/etc/etc/Foundations-Data_-Data_-Everywhere_certificate.png)
 
 ### Introduction to Front-End Development
 
 * 학점 : 97.35%
 
-![](/assets/img/etc/Introduction-to-Front-End-Development_certificate.png)
+![](/assets/img/etc/etc/Introduction-to-Front-End-Development_certificate.png)
 
 
 ### Introduction to Back-End Development
 
 * 학점 : 97.35%
 
-![](/assets/img/etc/Introduction-to-Back-End-Developmen_certificate.png)
+![](/assets/img/etc/etc/Introduction-to-Back-End-Developmen_certificate.png)
 
 
 ### Review

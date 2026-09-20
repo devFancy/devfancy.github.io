@@ -5,7 +5,7 @@ categories: ["서버"]
 tags: ["우아한테크코스"]
 ---
 
-![](/assets/img/woowacourse/woowacourse_name.png)
+![](/assets/img/server/woowacourse/woowacourse_name.png)
 
 * 이 글은 프리코스 과정 이후에 한번 더 복습한 과정을 담긴 내용이며, 기존에 제출했던 코드와 다를 수 있습니다.
 
@@ -31,17 +31,17 @@ tags: ["우아한테크코스"]
 
 * 구현 동작 -> 구현 로직 -> 기능 목록 / 예외처리 목록 순으로 작성했다.
 
-![](/assets/img/woowacourse/3th_lotto_1.png)
+![](/assets/img/server/woowacourse/3th_lotto_1.png)
 
-![](/assets/img/woowacourse/3th_lotto_2.png)
+![](/assets/img/server/woowacourse/3th_lotto_2.png)
 
-![](/assets/img/woowacourse/3th_lotto_3.png)
+![](/assets/img/server/woowacourse/3th_lotto_3.png)
 
 
 
 * 이번에는 LottoGame 기준으로 controller-domain-model-util-view 로 구성했다.
 
-![](/assets/img/woowacourse/3th_lotto_4_structure.png)
+![](/assets/img/server/woowacourse/3th_lotto_4_structure.png)
 
 ---
 
@@ -58,7 +58,7 @@ tags: ["우아한테크코스"]
 
 * assertThatThrownBy : 예외가 throw됐을 경우 그 예외를 catch해주는 기능을 가진다.
 
-![](/assets/img/woowacourse/3th_lotto_5_error_test_success.png)
+![](/assets/img/server/woowacourse/3th_lotto_5_error_test_success.png)
 
 ### 연관성이 있는 상수는 static final 대신 enum을 활용한다(3주차 피드백)
 
@@ -66,7 +66,7 @@ tags: ["우아한테크코스"]
 
 * enum을 사용하고 구현하니까 확실히 직관적으로 코드가 깔끔해질 수 있다는 것을 느꼈다.
 
-![](/assets/img/woowacourse/3th_lotto_6_enum.png)
+![](/assets/img/server/woowacourse/3th_lotto_6_enum.png)
 
 ## 에러 발생
 
@@ -78,19 +78,19 @@ tags: ["우아한테크코스"]
 
 1. 출력 결과에서 처음에 null이 뜬금없이 나오는데, 왜 그렇지..?라는 생각에 원인이 LottoMachine 클래스의 makeNumber 메서드에서 Collection.sort() 을 사용해서 그렇다. 알고보니, Collection.sort()를 사용하면 null이 발생했기 때문에 해당 함수를 주석처리해서 null 값은 사라졌다.
 
-![](/assets/img/woowacourse/3th_lotto_7_makeNumber.png)
+![](/assets/img/server/woowacourse/3th_lotto_7_makeNumber.png)
 
 2. OutputView 클래스에서 출력부분에서 오타가 발생해서 에러가 발생한 것이다. 그래서 해당 부분을 미션에 나와있는 실행 결과 예시처럼 바꿨다.
 
-![](/assets/img/woowacourse/3th_lotto_8_printResult.png)
+![](/assets/img/server/woowacourse/3th_lotto_8_printResult.png)
 
 3. 예외_테스트대로 ERROR_MESSAGE를 포함했음에도 테스트 결과가 실패했다. 그래서 해당 미션의 요구 사항을 다시 한번 확인했다.
 
-![](/assets/img/woowacourse/3th_lotto_9_exception_test.png)
+![](/assets/img/server/woowacourse/3th_lotto_9_exception_test.png)
 
 **기능 요구 사항** 의 일부분
 
-![](/assets/img/woowacourse/3th_lotto_10_function_requirement.png)
+![](/assets/img/server/woowacourse/3th_lotto_10_function_requirement.png)
 
 * "[ERROR]로 시작하는 에러 메세지를 출력하고 종료한다."의미가 에러 메세지를 출력한 다음, 정상 종료해야 한다는 뜻이였다.
 
@@ -98,11 +98,11 @@ tags: ["우아한테크코스"]
 
 * 그래서 main 메서드에서 try-catch문을 추가해줬다.
 
-![](/assets/img/woowacourse/3th_lotto_11_main_try_catch.png)
+![](/assets/img/server/woowacourse/3th_lotto_11_main_try_catch.png)
 
 * 3가지 문제점을 모두 수정한 뒤에 다시 테스트 해보니, 정상 처리가 되었다.
 
-![](/assets/img/woowacourse/3th_lotto_12_test_results_success.png)
+![](/assets/img/server/woowacourse/3th_lotto_12_test_results_success.png)
 
 ## 회고
 

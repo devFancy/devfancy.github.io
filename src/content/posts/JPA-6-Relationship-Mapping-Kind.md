@@ -15,7 +15,7 @@ tags: ["JPA"]
 
 * `다대일 단방향`은 **가장 많이 사용**하는 연관관계다.
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-1.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-1.png)
 
 ### 다대일 양방향
 
@@ -23,7 +23,7 @@ tags: ["JPA"]
 
 * 양쪽이 서로 참조되도록 개발한다.
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-2.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-2.png)
 
 ## 일대다
 
@@ -33,7 +33,7 @@ tags: ["JPA"]
 
 * `일대다 단방향` 모델은 권장하지 않는다. (실무에서 거의 쓰이지 않는다)
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-3.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-3.png)
 
 * DB 설계상 일대다 관계는 **항상 `다` 쪽에 `외래키`가 있다.**
 
@@ -71,7 +71,7 @@ public class Team {
 
 ### 일대다 양방향 
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-4.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-4.png)
 
 * `일대다 양방향` 매핑은 공식적으로 존재하지 않는다.
 
@@ -112,7 +112,7 @@ public class Member {
 
 ### 일대일: 주 테이블에 외래 키 단방향
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-5.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-5.png)
 
 * 다대일(@ManyToOne) 단방향 매핑과 유사하다.
 
@@ -142,7 +142,7 @@ public class Member {
 
 ### 일대일: 주 테이블에 외래 키 양방향
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-6.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-6.png)
 
 * 다대일 양방향 매핑 처럼 **외래 키가 있는 곳이 연관관계의 주인**이다.
 
@@ -176,7 +176,7 @@ public class Locker {
 
 * `객체`는 **컬렉션을 사용해서 객체 2개로 다대다 관계가 가능**하다.
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-7.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-7.png)
 
 * `@ManyToMany` 사용하고, `@JoinTable`로 연결 테이블을 지정한다.
 
@@ -190,7 +190,7 @@ public class Locker {
 
 * 주문시간, 수량 같은 데이터가 들어올 수 있다.
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-8.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-8.png)
 
 ### 다대다 한계 극복
 
@@ -198,7 +198,7 @@ public class Locker {
 
 * `@ManyToMany` -> `@OneToMany`, `@ManyToOne`으로 바꿔준다.
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-9.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-9.png)
 
 * 다시 한번 말하면, 실무에서는 `@ManyToMany` 사용하지 않는다.
 
@@ -208,7 +208,7 @@ public class Locker {
 
 * `@JoinColumn`은 외래 키를 매핑할 때 사용하는 어노테이션이다.
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-10.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-10.png)
 
 ### @ManyToOne - 주요 속성
 
@@ -216,13 +216,13 @@ public class Locker {
 
 * 다대일에서 '다'가 **연관관계 주인**이 되어야 한다.
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-11.png) 
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-11.png) 
 
 ### @OneToMany - 주요 속성
 
 * `@OneToMany`은 일대다 관계를 매핑할 때 사용하는 어노테이션이다.
 
-![](/assets/img/jpa/JPA-Diverse-Relationship-Mapping-12.png)
+![](/assets/img/server/jpa/JPA-Diverse-Relationship-Mapping-12.png)
 
 ## Reference
 

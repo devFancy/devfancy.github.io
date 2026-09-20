@@ -91,7 +91,7 @@ WHERE   계좌번호 = 200;
 
 트랜잭션은 아래의 그림처럼 5가지 상태 중 하나에 속하게 된다.
 
-![](/assets/img/db/db-transaction-1.png)
+![](/assets/img/cs/db/db-transaction-1.png)
 
 1. `활동` 상태(**Active**) : 트랜잭션이 수행되기 시작하여 현재 수행 중인 상태를 말한다.
 

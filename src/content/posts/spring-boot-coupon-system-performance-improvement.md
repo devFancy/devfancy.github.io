@@ -56,7 +56,7 @@ AWS EC2 기반으로 구축하고 최소 사양부터 시작해서 부하 테스
 
 - `IssuedCoupon`: 사용자에게 발급된 쿠폰 관리(중복 방지 및 사용 처리)
 
-![](/assets/img/technology/kudadak/kudadak-coupon-issue-system-ddd-strategy-design.png)
+![](/assets/img/server/technology/kudadak/kudadak-coupon-issue-system-ddd-strategy-design.png)
 
 ### 멀티 모듈 구조
 
@@ -81,7 +81,7 @@ AWS EC2 기반으로 구축하고 최소 사양부터 시작해서 부하 테스
 
 - `support-monitoring`: Prometheus, Grafana, Sentry 등 시스템 가용성을 실시간으로 관측하기 위한 지표 수집 라이브러리를 포함
 
-![](/assets/img/technology/kudadak/kudadak-coupon-issue-system-multi-module.png)
+![](/assets/img/server/technology/kudadak/kudadak-coupon-issue-system-multi-module.png)
 
 ## 쿠폰 발급 프로세스
 
@@ -89,12 +89,12 @@ AWS EC2 기반으로 구축하고 최소 사양부터 시작해서 부하 테스
 
 초기 프로젝트는 아래 사진과 같이 단일 서버 내의 API 서버와 MySQL 연동만 하는 상황이었습니다.
 
-![](/assets/img/technology/kudadak/kudadak-process-workflow-0.png)
+![](/assets/img/server/technology/kudadak/kudadak-process-workflow-0.png)
 
 하지만 대규모 트래픽 속에서 안정성과 성능을 보장하는 선착순 이벤트를 진행해야 했기 때문에, 저는 Redis와 Kafka를 도입했습니다.
 (만약 사용자 수가 적고 실시간 처리가 주가 아닌 서비스라면, 두 가지의 기술을 모두 도입하지 않아도 된다고 생각합니다. 배보다 배꼽이 커지면 안되는 것 처럼요.)
 
-![](/assets/img/technology/kudadak/kudadak-process-workflow-1.png)
+![](/assets/img/server/technology/kudadak/kudadak-process-workflow-1.png)
 
 Redis를 이용하여 중복 발급 방지 및 선착순 재고 처리를 구현했고, 선착순 이내로 들어온 요청을 Kafka를 통해 DB에 저장하도록 구현했습니다.
 
@@ -123,7 +123,7 @@ AWS EC2의 여러 서버 사양을 확인했을 때 t2 기반으로 사용하기
 
 아래는 T3 에 대한 제품 세부 정보이며, 저는 이 중에서 `t3.medium` 제품을 선택했습니다.
 
-![](/assets/img/technology/kudadak/kudadak-aws-ec2-t3.png)
+![](/assets/img/server/technology/kudadak/kudadak-aws-ec2-t3.png)
 
 쿠폰 발급 시스템에 대해 API Server, Consumer Server 뿐만 아니라, Infra(MySQL, Redis, Kafka), Monitoring(Prometheus, Grafana) 까지 사용해야
 한다면 Memory가 2GB는 적고 최소 4GB는 필요하다고 생각했습니다.
@@ -133,7 +133,7 @@ AWS EC2의 여러 서버 사양을 확인했을 때 t2 기반으로 사용하기
 
 > System Architecture
 
-![](/assets/img/technology/kudadak/kudadak-system-architecture-1.png)
+![](/assets/img/server/technology/kudadak/kudadak-system-architecture-1.png)
 
 ## 성능 테스트 목표
 
@@ -179,7 +179,7 @@ Redis와 Kafka 관련 메트릭은 `Redis Exporter` 와 `Kafka Exporter`를 활�
 
 > System Architecture
 
-![](/assets/img/technology/kudadak/kudadak-system-architecture-k6.png)
+![](/assets/img/server/technology/kudadak/kudadak-system-architecture-k6.png)
 
 ## 1. 초기 아키텍처 구성
 
@@ -192,7 +192,7 @@ API 서버를 통과하여 Kafka에 적재된 요청에 대해 컨슈머 서버�
 
 이를 통해 단순히 요청을 제한하는 것을 넘어, 컨슈머 서버와 최종 저장소인 DB가 감당할 수 있는 수준으로 유입량을 조절하여 시스템 전체의 안정성을 확보하고자 했습니다.
 
-![](/assets/img/technology/kudadak/coupon-issue-redis-rate-limiter.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-redis-rate-limiter.png)
 
 (Redis 기반의 글로벌 Rate Limiter 구성도)
 
@@ -202,7 +202,7 @@ API 서버를 통과하여 Kafka에 적재된 요청에 대해 컨슈머 서버�
 
 (초기에는 데이터 정합성을 위해 분산락을 도입했으나 이후 구조적 단순화를 위해 DB 제약조건으로 개선하는 과정을 거쳤습니다.)
 
-![](/assets/img/technology/kudadak/coupon-issue-redis-distributed-lock.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-redis-distributed-lock.png)
 
 (초기 설계 시 도입했던 Redis 분산락 구조)
 
@@ -210,7 +210,7 @@ Redis 기반의 처리율 제한과 분산락을 적용한 쿠폰 발급 프로�
 
 > 쿠폰 발급 프로세스
 
-![](/assets/img/technology/kudadak/kudadak-process-workflow-2.png)
+![](/assets/img/server/technology/kudadak/kudadak-process-workflow-2.png)
 
 ### 1-1. 부하 테스트 결과 (VU 500 / Rate Limiter 100)
 
@@ -218,15 +218,15 @@ Redis 기반의 처리율 제한과 분산락을 적용한 쿠폰 발급 프로�
 
 > K6 결과 - p95 응답 시간: 2.95s
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-k6-result-1-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-k6-result-1-1.png)
 
 > API 서버 결과 - 평균 TPS: 270, 최고 TPS: 400
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-api-server-1-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-api-server-1-1.png)
 
 > Consumer 서버 결과 - 평균 TPS: 100, 최고 TPS: 120
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-1-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-1-1.png)
 
 ### 1-2. 부하 테스트 결과 (VU 5,000 / Rate Limiter 100)
 
@@ -238,15 +238,15 @@ Redis 기반의 처리율 제한과 분산락을 적용한 쿠폰 발급 프로�
 
 > K6 결과 - p95 응답 시간: 6.75s
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-k6-result-1-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-k6-result-1-2.png)
 
 > API 서버 결과 - 평균 TPS: 550, 최고 TPS: 900
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-api-server-1-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-api-server-1-2.png)
 
 > Consumer 서버 결과 - 평균 TPS: 80, 최고 TPS: 95
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-1-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-1-2.png)
 
 API 서버와 컨슈머 서버의 CPU 점유율을 보면 System CPU 점유율은 100%에 육박하는 반면, 애플리케이션 자체가 점유하는 Process CPU는 상대적으로 낮아지는 것을 확인했습니다.
 
@@ -272,7 +272,7 @@ API 서버와 컨슈머 서버의 CPU 점유율을 보면 System CPU 점유율�
 
 > Monitoring Architecture
 
-![](/assets/img/technology/kudadak/kudadak-monitoring-architecture-1.png)
+![](/assets/img/server/technology/kudadak/kudadak-monitoring-architecture-1.png)
 
 새로운 아키텍처 기반으로 동시 사용자 5,000명 부하 테스트를 실시한 결과, 이전 대비 성능과 안정성이 개선되었습니다.
 하지만 여전히 성능을 최적화할 여지가 있다고 판단하여 다음과 같은 주요 개선 작업을 수행했습니다.
@@ -292,7 +292,7 @@ API 서버와 컨슈머 서버의 CPU 점유율을 보면 System CPU 점유율�
 
 > 쿠폰 발급 프로세스
 
-![](/assets/img/technology/kudadak/kudadak-process-workflow-3.png)
+![](/assets/img/server/technology/kudadak/kudadak-process-workflow-3.png)
 
 이렇게 함으로써 컨슈머 서버는 Redis의 처리율 제한만을 사용하여 이전보다 Redis에 대한 의존성을 줄일 수 있고, 비즈니스 로직 복잡도도 단순화했습니다.
 
@@ -302,7 +302,7 @@ API 서버와 컨슈머 서버의 CPU 점유율을 보면 System CPU 점유율�
 
 > DB (MySQL) - HikariCP
 
-![](/assets/img/technology/kudadak/coupon-issue-system-db-hikaricp.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-system-db-hikaricp.png)
 
 세 번째로 컨슈머 서버의 처리 성능을 강화하기 위해 스레드와 파티션 수를 조정했습니다.
 
@@ -322,7 +322,7 @@ API 서버의 유입 속도에 비해 컨슈머의 처리 속도가 낮아 발�
 
 > Consumer 서버 - Consumer Lag 모니터링 지표
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-lag.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-lag.png)
 
 이를 통해 단순히 애플리케이션 내부 지표뿐만 아니라, Kafka 브로커 관점의 핵심 지표들을 Prometheus로 수집했습니다.
 
@@ -353,7 +353,7 @@ public class KafkaConsumerConfig {
 
 > Consumer 서버 - 컨슈머 그룹 관련 모니터링 지표
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-monitoring.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-monitoring.png)
 
 특히 `Kafka Listener Poll Interval` 지표를 모니터링하면서 Rate Limiter로 인한 대기 시간이 리밸런싱 타임아웃(max.poll.interval.ms)을 초과하지 않는지 실시간으로
 검증하며 튜닝을 진행했습니다
@@ -366,11 +366,11 @@ public class KafkaConsumerConfig {
 
 > K6 결과 - p95 응답 시간: 5.55s
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-k6-result-2-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-k6-result-2-1.png)
 
 > API 서버 결과 - 평균 TPS: 1,200, 최대 TPS: 1,450
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-api-server-2-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-api-server-2-1.png)
 
 최대 TPS는 1,500에 근접했으나, 평균 응답 시간이 일시적으로 20초를 상회하는 병목 구간이 발견되었습니다.
 
@@ -380,13 +380,13 @@ public class KafkaConsumerConfig {
 
 > Consumer 서버 결과 - 평균 TPS: 약 700, 최대 TPS: 810
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-2-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-2-1.png)
 
 컨슈머 TPS는 최대 810 수준으로 API 서버의 유입 속도를 따라가지 못해 Consumer Lag이 상승했습니다.
 
 > Consumer 서버 - CPU 점유율: 70 ~ 85%
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-cpu-2-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-cpu-2-1.png)
 
 다만, 컨슈머 서버의 CPU 점유율이 70~85% 수준으로 여유 자원을 보유하고 있음을 확인했기에, Rate Limiter 임계치를 추가로 높여 처리량을 더 개선할 수 있다는 근거를 확보했습니다.
 
@@ -398,7 +398,7 @@ public class KafkaConsumerConfig {
 
 > System Architecture
 
-![](/assets/img/technology/kudadak/kudadak-system-architecture-2.png)
+![](/assets/img/server/technology/kudadak/kudadak-system-architecture-2.png)
 
 그리고 각 서버별로 사양에 맞게 튜닝 작업을 진행했습니다.
 
@@ -419,19 +419,19 @@ public class KafkaConsumerConfig {
 
 > K6 결과 - p95 응답 시간: 2.49s
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-k6-result-2-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-k6-result-2-2.png)
 
 > API Server 결과 - 최대 TPS: 2,500
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-api-server-2-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-api-server-2-2.png)
 
 > Consumer Server 결과 - 최대 TPS: 1,250
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-2-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-2-2.png)
 
 > DB 모니터링 결과 - CPU 점유율: 192% (2 vCPU 기준 Max 200%)
 
-![](/assets/img/technology/kudadak/kudadak-db-monitoring-cpu.png)
+![](/assets/img/server/technology/kudadak/kudadak-db-monitoring-cpu.png)
 
 DB 서버를 분리한 후 p95 응답 시간은 2.49s로 목표치(3s 이내)를 달성했습니다.
 하지만 이미지에서 확인되듯 DB 서버의 CPU 점유율이 192%에 도달하며 2-core 자원을 한계치까지 점유하고 있음을 확인했습니다.
@@ -456,7 +456,7 @@ API와 컨슈머 서버가 medium급인 것에 비해 DB 사양을 보수적으�
 
 > System Architecture
 
-![](/assets/img/technology/kudadak/kudadak-system-architecture-3.png)
+![](/assets/img/server/technology/kudadak/kudadak-system-architecture-3.png)
 
 - 컨슈머 스레드 및 파티션 수 조정
     - 컨슈머 스레드 수: 15 -> 20
@@ -481,11 +481,11 @@ API와 컨슈머 서버가 medium급인 것에 비해 DB 사양을 보수적으�
 
 > API Server 결과 - 최대 TPS: 2,500
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-api-server-2-3.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-api-server-2-3.png)
 
 > Consumer Server 결과 - 최대 TPS: 2,500
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-2-3.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-2-3.png)
 
 Consumer Lag이 10만 단위에서 1천 단위로 개선되어 유입 속도와 처리 속도의 균형을 맞췄습니다.
 
@@ -499,11 +499,11 @@ Consumer Lag이 10만 단위에서 1천 단위로 개선되어 유입 속도와 
 
 > System Architecture
 
-![](/assets/img/technology/kudadak/kudadak-system-architecture-4.png)
+![](/assets/img/server/technology/kudadak/kudadak-system-architecture-4.png)
 
 > Monitoring Architecture
 
-![](/assets/img/technology/kudadak/kudadak-monitoring-architecture-2.png)
+![](/assets/img/server/technology/kudadak/kudadak-monitoring-architecture-2.png)
 
 위 아키텍처를 기반으로 안정성을 확보하기 위해 적용한 주요 개선 작업은 다음과 같습니다.
 
@@ -567,7 +567,7 @@ Consumer Lag이 10만 단위에서 1천 단위로 개선되어 유입 속도와 
 
 > K6 결과 - p95 응답 시간: 5.97s
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-k6-result-3-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-k6-result-3-1.png)
 
 약 210만 건의 요청 중 실패 없이 100% 성공했습니다.
 
@@ -575,38 +575,38 @@ Consumer Lag이 10만 단위에서 1천 단위로 개선되어 유입 속도와 
 
 > API Server 결과 - 최대 TPS: 1,830, 평균: 1,550
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-api-server-3-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-api-server-3-1.png)
 
 > Consumer Server 결과 - 최대 TPS: 1,820, 평균: 1,550
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-3-1-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-3-1-1.png)
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-consumer-server-3-1-2.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-consumer-server-3-1-2.png)
 
 대량의 메시지가 인입되는 순간 일시적인 지연(Lag)이 발생했으나, Consumer 서버의 TPS가 API 서버의 TPS를 따라잡으면서 Consumer Lag이 0에 수렴하는 안정적인 구조를 확인했습니다.
 
 > Infra Server - Monitoring
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-infra-server-monitoring-3-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-infra-server-monitoring-3-1.png)
 
 Redis Throughput이 약 20,000 ops/sec를 안정적으로 유지하며 중복 체크 및 선착순 로직의 병목을 해소했습니다.
 
 > Database Server(MySQL) - Monitoring
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-db-server-monitoring-3-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-db-server-monitoring-3-1.png)
 
 HikariCP 활성 연결 수가 설정 범위 내에서 안정적으로 유지되며, 대량의 쿼리(QPS 약 11,000)를 지연 없이 소화하고 있습니다.
 
 > Infra Server(Redis, Kafka) & Database Server(MySQL) - Docker Monitoring
 
-![](/assets/img/technology/kudadak/coupon-issue-load-test-infra-and-db-server-monitoring-3-1.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-load-test-infra-and-db-server-monitoring-3-1.png)
 
 MySQL의 CPU 사용량이 347.16%(CPU 점유율: 86.79%)를 기록했습니다. (4 vCPU 기준 Max 400%)
 이는 수직 확장(Scale-up)된 서버의 4-core 자원을 활용하여 쓰기 성능을 극대화하고 있다는 걸 확인했습니다.
 
 > Monitoring - Prometheus
 
-![](/assets/img/technology/kudadak/coupon-issue-monitoring-promethues.png)
+![](/assets/img/server/technology/kudadak/coupon-issue-monitoring-promethues.png)
 
 모든 지표 수집 타겟이 UP 상태를 유지하며 데이터 누락 없는 신뢰도 높은 관측 환경을 구축했습니다.
 

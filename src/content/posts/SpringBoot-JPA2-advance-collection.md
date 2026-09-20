@@ -13,7 +13,7 @@ tags: ["JPA"]
 
 Order 기준으로 컬렉션인 `OrderItem`와 `Item`이 필요하다.
 
-![](/assets/img/springboot/springboot-jpa2-advance-collection-1.png)
+![](/assets/img/server/springboot/springboot-jpa2-advance-collection-1.png)
 
 (참고로, 위의 엔티티 테이블에서 확인할 수 있듯이 주문과 주문상품(OrderItem)은 일대다 관계이며, 주문상품과 상품(Item)은 다대일 관계로 구성되어 있다)
 

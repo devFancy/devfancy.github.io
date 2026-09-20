@@ -19,11 +19,11 @@ tags: ["운영체제"]
 
 Code, Program, and Process
 
-![](/assets/img/os/os-4-and-5-Process_1.png)
+![](/assets/img/cs/os/os-4-and-5-Process_1.png)
 
 Process Creation: A Little More Detail
 
-![](/assets/img/os/os-4-and-5-Process_2.png)
+![](/assets/img/cs/os/os-4-and-5-Process_2.png)
 
 ---
 
@@ -31,7 +31,7 @@ Process Creation: A Little More Detail
 
 * 프로세스의 상태는 실행(running), 준비(ready), 봉쇄(blocked, wait, sleep)의 세 가지로 구분한다.
 
-![](/assets/img/os/os-4-and-5-Process_3.png)
+![](/assets/img/cs/os/os-4-and-5-Process_3.png)
 
 * `실행`(**Running**)상태는 프로세스가 (1)해당 프로세스를 수행하기 위해 필요한 모든 리소스를 갖고 있고, (2)CPU에 대한 권한이 있다.
 
@@ -50,7 +50,7 @@ Process Creation: A Little More Detail
 
 ### 5-State Model
 
-![](/assets/img/os/os-4-and-5-Process_4.png)
+![](/assets/img/cs/os/os-4-and-5-Process_4.png)
 
 * `시작`(**New**)상태는 프로세스을 위한 PCB가 생성되었지만 아직 충분한 리소스를 할당받지 못한 상태이다.(메모리 획득을 승인받지 못한 상태)
 
@@ -75,7 +75,7 @@ CPU를 할당받을 프로세스를 선택한 후
 
 ### 7-State Model
 
-![](/assets/img/os/os-4-and-5-Process_5.png)
+![](/assets/img/cs/os/os-4-and-5-Process_5.png)
 
 * 메인 메모리의 용량이 실행해야 하는 더 많은 프로세스를 로드하기에 충분하지 않은 경우 `Swapping`을 사용한다.
 
@@ -87,7 +87,7 @@ CPU를 할당받을 프로세스를 선택한 후
   
   * Preemption: Running state에서 Ready state로 가는 것을 말한다. (현재 수행되고 있는 것을 멈춘다)
 
-  ![](/assets/img/os/os-4-and-5-Process_6.png)
+  ![](/assets/img/cs/os/os-4-and-5-Process_6.png)
 
   * Swap Out : 메모리 -> 디스크
   
@@ -107,7 +107,7 @@ CPU를 할당받을 프로세스를 선택한 후
 
 ### Information in PCB
 
-![](/assets/img/os/os-4-and-5-Process_6_2.png)
+![](/assets/img/cs/os/os-4-and-5-Process_6_2.png)
 
 * **PID**(Process Identification Number)
 
@@ -155,7 +155,7 @@ CPU를 할당받을 프로세스를 선택한 후
 
 * Unix에서 fork() 시스템 콜은 자식 프로세스를 생성할 때 부모 프로세스의 내용을 그대로 복제 생성하게 된다.
 
-![](/assets/img/os/os-4-and-5-Process_7.png)
+![](/assets/img/cs/os/os-4-and-5-Process_7.png)
 
 * 즉, **프로세스 ID(pid)를 제외한** 모든 정보를 그대로 복사하는 방법을 사용한다. 따라서 부모 프로세스와 자식 프로세스는 비록 **주소 공간을 따로 갖게 되지만** 주소 공간 내에는 동일한 내용을 가지게 된다.
 
@@ -165,7 +165,7 @@ CPU를 할당받을 프로세스를 선택한 후
 
 ### fork() example
 
-![](/assets/img/os/os-4-and-5-Process_8.png)
+![](/assets/img/cs/os/os-4-and-5-Process_8.png)
 
 첫번째 예시( int main() )
 

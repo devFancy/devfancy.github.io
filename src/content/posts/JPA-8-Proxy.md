@@ -25,7 +25,7 @@ tags: ["JPA"]
 
     * 하이버네이트가 내부의 라이브러리를 써서 `프록시`라는 가짜 엔티티를 주게 된다.
 
-![](/assets/img/jpa/JPA-Proxy-1.png)
+![](/assets/img/server/jpa/JPA-Proxy-1.png)
 
 * 프록시 객체는 실제 객체의 참조(target)를 보관한다.
 
@@ -33,7 +33,7 @@ tags: ["JPA"]
 
 ### 프록시 객체의 초기화
 
-![](/assets/img/jpa/JPA-Proxy-2.png)
+![](/assets/img/server/jpa/JPA-Proxy-2.png)
 
 * 위의 그림을 통해 프록시 객체의 초기화하는 과정은 다음과 같다.
 
@@ -135,7 +135,7 @@ class ProxyEx {
 
 ### 즉시 로딩
 
-![](/assets/img/jpa/JPA-Proxy-3.png)
+![](/assets/img/server/jpa/JPA-Proxy-3.png)
 
 * `즉시로딩`은 엔티티를 조회할 때 **연관관계가 있는 실제 엔티티도 함께 조회하는 방법**이다.
 
@@ -171,7 +171,7 @@ public class Member {
 
 ### 지연 로딩
 
-![](/assets/img/jpa/JPA-Proxy-4.png)
+![](/assets/img/server/jpa/JPA-Proxy-4.png)
 
 * `지연 로딩` 은 연관된 엔티티를 실제 사용할 때 조회하는 방법이다. 
 
@@ -212,7 +212,7 @@ public class Member {
 
 > 예시 - 지연 로딩 활용
 
-![](/assets/img/jpa/JPA-Proxy-5.png)
+![](/assets/img/server/jpa/JPA-Proxy-5.png)
 
 * `Member`와 `Team`(다대일)은 자주 함께 사용 -> 즉시 로딩
 
@@ -228,7 +228,7 @@ public class Member {
 
 * 예를 들어 아래 그림처럼 부모 엔티티를 저장할 때 자식 엔티티도 함께 저장하는 경우에 사용한다.
 
-![](/assets/img/jpa/JPA-Proxy-6.png)
+![](/assets/img/server/jpa/JPA-Proxy-6.png)
 
 코드로 적용하면 아래와 같다.
 
@@ -250,7 +250,7 @@ public class Parent {
 ```
 * 부모만 영속화하면 `CascadeType.PERSIST`로 설정한 자식 엔티티까지 함께 영속화해서 저장한다.
 
-![](/assets/img/jpa/JPA-Proxy-7.png)
+![](/assets/img/server/jpa/JPA-Proxy-7.png)
 
 ### 영속성 전이: CASCADE 주의할 점
 
@@ -260,7 +260,7 @@ public class Parent {
 
 JPA에서 제공하는 `CascadeType`의 종류는 아래와 같다.
 
-![](/assets/img/jpa/JPA-Proxy-8.png)
+![](/assets/img/server/jpa/JPA-Proxy-8.png)
 
 ```java
 public enum CascadeType{

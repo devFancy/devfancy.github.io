@@ -214,7 +214,7 @@ public class Main {
 
 ### 정리
 
-![](/assets/img/algorithm/Algorithm-Baekjoon-24479-1.jpeg)
+![](/assets/img/algorithm/algorithm/Algorithm-Baekjoon-24479-1.jpeg)
 
 해당 문제를 풀면서, 아래의 순서에 맞게 생각하고 구현하면 풀 수 있는 문제였다.
 

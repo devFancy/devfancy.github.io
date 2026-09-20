@@ -65,9 +65,9 @@ public class Member {
 
 * 임베디드 타입을 사용하려면 **값 타입을 정의하는 곳(Address)에 기본 생성자를 필수로 생성해야 한다.**
 
-![](/assets/img/jpa/JPA-Value-Type-1.png)
+![](/assets/img/server/jpa/JPA-Value-Type-1.png)
 
-![](/assets/img/jpa/JPA-Value-Type-2.png)
+![](/assets/img/server/jpa/JPA-Value-Type-2.png)
 
 ### 임베디드 타입 사용법
 
@@ -83,7 +83,7 @@ public class Member {
 
 ### 임베디드 타입과 테이블 매핑
 
-![](/assets/img/jpa/JPA-Value-Type-3.png)
+![](/assets/img/server/jpa/JPA-Value-Type-3.png)
 
 * 임베디드 타입은 엔티티의 값일 뿐이다. 그래서 임베디드 타입을 사용하기 전과 후에 **매핑하는 테이블은 같다.**
 
@@ -91,7 +91,7 @@ public class Member {
 
 * **잘 설계한 ORM 애플리케이션은** 매핑한 테이블의 수보다 **클래스의 수가 더 많다.**
 
-![](/assets/img/jpa/JPA-Value-Type-4.png)
+![](/assets/img/server/jpa/JPA-Value-Type-4.png)
 
 ### @AttributeOverride: 속성 재정의
 
@@ -99,7 +99,7 @@ public class Member {
 
 * 아래 그림과 같이 주소라는 컬럼명을 재정의하기 위해 `workAddress` 변수를 만들고, 그 위에 `@AttributeOverrides`, `@AttributeOverride`을 사용했다.
 
-![](/assets/img/jpa/JPA-Value-Type-5.png)
+![](/assets/img/server/jpa/JPA-Value-Type-5.png)
 
 ## 값 타입과 불변 객체
 
@@ -111,7 +111,7 @@ public class Member {
 
     * 대신 값(인스턴스)를 복사해서 사용한다.
 
-![](/assets/img/jpa/JPA-Value-Type-6.png)
+![](/assets/img/server/jpa/JPA-Value-Type-6.png)
 
 > 값 타입의 한계
 
@@ -139,11 +139,11 @@ public class Member {
 
 * 해당 체크를 통해 필드에 직접 접근이 아닌 **getter**를 통해서 동등성을 비교하도록 한다. 그래야 **프록시 객체에 접근할 수 있도록 하여 비교가 가능해진다.**
 
-![](/assets/img/jpa/JPA-Value-Type-7.png)
+![](/assets/img/server/jpa/JPA-Value-Type-7.png)
 
-![](/assets/img/jpa/JPA-Value-Type-8.png)
+![](/assets/img/server/jpa/JPA-Value-Type-8.png)
 
-![](/assets/img/jpa/JPA-Value-Type-9.png)
+![](/assets/img/server/jpa/JPA-Value-Type-9.png)
 
 ## 값 타입 컬렉션
 
@@ -151,13 +151,13 @@ public class Member {
 
 * 테이블로 보면 아래와 같이 favoriteFoods, addressHistory와 같이 되어있다.
 
-![](/assets/img/jpa/JPA-Value-Type-10.png)
+![](/assets/img/server/jpa/JPA-Value-Type-10.png)
 
 * 값 타입을 하나 이상 저장할 때, `@ElementCollection`, `@CollectionTable` 을 사용한다.
 
 * `@ElementCollection` 어노테이션을 사용하여 값 타입 컬렉션을 지정하고(fetch 전략 기본이 지연 로딩(LAZY)임), `@CollectionTable` 어노테이션을 통해 값 타입 컬렉션이 사용할 테이블을 지정해준다.
 
-![](/assets/img/jpa/JPA-Value-Type-11.png)
+![](/assets/img/server/jpa/JPA-Value-Type-11.png)
 
 ### 값 타입 컬렉션의 제약사항
 
@@ -181,9 +181,9 @@ public class Member {
 
 * 아래와 같이 AddressEntity 라는 엔티티 테이블을 만들고, Member 테이블과 연관관계를 맺어준다.
 
-![](/assets/img/jpa/JPA-Value-Type-12.png)
+![](/assets/img/server/jpa/JPA-Value-Type-12.png)
 
-![](/assets/img/jpa/JPA-Value-Type-13.png)
+![](/assets/img/server/jpa/JPA-Value-Type-13.png)
 
 * 값 타입 컬렉션은 select box 처럼 멀티로 체크하는 등 단순한 경우에만 사용하는 것을 권장한다.
 

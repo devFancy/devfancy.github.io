@@ -22,7 +22,7 @@ public class MemberRepositoryTest {
 
 * 해당 테스트코드를 **Live Template** 기능을 적용시켜보자.
 
-![](/assets/img/intellij/intellij-live-template-1.png)
+![](/assets/img/tool/intellij/intellij-live-template-1.png)
 
 * 위측 상단의 IntelliJ IDEA -> Settings -> Live Template
 

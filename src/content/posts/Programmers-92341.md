@@ -125,7 +125,7 @@ class Solution {
 
 목표 : 차량 기록을 모두 처리한 이후에 각 차량마다 주차요금을 구하는 문제 (차량 번호를 기준으로 오름차순한다)
 
-![](/assets/img/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_1.png)
+![](/assets/img/algorithm/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_1.png)
 
 * [1] 기본 시간, 기본 요금, 단위 시간, 단위 요금을 보기 쉽게 분리하였다.
 
@@ -134,7 +134,7 @@ class Solution {
     * 차량 번호를 오름차순으로 정렬해야하기 때문에 TreeMap으로 설정했다.
 
 
-![](/assets/img/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_2.png)
+![](/assets/img/algorithm/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_2.png)
 
 * [2] 주차 기록을 처리하는 로직이다.
 
@@ -147,7 +147,7 @@ class Solution {
     * 상태가 `IN`이면 Map에 저장한다.
 
 
-![](/assets/img/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_3.png)
+![](/assets/img/algorithm/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_3.png)
 
 * [3] 아직 안나간 차량을 처리하는 로직이다.
 
@@ -166,7 +166,7 @@ class Solution {
     * 마지막으로 result에 기록을 저장한다.
 
 
-![](/assets/img/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_4.png)
+![](/assets/img/algorithm/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_4.png)
 
 * [4] 출력하는 로직이다.
 

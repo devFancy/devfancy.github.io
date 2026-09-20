@@ -26,7 +26,7 @@ MVC는 하나의 서블릿이나, JSP로 처리하는 것을 Controller와 View�
 * `View` : 모델에 담겨있는 데이터를 사용해서 화면을 그리는 일에 집중한다.
   여기서는 HTML을 생성하는 부분을 말한다.
 
-![](/assets/img/spring/Spring-mvc-1.png)
+![](/assets/img/server/spring/Spring-mvc-1.png)
 
 컨트롤러(Controller)에 비즈니스 로직을 둘 수도 있지만, 그렇게 되면 컨트롤러에 너무 많은 역할을 담당한다.
 
@@ -36,13 +36,13 @@ MVC는 하나의 서블릿이나, JSP로 처리하는 것을 Controller와 View�
 
 ## Spring MVC 구조
 
-![](/assets/img/spring/Spring-mvc-4.png)
+![](/assets/img/server/spring/Spring-mvc-4.png)
 
 위 그림에서 `디스패처 서블릿(DispatcherServlet)`이 Spring MVC의 핵심이다.
 
 > DispacherServlet 서블릿 등록
 
-![](/assets/img/spring/Spring-mvc-2.png)
+![](/assets/img/server/spring/Spring-mvc-2.png)
 
 `DispacherServlet` 도 부모 클래스에서 `HttpServlet` 을 상속 받아서 사용하고, 서블릿으로 동작한다.
 
@@ -58,7 +58,7 @@ MVC는 하나의 서블릿이나, JSP로 처리하는 것을 Controller와 View�
 
 > FrameworkServlet 클래스 - `service()`
 
-![](/assets/img/spring/Spring-mvc-3.png)
+![](/assets/img/server/spring/Spring-mvc-3.png)
 
 `FrameworkServlet.service()` 를 시작으로 여러 메서드가 호출되면서 `DispacherServlet.doDispatch()` 가 호출된다.
 
@@ -206,7 +206,7 @@ public class DispatcherServlet extends FrameworkServlet {
 
 ### 동작 순서
 
-![](/assets/img/spring/Spring-mvc-4.png)
+![](/assets/img/server/spring/Spring-mvc-4.png)
 
 Spring MVC 구조를 보면서 **동작 순서**에 대해 다시 한번 확인해보자.
 

@@ -168,7 +168,7 @@ JPA에선 설정을 통해 **원하는 Dialect만 설정해주면 해당 Dialect
 설정만 `OracleDialect`으로 변경해주면 된다. (Dialects: `org.hibernate.dialect.OracleDialect`)
 ```
 
-![](/assets/img/jpa/JPA-Entity-Mapping-1.png)
+![](/assets/img/server/jpa/JPA-Entity-Mapping-1.png)
 
 이렇게 생성된 DDL은 **개발 장비에만 사용**한다.
 
@@ -178,7 +178,7 @@ JPA에선 설정을 통해 **원하는 Dialect만 설정해주면 해당 Dialect
 
 `hibernate.hbm2ddl.auto`은 아래와 같은 속성들이 있다.
 
-![](/assets/img/jpa/JPA-Entity-Mapping-2.png)
+![](/assets/img/server/jpa/JPA-Entity-Mapping-2.png)
 
 > 데이터베이스 스키마 자동 생성 - 주의
 
@@ -245,13 +245,13 @@ public class User extends BaseTimeEntity {
 
 > 매핑 어노테이션 정리(hibernate.hbm2ddl.auto)
 
-![](/assets/img/jpa/JPA-Entity-Mapping-3.png)
+![](/assets/img/server/jpa/JPA-Entity-Mapping-3.png)
 
 ### @Column
 
 `@Column`은 매핑에 대한 어노테이션 중에 가장 많이 쓰인다.
 
-![](/assets/img/jpa/JPA-Entity-Mapping-4.png)
+![](/assets/img/server/jpa/JPA-Entity-Mapping-4.png)
 
 여기서 `unique(DDL)`을 컬럼에 사용할 경우, 랜덤 값처럼 나오므로, 운영 서버에 쓰일 수 없다.
 
@@ -261,7 +261,7 @@ public class User extends BaseTimeEntity {
 
 `@Enumerated`은 자바 enum 타입을 매핑할 때 사용한다.
 
-![](/assets/img/jpa/JPA-Entity-Mapping-5.png)
+![](/assets/img/server/jpa/JPA-Entity-Mapping-5.png)
 
 주의할 것은 **`ORDINAL`을 사용 안하는게 좋다.** (굉장히 위험하다)
 
@@ -293,7 +293,7 @@ enum RoleType {
 
 최신 하이버네이트에서 지원하는 `@LocalDate`, `@LocalDateTime`을 사용한다.
 
-![](/assets/img/jpa/JPA-Entity-Mapping-6.png)
+![](/assets/img/server/jpa/JPA-Entity-Mapping-6.png)
 
 ### @Lob
 
@@ -343,7 +343,7 @@ JPA는 보통 **트랜잭션 커밋 시점에 INSERT SQL 실행**하는데, `AUT
 
 단점이라고 하면, `IDENTITY`전략에서는 commit 하기 전에 `쓰기 지연 SQL 저장소`에 모으는게 불가능하다.
 
-![](/assets/img/jpa/JPA-Entity-Mapping-7.png)
+![](/assets/img/server/jpa/JPA-Entity-Mapping-7.png)
 
 ```java
 package hellojpa;
@@ -367,7 +367,7 @@ public class Member {
 
 주의할점 : allocationSize 기본값 = 50
 
-![](/assets/img/jpa/JPA-Entity-Mapping-8.png)
+![](/assets/img/server/jpa/JPA-Entity-Mapping-8.png)
 
 ```java
 package hellojpa;

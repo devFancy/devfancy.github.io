@@ -19,7 +19,7 @@ tags: ["자료구조"]
 
 ### 단일 연결 리스트
 
-![](/assets/img/datastructure/linkedlist-2.jpg)
+![](/assets/img/cs/datastructure/linkedlist-2.jpg)
 
 * [그림 5-1]에 나와있는 것처럼 리스트에 들어가는 각 데이터 원소에는 리스트의 다음 원소에 대한 `연결고리(link)`가 들어있다.
 
@@ -59,7 +59,7 @@ public class ListElement<T> {
 
 ### 이중 연결 리스트
 
-![](/assets/img/datastructure/linkedlist-1.jpg)
+![](/assets/img/cs/datastructure/linkedlist-1.jpg)
 
 * [그림 5-2]에 나와 있는 이중 연결 리스트는 **단일 연결 리스트의 여러 가지 단점**을 극복하기 위해 만들어졌다.
 
@@ -230,15 +230,15 @@ void deleteNode(listPointer *first, int data)
 
 > InsertNode [1] 중간 / [2] 맨뒤 / [3] 맨앞 / [4] 비어있는 경우
 
-![](/assets/img/datastructure/linkedList-insertNode-1.png)
+![](/assets/img/cs/datastructure/linkedList-insertNode-1.png)
 
-![](/assets/img/datastructure/linkedList-insertNode-2.png)
+![](/assets/img/cs/datastructure/linkedList-insertNode-2.png)
 
 > deleteNode [1] 중간 / [2] 맨뒤 / [3] 맨앞 / [4] 비어있는 경우
 
-![](/assets/img/datastructure/linkedList-deleteNode-1.png)
+![](/assets/img/cs/datastructure/linkedList-deleteNode-1.png)
 
-![](/assets/img/datastructure/linkedList-deleteNode-2.png)
+![](/assets/img/cs/datastructure/linkedList-deleteNode-2.png)
 
 ## 연결 리스트 문제
 
@@ -322,7 +322,7 @@ typedef struct stack {
 stackPointer top[MAX_STACKS];
 ```
 
-![](/assets/img/datastructure/linkedList_stack_linkedlist.png)
+![](/assets/img/cs/datastructure/linkedList_stack_linkedlist.png)
 
 * 위과 같은 자료형을 가진 스택 기반의 연결 리스트일 때, push 연산과 pop 연산을 아래와 같이 구현할 수 있다.
 

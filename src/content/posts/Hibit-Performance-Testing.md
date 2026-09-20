@@ -85,7 +85,7 @@ class PostServiceTest extends IntegrationTestSupport {
 
 웹 애플리케이션 서버 성능 테스트를 위해 개발했지만, 현재는 데이터베이스, 파일 시스템, FTP, TCP 등 다양한 애플리케이션/서버/프로토콜 유형의 성능을 테스트할 수 있게 발전되었다.
 
-![](/assets/img/hibit/Hibit-Performance-Testing-1.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-1.png)
 
 `Jmeter`은 [최근 2주전](https://github.com/apache/jmeter/releases/tag/rel%2Fv5.6.3)까지 릴리즈하는 만큼 많은 릴리즈와 개선 사항을 통해 고도로 유지 및 관리하고 있다.
 그리고 스프링과 통합하기 위한 여러가지 다양한 플러그인을 제공한다. 
@@ -95,7 +95,7 @@ class PostServiceTest extends IntegrationTestSupport {
 또한 `Jmeter`는 단계별 스레드 할당 방식이라고 해서 스레드가 하나 생성될 때마다 리소스를 새로 할당해야 한다. 
 그래서 하나의 Worker에서 1000개 이상의 스레드를 할당하게 되면 조금 무리가 있을 수 있다. 즉, 한 대의 Wokrer에서 사용할 수 있는 사용자 수가 **매우 한정적**이라는 말이다.
 
-![](/assets/img/hibit/Hibit-Performance-Testing-2.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-2.png)
 
 그리고 실제로 `Jmeter`를 설치해서 사용해봤지만, 위에 나온 그림처럼 기본적으로 제공되는 그래프가 나한테는 그렇게 이쁘지 않는 것 같다는 생각이 들었다.
 
@@ -138,7 +138,7 @@ WAS 기반으로 동작하기 때문에 젠킨스 같이 개발자 각각의 계
 
 ## JMeter 설치
 
-![](/assets/img/hibit/Hibit-Performance-Testing-3.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-3.png)
 
 Apache JMeter 공식 웹 사이트에서 Binaries 부분 아래에 `apache.jmeter-5.6.3.zip`를 다운받는다.
 
@@ -148,7 +148,7 @@ Apache JMeter 공식 웹 사이트에서 Binaries 부분 아래에 `apache.jmete
 $ ./jmeter.sh
 ```
 
-![](/assets/img/hibit/Hibit-Performance-Testing-4.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-4.png)
 
 그러면 `Jmeter`가 실행되면서 위와 같은 창이 나오게 된다.
 
@@ -158,7 +158,7 @@ $ ./jmeter.sh
 
 > 테스트 계획 우클릭 -> 추가 -> 쓰레드들 -> 쓰레드 그룹 선택
 
-![](/assets/img/hibit/Hibit-Performance-Testing-5.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-5.png)
 
 * 쓰레드들의 수(사용자 수, Number of Threads) : 모든 Thread 개수(가상의 사용자 수)
 
@@ -178,13 +178,13 @@ ex. `쓰레드들의 수`가 1000이고, `Ramp-up 시간`이 10이라면 동시�
 
 > 쓰레드 그룹 우클릭 -> 추가 -> 표본추출기 -> HTTP 요청(Request) 선택
 
-![](/assets/img/hibit/Hibit-Performance-Testing-6.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-6.png)
 
 [+] HTTP 헤더 관리자 추가
 
 > HTTP 요청(Request) 우클릭 -> 추가 -> 설정 엘리먼트 -> HTTP 헤더 관리자
 
-![](/assets/img/hibit/Hibit-Performance-Testing-7.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-7.png)
 
 필자는 히빗2 서비스에 구글 소셜 로그인을 이용했기 때문에 Header 이름에 `Authorization`을 넣고, 값에는 액세스 토큰/리프레시 토큰 값을 넣었다.
 
@@ -194,7 +194,7 @@ ex. `쓰레드들의 수`가 1000이고, `Ramp-up 시간`이 10이라면 동시�
 
 [4] 실행 후 결과 확인
 
-![](/assets/img/hibit/Hibit-Performance-Testing-8.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-8.png)
 
 요약 보고서를 통해 결과를 확인해보니, 다행히 오류없이 정상적으로 처리가 되었다.
 
@@ -212,7 +212,7 @@ ex. `쓰레드들의 수`가 1000이고, `Ramp-up 시간`이 10이라면 동시�
 
 [Custom Plugins for Apache JMeter](https://jmeter-plugins.org/?search=jpgc-graphs-basic) 사이트에서 `Download Version` 아래 2.0 부분 클릭해서 다운로드 후 압축 해제한다.
 
-![](/assets/img/hibit/Hibit-Performance-Testing-9.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-9.png)
 
 압축 해제한 이후에 jar 파일들을 jmeter 폴더(`apache-jmeter-5.6.3/lib/ext/`)안에 넣는다.
 
@@ -220,7 +220,7 @@ ex. `쓰레드들의 수`가 1000이고, `Ramp-up 시간`이 10이라면 동시�
 
 그러면 아래와 같이 플러그인 옵션이 생기는 걸 확인할 수 있다.
 
-![](/assets/img/hibit/Hibit-Performance-Testing-10.png)
+![](/assets/img/server/hibit/Hibit-Performance-Testing-10.png)
 
 ## Reference
 

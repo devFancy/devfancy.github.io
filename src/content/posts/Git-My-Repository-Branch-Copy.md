@@ -43,7 +43,7 @@ tags: ["Git"]
 git checkout -b [새 브랜치명] 
 ```
 
-![](/assets/img/git/Git-My-Repository-Branch-Copy_0.png)
+![](/assets/img/tool/git/Git-My-Repository-Branch-Copy_0.png)
 
 * 위의 코드를 해석하면, 
 
@@ -53,7 +53,7 @@ git checkout -b [새 브랜치명]
 
 ### 1. 상대방(혹은 나의) git repository 주소 복사하기
 
-![](/assets/img/git/Git-My-Repository-Branch-Copy_1.png)
+![](/assets/img/tool/git/Git-My-Repository-Branch-Copy_1.png)
 
 ### 2. remote 추가
 
@@ -69,7 +69,7 @@ git remote add <리모트명> <깃 레포지토리 링크>
 
 * IntelliJ 하단에 있는는 `Git`을 클릭하면 위와 같이 remote명 `fancy-log2-remote`가 추가된 것을 볼 수 있다.
 
-![](/assets/img/git/Git-My-Repository-Branch-Copy_3.png)
+![](/assets/img/tool/git/Git-My-Repository-Branch-Copy_3.png)
 
 ### 3. 가져오고자 하는 브랜치 pull
 
@@ -77,7 +77,7 @@ git remote add <리모트명> <깃 레포지토리 링크>
 git pull <remote명> <remote의 branch명>
 ```
 
-![](/assets/img/git/Git-My-Repository-Branch-Copy_4.png)
+![](/assets/img/tool/git/Git-My-Repository-Branch-Copy_4.png)
 
 * 위의 코드를 해석하면,
 
@@ -91,12 +91,12 @@ git pull <remote명> <remote의 branch명>
 
 * git pull 을 해주면 현재 사용하고 있는 branch(fancy-log2) 에 remote 되어 있는 특정 branch를 pull 해오게 된다.
 
-![](/assets/img/git/Git-My-Repository-Branch-Copy_5.png)
+![](/assets/img/tool/git/Git-My-Repository-Branch-Copy_5.png)
 
 * git pull을 해주면 다음과 같이 실행이 된다.
 
 ## 결과
 
-![](/assets/img/git/Git-My-Repository-Branch-Copy_6.png)
+![](/assets/img/tool/git/Git-My-Repository-Branch-Copy_6.png)
 
 * 그리고 IntelliJ 하단 `Git`을 클릭하고 해당 branch `fancy-log2`를 클릭하면 커밋 내용과 코드가 복사되었다는 것을 확인할 수 있다.

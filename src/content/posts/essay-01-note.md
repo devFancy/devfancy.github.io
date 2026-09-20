@@ -18,7 +18,7 @@ tags: ["생각정리"]
 
 ## 우아한유스방 6기
 
-![](/assets/img/essay/2026-01/woowayouth_6th_ot.png)
+![](/assets/img/essay/essay/2026-01/woowayouth_6th_ot.png)
 
 지인의 소개로 알게 된 우아한유스방은 제이슨(Jason)님이 운영하는 무료 멘토링 교육 과정이다.
 주로 실무 경험이 있는 개발자들이 모여 일과 회사를 대하는 태도와 현재 자신의 환경을 개선하고 싶거나 
@@ -35,7 +35,7 @@ tags: ["생각정리"]
 
 ## 쿠폰 시스템
 
-![](/assets/img/essay/2026-01/kudadak-system-architecture.png)
+![](/assets/img/essay/essay/2026-01/kudadak-system-architecture.png)
 
 B2C 서비스에 대한 개발 경험을 쌓고자 2025년 5월부터 개인 프로젝트로 쿠폰 시스템을 시작하게 되었다.
 구체적으로는 분산 시스템에서의 동시성 문제와 대규모 트래픽 처리 경험을 쌓고자 Redis와 Kafka 기술에 대한 기반 지식을 공부했고 이를 프로젝트에 녹여냈다.
@@ -63,7 +63,7 @@ AI로 인해 여러 개발자의 블로그 형태도 많이 바뀐 것을 볼 �
 
 ## 흑백요리사
 
-![](/assets/img/essay/2026-01/culinary-class-wars.png)
+![](/assets/img/essay/essay/2026-01/culinary-class-wars.png)
 
 흑백요리사를 재밌게 보면서 흑과 백의 구분이 크지 않게 여겨졌다.
 흑백을 구분하는 기준이 어디서 일했는지에 대한 정보와 경력인 것으로 알고 있다.
@@ -87,7 +87,7 @@ AI로 인해 여러 개발자의 블로그 형태도 많이 바뀐 것을 볼 �
 
 ## 스키
 
-![](/assets/img/essay/2026-01/ski.jpg)
+![](/assets/img/essay/essay/2026-01/ski.jpg)
 
 스키장을 10년 만에 가봤다. 이전에는 비발디 파크, 하이원 리조트만 가봤는데, 이번에는 곤지암 리조트로 가보게 되었다.
 10년 만이라 타기 전에는 두려움과 기대감이 공존했지만 타고 난 이후에는 기대감이 더 커졌고 호기심이 많아졌다.

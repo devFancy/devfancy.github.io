@@ -11,7 +11,7 @@ tags: ["Spring"]
 
 커넥션 풀을 배우기 전에, 먼저 기존 데이터베이스에서 커넥션을 획득하는 과정에 대해 알아보자.
 
-![](/assets/img/spring/Spring-DB-ConnectionPool-DataSource-1.png)
+![](/assets/img/server/spring/Spring-DB-ConnectionPool-DataSource-1.png)
 
 데이터베이스 커넥션을 획득할 때는 다음과 같은 복잡한 과정을 거친다.
 
@@ -39,7 +39,7 @@ DB는 물론이고, 애플리케이션 서버에서도 `TCP/IP`  **커넥션을 
 
 ## 커넥션 풀 이해
 
-![](/assets/img/spring/Spring-DB-ConnectionPool-DataSource-2.png)
+![](/assets/img/server/spring/Spring-DB-ConnectionPool-DataSource-2.png)
 
 애플리케이션이 시작하는 시점에 커넥션 풀은 **필요한 만큼 커넥션을 미리 확보해서 풀에 보관**한다.
 
@@ -47,7 +47,7 @@ DB는 물론이고, 애플리케이션 서버에서도 `TCP/IP`  **커넥션을 
 
 커넥션 풀에 들어있는 커넥션은 TCP/IP로 DB와 커넥션이 연결되어 있는 상태이기 때문에 언제든지 즉시 SQL을 DB에 전달할 수 있다.
 
-![](/assets/img/spring/Spring-DB-ConnectionPool-DataSource-3.png)
+![](/assets/img/server/spring/Spring-DB-ConnectionPool-DataSource-3.png)
 
 애플리케이션 로직에서는 이제 DB 드라이버를 통해 새로운 커넥션을 획득하는 것이 아니라 **`커넥션 풀`을 통해 이미 생성되어 있는 커넥션을** 객체 참조로 그냥 가져다 쓰면 된다.
 
@@ -65,7 +65,7 @@ DB는 물론이고, 애플리케이션 서버에서도 `TCP/IP`  **커넥션을 
 
 커넥션을 얻는 방법은 앞서 학습한 JDBC `DriverManager`를 직접 사용하거나, 커넥션 풀을 사용하는 등 다양한 방법이 존재한다.
 
-![](/assets/img/spring/Spring-DB-ConnectionPool-DataSource-4.png)
+![](/assets/img/server/spring/Spring-DB-ConnectionPool-DataSource-4.png)
 
 하지만 앞서 JDBC로 개발한 애플리케이션처럼 `DriverManager` 를 통해 커넥션 획득하다가 `HikariCP` 같은 커넥 션 풀을 사용하도록 변경하면 **커넥션을 획득하는 애플리케이션 코드도 함께 변경**해야 하는 문제가 생긴다.
 
@@ -73,7 +73,7 @@ DB는 물론이고, 애플리케이션 서버에서도 `TCP/IP`  **커넥션을 
 
 그래서 이런 문제를 해결하기 위해 `DataSource`가 등장하게 되었다.
 
-![](/assets/img/spring/Spring-DB-ConnectionPool-DataSource-5.png)
+![](/assets/img/server/spring/Spring-DB-ConnectionPool-DataSource-5.png)
 
 `DataSource`는 **커넥션을 획득하는 방법을 추상화**하는 인터페이스로, 자바에서는 `javax.sql.DataSource` 라는 인터페이스를 제공한다.
 

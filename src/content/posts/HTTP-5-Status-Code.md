@@ -98,7 +98,7 @@ tags: ["HTTP"]
 
 * 일시적인 리다이렉션(PRG, Post/Redirect/Get)을 사용하게 되면 **중복 주문을 방지**할 수 있다.
 
-![](/assets/img/http/http-5-status-code.png)
+![](/assets/img/cs/http/http-5-status-code.png)
 
 * 예를 들어, PRG를 적용하기 이전에는 POST로 주문한 후에 새로 고침을 하게 되면 중복 주문이 된다. 
 

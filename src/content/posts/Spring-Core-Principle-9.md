@@ -64,7 +64,7 @@ tags: ["Spring"]
 
 프로토타입 빈 요청1
 
-![](/assets/img/spring/spring-core-principle-9_1.png)
+![](/assets/img/server/spring/spring-core-principle-9_1.png)
 
 
 * [1] 프로토타입 스코프의 빈을 스프링 컨테이너에 요청한다. (클라이언트가 요청)
@@ -73,7 +73,7 @@ tags: ["Spring"]
 
 프로토타입 빈 요청2
 
-![](/assets/img/spring/spring-core-principle-9_2.png)
+![](/assets/img/server/spring/spring-core-principle-9_2.png)
 
 * [3] 스프링 컨테이너는 생성한 프로토타입 빈을 클라이언트에 반환한다. (반환한 이후에 스프링 컨테이너가 **따로 관리를 하지 않는다**)
 
@@ -98,7 +98,7 @@ tags: ["Spring"]
 
 * `clientBean` 은 **싱글톤**이므로 보통 스프링 컨테이너 생성 시점에 함께 생성되고, 의존관계 주입도 발생한다.
 
-![](/assets/img/spring/spring-core-principle-9_3.png)
+![](/assets/img/server/spring/spring-core-principle-9_3.png)
 
 * [1] `clientBean` 은 **의존관계 자동 주입**을 사용한다. 주입 시점에 스프링 컨테이너에 프로토타입 빈을 요청한다.
 
@@ -108,7 +108,7 @@ tags: ["Spring"]
 
 싱글톤에서 프로토타입 빈 사용2
 
-![](/assets/img/spring/spring-core-principle-9_4.png)
+![](/assets/img/server/spring/spring-core-principle-9_4.png)
 
 * **클라이언트 A**는 `clientBean` 을 스프링 컨테이너에 요청해서 받는다. **싱글톤이므로 항상 같은 `clientBean` 이 반환**된다.
 
@@ -118,7 +118,7 @@ tags: ["Spring"]
 
 싱글톤에서 프로토타입 빈 사용3
 
-![](/assets/img/spring/spring-core-principle-9_5.png)
+![](/assets/img/server/spring/spring-core-principle-9_5.png)
 
 * **클라이언트 B**는 `clientBean`을 스프링 컨테이너에 요청해서 받는다. 클라이언트 B 역시 싱글톤이므로 항상 같은 `clientBean`이 반환된다.
 
@@ -232,7 +232,7 @@ static class ClientBean {
 
 * `websocket` : **웹 소켓**과 동일한 생명주기를 가지는 스코프이다.
 
-![](/assets/img/spring/spring-core-principle-9_6.png)
+![](/assets/img/server/spring/spring-core-principle-9_6.png)
 
 * HTTP request 의 요청이 들어오고 나갈때까지의 lifecycle 동안은 무조건 같은 스코프가 관리가 된다. 
 

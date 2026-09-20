@@ -15,11 +15,11 @@ tags: ["블로그"]
 
 * Google 서치 콘솔(Search Console)에 접속한다.
 
-![](/assets/img/technology/Google-Research-Console-Verification_1.png)
+![](/assets/img/server/technology/Google-Research-Console-Verification_1.png)
 
 * (Google 계정으로 로그인하고)`시작하기` 버튼을 클릭한다.
 
-![](/assets/img/technology/Google-Research-Console-Verification_2.png)
+![](/assets/img/server/technology/Google-Research-Console-Verification_2.png)
 
 * 속성 유형 선택에서 URL 접두어 유형에서 URL 입력 칸에 내 사이트 도메인(URL)주소를 입력하고 계속 버튼을 클릭한다.
 
@@ -27,17 +27,17 @@ tags: ["블로그"]
 
 ## 2단계 : HTML 파일 github.io 폴더안에 추가
 
-![](/assets/img/technology/Google-Research-Console-Verification_3.png)
+![](/assets/img/server/technology/Google-Research-Console-Verification_3.png)
 
 * 왼쪽 아래에 설정을 클릭한 다음 우측에 있는 소유권 인증을 클릭한다.
 
-![](/assets/img/technology/Google-Research-Console-Verification_4.png)
+![](/assets/img/server/technology/Google-Research-Console-Verification_4.png)
 
-![](/assets/img/technology/Google-Research-Console-Verification_4_2.png)
+![](/assets/img/server/technology/Google-Research-Console-Verification_4_2.png)
 
 * 여기서 `HTML 파일`을 클릭한 후 아래의 `google~~~.html`파일을 다운로드 하고 내 github.io 폴더안에 추가한다.
 
-![](/assets/img/technology/Google-Research-Console-Verification_5.png)
+![](/assets/img/server/technology/Google-Research-Console-Verification_5.png)
 
 * 그리고 몇분정도 지나고 새로고침을 하면, "확인이 완료되었습니다." 라는 문구가 뜨게 된다.
 
@@ -61,7 +61,7 @@ plugins:
 
 ### sitemap 등록(수동 생성 기준)
 
-![](/assets/img/technology/Google-Research-Console-Verification_6.png)
+![](/assets/img/server/technology/Google-Research-Console-Verification_6.png)
 
 * 왼쪽 Sitemaps 클릭하여 새 사이트 URL 입력칸에 `sitemap.xml`을 입력한 후에 제출 버튼을 클릭하면 성공이라는 표시가 뜨게 된다.
 
@@ -102,7 +102,7 @@ Sitemap: http://devfancy.github.io/sitemap.xml
 
 * 만약 실패로 뜬다면, `/sitemap.xml`을 삭제한 후에 다시 입력하여 제출하고, 그 다음에 `/feed.xml`를 입력하면 성공할 가능성이 크다.(나는 이 방식으로 했더니 성공으로 떴다)
 
-![](/assets/img/technology/google-research-console-vertification-rss.png)
+![](/assets/img/server/technology/google-research-console-vertification-rss.png)
 
 ## Reference
 

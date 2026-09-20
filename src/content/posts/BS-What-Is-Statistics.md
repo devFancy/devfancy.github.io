@@ -138,7 +138,7 @@ use_math: true
 
     * 정성적변수 vs 정량적변수 구분
 
-  ![](/assets/img/business-statistics/bs-what-is-statistics_1.png)
+  ![](/assets/img/university/business-statistics/bs-what-is-statistics_1.png)
 
 
 
@@ -190,11 +190,11 @@ use_math: true
 
 * 4가지 척도 비교-1
 
-![](/assets/img/business-statistics/bs-what-is-statistics_2.png)
+![](/assets/img/university/business-statistics/bs-what-is-statistics_2.png)
 
 * 4가지 척도 비교-2
 
-![](/assets/img/business-statistics/bs-what-is-statistics_3.png)
+![](/assets/img/university/business-statistics/bs-what-is-statistics_3.png)
 
 ## Reference
 

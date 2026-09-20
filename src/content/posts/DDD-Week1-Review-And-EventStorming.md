@@ -202,7 +202,7 @@ tags: ["후기"]
 
 선릉역에 있는 우아한 테크코스에서 오후 2시부터 6시까지 약 4시간 동안 진행했는데, 여기는 글또 10기 백엔드/인프라 반상회때도 온 적이 있어서 친숙한 공간이기도 했다.
 
-<img src="/assets/img/technology/DDD-Week1-Review-And-EventStorming-1.png" alt="" width="500" />
+<img src="/assets/img/server/technology/DDD-Week1-Review-And-EventStorming-1.png" alt="" width="500" />
 
 해당 오프라인 모임을 진행하기 전에 재성님이 슬랙에 해당 주제와 비슷한 영상을 추천해 주셔서 필자는 미리 보고 왔다.
 
@@ -210,7 +210,7 @@ tags: ["후기"]
 
 * [KCD 2020 [Track 2] 도메인 지식 탐구를 위한 이벤트 스토밍 Event Storming](https://www.youtube.com/watch?v=hUcpv5fdCIk&ab_channel=OpenUP-오픈업)
 
-<img src="/assets/img/technology/DDD-Week1-Review-And-EventStorming-2.png" alt="" width="500" />
+<img src="/assets/img/server/technology/DDD-Week1-Review-And-EventStorming-2.png" alt="" width="500" />
 
 필자는 `이벤트 스토밍`을 위의 영상을 이전에도 봤고 실제로 3번 정도 적용한 경험이 있어서 그런지, 4시간이면 충분히 할 수 있겠다라는 생각이 들었다.
 
@@ -224,13 +224,13 @@ tags: ["후기"]
 
 (아래는 이벤트 스토밍의 1단계를 적용한 결과이다)
 
-![](/assets/img/technology/DDD-Week1-Review-And-EventStorming-3.png)
+![](/assets/img/server/technology/DDD-Week1-Review-And-EventStorming-3.png)
 
 > 2단계 - 타임라인 적용(왼쪽 -> 오른쪽, 위 -> 아래) + 핫 스폿, 액터, 시스템 적용하기
 
 (아래는 이벤트 스토밍의 2단계를 적용한 결과이다)
 
-![](/assets/img/technology/DDD-Week1-Review-And-EventStorming-4.png)
+![](/assets/img/server/technology/DDD-Week1-Review-And-EventStorming-4.png)
 
 이벤트 스토밍 영상을 만들어주신 재성님을 직접 볼 수 있어서 영광이였고, 해당 오프라인에 참가할 수 있어서 감사했다. 기회가 된다면 회사에 적용하고 싶고 만약 그렇게 된다면, `퍼실리테이터` 역할을 맡고 싶다.
 

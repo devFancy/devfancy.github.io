@@ -13,12 +13,12 @@ use_math: true
 
 * [Probability and Statistics for Engineers and Scientists, 4/E](https://www.amazon.com/Probability-Statistics-Engineers-Scientists-Anthony/dp/1111827044)
 
-<img src="/assets/img/probability-statistics/probability-and-statistics-for-engineers-and-scientists_textbook.png" alt="" width="200" />
+<img src="/assets/img/university/probability-statistics/probability-and-statistics-for-engineers-and-scientists_textbook.png" alt="" width="200" />
 
 
 ## Syllabus (Weekly Schedule)
 
-![](/assets/img/probability-statistics/ps-weekly-schedule.png)
+![](/assets/img/university/probability-statistics/ps-weekly-schedule.png)
 
 * 실제로는 CH01 ~ CH05 진행하였음.
 

@@ -9,7 +9,7 @@ tags: ["네트워크"]
 
 * `로드밸런싱`은 서버에 가해지는 부하(=로드)를 분산(=밸런싱)해주는 장치 또는 기술을 말한다.
 
-![](/assets/img/network/network-load-balancing-1.png)
+![](/assets/img/cs/network/network-load-balancing-1.png)
 
 * 클라이언트와 서버풀 사이에 위치하며, 한 대의 서버로 **부하가 집중되지 않도록 트래픽을 관리해** 각각의 서버가 최적의 퍼포먼스를 보일 수 있도록 한다.
 
@@ -105,7 +105,7 @@ tags: ["네트워크"]
 
     * 단점 : 패킷의 내용을 살펴볼 수 없기 때문에 섬세한 라우팅이 불가능하다. 사용자의 IP가 자주 바뀐다면 연속적인 서비스를 제공하기 어렵다.
 
-![](/assets/img/network/network-load-balancing-2.png)
+![](/assets/img/cs/network/network-load-balancing-2.png)
 
 * L7 : 응용계층(Application Layer)에서 로드밸런싱을 한다. (TCP/UDP뿐만 아니라 HTTP, HTTPS, FTP의 파일명, 쿠키 정보를 바탕으로 한다)
 
@@ -113,7 +113,7 @@ tags: ["네트워크"]
 
     * 단점 : 패킷의 내용을 복호화해야 하기에 L4 로드밸런서보다 더 높은 비용을 지불해야 한다.(가격이 더 비싸다) 그리고 클라이언트가 로드밸런서와 인증서를 공유해야하므로 해커가 로드밸런서를 통해서 클라이언트 데이터에 접근할 가능성이 있어서 보안상 위험성이 존재한다.
 
-![](/assets/img/network/network-load-balancing-3.png)
+![](/assets/img/cs/network/network-load-balancing-3.png)
 
 * 참고로, 4 ~ 7 계층은 하위 계층의 기능을 포함한다.
 
@@ -121,11 +121,11 @@ tags: ["네트워크"]
 
 * 로드밸런서를 이중화하여 장애를 대비할 수 있다.
 
-![](/assets/img/network/network-load-balancing-4.png)
+![](/assets/img/cs/network/network-load-balancing-4.png)
 
 > 장애가 났을 경우의 시나리오
 
-![](/assets/img/network/network-load-balancing-5.gif)
+![](/assets/img/cs/network/network-load-balancing-5.gif)
 
 1. 이중화된 로드밸런서들은 서로 Health Check를 한다.
 

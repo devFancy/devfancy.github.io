@@ -11,7 +11,7 @@ tags: ["JPA"]
 
 * JPA를 사용하면, 일반적으로 엔티티 매니저 팩토리와 엔티티 매니저에 대해 이해를 해야 한다.
 
-![](/assets/img/jpa/JPA-Persistence-Context-1.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-1.png)
 
 * 웹 애플리케이션을 개발하면서 고객으로부터 요청이 오면, 엔티티 매니저 팩토리를 통해 엔티티 매니저를 생성한다.
 
@@ -40,19 +40,19 @@ tags: ["JPA"]
 3. **준영속(detached)** : 영속성 컨텍스트에 저장되었다가 **분리**된 상태
 4. **삭제(removed)** : **삭제**된 상태
 
-![](/assets/img/jpa/JPA-Persistence-Context-2.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-2.png)
 
 ### 비영속
 
 * 아래와 같이 Member 객체만 생성만 한 상태 ⇒ JPA와 전혀 관계가 없는 **새로운** 상태를 `비영속` 상태라고 한다.
 
-![](/assets/img/jpa/JPA-Persistence-Context-3.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-3.png)
 
 ### 영속
 
 * 아래와 같이 Member 객체를 생성한 다음에, 엔티티 매니저를 얻어와서 **Member 객체를 저장하면 영속성 컨텍스트에 관리되는 상태**를 `영속` 상태라고 한다.
 
-![](/assets/img/jpa/JPA-Persistence-Context-4.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-4.png)
 
 * 아래의 java 코드로 비영속 상태와 영속 상태를 구분할 수 있다.
 
@@ -119,15 +119,15 @@ em.remove(memberA); //엔티티 삭제
 
 * 일반적으로 **트랜잭션 내에서 유효한 생명주기**를 갖는다.
 
-![](/assets/img/jpa/JPA-Persistence-Context-5.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-5.png)
 
 * member를 영속하면, member1과 member라는 엔티티 클래스를 1차 캐시에 저장한다.
 
-![](/assets/img/jpa/JPA-Persistence-Context-6.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-6.png)
 
 * 그런 다음, 영속성 컨택스트에서 `member1`를 조회하면, JPA는 **DB가 아닌 1차 캐시에 저장된 값을 가져온다.**
 
-![](/assets/img/jpa/JPA-Persistence-Context-7.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-7.png)
 
 * 그런데 만약 `member2`를 조회할 때, **1차 캐시에 없다면, DB를 조회**한다. 그런 다음에 **해당 값을 1차 캐시에 저장하고 값을 반환한다.**
 
@@ -171,7 +171,7 @@ transaction.commit(); // 3 [트랜잭션] 커밋
 
 > em.persist(memberA);
 
-![](/assets/img/jpa/JPA-Persistence-Context-8.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-8.png)
 
 * [1] `em.persist(memberA);`을 통해 memberA가 1차 캐시에 들어간다.(집어 넣는다)
 
@@ -181,7 +181,7 @@ transaction.commit(); // 3 [트랜잭션] 커밋
 
 > em.persist(memberB);
 
-![](/assets/img/jpa/JPA-Persistence-Context-9.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-9.png)
 
 * [4] 그런 다음에 `em.persist(memberB);` 을 하면, memberB도 1차 캐시에 들어간다.(집어 넣는다)
 
@@ -189,7 +189,7 @@ transaction.commit(); // 3 [트랜잭션] 커밋
 
 > transaction.commit();
 
-![](/assets/img/jpa/JPA-Persistence-Context-10.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-10.png)
 
 * [6] 그리고 `transaction.commit();` 을 통해 **커밋하는 순간 `쓰기 지연 SQL 저장소`에 있던 데이터들이 flush가 되면서, `데이터베이스`에 INSERT SQL을 보낸다.**
 
@@ -199,7 +199,7 @@ transaction.commit(); // 3 [트랜잭션] 커밋
 
 * `변경 감지`란 JPA를 사용하여 데이터를 수정하려면 `Entity`를 조회하여 조회된 `Entity` 데이터를 변경만 하면 `데이터베이스`에 자동으로 반영이 되도록 하는 기능이다.
 
-![](/assets/img/jpa/JPA-Persistence-Context-11.png)
+![](/assets/img/server/jpa/JPA-Persistence-Context-11.png)
 
 * [1] 데이터베이스에 커밋하면, 내부적으로 flush가 발생하고
 

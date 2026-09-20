@@ -38,7 +38,7 @@ tags: ["Kafka"]
 
   * 운영 환경에서는 2대의 노드 장애를 허용하는 **5개** 노드 구성을 고려하는 것을 권장한다.
 
-![](/assets/img/kafka/Kafka-Installation-Sizing-Guide-1.png)
+![](/assets/img/server/kafka/Kafka-Installation-Sizing-Guide-1.png)
 
 > 카프카 브로커 (Kafka broker)
 
@@ -184,7 +184,7 @@ services:
 
 또한, 복제를 사용함으로써 단일 시스템 장애에서 발생할 수 있는 데이터 유실을 방지할 수 있다.
 
-![](/assets/img/kafka/Kafka-Installation-Sizing-Guide-2.png)
+![](/assets/img/server/kafka/Kafka-Installation-Sizing-Guide-2.png)
 
 (책에 따르면, 여기서는 기본적인 카프카 클러스터를 설정하는 단계에 초점을 맞추고, 데이터의 복제와 지속성은 7장에서 다룬다고 나와있다.)
 

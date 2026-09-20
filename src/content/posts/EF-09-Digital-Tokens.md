@@ -11,7 +11,7 @@ tags: ["전자금융"]
 
 * `Digital token` : 자산의 가치를 대변하거나 특별한 사용을 의미하며 자체 블록체인에 상주하는 암호화폐의 유형이다
 
-![](/assets/img/electronic-finance/ef-09-digital-tokens_1.png)
+![](/assets/img/university/electronic-finance/ef-09-digital-tokens_1.png)
 
 ### Types of Tokens
 

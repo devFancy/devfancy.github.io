@@ -35,11 +35,11 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 Lower Body
 
-![](/assets/img/workout/hst_week8_1.png)
+![](/assets/img/etc/workout/hst_week8_1.png)
 
 Upper Body
 
-![](/assets/img/workout/hst_week8_2.png))
+![](/assets/img/etc/workout/hst_week8_2.png))
 
 
 ## 중량 변화
@@ -108,7 +108,7 @@ Upper Body
 
 * **휴식시간을 정확하게 알아야 합니다.** 아래 표는 1RM 기준에 대한 휴식시간에 대한 표입니다.
 
-![](/assets/img/workout/hst_recovery_time.png)
+![](/assets/img/etc/workout/hst_recovery_time.png)
 
 * 매주 프로그램 구성이 다르기 때문에, 솔직히 저는 매번 액셀 파일로 들어가서 보는 게 귀찮습니다.
 

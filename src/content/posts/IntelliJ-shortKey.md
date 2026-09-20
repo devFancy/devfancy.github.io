@@ -168,7 +168,7 @@ private MemberRepository memberRepository() {
 
 * 메서드 이름앞에서 `cmd + shift + T` 를 누르면 "Create New Test"를 클릭하고
 
-![](/assets/img/intellij/intellij_shortKey_testCode.png)
+![](/assets/img/tool/intellij/intellij_shortKey_testCode.png)
 
 * 원하는 테스트코드 라이브러리를 선택하고 이름을 지은 후에 Ok버튼을 클릭하면 test폴더에 패키지와 클래스가 자동으로 추가된다.
 

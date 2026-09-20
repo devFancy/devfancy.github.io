@@ -29,13 +29,13 @@ tags: ["Spring Boot"]
 
 > 실제 예시: 프로필 기능 중 **프로필 등록** 화면
 
-![](/assets/img/testcode/SpringBoot-TestCode-Unit-Error.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Unit-Error.png)
 
 QA 작업은 10월까지 2달간 계속되었고, 에러가 많아 `QA Note Ver1`과 `QA Note Ver2`로 나누어 정리하게 되었다.
 
 > 실제 예시: QA Note Ver2
 
-![](/assets/img/testcode/SpringBoot-TestCode-Unit-QA.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Unit-QA.png)
 
 QA 작업을 진행하면서 불편한 점은 서비스에 따라 다르겠지만, 해당 서비스 이용을 위해 **필요한 단계들을 매번 반복해야 한다**는 것이다.
 
@@ -56,7 +56,7 @@ QA 작업을 진행하면서 불편한 점은 서비스에 따라 다르겠지�
 
 구조적으로 보면, `단위 테스트`는 **`서비스`와 `모델`에 가깝다**고 볼 수 있다.
 
-![](/assets/img/testcode/SpringBoot-TestCode-Unit-1.png)
+![](/assets/img/server/testcode/SpringBoot-TestCode-Unit-1.png)
 
 ## 단위 테스트 도입
 

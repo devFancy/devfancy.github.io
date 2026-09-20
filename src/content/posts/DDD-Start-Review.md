@@ -28,7 +28,7 @@ tags: ["책"]
 
 ## Review
 
-![](/assets/img/book/Starting-with-Domain-Driven-Design-image.png)
+![](/assets/img/essay/book/Starting-with-Domain-Driven-Design-image.png)
 
 * 전반적으로 이해도는 90%, 만족도는 75% 정도였다.
 

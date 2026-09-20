@@ -35,15 +35,15 @@ tags: ["JPA"]
 
 * [5] DB 파일 생성 방법 : 세션키 유지한 상태로, JDBC URL에 해당 `jdbc:h2:~/jpashop` 입력후 `연결`버튼을 클릭한다. 그러면 /jpashop이라는 DB 파일이 생성된다. 
 
-![](/assets/img/springboot/springboot-h2-db-install-1.png)
+![](/assets/img/server/springboot/springboot-h2-db-install-1.png)
 
 * [6] 생성된 이후에는 JDBC URL에 네트워크 모드로(TCP/IP를 통해) 접근하기 위해 `jdbc:h2:tcp://localhost/~/jpashop` 입력후 `연결`버튼을 클릭한다.
 
-![](/assets/img/springboot/springboot-h2-db-install-2.png)
+![](/assets/img/server/springboot/springboot-h2-db-install-2.png)
 
 * [7] 이렇게 해서 DB 설치가 완료된 것을 확인할 수 있다. (http://localhost:8082/~)
 
-![](/assets/img/springboot/springboot-h2-db-install-3.png)
+![](/assets/img/server/springboot/springboot-h2-db-install-3.png)
 
 ## Reference
 

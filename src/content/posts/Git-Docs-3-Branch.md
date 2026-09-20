@@ -19,7 +19,7 @@ tags: ["Git"]
 
 * 처음 커밋하면 이 `master` 브랜치가 생성된 커밋을 가리킨다. 이후 커밋을 만들면 `master` 브랜치는 자동으로 가장 마지막 커밋을 가리킨다.
 
-![](/assets/img/git/git-docs-branch-1.png)
+![](/assets/img/tool/git/git-docs-branch-1.png)
 
 ### 새 브랜치 생성하기
 
@@ -31,11 +31,11 @@ tags: ["Git"]
 $ git branch testing
 ```
 
-![](/assets/img/git/git-docs-branch-2.png)
+![](/assets/img/tool/git/git-docs-branch-2.png)
 
 * Git은 `HEAD`라는 특수한 포인터가 있는데, 이 포인터는 지금 작업하는 로컬 브랜치를 가리킨다.
 
-![](/assets/img/git/git-docs-branch-3.png)
+![](/assets/img/tool/git/git-docs-branch-3.png)
 
 * 브랜치를 새로 만들었지만, 아직 Git은 `master` 브랜치를 가리키고 있다.
 
@@ -60,7 +60,7 @@ f30ab (HEAD -> master, testing) add feature #32 - ability to add new formats to 
 git checkout testing
 ```
 
-![](/assets/img/git/git-docs-branch-4.png)
+![](/assets/img/tool/git/git-docs-branch-4.png)
 
 * 이렇게 하면 HEAD는 `testing` 브랜치를 가리키는 것을 확인 할 수 있다.
 

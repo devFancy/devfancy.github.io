@@ -5,7 +5,7 @@ categories: ["서버"]
 tags: ["우아한테크코스"]
 ---
 
-![](/assets/img/woowacourse/woowacourse_name.png)
+![](/assets/img/server/woowacourse/woowacourse_name.png)
 
 * 이 글은 프리코스 과정 이후에 한번 더 복습한 과정을 담긴 내용이며, 기존에 제출했던 코드와 다를 수 있습니다.
 
@@ -115,7 +115,7 @@ tags: ["우아한테크코스"]
 
 * 그래서 다음과 같이 구현했다.
  
-![](/assets/img/woowacourse/2th_BaseballGame_1.png)
+![](/assets/img/server/woowacourse/2th_BaseballGame_1.png)
 
 
 ## 한 함수가 한 가지 기능만 담당하게 한다
@@ -128,7 +128,7 @@ tags: ["우아한테크코스"]
 
 #### InputView(view)
 
-![](/assets/img/woowacourse/2th_InputView.png)
+![](/assets/img/server/woowacourse/2th_InputView.png)
 
 * 유효성 검사(validate)부분은 복잡하지 않은 선에서 InputView에 담았다.
 
@@ -136,7 +136,7 @@ tags: ["우아한테크코스"]
 
 #### Outputview(view)
 
-![](/assets/img/woowacourse/2th_Outputview.png)
+![](/assets/img/server/woowacourse/2th_Outputview.png)
 
 * 게임 결과를 출력해주는 부분을 제외하고는 나머지 System.out.println을 OutputView에서 처리했다.
 
@@ -146,7 +146,7 @@ tags: ["우아한테크코스"]
 
 #### BaseballGame(controller)
 
-![](/assets/img/woowacourse/2th_BaseballGame_2.png)
+![](/assets/img/server/woowacourse/2th_BaseballGame_2.png)
 
 * 입출력 부분은 한 가지 기능만 담당하게 했으나, **Controller부분(BaseballGame)에서 gameStart() 메서드는 그렇게 하지 못했다.**
 
@@ -159,7 +159,7 @@ tags: ["우아한테크코스"]
 
 * **프로그래밍 요구사항**에서 Random 값 추출하는 라이브러리를 활용하는 부분이 있었다.
 
-![](/assets/img/woowacourse/2th_programming_library.png)
+![](/assets/img/server/woowacourse/2th_programming_library.png)
 
 * 이전에는 하나의 클래스에서 Random 값 추출하는 기능을 구현했었는데, 이번에는 **인터페이스**를 만들어서 구현하기로 했다.
 
@@ -179,18 +179,18 @@ tags: ["우아한테크코스"]
 
 **BaseballMaker**
 
-![](/assets/img/woowacourse/2th_BaseballMaker.png)
+![](/assets/img/server/woowacourse/2th_BaseballMaker.png)
 
 **BaseballRandomNumberGenerator**
 
-![](/assets/img/woowacourse/2th_BaseballRandomNumberGenerator.png)
+![](/assets/img/server/woowacourse/2th_BaseballRandomNumberGenerator.png)
 
 * 인터페이스를 사용하려면 클래스명 옆에 implements를 추가하고 옆에 해당 인터페이스명을 입력해야 한다.
 
 
 **BaseballNumberGenerator(인터페이스)**
 
-![](/assets/img/woowacourse/2th_BaseballNumberGenerator.png)
+![](/assets/img/server/woowacourse/2th_BaseballNumberGenerator.png)
 
 ---
 
@@ -217,7 +217,7 @@ tags: ["우아한테크코스"]
 
 * 우아한테크코스 프리코스 미션 이전에 Spring을 개인적으로 공부를 했었고, 현장실습으로 관련 프로젝트도 했었는데, 내가 그동안 구현했던 코드는 MVC 패턴을 제대로 지키지 않았다는 걸 느꼈다.
 
-![](/assets/img/woowacourse/2th_spring_mvc_pattern.png)
+![](/assets/img/server/woowacourse/2th_spring_mvc_pattern.png)
 
 * MVC를 지키면서 코딩하는 방법 5가지 중에서 **1번째인 "Model은 Controller와 View에 의존하지 않아야 한다."** 에서 Model은 Controller와 View에 관한 코드가 있으면 안된다라는게 적혀져 있다.
 
@@ -226,7 +226,7 @@ tags: ["우아한테크코스"]
 
 **BaseballGameResult(Model 부분)**
 
-![](/assets/img/woowacourse/2th_BaseballGameResult.png)
+![](/assets/img/server/woowacourse/2th_BaseballGameResult.png)
 
 * 여기서 showResult() 메서드에서 view 패키지의 Outputview 클래스를
 

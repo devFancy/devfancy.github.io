@@ -21,13 +21,13 @@ tags: ["네트워크"]
 
     * 그런데 그냥 `HTTP`로 보내게 되면 이 암호가 입력한 텍스트 그대로, 누구든 알아볼 수 있는 형식으로 보내진다.
 
-    ![](/assets/img/technology/Technology-HTTPS-1.png)
+    ![](/assets/img/server/technology/Technology-HTTPS-1.png)
 
     * **만약 누군가가 이 정보를 중간에 들여다보면(도청)**, 나의 네이버 아이디와 비밀번호를 알게되어 버린다.
 
     * 하지만, `HTTPS`는 네이버만 알아볼 수 있는 알 수 없는 텍스트로 변경해서 보내게 된다.
 
-    ![](/assets/img/technology/Technology-HTTPS-2.png)
+    ![](/assets/img/server/technology/Technology-HTTPS-2.png)
 
     * 그러면, 누군가가 들여다봐도 뭐라도 쓴 건지 알아볼 수 없게 된다.
 
@@ -47,7 +47,7 @@ tags: ["네트워크"]
 
     * 기관으로부터 검증된 사이트만 주소에 HTTPS 사용이 허가되고, HTTP만 사용되는 사이트들은 `"안전하지 않음"`와 같은 표시가 뜨게 된다.
 
-    ![](/assets/img/technology/Technology-HTTPS-not-secure.png)
+    ![](/assets/img/server/technology/Technology-HTTPS-not-secure.png)
 
 * 요약하자면, `HTTPS`는 [1] 내가 사이트에 보내는 정보들을 제 3자가 못보게 하고, [2] 접속한 사이트가 믿을 만한 곳인지를 알려준다.
 
@@ -65,7 +65,7 @@ tags: ["네트워크"]
 >
 > 복호화: 반대로 암호화된 데이터를 원본으로 복원하는 것을 의미한다.
 
-![](/assets/img/technology/Technology-HTTPS-3.png)
+![](/assets/img/server/technology/Technology-HTTPS-3.png)
 
 * 네이버에 로그인하는 상황을 가정해보면, 내가 로그인할 때 아이디와 비밀번호를 **대칭키**로 이용해서 `암호화`하고, 
 
@@ -93,7 +93,7 @@ tags: ["네트워크"]
 
 * 아래 그림을 통해 자세히 살펴보면 다음과 같다.
 
-![](/assets/img/technology/Technology-HTTPS-4.png)
+![](/assets/img/server/technology/Technology-HTTPS-4.png)
 
 * 네이버 서버는 이 두개의 키들 중 하나는 비밀로 보관하고(개인키), 다른 하나를 대중에게 공유하는 공개키를 제공한다고 가정했을 때,
 
@@ -147,7 +147,7 @@ SSL 통신 과정을 살펴보면 아래와 같은 세가지 과정으로 진행
 
 `CA`는 정말 엄격한 인증 과정을 거쳐야 될 수 있다고 한다. 이 과정을 조금 더 자세히 알아보자. 
 
-![](/assets/img/technology/Technology-HTTPS-5.png)
+![](/assets/img/server/technology/Technology-HTTPS-5.png)
 
 [1] 먼저 서버는 `CA`에게 자신의 `공개키`를 건넨다. 
 

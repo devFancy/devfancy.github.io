@@ -13,7 +13,7 @@ tags: ["사이드프로젝트"]
 
 굿프렌즈팀의 프로젝트에서 백엔드 CI/CD 구조는 다음과 같습니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-1.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-1.png)
 
 우선, 굿프렌즈의 프론트/백엔드 개발자가 기능을 개발하여 Github에 PR을 생성합니다. 이때 PR 코드가 정상적으로 빌드되고, 모든 테스트를 통과하는지 Github Actions를 사용하여 우선적으로 검사합니다. 이때, PR 브랜치의 코드가 문제가 있다면 develop 브랜치로 병합이 불가능합니다.
 
@@ -43,11 +43,11 @@ Webhook을 통해 신호를 받은 젠킨스는 미리 지정된 젠킨스 파�
 
 우측 상단에 `Generate new token` 선택합니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-2.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-2.png)
 
 Note, Expiration, Select scopes를 아래와 같이 선택했습니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-3.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-3.png)
 
 그런 다음 하단에 `Generate token` 을 선택했습니다.
 
@@ -69,7 +69,7 @@ Note, Expiration, Select scopes를 아래와 같이 선택했습니다.
 - `ID` : **jenkins-credential-secret-text**
 - `Description` : (생략)
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-4.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-4.png)
 
 #### 두번째 credential
 
@@ -90,13 +90,13 @@ Note, Expiration, Select scopes를 아래와 같이 선택했습니다.
 
 - Credentials: 아래 Add 버튼을 통해 기존에 첫번째 credential로 생성한 `jenkins-credential-secret-text`을 추가합니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-5.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-5.png)
 
 ## 2.  기본 파이프라인 작성
 
 옵션 - 두번째 탭의 **Pipeline** 선택
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-6.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-6.png)
 
 ### 2-1. Github 레포지토리에서 clone하기 위한 clone 명령어 파이프라인 구성
 
@@ -112,7 +112,7 @@ https:// github repository url 지정(git clone http 주소)
 
 하단 Generate Pipeline Script 버튼 클릭
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-7.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-7.png)
 
 그런 다음에 Pipeline - Script 부분에 아래와 같이 추가합니다.
 
@@ -144,7 +144,7 @@ ls # 해당 경로에 Github repository 프로젝트 폴더가 clone 되었는�
 
 아래와 같이 굿***프렌즈의 Github URL clone이 정상적으로 완료**된 것을 빌드을 통해 확인할 수 있습니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-8.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-8.png)
 
 ## 3.  빌드 파이프라인 작성(CI 구축)
 
@@ -158,7 +158,7 @@ ls # 해당 경로에 Github repository 프로젝트 폴더가 clone 되었는�
 
 아래와 같이 시크릿 파일들을 Credential에 보관된 것을 확인할 수 있습니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-9.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-9.png)
 
 ### 3-2. 빌드 트리거 설정
 
@@ -166,7 +166,7 @@ Dashboard > Goodfriends-pipeline > Configuration
 
 **Build Triggers > GitHub hook trigger for GITScm polling** 을 체크합니다. Github의 Webhook을 통해 빌드가 트리거되는 옵션입니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-10.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-10.png)
 
 #### Github 저장소에 Webhook을 통한 빌드 자동화
 
@@ -186,7 +186,7 @@ http//{젠킨스 EC2 탄력적 ip 주소}:{포트번호}/github-webhook/
 - `Which events would you like to trigger this webhook?`: Jush the push event
 - `Active`: 체크
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-11.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-11.png)
 
 그리고 젠킨스 EC2 인스턴스 서버 - 보안 그룹 - 인바운드 보안 그룹에 6개의 HTTP 유형의 보안 그룹을 추가했습니다.
 (해당 보안 그룹은 개인 ip 주소가 포함되어있어서 공개할 수 없다는 점 양해부탁드립니다)
@@ -261,7 +261,7 @@ Jenkins → System Configuration → Plugins 탭 선택
 
 좌측 - **Available plugins 선택 -> SSH Agent** 검색 후 설치
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-12.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-12.png)
 
 SSH Agent 플러그인이 정상적으로 설치 되었으면 젠킨스를 재시작해줍니다. (Restart)
 
@@ -275,7 +275,7 @@ $ docker start jenkins
 
 아래와 같이 SSH Agent 설치가 완료된 것을 확인하실 수 있습니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-13.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-13.png)
 
 ### 4-2. Jenkins 서버에서 스프링부트 서버로 접속하기 위한 EC2 SSH 키 추가하기
 
@@ -385,7 +385,7 @@ pipeline {
 
 그림으로 가져오면 아래와 같습니다.
 
-![](/assets/img/goodfriends/goodfriends-jenkins-pipeline-backend-14.png)
+![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-14.png)
 
 운영 서버로의 배포는 앞서 설치한 ssh agent 플러그인을 통해 진행했습니다. 배포 과정에서 진행한 내용은 다음과 같습니다.
 

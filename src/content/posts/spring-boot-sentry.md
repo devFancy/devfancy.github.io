@@ -65,7 +65,7 @@ sentry:
 
 > DSN 키 발급 위치: Sentry 대시보드 - Settings -> Project -> SDK SetUp -> Client Keys(DSN)
 
-![](/assets/img/technology/sentry/spring-boot-sentry-client-keys-dsn.png)
+![](/assets/img/server/technology/sentry/spring-boot-sentry-client-keys-dsn.png)
 
 ### 간단히 테스트해보기
 
@@ -89,7 +89,7 @@ public class CouponController {
 
 결과적으로 아래와 같이 Sentry 대시보드에서 에러가 수집된 것을 확인할 수 있습니다.
 
-![](/assets/img/technology/sentry/spring-boot-sentry-feed.png)
+![](/assets/img/server/technology/sentry/spring-boot-sentry-feed.png)
 
 ## Sentry 연동의 한계
 
@@ -206,7 +206,7 @@ Logback 연동 후 애플리케이션을 재실행하고 API를 다시 호출하
 
 특히 `minimumBreadcrumbLevel` 값을 INFO로 설정했기 때문에, 에러 발생 시점뿐만 아니라 그 이전의 INFO 로그까지 Breadcrumbs에 기록된 것을 볼 수 있습니다.
 
-![](/assets/img/technology/sentry/spring-boot-sentry-issues-breadcrumbs.png)
+![](/assets/img/server/technology/sentry/spring-boot-sentry-issues-breadcrumbs.png)
 
 ## 에러 추적 시스템 개선하기
 
@@ -277,14 +277,14 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 Sentry 이슈 화면에서 `globalTraceId` 태그를 클릭하거나 검색하면, 아래와 같이 해당 요청 시점에서 발생한 특정 이벤트를 필터링하여 볼 수 있습니다.
 
-![](/assets/img/technology/sentry/spring-boot-sentry-tags-globalTraceId.png)
+![](/assets/img/server/technology/sentry/spring-boot-sentry-tags-globalTraceId.png)
 
 > 활용 예시2: Grafana Loki 연계 분석
 
 Sentry에서 확보한 `globalTraceId`를 Grafana Loki의 레이블 필터로 사용하면,
 에러 로그뿐만 아니라 해당 요청이 남긴 모든 정상 로그까지 타임라인 순으로 조회하여 문제의 전체 맥락을 상세하게 파악할 수 있습니다.
 
-![](/assets/img/technology/sentry/spring-boot-sentry-grafana-loki-label-globalTraceId.png)
+![](/assets/img/server/technology/sentry/spring-boot-sentry-grafana-loki-label-globalTraceId.png)
 
 ### errorCode: 동적 태깅으로 검색 및 알림 설정
 
@@ -343,7 +343,7 @@ public class SentryBeforeSendCallback implements SentryOptions.BeforeSendCallbac
 Sentry의 Issues 피드 검색창에 `errorCode is E500`과 같은 쿼리를 입력하면, 수많은 에러 로그 속에서도 특정 비즈니스 로직과 관련된 문제만 즉시 선별하여 확인할 수 있습니다.
 이는 장애 발생 시 노이즈를 제거하고 핵심 원인을 빠르게 파악하는 데 큰 도움이 됩니다.
 
-![](/assets/img/technology/sentry/spring-boot-sentry-errorCode-issue-filtering.png)
+![](/assets/img/server/technology/sentry/spring-boot-sentry-errorCode-issue-filtering.png)
 
 > errorCode 기반의 정교한 Alert 규칙 정의
 
@@ -351,7 +351,7 @@ Sentry의 Issues 피드 검색창에 `errorCode is E500`과 같은 쿼리를 입
 
 아래 그림과 같이 "(WHEN) 새로운 이슈가 발생했고, (IF) 태그의 errorCode가 E500과 같다면, (THEN) 즉시 담당자에게 알림을 발송하라"는 규칙을 적용할 수 있습니다.
 
-![](/assets/img/technology/sentry/spring-boot-sentry-errorCode-alert.png)
+![](/assets/img/server/technology/sentry/spring-boot-sentry-errorCode-alert.png)
 
 이를 통해 비즈니스 중요도에 따라 알림 채널을 분리하거나, 특정 팀에게만 선별적으로 알림을 보내는 등 에러 대응 프로세스를 구축할 수 있습니다.
 

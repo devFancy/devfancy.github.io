@@ -9,7 +9,7 @@ tags: ["책"]
 
 ## 시작하며
 
-<img src="/assets/img/book/The-One-Who-Leaves-People-Behind.png" alt="" style="width: 50%" />
+<img src="/assets/img/essay/book/The-One-Who-Leaves-People-Behind.png" alt="" style="width: 50%" />
 
 나이가 들수록 인간관계의 중요성을 더 많이 체감한다.
 스스로 바쁘게 살아가며 노력한 것에 비해 성과가 나지 않아 지친 부분도 있었고, 그 과정에서 가족이나 친구 등 주변 관계에 소홀했던 것은 아닌가 싶어 생각을 정리하고 싶었다.

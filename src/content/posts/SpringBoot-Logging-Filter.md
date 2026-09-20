@@ -78,7 +78,7 @@ HandlerInterceptor는 다음과 같은 메서드를 제공합니다.
 
 > 요청-응답 흐름: Client → **Filter** → DispatcherServlet → **InterHandlerInterceptorceptor** → Controller
 
-![](/assets/img/springboot/springboot-logging-filter-interceptor.png)
+![](/assets/img/server/springboot/springboot-logging-filter-interceptor.png)
 
 Filter는 다음과 같은 경우 사용합니다.
 
@@ -515,13 +515,13 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 - [GET] url: `http://localhost:8080/api/health`
 
-![](/assets/img/springboot/springboot-logging-filter-format-1.png)
+![](/assets/img/server/springboot/springboot-logging-filter-format-1.png)
 
 이번에는 controller/v1 패키지에 있는 `ExamplePostController` 클래스에 있는 다른 api를 호출해보겠습니다.
 
 - [POST] url: `http://localhost:8080/api/posts/new`
 
-![](/assets/img/springboot/springboot-logging-filter-format-2.png)
+![](/assets/img/server/springboot/springboot-logging-filter-format-2.png)
 
 
 ## 멀티쓰레드 환경에서 request 식별자 필요성
@@ -683,7 +683,7 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 * [GET] url: http://localhost:8080/api/health
 
-![](/assets/img/springboot/springboot-logging-filter-traceId.png)
+![](/assets/img/server/springboot/springboot-logging-filter-traceId.png)
 
 로그에서 traceId가 포함되어, 동일한 요청 흐름의 로그를 쉽게 구분할 수 있습니다.
 

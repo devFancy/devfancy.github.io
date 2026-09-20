@@ -27,12 +27,12 @@ SIPE 3기 활동에서는 6주 단위로 진행되는 1차 및 2차 미션이 �
 `미션`과 관련해서는 참가자들이 슬랙 채널의 메시지를 일일이 스크롤하며 필요한 정보를 찾아야 하는 번거로움이 있었고, 
 슬랙의 무료 요금제 제한으로 3개월이 지나면 과거 메시지를 확인할 수 없는 문제도 있었습니다.
 
-![](/assets/img/sipe/Sipe_Mission_Example.png)
+![](/assets/img/project/sipe/Sipe_Mission_Example.png)
 
 `오프라인 모임`에서는 운영진이 출석 정보를 수동으로 정리하는 데 반복적으로 많은 시간과 비용이 소요되어, 
 이를 조금이라도 덜어드리고 싶다는 마음이 들었습니다.
 
-![](/assets/img/sipe/Sipe_Attendance_Excel.png)
+![](/assets/img/project/sipe/Sipe_Attendance_Excel.png)
 
 이러한 **불편함과 비효율적인 부분을 개선**하기 위해 **슬랙봇을 개발하여 미션과 출석체크 과정을 간소화하고 자동화**하고자 했습니다.
 이를 통해 SIPE 커뮤니티 활동을 더욱 효율적이고 편리하게 만들고자 하는 마음으로, 사이프톤에 해당 아이디어를 발제하게 되었습니다.
@@ -43,7 +43,7 @@ SIPE 3기 활동에서는 6주 단위로 진행되는 1차 및 2차 미션이 �
 
 (아래는 사이프톤에 발제했던 아이디어 목록의 초기 화면입니다. 진행 중 아이디어가 일부 수정되어 초기 내용과 다를 수 있습니다)
 
-![](/assets/img/sipe/Sipethon_Idea_List.png)
+![](/assets/img/project/sipe/Sipethon_Idea_List.png)
 
 하지만 슬랙봇 관련 공식 문서를 살펴보니, 슬랙에서 제공하는 가이드라인이 잘 정리되어 있었고, 디자인 작업이 크게 필요하지 않을 것으로 판단되었습니다.
 그 과정에서 제 아이디어에 관심을 보여주신 분들이 예상보다 많아졌고, 결과적으로 **프론트엔드 2명, 백엔드 3명으로 총 5명**의 팀이 꾸려졌습니다.
@@ -51,7 +51,7 @@ SIPE 3기 활동에서는 6주 단위로 진행되는 1차 및 2차 미션이 �
 사이프톤은 **1월 18일 토요일에 진행**되었으며, 그 전에 팀원들과 온라인 회의를 통해 주제를 구체화하고 역할을 나누는 시간을 가졌습니다.
 또한 사이프톤 당일까지 각자가 공부하고 준비해야 할 부분에 대해 논의했습니다
 
-![](/assets/img/sipe/Sipethon_Team3_Meeting.png)
+![](/assets/img/project/sipe/Sipethon_Team3_Meeting.png)
 
 기존 아이디어 외에 추가된 기능으로는 `뒷풀이` 기능이 있었습니다.
 SIPE는 오프라인 모임 이후 뒷풀이가 거의 필수적으로 이어지는데, 매번 슬랙 채널에 관련 메시지가 쌓이는 상황이 반복되었습니다.
@@ -60,11 +60,11 @@ SIPE는 오프라인 모임 이후 뒷풀이가 거의 필수적으로 이어지
 사이프톤 전부터 팀원들은 열정적으로 참여해주셨고, 각자 필요한 부분을 사전에 공부하고 준비해왔습니다.
 덕분에 저도 큰 자극을 받았고, 더 열심히 노력해야겠다는 다짐을 하게 되었습니다. 아래는 기능 중 하나인 `미션`에 대해 피그마로 간단히 그린 사진입니다. (HJ님 감사합니다 👏)
 
-![](/assets/img/sipe/Sipethon_Team3_Mission_PreWork.png)
+![](/assets/img/project/sipe/Sipethon_Team3_Mission_PreWork.png)
 
 ## 진행 과정 및 결과
 
-![](/assets/img/sipe/Sipethon_Elice.png)
+![](/assets/img/project/sipe/Sipethon_Elice.png)
 
 사이프톤 당일, 저희는 `엘리스Lab 성수점`에서 오전 8시 30분부터 오후 10시 30분까지 개발과 발표를 진행했습니다.
 
@@ -115,21 +115,21 @@ SIPE는 오프라인 모임 이후 뒷풀이가 거의 필수적으로 이어지
 
 발표는 3분이라는 제한 시간 안에 최대한 깔끔하게 진행하려고 노력했으며, 약간의 재미 요소도 추가해 보았습니다. 하지만 역시 발표는 매번 쉽지 않다고 느꼈습니다.
 
-![](/assets/img/sipe/Sipethon_Presentation.png)
+![](/assets/img/project/sipe/Sipethon_Presentation.png)
 
 > 구현 결과물
 
 * `미션 관리`: 슬랙에서 미션 공지, 진행 상태 확인, 결과 제출 등의 기능을 자동화.
 
-![](/assets/img/sipe/Sipethon_SlackBot_Result_1.png)
+![](/assets/img/project/sipe/Sipethon_SlackBot_Result_1.png)
 
 * `출석체크`: 오프라인 모임에서의 출석 정보를 간편하게 기록 및 관리.
 
-![](/assets/img/sipe/Sipethon_SlackBot_Result_2.png)
+![](/assets/img/project/sipe/Sipethon_SlackBot_Result_2.png)
 
 * `뒷풀이`: 뒷풀이 참여 여부를 슬랙 메시지에서 바로 처리 가능.
 
-![](/assets/img/sipe/Sipethon_SlackBot_Result_3.png)
+![](/assets/img/project/sipe/Sipethon_SlackBot_Result_3.png)
 
 더 자세한 시연 영상 및 발표 자료는 [Github 링크](https://github.com/sipe-team/sipethon-3_3_helpingbot) 에서 확인하실 수 있습니다.
 해당 `README.md` 파일에는 구현한 기능의 시연 영상과 관련 코드가 포함되어 있으니 참고 부탁드립니다. (시간 제약 속에서 빠르게 작업한 만큼, 코드의 완성도를 높일 여지가 있습니다)
@@ -147,7 +147,7 @@ SIPE는 오프라인 모임 이후 뒷풀이가 거의 필수적으로 이어지
 저녁 식사는 크라이치즈버거였는데, 크라이치즈버거 측 직원분들이 직접 작성해준 메시지와 함께 음식을 제공해주셨던 점이 기억에 남습니다.
 저녁 식사 때가 사이프톤 막바지에 접어들 즈음이었고 아직 해야할 부분이 남아있기 때문에 식사와 작업을 동시에 했던 상황이, 지금 생각해 보면 웃기기도 하고 약간 슬프기도 했습니다.
 
-<img src="/assets/img/sipe/Sipethon_crycheeseburger.png" alt="" width="400" />
+<img src="/assets/img/project/sipe/Sipethon_crycheeseburger.png" alt="" width="400" />
 
 마지막으로, 사이프톤을 기획하시고 당일 늦은 시간까지 세심하게 챙겨주신 운영진과 TF 분들께 진심으로 감사드립니다.
 덕분에 하루 동안 정말 즐겁고 보람찬 시간을 보낼 수 있었습니다. 정말 고생 많으셨습니다! 😊

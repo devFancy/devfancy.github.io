@@ -107,7 +107,7 @@ A page with an image
 
 * Keep-Alive 지속 시간은 **클라이언트와 서버 모두 가지고 있다.** 한쪽이 TCP/IP 연결을 끊는 순간에 통신은 완료되므로 어느 쪽이든 **짧은 쪽**이 사용된다.
 
-![](/assets/img/network/network-http-http1.0_http1.1.png)
+![](/assets/img/cs/network/network-http-http1.0_http1.1.png)
 
 > [2] 파이프라이닝(Pipelining)
 
@@ -115,7 +115,7 @@ A page with an image
 
 * Keep-Alive 이용을 전제로 하며, 서버는 요청이 들어온 순서대로 응답을 반환한다.
 
-![](/assets/img/network/network-http-pipelining.png)
+![](/assets/img/cs/network/network-http-pipelining.png)
 
 
 > [3] 캐시 제어 메커니즘 도입
@@ -210,7 +210,7 @@ SPDY 특징
 
 * HTTP/2 는 하나의 TCP 연결에 여러 개의 요청을 처리 할 수 있는데, 이것을 **Stream, Message, Frame** 이라는 단위로 더욱 세분화했다.
 
-![](/assets/img/network/network-http-http2-multiplexing1.png)
+![](/assets/img/cs/network/network-http-http2-multiplexing1.png)
 
 * `Stream` :  구성된 연결 내에서 전달되는 바이트의 양방향 흐름을 나타내며, TCP 연결에서 여러개의 스트림이 존재 가능하다.
 
@@ -218,7 +218,7 @@ SPDY 특징
 
 * `Frame` : HTTP/2에서 **통신의 최소 단위**이다. 각 최소 단위에는 하나의 프레임 헤더가 포함되며, 이 프레임 헤더는 최소한으로 프레임이 속하는 스트림을 식별한다.
 
-![](/assets/img/network/network-http-http2-multiplexing2.png)
+![](/assets/img/cs/network/network-http-http2-multiplexing2.png)
 
 
 * 위 이미지처럼, **하나의 TCP 커넥션**에서 여러 병렬 스트림(3개)가 존재할 수 있다. 스트림이 뒤섞여서 전송될 경우 **stream number**를 이용 수신측에서 재조합한다.
@@ -263,19 +263,19 @@ SPDY 특징
 * UDP 자체는 신뢰성을 보장하지 않지만, 직접 구현을 통해 신뢰성을 보장받을 수 있게 되었다.
 
 
-![](/assets/img/network/network-http-http3-1.png)
+![](/assets/img/cs/network/network-http-http3-1.png)
 
 > QUIC = UDP + 패킷 재전송, 혼잡 제어, 흐름 제어 (직접 구현)
 
 * HTTP/3은 TCP에서 벗어나 UDP 기반의 프로토콜을 사용함으로써 기존의 문제점을 해결할 수 있었다.
 
-![](/assets/img/network/network-http-http3-2.png)
+![](/assets/img/cs/network/network-http-http3-2.png)
 
 * 최초 연결(1-RTT) : 필요한 정보들과 데이터를 함께 전송하여 시간을 절약한다.
 
 * 다음 연결(0-RTT) : 한 번 성공한 연결을 캐싱해 놓았다가 다음 연결 때에는 **컈싱된 정보**를 바탕으로 연결을 수립한다.
 
-![](/assets/img/network/network-http-http3-3.png)
+![](/assets/img/cs/network/network-http-http3-3.png)
 
 * `HTTP/3`은 **연결 다중화**를 지원하여 연결 내 각 스트림이 **독립적**으로 동작하므로 하나가 실패해도 다른 스트림에 영향을 미치지 않는다.
 

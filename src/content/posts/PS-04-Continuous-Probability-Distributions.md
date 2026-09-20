@@ -27,7 +27,7 @@ use_math: true
     
   * Cumulative distribution function $F(x) = \int_{a}^{x} \frac{b-a}{1}\, dy = \frac{x-a}{b-a},$ for a ≤ x ≤ b
 
-<img src="/assets/img/probability-statistics/ps-04-continuous-probability-distributions_1.png" alt="" width="400" />
+<img src="/assets/img/university/probability-statistics/ps-04-continuous-probability-distributions_1.png" alt="" width="400" />
 
 * The Expectation and the variance
 
@@ -88,7 +88,7 @@ use_math: true
 
 * Examples of the exponential distribution
 
-<img src="/assets/img/probability-statistics/ps-04-continuous-probability-distributions_2.png" alt="" width="400" />
+<img src="/assets/img/university/probability-statistics/ps-04-continuous-probability-distributions_2.png" alt="" width="400" />
 
 ### 4.2.3 The Poisson Process
 
@@ -100,7 +100,7 @@ use_math: true
     
   * Moreover, the number of events occurring within such a time interval has a Poisson distribution with mean  $\lambda t$
 
-<img src="/assets/img/probability-statistics/ps-04-continuous-probability-distributions_3.png" alt="" width="400" />
+<img src="/assets/img/university/probability-statistics/ps-04-continuous-probability-distributions_3.png" alt="" width="400" />
 
 ### Performance Analysis of ALOHA and Slotted-ALOHA
 
@@ -120,7 +120,7 @@ use_math: true
           
 * Vulnerable period 관련 예시
 
-<img src="/assets/img/probability-statistics/ps-04-continuous-probability-distributions_4.png" alt="" width="400" />
+<img src="/assets/img/university/probability-statistics/ps-04-continuous-probability-distributions_4.png" alt="" width="400" />
 
 * 다음 그림을 통해 설명하면, **Packet A**를 기준으로 Packet A가 깨지지 않으려면, 충돌을 발생하는 Packet B구간 까지 포함해서 **Vulnerable period(2T)** 라고 한다. `2T`라는 시간동안 다른 패킷이 끼어들면 안된다.
 
@@ -138,7 +138,7 @@ use_math: true
         
   * 성공한 전송의 확률
 
-<img src="/assets/img/probability-statistics/ps-04-continuous-probability-distributions_5.png" alt="" width="400" />
+<img src="/assets/img/university/probability-statistics/ps-04-continuous-probability-distributions_5.png" alt="" width="400" />
 
 
 #### Throughput of ALOHA
@@ -174,7 +174,7 @@ Average number of retransmissions
 
   * Normalized with respect to the packet transmission time T
 
-  <img src="/assets/img/probability-statistics/ps-04-continuous-probability-distributions_6.png" alt="" width="400" />
+  <img src="/assets/img/university/probability-statistics/ps-04-continuous-probability-distributions_6.png" alt="" width="400" />
 
   * $RT = T + 2 \alpha T + \beta T + BT$
        
@@ -227,7 +227,7 @@ Slotted ALOHA
 
 * Vulnerable period 관련 예시
 
-<img src="/assets/img/probability-statistics/ps-04-continuous-probability-distributions_7.png" alt="" width="400" />
+<img src="/assets/img/university/probability-statistics/ps-04-continuous-probability-distributions_7.png" alt="" width="400" />
 
 #### Throughput of S-ALOHA
 
@@ -284,7 +284,7 @@ Slotted ALOHA
   
   * the parameter $k$ is often referred to as the **shape** parameter of the gamma distribution, and $\lambda$ is referred to as the **scale** parameter
 
-<img src="/assets/img/probability-statistics/ps-04-continuous-probability-distributions_8.png" alt="" width="400" />
+<img src="/assets/img/university/probability-statistics/ps-04-continuous-probability-distributions_8.png" alt="" width="400" />
 
 
 ## Reference

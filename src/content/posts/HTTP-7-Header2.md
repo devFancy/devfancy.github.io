@@ -61,19 +61,19 @@ tags: ["HTTP"]
 
 * 예) 캐시 시간이 초과되는 경우(순서: 1 -> 2 -> 3 -> 4)
 
-![](/assets/img/http/http-7-header2_1.png)
+![](/assets/img/cs/http/http-7-header2_1.png)
 
 * 클라이언트의 데이터와 서버의 **데이터가 같고, 수정(변경)되지 않았다면 저장해두었던 캐시를 재사용** 할 수 있다.
 
-![](/assets/img/http/http-7-header2_2.png)
+![](/assets/img/cs/http/http-7-header2_2.png)
 
 * 수정되지 않았기 때문에, HTTP Header 부분만 전송한다. (304 Not Modified + 헤더 메타 정보만 응답(바디X))
 
-![](/assets/img/http/http-7-header2_3.png)
+![](/assets/img/cs/http/http-7-header2_3.png)
 
 * 클라이언트는 캐시에 저장되어 있는 데이터 재활용한다.
 
-<img src="/assets/img/http/http-7-header2_4.png" alt="" width="400" />
+<img src="/assets/img/cs/http/http-7-header2_4.png" alt="" width="400" />
 
 * 브라우저에 있는 캐시를 재사용할 수 있다.
 
@@ -155,7 +155,7 @@ tags: ["HTTP"]
 
 ## 프록시 캐시
 
-![](/assets/img/http/http-7-header2_5.png)
+![](/assets/img/cs/http/http-7-header2_5.png)
 
 * 프록시는 클라이언트와 서버 사이에 대리로 통신을 수행하는 것을 말하며, 중계 기능을 하는 서버를 프록시 서버라고 한다.
 
@@ -173,17 +173,17 @@ tags: ["HTTP"]
 
 ### no-cache 기본 동작
 
-![](/assets/img/http/http-7-header2_6.png)
+![](/assets/img/cs/http/http-7-header2_6.png)
 
 ### no-cache vs must-revalidate
 
-![](/assets/img/http/http-7-header2_7.png)
+![](/assets/img/cs/http/http-7-header2_7.png)
 
 * `no-cache` 경우 원 서버에 접근할 수 없는 경우 **캐시 서버 설정에 따라 캐시 데이터를 반환**할 수 있다.
 
 * **Error or 200 OK**
 
-![](/assets/img/http/http-7-header2_8.png)
+![](/assets/img/cs/http/http-7-header2_8.png)
 
 * 반면에, `must-revalidate` 경우 원 서버에 접근할 수 없는 경우 **항상 오류가 발생**하게 된다.
 

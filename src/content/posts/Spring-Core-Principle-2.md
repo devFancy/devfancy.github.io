@@ -44,11 +44,11 @@ tags: ["Spring"]
 
 > 그림 - 사용, 구성의 분리
 
-![](/assets/img/spring/spring-core-principle-section3-1.png)
+![](/assets/img/server/spring/spring-core-principle-section3-1.png)
 
 > 그림 - 할인 정책의 변경
 
-![](/assets/img/spring/spring-core-principle-section3-2.png)
+![](/assets/img/server/spring/spring-core-principle-section3-2.png)
 
 * `FixDiscountPolicy` -> `RateDiscountPolicy` 로 변경해도 구성 영역만 영향을 받고, **사용 영역은 전혀 영향을 받지 않는다.**
 
@@ -177,7 +177,7 @@ public class OrderServiceImpl implements OrderService{
 
 * 아래의 클래스 다이어그램을 보면
 
-![](/assets/img/spring/spring-core-principle-section3-3.png)
+![](/assets/img/server/spring/spring-core-principle-section3-3.png)
 
 * 화살표를 통해 알 수 있듯이 `OrderServiceImpl`은 `MemberRepository`, `DiscountPolicy` 에 의존한다는 것을 알 수 있다.
 
@@ -261,7 +261,7 @@ public class RateDiscountPolicy implements DiscountPolicy{
 
 * 아래 객체 다이어그램을 보면
 
-![](/assets/img/spring/spring-core-principle-section3-4.png)
+![](/assets/img/server/spring/spring-core-principle-section3-4.png)
 
 * 애플리케이션 **실행 시점(런타임)** 에 외부에서 실제 구현 객체를 생성하고 클라이언트에 전달해서 클라이언트와 서버의 실제 의존관계가 연결 되는 것을 `의존관계 주입`이라 한다.
 

@@ -134,11 +134,11 @@ https인 도메인 주소에서 소셜 로그인으로 회원가입한 사용자
 
 로직상 액세스 토큰과 리프레시 토큰 값이 들어있어야만 로그아웃이 되도록 설정했는데, 브라우저에서는 쿠키를 이용한 리프레시 토큰 값을 받아오고 있지 않아서 에러가 발생한 것이다.
 
-![](/assets/img/technology/Set-Cookie_1.png)
+![](/assets/img/server/technology/Set-Cookie_1.png)
 
 > Set-Cookie 경고창
 
-![](/assets/img/technology/Set-Cookie_2.png)
+![](/assets/img/server/technology/Set-Cookie_2.png)
 
 최근 크롬 정책에 의해 서로 다른 도메인에서의 호출, 즉 SameSite 가 아닌 상태에서의 호출은 브라우저에서 막고 있다.
 

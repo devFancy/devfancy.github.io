@@ -13,7 +13,7 @@ tags: ["JPA"]
 
 * 대신에 관계형 데이터베이스는 **슈퍼타입 서브타입 관계**라는 모델링 기법이 객체 상속과 유사하다.
 
-![](/assets/img/jpa/JPA-Advanced-Mapping-1.png)
+![](/assets/img/server/jpa/JPA-Advanced-Mapping-1.png)
 
 * 왼쪽이 `슈퍼타입 서브타입 논리 모델`이고, 오른쪽이 `객체 상속 모델`이다.
 
@@ -53,7 +53,7 @@ tags: ["JPA"]
 
     * ex) `@DiscriminatorColumn(name = "DTYPE")`
 
-![](/assets/img/jpa/JPA-Advanced-Mapping-2.png)
+![](/assets/img/server/jpa/JPA-Advanced-Mapping-2.png)
 
 ```java
 // Item 엔티티
@@ -151,7 +151,7 @@ public class Book extends Item {
 
 * 구분 컬럼(DTYPE)을 통해 어떤 자식 데이터가 저장되었는지 알 수 있다.
 
-![](/assets/img/jpa/JPA-Advanced-Mapping-3.png)
+![](/assets/img/server/jpa/JPA-Advanced-Mapping-3.png)
 
 * 조인 전략과 형식은 비슷한데, 부모 테이블에 `@Inheritance`에 `(strategy = InheritanceType.SINGLE_TABLE)`을 지정한다.
 
@@ -195,7 +195,7 @@ public class Book extends Item {
 
 * `구현 클래스마다 테이블 전략`은 자식 테이블이 부모 테이블의 모든 것을 다 가지고 있는 형태이다. 그래서 자식 엔티티마다 테이블을 다 만들어준다.
 
-![](/assets/img/jpa/JPA-Advanced-Mapping-4.png)
+![](/assets/img/server/jpa/JPA-Advanced-Mapping-4.png)
 
 * 이 전략은 **데이터베이스 설계자와 ORM 전문자 둘다 추천하지 않는 전략**이다.
 
@@ -244,7 +244,7 @@ public class Book extends Item {
 
 * 아래 그림처럼 id, name과 같은 공통 매핑 정보가 필요할 때 `BaseEntity` 클래스를 만들어서 Member와 Seller로부터 상속받게 설계를 한다.
 
-![](/assets/img/jpa/JPA-Advanced-Mapping-5.png)
+![](/assets/img/server/jpa/JPA-Advanced-Mapping-5.png)
 
 ```java
 // BaseEntity

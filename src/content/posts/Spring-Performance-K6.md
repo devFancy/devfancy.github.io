@@ -36,7 +36,7 @@ tags: ["성능테스트"]
 
 ### K6 소개
 
-<img src="/assets/img/technology/technology_grafana_k6.png" width="300">
+<img src="/assets/img/server/technology/technology_grafana_k6.png" width="300">
 
 장점
 
@@ -104,7 +104,7 @@ docker pull grafana/k6
 
 Docker Desktop를 통해 Local 에서 `grafana/k6` 이미지가 있는지 확인한다.
 
-![](/assets/img/technology/technology_docker_desktop_grafana_k6.png)
+![](/assets/img/server/technology/technology_docker_desktop_grafana_k6.png)
 
 k6-scripts 폴더에 있는 first_scripts.js 를 아래와 같이 작성한다.
 
@@ -128,7 +128,7 @@ k6 run first_scripts.js
 
 그러면 아래와 같이 실행 결과가 나온다.
 
-![](/assets/img/technology/technology_k6_result.png)
+![](/assets/img/server/technology/technology_k6_result.png)
 
 ### Metrics
 
@@ -321,7 +321,7 @@ export default function () {
 
 아래 그래프는 이 예제 스크립트의 성능을 보여준다.
 
-![](/assets/img/technology/technology_k6_Constant_VUs_Result.png)
+![](/assets/img/server/technology/technology_k6_Constant_VUs_Result.png)
 
 * VU의 수는 10개로 고정되어 있으며, 테스트 시작 전에 모두 초기화된다.
 

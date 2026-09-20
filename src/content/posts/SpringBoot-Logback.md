@@ -77,7 +77,7 @@ Logback은 기본적으로 세 가지 주요 구성 요소로 이루어져 있�
 
 *  Logger는 계층 구조를 가지며, 최상위에는 루트 로거(`ROOT`)가 존재한다.
 
-![](/assets/img/spring/spring-logback-structure-1.png)
+![](/assets/img/server/spring/spring-logback-structure-1.png)
 
 ### Appender
 
@@ -85,7 +85,7 @@ Logback은 기본적으로 세 가지 주요 구성 요소로 이루어져 있�
 
 * 하나의 Logger는 여러 Appender를 가질 수 있다.
 
-![](/assets/img/spring/spring-logback-structure-2.png)
+![](/assets/img/server/spring/spring-logback-structure-2.png)
 
 ### Layout
 
@@ -93,7 +93,7 @@ Logback은 기본적으로 세 가지 주요 구성 요소로 이루어져 있�
 
 * 자바의 `String.format()`과 유사하게 로그 포맷을 커스터마이징할 수 있다.
 
-![](/assets/img/spring/spring-logback-structure-3.png)
+![](/assets/img/server/spring/spring-logback-structure-3.png)
 
 
 ## Logback 설정 방법

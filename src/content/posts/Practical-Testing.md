@@ -33,7 +33,7 @@ tags: ["Spring Boot"]
 
     사람이 테스트를 하다 보니까 시간이 오래 걸려서 **피드백이 늦어지게 되고**, 테스트 도중 버그가 생기면 다시 수정 개발을 하면서 이런 사이클이 되게 느리게 돌아가게 된다. 이로 인해 **유지보수가 어려워지고, 이는 결국 소프트웨어의 신뢰도를 낮추는 일이 된다.**
 
-![](/assets/img/testcode/Practical_Testing_1.png)
+![](/assets/img/server/testcode/Practical_Testing_1.png)
 
 * 그래서 우리는 테스트 코드를 통해서 내가 개발한 기능에 대해서 내가 의도한 대로 동작하는지 **빠른 피드백**을 받을 수 있어야 하고, 기계가 검증할 수 있도록 **자동화**를 해서 내가 만든 소프트웨어에 대한 **안정감과 신뢰감**을 얻을 수 있어야 한다.
 
@@ -103,7 +103,7 @@ tags: ["Spring Boot"]
 
 해당 요구 사항(한 종류의 음료 여러 잔을 한 번에 담는 기능)에 대해 해피 케이스와 예외 케이스를 작성해보면 아래와 같다.
 
-![](/assets/img/testcode/Practical_Testing_2.png)
+![](/assets/img/server/testcode/Practical_Testing_2.png)
 
 `addSeveralBeverages` 메서드는 하나의 종류인 아메리카노에 2개를 담는 테스트로 해피 케이스이고, `addZeroBeverages` 메서드는 하나의 종류인 아메리카노에 0개를 담았을 때 예외가 발생하는 예외 케이스인 것을 확인할 수 있다.
 
@@ -213,11 +213,11 @@ class CafeKioskTest {
 
 `TDD`(Test Driven Developement)란 프로덕션 코드보다 테스트 코드를 먼저 작성하여 **테스트가 구현 과정을 주도하는 방법론**이다.
 
-![](/assets/img/testcode/Practical_Testing_3.png)
+![](/assets/img/server/testcode/Practical_Testing_3.png)
 
 TDD는 RED -> GREEN -> REFACTOR 세가지 사이클을 반복하는 일정한 리듬 속에서 진행된다.
 
-![](/assets/img/testcode/Practical_Testing_4.png)
+![](/assets/img/server/testcode/Practical_Testing_4.png)
 
 * `RED`: 프로덕션 코드가 없는 상황에서 실패하는 테스트 코드를 먼저 작성한다.
 
@@ -275,13 +275,13 @@ TDD 자체가 우리의 사고, 관점의 변화를 일으키는 도구라고 �
 
 Junit4 이하라면 메서드명을 테스트 이름으로 명명하는 방법을 사용했다.
 
-![](/assets/img/testcode/Practical_Testing_5.png)
+![](/assets/img/server/testcode/Practical_Testing_5.png)
 
 > 참고: Run(실행)할 때 해당 @DisplayName에 대한 이름을 확인하기 위해서는 
 >
 > IntelliJ IDEA - Preferences - Build Tools - Gradle에서 `Run tests using` 부분에 `IntelliJ IDEA` 로 선택하고 Apply 후 Ok 버튼을 클릭하면 아래와 같이 잘 나오는 것을 확인할 수 있다. 
 
-![](/assets/img/testcode/Practical_Testing_6.png)
+![](/assets/img/server/testcode/Practical_Testing_6.png)
 
 어떻게 DisplayName을 섬세하게 작성해야 할까?
 
@@ -347,7 +347,7 @@ class CafeKioskTest {
 
 IntelliJ IDEA - Preferences - Live Templates - Java - test에서 아래 Template text 부분에 아래와 같이 입력하고 Apply 후 Ok 버튼을 클릭한다.
 
-![](/assets/img/testcode/Practical_Testing_7.png)
+![](/assets/img/server/testcode/Practical_Testing_7.png)
 
 그러면 다음부터 `test` 만 입력하면 내가 설정한 템플릿이 자동으로 입력된다.
 
@@ -357,7 +357,7 @@ IntelliJ IDEA - Preferences - Live Templates - Java - test에서 아래 Template
 
 #### 레이어드 아키텍처
 
-![](/assets/img/testcode/Practical_Testing_Layered_Architecture.png)
+![](/assets/img/server/testcode/Practical_Testing_Layered_Architecture.png)
 
 사용자의 요청을 Layer 별로 구분하여 처리하는 구조인데, 이는 Presentation Layer, Business Layer, Persistence Layer 라는 3가지 Layer로 구분된다.
 
@@ -387,7 +387,7 @@ IntelliJ IDEA - Preferences - Live Templates - Java - test에서 아래 Template
 
 > Library vs Framework 
 
-![](/assets/img/testcode/Practical_Testing_8.png)
+![](/assets/img/server/testcode/Practical_Testing_8.png)
 
 Spring에 대해서 이야기 할 때 Library와 Framework의 차이점에 대해 고민해볼 수 있다.
 
@@ -433,7 +433,7 @@ Spring 같은 경우는 프레임워크로써 이미 갖춰진 것들, 제공하
 
 여기서 Order와 Product의 관계가 다대다 관계를 지니고 있다. 하나의 주문에는 여러 개의 상품이 존재할 수 있고, 하나의 상품에도 여러 개의 주문이 존재할 수 있다.
 
-![](/assets/img/testcode/Practical_Testing_9.png)
+![](/assets/img/server/testcode/Practical_Testing_9.png)
 
 그래서 다대다 관계를 일대다, 다대일 관계로 풀어서 접근하기 위해 **중간 매핑 테이블(OrderProduct)을 만들어서 연관관계를 매핑**해준다.
 
@@ -530,11 +530,11 @@ public class Product extends BaseEntity {
 
 `Persistence Layer`는 **Data Access의 역할**로 비즈니스 가공 로직이 포함되어서는 안된다. **Data에 대한 CRUD 작업**에만 집중한 레이어이다.
 
-![](/assets/img/testcode/Practical_Testing_Persistence_Layer_1.png)
+![](/assets/img/server/testcode/Practical_Testing_Persistence_Layer_1.png)
 
 > 새로운 요구사항
 
-![](/assets/img/testcode/Practical_Testing_Persistence_Layer_2.png)
+![](/assets/img/server/testcode/Practical_Testing_Persistence_Layer_2.png)
 
 * 키오스크 주문을 위한 상품 후보 리스트 조회하기
 
@@ -684,11 +684,11 @@ spring:
 
 그리고 `Business Layer` 레이어는 **트랜잭션**을 보장해야 한다. (이 부분에 대해서는 밑에 설명하겠다)
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_1.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_1.png)
 
 > 새로운 요구사항
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_2.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_2.png)
 
 메뉴를 여러개 선택해서 가격을 보고, 주문하기 버튼을 클릭하면 주문(Order)이라는 엔티티가 생성되는 것을 구현한다.
 
@@ -813,7 +813,7 @@ class OrderServiceTest {
 
 -> ProductRepositoryTest의 경우에는 성공할 때, 자세히 확인해보면 아래와 같은 문장을 확인할 수 있다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_3.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_3.png)
 
 `transaction.TransactionContext : Rolled back transaction for test`
 
@@ -823,13 +823,13 @@ class OrderServiceTest {
 
 `@DataJpaTest`의 경우 내부에 들어가서 확인해보면, **`@Transactional`** 이 있다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_4.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_4.png)
 
 `@Transactional`이 있기 때문에 자동적으로 롤백이 되는 것이다.
 
 반면, OrderServiceTest의 경우 `@SpringBootTest` 어노테이션이 있는에, 여기에서는 @Trasactional이 없다. 그래서 롤백이 되지 않는 것이다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_5.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_5.png)
 
 한마디로 정리하면, 롤백 처리유무가 `@DataJpaTest` 와 `@SpringBootTest` 의 가장 큰 차이점중 하나이다.
 
@@ -867,7 +867,7 @@ GET localhost:8080/api/v1/products/selling
 
 로컬을 실행하고 테스트해보면, 아래와 같이 잘 동작하는 걸 확인할 수 있다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_6.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_6.png)
 
 > 새로운 요구 사항
 
@@ -971,17 +971,17 @@ public class Stock extends BaseEntity {
 
 -> Transactional 이 Service에 걸려있지 않아도, ProductRepository의 JpaRepository → PagingAndSortingRepository → CrudRepository 가보면 주로 사용하는 save(), findAll() 등 메서드가 있다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_7.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_7.png)
 
 이 메서드의 기본 구현체를 따라가면, SimpleJpaRepository에 `@Transactional` 이 있다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_8.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_8.png)
 
 그래서 insert, delete가 잘 나간 것이다.(=잘 수행된 것)
 
 그래서 결론은, OrderService에 `@Transactional` 을 설정하고, OrderServiceTest에는 `@Transactional` 을 제거하고 수동으로 삭제하는 메서드(tearDown)를 구현하면, 정상적으로 테스트가 성공하는 것을 확인할 수 있다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_9.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_9.png)
 
 ### Presentation Layer
 
@@ -989,7 +989,7 @@ public class Stock extends BaseEntity {
 
 사실상 비즈니스 로직보다는 넘겨온 값이 중요하다. → 유효한지 검증하는게 최우선!
 
-![](/assets/img/testcode/Practical_Testing_Presentation_Layer_1.png)
+![](/assets/img/server/testcode/Practical_Testing_Presentation_Layer_1.png)
 
 하위 2개의 Layer를 `Mocking`(가짜 객체로 대신)하고 `Presentation Layer`를 테스트한다.
 
@@ -1001,7 +1001,7 @@ public class Stock extends BaseEntity {
 
 > 새로운 요구 사항
 
-![](/assets/img/testcode/Practical_Testing_Presentation_Layer_2.png)
+![](/assets/img/server/testcode/Practical_Testing_Presentation_Layer_2.png)
 
 * 관리자 페이지에서 신규 상품을 등록할 수 있다.
 

@@ -325,7 +325,7 @@ ANIMAL_OUTS
 * ID 순으로 조회(ORDER)
 ---
 
-![](/assets/img/sql/sql-right-join.png)
+![](/assets/img/algorithm/sql/sql-right-join.png)
 
 * 위 그림처럼 INNER JOIN은 두 개의 테이블에 모두 속하는 교집합에 대한 결과를 찾아내는 것이고,
 

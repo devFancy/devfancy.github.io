@@ -75,7 +75,7 @@ Spring Boot 에서는 클래스 상단에 `@SpringBootTest` 어노테이션을 �
 
 `Business Layer`(Service) 는 **비즈니스 로직을 구현하는 역할**로 `Persistence Layer`와의 상호작용(Data를 읽고 쓰는 행위)를 통해 비즈니스 로직을 전개시키는 레이어이다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_1.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_1.png)
 
 아래는 `@SpringBootTest`을 이용하여 실제 프로젝트에 작성한 테스트 중 일부를 가져왔다.
 
@@ -192,7 +192,7 @@ class PostServiceTest {
 
 `Presentation Layer`(Controller)는 **외부 세계의 요청을 가장 먼저 받는 계층** 으로 파라미터에 대한 최소한의 검증을 수행한다.
 
-![](/assets/img/testcode/Practical_Testing_Presentation_Layer_1.png)
+![](/assets/img/server/testcode/Practical_Testing_Presentation_Layer_1.png)
 
 아래는 `@WebMvcTest` 를 이용한 실제 프로젝트의 일부 테스트 코드를 가져왔다.
 
@@ -259,7 +259,7 @@ Spring Data JPA를 사용했기 때문에, 테스트를 위해 `DataJpaTest`를 
 
 `Persistence Layer`(Repository)는 **Data Access의 역할**로 비즈니스 가공 로직이 포함되어서는 안된다. **Data에 대한 CRUD 작업**에만 집중한 레이어이다.
 
-![](/assets/img/testcode/Practical_Testing_Persistence_Layer_1.png)
+![](/assets/img/server/testcode/Practical_Testing_Persistence_Layer_1.png)
 
 아래는 `@DataJpaTest` 를 실제 프로젝트의 일부 테스트 코드를 가져왔다.
 
@@ -329,7 +329,7 @@ JPA 관련된 Bean 들만 주입을 해줘서 서버를 띄어준다.
 
 `@DataJpaTest` 내부에 들어가서 확인해보면, `@Transactional` 이 있다.
 
-![](/assets/img/testcode/Practical_Testing_Business_Layer_4.png)
+![](/assets/img/server/testcode/Practical_Testing_Business_Layer_4.png)
 
 `PostRepositoryTest`의 경우 `@DataJpaTest` 로 인해 트랜잭션 롤백이 자동으로 이루어지므로 테스트가 데이터베이스에 영향을 미치지 않는다.
 

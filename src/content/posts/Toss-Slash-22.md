@@ -22,20 +22,20 @@ tags: ["후기"]
 
 토스뱅크에서는 아래와 같은 시스템 구조를 가지고 있다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-1.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-1.png)
 
 * `채널계`: 쿠버네티스 클러스터 위에 구축된 도메인 별로 분리된 복수개의 서버 애플리케이션으로 이루어져 있다. DB 역시 여러개로 구성되어 있다. 네트워크 구조가 복잡하고 DB가 여러개로 나누어 있기 때문에 트랜잭션 처리가 어려운 경우가 있다.
 
   * 하지만 특정 서버에 부하가 몰리면 그것만 스케일 아웃할 수 있고 DB 부하가 커지면 DB를 분리하는 선택을 할 수 있기 때문에 큰 트래픽을 다루는데 유리하다.
 
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-2.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-2.png)
 
 * 거래내역은 은행에서 핵심적으로 다루는 중요한 데이터이기 떄문에, `계정계`에서 관리한다.
 
 * 계정계는 성능보다 **신뢰**가 더 우선적이다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-3.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-3.png)
 
 * 거래내역을 조회할 때 기간설정을 하는 것이 현명한데, 토스뱅크에는 기간 설정이 없다. 다른 SNS 서비스처럼 무한스크롤이 된다.
 
@@ -48,7 +48,7 @@ tags: ["후기"]
 
 ### 문제1. 타행 입금 누락문제 해결
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-4.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-4.png)
 
 * 코어뱅킹 서버가 카프카 토픽에 메시지를 프로듀싱하고 송금 서버가 컨슘하여 송금 DB에 저장한다.
 
@@ -59,11 +59,11 @@ tags: ["후기"]
 
 ### 문제2. 송금 이력 누락 문제
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-5.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-5.png)
 
 * 송금 API 실행 중 타임아웃이 발생하면, 송금 서버는 송금이 성공했는지 알 수 없어 거래 이력을 즉시 저장하지 못하는 문제가 있다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-6.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-6.png)
 
 * 이 문제를 해결하기 위해, 송금이 실제로 완료되었을 때 코어뱅킹 서버가 Kafka 토픽으로 이체 완료 메시지를 송금 서버에 전달한다.
 
@@ -74,11 +74,11 @@ tags: ["후기"]
 
 ### 문제3. 중복 송금 문제
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-7.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-7.png)
 
 * 타임아웃으로 인해 에러를 만난 유저가 송금이 실패한 줄 알고 다시 중복해서 송금을 할 가능성이 있다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-8.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-8.png)
 
 * 이 문제를 막기 위해 송금 요청이 들어오면 송금 서버는 코어뱅킹 서버에 송금 요청을 보내기 전에 우선 송금 요청을 DB에 저장한다.
 
@@ -89,7 +89,7 @@ tags: ["후기"]
 
 ### 문제4. 송금이 계속 지연되는 문제
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-9.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-9.png)
 
 * 만약 네트워크 문제로 인해 송금 서버가 코어뱅킹 서버에 보낸 송금 요청이 코어뱅킹 서버에 도달하지 못한다면 송금은 실행되지 않을 것이고,
 
@@ -97,7 +97,7 @@ tags: ["후기"]
 
 * 그러면 유저는 영원히 송금을 할 수 없게 된다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-10.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-10.png)
 
 * 이 문제를 피하기 위해 `송금 서버`는 주기적으로 `코어뱅킹 서버`에게 송금 요청의 상태를 확인한다.
 
@@ -112,7 +112,7 @@ tags: ["후기"]
 
 ### 문제5. 성공했는데 실패로 처리되는 문제
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-11.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-11.png)
 
 * (문제 상황) 아주 희박할 가능성이지만 이 실패 처리가 잘못되어 성공을 실패로 처리해버릴 가능성이 있다.
 
@@ -141,7 +141,7 @@ tags: ["후기"]
 
 * 송금 서버가 코어뱅킹 서버로부터 송금 완료 메시지를 받아 이력을 저장하는 `거래내역 동기화`와 관련하여 몇 가지 문제가 있다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-12.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-12.png)
 
 * (문제1) 앞서 카프카를 통해 송금 완료 여부를 확인하여 송금 이력을 저장한다고 말씀드렸는데, 만약 저장하는 도중 어떤 에러가 발생해서 실패하면 어떻게 될까?
 
@@ -154,7 +154,7 @@ tags: ["후기"]
   * (문제2-해결방안) 대신, 컨슈머 데드 레터(Consumer DeadLetter) 라는 카프카 토픽에 실패한 메시지를 저장하고 개발자가 실패하는 원인을 확인하여 문제를 해소한 뒤 해당 토픽을 다시 컨슘해서 송금 이력을 저장하게 된다.
 
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-13.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-13.png)
 
 * (문제3) 또 다른 무제는 송금 이력이 누락되는 가능성이 있다.
 
@@ -163,13 +163,13 @@ tags: ["후기"]
   * 각각 동기화된 뒤 토스앱에 거래내역 조회를 요청하면 정상적으로 거래내역이 조회될 것이다.
 
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-14.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-14.png)
 
 * 문제는 500원 입금 동기화가 실패하고 100원 출금 동기화가 성공한 뒤 500원 입금 재동기화가 성공하기 전에 거래내역을 조회한 경우이다.
 
   * 유저는 100원 출금만 동기화가 완료된 상태이므로 유저는 존재하지도 않은 100원이 출금되어 총 잔액이 -100원 되어있는 이상한 상황이 만나게 된다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-15.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-15.png)
 
 * (문제3-해결방안) 이 문제를 해결하기 위해 ‘송금이 완료되었다’는 카프카 메시지를 받았을 때, 그것만 동기화하는 것이 아니라 **그 이전에 다른 거래가 있는지, 코어뱅킹 서버에 조회해서 동기화**하는 것이다.
 
@@ -184,7 +184,7 @@ tags: ["후기"]
 * 이를 통해 언제나 과거 거래내역이 누락되지 않음을 보장한다.
 
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-16.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-16.png)
 
 * (문제4) 그런데 만약 500원 입금 동기화가 또다시 실패한다면 어떻게 될까?
 
@@ -195,7 +195,7 @@ tags: ["후기"]
   * 또한 이 카프카 메시지 컨슘은 실패로 처리되므로 송금 서버는 다시 컨슘하여 동기화를 시도할 것이다.
 
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-17.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-17.png)
 
 * (문제5) 그런데 만약 이 동기화가 완료되기 전에 유저가 거래내역 조회를 하게 된다면 어떻게 될까?
 
@@ -218,7 +218,7 @@ tags: ["후기"]
 
 * 예를 들어 어떤 돈 많은 회사가 전국민에게 100원씩 그냥 주는 이벤트를 한다고 가정해본다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-18.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-18.png)
 
 * 100만명의 토스 고객에게 1시간에 걸쳐서 입금이 완료된다면 1초에 300건 정도의 입금이 실행될 것이다.
 
@@ -231,7 +231,7 @@ tags: ["후기"]
 * 하지만 다행히도 모든 카프카 메시지를 하나의 스레드에서 하나씩 처리하지 않는다.
 
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-19.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-19.png)
 
 * 카프카는 메시지를 여러 파티션으로 나눠서 여러 개의 컨슈머가 처리할 수 있게 해준다.
 
@@ -255,7 +255,7 @@ tags: ["후기"]
 
   * 아예 지연 문제가 안생기도록 피크시를 기준으로 파티션을 아주 넉넉하게 잡을 수도 있겠지만, **늘어난 파티션들은 시스템 자원을 차지하게 되며 한번 늘린 파티션은 다시 줄일 수 없기 때문에 지속적인 자원 낭비**가 될 수 있다.
 
-![](/assets/img/technology/slash/Toss-Slash22-Server-20.png)
+![](/assets/img/server/technology/slash/Toss-Slash22-Server-20.png)
 
 * 따라서 파티션 개수는 적당한 수준으로 유지하고 대신 **컨슈머별로 워커 스레드를 충분히 할당**한다.
 
