@@ -135,14 +135,9 @@ function refineCategory(cat, tags, slug) {
  */
 const IMAGE_PATH_FIX = [
   ['/assets/img/tech_insight/', '/assets/img/technology/woowabros/'],
-];
-
-/* NOTE 2026 Dev History 의 Gist 임베드를 걷어낸다
- * - <script> 로 넣은 Gist 는 프레임으로 그려진다. 아직 공개할 단계가 아니다
- * - 링크도 함께 지우고 문구만 남긴다
- */
-const EMBED_REMOVE = [
-  ['* [2026 Plan Note](https://gist.github.com/devFancy/c6724b137755ac8c655008469d9e32e8)\n\n<script src="https://gist.github.com/devFancy/c6724b137755ac8c655008469d9e32e8.js"></script>\n\n', ''],
+  /* macOS 는 대소문자를 구분하지 않아 로컬에서는 멀쩡하지만
+   * GitHub Pages(리눅스)는 구분한다. 실제 파일은 .JPG 다 */
+  ['/assets/img/db/DB-Normalization-4.jpg', '/assets/img/db/DB-Normalization-4.JPG'],
 ];
 
 /* NOTE 본문에 남은 Jekyll 개발 서버 주소를 실제 경로로 바꾼다
@@ -256,7 +251,7 @@ function convert(file) {
   if (n) { body = body.replace(/\{\{\s*site\.url\s*\}\}/g, ''); stats.siteUrl += n; }
 
   // 이미지 경로 오타, 약어 폴더명, 개발 서버 주소를 바로잡는다
-  for (const [from, to] of [...IMAGE_PATH_FIX, ...IMAGE_DIR_RENAME, ...LINK_FIX, ...EMBED_REMOVE]) {
+  for (const [from, to] of [...IMAGE_PATH_FIX, ...IMAGE_DIR_RENAME, ...LINK_FIX]) {
     if (body.includes(from)) { body = body.split(from).join(to); stats.imgFix++; }
   }
 
