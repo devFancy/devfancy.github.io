@@ -1,3 +1,9 @@
+/* NOTE GA4 는 Jekyll 이 _config.yml 로 심던 것을 그대로 옮긴다
+ * - 측정 ID 가 바뀌면 지금까지 쌓인 데이터와 끊긴다. 바꾸지 말 것
+ * - 개발 중에는 심지 않는다 (import.meta.env.PROD 로 가름)
+ */
+export const GA_MEASUREMENT_ID = "G-7BMWW1711K";
+
 export const SITE = {
   title: "devfancy",
   description: "백엔드 개발자 문준용의 기록",
