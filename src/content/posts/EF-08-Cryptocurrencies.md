@@ -11,14 +11,14 @@ tags: ["전자금융"]
 
 * `Bitcoin` : a decentralized digital currency that can be sent from user to user on the peer-to-peer bitcoin network without intermediaries (만들어내고 유통화하고 관리하는 것이 중앙화 되지 않고 모든 사람이 참여가능한 decentralized digital currency 입니다)
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_1.png){: width="300"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_1.png" alt="" width="300" />
 
 
 * `Node` : machines running the apps
 
   * `Miner` : a specialist node which bundles together valid transactions into blocks and distribute those blocks to nodes across the network (block을 만드는 역할의 노드들)
 
-  ![](/assets/img/electronic-finance/ef-08-cryptocurrencies_2.png){: width="400"}
+  <img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_2.png" alt="" width="400" />
 
 
 ## Problems
@@ -43,7 +43,7 @@ tags: ["전자금융"]
 
 * 누구든지 허가없이, 위계질서 없이 bookkeeper가 될 수 있고, 모든 bookkeeper들은 모든 정보가 있는 장부를 확보한다. 그리고 만약 조직을 강요받는다면, 그런 bookkeeper가 보유하고 있는 장부를 무시하거나 제외하면 된다.
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_3.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_3.png" alt="" width="500" />
 
 
 ### [3] Transaction Ordering
@@ -52,7 +52,7 @@ tags: ["전자금융"]
 
   * transaction이 너무 많아서 node들이 실시간으로 그 transaction들을 ordering 하는 것이 불가능하기 때문에 통일된 형태의 block을 가질 시간이 없다.
 
-  ![](/assets/img/electronic-finance/ef-08-cryptocurrencies_4.png){: width="500"}
+  <img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_4.png" alt="" width="500" />
 
 * [3] Solution : **Blocks**
 
@@ -62,7 +62,7 @@ tags: ["전자금융"]
 
 * Block이 transaction 보다 훨씬 덜 자주 만들어진다.
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_5.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_5.png" alt="" width="500" />
 
 * Bookkeeper들이 여유있게 검증할 수 있다. (the ordering of blocks of transactions)
     
@@ -94,7 +94,7 @@ tags: ["전자금융"]
 
 * `Mining` : hash 값 < target number ⇒ 진짜 Bitcoin block 으로 넣는 과정이다. (Bitcoin’s public ledger)
 
-!![](/assets/img/electronic-finance/ef-08-cryptocurrencies_6.png){: width="500"}
+!<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_6.png" alt="" width="500" />
 
 * `One-CPU-One-Vote`
 
@@ -104,7 +104,7 @@ tags: ["전자금융"]
 
 ### [5] Incentivising Block-Creators
 
-* [5] Problem : Incentivising Block-Creators → Hashing 하는것도 많은 돈이 필요함
+* [5] Problem : Incentivising Block-Creators → Hashing 하는 것도 많은 돈이 필요함
 
 * [5] Solution : **Transaction Fees** (송금 수수료 - block을 만든 사람에게 주는 인센티브)
 
@@ -114,11 +114,11 @@ tags: ["전자금융"]
   
 * Fees → 예시)
   
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_7.png){: width="400"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_7.png" alt="" width="400" />
 
 * Total Transaction Fees(USD) 관련 그림
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_8.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_8.png" alt="" width="500" />
 
 ### [6] How to Bootstrap?
 
@@ -136,7 +136,7 @@ tags: ["전자금융"]
 
   * 기존에 없는 bitcoin을 새롭게 만들어내는 transaction
 
-  ![](/assets/img/electronic-finance/ef-08-cryptocurrencies_9.png){: width="400"}
+  <img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_9.png" alt="" width="400" />
 
 
 ### [7] More Hashing, Faster Blocks, More Monetary Supply
@@ -149,7 +149,7 @@ tags: ["전자금융"]
 
 * 또한, 난이도 수준을 어렵게 하기 위해서 target number를 더 낮게 설정한다.
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_10.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_10.png" alt="" width="500" />
 
 
 ### [8] Block Ordering
@@ -160,7 +160,7 @@ tags: ["전자금융"]
 
 * 각각의 block은 성공적으로 인정받는 이전 block의 hash 값을 넣게(포함시키게)만든다.
   
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_11.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_11.png" alt="" width="500" />
 
 * **Block Chain 조작이 어려운 이유**: 각각의 block이 이전 block의 hash값을 참조하고 있고, 그 block의 hash값을 거래정보가 바뀌면 완전히 바뀌기 때문에, 하나만 건드려도 전체가 영향을 받고 있기 때문에 Block Chain은 조작이 어렵습니다.
 
@@ -175,7 +175,7 @@ tags: ["전자금융"]
 
 * 버려지는 block은 `orphan`이라 부른다.
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_12.png){: width="400"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_12.png" alt="" width="400" />
 
 ### [10] Double Spend
 
@@ -199,14 +199,14 @@ tags: ["전자금융"]
 
 * Double Spend 과정 -> 그림
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_13.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_13.png" alt="" width="500" />
 
 
 * [10] Solution: **Wait about Six Blocks** → 1시간 기다리고 물건을 보내라
 
 * 최소 6개 block을 만들때까지 1시간정도 기다린 후에 물건을 보낸다.
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_14.png){: width="400"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_14.png" alt="" width="400" />
 
 * `51% Attack` 개념, **현실적으로 불가능한 이유**
 
@@ -235,9 +235,9 @@ tags: ["전자금융"]
  
     * Input : 2BTC 
 
-    * Output: 1.5BTC(친구) , 0.5BTC(나)
+    * Output: 1.5BTC(친구), 0.5BTC(나)
 
-  ![](/assets/img/electronic-finance/ef-08-cryptocurrencies_15.png){: width="500"}
+  <img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_15.png" alt="" width="500" />
 
 
 ### Peer-to-Peer 방식
@@ -306,7 +306,7 @@ tags: ["전자금융"]
 
   * Hardware wallets - 그림
 
-  ![](/assets/img/electronic-finance/ef-08-cryptocurrencies_16.png){: width="400"}
+  <img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_16.png" alt="" width="400" />
 
 
 * Cold Storage and Hot Wallets
@@ -322,7 +322,7 @@ tags: ["전자금융"]
 
   * Ethereum: trustless validation, distributed storage and **processing of data and logic**
   
-  ![](/assets/img/electronic-finance/ef-08-cryptocurrencies_17.png){: width="300"}
+  <img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_17.png" alt="" width="300" />
 
 * `Smart Contract` : a self-executing contract with the terms of the agreement between buyer and seller being directly written into lines of code
   
@@ -449,7 +449,7 @@ tags: ["전자금융"]
 
 * Modified GHOST Implementation
 
-![](/assets/img/electronic-finance/ef-08-cryptocurrencies_18.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-08-cryptocurrencies_18.png" alt="" width="500" />
 
 * 조상의 직계자식들만 uncle이 된다.
   

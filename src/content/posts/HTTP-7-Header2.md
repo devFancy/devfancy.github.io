@@ -73,7 +73,7 @@ tags: ["HTTP"]
 
 * 클라이언트는 캐시에 저장되어 있는 데이터 재활용한다.
 
-![](/assets/img/http/http-7-header2_4.png){: width="400"}
+<img src="/assets/img/http/http-7-header2_4.png" alt="" width="400" />
 
 * 브라우저에 있는 캐시를 재사용할 수 있다.
 

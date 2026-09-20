@@ -13,11 +13,11 @@ tags: ["블로그"]
 
 * 어쩔 수 없이 노가다 전략으로 해당 문제를 해결했다.
 
-![](/assets/img/etc/etc_chrome_bookmark_2.png){: width="300"}
+<img src="/assets/img/etc/etc_chrome_bookmark_2.png" alt="" width="300" />
 
 * [1] `북마크 폴더`에서 마우스 오른쪽 버튼 -> `북마크 관리자`를 클릭한다.
 
-![](/assets/img/etc/etc_chrome_bookmark_3.png){: width="300"}
+<img src="/assets/img/etc/etc_chrome_bookmark_3.png" alt="" width="300" />
 
 * [2] 원하는 폴더를 지정해서 마우스 오른쪽 버튼 -> `모두 열기` / `새 창에서 모두 열기` / `시크릿 창에서 모두 열기` 중 원하는 것을 클릭한다.
 
@@ -25,6 +25,6 @@ tags: ["블로그"]
 
 * [3] 새로고침을 하고 나면, 이제는 북마크에 있는 파비콘이 제대로 보이게 된다.  (`guest-book-homepage`는 파비콘이 원래부터 없었기 때문에 기본 상태로 같다)
 
-* ![](/assets/img/etc/etc_chrome_bookmark.png){: width="600"}
+* <img src="/assets/img/etc/etc_chrome_bookmark.png" alt="" width="600" />
 
 * 이 방법보다 더 좋은 방법이 있으면 추가적으로 업로드를 하자.

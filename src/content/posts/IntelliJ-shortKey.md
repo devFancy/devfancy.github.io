@@ -19,7 +19,7 @@ tags: ["IntelliJ"]
 
 * `cmd + n`을 눌러서 `toString` 을 입력하여 클릭하고 위와 같은 방식으로 처리하면 toString이 자동으로 추가된다.
 
-###  Import 추가 / 이름 변경(클래스, 메서드 , 패키지)
+###  Import 추가 / 이름 변경(클래스, 메서드, 패키지)
 
 * import가 필요한 경우 `option + enter`를 누르면 "Implement methods" 를 선택한 다음에 
 

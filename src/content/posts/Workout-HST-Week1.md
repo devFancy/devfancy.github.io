@@ -49,7 +49,7 @@ Introduction : [HST 13-7 운동 프로그램 시작](https://devfancy.github.io/
 
 * Exercise - 13, 7로 2set
 
-* 추가 - 풀업, 딥스 각 5set (갯수제한없음)
+* 추가 - 풀업, 딥스 각 5set (개수제한없음)
 
 * 추가 - 복근 운동 3set + 윗몸일으키기 100개(set제한없음)
 

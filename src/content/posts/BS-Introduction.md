@@ -13,7 +13,7 @@ tags: ["경영통계"]
 
 * 경영경제통계학17판, Lind, Marchal, Wathen, (2018), McGrawHill, 강종열 등 역, 지필미디어
 
-![](/assets/img/business-statistics/business-statistics_textbook.png){: width="200"}
+<img src="/assets/img/business-statistics/business-statistics_textbook.png" alt="" width="200" />
 
 
 ## Reference

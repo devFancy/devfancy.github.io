@@ -228,7 +228,7 @@ public class BeanLifeCycleTest {
 
 ### @PostConstruct, @PreDestroy 애노테이션 특징
 
-* `@PostConstruct` , `@PreDestroy` 이 두 애노테이션을 사용하면 **가장 편리하게 초기화와 종료를 실행**할 수 있다.
+* `@PostConstruct`, `@PreDestroy` 이 두 애노테이션을 사용하면 **가장 편리하게 초기화와 종료를 실행**할 수 있다.
 
 * 유일한 단점은 `외부 라이브러리`에는 적용하지 못한다.
 

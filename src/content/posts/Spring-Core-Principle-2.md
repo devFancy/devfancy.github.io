@@ -179,7 +179,7 @@ public class OrderServiceImpl implements OrderService{
 
 ![](/assets/img/spring/spring-core-principle-section3-3.png)
 
-* 화살표를 통해 알 수 있듯이 `OrderServiceImpl`은 `MemberRepository` , `DiscountPolicy` 에 의존한다는 것을 알 수 있다.
+* 화살표를 통해 알 수 있듯이 `OrderServiceImpl`은 `MemberRepository`, `DiscountPolicy` 에 의존한다는 것을 알 수 있다.
 
     * 그리고 자식 클래스인 `FixDiscountPolicy`와 `RateDisCountPolicy`가 `DiscountPolicy`를 의존(참조)하고 있다.
 
@@ -287,7 +287,7 @@ public class RateDiscountPolicy implements DiscountPolicy{
 
 ### @Configuration
 
-* @Configuration 어노테이션을 명시한 메소드는 설정 정보(어플리케이션이 어떻게 구성되어있는지)를 나타낸다.
+* @Configuration 어노테이션을 명시한 메소드는 설정 정보(애플리케이션이 어떻게 구성되어있는지)를 나타낸다.
 
 ### @Bean
 

@@ -130,7 +130,7 @@ HandlerMethod details: ...
 
 ### @ControllerAdvice
 
-`@ControllerAdvice` 는 대상으로 지정한 여러 컨트롤러에 `@ExceptionHandler` , `@InitBinder` 기능을 부여해주는 역할을 합니다.
+`@ControllerAdvice` 는 대상으로 지정한 여러 컨트롤러에 `@ExceptionHandler`, `@InitBinder` 기능을 부여해주는 역할을 합니다.
 
 `@ControllerAdvice` 에 대상을 지정하지 않으면 모든 컨트롤러에 적용됩니다. (글로벌 적용)
 
@@ -138,7 +138,7 @@ Spring은 전역적으로 `@ExceptionHandler`를 적용할 수 있는 `@Controll
 
 두 어노테이션의 차이점은 `@RestControllerAdvice`는 **`@ResponseBody` 가 붙어 있어 응답을 Json 형식으로 내려준다는 점입니다.**
 
-(`@Controller` , `@RestController` 의 차이와 같습니다)
+(`@Controller`, `@RestController` 의 차이와 같습니다)
 
 아래와 같이 @ControllerAdvice와 @RestControllerAdvice의 구현의 일부 입니다.
 

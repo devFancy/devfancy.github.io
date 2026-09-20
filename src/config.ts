@@ -13,7 +13,7 @@ export const SITE = {
   },
 } as const;
 
-/* NOTE 네비게이션은 3개로 고정한다 (4-4-3)
+/* NOTE 네비게이션은 3개로 고정한다 [네비게이션]
  * - 데스크톱 헤더와 모바일 햄버거 패널이 이 배열 하나를 같이 쓴다
  */
 export const NAV = [
@@ -22,7 +22,7 @@ export const NAV = [
   { label: "About", href: "/about/" },
 ] as const;
 
-/* NOTE 카테고리는 2단이다. 프론트매터에는 잎만 적고 묶음은 여기서 선언한다 (4-2-1)
+/* NOTE 카테고리는 2단이다. 프론트매터에는 잎만 적고 묶음은 여기서 선언한다 [카테고리 2단]
  * - 부모까지 프론트매터에 넣으면 카드마다 정보 없는 "기술" 칩이 붙는다
  */
 export const CATEGORY_GROUPS = [
@@ -64,13 +64,12 @@ export const TAG_ORDER = [
   "책",
 ] as const;
 
-// NOTE: 문제풀이는 메인/목록에서 빼고 /solutions/ 에 모은다. 글 URL 은 그대로 (4-2)
+// NOTE: 문제풀이는 메인/목록에서 빼고 /solutions/ 에 모은다. 글 URL 은 그대로 [문제풀이 분리]
 export const SOLUTION_CATEGORIES = ["알고리즘"] as const;
 
 // NOTE: 4-5 의 "이메일 비노출" 을 뒤집었다. 전화번호는 넣지 않는다
 export const SOCIAL = [
   { name: "GitHub", url: "https://github.com/devFancy" },
-  { name: "LinkedIn", url: "https://www.linkedin.com/in/junyong-moon-479385264" },
   { name: "Mail", url: "mailto:fancy.junyongmoon@gmail.com" },
 ] as const;
 

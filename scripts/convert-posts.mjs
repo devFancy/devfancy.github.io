@@ -14,7 +14,7 @@ const SRC = '_posts';
 const OUT = 'src/content/posts';
 const WRITE = process.argv.includes('--write');
 
-/* NOTE 기존 카테고리 34종을 9개로 묶고, 원래 이름은 태그로 내린다 (4-2)
+/* NOTE 기존 카테고리 34종을 9개로 묶고, 원래 이름은 태그로 내린다 [카테고리 재편]
  * - 고유명사·제품명은 영문, 일반 개념은 한글
  */
 const CATEGORY = {
@@ -149,6 +149,35 @@ const LINK_FIX = [
 /* NOTE 약어 폴더는 무엇인지 알아볼 수 없어 이름을 편다 (이미지 이관 B안)
  * - 나머지 34개 폴더는 그대로 둔다. 전면 재편은 이관이 끝난 뒤 따로 한다
  */
+/* NOTE 옛 글에 굳어진 오탈자를 고친다 [맞춤법]
+ * - 문맥을 타지 않는 것만 넣는다. 되/돼, 로서/로써처럼 판단이 필요한 것은 두고 본다
+ * - 코드 블록 안과 수식이 있는 줄은 건드리지 않는다
+ */
+const TYPO_WORD = [
+  [/갯수/g, '개수'],
+  [/왠만/g, '웬만'],
+  [/됬/g, '됐'],
+  [/Youtubr/g, 'YouTube'],
+  [/완료되서/g, '완료돼서'],
+  [/수있/g, '수 있'],
+  [/하는것/g, '하는 것'],
+  [/어플리케이션/g, '애플리케이션'],
+  [/Spring boot/g, 'Spring Boot'],
+  [/\(하한, ,상한\)/g, '(하한, 상한)'],
+  [/Paste,,,/g, 'Paste 등'],
+  [/생성했는데,,/g, '생성했는데,'],
+  [/변경 ,삭제/g, '변경, 삭제'],
+];
+
+// 쉼표 앞 공백. 한글·닫는 괄호·강조·인라인 코드 뒤일 때만 지운다. 수식 기호와 겹치지 않는다
+const TYPO_COMMA = /([가-힣)*`\]]) +,/g;
+
+/* NOTE kramdown 인라인 속성(IAL). remark 가 몰라서 본문에 글자로 찍힌다 [Kramdown 잔재]
+ * - Jekyll 은 <img ... width="300"> 으로 렌더했다. 같은 결과가 되도록 <img> 로 바꾼다
+ * - width="50%" 는 HTML 속성으로 무효라 Jekyll 에서도 안 먹었다. style 로 살린다
+ */
+const IAL_WIDTH = /!\[\]\(([^()\s]+)\)[ \t]*\{:\s*width="([^"]+)"\s*\}/g;
+
 const IMAGE_DIR_RENAME = [
   ['/assets/img/bs/', '/assets/img/business-statistics/'],
   ['/assets/img/ef/', '/assets/img/electronic-finance/'],
@@ -157,7 +186,7 @@ const IMAGE_DIR_RENAME = [
   ['/assets/img/record/', '/assets/img/dev-history/'],
 ];
 
-/* NOTE use_math 가 빠졌지만 진짜 수식이 있는 글. 전역 적용이 기존 버그를 고쳐준다 (4-4-1) */
+/* NOTE use_math 가 빠졌지만 진짜 수식이 있는 글. 전역 적용이 기존 버그를 고쳐준다 [수식 전역 적용] */
 const ADD_USE_MATH = new Set([
   '2022-06-01-EF-07-Cryptography.md',
   '2023-02-05-OS-19-TLB.md',
@@ -166,7 +195,7 @@ const ADD_USE_MATH = new Set([
 const warnings = [];
 const stats = {
   total: 0, cats: new Map(), useMath: 0, escaped: 0, escapedFiles: 0,
-  siteUrl: 0, imgFix: 0, raw: 0, toc: 0, rawHtml: 0, spaces: 0, tags: new Map(), unmapped: new Set(),
+  siteUrl: 0, imgFix: 0, raw: 0, toc: 0, ial: 0, typo: 0, rawHtml: 0, spaces: 0, tags: new Map(), unmapped: new Set(),
 };
 
 /** 코드 펜스와 인라인 코드를 분리한다. 짝수 인덱스만 본문이다. */
@@ -174,7 +203,7 @@ function splitCode(body) {
   return body.split(/(```[\s\S]*?```|`[^`\n]*`)/);
 }
 
-/** 표기 4종을 배열로 정규화한다 (2-4) */
+/** 표기 4종을 배열로 정규화한다 [프론트매터 정규화] */
 function normalizeCategories(raw) {
   const v = (raw ?? '').trim();
   if (!v) return [];
@@ -243,13 +272,36 @@ function convert(file) {
   const useMath = data.use_math?.toLowerCase() === 'true' || ADD_USE_MATH.has(file);
   if (useMath) stats.useMath++;
 
-  // {{site.url}} 제거. site.url 이 빈 값이라 지우면 그대로 동작한다 (2-3)
+  // {{site.url}} 제거. site.url 이 빈 값이라 지우면 그대로 동작한다 [Liquid 제거]
   let n = (body.match(/\{\{\s*site\.url\s*\}\}/g) ?? []).length;
   if (n) { body = body.replace(/\{\{\s*site\.url\s*\}\}/g, ''); stats.siteUrl += n; }
 
   // 이미지 경로 오타, 약어 폴더명, 개발 서버 주소를 바로잡는다
   for (const [from, to] of [...IMAGE_PATH_FIX, ...IMAGE_DIR_RENAME, ...LINK_FIX]) {
     if (body.includes(from)) { body = body.split(from).join(to); stats.imgFix++; }
+  }
+
+  // kramdown IAL 을 img 태그로 바꾼다. 경로 보정이 끝난 뒤여야 한다
+  n = (body.match(IAL_WIDTH) ?? []).length;
+  if (n) {
+    body = body.replace(IAL_WIDTH, (_, src, w) =>
+      `<img src="${src}" alt=""${/^\d+$/.test(w) ? ` width="${w}"` : ` style="width: ${w}"`} />`);
+    stats.ial += n;
+  }
+
+  /* 오탈자 교정. 코드 펜스 안은 그대로 둔다 */
+  {
+    let fence = false;
+    const fixed = body.split('\n').map((line) => {
+      if (line.trimStart().startsWith('```')) { fence = !fence; return line; }
+      if (fence) return line;
+      let out = line;
+      for (const [re, to] of TYPO_WORD) out = out.replace(re, to);
+      if (!out.includes('$')) out = out.replace(TYPO_COMMA, '$1,');
+      if (out !== line) stats.typo++;
+      return out;
+    });
+    body = fixed.join('\n');
   }
 
   // {% raw %} / {% endraw %} 제거. 본문이 Liquid 를 설명하는 글이라 결과 확인이 필요하다
@@ -260,11 +312,11 @@ function convert(file) {
     warnings.push(`${file}: {% raw %} ${n}건 제거. 렌더 결과 확인 필요`);
   }
 
-  // kramdown 목차. 기능은 Toc 컴포넌트가 대체한다 (4-4)
+  // kramdown 목차. 기능은 Toc 컴포넌트가 대체한다 [Kramdown 잔재]
   n = (body.match(/^\* content\r?\n\{:toc\}\r?\n?/gm) ?? []).length;
   if (n) { body = body.replace(/^\* content\r?\n\{:toc\}\r?\n?/gm, ''); stats.toc += n; }
 
-  /* NOTE 수식이 전역 적용되므로 비수식 글의 $ 를 이스케이프한다 (4-4-1)
+  /* NOTE 수식이 전역 적용되므로 비수식 글의 $ 를 이스케이프한다 [수식 전역 적용]
    * - 코드 블록 밖에서만 바꾼다. 코드 안 {{traceId}} 같은 것은 건드리지 않는다
    */
   if (!useMath) {
@@ -334,6 +386,8 @@ console.log(`  {{site.url}}  ${stats.siteUrl}건`);
 console.log(`  이미지 경로 교정 ${stats.imgFix}건`);
 console.log(`  {% raw %}     ${stats.raw}건`);
 console.log(`  {:toc} 제거   ${stats.toc}건`);
+console.log(`  {: width } 변환 ${stats.ial}건`);
+console.log(`  오탈자 교정   ${stats.typo}줄`);
 console.log(`  날 HTML 포함  ${stats.rawHtml}편`);
 console.log(`  파일명 공백   ${stats.spaces}건`);
 console.log(`\n경고 ${warnings.length}건`);

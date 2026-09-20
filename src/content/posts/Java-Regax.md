@@ -57,7 +57,7 @@ public class RegexExample {
 
 * `group(int group)` : 매칭된 부분중 group번 그룹핑 매칭부분 반환한다.
 
-* `groupCount()` : 패턴내 그룹핑한(괄호지정) 전체 갯수를 반환한다.
+* `groupCount()` : 패턴내 그룹핑한(괄호지정) 전체 개수를 반환한다.
 
 
 ## Pattern 클래스

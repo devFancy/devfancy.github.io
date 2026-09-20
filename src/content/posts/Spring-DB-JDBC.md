@@ -501,7 +501,7 @@ public class MemberRepositoryV0 {
 
     * `ResultSet` 은 다음과 같이 생긴 데이터 구조이다. 보통 select 쿼리의 결과가 순서대로 들어간다.
 
-        * 예를 들어서 `select member_id, money` 라고 지정하면 `member_id` , `money` 라는 이름으로 데이터 가 저장된다.
+        * 예를 들어서 `select member_id, money` 라고 지정하면 `member_id`, `money` 라는 이름으로 데이터 가 저장된다.
     
         * 참고로 `select *` 을 사용하면 테이블의 모든 컬럼을 다 지정한다.
 

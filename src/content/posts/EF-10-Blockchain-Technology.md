@@ -29,7 +29,7 @@ tags: ["전자금융"]
     
   * 그리고 네트워크 통신을 하면서 주변에 새로운 transaction이 발생하면, 주변에 알리고 정해진 rule에 의해 새로운 transaction에 직접 검증하는 프로세스이다.
 
-![](/assets/img/electronic-finance/ef-10-blockchain-technology.png){: width="500"}
+<img src="/assets/img/electronic-finance/ef-10-blockchain-technology.png" alt="" width="500" />
 
 
 ### Public Blockchain

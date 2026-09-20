@@ -1,5 +1,5 @@
 ---
-/* NOTE 홈은 최근 글만 보여준다. 목록 전체는 /archive/ 와 /category/ 가 맡는다 (4-4-5)
+/* NOTE 홈은 최근 글만 보여준다. 목록 전체는 /archive/ 와 /category/ 가 맡는다 [홈 구성]
  * - 대표 글·인기 글 섹션을 이 아래에 덧붙인다
  */
 import { getCollection } from 'astro:content';
@@ -13,7 +13,7 @@ const RECENT = 3;
 
 const solution = new Set<string>(SOLUTION_CATEGORIES);
 const recent = (await getCollection('posts', ({ data }) => !data.draft))
-  // NOTE: 문제풀이는 한 번에 여러 편이 올라가 최근 글을 독점한다. /solutions/ 로 뺀다 (4-2)
+  // NOTE: 문제풀이는 한 번에 여러 편이 올라가 최근 글을 독점한다. /solutions/ 로 뺀다 [문제풀이 분리]
   .filter((p) => !p.data.categories.some((c) => solution.has(c)))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, RECENT);

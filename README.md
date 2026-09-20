@@ -1,87 +1,66 @@
-<a href="https://hits.seeyoufarm.com"/><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/devfancy/devfancy.github.io"/></a>                        
+# devfancy.github.io
 
-> 📌 The template is based on the [Github Blog Template](https://github.com/Gaohaoyang/gaohaoyang.github.io) created by [HyG](https://github.com/gaohaoyang).
+[Astro](https://astro.build) 로 만든 개인 블로그입니다. 글은 https://devfancy.github.io 에서 볼 수 있습니다.
 
-For the Korean version of the template, I referred to the [Github Blog Template](https://github.com/goodGid/goodGid.github.io) by [Gid](https://github.com/goodGid).
+## 로컬에서 실행하기
 
-### Writing Commit Messages
+Node 버전은 `.nvmrc` 를 따릅니다.
 
-* When **creating a new post** for the first time, write the commit message as `Write {Category} Post " {Title} "`.
+```bash
+nvm use
+npm ci
+npm run dev        # http://localhost:4321
+```
 
-  * Example: If the category is `DevHistory` and the title is "2024 Dev History",
+| 명령 | 하는 일 |
+| --- | --- |
+| `npm run dev` | 개발 서버 |
+| `npm run build` | `dist/` 로 정적 빌드 |
+| `npm run preview` | 빌드 결과 미리보기 |
+| `npm run check` | `astro check` 타입 검사 |
+| `npm run lint` | Biome 검사 |
+| `npm run format` | Biome 자동 수정 |
 
-  * the commit message should be written as `Write DevHistory Post " 2024 Dev History "`.
+> 로케일이 `C` 면 한글 파일명에서 인코딩 오류가 납니다. CI 는 `LC_ALL=en_US.UTF-8` 을 고정해 두었습니다.
 
-* If you are **updating an existing post**, write the commit message as `Update {Category} Post " {Title}`.
+## 글 쓰기
 
-### How to Add or Modify Categories
-
-> Unlike the original template, which generates category order randomly, I have opted for a manual addition/modification approach.
-
-* Add the desired categories to the `categories_order` section in the `_config.yml` file.
-
-* As of (2024.12.22), the **current setup** is as follows:
+글은 `src/content/posts/*.md` 에 둡니다. **파일명이 곧 URL** 입니다.
+`src/content/posts/Spring-Transaction.md` → `/Spring-Transaction/`
 
 ```yaml
-categories_order:
-  - "DevHistory"
-  - "TechInsight"
-  - "Java"
-  - "Spring"
-  - "SpringBoot"
-  - "JPA"
-  - "MySQL"
-  - "Flyway"
-  - "Technology"
-  # More categories...
+---
+title: "제목"
+date: 2026-09-21
+categories: ["서버"]
+tags: ["Spring", "JPA"]
+use_math: true   # 수식이 있을 때만
+---
 ```
 
-### How to Run Locally
+- `categories` 는 한 편에 하나입니다. 쓸 수 있는 값은 `src/config.ts` 의 `CATEGORY_GROUPS` 에 있습니다
+- 태그 노출 순서는 같은 파일의 `TAG_ORDER` 가 정합니다
+- 이미지는 `public/assets/img/` 아래에 두고 `/assets/img/...` 로 참조합니다
 
-* Follow these steps to set up and run the project on your local machine:
+## 폴더 구조
 
-#### 1. Install Bundler
-
-* Run the following command to install the specified version of Bundler.
-
-```bash
-$ sudo gem install bundler:2.1.4
+```
+src/
+  components/   Hero, Header, Chip 같은 공용 조각
+  layouts/      Base.astro — 모든 페이지의 껍데기
+  pages/        라우트. [...slug].astro 가 글 상세를 만든다
+  content/      posts/ 아래 마크다운
+  styles/       global.css — 색 토큰과 .prose 본문 스타일
+  config.ts     사이트 정보, 네비, 카테고리·태그 순서
+public/assets/img/    글 본문 이미지
 ```
 
-#### 2. Install Dependencies and Start the Server
+## 배포
 
-* Use the following commands to install all dependencies and start the Jekyll server.
+`main` 에 푸시되면 `.github/workflows/deploy.yml` 이 GitHub Pages 로 배포합니다.
+저장소 설정의 Pages → Source 는 **GitHub Actions** 여야 합니다.
 
-```bash
-$ bundle install
-$ bundle exec jekyll serve
-```
+---
 
-#### 3. Expected Output
-
-* Upon successful execution, you should see output similar to the following
-
-```bash
-$ bundle exec jekyll serve
-
-Configuration file: /path/to/_config.yml
-            Source: /path/to/source
-       Destination: /path/to/_site
- Incremental build: disabled. Enable with --incremental
-      Generating...
-       Jekyll Feed: Generating feed for posts
-          Conflict: The following destination is shared by multiple files.
-                    - /path/to/_site/example.html
-                    - /path/to/_posts/example.md
-                    ...
-      done in X.XXX seconds.
- Auto-regeneration: enabled for '/path/to/project'
-    Server address: http://127.0.0.1:4000/
-  Server running... press ctrl-c to stop.
-```
-
-#### 4. Access the Local Server
-
-* Open your browser and navigate to: `http://127.0.0.1:4000`
-
-![](/assets/img/github_local_server.png)
+Jekyll 판은 [HyG](https://github.com/gaohaoyang) 의 [템플릿](https://github.com/Gaohaoyang/gaohaoyang.github.io) 과
+[Gid](https://github.com/goodGid) 의 [한국어 판](https://github.com/goodGid/goodGid.github.io) 을 바탕으로 했습니다.

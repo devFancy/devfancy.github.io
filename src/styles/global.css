@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* NOTE 폰트는 self-host 한다. 외부 CDN을 쓰지 않는다 (4-6)
+/* NOTE 폰트는 self-host 한다. 외부 CDN을 쓰지 않는다 [외부 의존 제거]
  * - Pretendard v1.3.9 variable 을 한글+라틴으로 서브셋 (2.06MB -> 1.77MB)
  * - swap 이라 폰트 로드 전에도 시스템 폰트로 바로 읽힌다
  */
@@ -11,7 +11,7 @@
   font-display: swap;
 }
 
-/* NOTE 색은 토큰으로만 정의한다 (3-4). @theme 토큰은 유틸리티를 자동 생성한다
+/* NOTE 색은 토큰으로만 정의한다 [테마 토큰]. @theme 토큰은 유틸리티를 자동 생성한다
  * - --color-rule -> border-rule
  */
 @theme {
@@ -35,7 +35,7 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-/* NOTE: 다크모드는 dark: 접두사 대신 data-theme 토큰 재정의로 처리한다 (3-4) */
+/* NOTE: 다크모드는 dark: 접두사 대신 data-theme 토큰 재정의로 처리한다 [테마 토큰] */
 :root[data-theme="dark"] {
   --color-bg: #14161a;
   --color-fg: #e8e8e6;
@@ -72,7 +72,7 @@ body {
   font-family: var(--font-sans);
   /* NOTE: 배경 사진 스케일에 맞춰 전반적으로 키웠다 */
   font-size: 17px;
-  /* NOTE: 한국어 본문 (9-2) */
+  /* NOTE: 한국어 본문 [한국어 타이포그래피] */
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -162,14 +162,14 @@ blockquote.quote {
 .prose th, .prose td { border: 1px solid var(--color-rule); padding: .5em .75em; text-align: left; }
 .prose th { font-weight: 700; }
 
-/* NOTE: 코드·표·수식은 가로 스크롤을 자기 안에서 처리한다 (9-3) */
+/* NOTE: 코드·표·수식은 가로 스크롤을 자기 안에서 처리한다 [모바일 가로 넘침] */
 .prose pre,
 .prose .katex-display { overflow-x: auto; }
 
-/* NOTE: table은 display:block 없이는 overflow가 먹지 않아 페이지가 가로로 밀린다 (9-3) */
+/* NOTE: table은 display:block 없이는 overflow가 먹지 않아 페이지가 가로로 밀린다 [모바일 가로 넘침] */
 .prose table { display: block; overflow-x: auto; max-width: 100%; }
 
-/* NOTE: 본문 이미지 폭 제한 (9-3) */
+/* NOTE: 본문 이미지 폭 제한 [모바일 가로 넘침] */
 .prose img { max-width: 100%; height: auto; }
 
 /* NOTE 키보드 이동 시 현재 위치가 보이게 한다. 마우스 클릭에는 나타나지 않는다 */
@@ -179,7 +179,7 @@ blockquote.quote {
   border-radius: 2px;
 }
 
-/* NOTE: 터치 타깃 최소 44px (9-3) */
+/* NOTE: 터치 타깃 최소 44px [모바일 터치 타깃] */
 @media (pointer: coarse) {
   a, button { min-height: 44px; }
 }

@@ -30,7 +30,7 @@ tags: ["Spring"]
 9. [Spring 핵심원리 - 기본편 : 빈 스코프](https://devfancy.github.io/Spring-Core-Principle-9/)
 
 
-## 웹 어플리케이션과 싱글톤
+## 웹 애플리케이션과 싱글톤
 
 * 스프링이 없던 순수한 DI컨테이너인 AppConfig은 요청을 할 때마다 객체를 새로 생성해서 메모리 낭비가 심했다.
 

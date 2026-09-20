@@ -45,7 +45,7 @@ tags: ["네트워크"]
 
 * 과거) 이전에 웹사이트를 만든다고 하면 이런 구조였다.
 
-![](/assets/img/network/network_cors_2_sop_structure.png){: width="400"}
+<img src="/assets/img/network/network_cors_2_sop_structure.png" alt="" width="400" />
 
 * 유저가 웹 브라우저 주소칭에 주소값을 입력을 하면 해당하는 서버로 요청이 보내진다.
 
@@ -57,7 +57,7 @@ tags: ["네트워크"]
 
 * 하지만, 시간이 지남에 따라 웹사이트에서 할 수 있는 일이 많아졌다.
 
-* 단순히 문서작성 뿐만 아니라 무언가 어플리케이션을 만들기 시작했고 그러한 상황들이 많아지다 보니, 기존 웹브라우저 보안 정책에 대해 불편한 점들이 조금씩 생기기 시작했다.
+* 단순히 문서작성 뿐만 아니라 무언가 애플리케이션을 만들기 시작했고 그러한 상황들이 많아지다 보니, 기존 웹브라우저 보안 정책에 대해 불편한 점들이 조금씩 생기기 시작했다.
 
 * 그래서 결국엔 웹브라우저에서 공식적인 루트를 열어준 것이 바로 `CORS`다.
 
@@ -73,7 +73,7 @@ tags: ["네트워크"]
 
 * 그런 다음 브라우저는 스크립트가 응답에 액세스하는 것을 허용하거나 금지하여 이를 실행한다.
 
-![](/assets/img/network/network_cors_3_structure.png){: width="400"}
+<img src="/assets/img/network/network_cors_3_structure.png" alt="" width="400" />
 
 * 일반적으로 이 CORS 세팅을 직접 할 일은 거의 없고, 웹 프론트엔드에서 요청 넣을 때 CORS 옵션만 넣어주면 요청 헤더까지 알아서 다 넣어준다.
 
@@ -83,7 +83,7 @@ tags: ["네트워크"]
 
 * 조금 특별한 점이 있다면, 다음 그림처럼 HTTP OPTION 메소드이다.
 
-![](/assets/img/network/network_cors_4_http_option_method.png){: width="500"}
+<img src="/assets/img/network/network_cors_4_http_option_method.png" alt="" width="500" />
 
 * 크로스 도메인 요청을 보내는 작업은 `2번` 보내게 된다(Client -> Server)
 
@@ -97,7 +97,7 @@ tags: ["네트워크"]
 
 ### 1. 간단한 요청(Simple Requests)
 
-![](/assets/img/network/network_cors_5_simple_requests.png){: width="600"}
+<img src="/assets/img/network/network_cors_5_simple_requests.png" alt="" width="600" />
 
 * 이미지에 있는 내용을 설명하면 이렇다.
 
@@ -136,7 +136,7 @@ Access-Control-Allow-Origin: *
 
 ### 2. 프리플라이트 요청(Preflighted requests)
 
-![](/assets/img/network/network_cors_6_preflighted_requests.png){: width="600"}
+<img src="/assets/img/network/network_cors_6_preflighted_requests.png" alt="" width="600" />
 
 * 실제 요청을 보내기 전에 브라우저는 이러한 유형의 요청을 허용하는지 서버에 확인하는 요청이다. 
 

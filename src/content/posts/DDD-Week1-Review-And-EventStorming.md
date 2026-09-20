@@ -45,7 +45,7 @@ tags: ["후기"]
 
 * [[kakao tech] 추천팀의 DDD 도입기](https://tech.kakao.com/posts/555)
 
-* [[Youtubr] ㄷㄷㄷ: Domain Driven Design과 적용 사례공유 / if(kakao)2022](https://www.youtube.com/watch?v=4QHvTeeTsj0&ab_channel=kakaotech)
+* [[YouTube] ㄷㄷㄷ: Domain Driven Design과 적용 사례공유 / if(kakao)2022](https://www.youtube.com/watch?v=4QHvTeeTsj0&ab_channel=kakaotech)
 
 
 ---
@@ -202,7 +202,7 @@ tags: ["후기"]
 
 선릉역에 있는 우아한 테크코스에서 오후 2시부터 6시까지 약 4시간 동안 진행했는데, 여기는 글또 10기 백엔드/인프라 반상회때도 온 적이 있어서 친숙한 공간이기도 했다.
 
-![](/assets/img/technology/DDD-Week1-Review-And-EventStorming-1.png){: width="500"}
+<img src="/assets/img/technology/DDD-Week1-Review-And-EventStorming-1.png" alt="" width="500" />
 
 해당 오프라인 모임을 진행하기 전에 재성님이 슬랙에 해당 주제와 비슷한 영상을 추천해 주셔서 필자는 미리 보고 왔다.
 
@@ -210,7 +210,7 @@ tags: ["후기"]
 
 * [KCD 2020 [Track 2] 도메인 지식 탐구를 위한 이벤트 스토밍 Event Storming](https://www.youtube.com/watch?v=hUcpv5fdCIk&ab_channel=OpenUP-오픈업)
 
-![](/assets/img/technology/DDD-Week1-Review-And-EventStorming-2.png){: width="500"}
+<img src="/assets/img/technology/DDD-Week1-Review-And-EventStorming-2.png" alt="" width="500" />
 
 필자는 `이벤트 스토밍`을 위의 영상을 이전에도 봤고 실제로 3번 정도 적용한 경험이 있어서 그런지, 4시간이면 충분히 할 수 있겠다라는 생각이 들었다.
 
@@ -310,7 +310,7 @@ tags: ["후기"]
 
 * [[kakao tech] 추천팀의 DDD 도입기](https://tech.kakao.com/posts/555)
 
-* [[Youtubr] ㄷㄷㄷ: Domain Driven Design과 적용 사례공유 / if(kakao)2022](https://www.youtube.com/watch?v=4QHvTeeTsj0&ab_channel=kakaotech)
+* [[YouTube] ㄷㄷㄷ: Domain Driven Design과 적용 사례공유 / if(kakao)2022](https://www.youtube.com/watch?v=4QHvTeeTsj0&ab_channel=kakaotech)
 
 > 이벤트 스토밍 관련 참고 자료
 
