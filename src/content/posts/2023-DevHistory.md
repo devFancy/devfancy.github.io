@@ -3,7 +3,6 @@ title: "2023 Dev History"
 date: 2023-01-01
 categories: ["회고"]
 tags: ["개발기록"]
-thumbnail: /assets/img/retrospective/cover/swiss-alps.jpg
 ---
 
 > 2023 Dev History

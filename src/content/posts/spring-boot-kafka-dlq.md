@@ -3,6 +3,7 @@ title: "시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기"
 date: 2026-01-06
 categories: ["서버"]
 tags: ["Kafka"]
+thumbnail: /assets/img/server/cover/mail-slots.jpg
 ---
 
 > 모든 기술 선택에는 트레이드오프가 존재합니다.

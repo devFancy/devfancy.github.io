@@ -28,14 +28,25 @@ fs.mkdirSync(OUT, { recursive: true });
 
 const files = fs.readdirSync(POSTS).filter((f) => f.endsWith('.md'));
 const wanted = new Map(); // 출력 파일명 -> 원본 경로
+const missing = [];
 for (const f of files) {
   const raw = fs.readFileSync(path.join(POSTS, f), 'utf8');
   const src = raw.match(FRONT_THUMB)?.[1];
   if (!src) continue;
   const pos = raw.match(FRONT_POS)?.[1] ?? 'center';
   const abs = path.join(PUBLIC, decodeURIComponent(src));
-  if (!fs.existsSync(abs)) continue;
+  /* NOTE 적어 둔 사진이 없으면 커버 없이 나간다. 깨진 그림이 뜨지는 않지만 조용히 사라지므로 알린다
+   * - 사진 파일을 지우고 프론트매터를 안 고치면 여기에 걸린다
+   */
+  if (!fs.existsSync(abs)) {
+    missing.push(`${f} -> ${src}`);
+    continue;
+  }
   wanted.set(`${f.replace(/\.md$/, '')}.webp`, { abs, pos });
+}
+if (missing.length) {
+  console.warn(`[대표 이미지] 사진을 찾지 못해 건너뜁니다 (${missing.length}건)`);
+  for (const m of missing) console.warn(`  ${m}`);
 }
 
 let made = 0, kept = 0, failed = 0, bytesIn = 0, bytesOut = 0;
