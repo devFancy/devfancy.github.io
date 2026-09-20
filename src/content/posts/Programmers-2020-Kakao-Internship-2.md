@@ -2,7 +2,7 @@
 title: "[Programmers] 수식 최대화(dfs, 순열)"
 date: 2023-11-09
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/67257)

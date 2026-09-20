@@ -1,8 +1,8 @@
 ---
 title: "[Programmers] SQL > JOIN 풀이 모음"
 date: 2023-12-27
-categories: ["CS"]
-tags: ["SQL"]
+categories: ["알고리즘"]
+tags: ["SQL", "프로그래머스"]
 ---
 
 ## 상품 별 오프라인 매출 구하기(Lv.2)

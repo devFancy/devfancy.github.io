@@ -2,7 +2,7 @@
 title: "왜 개발자를 선택했는가"
 date: 2023-01-29
 categories: ["기타"]
-tags: ["기타"]
+tags: ["커리어"]
 ---
 
 ## Prologue

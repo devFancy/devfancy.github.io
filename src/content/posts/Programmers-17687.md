@@ -2,7 +2,7 @@
 title: "[Programmers] 17687. [3차] n진수 게임"
 date: 2023-03-24
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17687)

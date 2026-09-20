@@ -2,7 +2,7 @@
 title: "[백준] 2644번. 촌수계산(DFS)"
 date: 2023-11-30
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/2644)

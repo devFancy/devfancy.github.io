@@ -2,7 +2,7 @@
 title: "[Programmers] 131704. 택배상자"
 date: 2023-10-23
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/131704#)

@@ -2,7 +2,7 @@
 title: "[solved.ac] Class3++ 11724. 연결 요소의 개수(DFS)"
 date: 2023-11-28
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/11724)

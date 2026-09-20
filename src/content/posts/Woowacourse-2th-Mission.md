@@ -1,7 +1,7 @@
 ---
 title: "[BE] 2주차 미션 회고 (숫자 야구 게임)"
 date: 2022-12-13
-categories: ["프로젝트"]
+categories: ["서버"]
 tags: ["우아한테크코스"]
 ---
 

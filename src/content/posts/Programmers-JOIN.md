@@ -2,7 +2,7 @@
 title: "[Programmers] SQL > Join 풀이 모음"
 date: 2023-03-15
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 ## 구분

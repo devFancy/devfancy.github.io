@@ -1,7 +1,7 @@
 ---
 title: "[BE] 4주차 미션 회고 (다리 건너기)"
 date: 2022-12-14
-categories: ["프로젝트"]
+categories: ["서버"]
 tags: ["우아한테크코스"]
 ---
 

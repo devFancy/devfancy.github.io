@@ -2,7 +2,7 @@
 title: "[solved.ac] Class3++ 1012. 유기농 배추"
 date: 2023-12-04
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/1012)

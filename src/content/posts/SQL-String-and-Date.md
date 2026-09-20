@@ -1,8 +1,8 @@
 ---
 title: "[Programmers] SQL > String, Date 풀이 모음"
 date: 2023-12-22
-categories: ["CS"]
-tags: ["SQL"]
+categories: ["알고리즘"]
+tags: ["SQL", "프로그래머스"]
 ---
 
 ## 자동차 대여 기록에서 장기/단기 대여 구분하기(Lv.1)

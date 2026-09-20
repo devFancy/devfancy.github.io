@@ -49,7 +49,7 @@ use_math: true
 
 * 시간이 많이 소요될 수 있고 표본이 편중될 가능성을 완전히 배제할 수 없음
   
-![](/assets/img/bs/bs-sampling-methods-and-central-limit-theorem_1.png){: width="300"}
+![](/assets/img/business-statistics/bs-sampling-methods-and-central-limit-theorem_1.png){: width="300"}
 
 
 ### 체계적 추출법(Systematic Random Sampling)
@@ -58,7 +58,7 @@ use_math: true
 
 * 주기성(periodicity)의 문제가 있을 수 있음
 
-![](/assets/img/bs/bs-sampling-methods-and-central-limit-theorem_2.png){: width="300"}
+![](/assets/img/business-statistics/bs-sampling-methods-and-central-limit-theorem_2.png){: width="300"}
 
 
 ### 층화 추출법(Stratified random sampling)
@@ -67,7 +67,7 @@ use_math: true
 
 * 각 층내에서는 기본 단위 특성이 균일하고, 층 별로는 차이가 클 때 사용
 
-![](/assets/img/bs/bs-sampling-methods-and-central-limit-theorem_3.png){: width="300"}
+![](/assets/img/business-statistics/bs-sampling-methods-and-central-limit-theorem_3.png){: width="300"}
 
 * 전체 대비 각 계층에 속한 **모집단 수의 비율**을 구함
 
@@ -93,7 +93,7 @@ use_math: true
 
 * 예시) 미국 광역시카고의 12개 카운티에 거주하는 주민들의 의견조사
 
-![](/assets/img/bs/bs-sampling-methods-and-central-limit-theorem_4.png){: width="300"}
+![](/assets/img/business-statistics/bs-sampling-methods-and-central-limit-theorem_4.png){: width="300"}
 
 * 모집단이 넓은 지역에 퍼져있는 경우 효율적 표본 추출 방법이 될 수 있음
 
@@ -130,7 +130,7 @@ use_math: true
 
 * n이 증가하면 표준오차가 작아져 표본분포가 좁아지게 된다.
 
-![](/assets/img/bs/bs-sampling-methods-and-central-limit-theorem_5.png){: width="300"}
+![](/assets/img/business-statistics/bs-sampling-methods-and-central-limit-theorem_5.png){: width="300"}
 
 
 ## 중심극한정리(Central Limit Theorem, CLT)

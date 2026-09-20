@@ -1,8 +1,8 @@
 ---
 title: "[Hibit] Swagger에서 Spring Rest docs로 전환하기: 이유, 개념, 그리고 적용 가이드"
 date: 2024-02-28
-categories: ["프로젝트", "서버"]
-tags: ["사이드프로젝트", "Spring Boot"]
+categories: ["서버"]
+tags: ["Spring Boot"]
 ---
 
 > 이 글은 실제 [히빗 프로젝트(ver.2)](https://github.com/hibit-team/hibit-backend-improved)를 혼자서 개발하면서 경험한 내용을 정리한 글입니다.

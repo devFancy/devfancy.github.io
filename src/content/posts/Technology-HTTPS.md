@@ -1,8 +1,8 @@
 ---
 title: "왜 HTTPS를 사용하나요?"
 date: 2023-11-14
-categories: ["서버"]
-tags: ["기술"]
+categories: ["CS"]
+tags: ["네트워크"]
 ---
 
 ## HTTPS를 사용하는 이유

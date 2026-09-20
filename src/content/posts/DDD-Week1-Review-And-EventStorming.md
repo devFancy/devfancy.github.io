@@ -2,7 +2,7 @@
 title: "DDD 세레나데 7기 1주차 (feat. 이벤트 스토밍)"
 date: 2025-02-02
 categories: ["서버"]
-tags: ["기술"]
+tags: ["후기"]
 ---
 
 > 이번 글은 [DDD 세레나데 7기](https://edu.nextstep.camp/c/GwN2MSqv)의 1주차에 대한 필자의 자극히 개인적인 후기입니다. 혹시 문제가 되는 부분이 있다면, 언제든 말씀해 주시면 감사하겠습니다. ☺️

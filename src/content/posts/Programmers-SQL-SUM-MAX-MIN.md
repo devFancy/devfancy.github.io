@@ -1,8 +1,8 @@
 ---
 title: "[Programmers] SQL > SUM, MAX, MIN 풀이 모음"
 date: 2023-03-05
-categories: ["CS"]
-tags: ["SQL"]
+categories: ["알고리즘"]
+tags: ["SQL", "프로그래머스"]
 ---
 
   

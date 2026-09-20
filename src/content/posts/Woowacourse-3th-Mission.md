@@ -1,7 +1,7 @@
 ---
 title: "[BE] 3주차 미션 회고 (로또 게임)"
 date: 2022-12-14
-categories: ["프로젝트"]
+categories: ["서버"]
 tags: ["우아한테크코스"]
 ---
 

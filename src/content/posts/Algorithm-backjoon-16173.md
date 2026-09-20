@@ -2,7 +2,7 @@
 title: "[백준] 16173. 점프왕 쩰리 (Small)"
 date: 2023-12-12
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/16173)

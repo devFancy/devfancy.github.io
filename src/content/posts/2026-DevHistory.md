@@ -14,10 +14,6 @@ tags: ["개발기록"]
 
 ## Plan
 
-* [2026 Plan Note](https://gist.github.com/devFancy/c6724b137755ac8c655008469d9e32e8)
-
-<script src="https://gist.github.com/devFancy/c6724b137755ac8c655008469d9e32e8.js"></script>
-
 
 > 서버 개발과 관련된 책 또는 강의
 

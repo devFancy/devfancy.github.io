@@ -2,7 +2,7 @@
 title: "[Programmers] 12919. 서울에서 김서방 찾기"
 date: 2023-01-10
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12919)

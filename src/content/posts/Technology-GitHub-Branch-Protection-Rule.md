@@ -1,8 +1,8 @@
 ---
 title: "GitHub에 올라간 Branch에 Protection Rule 적용하기"
 date: 2023-02-05
-categories: ["서버"]
-tags: ["기술"]
+categories: ["도구"]
+tags: ["Git"]
 ---
 
 ## Prologue

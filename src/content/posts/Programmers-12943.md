@@ -2,7 +2,7 @@
 title: "[Programmers] 12943. 콜라츠 추측"
 date: 2023-01-10
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12943)

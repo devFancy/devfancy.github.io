@@ -2,7 +2,7 @@
 title: "[Programmers] [1차] 프렌즈4블록(2018 카카오 블라인드)"
 date: 2023-11-27
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/17679)

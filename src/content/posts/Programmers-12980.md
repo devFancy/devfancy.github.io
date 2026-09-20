@@ -2,7 +2,7 @@
 title: "[Programmers] 12980. 점프와 순간 이동"
 date: 2023-02-06
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12980)

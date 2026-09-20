@@ -2,7 +2,7 @@
 title: "[Programmers] 64065. 튜플"
 date: 2023-02-10
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/64065)

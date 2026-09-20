@@ -2,7 +2,7 @@
 title: "[Programmers] 42584. 주식가격"
 date: 2023-04-01
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/42584)

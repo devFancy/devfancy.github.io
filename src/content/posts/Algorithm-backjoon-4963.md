@@ -2,7 +2,7 @@
 title: "[백준] 4963. 섬의 개수"
 date: 2023-12-05
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["백준"]
 ---
 
 [문제 링크](https://www.acmicpc.net/problem/4963)

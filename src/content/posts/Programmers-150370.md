@@ -2,7 +2,7 @@
 title: "[Programmers] 150370. 개인정보 수집 유효기간"
 date: 2023-10-05
 categories: ["알고리즘"]
-tags: ["알고리즘"]
+tags: ["프로그래머스"]
 ---
 
 [문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/150370)

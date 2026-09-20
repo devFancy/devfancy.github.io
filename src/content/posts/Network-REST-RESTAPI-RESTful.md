@@ -1,8 +1,8 @@
 ---
 title: "REST, REST API, RESTful"
 date: 2023-02-18
-categories: ["서버"]
-tags: ["기술"]
+categories: ["CS"]
+tags: ["네트워크"]
 ---
 
 ## REST

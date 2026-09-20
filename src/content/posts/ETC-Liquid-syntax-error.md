@@ -2,7 +2,7 @@
 title: "[Jekyll] 에서 Liquid syntax error 처리하는 방법"
 date: 2023-02-10
 categories: ["기타"]
-tags: ["기타"]
+tags: ["블로그"]
 ---
 
 알고리즘 문제를 풀고 업로드를 하는데, `{{` 또는 `}}`를 사용하면 다음과 같은 에러를 발생시킨다.

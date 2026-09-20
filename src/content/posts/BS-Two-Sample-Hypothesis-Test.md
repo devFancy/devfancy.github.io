@@ -42,7 +42,7 @@ use_math: true
 
 * 단계3: 검정통계량 선택 → z or t
 
-![](/assets/img/bs/bs-two-sample-hypothesis-test.png){: width="600"}
+![](/assets/img/business-statistics/bs-two-sample-hypothesis-test.png){: width="600"}
 
 * 단계4: 임계값 및 기각영역 결정 → 기각값:  $\alpha$에 해당하는 z값 또는 t값 , 기각영역: 기각값이 결정
 
