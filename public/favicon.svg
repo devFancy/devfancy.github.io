@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- 로고보다 한 단계 밝은 파랑. 탭에서 또렷하게 보이는 쪽을 택했다 -->
+  <rect width="64" height="64" rx="13" fill="#1d73ad"/>
+  <g fill="none" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M41 13 L51 23 L27 47 L15 49 L17 37 Z"/>
+    <path d="M15 49 L21 43"/>
+  </g>
+</svg>

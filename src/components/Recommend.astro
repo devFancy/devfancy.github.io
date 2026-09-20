@@ -1,0 +1,34 @@
+---
+/* NOTE 기존 Jekyll previousAndNext.html 의 Recommend 를 대체한다
+ * - 카테고리가 겹치는 최신 글 3개. 없으면 섹션을 그리지 않는다
+ */
+import { getCollection } from 'astro:content';
+
+interface Props {
+  currentId: string;
+  categories: string[];
+}
+const { currentId, categories } = Astro.props;
+const mine = new Set(categories);
+
+const related = (await getCollection('posts', ({ data }) => !data.draft))
+  .filter((p) => p.id !== currentId && p.data.categories.some((c) => mine.has(c)))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+{related.length > 0 && (
+  <section class="mt-16 border-t border-rule pt-8">
+    <h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2>
+    <ul class="mt-4">
+      {related.map((p) => (
+        <li class="border-b border-rule py-4 first:border-t">
+          <a href={`/${p.id}/`} class="leading-snug hover:text-accent">{p.data.title}</a>
+          <time datetime={p.data.date.toISOString().slice(0, 10)}
+            class="mt-1.5 block text-sm text-muted">
+            {p.data.date.toISOString().slice(0, 10)}
+          </time>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

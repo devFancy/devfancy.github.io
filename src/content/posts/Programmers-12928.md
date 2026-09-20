@@ -1,0 +1,34 @@
+---
+title: "[Programmers] 12928. 약수의 합"
+date: 2023-01-07
+categories: ["알고리즘"]
+tags: ["프로그래머스"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12928)
+
+### 성능 요약
+
+메모리: 74 MB, 시간: 0.06ms
+
+### 구분
+
+코딩테스트 연습 > 연습문제
+
+### Answer Code(2023.01.07)
+
+``` java
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+
+        for(int i = 1; i <= n; i++) {
+            if(n % i == 0) {
+                answer += i;
+            }
+        }
+        return answer;
+    }
+}
+```
+

@@ -1,0 +1,37 @@
+---
+/* NOTE 외부 아이콘 CDN 대신 인라인 SVG 를 쓴다 [외부 의존 제거]
+ * - 이모지는 플랫폼마다 모양이 달라 통일감이 깨진다
+ * - 경로에 뚫린 구멍이 있어 fill-rule 은 evenodd 여야 한다
+ */
+import { SOCIAL } from '../config';
+
+interface Props {
+  size?: number;
+}
+const { size = 20 } = Astro.props;
+
+const PATHS: Record<string, string> = {
+  GitHub:
+    'M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z',
+  Mail: 'M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z',
+};
+---
+{/* NOTE: 아이콘이 없는 항목은 빈 사각형으로 나가므로 아예 뺀다 */}
+<ul class="flex items-center gap-3.5">
+  {SOCIAL.filter((s) => PATHS[s.name]).map((s) => (
+    <li>
+      {/* NOTE: mailto 를 새 탭으로 열면 메일 앱이 뜬 자리에 빈 탭이 남는다 */}
+      <a
+        href={s.url}
+        target={s.url.startsWith('http') ? '_blank' : undefined}
+        rel={s.url.startsWith('http') ? 'me noopener noreferrer' : undefined}
+        aria-label={s.name}
+        class="inline-flex items-center justify-center text-muted hover:text-accent"
+      >
+        <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d={PATHS[s.name]} />
+        </svg>
+      </a>
+    </li>
+  ))}
+</ul>

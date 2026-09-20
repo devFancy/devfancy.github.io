@@ -1,0 +1,71 @@
+---
+title: "[Programmers] 67256. 키패드 누르기"
+date: 2023-01-29
+categories: ["알고리즘"]
+tags: ["프로그래머스"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/67256)
+
+### 성능 요약
+
+메모리: 74.3 MB, 시간: 0.27 ms
+
+### 구분
+
+코딩테스트 연습 > 2022 KAKAO BLIND RECRUITMENT
+
+### Answer Code1(23.01.29)
+
+```java
+class Solution {
+  public String solution(int[] numbers, String hand) {
+    StringBuilder sb = new StringBuilder();
+
+    int left = 10;
+    int right = 12;
+
+    for (int i = 0; i < numbers.length; i++) {
+      int n = numbers[i];
+
+      if (n == 1 || n == 4 || n == 7) {
+        left = n;
+        sb.append("L");
+      }
+      if (n == 3 || n == 6 || n == 9) {
+        right = n;
+        sb.append("R");
+      }
+      if (n == 2 || n == 5 || n == 8 || n == 0) {
+        if( n == 0 ) n = 11;
+
+        int leftDiff = (Math.abs(n - left) / 3) + (Math.abs(n - left) % 3);
+        int rightDiff =(Math.abs(n - right) / 3) + (Math.abs(n - right) % 3);
+
+        if (leftDiff == rightDiff) {
+          if (hand.equals("right")) {
+            right = n;
+            sb.append("R");
+          }else{
+            left = n;
+            sb.append("L");
+          }
+        } else if (leftDiff > rightDiff) {
+          right = n;
+          sb.append("R");
+        } else {
+          left = n;
+          sb.append("L");
+        }
+      }
+    }
+    return sb.toString();
+  }
+}
+```
+
+## Review
+
+* StringBuilder() 클래스와 Math 클래스에 대해 다시금 개념을 복습하게 핸 문제였다.
+
+* 다음 복습에는 조금 더 효율적이면서 깔끔한 코드를 만드는 것을 목표로 하자.

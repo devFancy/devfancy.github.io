@@ -1,0 +1,58 @@
+# NOTE Astro 를 빌드해 GitHub Pages 로 올린다
+# - 저장소 설정 Pages -> Source 가 "GitHub Actions" 여야 동작한다
+# - 이미지가 586MB 라 체크아웃과 업로드가 느리다. 타임아웃을 넉넉히 둔다
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 배포는 한 번에 하나만 돈다. 진행 중인 배포는 끝까지 보낸다
+# - 중간에 끊으면 Pages 가 반쯤 올라간 상태로 남을 수 있다
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # 한글 파일명이 깨지지 않도록 로케일을 고정한다 [로케일 고정]
+      LC_ALL: en_US.UTF-8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # 빌드 전에 막는다. 배포한 뒤 깨진 것을 발견하면 늦다
+      - run: npm run lint
+      - run: npm run check
+
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

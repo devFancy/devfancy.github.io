@@ -1,0 +1,43 @@
+---
+import type { MarkdownHeading } from 'astro';
+import Base from './Base.astro';
+import Chip from '../components/Chip.astro';
+import Recommend from '../components/Recommend.astro';
+import Toc from '../components/Toc.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  date: Date;
+  categories: string[];
+  tags: string[];
+  useMath: boolean;
+  headings: MarkdownHeading[];
+  description?: string;
+}
+const { id, title, date, categories, tags, useMath, headings, description } = Astro.props;
+const iso = date.toISOString().slice(0, 10);
+---
+<Base title={title} description={description} useMath={useMath}>
+  {/* NOTE: grid-cols-1 이 없으면 lg 미만에서 트랙이 auto 로 잡혀 코드블록 폭만큼 늘어난다 */}
+  <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-10 lg:grid-cols-[minmax(0,1fr)_15rem]">
+    {/* NOTE: justify-self를 쓰면 아이템 폭이 max-content가 되어 트랙을 넘는다. ml-auto로 민다 */}
+    <article class="min-w-0 lg:ml-auto lg:max-w-3xl">
+      <h1 class="text-[26px] leading-snug text-balance sm:text-4xl">{title}</h1>
+      <time datetime={iso} class="mt-3 block text-base text-muted">{iso}</time>
+      <div class="mt-3 flex flex-wrap gap-2">
+        {categories.map((c) => <Chip value={c} />)}
+        {tags.map((t) => <Chip value={t} kind="tag" />)}
+      </div>
+      <div class="prose mt-10"><slot /></div>
+      <Recommend currentId={id} categories={categories} />
+    </article>
+
+    <aside class="hidden lg:block">
+      {/* NOTE: 헤더가 fixed 라 그 높이(약 68px)만큼 비켜야 가려지지 않는다 */}
+      <div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto">
+        <Toc headings={headings} />
+      </div>
+    </aside>
+  </div>
+</Base>

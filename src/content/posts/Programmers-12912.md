@@ -1,0 +1,57 @@
+---
+title: "[Programmers] 12912. 두 정수 사이의 합"
+date: 2023-01-10
+categories: ["알고리즘"]
+tags: ["프로그래머스"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12912)
+
+### 성능 요약
+
+메모리: 78.2 MB, 시간: 0.12 ms - Answer Code1(23.01.10)
+메모리: 81.7 MB, 시간: 0.14 ms - Answer Code2(23.01.20)
+
+### 구분
+
+코딩테스트 연습 > 연습문제
+
+### Answer Code1(23.01.10)
+
+``` java
+class Solution {
+    public long solution(int a, int b) {
+        long answer = 0;
+        if(a < b) {
+            for(int i = a; i <= b; i++) {
+                answer += i;
+            }
+        } else if(a > b){
+            for(int i = b; i <= a; i++) {
+                answer += i;
+            }
+        } else {
+            answer = a;
+        }
+        return answer;
+    }
+}
+```
+
+### Answer Code2(23.01.20)
+
+``` java
+class Solution {
+  public long solution(int a, int b) {
+      long answer = 0;
+      if(a!=b){
+          for(int i=Math.min(a,b);i<=Math.max(a,b);i++){
+              answer+=i;
+          }
+      }else{
+          answer=a;
+      }
+      return answer;
+  }
+}
+```

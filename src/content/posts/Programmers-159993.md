@@ -1,0 +1,227 @@
+---
+title: "[Programmers] 159993. 미로탈출 (BFS)"
+date: 2023-12-16
+categories: ["알고리즘"]
+tags: ["프로그래머스"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/159993)
+
+## 성능 요약
+
+* 메모리: 78.4 MB, 시간: 0.56 ms - 23.10.24
+
+* 메모리: 82.6 MB, 시간: 0.35 ms - 23.12.16
+
+## 구분
+
+* 코딩테스트 연습 > 연습문제 > 미로탈출(BFS)
+
+## Answer Code1(23.10.24)
+
+```java
+import java.util.*;
+
+class Solution {
+
+    static int[] dRow = {-1, 1, 0, 0}; // 행 기준 - 상,하,좌,우 (좌우로의 이동은 y좌표에 변화가 없으므로 0)
+    static int[] dCol = {0, 0, -1, 1}; // 열 기준 - 상,하,좌,우 (상하로의 이동은 x좌표에 변화가 없으므로 0)
+    static int[] lever = new int[2];
+
+    public int solution(String[] maps) {
+        int answer = 0;
+
+        // 탐색을 위한 2차원 배열과 방문 배열 초기화
+        String[][] map = new String[maps.length][maps[0].length()];
+        boolean[][] visited = new boolean[maps.length][maps[0].length()];
+        int[] start = new int[2];
+
+        // 2차원 배열을 만들며 최초 시작 위치 탐색
+        for(int i = 0; i < maps.length; i++) {
+            String[] temp = maps[i].split("");
+            map[i] = temp;
+            for(int j = 0; j < temp.length; j++) {
+                if(temp[j].equals("S")) {
+                    start[0] = i;
+                    start[1] = j;
+                }
+            }
+        }
+
+        // 레버까지 BFS 탐색
+        int first = bfs(map, visited, start, "L");
+        if(first == -1) {
+            return -1;
+        }
+
+        // 탈출지점까지 BFS 탐색
+        visited = new boolean[maps.length][maps[0].length()];
+        int second = bfs(map, visited, lever, "E");
+        if(second == -1) {
+            return -1;
+        }
+
+        answer = first + second;
+        return answer;
+    }
+
+    public int bfs(String[][] map, boolean[][] visited, int[] start, String target) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{start[0], start[1], 0}); // 현재 행, 현재 열, 이동 횟수
+        visited[start[0]][start[1]] = true;
+
+        while(!queue.isEmpty()) {
+            int[] temp = queue.poll();
+            int currentRow = temp[0];
+            int currentCol = temp[1];
+            int cnt = temp[2];
+
+            for(int i = 0; i < 4; i++) {
+                int newRow = currentRow + dRow[i];
+                int newCol = currentCol + dCol[i];
+                if(newRow >= 0 && newRow < map.length && newCol >= 0 && newCol < map[0].length) {
+                    if(map[newRow][newCol].equals(target)) {
+                        lever[0] = newRow;
+                        lever[1] = newCol;
+                        return cnt + 1;
+                    }
+                    if(!map[newRow][newCol].equals("X") && !visited[newRow][newCol]) {
+                        visited[newRow][newCol] = true;
+                        queue.add(new int[]{newRow, newCol, cnt + 1});
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+}
+```
+
+## Answer Code2(23.12.16)
+
+```java
+import java.util.*;
+import java.io.*;
+// 미로탈출
+class Solution {
+    static int[] dRow = {-1, 1, 0, 0};
+    static int[] dCol = {0, 0, -1, 1};
+    static int[] lever = new int[2];
+
+    public int bfs(String[][] map, boolean[][] visited, int[] start, String target) {
+        visited[start[0]][start[1]] = true;
+
+        Queue<int[]> queue = new LinkedList<>();
+        // 현재 행, 현재 열, 이동 횟수
+        queue.add(new int[]{start[0], start[1], 0}); 
+
+        while (!queue.isEmpty()) {
+            int[] temp = queue.poll();
+            int curRow = temp[0];
+            int curCol = temp[1];
+            int count = temp[2];
+
+            for(int i = 0; i < 4; i++) {
+                int nextRow = curRow + dRow[i];
+                int nextCol = curCol + dCol[i];
+                if(nextRow >= 0 && nextRow < map.length
+                && nextCol >= 0 && nextCol < map[0].length) {
+                    if(map[nextRow][nextCol].equals(target)) {
+                        lever[0] = nextRow;
+                        lever[1] = nextCol;
+                        return count + 1;
+                    }
+                    if(!map[nextRow][nextCol].equals("X")
+                    && visited[nextRow][nextCol] == false) {
+                        visited[nextRow][nextCol] = true;
+                        queue.add(new int[]{nextRow, nextCol, count + 1});
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
+    public int solution(String[] maps) {
+        // 0. 입력 및 초기화
+        int answer = 0;
+        
+        String[][] map = new String[maps.length][maps[0].length()];
+        boolean[][] visited = new boolean[maps.length][maps[0].length()];
+        for(int i = 0; i < maps.length; i++) {
+            for(int j = 0; j < maps[0].length(); j++) {
+                visited[i][j] = false;
+            }
+        }
+        int[] start = new int[2];
+
+        // 1. 연결정보 채우기 - 2차원 배열을 만들며 최초 시작 위치 탐색 후 저장
+        for(int i = 0; i < maps.length; i++) {
+            String[] temp = maps[i].split("");
+            map[i] = temp;
+            for(int j = 0; j < temp.length; j++) {
+                if(temp[j].equals("S")) {
+                    start[0] = i;
+                    start[1] = j;
+                }
+            }
+        }
+
+        // 2-1. 레버까지 BFS 탐색
+        int first = bfs(map, visited, start, "L");
+        if(first == -1) { // 만약 레버를 발견하지 못했다면 -1을 return
+            return -1;
+        }
+
+        // 2-2. 탈출 지점까지 BFS 탐색
+        visited = new boolean[maps.length][maps[0].length()];
+        int second = bfs(map, visited, lever, "E");
+
+        // 3. 출력하기
+        if(second == -1 ) { // 만약 탈출할 수 없다면 -1을 return
+            return -1;
+        }
+        answer = first + second;
+        return answer;
+    }
+}
+```
+
+### 문제 풀이(Answer Code1,2)
+
+> 문제 요약
+- 벽으로 된 칸은 지나갈 수 X, 통로로 된 칸만 이동 가능
+- 통로들 중 한 칸에는 미로를 빠져나가는 문이 있음 -> 이 문은 레버를 당겨서만 열 수 있음
+- 레버가 있는 칸으로 이동 -> 레버를 당긴 후 미로를 빠져나가는 문이 있는 칸으로 이동
+- 레버를 당기지 않았더라도 출구가 있는 칸을 지나갈 수 있음
+- 결론은 주어진 미로에서 시작점(S)로 부터 레버(L)을 당기고 다시 탈출구(E)를 도달하는데 **최단 거리**를 구하는 문제다.
+
+> 로직 구성
+- 먼저 탈출을 하기 위해서는 레버까지 가야한다.
+- 레버까지 BFS를 통해 최단거리 탐색을 진행한다.
+- 레버에 도착하고 다시 한번 탈출지점까지 BFS 탐색을 한다.
+
+- 탈출 조건이 (시작 지점에서 레버에 도달 && 레버에서 탈출 지점까지 도달) 할때의 최소 시간을 return 해주고,
+- 이러한 조건이 만족하지 못하면 -1를 return 한다.
+
+## Review
+
+> 23.12.16
+
+* GPT가 "일반적으로 BFS가 `미로`, `최단 경로` 등을 찾는 데에 더 적합한 알고리즘이기 때문에 BFS를 선호합니다." 라고 해서
+
+    * BFS로 다시 풀었는데, 레버까지 가는 것과 탈출지점까지 가는 것을 분리해서 접근해서 풀었다.
+
+* 추가적으로 GPT에게 DFS와 BFS에 어떤 유형이 적합하는지 물어봤다.
+
+    * `DFS`는 **주로 트리나 그래프에 사용해서 특정 경로를 탐색하는 경우** 적합하고,
+
+    * `BFS`는 **최단 경로를 찾거나 인접한 노드들을 탐색하는 경우**에 적합하다고 답변했다. 
+
+* 지난 3주동안 `DFS` 기반으로 문제를 풀어서 `BFS`로 문제를 푸는 방식이 아직 서툴지만,
+
+    문제유형에 맞게 두가지 접근 방식을 계속적으로 사용해서 익숙해지자!
+
+## Reference
+
+- [[프로그래머스] 연습문제 > 미로탈출](https://rovictory.tistory.com/193)

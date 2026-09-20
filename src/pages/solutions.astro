@@ -1,0 +1,23 @@
+---
+/* NOTE 문제풀이 글을 모아 보여준다. 개별 글 URL 은 기존 플랫 슬러그 그대로다 [문제풀이 분리] */
+import { getCollection } from 'astro:content';
+import PostCard from '../components/PostCard.astro';
+import Base from '../layouts/Base.astro';
+import { SOLUTION_CATEGORIES } from '../config';
+
+const solution = new Set<string>(SOLUTION_CATEGORIES);
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .filter((p) => p.data.categories.some((c) => solution.has(c)))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<Base description={`문제풀이 ${posts.length}편`}>
+  <div class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="text-3xl tracking-tight">Solutions</h1>
+    <p class="mt-2 text-muted">총 {posts.length}개의 포스트가 있어요</p>
+    <div class="mt-8">
+      {posts.map((p) => (
+        <PostCard slug={p.id} title={p.data.title} date={p.data.date} categories={p.data.categories} />
+      ))}
+    </div>
+  </div>
+</Base>

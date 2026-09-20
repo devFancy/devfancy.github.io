@@ -1,0 +1,22 @@
+---
+// NOTE: 썸네일 없이 제목 -> 날짜 -> 칩 순으로 쌓는다 (Phase 2 시안 A)
+import Chip from './Chip.astro';
+
+interface Props {
+  slug: string;
+  title: string;
+  date: Date;
+  categories: string[];
+}
+const { slug, title, date, categories } = Astro.props;
+const iso = date.toISOString().slice(0, 10);
+---
+<article class="border-b border-rule py-5">
+  <h2 class="text-2xl leading-snug">
+    <a href={`/${slug}/`} class="hover:text-accent">{title}</a>
+  </h2>
+  <time datetime={iso} class="mt-2 block text-[15px] text-muted">{iso}</time>
+  <div class="mt-2 flex flex-wrap gap-2">
+    {categories.map((c) => <Chip value={c} />)}
+  </div>
+</article>

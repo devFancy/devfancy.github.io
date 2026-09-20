@@ -1,0 +1,54 @@
+---
+title: "[Programmers] 59409. 중성화 여부 파악하기(Lv.2) (String, Date)"
+date: 2023-02-24
+categories: ["알고리즘"]
+tags: ["SQL", "프로그래머스"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59409)
+
+## 성능 요약
+
+* 메모리: 0.0 MB, 시간: 0.00 ms
+
+## 구분
+
+* 코딩테스트 연습 > String, Date
+
+## Answer Code1(2023.02.24)
+
+```sql
+SELECT ANIMAL_ID, NAME, 
+IF((SEX_UPON_INTAKE LIKE "%Neutered%") OR (SEX_UPON_INTAKE LIKE "%Spayed%"), "O", "X")  AS "중성화" 
+FROM ANIMAL_INS 
+ORDER BY ANIMAL_ID;
+```
+
+## Answer Code2(2023.02.25)
+
+```sql
+SELECT ANIMAL_ID, NAME,
+CASE WHEN (SEX_UPON_INTAKE LIKE '%NEUTERED%' OR SEX_UPON_INTAKE LIKE '%SPAYED%') THEN 'O' ELSE 'X' END AS '중성화'
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID ASC
+```
+
+
+## 문제풀기 & Review
+
+* 동물의 아이디와 이름, 중성화 여부를 아이디 순으로 조회하는 중성화가 되어있다면 `O`, 아니라면 `X`라고 표시한다.
+  
+  * 중성화된 동물은 SEX_UPON_INTAKE 컬럼에 ‘Neutered’ 또는 ‘Spayed’라는 단어가 들어간다.
+  
+* **중성화되었는지 아닌지 파악**하는 경우 두 가지 방법으로 풀 수 있다.
+
+  * Answer Code1 - [1] **IF**문으로 해결한다.
+
+  * Answer Code2 - [2] **CASE-WHEN**문으로 해결한다.
+
+* 두 가지 문법에 대한 식을 제대로 몰랐기 때문에 구글링을 참고해서 풀었다.
+
+## Reference
+
+* [행궁동 데이터 엔지니어 - 중성화 여부 파악하기 with MySQL](https://mentha2.tistory.com/102)
+

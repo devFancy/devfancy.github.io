@@ -1,0 +1,407 @@
+---
+title: "[Programmers] 92341. 주차 요금 계산"
+date: 2023-03-12
+categories: ["알고리즘"]
+tags: ["프로그래머스"]
+---
+
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/92341)
+
+## 성능 요약
+
+* 메모리: 73.8 MB, 시간: 0.44 ms
+
+## 구분
+
+* 코딩테스트 연습 > 2022 KAKAO BLIND RECRUITMENT
+
+## Answer Code1(2023.03.12)
+
+```java
+/*
+    기본 시간 : 180분
+    기본 요금 : 5000(원)
+    단위 시간 : 10(분)
+    단위 요금 : 600(원)
+ */
+/*
+    fees[0] = 기본 시간(분)
+    fees[1] = 기본 요금(원)
+    fees[2] = 단위 시간(분)
+    fees[3] = 단위 요금(원)
+ */
+/*
+    `records`의 각 원소는 "시각 차량번호 내역" 형식의 문자열(공백으로 구분)
+    시각은 `HH:MM` 형식의 길이가 5인 문자열
+    차량번호는 자동차를 구분하기 위한, `0` ~ `9`로 구성된 길이 4인 문자열
+    내역은 `IN` 또는 `OUT`의 길이가 2 또는 3인 문자열
+    `records`의 원소들은 시각을 기준으로 오름차순으로 정렬됨
+    `records`는 하루 동안의 입/출차된 기록만 담고 있음. 
+    마지막 시각(23:59)에 입차되는 경우는 입력으로 주어지지 않음.
+ */
+
+import java.util.*;
+
+class Solution {
+  public int[] solution(int[] fees, String[] records) {
+
+    int std_time = fees[0];
+    int std_pay = fees[1];
+    int per_time = fees[2];
+    int per_pay = fees[3];
+
+    //key: 차량번호, value: 입장 시간
+    Map<Integer, Integer> map = new HashMap<>();
+    //key: 차량번호, value: 주차 요금
+    Map<Integer, Integer> result = new TreeMap<>();
+    // 주차기록 처리하기
+    for (String data : records) {
+      String[] temp = data.split(" ");
+      int time = cal_time(temp[0]);
+      int car_num = Integer.parseInt(temp[1]);
+      String state = temp[2];
+      if (state.equals("OUT")) {
+        int start = map.get(car_num);
+        int use_time = time - start;
+        if (result.containsKey(car_num)) {
+          int a = result.get(car_num);
+          use_time += a;
+        }
+        result.put(car_num, use_time);
+        map.remove(car_num);
+        continue;
+      }
+      map.put(car_num, time);
+    }
+
+    // 아직 안나간 차량 처리
+    for (int num : map.keySet()) {
+      Integer d = map.get(num);
+      d = d == null ? 0 : d;
+
+      int start = d.intValue();
+      int use_time = 1439 - start;
+
+      Integer e = result.get(num);
+      e = e == null ? 0 : e;
+
+      int total = e.intValue();
+
+      result.put(num, total + use_time);
+    }
+
+    // 출력하기
+    int[] answer = new int[result.size()];
+    int i = 0;
+    for (int data : result.keySet()) {
+      int time = result.get(data);
+
+      if (time <= std_time) {
+        time = std_pay;
+      } else {
+        time = std_pay + (int) Math.ceil((double) (time - std_time) / per_time) * per_pay;
+      }
+      answer[i] = time;
+      i++;
+    }
+
+    return answer;
+  }
+
+  public int cal_time(String time) {
+    String[] temp = time.split(":");
+    int hour = Integer.parseInt(temp[0]) * 60;
+    int min = Integer.parseInt(temp[1]);
+    return hour + min;
+  }
+}
+```
+
+### 문제 풀이 - Answer Code1
+
+> 문제 풀이에 도움을 주신 [류창](https://taehoung0102.tistory.com/156)님께 감사의 말씀 전합니다.
+
+출력 결과 : 차량 번호가 적은 자동차부터 청구할 주차 요금을 차례대로 정수 배열에 담아서 return 한다.
+
+목표 : 차량 기록을 모두 처리한 이후에 각 차량마다 주차요금을 구하는 문제 (차량 번호를 기준으로 오름차순한다)
+
+![](/assets/img/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_1.png)
+
+* [1] 기본 시간, 기본 요금, 단위 시간, 단위 요금을 보기 쉽게 분리하였다.
+
+    * 그런 다음, 2개의 Map을 준비했다.
+
+    * 차량 번호를 오름차순으로 정렬해야하기 때문에 TreeMap으로 설정했다.
+
+
+![](/assets/img/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_2.png)
+
+* [2] 주차 기록을 처리하는 로직이다.
+
+    * 기록의 문자열을 `time(시간)`, `car_num(차량 번호)`, `state(내역)` 으로 저장했다.
+
+    * 내역이 `OUT`이라면 Map에 저장된 차량 번호의 입차(입장 시간)을 가져와서 `나간 시간 - 입장 시간`을 계산하여 이용 시간을 저장한다.
+
+    * 이때, **Out 처리한 Map은 삭제**해야 한다.
+
+    * 상태가 `IN`이면 Map에 저장한다.
+
+
+![](/assets/img/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_3.png)
+
+* [3] 아직 안나간 차량을 처리하는 로직이다.
+
+    * `OUT` 기록이 없는, Map에 남아있는 차량을 처리해야 한다.
+
+    * `OUT` 기록이 없는 차량은 `나간 시간`을 **23:59**에 출차되었다고 간주한다.
+
+    * `23:59`분은 1439분이므로 `1439-입장 시간`으로 계산한다.
+
+    * 여기서 중요한 점은, **Map의 Integer은 Wrapper 클래스이므로, 산술하려면 int형으로 언박싱**해줘야한다. (`언박싱` : 래퍼 클래스의 인스턴스에 저장된 값을 기본 타입의 데이터로 꺼내는 과정)
+
+    * 언박싱 하는 이유 : Integer의 특징 중 하나가 값이 0인 것을 가져오면 `null`로 처리된다. -> 따라서 `null`을 `int`로 변환하면 **nullpointerEx** 오류가 발생한다.
+
+    * 그러므로 `null`을 `0`으로 치환한 뒤에 바꿔야한다.
+
+    * 마지막으로 result에 기록을 저장한다.
+
+
+![](/assets/img/programmers/%5BProgrammers%5D%2092341.%20주차%20요금%20계산_4.png)
+
+* [4] 출력하는 로직이다.
+
+    * 기본 시간 이하라면, 기본 요금으로 계산하고
+
+    * 기본 시간 초과라면, 초과된 만큼 요금을 계산하는데 다음과 같은 공식으로 계산한다.
+
+    * 공식 : 기본요금 + 올림[시간-기본 시간/단위] * 단위당 시간
+
+    * 올림 메서드는 **Math.ceil**을 사용한다.
+
+    * ceil 메서드를 사용할 때 주의점은 먼저 안에 있는 식을 double 형으로 변환한 다음, 올린 값을 int 형으로 변환해줘야 한다.
+
+    * [이유-1] 안에 있는 식을 **double 형으로 변환하지 않으면 소수점이 나타나지 않고**,
+
+    * [이유-2] 올린 값을 **int 형으로 변환하지 않으면 lossy 오류**가 뜨게 된다.
+
+## Answer Code2(23.12.27)
+
+```java
+import java.util.*;
+
+class Solution {
+  public int[] solution(int[] fees, String[] records) {
+
+    // key: 차랑번호, value: 입장 시간 / parking: 주차장
+    Map<Integer, Integer> parking = new HashMap<>();
+
+    // key: 차량번호, value: 누적된 요금 / costs: 요금 정산 (TreeMap()으로 키 (차량번호) 기준 오름차순 정렬)
+    Map<Integer, Integer> costs = new TreeMap<>();
+
+    // 주차기록 처리하기(time: 시간 / carName: 차량 번호 / carHistory: 내역)
+    for (String data : records) {
+      String[] record = data.split(" ");
+      int time = CalculationTime(record[0]);
+      int carName = Integer.parseInt(record[1]);
+      String carHistory = record[2];
+
+      if (carHistory.equals("IN")) {
+        parking.put(carName, time);
+      }
+
+      if (carHistory.equals("OUT")) {
+        // 한번 들어왔던 차가 아니라면
+        if (!costs.containsKey(carName)) {
+          costs.put(carName, time - parking.get(carName));
+        } else {
+          costs.put(carName, costs.get(carName) + time - parking.get(carName));
+        }
+        parking.remove(carName);
+      }
+    }
+
+    // 아직 출차하지 않은 차 계산
+    if (!parking.isEmpty()) {
+      for (Integer carName : parking.keySet()) {
+        Integer cost = costs.get(carName);
+        cost = (cost == null) ? 0 : cost;
+        costs.put(carName, cost + (23 * 60 + 59) - parking.get(carName));
+      }
+    }
+
+    // 출력하기
+    int[] answer = new int[costs.size()];
+    int stdTime = fees[0];
+    int stdPay = fees[1];
+    int perTime = fees[2];
+    int perPay = fees[3];
+
+    int i = 0;
+    for (int cost : costs.keySet()) {
+      int time = costs.get(cost);
+
+      if (time <= stdTime) {
+        time = stdPay;
+      } else {
+        time = stdPay + (int) Math.ceil((double) (time - stdTime) / perTime) * perPay;
+      }
+      answer[i] = time;
+      i++;
+    }
+    return answer;
+  }
+
+  private int CalculationTime(String time) {
+    String[] temp = time.split(":"); // 05:34	
+    int hour = Integer.parseInt(temp[0]) * 60;
+    int minutes = Integer.parseInt(temp[1]);
+    return hour + minutes;
+  }
+}
+```
+
+## Answer Code3(23.12.27)
+
+> 아래 코드는 Answer Code2 에서 수행되는 작업들을 메서드별로 분리했습니다.
+
+```java
+// 23.12.27(수)
+
+/*
+    기본 시간 : 180분
+    기본 요금 : 5000(원)
+    단위 시간 : 10(분)
+    단위 요금 : 600(원)
+ */
+/*
+    fees[0] = 기본 시간(분)
+    fees[1] = 기본 요금(원)
+    fees[2] = 단위 시간(분)
+    fees[3] = 단위 요금(원)
+ */
+/*
+    records "시각 차량번호 내역" 형식의 문자열(공백으로 구분) -> split(" ") 처리
+    시각은 `HH:MM` 형식의 길이가 5인 문자열
+    차량번호는 자동차를 구분하기 위한, `0` ~ `9`로 구성된 길이 4인 문자열
+    내역은 `IN` 또는 `OUT`의 길이가 2 또는 3인 문자열
+    `records`의 원소들은 시각을 기준으로 오름차순으로 정렬됨
+    `records`는 하루 동안의 입/출차된 기록만 담고 있음. 
+    마지막 시각(23:59)에 입차되는 경우는 입력으로 주어지지 않음.
+ */
+
+import java.util.*;
+
+class Solution {
+  public int[] solution(int[] fees, String[] records) {
+    // key: 차랑번호, value: 입장 시간 / parking: 주차장
+    Map<Integer, Integer> parking = new HashMap<>();
+    // key: 차량번호, value: 누적된 요금 / costs: 요금 정산 (TreeMap()으로 키 (차량번호) 기준 오름차순 정렬)
+    Map<Integer, Integer> costs = new TreeMap<>();
+
+    // 주차기록 처리하기(time: 시간 / carName: 차량 번호 / carHistory: 내역)
+    for (String data : records) {
+      processParkingRecord(data, parking, costs);
+    }
+
+    // 아직 출차하지 않은 차 계산
+    calculateUnexitedCars(parking, costs);
+
+    return calculateCosts(costs, fees);
+  }
+
+  // 주차 기록 처리
+  private void processParkingRecord(String data, Map<Integer, Integer> parking, Map<Integer, Integer> costs) {
+    String[] record = data.split(" ");
+    int time = CalculationTime(record[0]);
+    int carName = Integer.parseInt(record[1]);
+    String carHistory = record[2];
+
+    if (carHistory.equals("IN")) {
+      parking.put(carName, time);
+    }
+
+    if (carHistory.equals("OUT")) {
+      // 한번 들어왔던 차가 아니라면
+      processCarExit(time, carName, costs, parking);
+    }
+  }
+
+  // 차량 출차 처리
+  private void processCarExit(int time, int carName, Map<Integer, Integer> costs, Map<Integer, Integer> parking) {
+    if (!costs.containsKey(carName)) {
+      costs.put(carName, time - parking.get(carName));
+    } else {
+      costs.put(carName, costs.get(carName) + time - parking.get(carName));
+    }
+    parking.remove(carName);
+  }
+
+  // 미출차 차량 계산
+  private void calculateUnexitedCars(Map<Integer, Integer> parking, Map<Integer, Integer> costs) {
+    if (!parking.isEmpty()) {
+      for (Integer carName : parking.keySet()) {
+        Integer cost = costs.get(carName);
+        cost = (cost == null) ? 0 : cost;
+        costs.put(carName, cost + (23 * 60 + 59) - parking.get(carName));
+      }
+    }
+  }
+
+  // 출력 및 계산하기
+  private int[] calculateCosts(Map<Integer, Integer> costs, int[] fees) {
+    int[] answer = new int[costs.size()];
+    int stdTime = fees[0];
+    int stdPay = fees[1];
+    int perTime = fees[2];
+    int perPay = fees[3];
+
+    int i = 0;
+    for (int cost : costs.keySet()) {
+      int time = costs.get(cost);
+
+      if (time <= stdTime) {
+        time = stdPay;
+      } else {
+        time = stdPay + (int) Math.ceil((double) (time - stdTime) / perTime) * perPay;
+      }
+      answer[i] = time;
+      i++;
+    }
+    return answer;
+  }
+
+  // 출력 및 계산 메서드 분리
+  private int CalculationTime(String time) {
+    String[] temp = time.split(":"); // 05:34	
+    int hour = Integer.parseInt(temp[0]) * 60;
+    int minutes = Integer.parseInt(temp[1]);
+    return hour + minutes;
+  }
+}
+```
+
+## Review
+
+* 문제 길이도 길고, 여러 기술 및 방법을 알아야 풀 수 있는 문제였다.
+
+* 그 만큼 시간도 오래걸렸고, 더 쉽고 이해가는 코드를 만들기 위해 시간이 오래걸렸다.
+
+* 결국, 다른 사람이 푸는 방식을 이해한 다음 다시 복습하는 식으로 2번 풀었다.
+
+* 나중에 다시 풀면서, 혹시라도 모르겠으면 위의 문제 풀이를 참고하자.
+
+> 23.12.27
+
+* 이전 풀이방식과 다른 점은, 이름 작성하는 방식과 쉽게 이해할 수 있도록 로직을 신경썼다.
+
+* Java 언어를 기준으로 변수명, 메서드명을 작성할 때는 카멜 케이스(Camel case)로, ex) int stdTime
+
+  클래스명을 작성할 때는 파스칼 케이스(Pascal case)로 작성했다. ex) class CalculationTime()
+
+* 그리고 하나의 클래스 안에 여러 작업을 하고 있어서, Answer Code3과 같이 메서드로 분리해두었다.
+
+## Reference
+
+* [[프로그래머스,자바] Level2: 주차 요금 계산](https://taehoung0102.tistory.com/156)
+
+* [[Wrapper 클래스] - 언박싱](http://www.tcpschool.com/java/java_api_wrapper)

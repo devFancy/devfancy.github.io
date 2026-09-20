@@ -1,0 +1,20 @@
+---
+/* NOTE 칩을 누르면 /category/ 가 그 값으로 걸러진 채 열린다
+ * - 카테고리는 테두리만, 태그는 회색 면으로 채워 한눈에 갈린다
+ */
+interface Props {
+  value: string;
+  kind?: 'category' | 'tag';
+}
+const { value, kind = 'category' } = Astro.props;
+---
+<a
+  href={`/category/#${encodeURIComponent(value)}`}
+  class:list={[
+    'rounded-[3px] border px-[10px] py-[3px] text-[14px] leading-[1.2]',
+    'whitespace-nowrap transition-colors hover:border-accent hover:text-accent',
+    kind === 'tag'
+      ? 'border-transparent bg-tag text-tag-fg'
+      : 'border-rule text-muted',
+  ]}
+>{kind === 'tag' ? `#${value}` : value}</a>
