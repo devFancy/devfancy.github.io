@@ -40,10 +40,11 @@ silently dropping a post.
 
 These were found post-migration, in rendered pages, not at build time.
 
-- **`**` emphasis fails on Korean particles.** A closing `**` must be right-flanking, so
-  `**(설명)**입니다` never closes and the asterisks show up as text. 80 places were fixed this way,
-  59 of them this exact shape. The punctuation clauses of the CommonMark rule apply to `_`,
-  not to `**`; applying them to `**` flagged 2,022 false positives.
+- **`**` emphasis fails in front of Korean particles.** A closing `**` must be right-flanking, so
+  `**(설명)**입니다` never closes and the asterisks render as text. 69 lines across 42 posts were
+  fixed for this. Before changing anything, read the spec again: the punctuation clauses of the
+  CommonMark rule apply to `_`, not to `**`, and applying them to `**` flags thousands of
+  false positives on healthy text.
 - **Math is global.** `remark-math` applies to every file, so two `$` in one post turn the text
   between them into a formula. `use_math` only controls whether the KaTeX stylesheet loads.
 - **Kramdown syntax does not exist here.** `{:toc}` and `{: width="300"}` render as literal text.

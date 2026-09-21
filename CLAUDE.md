@@ -71,8 +71,7 @@ CI sets it for the whole job.
 with caching, inheritance and selector specificity sitting in between.
 
 - Size, spacing, alignment and color are **measured**, and the before and after are shown together.
-- Measure the viewport with CDP `Emulation.setDeviceMetricsOverride`, setting width, height and DPR
-  explicitly.
+  How to measure a viewport, and which tools lie about it, is in `.claude/rules/edge-cases.md`.
 - When changing something shared, **find every place it is used first**, then check each one.
   The same thing can exist in two implementations.
 - After a deploy, check the live site. GitHub Pages sends `max-age=600`, so the old page can keep
