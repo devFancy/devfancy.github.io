@@ -1,13 +1,8 @@
 ---
-/* NOTE 칩을 누르면 /category/ 가 그 값으로 걸러진 채 열린다
- * - 카테고리는 테두리만, 태그는 회색 면으로 채워 한눈에 갈린다
- * - 모양과 치수는 global.css 의 .chip 한 곳에 있다. 여기서 크기를 덧붙이지 않는다 [칩]
- * - 홈에는 칩을 두지 않는다. 대표 이미지와 제목만 글로 이어진다 [홈은 글로만]
- */
+/* 모양과 치수는 global.css 의 .chip 한 곳에 있다. 여기서 크기를 덧붙이지 않는다 */
 interface Props {
   value: string;
   kind?: 'category' | 'tag';
-  /* 사진 위에 얹을 때. 테두리와 글자를 흰색 계열로 바꾼다 */
   onDark?: boolean;
 }
 const { value, kind = 'category', onDark = false } = Astro.props;

@@ -1,9 +1,6 @@
 @import "tailwindcss";
 
-/* NOTE 폰트는 self-host 한다. 외부 CDN을 쓰지 않는다 [외부 의존 제거]
- * - Pretendard v1.3.9 variable 을 한글+라틴으로 서브셋 (2.06MB -> 1.77MB)
- * - swap 이라 폰트 로드 전에도 시스템 폰트로 바로 읽힌다
- */
+/* Pretendard v1.3.9 variable 을 한글+라틴으로 서브셋. 외부 CDN 을 쓰지 않는다 [외부 의존 제거] */
 @font-face {
   font-family: "Pretendard Variable";
   src: url("/fonts/pretendard-var.woff2") format("woff2-variations");
@@ -11,38 +8,21 @@
   font-display: swap;
 }
 
-/* NOTE 색은 토큰으로만 정의한다 [테마 토큰]. @theme 토큰은 유틸리티를 자동 생성한다
- * - --color-rule -> border-rule
- */
 @theme {
-  /* NOTE 순백 대신 아주 옅은 종이색. 순백은 주변 조명보다 밝아 눈이 계속 조리개를 조인다 [글자색]
-   * - 카드와 헤더는 이보다 밝아서 판이 살짝 떠 보인다
-   */
   --color-bg: #fbfbf9;
-  /* NOTE 본문 기본 글자색. 순흑은 흰 바탕에서 대비가 너무 세서 오래 읽기 어렵다 [글자색]
-   * - 흰 바탕에서 10.3:1 로 AAA(7:1) 를 넉넉히 넘기면서 눈이 덜 피로하다
-   */
   --color-fg: #3b4149;
   --color-muted: #5b6168;
-  /* 긴 글을 읽는 색. 보조색(6.3:1)보다 한 단계 진해 AAA 를 넘긴다 [글자색] */
   --color-body: #474e55;
   --color-rule: #e3e5e6;
   --color-card: #ffffff;
-  /* 본문 링크. 종이색 바탕에서 5.29:1 로 AA(4.5:1) 를 넘긴다 [글자색] */
   --color-accent: #2569bd;
-  /* 목록 불릿·구분 기호처럼 아주 옅어도 되는 것. 종이색 바탕에서 사라지지 않을 선까지만 눅인다 */
   --color-quote: #a7adb3;
-  /* 본문보다 살짝 어둡게 둬 헤더가 글 위에 얹힌 판처럼 읽히게 한다 */
   --color-header: rgb(246 246 244 / .94);
-  /* NOTE 로고 전용. 파랑 대신 짙은 회색이다 [글자색]
-   * - 파랑은 본문 링크와 같은 계열이라 로고가 링크처럼 읽힌다
-   */
   --color-brand: #2a3038;
   --color-tag: #f0f2f3;
   --color-tag-fg: #4b5157;
   --color-tag-on: #3f464d;
   --color-quote-bg: #f4f5f6;
-  /* 커서를 올린 제목처럼 가장 또렷해야 하는 글자 [호버 반응] */
   --color-fg-strong: #1f242a;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
@@ -50,12 +30,7 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-/* NOTE: 다크모드는 dark: 접두사 대신 data-theme 토큰 재정의로 처리한다 [테마 토큰] */
 :root[data-theme="dark"] {
-  /* NOTE 어두운 테마 [글자색]
-   * - 바탕을 아주 조금 들어 완전한 검정을 피한다. 순흑 바탕은 글자가 번져 보인다
-   * - 글자는 순백 대신 아주 옅은 회백색이다. 대비는 충분히 두되 순백의 눈부심만 덜어낸다
-   */
   --color-bg: #15181c;
   --color-fg: #e7ebef;
   --color-muted: #a6adb4;
@@ -73,18 +48,13 @@
   --color-fg-strong: #f4f4f2;
 }
 
-/* NOTE 목차나 Recommend 앵커로 이동할 때 끊기지 않고 미끄러지게 한다
- * - scroll-padding-top 은 오버레이 헤더에 제목이 가리는 것을 막는다
- */
+/* scroll-padding-top 은 고정 헤더에 앵커 제목이 가리는 것을 막는다 */
 html {
   background: var(--color-bg);
   color-scheme: light;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
-  /* NOTE iOS·안드로이드는 좁은 화면에서 글자를 제멋대로 키운다 [모바일 글자 확대]
-   * - 데스크톱 브라우저에는 없는 동작이라 개발 중에는 드러나지 않는다
-   * - 100% 로 못박아 어느 기기에서나 지정한 크기로 보이게 한다
-   */
+  /* iOS·안드로이드가 좁은 화면에서 글자를 제멋대로 키우는 것을 막는다. 데스크톱에는 없는 동작이라 개발 중에 안 드러난다 */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -97,17 +67,12 @@ body {
   background: var(--color-bg);
   color: var(--color-fg);
   font-family: var(--font-sans);
-  /* NOTE: 배경 사진 스케일에 맞춰 전반적으로 키웠다 */
   font-size: 17px;
-  /* NOTE: 한국어 본문 [한국어 타이포그래피] */
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
-/* NOTE 테마를 바꿀 때 색이 튀지 않고 넘어가게 한다
- * - 토큰이 :root 에서 바뀌므로 전환을 보려면 각 요소에 transition 이 필요하다
- * - 첫 페인트에는 트랜지션이 발동하지 않으므로 FOUC 방지 스크립트와 충돌하지 않는다
- */
+/* 토큰이 :root 에서 바뀌므로 테마 전환을 보려면 요소마다 transition 이 필요하다 */
 body,
 body * {
   transition: background-color .25s ease, color .25s ease, border-color .25s ease;
@@ -116,12 +81,8 @@ body * {
   body, body * { transition: none; }
 }
 
-/* NOTE Preflight가 제목·목록 기본값을 전부 지우므로 본문 타이포는 직접 정의한다
- * - Jekyll 과 읽는 화면이 같아 보이게 하는 최소 규칙이다 [본문 타이포그래피]
- * - scroll-margin-top은 목차 앵커로 점프할 때 제목이 상단에 붙는 것을 막는다
- */
-/* NOTE 본문은 회색이다. 흰 바탕에 순검정은 긴 글에서 눈이 빨리 피로해진다
- * - 제목과 강조만 진하게 남겨 위계를 지킨다
+/* Preflight 가 기본값을 지우므로 본문 타이포는 직접 정의한다
+ * - scroll-margin-top 은 목차 앵커로 점프할 때 제목이 헤더에 가리는 것을 막는다
  */
 .prose { line-height: 1.8; color: var(--color-body); }
 .prose h2,
@@ -138,7 +99,6 @@ body * {
   scroll-margin-top: 1.5rem;
   text-wrap: balance;
 }
-/* NOTE 크기는 정수 px 로 적는다. 25 / 20 / 17 세 단계 */
 .prose h2 { margin-top: 2.5em; font-size: 25px; }
 .prose h3 { margin-top: 2em; font-size: 20px; }
 .prose h4 { margin-top: 1.6em; font-size: 17px; }
@@ -150,9 +110,7 @@ body * {
 .prose li + li { margin-top: .35em; }
 .prose li > ul, .prose li > ol { margin-top: .35em; }
 
-/* NOTE 링크는 점선 밑줄만 두고 커서를 올릴 때 색이 든다. 파란 글씨가 문단을 얼룩지게 했다
- * - text-decoration: dotted 는 점 간격을 정할 수 없어 직접 그린다
- */
+/* text-decoration: dotted 는 점 간격을 정할 수 없어 직접 그린다 */
 .prose a {
   color: inherit;
   text-decoration: none;
@@ -167,7 +125,6 @@ body * {
 .prose strong { font-weight: 700; }
 .prose hr { border-top: 1px solid var(--color-rule); margin: 2.5em 0; }
 
-/* NOTE 노션 인용구를 따른다. 글과 About 이 같은 모양을 쓰도록 선택자를 둘 다 건다 */
 .prose blockquote,
 blockquote.quote {
   border-left: 4px solid var(--color-quote);
@@ -189,20 +146,14 @@ blockquote.quote {
 .prose th, .prose td { border: 1px solid var(--color-rule); padding: .5em .75em; text-align: left; }
 .prose th { font-weight: 700; }
 
-/* NOTE: 코드·표·수식은 가로 스크롤을 자기 안에서 처리한다 [모바일 가로 넘침] */
 .prose pre,
 .prose .katex-display { overflow-x: auto; }
 
 /* NOTE: table은 display:block 없이는 overflow가 먹지 않아 페이지가 가로로 밀린다 [모바일 가로 넘침] */
 .prose table { display: block; overflow-x: auto; max-width: 100%; }
 
-/* NOTE: 본문 이미지 폭 제한 [모바일 가로 넘침] */
 .prose img { max-width: 100%; height: auto; }
 
-/* NOTE 사진이 밝게 떴다가 천천히 가라앉는 연출 [사진 페이드]
- * - Hero 배경과 글 대표 이미지가 같은 결을 쓴다. 정의는 여기 한 곳에만 둔다
- * - 막이 2.4s 에 걸쳐 덮이고, 확대는 더 길게 끌어 "아직 로딩 중" 처럼 보이지 않게 한다
- */
 .media-scrim { animation: media-scrim-in 2.4s cubic-bezier(.33, 1, .68, 1) .2s both; }
 .media-zoom  { animation: media-settle 5s cubic-bezier(.33, 1, .68, 1) both; }
 
@@ -220,30 +171,18 @@ blockquote.quote {
   .media-scrim, .media-zoom { animation: none; }
 }
 
-/* NOTE 키보드 이동 시 현재 위치가 보이게 한다. 마우스 클릭에는 나타나지 않는다 */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
-/* NOTE 사진 위에 얹는 글자. Hero 와 대표 포스트 글 캐러셀이 같이 쓴다 [사진 위 글자]
- * - 스크림만으로는 밝은 사진에서 흰 글자가 묻힌다
- */
 .hero-type {
-  /* 그림자를 넓게 퍼뜨리지 않는다. 번지면 글자 가장자리가 같이 흐려져 오히려 덜 선명하다
-   * 좁게(4px) 진하게 깔아 윤곽만 또렷하게 세운다
-   */
+  /* 그림자를 넓게 퍼뜨리면 글자 가장자리가 같이 흐려진다. 좁게 진하게 깔아 윤곽만 세운다 */
   text-shadow: 0 0 .25rem rgb(0 0 0 / .9);
   -webkit-font-smoothing: antialiased;
 }
 
-/* NOTE 대표 포스트 글 캐러셀 [대표 포스트 글]
- * - 이전/다음 버튼은 사진 밖, 제목 줄 오른쪽에 둔다. 사진 위에 얹으면 글로 가는 링크와
- *   같은 면을 나눠 쓰게 돼서 잘못 누르면 글이 열린다
- */
-/* NOTE 섹션 머리 줄. 왼쪽은 제목+부제 한 문장, 오른쪽은 그 섹션의 조작부다 [홈 구성] */
-/* 숫자와 화살표 묶음. 한 줄로 서고 줄어들지 않는다 */
 .fx-nav {
   display: flex;
   flex: none;
@@ -266,9 +205,6 @@ blockquote.quote {
   flex-wrap: wrap;
   margin-bottom: 1.1rem;
 }
-/* NOTE 제목과 부제를 붙여 한 문장으로 읽히게 한다 [홈 구성]
- * - 색은 한 가지다. 굵기만 달라서 한 문장으로 읽히고 줄 전체가 한 덩어리로 보인다
- */
 .sec-head {
   min-width: 0;
   text-wrap: balance;
@@ -278,15 +214,12 @@ blockquote.quote {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* 손가락으로 눌러도 빗나가지 않을 크기다 [모바일 터치 타깃]
-   * - flex 안에서 늘어나 세로로 긴 타원이 되지 않게 못박는다
-   */
+  /* flex 안에서 늘어나 세로로 긴 타원이 되지 않게 못박는다 [모바일 터치 타깃] */
   flex: none;
   box-sizing: border-box;
   /* iOS·안드로이드 기본 버튼 모양을 지운다. 그대로 두면 제 여백이 더해져 상자가 커진다 */
   appearance: none;
   -webkit-appearance: none;
-  /* 좁은 화면에서는 줄인다. 폭이 줄면 같은 px 도 상대적으로 커 보인다 [모바일 터치 타깃] */
   width: 30px;
   min-width: 30px;
   max-width: 30px;
@@ -300,9 +233,6 @@ blockquote.quote {
   color: var(--color-muted);
   transition: border-color .15s ease, color .15s ease, opacity .15s ease;
 }
-/* NOTE 조작부는 회색으로 반응한다. 파랑은 글로 가는 링크에만 쓴다 [호버 반응]
- * - 화면을 넘기는 버튼과 글로 가는 링크가 같은 색으로 반응하면 무엇이 무엇인지 흐려진다
- */
 .fx-arrow:hover {
   border-color: var(--color-quote);
   background: var(--color-tag);
@@ -317,9 +247,7 @@ blockquote.quote {
 
 .fx-track {
   display: flex;
-  /* NOTE 좌우 여백이 곧 옆 칸이 보이는 폭이다 [대표 포스트 글]
-   * - 칸 폭을 100% 로 두면 여백만큼이 양옆에 남는다. 폭 계산을 따로 하지 않아도 된다
-   */
+  /* 좌우 여백이 곧 옆 칸이 보이는 폭이다. 칸 폭이 100% 라 폭 계산을 따로 하지 않는다 */
   --peek: clamp(30px, 7vw, 104px);
   gap: 14px;
   padding-inline: var(--peek);
@@ -327,16 +255,11 @@ blockquote.quote {
   padding-block: 4px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  /* 빠르게 밀어도 한 장씩만 넘어간다 */
   scroll-snap-stop: always;
   /* 가로 끝에서 브라우저 뒤로가기 제스처로 새지 않게 한다 */
   overscroll-behavior-x: contain;
-  /* 스크롤 막대는 숨기고 스냅만 남긴다 */
   scrollbar-width: none;
-  /* NOTE 양끝을 잘라내지 않고 서서히 지운다 [대표 포스트 글]
-   * - 옆 칸이 칼로 자른 듯 끊기면 지저분하다. 가장자리로 갈수록 사라지면 "더 있다"만 남는다
-   * - 지우는 폭은 옆을 남긴 폭과 같다. 본 칸에는 닿지 않는다
-   */
+  /* 양끝을 칼로 자르지 않고 지운다. 지우는 폭은 옆을 남긴 폭과 같아 본 칸에는 닿지 않는다 */
   mask-image: linear-gradient(to right,
     transparent 0, #000 var(--peek), #000 calc(100% - var(--peek)), transparent 100%);
 }
@@ -355,12 +278,10 @@ blockquote.quote {
   overflow: hidden;
   border-radius: 16px;
   background: var(--color-card);
-  /* 지금 칸만 또렷하고 양옆은 가라앉는다. 가장자리는 마스크가 이어받는다 */
   opacity: .55;
   transform: scale(.955);
   transition: opacity .4s ease, transform .4s cubic-bezier(.2, .6, .2, 1);
 }
-/* 위는 살짝, 아래로 갈수록 확 짙어진다. 제목이 앉는 자리만 확실히 눌러 준다 [스크림] */
 .fx-scrim-bottom {
   background: linear-gradient(180deg,
     rgb(10 14 20 / .10) 0%, rgb(10 14 20 / .35) 45%, rgb(10 14 20 / .88) 100%);
@@ -371,9 +292,7 @@ blockquote.quote {
   transform: none;
   box-shadow: 0 6px 16px rgb(0 0 0 / .16);
 }
-/* NOTE 복제 칸에서 진짜 칸으로 옮기는 한 순간만 전환을 끈다 [대표 포스트 글]
- * - 켜진 칸이 다른 요소로 바뀌므로, 전환이 살아 있으면 흐려졌다 밝아지는 번쩍임이 보인다
- */
+/* 켜진 칸이 다른 요소로 바뀌는 한 순간만 전환을 꺼 번쩍임을 막는다 */
 .fx-track.is-jumping .fx-slide,
 .fx-track.is-jumping .fx-slide .media-zoom { transition: none; }
 @media (min-width: 640px) {
@@ -385,9 +304,6 @@ blockquote.quote {
   .fx-slide { transform: none; }
 }
 
-/* NOTE 헤더·푸터·목록 페이지가 같이 쓰는 바깥 폭. 폭은 여기 한 곳에서 바꾼다 [바깥 폭]
- * - 글 본문(Post)의 읽는 폭과 같게 맞춘다. 화면마다 왼쪽 끝이 달라지면 옮겨 다닐 때 눈에 걸린다
- */
 .shell {
   width: 100%;
   max-width: 48rem;
@@ -395,23 +311,15 @@ blockquote.quote {
   padding-inline: 1rem;
 }
 
-/* NOTE 카드 사진 상자. 안쪽의 스크림과 어둠 막이 여기를 기준으로 눕는다 [홈 격자]
- * - 이 한 줄이 없으면 막이 페이지 전체를 덮는다
- */
+/* 이 한 줄이 없으면 안쪽의 스크림과 어둠 막이 페이지 전체를 덮는다 */
 .tile-media { position: relative; }
 
-/* NOTE 호버 반응 [호버 반응]
- * - 확대는 transform 이 맡는다. 첫 로드의 가라앉는 연출은 scale 속성이라 서로 밟지 않는다
- */
+/* 확대는 transform 이 맡는다. 첫 로드의 가라앉는 연출은 scale 속성이라 서로 밟지 않는다 */
 .tile-media img,
 .fx-slide .media-zoom,
 .blank-cover::before {
   transition: transform .55s cubic-bezier(.2, .6, .2, 1);
 }
-/* NOTE 어둡게 하는 것은 제목이 사진 위에 있는 대표 포스트 글에만 준다 [호버 반응]
- * - 아래쪽만 짙어져 그 위에 앉은 제목이 또렷해진다. 화면 전체를 고르게 덮으면 사진만 탁해진다
- * - 최신 포스트 글은 제목이 사진 밖에 있어 어둡게 할 이유가 없다. 확대만 한다
- */
 .fx-slide .fx-scrim-hover {
   content: "";
   position: absolute;
@@ -424,10 +332,6 @@ blockquote.quote {
 .group:hover .tile-media img,
 .fx-slide.is-on:hover .media-zoom { transform: scale(1.07); }
 
-/* NOTE 커서를 올리면 글이 살짝 오른쪽으로 기운다 [호버 반응]
- * - 사진과 구분선은 제자리에 둔다. 줄 전체를 밀면 아래 선까지 움직여 왼쪽 끝이 어긋나 보인다
- * - 누르고 있는 동안에는 반대로 되돌아온다. 눌렸다는 것이 손끝에서 보인다
- */
 .tile-body { transition: transform .45s cubic-bezier(.2, .6, .2, 1); }
 .tile-title { transition: color .2s ease; }
 .group:hover .tile-title { color: var(--color-accent); }
@@ -446,12 +350,8 @@ blockquote.quote {
   .group:hover .blank-cover::before, .fx-slide.is-on:hover.blank-cover::before { transform: none; }
 }
 
-/* NOTE 제목과 같은 크기로 두고 굵기만 낮춘다. 한 문장으로 이어 읽히게 하려는 것이다 [홈 구성] */
 .sec-note { font-weight: 400; }
 
-/* NOTE 홈 카드에서 제목 위에 서는 카테고리 [칩]
- * - 대표 포스트 글 칸의 카테고리 머리글과 같은 자리, 같은 크기다. 태그와 헷갈리지 않게 칩 모양을 쓰지 않는다
- */
 .tile-eyebrow {
   font-size: 13px;
   font-weight: 700;
@@ -459,13 +359,7 @@ blockquote.quote {
   color: var(--color-muted);
 }
 
-/* NOTE 대표 이미지가 없는 글에 까는 기본 이미지 [기본 이미지]
- * - 사진을 지어내지 않고 오로라 색 판에 카테고리와 제목을 얹어 표지처럼 세운다
- * - 판이 항상 짙어서 글자는 흰색 하나면 된다. 테마별로 따로 두지 않는다
- * - 칸 크기는 쓰는 쪽(PostTile / Featured)이 정한다. 여기서는 면과 글자만 맡는다
- */
 :root {
-  /* 오로라. 짙은 밤하늘 위에 초록에서 청록, 남보라로 넘어가는 띠 세 줄기 */
   --au-sky: #0e1a2b;
   --au-green: #2fbf9a;
   --au-teal: #35a7c9;
@@ -486,10 +380,7 @@ blockquote.quote {
   background: var(--au-sky);
   color: #fff;
 }
-/* NOTE 오로라 띠. 흐리게 번진 덩어리 셋이 겹쳐 흐르는 결을 만든다 [기본 이미지]
- * - inset 을 음수로 줘 blur 가 모서리에서 옅어지는 것을 감춘다
- * - 가로 위치는 글마다 --au-1..3 으로 어긋난다 (src/lib/blank.ts)
- */
+/* inset 을 음수로 줘 blur 가 모서리에서 옅어지는 것을 감춘다. 가로 위치는 --au-1..3 이 민다 (src/lib/blank.ts) */
 .blank-cover::before {
   content: "";
   position: absolute;
@@ -501,7 +392,6 @@ blockquote.quote {
     radial-gradient(44% 30% at var(--au-2, 58%) 20%, var(--au-teal) 0%, transparent 72%),
     radial-gradient(40% 32% at var(--au-3, 84%) 42%, var(--au-violet) 0%, transparent 72%);
 }
-/* 제목이 띠에 닿아도 읽히도록 아래를 눌러 둔다 */
 .blank-cover::after {
   content: "";
   position: absolute;
@@ -529,13 +419,10 @@ blockquote.quote {
   .blank-title { font-size: 18px; }
 }
 
-/* 캐러셀 칸은 판 자체가 배경이다. 크기와 여백은 .fx-slide 가 정한다 */
 .fx-slide.blank-cover { width: auto; height: auto; }
 
-/* NOTE 칩은 두 곳에서 만들어진다. Chip.astro 가 서버에서, category.astro 가 innerHTML 로 [칩]
- * - 그래서 치수를 유틸리티 클래스에 흩어 두지 않고 여기 한 곳에만 둔다. 한쪽만 고쳐지는 일을 막는다
- * - 높이를 고정한다. line-height 해석과 폰트 메트릭이 기기마다 달라 상자 높이가 흔들렸다
- *   (iOS 에서 44px, 데스크톱에서 25px 로 갈렸다). inline-flex + 고정 높이면 어디서나 같다
+/* 칩은 Chip.astro 와 category.astro 의 innerHTML 두 곳에서 만들어지므로 치수를 여기 한 곳에만 둔다
+ * - 높이를 고정한다. 폰트 메트릭 해석이 기기마다 달라 iOS 44px / 데스크톱 25px 로 갈렸다
  */
 :root {
   --chip-h: 26px;
@@ -571,7 +458,6 @@ blockquote.quote {
   color: var(--color-bg);
 }
 
-/* NOTE 같은 칩을 조금 키워 쓰는 자리. 치수 변수만 갈아끼운다 [칩] */
 .chip-lg {
   --chip-h: 28px;
   --chip-px: 12px;
@@ -580,7 +466,6 @@ blockquote.quote {
 @media (min-width: 640px) {
   .chip-lg { --chip-h: 32px; --chip-px: 14px; --chip-fs: 15px; }
 }
-/* 전체 보기도 조작부다. 칩의 파랑 대신 회색으로 반응한다 [호버 반응] */
 .chip.chip-lg:hover {
   border-color: var(--color-quote);
   background: var(--color-tag);
@@ -598,7 +483,6 @@ blockquote.quote {
   color: var(--color-bg);
 }
 
-/* 사진 위에 얹는 칩. 배경이 어두우므로 토큰 대신 흰색 계열을 쓴다 */
 .chip-on-dark,
 .chip-on-dark.chip-tag {
   border-color: rgb(255 255 255 / .4);

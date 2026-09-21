@@ -1,8 +1,6 @@
 ---
-/* NOTE 외부 아이콘 CDN 대신 인라인 SVG 를 쓴다 [외부 의존 제거]
- * - 이모지는 플랫폼마다 모양이 달라 통일감이 깨진다
- * - 경로에 뚫린 구멍이 있어 fill-rule 은 evenodd 여야 한다
- * - 아이콘은 20px 지만 누르는 상자는 44px 다. 손가락으로 눌러도 빗나가지 않는다 [모바일 터치 타깃]
+/* 경로에 뚫린 구멍이 있어 fill-rule 은 evenodd 여야 한다
+ * - 아이콘은 20px 지만 누르는 상자는 44px 다 [모바일 터치 타깃]
  */
 import { SOCIAL } from '../config';
 
@@ -17,7 +15,6 @@ const PATHS: Record<string, string> = {
   Mail: 'M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z',
 };
 ---
-{/* NOTE: 아이콘이 없는 항목은 빈 사각형으로 나가므로 아예 뺀다 */}
 <ul class="flex items-center gap-2">
   {SOCIAL.filter((s) => PATHS[s.name]).map((s) => (
     <li>

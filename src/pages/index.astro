@@ -1,7 +1,4 @@
 ---
-/* NOTE 홈은 손으로 고른 대표 글과 최신 글만 보여준다 [홈 구성]
- * - 목록 전체는 /archive/ 와 /category/ 가 맡는다
- */
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 // NOTE: Ponte Vecchio, Firenze. Unsplash License, 촬영 Giuseppe Mondi
@@ -20,9 +17,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 
-/* NOTE 대표 포스트 글은 config 에 적은 순서 그대로 보여준다. 손으로 고른 차례다 [대표 포스트 글]
- * - 슬러그가 틀리면 조용히 빠지지 않도록 빌드 로그에 남긴다
- */
+/* config 에 적은 순서 그대로 보여준다. 슬러그가 틀리면 조용히 빠지지 않도록 빌드 로그에 남긴다 */
 const byId = new Map(posts.map((p) => [p.id, p]));
 const featured = FEATURED.flatMap((slug) => {
   const p = byId.get(slug);
@@ -48,7 +43,6 @@ const recent = posts
 <Base overHero>
   <Hero image={heroMain} title={SITE.hero.title} subtitle={SITE.hero.subtitle} align="bottom" />
   <div class="shell py-10">
-    {/* NOTE: 히어로 인사 다음에 오는 자리다. 한 문장과 그 아래 한 줄로 끝낸다 [홈 머리글] */}
     <section class="mb-12 border-b border-rule pb-10">
       <p class="max-w-2xl text-xl leading-relaxed text-balance sm:text-2xl">{SITE.intro}</p>
       <p class="mt-3 max-w-2xl leading-relaxed text-muted">{SITE.introNote}</p>
@@ -61,7 +55,6 @@ const recent = posts
     )}
 
     <section>
-      {/* NOTE: 제목·부제를 한 줄로 잇고 오른쪽 끝에 그 섹션의 조작부를 둔다 [홈 구성] */}
       <div class="fx-head">
         <h2 class="sec-head text-2xl">
           <span class="font-semibold">최신 포스트 글</span><span class="sec-note">은 요즘 쓰고 있는 것들이에요</span>

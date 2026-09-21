@@ -1,9 +1,4 @@
 ---
-/* NOTE 배경 사진 위에 타이포만 얹는다. 페이지마다 같은 구조를 쓴다 [Hero 공통]
- * - 사진 밝기가 제각각이라 스크림으로 대비를 고정한다. dim 은 밝은 사진에서 올린다
- * - 헤더가 위에 떠 있어 상단을 한 겹 더 덮는다. 밝은 사진에서 메뉴가 묻혔다
- * - position 은 사진마다 다르다. 인물이 하단이면 bottom
- */
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
@@ -16,7 +11,6 @@ interface Props {
   position?: 'center' | 'bottom' | 'top';
   align?: 'top' | 'bottom';
   dim?: 'normal' | 'strong';
-  /* tall 은 사진을 더 넓게 보여준다. 세로로 긴 피사체가 잘릴 때 쓴다 */
   height?: 'normal' | 'tall';
 }
 const {
@@ -29,11 +23,12 @@ const imgClass = `media-zoom absolute inset-0 -z-10 size-full object-cover ${fit
 <section
   class:list={[
     'relative isolate flex overflow-hidden',
-    /* NOTE 높이는 최소값만 준다 [Hero 공통]
-     * - 비율(aspect-ratio)로 잡으면 높이가 고정되어, 내용이 넘칠 때
-     *   overflow-hidden 이 그것을 잘라 제목이 헤더와 겹친다
-     * - 넓은 화면에서는 vw 를 섞어 같이 키운다. 안 그러면 27인치에서 5:1 띠가 된다
-     * - 좁은 화면에서는 아래 대표 포스트 글 칸(17rem)보다 확실히 커야 첫 화면이 배경으로 읽힌다
+    /* NOTE 높이는 최소값만 준다. 비율(aspect-ratio)로 잡으면 내용이 넘칠 때
+     * overflow-hidden 이 그것을 잘라 제목이 헤더와 겹친다
+     */
+    /* NOTE 제목이 아래에 붙으므로 높이를 키우면 사진이 아니라 제목 위 빈 자리가 늘어난다
+     * - 모바일에서 화면 비율(svh)로 키워 봤더니 빈 회색 띠가 257px 에서 350px 이 됐다
+     * - 비율(aspect-ratio)로 잡으면 제목이 길어질 때 글자가 잘린다. 그래서 최소 높이만 준다
      */
     height === 'tall'
       ? 'min-h-[28rem] sm:min-h-[clamp(40rem,32vw,48rem)]'
@@ -47,10 +42,6 @@ const imgClass = `media-zoom absolute inset-0 -z-10 size-full object-cover ${fit
   ) : (
     <img src={src} alt="" loading="eager" fetchpriority="high" decoding="async" class={imgClass} />
   )}
-  {/* NOTE 막을 균일하게 덮지 않고 위아래로 몰아준다 [사진 대비]
-   * - 균일한 막은 사진을 탁하게 만들면서 정작 글자 자리의 대비는 보장하지 못한다
-   * - 위는 헤더 메뉴, 아래는 제목이 앉는 자리다. 가운데는 사진을 그대로 둔다
-   */}
   <div class:list={['media-scrim absolute inset-0 -z-10', dim === 'strong' ? 'bg-black/40' : 'bg-black/20']}></div>
   <div class="media-scrim absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/60 to-transparent"></div>
   <div class="media-scrim absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent"></div>
@@ -72,5 +63,3 @@ const imgClass = `media-zoom absolute inset-0 -z-10 size-full object-cover ${fit
 </section>
 <div data-hero-end aria-hidden="true" class="h-px"></div>
 
-{/* NOTE: .hero-type 과 페이드(.media-scrim / .media-zoom)는 global.css 에 있다.
-    대표 포스트 글 캐러셀도 같은 글자 그림자를 써야 해서 한 곳에 모아 뒀다 [사진 위 글자] */}

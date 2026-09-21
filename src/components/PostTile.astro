@@ -1,9 +1,4 @@
 ---
-/* NOTE 홈의 최신 포스트 글 한 줄 [홈 격자]
- * - 사진 왼쪽, 글 오른쪽. 좁은 화면에서도 이 배치를 지켜 넓은 화면과 같은 모양으로 읽힌다
- *   (대표 포스트 글은 사진 위에 글자를 얹어 두 섹션의 형태가 갈린다)
- * - 누르면 글로 가는 곳은 사진과 제목 둘뿐이다 [홈은 글로만]
- */
 import { blankLight } from '../lib/blank';
 
 interface Props {
@@ -19,7 +14,7 @@ const iso = date.toISOString().slice(0, 10);
 const href = `/${slug}/`;
 ---
 <article class="group flex gap-4 border-b border-rule pb-7 sm:gap-6">
-  {/* NOTE: 비율을 고정해 이미지가 늦게 와도 오른쪽 글이 밀리지 않는다 */}
+  {/* 비율을 고정해 이미지가 늦게 와도 오른쪽 글이 밀리지 않는다 */}
   <a href={href} aria-label={title}
     class="tile-media block aspect-[16/10] w-[38%] shrink-0 overflow-hidden rounded-lg bg-card sm:w-[46%]">
     {cover ? (
@@ -28,7 +23,6 @@ const href = `/${slug}/`;
         <div class="media-scrim pointer-events-none absolute inset-0 bg-black/10"></div>
       </>
     ) : (
-      /* 대표 이미지가 없으면 사진을 지어내지 않고 짙은 판을 깐다 [기본 이미지] */
       <div class="blank-cover" style={blankLight(slug)}>
         <span class="blank-cat">{categories[0]}</span>
         <span class="blank-title">{title}</span>
@@ -43,7 +37,6 @@ const href = `/${slug}/`;
       <a href={href} class="tile-title line-clamp-2">{title}</a>
     </h3>
 
-    {/* 넓은 화면은 세 줄이라 글 기둥이 사진 높이를 채운다. 좁은 화면은 두 줄이다 */}
     <p class="mt-1.5 line-clamp-2 text-[15px] leading-relaxed text-muted sm:mt-2 sm:line-clamp-3 sm:text-base">{excerpt}</p>
     <time datetime={iso} class="mt-2 block text-[15px] text-muted sm:mt-2.5">{iso}</time>
   </div>

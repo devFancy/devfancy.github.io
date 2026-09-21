@@ -1,7 +1,5 @@
 ---
-/* NOTE Jekyll /about/ 의 핵심만 옮긴다. URL 은 그대로 유지한다 [URL 보존]
- * - 경력과 프로젝트는 비워둔다. 2차 이력서 작업에서 채운다 [About 2차]
- */
+/* Jekyll /about/ 의 URL 을 그대로 유지한다 [URL 보존] */
 import { Image } from 'astro:assets';
 import heroAbout from '../assets/hero-about.jpg';
 import profile from '../assets/profile.jpg';
@@ -12,12 +10,6 @@ import Base from '../layouts/Base.astro';
 
 const SUBTITLE = '저를 소개하자면..';
 
-/* NOTE 공개 페이지다. 이력서에 쓸 구체적인 성과나 수치는 여기에 두지 않는다
- * - 어떻게 왔나 / 무엇을 만드나 / 어떻게 배우나 / 어떻게 쉬나 네 단락이다
- */
-/* NOTE 옛 Jekyll About 의 "Technical Writing" 을 옮긴다 (_includes/opinion.html)
- * - 회고·타임라인·자격증은 이관하지 않는다
- */
 const WRITING = [
   {
     title: '나만의 글쓰기 파이프라인 구축하기',
@@ -57,9 +49,7 @@ const WHO = [
         <span class="text-xl font-normal text-muted">{PROFILE.name}</span>
       </h2>
 
-      {/* NOTE: 사진 옆에는 1~2문단만 두고 3문단부터 전체 폭으로 흘린다
-       * - float 으로 감싸면 줄바꿈 지점이 화면 폭마다 달라져 통제가 안 된다
-       */}
+      {/* float 으로 감싸면 줄바꿈 지점이 화면 폭마다 달라져 통제가 안 된다 */}
       <div class="mt-7 flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
         <div class="flex shrink-0 flex-col items-center gap-4">
           {/* NOTE: densities 가 없으면 128px 한 장만 만들어 레티나에서 흐려진다 */}

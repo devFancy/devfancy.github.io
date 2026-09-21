@@ -5,10 +5,7 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
-  /* NOTE 섹션 페이지는 탭 제목을 devfancy 하나로 고정한다
-   * - 히어로에 이미 Archives 가 크게 떠 있어 "Archives | devfancy" 는 같은 말을 두 번 한다
-   * - 글은 제목이 검색 결과와 방문 기록에 남아야 해서 그대로 둔다
-   */
+  /* 섹션 페이지는 히어로에 이미 이름이 크게 떠 있어 탭 제목을 devfancy 하나로 고정한다 */
   title?: string;
   description?: string;
   useMath?: boolean;
@@ -21,13 +18,11 @@ const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    {/* NOTE: viewport-fit=cover 는 안전 영역 대응 [모바일 안전 영역] */}
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
-    {/* NOTE: SVG 를 우선 쓰고 ico 는 구형 브라우저 폴백이다 */}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -46,7 +41,6 @@ const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
       </>
     )}
 
-    {/* NOTE: KaTeX CSS는 수식이 있는 페이지에서만 로드한다 [조건부 로드] */}
     {useMath && <link rel="stylesheet" href="/katex/katex.min.css" />}
 
     {/* NOTE: FOUC 방지. 렌더 전 동기 실행이라 인라인이어야 한다 [FOUC 방지] */}
@@ -63,7 +57,6 @@ const pageTitle = title ? `${title} | ${SITE.title}` : SITE.title;
   </head>
   <body class="flex min-h-[100dvh] flex-col">
     <Header overlay={overHero} />
-    {/* NOTE: 헤더가 fixed 라 Hero 없는 페이지는 그만큼 밀어준다 */}
     <main class:list={['w-full flex-1', !overHero && 'pt-[4.6rem]']}>
       <slot />
     </main>
