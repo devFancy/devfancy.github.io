@@ -47,7 +47,7 @@ Q) 핀테크 payment 서비스에 대해 사례 1가지를 쓰고, 간단하게 
 
     * Venmo lets you see what you friend are doing.
 
-    * Venmo creates a less awkward way for users to remind a friend that she owes you money.**
+    * Venmo creates a less awkward way for users to remind a friend that she owes you money.
 
 * 전통적으로 국경을 넘어서면서 여러 규제들이 있어서 서비스가 복잡해졌는데, 그런 부분에 대해서 해결하는 과정에서 여러가지 핀테크 관련 서비스들이 생겼다.
 
@@ -260,7 +260,7 @@ Q) 핀테크 payment 서비스에 대해 사례 1가지를 쓰고, 간단하게 
     * [2] Global money laundering transactions are estimated to total \$1–2 trillion
       dollars a year, with **less than 1%** seized by authorities.
 
-* **Regtech**: the use of new technology to solve compliance burdens more effectively and efficiently**
+* **Regtech**: the use of new technology to solve compliance burdens more effectively and efficiently
 
     * Regtech providers offer solutions across many different use cases.
 

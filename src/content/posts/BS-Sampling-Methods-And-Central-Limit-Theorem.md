@@ -27,7 +27,7 @@ use_math: true
 
 * `표본조사` : 모집단으로부터 추출된 일부만을 조사, 표본추출의 종류
   
-  * [1] 확률추출(Probability sampling)**
+  * [1] 확률추출(Probability sampling)
     
     * 표본 추출 시 주관적 판단이 개입되지 않음.
       

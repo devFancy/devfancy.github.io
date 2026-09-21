@@ -92,7 +92,7 @@ tags: ["사이드프로젝트"]
 7. 2번으로 돌아가 반복한다. (제품의 요구 사항 정의서가 바뀐다면, 1번으로 돌아간다)
 
 
-이를 기반으로 **굿프렌즈팀의 Github -> [Wiki](https://github.com/woorifisa-projects/GoodFriends/wiki/데일리-스크럼-기록)**에 정리한 데일리 스크럼 및 스프린트를 기록하고 있습니다.
+이를 기반으로 <strong>굿프렌즈팀의 Github -> [Wiki](https://github.com/woorifisa-projects/GoodFriends/wiki/데일리-스크럼-기록)</strong>에 정리한 데일리 스크럼 및 스프린트를 기록하고 있습니다.
 
 ## Reference
 

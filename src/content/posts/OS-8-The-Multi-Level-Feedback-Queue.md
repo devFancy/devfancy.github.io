@@ -163,7 +163,7 @@ tags: ["운영체제"]
 
   * A long-running job(A) with two short-running interactive job(B, C)
   
-  * S값을 어떠한 값으로 할까? 이러한 종류의 값을 **`voo-doo constants`(부두 상수)**라고 부른다.
+  * S값을 어떠한 값으로 할까? 이러한 종류의 값을 <strong>`voo-doo constants`(부두 상수)</strong>라고 부른다.
   
   * **S값이 너무 크면 긴 실행 시간을 가진 작업은 굶을 수 있으며, S값이 너무 작으면 대화형 작업이 적절한 양의 CPU 시간을 사용할 수 없게 된다.**
 

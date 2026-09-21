@@ -96,7 +96,7 @@ use_math: true
 
 * 주어진 구간 내에서 어떤 실수 값(**무한대의 값**)이라도 가질 수 있는 변ㄴ수
   
-* 주로 **측정(measurment)**에 의해 값을 할당
+* 주로 <strong>측정(measurment)</strong>에 의해 값을 할당
   
 * 예)
   
@@ -144,9 +144,9 @@ use_math: true
 
 * 확률분포의 표준편차는 **분산의 제곱근**으로 계산
 
-> **확률분포의 분산:**  $**\sigma^2 = \Sigma[(x-\mu)^2P(X)]$  $(\mu = 평균)$**
+> **확률분포의 분산:**  $\sigma^2 = \Sigma[(x-\mu)^2P(X)]$  $(\mu = 평균)$
 
-* 표준편차 : $**\sqrt{\sigma^2} = \sigma**$
+* 표준편차 : $\sqrt{\sigma^2} = \sigma$
 
 * 분산의 특성
   

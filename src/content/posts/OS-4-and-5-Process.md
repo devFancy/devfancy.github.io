@@ -125,7 +125,7 @@ CPU를 할당받을 프로세스를 선택한 후
 
 * Accounting informaion : 사용자에게 자원 사용 요금을 계산해 청구하는 용도이다.
 
-* Program counter와 CPU registers는 **"context"**에 해당한다.
+* Program counter와 CPU registers는 <strong>"context"</strong>에 해당한다.
 
 ---
 
@@ -179,7 +179,7 @@ CPU를 할당받을 프로세스를 선택한 후
 
 * fork()를 할 때마다 자식 프로세스가 생성되는 것을 확인할 수 있다.
 
-* 정리하자면, **fork() 반환 결과가 0이라면 `자식 프로세스`이고 0이 아니면(자식프로세스의 id를 가질것) `부모 프로세스`**이다.
+* 정리하자면, <strong>fork() 반환 결과가 0이라면 `자식 프로세스`이고 0이 아니면(자식프로세스의 id를 가질것) `부모 프로세스`</strong>이다.
 
 ## Reference
 

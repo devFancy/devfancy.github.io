@@ -29,7 +29,7 @@ tags: ["블로그"]
 
 ![](/assets/img/server/technology/technology-github-readme_2.png)
 
-* 확인 버튼을 클릭하게 되면 다음과 같이 새로운 repository가 생성되고 README.md 파일에 **Hi there 👋**이 보인다.
+* 확인 버튼을 클릭하게 되면 다음과 같이 새로운 repository가 생성되고 README.md 파일에 <strong>Hi there 👋</strong>이 보인다.
 
 * 이제 이 `README.md` 파일에서 본인이 원하는 대로 수정해서 **프로필 영역**을 만들어 나가면 된다.
 

@@ -101,7 +101,7 @@ use_math: true
 
 * 연속변수(continuous variables)
 
-    * 대개 **측정(measurement)**의 결과
+    * 대개 <strong>측정(measurement)</strong>의 결과
 
     * 특정한 범위 내의 어떤 값도 가질 수 있다고 가정
 

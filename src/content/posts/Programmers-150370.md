@@ -132,7 +132,7 @@ class Solution {
 
   * **`result.stream()`**: **`result`** 리스트를 스트림으로 변환합니다. 스트림은 데이터의 연속적인 흐름을 나타내는 것으로, 다양한 연산을 수행할 수 있게 해줍니다.
 
-  * **`mapToInt(Integer::intValue)`**: **`mapToInt`**는 스트림의 각 요소에 대해 특정 함수를 적용하고, 그 결과를 정수로 매핑합니다. 여기서 **`Integer::intValue`**는 각 요소를 정수형으로 변환하는 함수입니다.
+  * **`mapToInt(Integer::intValue)`**: <strong>`mapToInt`</strong>는 스트림의 각 요소에 대해 특정 함수를 적용하고, 그 결과를 정수로 매핑합니다. 여기서 <strong>`Integer::intValue`</strong>는 각 요소를 정수형으로 변환하는 함수입니다.
 
   * **`toArray()`**: 매핑된 결과를 배열로 변환합니다.
 

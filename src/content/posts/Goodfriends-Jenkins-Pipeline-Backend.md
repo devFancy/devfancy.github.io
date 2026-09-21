@@ -142,7 +142,7 @@ cd Goodfriends-pipeline # 해당 파이프라인 경로로 이동
 ls # 해당 경로에 Github repository 프로젝트 폴더가 clone 되었는지 확인
 ```
 
-아래와 같이 굿***프렌즈의 Github URL clone이 정상적으로 완료**된 것을 빌드을 통해 확인할 수 있습니다.
+아래와 같이 굿<strong>*프렌즈의 Github URL clone이 정상적으로 완료</strong>된 것을 빌드을 통해 확인할 수 있습니다.
 
 ![](/assets/img/project/goodfriends/goodfriends-jenkins-pipeline-backend-8.png)
 
@@ -389,7 +389,7 @@ pipeline {
 
 운영 서버로의 배포는 앞서 설치한 ssh agent 플러그인을 통해 진행했습니다. 배포 과정에서 진행한 내용은 다음과 같습니다.
 
-먼저 젠킨스 서버에서 운영 서버에 접근할 수 있도록 *StrictHostKeyChecking** 를 비활성화 시켜줍니다. 그 후 scp 명령을 통해 빌드된 jar 파일을 운영 서버로 전송시킨 다음, 운영 서버에 미리 작성된 deploy.sh 파일을 실행하여 빌드된 파일을 실행시켜줍니다.
+먼저 젠킨스 서버에서 운영 서버에 접근할 수 있도록 **StrictHostKeyChecking** 를 비활성화 시켜줍니다. 그 후 scp 명령을 통해 빌드된 jar 파일을 운영 서버로 전송시킨 다음, 운영 서버에 미리 작성된 deploy.sh 파일을 실행하여 빌드된 파일을 실행시켜줍니다.
 
 ### jar 파일 전송
 

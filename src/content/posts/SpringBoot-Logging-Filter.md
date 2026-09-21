@@ -224,7 +224,7 @@ public class HttpRequestAndResponseLoggingFilter extends OncePerRequestFilter {
 
 Spring에서 필터를 적용할 때 요청(Request)이 여러 번 디스패치(Dispatch) 되는 경우가 있습니다.
 
-특히, **비동기(Async)**나 에러(Error) 처리가 발생하면 필터가 중복 실행될 수 있습니다.
+특히, <strong>비동기(Async)</strong>나 에러(Error) 처리가 발생하면 필터가 중복 실행될 수 있습니다.
 
 이런 중복 실행을 방지하기 위해 Spring에서는 `OncePerRequestFilter`라는 추상 클래스를 제공합니다.
 

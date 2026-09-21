@@ -38,7 +38,7 @@ public static void main(String[] args) {
 System.out.println("Hello"); // "Hello" 문자출력
 ```
 
-* 정수, 문자, 문자열 등 데이터를 화면에 출력하기 위해 **System.out.println()**을 이용한다.
+* 정수, 문자, 문자열 등 데이터를 화면에 출력하기 위해 <strong>System.out.println()</strong>을 이용한다.
 
 * 식별자(identifier): 클래수, 변수, 상수, 메소드에 붙이는 이름을 말한다.
 

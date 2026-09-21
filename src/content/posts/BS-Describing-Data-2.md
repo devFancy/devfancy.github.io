@@ -86,7 +86,7 @@ use_math: true
     
   * W: 가중치(개수), X: 관측치(값)
 
-* 기하평균**(geometric mean)**
+* 기하평균<strong>(geometric mean)</strong>
   
   * **시간에 따른 백분율, 비율, 지수, 성장률의 변화의 평균**
     

@@ -73,7 +73,7 @@ tags: ["리눅스"]
   * 명령어: `sudo nvidia-smi -pm 1` // 모든 GPU에 지속성 모드 활성화
 
 * `pl, --power-limit=POWER_LIMIT`
-  * GPU의 **최대 소비 전력(Power Limit)**을 와트(W) 단위로 설정한다. GPU의 발열이나 전력 소모를 제어해야 할 때 유용하다.
+  * GPU의 <strong>최대 소비 전력(Power Limit)</strong>을 와트(W) 단위로 설정한다. GPU의 발열이나 전력 소모를 제어해야 할 때 유용하다.
   * 명령어: `sudo nvidia-smi -i 0 -pl 300` // 0번 GPU의 최대 전력을 300W로 제한
 
 ## 실제 예시

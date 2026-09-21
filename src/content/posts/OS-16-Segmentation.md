@@ -37,7 +37,7 @@ tags: ["운영체제"]
 
     * [3] 세그먼트는 주소 공간 간에 **Code를 공유하면서 메모리를 절약할 수 있다.**
 
-* 세그먼트(Segment)는 메모리에서 일정 부분을 의미하며 일반적인 주소 공간은 **3개의 세그먼트(Code, Stack, Heap)**으로 구성된다.
+* 세그먼트(Segment)는 메모리에서 일정 부분을 의미하며 일반적인 주소 공간은 <strong>3개의 세그먼트(Code, Stack, Heap)</strong>으로 구성된다.
 
 * OS는 3개의 세그먼트를 메모리에 배치하여 heap과 stack 사이의 공간을 낭비하지 않도록 하는 것이다.
 
@@ -46,7 +46,7 @@ tags: ["운영체제"]
 
 ### Basic
 
-* 그럼 이제 세그먼테이션에서 **Virtual memory 주소를 받고 Physical memory 주소를 찾는 방법(주소 변환)**에 대해 알아보자.
+* 그럼 이제 세그먼테이션에서 <strong>Virtual memory 주소를 받고 Physical memory 주소를 찾는 방법(주소 변환)</strong>에 대해 알아보자.
 
 * 가상주소는 `segment id + offset` 으로 구할 수 있다.
 
