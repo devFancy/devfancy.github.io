@@ -1,8 +1,8 @@
 ---
 title: "[리뷰] 삶의 태도를 돌아보는 면접의 질문들 - 면접을 넘어, 일하는 태도를 고민하다"
 date: 2025-02-12
-categories: ["에세이"]
-tags: ["책"]
+categories: ["서평"]
+tags: []
 thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 

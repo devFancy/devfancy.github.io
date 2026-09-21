@@ -45,7 +45,7 @@ tags: ["블로그"]
 
 * 이미 설치된 경우 `Configure` 버튼으로 보이는데, 설치되지 않았다면 `Install`버튼이 보일 것이다.
 
-* 해당 `Install` 버튼을 클릭하면 repository(저장소)를 선택하는 화면이 나오는데, **GitHub Blog repository(저장소)**를 선택하면 된다.
+* 해당 `Install` 버튼을 클릭하면 repository(저장소)를 선택하는 화면이 나오는데, <strong>GitHub Blog repository(저장소)</strong>를 선택하면 된다.
 
 * 그리고 아래의 `Install` 버튼을 클릭하여 설치를 완료한다.
 

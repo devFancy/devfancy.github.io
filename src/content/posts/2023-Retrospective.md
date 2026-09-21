@@ -433,8 +433,8 @@ SJ님이 그 당시에 제안했던 얘기를 정리하면 아래와 같다.
 - Kotlin, Java, Gradle
 - Spring Mvc, Spring Webflux, Spring Boot, Spring Cloud Gateway, Spring Cloud Config
 - JPA/Hibernate, MySQL, MongoDB, Redis, Zookeeper
-- Kubernetes** + Istio, GoCD, ArgoCD, Consul, Vault, Git, Docker, Ceph, Harbor
-- Kafka**, ELK, Prometheus + Thanos, Grafana
+- Kubernetes + Istio, GoCD, ArgoCD, Consul, Vault, Git, Docker, Ceph, Harbor
+- Kafka, ELK, Prometheus + Thanos, Grafana
 
 위에는 내가 개인적으로 가고 싶어하는 회사의 공고에서 가져온 기술들이다. 한 번에 공부하는 것보다 한 개씩 깊게 공부하면서 지식의 폭을 넓혀가고자 한다.
 위에 있는 기술들과 함께 백엔드 & CS 지식을 탄탄히 만들고자 아래와 같이 학습을 병행하려고 한다.

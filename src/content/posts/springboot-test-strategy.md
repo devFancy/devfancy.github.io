@@ -3,7 +3,7 @@ title: "테스트에 대한 전략과 고찰"
 date: 2025-11-28
 categories: ["서버"]
 tags: ["클린코드"]
-thumbnail: /assets/img/server/cover/chess-knights.jpg
+thumbnail: /assets/img/server/cover/quiet-reflection.jpg
 ---
 
 > 이 글에서 다루는 모든 코드는 개인 프로젝트를 기반으로 작성되었으며, 아래 Github 를 참고해 주시면 감사하겠습니다.

@@ -1,8 +1,8 @@
 ---
 title: "'도메인 주도 개발 시작하기' 책 후기"
 date: 2025-10-10
-categories: ["에세이"]
-tags: ["책"]
+categories: ["서평"]
+tags: []
 thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 

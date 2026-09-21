@@ -20,16 +20,13 @@ interface Props {
 const { id, title, date, categories, tags, useMath, headings, description, cover } = Astro.props;
 const iso = date.toISOString().slice(0, 10);
 ---
-{/* NOTE 커버가 있으면 상단 헤더를 사진 위에 띄운다. 메인 페이지와 같은 구조다 [Hero 공통] */}
 <Base title={title} description={description} useMath={useMath} overHero={!!cover}>
-  {/* NOTE 대표 이미지는 다른 페이지 배경과 같은 Hero 를 쓴다 [Hero 공통] */}
   {cover && (
     <Hero src={cover} title={title} align="bottom">
-      {/* 카테고리는 제목 위, 날짜와 태그는 아래. 자리로 갈라 동급으로 읽히지 않게 한다 */}
       <p slot="eyebrow" class="hero-type mb-4 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-white/80">
         {categories.map((c) => (
           <a href={`/category/#${encodeURIComponent(c)}`}
-            class="underline-offset-4 transition-colors hover:text-white hover:underline">{c}</a>
+            class="inline-block py-1 underline-offset-4 transition-colors hover:text-white hover:underline">{c}</a>
         ))}
       </p>
       <div class="mt-5 flex flex-wrap items-center gap-2">
@@ -66,9 +63,7 @@ const iso = date.toISOString().slice(0, 10);
       <Recommend currentId={id} categories={categories} />
     </article>
 
-    {/* NOTE 목차는 처음부터 띄우지 않는다. 글을 읽기 시작해야 필요해진다 [목차] */}
     <aside id="toc-rail" class="hidden lg:block">
-      {/* NOTE: 헤더가 fixed 라 그 높이만큼 비켜야 가려지지 않는다 */}
       <div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto">
         <Toc headings={headings} />
       </div>
@@ -76,7 +71,6 @@ const iso = date.toISOString().slice(0, 10);
   </div>
 
 <style>
-  /* 스크롤을 내리기 전에는 자리만 잡고 보이지 않는다 */
   #toc-rail {
     opacity: 0;
     transform: translateY(6px);

@@ -54,7 +54,7 @@ MVC는 하나의 서블릿이나, JSP로 처리하는 것을 Controller와 View�
 
 서블릿이 호출되면 `HttpServlet` 이 제공하는 `serivce()` 가 호출된다.
 
-* Spring MVC는 `DispatcherServlet` 의 부모인 `FrameworkServlet` 에서 `service()` 를 **오버라이드 **해두었다.
+* Spring MVC는 `DispatcherServlet` 의 부모인 `FrameworkServlet` 에서 `service()` 를 **오버라이드**해두었다.
 
 > FrameworkServlet 클래스 - `service()`
 

@@ -135,7 +135,7 @@ public class OrderServiceImpl implements OrderService{
 
 > DIP 의존관계 역전 원칙: 프로그래머는 "추상화에 의존해야지, 구체화에 의존하면 안된다".
 
-* 클라이언트 코드인 `OrderServiceImpl`이 `DiscountPolicy` 추상화 인터페이스에만 의존하도록 **생성자를 통해서 주입(연결)**하도록 코드를 변경했다.
+* 클라이언트 코드인 `OrderServiceImpl`이 `DiscountPolicy` 추상화 인터페이스에만 의존하도록 <strong>생성자를 통해서 주입(연결)</strong>하도록 코드를 변경했다.
 
 * 그리고 `AppConfig`가 `RateDiscountPolicy` 객체 인스턴스를 클라이언트 코드(`OrderServiceImpl`)대신 생성해서 클라이언트 코드에 의해 의존관계를 주입했다.
 

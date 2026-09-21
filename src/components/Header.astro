@@ -1,8 +1,4 @@
 ---
-/* NOTE 헤더는 항상 고정이다. Hero 위에서는 투명했다가 스크롤하면 배경이 떠오른다
- * - 색은 header 의 color 를 자식이 물려받게 해 전환 한 번으로 전부 따라오게 한다
- * - 모바일은 이름과 테마 버튼만 남기고 메뉴는 햄버거로 접는다 [모바일 네비게이션]
- */
 import { NAV, SITE } from '../config';
 
 interface Props {
@@ -15,7 +11,6 @@ const here = Astro.url.pathname;
   <div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5">
     <a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl">{SITE.title}</a>
 
-    {/* NOTE: sm 미만에서는 숨기고 햄버거 패널이 같은 링크를 보여준다 */}
     <nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex">
       {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
     </nav>
@@ -71,14 +66,12 @@ const here = Astro.url.pathname;
       backdrop-filter .25s ease;
     will-change: color, background-color, backdrop-filter;
   }
-  /* Hero 위에 얹힌 상태 */
   .site-header.is-overlay {
     color: #fff;
     background-color: transparent;
     border-bottom-color: transparent;
     backdrop-filter: blur(0px);
   }
-  /* Hero 를 지나면 배경이 떠오른다 */
   .site-header.is-overlay.is-solid {
     color: var(--color-fg);
     background-color: var(--color-header);
@@ -92,9 +85,12 @@ const here = Astro.url.pathname;
   }
   .site-header.is-overlay:not(.is-solid):not(:has(#menu-panel.is-open)) [data-logo] { color: #fff; }
 
-  .site-header nav a { opacity: .8; }
+  /* 사진 위에 얹힌 상태에서 파랑으로 바뀌면 배경과 섞여 오히려 덜 읽힌다. 색 대신 또렷해진다 */
+  .site-header nav a { opacity: .92; transition: color .18s ease, opacity .18s ease; }
   .site-header nav a:hover,
-  .site-header a:hover { color: var(--color-accent); opacity: 1; }
+  .site-header a:hover { color: var(--color-fg-strong); opacity: 1; }
+  .site-header.is-overlay:not(.is-solid) nav a:hover,
+  .site-header.is-overlay:not(.is-solid) a:hover { color: #fff; opacity: 1; }
 
   #theme-toggle {
     display: grid;
@@ -145,7 +141,6 @@ const here = Astro.url.pathname;
     backdrop-filter: none;
   }
 
-  /* NOTE 항목을 줄로 나눈다. 글자만 띄워 두면 세 개가 한 덩어리로 읽힌다 [모바일 네비게이션] */
   #menu-panel li + li { border-top: 1px solid var(--color-rule); }
   #menu-panel a {
     display: flex;
@@ -155,12 +150,11 @@ const here = Astro.url.pathname;
     font-size: 17px;
     opacity: .85;
   }
-  #menu-panel a:hover, #menu-panel a:active { color: var(--color-accent); opacity: 1; }
+  #menu-panel a:hover, #menu-panel a:active { color: var(--color-fg-strong); opacity: 1; }
 
-  /* 지금 보고 있는 페이지 */
-  #menu-panel a[aria-current='page'] { color: var(--color-accent); opacity: 1; font-weight: 600; }
+  /* 파랑으로 칠하면 데스크톱 헤더에는 없는 표시라 두 화면이 어긋난다. 색이 아니라 굵기로 알린다 */
+  #menu-panel a[aria-current='page'] { color: var(--color-fg-strong); opacity: 1; font-weight: 700; }
 
-  /* 열릴 때 위에서부터 한 칸씩 */
   #menu-panel.is-open li { animation: menu-in .28s ease both; animation-delay: calc(var(--i) * .05s); }
   @keyframes menu-in {
     from { opacity: 0; transform: translateY(-6px); }

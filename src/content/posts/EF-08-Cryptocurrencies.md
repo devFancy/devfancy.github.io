@@ -429,7 +429,7 @@ tags: ["전자금융"]
   
   * [1] Security issue - Stale blocks are added to the calculation of which is the main chain of the blockchain.
     
-  * [2] Centralization issue**:** There are block rewards to stales.
+  * [2] Centralization issue<strong>:</strong> There are block rewards to stales.
 
 ### Modified GHOST Implementation
 

@@ -1,7 +1,4 @@
-/* NOTE Jekyll 이 /feed.xml 로 내보내던 RSS 를 같은 경로에 유지한다 [URL 보존]
- * - 경로가 바뀌면 기존 구독자의 리더가 조용히 끊긴다
- * - 문제풀이는 한 번에 여러 편이 올라와 피드를 덮으므로 뺀다 [문제풀이 분리]
- */
+/* Jekyll 이 쓰던 /feed.xml 경로를 유지한다. 바뀌면 기존 구독자의 리더가 조용히 끊긴다 [URL 보존] */
 
 import { getCollection } from "astro:content";
 import rss from "@astrojs/rss";

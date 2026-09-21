@@ -1,8 +1,8 @@
 ---
 title: "'요즘 당근 AI 개발' 책 후기"
 date: 2025-10-30
-categories: ["에세이"]
-tags: ["책"]
+categories: ["서평"]
+tags: []
 thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 

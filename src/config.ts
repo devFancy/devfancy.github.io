@@ -4,47 +4,27 @@ export const GA_MEASUREMENT_ID = "G-7BMWW1711K";
 export const SITE = {
   title: "devfancy",
   description: "백엔드 개발자 문준용의 기록",
-  /* NOTE Hero 는 한글 문구가 제목, 영문 슬로건이 부제목이다
-   * - 문구를 바꾸려면 여기만 고치면 된다
-   */
-  /* NOTE 배경 사진 위에는 짧은 한 줄만 둔다 [히어로 문구]
-   * - 인사말은 사람을 맞는 말이라 배경 사진이 아니라 본문 가까이(intro)에 둔다
-   * - 한글은 영문의 직역이 아니다. 두 마디로 줄여 우리말로 읽히게 한다
-   */
   hero: {
     title: "나답게, 후회 없이",
     subtitle: "My path, my pace, no regrets.",
   },
-  /* NOTE 배경 사진과 대표 포스트 글 사이에 놓는 두 줄 [홈 머리글]
-   * - 위는 인사, 아래는 지금 이 블로그를 어떻게 쓰고 있는지다
-   */
-  intro: "팬시의 개발 블로그에 와주셔서 감사합니다.",
-  introNote: "무엇을 쓸지 정해 두기보다, 그때그때 기억하고 싶은 것을 작성하고 있습니다.",
 } as const;
 
-/* NOTE 네비게이션은 3개로 고정한다 [네비게이션]
- * - 데스크톱 헤더와 모바일 햄버거 패널이 이 배열 하나를 같이 쓴다
- */
 export const NAV = [
   { label: "Archives", href: "/archive/" },
   { label: "Categories", href: "/category/" },
   { label: "About", href: "/about/" },
 ] as const;
 
-/* NOTE 카테고리는 2단이다. 프론트매터에는 잎만 적고 묶음은 여기서 선언한다 [카테고리 2단]
- * - 부모까지 프론트매터에 넣으면 카드마다 정보 없는 "기술" 칩이 붙는다
- */
+/* 프론트매터에는 잎만 적는다. 부모까지 넣으면 카드마다 정보 없는 "기술" 칩이 붙는다 */
 export const CATEGORY_GROUPS = [
   { name: "기술", children: ["서버", "CS", "알고리즘", "도구", "프로젝트"] },
-  { name: "에세이", children: [] },
-  { name: "회고", children: [] },
+  { name: "에세이", children: ["생각정리", "회고", "서평"] },
   { name: "기타", children: [] },
   { name: "대학교", children: [] },
 ] as const;
 
-/* NOTE 태그를 늘어놓는 순서다. 가나다순은 Spring 과 JPA 사이에 한글이 끼어 읽기 나쁘다
- * - 여기 적힌 순서가 먼저다. 빠진 태그는 뒤에 글 많은 순으로 붙는다
- */
+/* 여기 적힌 순서가 먼저다. 가나다순은 Spring 과 JPA 사이에 한글이 끼어 읽기 나쁘다 */
 export const TAG_ORDER = [
   "Spring",
   "Spring Boot",
@@ -69,26 +49,22 @@ export const TAG_ORDER = [
   "전자금융",
   "블로그",
   "운동",
-  "생각정리",
-  "책",
 ] as const;
 
-/* NOTE 홈 맨 위에 세우는 대표 포스트 글. 최신순이 아니라 손으로 고른다 [대표 포스트 글]
- * - 값은 글 URL 의 슬러그다. 화면에는 최신순으로 선다. 순서는 신경 쓰지 않아도 된다
- * - 기술 2편 + 그 밖 2편으로 균형을 맞춘다. 네 편 모두 thumbnail 이 있어야 한다
- * - 오타나 슬러그 변경은 빌드 때 경고로 알려준다 (src/pages/index.astro)
+/* 손으로 고른 차례가 곧 화면 순서다. 날짜로 다시 세우지 않는다
+ * - 모두 thumbnail 이 있어야 한다. 오타는 빌드 경고로 알려준다 (src/pages/index.astro)
  */
 export const FEATURED = [
-  "SpringBoot-Logging-Filter",
-  "springboot-test-strategy",
-  "2024-Retrospective",
   "Book-Interview-Questions",
+  "springboot-test-strategy",
+  "SpringBoot-Logging-Filter",
+  "Book-The-One-Who-Leaves-People-Behind",
+  "DDD-Week1-Review-And-EventStorming",
 ] as const;
 
 // NOTE: 문제풀이는 메인/목록에서 빼고 /solutions/ 에 모은다. 글 URL 은 그대로 [문제풀이 분리]
 export const SOLUTION_CATEGORIES = ["알고리즘"] as const;
 
-// NOTE: 4-5 의 "이메일 비노출" 을 뒤집었다. 전화번호는 넣지 않는다
 export const SOCIAL = [
   { name: "GitHub", url: "https://github.com/devFancy" },
   { name: "Mail", url: "mailto:fancy.junyongmoon@gmail.com" },

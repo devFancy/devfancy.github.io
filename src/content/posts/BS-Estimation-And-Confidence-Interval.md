@@ -64,7 +64,7 @@ use_math: true
 
 * [3] 대응하는 **Z값**을 찾는다 : $Z값$ → $Z_{0.025}$  = 1.96
 
-* [4] **오차범위(margin of error)**를 구하기 위해 Z값에 표준오차를 곱한다.
+* [4] <strong>오차범위(margin of error)</strong>를 구하기 위해 Z값에 표준오차를 곱한다.
 
 > $Z_{\alpha / 2} = \frac{\sigma}{\sqrt{n}}$
 
@@ -119,7 +119,7 @@ use_math: true
 
 * $\mu = n\pi, \sigma^{2} = n\pi(1-\pi)$
   
-  * $**\pi$ : 성공확률**
+  * **$\pi$ : 성공확률**
     
   * 표본비율의 표본분포의 평균과 분산
     

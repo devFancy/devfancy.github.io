@@ -1,8 +1,4 @@
 ---
-/* NOTE 카테고리를 고르면 목록이 바로 바뀐다. 페이지 이동이 없다 [카테고리 드릴다운]
- * - 태그는 고른 카테고리 안에 쓰인 것만 보여 목록과 어긋나지 않는다
- * - Jekyll 이 쓰던 /category/#Kafka 앵커를 카테고리·태그 양쪽에서 찾는다 [URL 보존]
- */
 import { getCollection } from 'astro:content';
 import Hero from '../components/Hero.astro';
 import heroCategory from '../assets/hero-category.jpg';
@@ -35,7 +31,6 @@ const groupMap = Object.fromEntries(
 const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 ---
 <Base description={SUBTITLE} overHero>
-  {/* NOTE: 흰 벽이 밝아 기본 스크림으로는 헤더 메뉴가 묻힌다 */}
   <Hero image={heroCategory} title="Categories" subtitle={SUBTITLE} dim="strong" align="bottom" />
 
   <div data-category class="shell py-12">
@@ -59,7 +54,6 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
                  outline-none focus:border-accent" />
       </div>
 
-      {/* NOTE: 고른 카테고리 안에 실제로 쓰인 태그만 남긴다 */}
       <div id="tags" class="mt-4 flex-wrap gap-2 border-t border-rule pt-4" hidden></div>
     </div>
 
@@ -99,7 +93,6 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
   const esc = (s: string) =>
     s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] ?? c);
 
-  // 그룹 이름이면 자식 전체, 잎 이름이면 자기 자신
   const leavesOf = (v: string) => groupMap[v] ?? [v];
   const groupOf = (leaf: string) =>
     Object.keys(groupMap).find((g) => groupMap[g].includes(leaf)) ?? '';
@@ -107,7 +100,7 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
   let cat = '';
   let tag = '';
 
-  // NOTE: 해시는 카테고리·그룹·태그 어디서든 찾는다. 기존 /category/#Kafka 앵커가 살아난다
+// 해시는 카테고리·그룹·태그 어디서든 찾는다. 기존 /category/#Kafka 앵커가 살아난다 [URL 보존]
   function readHash() {
     const h = decodeURIComponent(location.hash.slice(1));
     cat = '';
@@ -193,7 +186,6 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
     if (!b) return;
     const v = b.dataset.v ?? '';
     if (b.dataset.k === 'cat') {
-      // 같은 카테고리를 다시 누르면 접는다
       cat = cat === v ? (groupMap[v] ? '' : groupOf(v)) : v;
       tag = '';
       tagsOpen = false;

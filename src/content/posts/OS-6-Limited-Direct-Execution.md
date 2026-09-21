@@ -68,7 +68,7 @@ tags: ["운영체제"]
 
 * 하지만 실행 도중에 **(1)디스크에 대한 I/O 요청이 발생**하거나 **(2)CPU 혹은 Memory에서 더 많은 시스템 리소스에 대한 엑세스 권한을 획득**하는 경우를 해결할 수 없기 때문에 사용할 수 없다.
 
-* 이를 해결하기 위한 방법으로 **`Limited Direct Execution`**을 사용한다.
+* 이를 해결하기 위한 방법으로 <strong>`Limited Direct Execution`</strong>을 사용한다.
 
 ### Problem#1: Restricted operations
 
@@ -141,7 +141,7 @@ tags: ["운영체제"]
   * time interrupt는 일정 시간마다 interrupt를 발생시키는 방법이다.
   
   * time interrupt가 발생되면 OS가 제어를 갖고 다음 프로세스를 실행하는 의미이다.
-  즉, `timer interrupt`는 특정 시간동안 **OS가 CPU를 다시 실행할 수 있는 권한을 준다. **
+  즉, `timer interrupt`는 특정 시간동안 **OS가 CPU를 다시 실행할 수 있는 권한을 준다.**
   
   * 하지만, 여기서 **여러 개의 프로세스를 잘 수행하려면** 기존에 실행했던 프로세스의 정보를 저장하고, 나중에 다시 실행할 때 저장된 정보를 가져오는 `Context switch` 을 사용해야 한다.
   
