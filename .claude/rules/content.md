@@ -50,3 +50,9 @@ These were found post-migration, in rendered pages, not at build time.
 - **Kramdown syntax does not exist here.** `{:toc}` and `{: width="300"}` render as literal text.
 
 After changing post bodies in bulk, check the **rendered** page, not the source.
+
+## Do not put Tailwind classes in post bodies
+
+`src/content/` is excluded from Tailwind's class scan in `global.css`. Without that, ordinary English
+words in posts ("filter", "fixed", "inline", "static", "table") were read as class names and shipped
+1,295 bytes of unused CSS. The same happened with the documentation before it was excluded too.

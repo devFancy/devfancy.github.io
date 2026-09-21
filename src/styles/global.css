@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* NOTE 문서와 글은 클래스 스캔에서 뺀다 [번들 크기]
+ * - Tailwind v4 는 프로젝트를 훑어 클래스처럼 보이는 낱말을 전부 주워 담는다
+ * - 문서의 "uppercase letters", 글의 "filter" 같은 산문이 유틸리티가 되어 번들에 실렸다
+ * - 그래서 본문 마크다운에는 Tailwind 클래스를 쓸 수 없다. 여기서 스캔하지 않는다
+ */
+@source not "../../CLAUDE.md";
+@source not "../../.claude";
+@source not "../../docs";
+@source not "../content";
+
 /* Pretendard v1.3.9 variable 을 한글+라틴으로 서브셋. 외부 CDN 을 쓰지 않는다 [외부 의존 제거] */
 @font-face {
   font-family: "Pretendard Variable";
