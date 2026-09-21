@@ -8,8 +8,6 @@ export const SITE = {
     title: "나답게, 후회 없이",
     subtitle: "My path, my pace, no regrets.",
   },
-  intro: "팬시의 개발 블로그에 와주셔서 감사합니다.",
-  introNote: "무엇을 쓸지 정하기보다 기억하고 싶은 것을 작성합니다.",
 } as const;
 
 export const NAV = [
