@@ -1,7 +1,12 @@
-# devfancy.github.io 개편 지시서 v12
+# devfancy.github.io 개편 지시서 v13
 
 Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 저장소 루트에 두고, Claude Code 세션 시작 시 전체를 읽힌 뒤 작업한다.
+
+> **이 지시서는 역할을 다했다.** 2026-09-21 컷오버(PR #16)로 이관이 끝났고,
+> 후속 정리(PR #19 - #25)와 읽는 화면 다듬기(PR #26 - #27)까지 병합됐다.
+> 앞으로 이 문서는 고치지 않는다. **무엇을 어떻게 했는지의 기록은 `docs/MIGRATION.md` 에 있다.**
+> 여기 적힌 "대기" 나 "예정" 은 그 시점의 계획이지 현재 상태가 아니다.
 
 - v1 작성: 2026-09-20
 - v2 갱신: 2026-09-20 (Phase 0 조사 결과 반영)
@@ -22,7 +27,7 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 ## 0. 이 문서 사용법
 
 1. 저장소 루트에서 Claude Code를 실행한다
-2. 첫 지시: `MIGRATION.md 를 읽고 Phase 2를 수행해라.` (Phase 0·1은 완료됨)
+2. 첫 지시: `MIGRATION.md 를 읽고 Phase N을 수행해라.` (전 Phase 완료)
 3. 각 Phase가 끝나면 사람의 승인을 받고 다음으로 넘어간다
 4. 확정 내용이 바뀌면 이 문서를 먼저 고치고 코드를 고친다
 
@@ -32,10 +37,12 @@ Jekyll 블로그를 Astro로 전면 이관하기 위한 작업 지시서다.
 |---|---|---|
 | Phase 0. 현황 파악 | **완료** | `_migration/PHASE0.md` |
 | Phase 1. URL 스냅샷 | **완료** | `_migration/urls-before.txt` (1648 URL) |
-| Phase 2. 스캐폴딩 + 파일럿 | **완료** | `feat/astro-01-scaffold` |
-| Phase 3. 전체 변환 | **마크다운 완료 / 이미지 대기** | `feat/astro-02-content` (PR #10) |
-| Phase 4. URL 검증 | 대기 | `_migration/urls-after.txt`, diff 리포트 |
-| Phase 5. 배포 | 대기 | |
+| Phase 2. 스캐폴딩 + 파일럿 | **완료** | `feat/astro-01-scaffold` (PR #9) |
+| Phase 3. 전체 변환 | **완료** | `feat/astro-02-content` (PR #10) |
+| Phase 4. 페이지 + URL 검증 | **완료** | `feat/astro-03-pages` (PR #11). 글 URL 누락 0건 |
+| Phase 5. 배포 | **완료** | `feat/astro-04-deploy` (PR #12), 컷오버 PR #16 |
+| Phase 6. 후속 정리 | **완료** | PR #19 - #25. Jekyll 파일 375개 제거, 이미지 폴더 재편, 대표 이미지 |
+| Phase 7. 읽는 화면 | **완료** | PR #26 - #27. 홈 재구성, 색 기준 통일, 카테고리 2단 |
 
 ---
 
@@ -1079,6 +1086,18 @@ overflow-wrap: break-word;
 11. 페이지 소스에 AdSense, UA, 외부 CDN 참조가 남아 있지 않음
 12. `robots.txt`가 `https://devfancy.github.io/sitemap-index.xml`를 가리킴
 
+### 판정 (2026-09-21)
+
+전부 충족했다. 다만 10번의 `/search/` 는 v12 에서 접기로 한 결정에 따라
+`/category/` 안의 검색으로 갈음했으므로, 그 경로만 의도적으로 사라졌다.
+
+컷오버 뒤 라이브에서 다시 확인한 것:
+
+- 글 319편 전수 200. 대문자가 섞인 `/Algorithm-Baekjoon-24479/` 포함
+- `/feed.xml` · `/about/` · `/archive/` · `/category/` · `/solutions/` 모두 200
+- 모바일 375 / 390, 데스크톱 1440 에서 가로 넘침 0건
+- 본문에 글자로 새어 나온 `**` 0건 (강조를 고친 42편 전수 확인)
+
 ---
 
 ## 11. 금지 사항
@@ -1203,6 +1222,7 @@ posts:
 
 | 버전 | 날짜 | 내용 |
 |---|---|---|
+| v13 | 2026-09-21 | 이관 종료. Phase 4·5 완료와 Phase 6(후속 정리)·7(읽는 화면)을 진행 현황에 추가하고, 10절에 판정을 적었다. 이 지시서는 여기서 멈추고, 실제로 무엇을 했는지는 `docs/MIGRATION.md` 가 잇는다 |
 | v12 | 2026-09-20 | 검색 단계를 접는다(5-1). 전역 모달과 본문 전문 검색 모두 얻는 게 적어 `/category/` 안의 검색으로 갈음한다. 이에 따라 작업 브랜치가 `feat/astro-04-deploy` 로 끝나고 7-2 구조를 갱신. Phase 5 에 Jekyll 이 내보내던 `/feed.xml`·`/robots.txt`·`/sitemap.xml` 과 GA4 태그 이식을 명시 |
 | v11 | 2026-09-20 | Phase 3·4 완료. 이미지 1,238개를 `git mv` 로 `public/assets/img` 이관(8-3-2-1), 약어 폴더 5개 개명, dev 전용 이미지 플러그인 제거. 태그를 카테고리 한 곳에만 두는 규칙 신설(4-2-2)로 카테고리 2개인 글 0편·태그 중복 0종 달성. `/category/`·`/archive/`·`/solutions/` 구현과 홈을 최근 3편으로 축소(4-4-5). 원본에서 깨져 있던 이미지 경로·개발 서버 링크 교정. Phase 4 URL 검증으로 글 URL 누락 0건 확인하고 리눅스에서만 404 나는 대소문자 불일치 1건 발견·수정. 인기 포스트를 GA4 빌드 시점 주입으로 만들 계획 신설(4-4-6) |
 | v1 | 2026-09-20 | 최초 작성 |
