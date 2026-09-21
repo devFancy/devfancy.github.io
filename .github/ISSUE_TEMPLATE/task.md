@@ -1,27 +1,27 @@
 ---
-name: 작업
-about: 앞으로 할 일을 남긴다
+name: Task
+about: Record something to do
 title: ''
 labels: ''
 assignees: devFancy
 ---
 
-## 배경
+## Background
 
 -
 
-## 목표
+## Goal
 
 -
 
-## 작업 계획
+## Plan
 
 -
 
-## 확인할 것
+## Verify
 
 -
 
-## 참고
+## Notes
 
 -
