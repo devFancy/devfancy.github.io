@@ -72,7 +72,7 @@ export const TAG_ORDER = [
 
 /* NOTE 홈 맨 위에 세우는 대표 포스트 글. 최신순이 아니라 손으로 고른다 [대표 포스트 글]
  * - 값은 글 URL 의 슬러그다. 적은 순서가 곧 화면 순서다. 날짜로 다시 세우지 않는다
- * - 기술 2편 + 그 밖 2편으로 균형을 맞춘다. 네 편 모두 thumbnail 이 있어야 한다
+ * - 기술 글과 그 밖의 글을 섞어 균형을 맞춘다. 모두 thumbnail 이 있어야 한다
  * - 오타나 슬러그 변경은 빌드 때 경고로 알려준다 (src/pages/index.astro)
  */
 export const FEATURED = [

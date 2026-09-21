@@ -163,8 +163,10 @@ const here = Astro.url.pathname;
   }
   #menu-panel a:hover, #menu-panel a:active { color: var(--color-fg-strong); opacity: 1; }
 
-  /* 지금 보고 있는 페이지 */
-  #menu-panel a[aria-current='page'] { color: var(--color-accent); opacity: 1; font-weight: 600; }
+  /* NOTE 지금 보고 있는 화면은 색이 아니라 굵기로 알린다 [호버 반응]
+   * - 파랑으로 칠하면 데스크톱 헤더에는 없는 표시라 두 화면이 어긋난다
+   */
+  #menu-panel a[aria-current='page'] { color: var(--color-fg-strong); opacity: 1; font-weight: 700; }
 
   /* 열릴 때 위에서부터 한 칸씩 */
   #menu-panel.is-open li { animation: menu-in .28s ease both; animation-delay: calc(var(--i) * .05s); }
