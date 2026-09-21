@@ -33,10 +33,11 @@ const imgClass = `media-zoom absolute inset-0 -z-10 size-full object-cover ${fit
      * - 비율(aspect-ratio)로 잡으면 높이가 고정되어, 내용이 넘칠 때
      *   overflow-hidden 이 그것을 잘라 제목이 헤더와 겹친다
      * - 넓은 화면에서는 vw 를 섞어 같이 키운다. 안 그러면 27인치에서 5:1 띠가 된다
+     * - 좁은 화면에서는 아래 대표 포스트 글 칸(17rem)보다 확실히 커야 첫 화면이 배경으로 읽힌다
      */
     height === 'tall'
-      ? 'min-h-[24rem] sm:min-h-[clamp(40rem,32vw,48rem)]'
-      : 'min-h-[20rem] sm:min-h-[clamp(32rem,26vw,40rem)]',
+      ? 'min-h-[28rem] sm:min-h-[clamp(40rem,32vw,48rem)]'
+      : 'min-h-[25rem] sm:min-h-[clamp(32rem,26vw,40rem)]',
     align === 'bottom' ? 'items-end' : 'items-start',
   ]}
 >

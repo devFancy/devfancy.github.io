@@ -92,9 +92,15 @@ const here = Astro.url.pathname;
   }
   .site-header.is-overlay:not(.is-solid):not(:has(#menu-panel.is-open)) [data-logo] { color: #fff; }
 
-  .site-header nav a { opacity: .8; }
+  /* NOTE 커서를 올리면 색을 바꾸지 않고 더 또렷해진다 [호버 반응]
+   * - 사진 위에 얹힌 상태에서 파랑으로 바뀌면 배경과 섞여 오히려 덜 읽힌다
+   * - 사진 위에서는 흰색, 판이 깔린 뒤에는 가장 진한 글자색으로 간다
+   */
+  .site-header nav a { opacity: .92; transition: color .18s ease, opacity .18s ease; }
   .site-header nav a:hover,
-  .site-header a:hover { color: var(--color-accent); opacity: 1; }
+  .site-header a:hover { color: var(--color-fg-strong); opacity: 1; }
+  .site-header.is-overlay:not(.is-solid) nav a:hover,
+  .site-header.is-overlay:not(.is-solid) a:hover { color: #fff; opacity: 1; }
 
   #theme-toggle {
     display: grid;
@@ -155,7 +161,7 @@ const here = Astro.url.pathname;
     font-size: 17px;
     opacity: .85;
   }
-  #menu-panel a:hover, #menu-panel a:active { color: var(--color-accent); opacity: 1; }
+  #menu-panel a:hover, #menu-panel a:active { color: var(--color-fg-strong); opacity: 1; }
 
   /* 지금 보고 있는 페이지 */
   #menu-panel a[aria-current='page'] { color: var(--color-accent); opacity: 1; font-weight: 600; }

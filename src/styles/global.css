@@ -15,21 +15,35 @@
  * - --color-rule -> border-rule
  */
 @theme {
-  --color-bg: #ffffff;
-  --color-fg: #1a1a1a;
+  /* NOTE 순백 대신 아주 옅은 종이색. 순백은 주변 조명보다 밝아 눈이 계속 조리개를 조인다 [글자색]
+   * - 카드와 헤더는 이보다 밝아서 판이 살짝 떠 보인다
+   */
+  --color-bg: #fbfbf9;
+  /* NOTE 본문 기본 글자색. 순흑은 흰 바탕에서 대비가 너무 세서 오래 읽기 어렵다 [글자색]
+   * - 흰 바탕에서 10.3:1 로 AAA(7:1) 를 넉넉히 넘기면서 눈이 덜 피로하다
+   */
+  --color-fg: #3b4149;
   --color-muted: #5b6168;
+  /* 긴 글을 읽는 색. 보조색(6.3:1)보다 한 단계 진해 AAA 를 넘긴다 [글자색] */
+  --color-body: #474e55;
   --color-rule: #e3e5e6;
   --color-card: #ffffff;
-  --color-accent: #2a78d6;
-  --color-quote: #b8bcbf;
+  /* NOTE 바탕을 종이색으로 눅이면서 대비가 4.26:1 로 떨어졌다. AA(4.5:1) 를 넘기도록 한 단계 진하게 [글자색] */
+  --color-accent: #2569bd;
+  /* 목록 불릿·구분 기호처럼 아주 옅어도 되는 것. 종이색 바탕에서 사라지지 않을 선까지만 눅인다 */
+  --color-quote: #a7adb3;
   /* 본문보다 살짝 어둡게 둬 헤더가 글 위에 얹힌 판처럼 읽히게 한다 */
   --color-header: rgb(246 246 244 / .94);
-  /* 로고 전용. 호버하면 accent 로 밝아진다 */
-  --color-brand: #17547f;
+  /* NOTE 로고 전용. 파랑 대신 짙은 회색이다 [글자색]
+   * - 파랑은 본문 링크와 같은 계열이라 로고가 링크처럼 읽힌다
+   */
+  --color-brand: #2a3038;
   --color-tag: #f0f2f3;
   --color-tag-fg: #4b5157;
   --color-tag-on: #3f464d;
   --color-quote-bg: #f4f5f6;
+  /* 커서를 올린 제목처럼 가장 또렷해야 하는 글자 [호버 반응] */
+  --color-fg-strong: #1f242a;
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
@@ -38,19 +52,25 @@
 
 /* NOTE: 다크모드는 dark: 접두사 대신 data-theme 토큰 재정의로 처리한다 [테마 토큰] */
 :root[data-theme="dark"] {
-  --color-bg: #14161a;
-  --color-fg: #e8e8e6;
-  --color-muted: #9aa1a8;
+  /* NOTE 어두운 테마 [글자색]
+   * - 바탕을 아주 조금 들어 완전한 검정을 피한다. 순흑 바탕은 글자가 번져 보인다
+   * - 글자는 순백 대신 아주 옅은 회백색이다. 대비는 충분히 두되 순백의 눈부심만 덜어낸다
+   */
+  --color-bg: #15181c;
+  --color-fg: #e7ebef;
+  --color-muted: #a6adb4;
+  --color-body: #c6cdd4;
   --color-rule: #2a2f36;
-  --color-card: #1a1d22;
+  --color-card: #1c1f24;
   --color-accent: #6aa9f0;
-  --color-quote: #4a5158;
-  --color-header: rgb(20 22 26 / .94);
-  --color-brand: #8cbceb;
+  --color-quote: #666e77;
+  --color-header: rgb(21 24 28 / .94);
+  --color-brand: #eef1f4;
   --color-tag: #252a31;
   --color-tag-fg: #a9b1b9;
   --color-tag-on: #aeb6be;
   --color-quote-bg: #1c2026;
+  --color-fg-strong: #f4f4f2;
 }
 
 /* NOTE 목차나 Recommend 앵커로 이동할 때 끊기지 않고 미끄러지게 한다
@@ -103,7 +123,7 @@ body * {
 /* NOTE 본문은 회색이다. 흰 바탕에 순검정은 긴 글에서 눈이 빨리 피로해진다
  * - 제목과 강조만 진하게 남겨 위계를 지킨다
  */
-.prose { line-height: 1.8; color: var(--color-muted); }
+.prose { line-height: 1.8; color: var(--color-body); }
 .prose h2,
 .prose h3,
 .prose h4,
@@ -190,9 +210,10 @@ blockquote.quote {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+/* NOTE transform 이 아니라 scale 속성을 쓴다. transform 은 호버 확대가 쓰므로 비워 둔다 [사진 페이드] */
 @keyframes media-settle {
-  from { transform: scale(1.05); }
-  to   { transform: none; }
+  from { scale: 1.05; }
+  to   { scale: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -206,25 +227,124 @@ blockquote.quote {
   border-radius: 2px;
 }
 
-/* NOTE 사진 위에 얹는 글자. Hero 와 대표 글 캐러셀이 같이 쓴다 [사진 위 글자]
+/* NOTE 사진 위에 얹는 글자. Hero 와 대표 포스트 글 캐러셀이 같이 쓴다 [사진 위 글자]
  * - 스크림만으로는 밝은 사진에서 흰 글자가 묻힌다
  */
-.hero-type { text-shadow: 0 1px 14px rgb(0 0 0 / .55); }
+.hero-type {
+  /* 그림자를 넓게 퍼뜨리지 않는다. 번지면 글자 가장자리가 같이 흐려져 오히려 덜 선명하다
+   * 좁게(4px) 진하게 깔아 윤곽만 또렷하게 세운다
+   */
+  text-shadow: 0 0 .25rem rgb(0 0 0 / .9);
+  -webkit-font-smoothing: antialiased;
+}
 
 /* NOTE 대표 포스트 글 캐러셀 [대표 포스트 글]
+ * - 이전/다음 버튼은 사진 밖, 제목 줄 오른쪽에 둔다. 사진 위에 얹으면 글로 가는 링크와
+ *   같은 면을 나눠 쓰게 돼서 잘못 누르면 글이 열린다
+ * - 옆 슬라이드를 조금 남겨 더 있다는 것을 보인다. 지금 칸만 또렷하고 옆은 가라앉힌다
  * - 이동은 스크롤 스냅이 맡는다. 스크립트가 죽어도 밀어서 넘길 수 있다
  * - 높이는 min-height 다. 비율로 고정하면 제목이 길어질 때 글자가 잘린다
  */
-.fx { position: relative; }
+/* NOTE 섹션 머리 줄. 왼쪽은 제목+부제 한 문장, 오른쪽은 그 섹션의 조작부다 [홈 구성] */
+/* 숫자와 화살표 묶음. 한 줄로 서고 줄어들지 않는다 */
+.fx-nav {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+}
+.fx-count {
+  margin-right: 4px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+.fx-count b { font-weight: 700; color: var(--color-fg); }
+
+.fx-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .75rem 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.1rem;
+}
+/* NOTE 제목과 부제를 붙여 한 문장으로 읽히게 한다 [홈 구성]
+ * - 색은 한 가지다. 굵기만 달라서 한 문장으로 읽히고 줄 전체가 한 덩어리로 보인다
+ */
+.sec-head {
+  min-width: 0;
+  text-wrap: balance;
+}
+
+.fx-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 손가락으로 눌러도 빗나가지 않을 크기다 [모바일 터치 타깃]
+   * - flex 안에서 늘어나 세로로 긴 타원이 되지 않게 못박는다
+   */
+  flex: none;
+  box-sizing: border-box;
+  /* iOS·안드로이드 기본 버튼 모양을 지운다. 그대로 두면 제 여백이 더해져 상자가 커진다 */
+  appearance: none;
+  -webkit-appearance: none;
+  /* 좁은 화면에서는 줄인다. 폭이 줄면 같은 px 도 상대적으로 커 보인다 [모바일 터치 타깃] */
+  width: 30px;
+  min-width: 30px;
+  max-width: 30px;
+  height: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  padding: 0;
+  line-height: 0;
+  border: 1px solid var(--color-rule);
+  border-radius: 999px;
+  color: var(--color-muted);
+  transition: border-color .15s ease, color .15s ease, opacity .15s ease;
+}
+/* NOTE 조작부는 회색으로 반응한다. 파랑은 글로 가는 링크에만 쓴다 [호버 반응]
+ * - 화면을 넘기는 버튼과 글로 가는 링크가 같은 색으로 반응하면 무엇이 무엇인지 흐려진다
+ */
+.fx-arrow:hover {
+  border-color: var(--color-quote);
+  background: var(--color-tag);
+  color: var(--color-fg);
+}
+@media (min-width: 640px) {
+  .fx-arrow {
+    width: 34px; min-width: 34px; max-width: 34px;
+    height: 34px; min-height: 34px; max-height: 34px;
+  }
+}
+
 .fx-track {
   display: flex;
+  /* NOTE 좌우 여백이 곧 옆 칸이 보이는 폭이다 [대표 포스트 글]
+   * - 칸 폭을 100% 로 두면 여백만큼이 양옆에 남는다. 폭 계산을 따로 하지 않아도 된다
+   */
+  --peek: clamp(30px, 7vw, 104px);
+  gap: 14px;
+  padding-inline: var(--peek);
+  /* 포커스 테두리가 overflow 에 잘리지 않게 위아래를 비워 둔다 */
+  padding-block: 4px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  border-radius: 12px;
+  /* 빠르게 밀어도 한 장씩만 넘어간다 */
+  scroll-snap-stop: always;
+  /* 가로 끝에서 브라우저 뒤로가기 제스처로 새지 않게 한다 */
+  overscroll-behavior-x: contain;
   /* 스크롤 막대는 숨기고 스냅만 남긴다 */
   scrollbar-width: none;
+  /* NOTE 양끝을 잘라내지 않고 서서히 지운다 [대표 포스트 글]
+   * - 옆 칸이 칼로 자른 듯 끊기면 지저분하다. 가장자리로 갈수록 사라지면 "더 있다"만 남는다
+   * - 지우는 폭은 옆을 남긴 폭과 같다. 본 칸에는 닿지 않는다
+   */
+  mask-image: linear-gradient(to right,
+    transparent 0, #000 var(--peek), #000 calc(100% - var(--peek)), transparent 100%);
 }
 .fx-track::-webkit-scrollbar { display: none; }
+
 .fx-slide {
   position: relative;
   z-index: 0;
@@ -232,59 +352,107 @@ blockquote.quote {
   flex: 0 0 100%;
   flex-direction: column;
   justify-content: flex-end;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
   min-height: 17rem;
-  /* 아래 여백은 화살표 자리를 피해 글자가 겹치지 않게 둔다 */
   padding: 1.5rem 1.25rem;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 16px;
   background: var(--color-card);
+  /* 지금 칸만 또렷하고 양옆은 가라앉는다. 가장자리는 마스크가 이어받는다 */
+  opacity: .55;
+  transform: scale(.955);
+  transition: opacity .4s ease, transform .4s cubic-bezier(.2, .6, .2, 1);
 }
+/* 위는 살짝, 아래로 갈수록 확 짙어진다. 제목이 앉는 자리만 확실히 눌러 준다 [스크림] */
+.fx-scrim-bottom {
+  background: linear-gradient(180deg,
+    rgb(10 14 20 / .10) 0%, rgb(10 14 20 / .35) 45%, rgb(10 14 20 / .88) 100%);
+}
+
+.fx-slide.is-on {
+  opacity: 1;
+  transform: none;
+  box-shadow: 0 6px 16px rgb(0 0 0 / .16);
+}
+/* NOTE 복제 칸에서 진짜 칸으로 옮기는 한 순간만 전환을 끈다 [대표 포스트 글]
+ * - 켜진 칸이 다른 요소로 바뀌므로, 전환이 살아 있으면 흐려졌다 밝아지는 번쩍임이 보인다
+ */
+.fx-track.is-jumping .fx-slide,
+.fx-track.is-jumping .fx-slide .media-zoom { transition: none; }
 @media (min-width: 640px) {
   .fx-slide { min-height: 24rem; padding: 2rem 2rem 1.75rem; }
 }
 
-.fx-arrow {
-  position: absolute;
-  /* 칸 전체를 덮는 링크(.fx-slide 안)보다 위에 있어야 눌린다 [홈은 글로만] */
-  z-index: 2;
-  top: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* 손가락으로 눌러도 빗나가지 않을 크기다. 좁은 화면에서는 사진을 덜 가리게 조금 줄인다 */
-  width: 34px;
-  height: 34px;
-  margin-top: -17px;
-  border-radius: 999px;
-  background: rgb(0 0 0 / .42);
-  color: #fff;
-  transition: background .15s ease, opacity .15s ease;
-}
-.fx-arrow:hover { background: rgb(0 0 0 / .72); }
-.fx-arrow[disabled] { opacity: .3; pointer-events: none; }
-.fx-prev { left: 10px; }
-.fx-next { right: 10px; }
-@media (min-width: 640px) {
-  .fx-arrow { width: 40px; height: 40px; margin-top: -20px; }
-  .fx-prev { left: 12px; }
-  .fx-next { right: 12px; }
-}
-
-
 @media (prefers-reduced-motion: reduce) {
-  .fx-arrow { transition: none; }
+  .fx-arrow, .fx-slide { transition: none; }
+  .fx-slide { transform: none; }
 }
 
 /* NOTE 헤더·푸터·목록 페이지가 같이 쓰는 바깥 폭. 폭은 여기 한 곳에서 바꾼다 [바깥 폭]
- * - 읽는 화면(글 본문·About)은 줄이 길어지면 읽기 나쁘므로 이 폭을 쓰지 않는다
+ * - 글 본문(Post)의 읽는 폭과 같게 맞춘다. 화면마다 왼쪽 끝이 달라지면 옮겨 다닐 때 눈에 걸린다
  */
 .shell {
   width: 100%;
-  max-width: 56rem;
+  max-width: 48rem;
   margin-inline: auto;
   padding-inline: 1rem;
 }
+
+/* NOTE 카드 사진 상자. 안쪽의 스크림과 어둠 막이 여기를 기준으로 눕는다 [홈 격자]
+ * - 이 한 줄이 없으면 막이 페이지 전체를 덮는다
+ */
+.tile-media { position: relative; }
+
+/* NOTE 홈 카드와 대표 포스트 글 칸의 호버 반응 [호버 반응]
+ * - 사진은 살짝 당겨지고, 어둠이 한 겹 얹히고, 제목이 색을 바꾼다. 세 가지가 같이 움직여야 눌리는 것으로 읽힌다
+ * - 확대는 transform 이 맡는다. 첫 로드의 가라앉는 연출은 scale 속성이라 서로 밟지 않는다
+ */
+.tile-media img,
+.fx-slide .media-zoom,
+.blank-cover::before {
+  transition: transform .55s cubic-bezier(.2, .6, .2, 1);
+}
+/* NOTE 어둡게 하는 것은 제목이 사진 위에 있는 대표 포스트 글에만 준다 [호버 반응]
+ * - 아래쪽만 짙어져 그 위에 앉은 제목이 또렷해진다. 화면 전체를 고르게 덮으면 사진만 탁해진다
+ * - 최신 포스트 글은 제목이 사진 밖에 있어 어둡게 할 이유가 없다. 확대만 한다
+ */
+.fx-slide .fx-scrim-hover {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(0 0 0 / .55), rgb(0 0 0 / .1) 55%, transparent);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+.group:hover .tile-media img,
+.fx-slide.is-on:hover .media-zoom { transform: scale(1.07); }
+
+/* NOTE 커서를 올리면 글이 살짝 오른쪽으로 기운다 [호버 반응]
+ * - 사진과 구분선은 제자리에 둔다. 줄 전체를 밀면 아래 선까지 움직여 왼쪽 끝이 어긋나 보인다
+ * - 누르고 있는 동안에는 반대로 되돌아온다. 눌렸다는 것이 손끝에서 보인다
+ */
+.tile-body { transition: transform .45s cubic-bezier(.2, .6, .2, 1); }
+.tile-title { transition: color .2s ease; }
+.group:hover .tile-title { color: var(--color-accent); }
+.group:hover .tile-body { transform: translateX(4px); }
+.group:active .tile-body { transform: translateX(1px); }
+.group:active .tile-media img { transform: scale(1.03); }
+.group:hover .blank-cover::before,
+.fx-slide.is-on:hover.blank-cover::before { transform: scale(1.12); }
+.fx-slide.is-on:hover .fx-scrim-hover { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-media img, .fx-slide .media-zoom, .blank-cover::before,
+  .fx-slide .fx-scrim-hover, .tile-body { transition: none; }
+  .group:hover .tile-body, .group:active .tile-body { transform: none; }
+  .group:hover .tile-media img, .fx-slide.is-on:hover .media-zoom,
+  .group:hover .blank-cover::before, .fx-slide.is-on:hover.blank-cover::before { transform: none; }
+}
+
+/* NOTE 섹션 제목 아래 한 줄. 제목과 같은 자리에서 크기와 색만 낮춘다 [홈 구성] */
+/* NOTE 제목과 같은 크기로 두고 색과 굵기만 낮춘다. 한 문장으로 이어 읽히게 하려는 것이다 [홈 구성] */
+.sec-note { font-weight: 400; }
 
 /* NOTE 홈 카드에서 제목 위에 서는 카테고리 [칩]
  * - 대표 포스트 글 칸의 카테고리 머리글과 같은 자리, 같은 크기다. 태그와 헷갈리지 않게 칩 모양을 쓰지 않는다
@@ -294,21 +462,6 @@ blockquote.quote {
   font-weight: 700;
   letter-spacing: .06em;
   color: var(--color-muted);
-}
-
-/* NOTE 홈 카드의 제목 끝에 붙는 화살표. 누를 수 있다는 신호다 [홈 격자]
- * - 제목 마지막 줄에 붙어 흐르도록 inline 이다. 절대 위치로 띄우면 두 줄짜리 제목에서 어긋난다
- */
-.tile-go {
-  flex: none;
-  /* 마지막 글자의 밑선에 맞춘다. 화살표가 글자보다 커 보이면 제목이 밀려 보인다 */
-  padding-bottom: .12em;
-  color: var(--color-quote);
-  transition: transform .18s ease, color .18s ease;
-}
-.group:hover .tile-go { transform: translateX(3px); color: var(--color-accent); }
-@media (prefers-reduced-motion: reduce) {
-  .tile-go { transition: none; }
 }
 
 /* NOTE 대표 이미지가 없는 글에 까는 기본 이미지 [기본 이미지]
@@ -401,7 +554,11 @@ blockquote.quote {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  flex: none;
   height: var(--chip-h);
+  min-height: var(--chip-h);
+  max-height: var(--chip-h);
   padding-inline: var(--chip-px);
   border: 1px solid var(--color-rule);
   border-radius: 3px;
@@ -419,6 +576,22 @@ blockquote.quote {
   background: var(--color-fg);
   border-color: var(--color-fg);
   color: var(--color-bg);
+}
+
+/* NOTE 같은 칩을 조금 키워 쓰는 자리. 치수 변수만 갈아끼운다 [칩] */
+.chip-lg {
+  --chip-h: 28px;
+  --chip-px: 12px;
+  --chip-fs: 14px;
+}
+@media (min-width: 640px) {
+  .chip-lg { --chip-h: 32px; --chip-px: 14px; --chip-fs: 15px; }
+}
+/* 전체 보기도 조작부다. 칩의 파랑 대신 회색으로 반응한다 [호버 반응] */
+.chip.chip-lg:hover {
+  border-color: var(--color-quote);
+  background: var(--color-tag);
+  color: var(--color-fg);
 }
 
 .chip-tag {

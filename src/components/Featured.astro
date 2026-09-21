@@ -1,9 +1,8 @@
 ---
 /* NOTE 홈 맨 위의 대표 포스트 글 캐러셀. 목록은 config 의 FEATURED 가 정한다 [대표 포스트 글]
- * - 한 번에 한 편만 크게 보여준다. 아래 최신 포스트 글 격자가 2열이라 여기까지 2열이면 둘이 구분되지 않는다
- * - 이동은 CSS 스크롤 스냅이 맡는다. 화살표 버튼이 없어도(JS 실패) 밀어서 넘길 수 있다
- * - 누르면 글로 가는 곳은 사진과 제목뿐이다 [홈은 글로만]
- * - 태그는 두지 않는다. 홈에서 고를 거리를 줄이고 제목이 먼저 읽히게 한다
+ * - 이전/다음 버튼을 사진 밖에 둔다. 사진 위에 얹으면 글로 가는 링크와 면을 나눠 써서
+ *   잘못 누르면 페이지가 안 넘어가고 글이 열린다
+ * - 누르면 글로 가는 곳은 사진과 제목뿐이다. 칩처럼 보이는 것을 두지 않는다 [홈은 글로만]
  * - 높이는 min-height 다. 비율로 고정하면 제목이 길어질 때 글자가 잘린다 [높이 고정 금지]
  */
 import { blankLight } from '../lib/blank';
@@ -16,44 +15,68 @@ interface Item {
   cover?: string;
 }
 interface Props {
+  title: string;
+  note: string;
   items: Item[];
 }
-const { items } = Astro.props;
+const { title, note, items } = Astro.props;
+const ARROW = { prev: 'M15 5 8 12l7 7', next: 'm9 5 7 7-7 7' };
 ---
 {items.length > 0 && (
-  <section aria-roledescription="carousel" aria-label="대표 포스트 글" class="fx">
-    <div class="fx-track" id="fx-track" tabindex="0">
+  <section class="fx" aria-roledescription="carousel" aria-label={title}>
+    <div class="fx-head">
+      {/* NOTE: 제목과 부제를 한 줄에 이어 붙인다. 굵기만 달라 한 문장처럼 읽힌다 [홈 구성] */}
+      <h2 class="sec-head text-2xl">
+        <span class="font-semibold">{title}</span><span class="sec-note">{note}</span>
+      </h2>
+      {items.length > 1 && (
+        <div class="fx-nav">
+          <span class="fx-count" aria-hidden="true"><b data-fx-at>1</b> / {items.length}</span>
+          {(['prev', 'next'] as const).map((d) => (
+            <button type="button" class="fx-arrow" data-fx={d} aria-controls="fx-track"
+              aria-label={d === 'prev' ? '이전 대표 포스트 글' : '다음 대표 포스트 글'}>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d={ARROW[d]} />
+              </svg>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <div class="fx-track" id="fx-track" tabindex="0" aria-live="polite">
       {items.map((it, i) => (
         <article
-          class:list={['fx-slide', !it.cover && 'blank-cover']}
+          class:list={['fx-slide', i === 0 && 'is-on', !it.cover && 'blank-cover']}
           style={it.cover ? undefined : blankLight(it.slug)}
+          role="group"
           aria-roledescription="slide"
-          aria-label={`${i + 1} / ${items.length}`}
+          aria-label={`${i + 1} / ${items.length} ${it.title}`}
         >
-          {/* NOTE: 사진이 없으면 기본 이미지 색만 깔고 스크림을 생략한다. 이미 짙은 판이다 [기본 이미지] */}
           {it.cover && (
             <>
               <img src={it.cover} alt="" loading={i === 0 ? 'eager' : 'lazy'} decoding="async"
                 class="media-zoom absolute inset-0 -z-10 size-full object-cover" />
-              {/* NOTE: 위는 헤더 글자를, 아래는 제목을 읽히게 한다. 한 겹으로 덮으면 사진이 탁해진다 [스크림] */}
+              {/* NOTE: 막이 두 겹이다. 첫 겹은 사진 전체를 한 톤 눌러 어떤 사진이 와도 카드 톤을 맞추고,
+                  둘째 겹은 아래로 갈수록 짙어져 제목 자리를 확실히 어둡게 한다 [스크림]
+                  - 기본 이미지에는 막을 씌우지 않는다. 그 자체가 이미 짙은 판이다 */}
               <div class="media-scrim absolute inset-0 -z-10 bg-black/20"></div>
-              <div class="media-scrim absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-black/55 to-transparent"></div>
-              <div class="media-scrim absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent"></div>
+              <div class="media-scrim fx-scrim-bottom absolute inset-0 -z-10"></div>
+              <div class="fx-scrim-hover -z-10"></div>
             </>
           )}
 
-          {/* NOTE: 사진을 덮는 링크. 글자 블록보다 아래에 깔려 사진 아무 데나 눌러도 글로 간다 [홈은 글로만]
-              - 화살표는 .fx 에 붙어 있고 z-index 가 위라 이 덮개에 가리지 않는다 */}
+          {/* NOTE: 덮개 링크는 글자 블록보다 아래에 깔린다. 사진 아무 데나 누르면 글로 가고,
+              글자 블록 위(카테고리·날짜)는 눌러도 아무 일이 없다 [홈은 글로만] */}
           <a href={`/${it.slug}/`} aria-label={it.title} class="absolute inset-0"></a>
 
-          {/* NOTE: 글자 블록은 덮개 위에 있다. 그래서 카테고리·날짜·태그는 눌러도 아무 일이 없고,
-              글로 가는 길은 사진과 제목 둘뿐이다. 다른 화면의 칩 동작과 어긋나지 않게 하려는 것이다 [홈은 글로만] */}
           <div class="relative">
             <p class="hero-type flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-white/80">
               {it.categories.map((c) => <span>{c}</span>)}
             </p>
             <h3 class="hero-type mt-3 text-2xl leading-snug font-bold text-white sm:text-3xl">
-              <a href={`/${it.slug}/`} class="hover:underline">{it.title}</a>
+              <a href={`/${it.slug}/`} class="fx-title-link">{it.title}</a>
             </h3>
             <time datetime={it.date.toISOString().slice(0, 10)} class="hero-type mt-4 block text-sm text-white/75">
               {it.date.toISOString().slice(0, 10)}
@@ -62,52 +85,102 @@ const { items } = Astro.props;
         </article>
       ))}
     </div>
-
-    {/* NOTE: 버튼은 JS 가 붙어야 동작한다. 없어도 스냅 스크롤로 밀어서 넘길 수 있다
-        - 점 표시는 두지 않는다. 좁은 화면에도 화살표가 있어 하는 일이 겹친다 */}
-    {items.length > 1 && (
-      <>
-        <button type="button" class="fx-arrow fx-prev" data-fx="prev" aria-controls="fx-track" aria-label="이전 대표 포스트 글">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5 8 12l7 7" /></svg>
-        </button>
-        <button type="button" class="fx-arrow fx-next" data-fx="next" aria-controls="fx-track" aria-label="다음 대표 포스트 글">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
-        </button>
-      </>
-    )}
   </section>
 )}
 
 <script>
-  /* NOTE 캐러셀 조작. 위치는 스크롤이 진실이고 스크립트는 그것을 읽기만 한다 [대표 포스트 글]
-   * - 인덱스를 따로 들고 있으면 손으로 민 뒤 버튼을 누를 때 어긋난다
+  /* NOTE 캐러셀 조작 [대표 포스트 글]
+   * - 앞뒤에 칸을 하나씩 복제한다. 첫 칸과 끝 칸에서도 양옆에 실루엣이 남고, 복제 칸에 멈추면
+   *   같은 그림의 진짜 칸으로 소리 없이 옮겨 끝이 없는 것처럼 보인다
+   * - 위치는 스크롤이 진실이다. 인덱스를 따로 들면 손으로 민 뒤 버튼을 누를 때 어긋난다
    */
   const track = document.getElementById('fx-track');
   if (track) {
-    const count = track.children.length;
+    const real = [...track.children] as HTMLElement[];
+    const n = real.length;
+    const at = document.querySelector('[data-fx-at]');
+    const arrows = [...document.querySelectorAll<HTMLButtonElement>('[data-fx]')];
     const slow = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const at = () => Math.round(track.scrollLeft / track.clientWidth);
-    const go = (i: number) =>
-      track.scrollTo({
-        left: Math.max(0, Math.min(count - 1, i)) * track.clientWidth,
-        behavior: slow ? 'auto' : 'smooth',
-      });
+    const SETTLE_MS = 140; // 스크롤이 멎었다고 보는 시간
+    const DRAG_PX = 8; // 이만큼 넘게 움직였으면 눌렀다가 아니라 끌었다고 본다
 
-    for (const b of document.querySelectorAll<HTMLButtonElement>('[data-fx]')) {
-      b.addEventListener('click', () => go(at() + (b.dataset.fx === 'next' ? 1 : -1)));
+    /* 복제 칸은 읽어 줄 필요가 없다. 같은 글이 두 번 읽히지 않게 접근성 트리에서 뺀다 */
+    const clone = (el: HTMLElement) => {
+      const c = el.cloneNode(true) as HTMLElement;
+      c.dataset.clone = '';
+      c.setAttribute('aria-hidden', 'true');
+      for (const a of c.querySelectorAll('a')) a.setAttribute('tabindex', '-1');
+      return c;
+    };
+    if (n > 1) {
+      track.append(clone(real[0]));
+      track.prepend(clone(real[n - 1]));
     }
+    const all = [...track.children] as HTMLElement[];
+    const first = n > 1 ? 1 : 0; // 복제 칸을 앞에 하나 두므로 진짜 첫 칸은 1번 자리다
+
+    const step = () => {
+      const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+      return all[0].getBoundingClientRect().width + gap;
+    };
+    const slot = () => Math.round(track.scrollLeft / step());
+    /* 자리를 옮기는 동안에는 전환을 꺼 둔다. 켜진 칸이 바뀌면서 번쩍이는 것을 막는다 */
+    const jump = (i: number) => {
+      track.classList.add('is-jumping');
+      track.scrollLeft = i * step();
+      requestAnimationFrame(() => requestAnimationFrame(() => track.classList.remove('is-jumping')));
+    };
+    const go = (d: number) =>
+      track.scrollTo({ left: (slot() + d) * step(), behavior: slow ? 'auto' : 'smooth' });
+
+    for (const b of arrows) {
+      b.addEventListener('click', () => go(b.dataset.fx === 'next' ? 1 : -1));
+    }
+
+    /* 복제 칸에 멈췄으면 같은 그림의 진짜 칸으로 옮긴다 */
+    const normalize = () => {
+      if (n < 2) return;
+      const i = slot();
+      if (i === 0) jump(n);
+      else if (i === n + 1) jump(first);
+    };
+
     let tick = 0;
-    track.addEventListener('scroll', () => {
+    const sync = () => {
       cancelAnimationFrame(tick);
       tick = requestAnimationFrame(() => {
-        const i = at();
-        for (const b of document.querySelectorAll<HTMLButtonElement>('[data-fx]')) {
-          b.toggleAttribute('disabled', b.dataset.fx === 'next' ? i >= count - 1 : i <= 0);
-        }
+        const i = slot();
+        all.forEach((s, k) => s.classList.toggle('is-on', k === i));
+        const shown = n > 1 ? ((i - 1 + n) % n) + 1 : 1;
+        if (at) at.textContent = String(shown);
       });
+    };
+
+    let settle: ReturnType<typeof setTimeout>;
+    track.addEventListener('scroll', () => {
+      sync();
+      clearTimeout(settle);
+      settle = setTimeout(normalize, SETTLE_MS);
     }, { passive: true });
-    track.dispatchEvent(new Event('scroll'));
+    addEventListener('resize', () => { jump(slot()); sync(); });
+
+    /* 밀어서 넘기다 손을 뗐을 때 그 자리의 글이 열리는 사고를 막는다 */
+    let down = 0;
+    track.addEventListener('pointerdown', (e) => { down = (e as PointerEvent).clientX; }, { passive: true });
+    track.addEventListener(
+      'click',
+      (e) => { if (Math.abs((e as PointerEvent).clientX - down) > DRAG_PX) { e.preventDefault(); e.stopPropagation(); } },
+      true,
+    );
+
+    /* 첫 칸은 왼쪽에 복제 칸을 하나 두고 시작한다. 그리기 전에 옮겨야 자리가 튀지 않는다 */
+    track.classList.add('is-jumping');
+    track.scrollLeft = first * step();
+    sync();
+    requestAnimationFrame(() => {
+      track.scrollLeft = first * step();
+      sync();
+      requestAnimationFrame(() => track.classList.remove('is-jumping'));
+    });
   }
 </script>

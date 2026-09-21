@@ -1,9 +1,8 @@
 ---
-/* NOTE 홈의 카드 격자 한 칸 [홈 격자]
- * - 쌓는 순서는 대표 포스트 글 칸과 같다. 대표 이미지 -> 카테고리 -> 제목 -> 날짜
- * - 누르면 글로 가는 곳은 대표 이미지와 제목 둘뿐이다 [홈은 글로만]
- * - 태그는 두지 않는다. 홈에서 고를 거리를 줄이고 제목이 먼저 읽히게 한다
- * - 대표 이미지가 없으면 기본 이미지를 깔아 칸이 비어 보이지 않게 한다 [기본 이미지]
+/* NOTE 홈의 최신 포스트 글 한 줄 [홈 격자]
+ * - 사진 왼쪽, 글 오른쪽. 좁은 화면에서도 이 배치를 지켜 넓은 화면과 같은 모양으로 읽힌다
+ *   (대표 포스트 글은 사진 위에 글자를 얹어 두 섹션의 형태가 갈린다)
+ * - 누르면 글로 가는 곳은 사진과 제목 둘뿐이다 [홈은 글로만]
  */
 import { blankLight } from '../lib/blank';
 
@@ -12,22 +11,24 @@ interface Props {
   title: string;
   date: Date;
   categories: string[];
+  excerpt: string;
   cover?: string;
 }
-const { slug, title, date, categories, cover } = Astro.props;
+const { slug, title, date, categories, excerpt, cover } = Astro.props;
 const iso = date.toISOString().slice(0, 10);
 const href = `/${slug}/`;
 ---
-<article class="group">
-  {/* NOTE: 비율을 고정해 이미지가 늦게 와도 아래 글이 밀리지 않는다 */}
-  <a href={href} aria-label={title} class="relative block aspect-[16/9] overflow-hidden rounded-lg bg-card">
+<article class="group flex gap-4 border-b border-rule pb-7 sm:gap-6">
+  {/* NOTE: 비율을 고정해 이미지가 늦게 와도 오른쪽 글이 밀리지 않는다 */}
+  <a href={href} aria-label={title}
+    class="tile-media block aspect-[16/10] w-[38%] shrink-0 overflow-hidden rounded-lg bg-card sm:w-[46%]">
     {cover ? (
       <>
         <img src={cover} alt="" loading="lazy" decoding="async" class="media-zoom size-full object-cover" />
         <div class="media-scrim pointer-events-none absolute inset-0 bg-black/10"></div>
       </>
     ) : (
-      /* NOTE: 사진을 지어내지 않는다. 짙은 판에 카테고리와 제목을 얹어 표지처럼 보이게 한다 [기본 이미지] */
+      /* 대표 이미지가 없으면 사진을 지어내지 않고 짙은 판을 깐다 [기본 이미지] */
       <div class="blank-cover" style={blankLight(slug)}>
         <span class="blank-cat">{categories[0]}</span>
         <span class="blank-title">{title}</span>
@@ -35,14 +36,15 @@ const href = `/${slug}/`;
     )}
   </a>
 
-  {/* NOTE: 카테고리는 제목 위에 작게 둔다. 칩 모양을 쓰지 않아 누르는 것으로 보이지 않는다 */}
-  <p class="tile-eyebrow mt-3.5">{categories.join(' · ')}</p>
+  <div class="tile-body min-w-0 flex-1">
+    <p class="tile-eyebrow">{categories.join(' · ')}</p>
 
-  {/* NOTE: 화살표는 제목 밖에 둔다. 안에 넣으면 제목이 두 줄을 꽉 채울 때 혼자 세 번째 줄로 떨어진다 */}
-  <h3 class="mt-1.5 flex items-end gap-1.5 text-lg leading-snug font-semibold">
-    <a href={href} class="line-clamp-2 min-w-0 group-hover:text-accent">{title}</a>
-    <a href={href} class="tile-go" aria-hidden="true" tabindex="-1">&rarr;</a>
-  </h3>
+    <h3 class="mt-1 text-[17px] leading-snug font-semibold sm:mt-1.5 sm:text-xl">
+      <a href={href} class="tile-title line-clamp-2">{title}</a>
+    </h3>
 
-  <time datetime={iso} class="mt-2 block text-sm text-muted">{iso}</time>
+    {/* 넓은 화면은 세 줄이라 글 기둥이 사진 높이를 채운다. 좁은 화면은 두 줄이다 */}
+    <p class="mt-1.5 line-clamp-2 text-[15px] leading-relaxed text-muted sm:mt-2 sm:line-clamp-3 sm:text-base">{excerpt}</p>
+    <time datetime={iso} class="mt-2 block text-[15px] text-muted sm:mt-2.5">{iso}</time>
+  </div>
 </article>

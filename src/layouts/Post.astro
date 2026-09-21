@@ -29,7 +29,7 @@ const iso = date.toISOString().slice(0, 10);
       <p slot="eyebrow" class="hero-type mb-4 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-white/80">
         {categories.map((c) => (
           <a href={`/category/#${encodeURIComponent(c)}`}
-            class="underline-offset-4 transition-colors hover:text-white hover:underline">{c}</a>
+            class="inline-block py-1 underline-offset-4 transition-colors hover:text-white hover:underline">{c}</a>
         ))}
       </p>
       <div class="mt-5 flex flex-wrap items-center gap-2">

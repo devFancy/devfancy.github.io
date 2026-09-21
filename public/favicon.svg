@@ -1,8 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- 로고보다 한 단계 밝은 파랑. 탭에서 또렷하게 보이는 쪽을 택했다 -->
-  <rect width="64" height="64" rx="13" fill="#1d73ad"/>
-  <g fill="none" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
-    <path d="M41 13 L51 23 L27 47 L15 49 L17 37 Z"/>
-    <path d="M15 49 L21 43"/>
+  <title>devfancy</title>
+  <desc>종이색 바탕에 진한 회색 d. 로고와 같은 색이다. 바탕이 밝아 탭에 묻히므로 테두리로 윤곽을 남긴다.</desc>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="#fbfbf9" stroke="#d5d8dc" stroke-width="2"/>
+  <g fill="none" stroke="#2a3038" stroke-width="7" stroke-linecap="round">
+    <circle cx="26" cy="39.5" r="11"/>
+    <path d="M40 12 L40 50.5"/>
   </g>
 </svg>

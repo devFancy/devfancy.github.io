@@ -1,7 +1,6 @@
 ---
-/* NOTE 홈은 대표 글과 최신 글만 보여준다. 목록 전체는 /archive/ 와 /category/ 가 맡는다 [홈 구성]
- * - 맨 위가 손으로 고른 대표 글, 그 아래가 최신 글 격자다 [대표 포스트 글]
- * - 최신 글은 카드 격자다. 모바일 1열, 그 위로 2열 [홈 격자]
+/* NOTE 홈은 손으로 고른 대표 글과 최신 글만 보여준다 [홈 구성]
+ * - 목록 전체는 /archive/ 와 /category/ 가 맡는다
  */
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
@@ -11,9 +10,9 @@ import Featured from '../components/Featured.astro';
 import Hero from '../components/Hero.astro';
 import PostTile from '../components/PostTile.astro';
 import { coverOf } from '../lib/cover';
+import { excerptOf } from '../lib/excerpt';
 import { FEATURED, SITE, SOLUTION_CATEGORIES } from '../config';
 
-// NOTE: 2열이라 짝수로 둔다. 홀수면 마지막 줄에 한 칸만 남는다 [홈 격자]
 const RECENT = 6;
 
 const solution = new Set<string>(SOLUTION_CATEGORIES);
@@ -21,7 +20,7 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 
-/* NOTE 대표 포스트 글은 config 에 적은 목록을 최신순으로 세워 보여준다 [대표 포스트 글]
+/* NOTE 대표 포스트 글은 config 에 적은 순서 그대로 보여준다. 손으로 고른 차례다 [대표 포스트 글]
  * - 슬러그가 틀리면 조용히 빠지지 않도록 빌드 로그에 남긴다
  */
 const byId = new Map(posts.map((p) => [p.id, p]));
@@ -39,7 +38,7 @@ const featured = FEATURED.flatMap((slug) => {
     categories: p.data.categories,
     cover: coverOf(p),
   }];
-}).sort((a, b) => b.date.getTime() - a.date.getTime());
+});
 
 // NOTE: 문제풀이는 한 번에 여러 편이 올라가 최신 글을 독점한다. /solutions/ 로 뺀다 [문제풀이 분리]
 const recent = posts
@@ -56,23 +55,24 @@ const recent = posts
     </section>
 
     {featured.length > 0 && (
-      <section class="mb-14">
-        <h2 class="text-2xl font-semibold">대표 포스트 글</h2>
-        <div class="mt-5">
-          <Featured items={featured} />
-        </div>
-      </section>
+      <div class="mb-12 border-b border-rule pb-12">
+        <Featured title="대표 포스트 글" note="부터 구경하실래요" items={featured} />
+      </div>
     )}
 
     <section>
-      <div class="flex items-baseline justify-between gap-4">
-        <h2 class="text-2xl font-semibold">최신 포스트 글</h2>
-        <a href="/archive/" class="text-[15px] text-muted hover:text-accent">전체 보기 &rarr;</a>
+      {/* NOTE: 제목·부제를 한 줄로 잇고 오른쪽 끝에 그 섹션의 조작부를 둔다 [홈 구성] */}
+      <div class="fx-head">
+        <h2 class="sec-head text-2xl">
+          <span class="font-semibold">최신 포스트 글</span><span class="sec-note">은 요즘 쓰고 있는 것들이에요</span>
+        </h2>
+        <a href="/archive/" class="chip chip-lg shrink-0">전체 보기</a>
       </div>
-      <div class="mt-7 grid grid-cols-1 gap-x-6 gap-y-9 sm:grid-cols-2">
+      <div class="mt-7 flex flex-col gap-7">
         {recent.map((p) => (
           <PostTile slug={p.id} title={p.data.title} date={p.data.date}
-            categories={p.data.categories} cover={coverOf(p)} />
+            categories={p.data.categories} excerpt={p.data.summary ?? excerptOf(p.body ?? '')}
+            cover={coverOf(p)} />
         ))}
       </div>
     </section>
