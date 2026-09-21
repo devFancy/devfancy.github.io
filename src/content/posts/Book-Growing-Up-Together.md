@@ -1,8 +1,8 @@
 ---
 title: "[리뷰] 함께 자라기 (애자일로 가는 길)"
 date: 2023-11-19
-categories: ["에세이"]
-tags: ["책"]
+categories: ["서평"]
+tags: []
 thumbnail: /assets/img/essay/cover/book-candle.jpg
 ---
 

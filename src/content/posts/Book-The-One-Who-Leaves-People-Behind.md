@@ -1,8 +1,8 @@
 ---
 title: "'삶을 재구성하는 관계의 법칙, 사람을 남기는 사람' 책 리뷰"
 date: 2026-01-04
-categories: ["에세이"]
-tags: ["책"]
+categories: ["서평"]
+tags: []
 thumbnail: /assets/img/essay/book/The-One-Who-Leaves-People-Behind-cover.jpg
 ---
 
