@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import heroCategory from '../assets/hero-category.jpg';
 import Base from '../layouts/Base.astro';
 import Chip from '../components/Chip.astro';
-import { CATEGORY_GROUPS, TAG_ORDER } from '../config';
+import { CATEGORY_GROUPS, SOLUTION_CATEGORIES, TAG_ORDER } from '../config';
 
 const SUBTITLE = '궁금한 주제를 골라 관련 글을 찾아보세요';
 
@@ -56,6 +56,13 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
       <div id="tags" class="mt-4 flex-wrap gap-2 border-t border-rule pt-4" hidden></div>
     </div>
 
+    {/* NOTE 문제풀이만 모아 보는 화면으로 가는 길. 칩 줄에 두지 않는다 [문제풀이 분리]
+     * - 그 줄의 칩은 눌러도 페이지를 안 떠나는 버튼이라, 생김새가 같으면 동작이 어긋난다
+     */}
+    <p id="solutions-note" class="mt-8" data-cat={SOLUTION_CATEGORIES[0]} hidden>
+      <a href="/solutions/" class="link-title link-go">문제풀이만 모아 보기<span aria-hidden="true">&rarr;</span></a>
+    </p>
+
     <p id="summary" class="mt-8 text-muted"></p>
     <ul id="list" class="mt-1"></ul>
   </div>
@@ -67,6 +74,7 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
 <script>
   type Row = { slug: string; title: string; cats: string[]; tags: string[]; date: string };
 
+  const solutionsNote = document.getElementById('solutions-note') as HTMLElement;
   const rows: Row[] = JSON.parse(document.getElementById('post-index')?.textContent ?? '[]');
   const groupMap: Record<string, string[]> = JSON.parse(
     document.getElementById('group-map')?.textContent ?? '{}',
@@ -129,6 +137,8 @@ const json = (v: unknown) => JSON.stringify(v).replace(/</g, '\\u003c');
     subs.hidden = children.length === 0;
     subs.classList.toggle('flex', children.length > 0);
     subs.innerHTML = children.map((c) => chipHtml({ v: c })).join('');
+
+    solutionsNote.hidden = cat !== solutionsNote.dataset.cat;
 
     const scoped = rows.filter(inCat);
     const seen = new Set<string>();

@@ -353,6 +353,23 @@ blockquote.quote {
 .link-title:hover,
 .group:hover .link-title { color: var(--color-accent); }
 
+/* NOTE 다른 화면을 오가는 링크에 붙이는 화살표 [호버 반응]
+ * - 커서를 올리면 갈 방향으로 미끄러진다. go 는 오른쪽, back 은 왼쪽
+ * - 화살표를 링크 밖에 두면 누르는 상자에서 빠지고 색도 따로 논다. 안에 둔다
+ * - 움직임을 줄이는 설정에서는 파일 맨 아래 규칙이 전환 시간을 0 으로 만든다
+ */
+.link-go > span,
+.link-back > span {
+  display: inline-block;
+  transition: transform .25s cubic-bezier(.2, .6, .2, 1);
+}
+.link-go > span { margin-left: .35em; }
+.link-back > span { margin-right: .35em; }
+.link-go:hover > span { transform: translateX(4px); }
+.link-back:hover > span { transform: translateX(-4px); }
+
+/* 손가락으로 누를 상자를 확보한다. inline 요소는 min-height 를 무시해서 flex 로 바꾼다 */
+.link-back { display: inline-flex; align-items: center; }
 .group:hover .tile-body { transform: translateX(4px); }
 .group:active .tile-body { transform: translateX(1px); }
 .group:active .tile-media img { transform: scale(1.03); }
