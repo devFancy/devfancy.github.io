@@ -23,12 +23,9 @@ const imgClass = `media-zoom absolute inset-0 -z-10 size-full object-cover ${fit
 <section
   class:list={[
     'relative isolate flex overflow-hidden',
-    /* NOTE 높이는 최소값만 준다. 비율(aspect-ratio)로 잡으면 내용이 넘칠 때
-     * overflow-hidden 이 그것을 잘라 제목이 헤더와 겹친다
-     */
-    /* NOTE 제목이 아래에 붙으므로 높이를 키우면 사진이 아니라 제목 위 빈 자리가 늘어난다
-     * - 모바일에서 화면 비율(svh)로 키워 봤더니 빈 회색 띠가 257px 에서 350px 이 됐다
-     * - 비율(aspect-ratio)로 잡으면 제목이 길어질 때 글자가 잘린다. 그래서 최소 높이만 준다
+    /* NOTE 높이는 최소값만 준다
+     * - 비율(aspect-ratio)로 잡으면 제목이 길어질 때 overflow-hidden 이 글자를 잘라낸다
+     * - 제목이 아래에 붙어 있어 높이를 키우면 사진이 아니라 제목 위 빈 자리가 늘어난다
      */
     height === 'tall'
       ? 'min-h-[28rem] sm:min-h-[clamp(40rem,32vw,48rem)]'

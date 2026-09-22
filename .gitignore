@@ -12,3 +12,7 @@ docs/
 # OS / IDE
 .DS_Store
 .idea/
+
+# Claude Code 로컬 설정. 규칙(.claude/rules/)만 공유한다
+.claude/settings.local.json
+.claude/settings.json
