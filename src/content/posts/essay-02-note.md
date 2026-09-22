@@ -1,7 +1,7 @@
 ---
 title: "2026년 7월 생각 정리"
 date: 2026-07-26
-categories: ["생각정리"]
+categories: ["생각"]
 tags: []
 thumbnail: /assets/img/essay/cover/essay-2026-07.jpg
 ---

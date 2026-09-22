@@ -19,7 +19,7 @@ export const NAV = [
 /* 프론트매터에는 잎만 적는다. 부모까지 넣으면 카드마다 정보 없는 "기술" 칩이 붙는다 */
 export const CATEGORY_GROUPS = [
   { name: "기술", children: ["서버", "CS", "알고리즘", "도구", "프로젝트"] },
-  { name: "에세이", children: ["생각정리", "회고", "서평"] },
+  { name: "에세이", children: ["생각", "회고", "서평"] },
   { name: "기타", children: [] },
   { name: "대학교", children: [] },
 ] as const;
