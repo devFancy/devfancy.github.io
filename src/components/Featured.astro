@@ -64,7 +64,7 @@ const ARROW = { prev: 'M15 5 8 12l7 7', next: 'm9 5 7 7-7 7' };
               {it.categories.map((c) => <span>{c}</span>)}
             </p>
             <h3 class="hero-type mt-3 text-2xl leading-snug font-bold text-white sm:text-3xl">
-              <a href={`/${it.slug}/`} class="fx-title-link">{it.title}</a>
+              <a href={`/${it.slug}/`}>{it.title}</a>
             </h3>
             <time datetime={it.date.toISOString().slice(0, 10)} class="hero-type mt-4 block text-sm text-white/75">
               {it.date.toISOString().slice(0, 10)}

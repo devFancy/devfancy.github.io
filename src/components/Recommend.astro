@@ -19,7 +19,7 @@ const related = (await getCollection('posts', ({ data }) => !data.draft))
     <ul class="mt-4">
       {related.map((p) => (
         <li class="border-b border-rule py-4 first:border-t">
-          <a href={`/${p.id}/`} class="leading-snug hover:text-accent">{p.data.title}</a>
+          <a href={`/${p.id}/`} class="link-title leading-snug">{p.data.title}</a>
           <time datetime={p.data.date.toISOString().slice(0, 10)}
             class="mt-1.5 block text-sm text-muted">
             {p.data.date.toISOString().slice(0, 10)}

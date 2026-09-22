@@ -2,8 +2,9 @@
 
 /* NOTE 문서와 글은 클래스 스캔에서 뺀다 [번들 크기]
  * - Tailwind v4 는 프로젝트를 훑어 클래스처럼 보이는 낱말을 전부 주워 담는다
- * - 문서의 "uppercase letters", 글의 "filter" 같은 산문이 유틸리티가 되어 번들에 실렸다
+ * - 문서와 글의 평범한 영어 낱말이 유틸리티로 잡혀 쓰지도 않는 CSS 가 실렸다
  * - 그래서 본문 마크다운에는 Tailwind 클래스를 쓸 수 없다. 여기서 스캔하지 않는다
+ * - 소스 파일은 스캔 대상이다. 주석과 문자열에도 유틸리티와 같은 낱말을 쓰지 않는다
  */
 @source not "../../CLAUDE.md";
 @source not "../../.claude";
@@ -343,8 +344,15 @@ blockquote.quote {
 .fx-slide.is-on:hover .media-zoom { transform: scale(1.07); }
 
 .tile-body { transition: transform .45s cubic-bezier(.2, .6, .2, 1); }
-.tile-title { transition: color .2s ease; }
-.group:hover .tile-title { color: var(--color-accent); }
+/* NOTE 글로 가는 제목만 파랑으로 반응한다 [호버 반응]
+ * - 사이트에서 파랑이 뜻하는 것은 이것 하나다. 칩은 모양이 비슷해도 회색이다
+ * - 카드 어디에 커서를 올려도 제목이 물들도록 .group 을 같이 받는다
+ * - 사진 위에 얹힌 제목(캐러셀)은 쓰지 않는다. 파랑이 사진에 묻힌다
+ */
+.link-title { transition: color .2s ease; }
+.link-title:hover,
+.group:hover .link-title { color: var(--color-accent); }
+
 .group:hover .tile-body { transform: translateX(4px); }
 .group:active .tile-body { transform: translateX(1px); }
 .group:active .tile-media img { transform: scale(1.03); }
@@ -457,24 +465,13 @@ blockquote.quote {
   white-space: nowrap;
   color: var(--color-muted);
 }
-.chip:hover {
-  border-color: var(--color-accent);
-  background: var(--color-accent);
-  color: var(--color-bg);
-}
-/* NOTE 거르는 칩은 회색으로 반응한다. 파랑은 글로 가는 칩에만 쓴다 [호버 반응]
- * - 파랑이 선택 표시(짙은 회색)보다 강해서, 방금 끈 칩이 켜진 칩보다 눈에 띄었다
- * - 터치 기기는 탭 뒤에도 hover 가 남아 파랑이 그대로 머문다
- * - :not 으로 고른 칩을 빼지 않으면 이 규칙이 특이도로 선택 표시를 덮는다
+/* NOTE 칩은 링크든 버튼이든 회색으로 반응한다 [호버 반응]
+ * - 파랑은 글 제목(.link-title) 한 곳에만 쓴다. 칩까지 파랑이면 뜻이 흐려진다
+ * - 요소 종류나 놓인 자리를 보지 않으므로 새 칩을 만들 때 고를 것이 없다
  */
-button.chip:not([aria-pressed='true']):hover {
+.chip:hover {
   border-color: var(--color-quote);
   background: var(--color-tag);
-  color: var(--color-fg);
-}
-button.chip.chip-tag:not([aria-pressed='true']):hover {
-  border-color: var(--color-quote);
-  background: var(--color-rule);
   color: var(--color-fg);
 }
 .chip[aria-pressed='true'] {
@@ -491,21 +488,16 @@ button.chip.chip-tag:not([aria-pressed='true']):hover {
 @media (min-width: 640px) {
   .chip-lg { --chip-h: 32px; --chip-px: 14px; --chip-fs: 15px; }
 }
-.chip.chip-lg:hover {
-  border-color: var(--color-quote);
-  background: var(--color-tag);
-  color: var(--color-fg);
-}
-
 .chip-tag {
   background: var(--color-tag);
   border-color: transparent;
   color: var(--color-tag-fg);
 }
+/* 바탕이 이미 회색이라 한 단계 더 짙게 눌러야 반응이 보인다 */
 .chip-tag:hover {
-  border-color: var(--color-accent);
-  background: var(--color-accent);
-  color: var(--color-bg);
+  border-color: var(--color-quote);
+  background: var(--color-rule);
+  color: var(--color-fg);
 }
 
 .chip-on-dark,
