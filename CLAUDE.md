@@ -90,6 +90,9 @@ with caching, inheritance and selector specificity sitting in between.
   The same thing can exist in two implementations.
 - After a deploy, check the live site. GitHub Pages sends `max-age=600`, so the old page can keep
   showing for ten minutes and look like a bug that is not there.
+- When a visual choice could go two ways, **render the options and let the person pick** instead of
+  arguing from numbers. Four hero heights side by side settled in one look what a table of
+  percentages had not.
 
 ## Deployment
 
