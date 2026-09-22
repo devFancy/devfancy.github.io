@@ -2,6 +2,11 @@
 
 Posts live in `src/content/posts/*.md`. **The filename is the URL.**
 
+Name a new file in lowercase with hyphens (`spring-boot-kafka-dlq.md`). The 305 existing posts
+carrying uppercase are left as they are: their addresses are already indexed, and renaming them
+would change almost every URL on the site. New posts have been lowercase since late 2025, so the
+convention arrives on its own without touching anything old.
+
 ```yaml
 ---
 title: "..."

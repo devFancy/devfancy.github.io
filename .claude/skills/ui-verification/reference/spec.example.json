@@ -1,0 +1,22 @@
+{
+  "base": "http://localhost:4399",
+  "cdpPort": 9333,
+
+  "viewports": [
+    { "name": "모바일", "w": 390, "h": 844, "dpr": 3, "mobile": true },
+    { "name": "데스크톱", "w": 1440, "h": 900, "dpr": 2, "mobile": false }
+  ],
+
+  "themes": ["light", "dark"],
+
+  "cases": [
+    { "url": "/", "sel": ".link-title", "label": "메인 글 제목", "actions": ["hover"] },
+    { "url": "/archive/", "sel": "a.chip", "label": "아카이브 칩", "actions": ["hover"] },
+    {
+      "url": "/category/",
+      "sel": "[data-k='cat'][data-v='기술']",
+      "label": "카테고리 묶음 칩",
+      "actions": ["hover", "click", "click", "away"]
+    }
+  ]
+}
