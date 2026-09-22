@@ -14,6 +14,20 @@ read it before starting: it carries the migration record, the mistake log, the p
 and any rule that should not be published. Nothing from `docs/` gets copied into this file
 or into `.claude/rules/`.
 
+### Adding a rule
+
+The rule set is meant to stay small, not to grow with every session.
+
+- **Read the existing files first.** A new rule may not repeat one that is already there.
+- If it is close to an existing rule, **strengthen that rule instead of adding a sibling**:
+  fold in the new evidence or the new way it fails. Two sections on one subject is the defect
+  the comment policy warns about, one level up.
+- When a rule is replaced by a later decision, **rewrite it**. Do not stack the new version
+  on top of the old one.
+- Open a new section only when the subject has no home yet. If it fits none of the files,
+  that usually means it is not a rule yet.
+- A rule earns its place by **recurring**. A single incident goes to `docs/`, not here.
+
 ---
 
 ## The one hard constraint: URLs do not change
