@@ -37,7 +37,7 @@ const years = [...byYear.entries()].sort((a, b) => b[0] - a[0]);
                 class="w-14 shrink-0 text-sm tabular-nums text-muted">
                 {p.data.date.toISOString().slice(5, 10)}
               </time>
-              <a href={`/${p.id}/`} class="min-w-0 flex-1 hover:text-accent">{p.data.title}</a>
+              <a href={`/${p.id}/`} class="link-title min-w-0 flex-1">{p.data.title}</a>
               <Chip value={p.data.categories[0]} />
             </li>
           ))}

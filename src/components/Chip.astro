@@ -1,13 +1,27 @@
 ---
-/* 모양과 치수는 global.css 의 .chip 한 곳에 있다. 여기서 크기를 덧붙이지 않는다 */
+/* NOTE 분류 이름을 담는 알약. 값이 카테고리나 태그일 때만 쓴다 [칩]
+ * - 누르면 이동하면 link, 그 자리에서 목록을 거르면 button 이다. 색은 둘 다 회색으로 같다
+ * - 모양과 치수는 global.css 의 .chip 한 곳에 있다. 여기서 크기를 덧붙이지 않는다
+ *
+ * .chip 생김새만 빌려 쓰는 곳이 둘 더 있다. 분류가 아니라서 이 조각을 쓰지 않는다
+ * - index.astro 의 "전체 보기"  : /archive/ 로 가는 링크
+ * - category.astro 의 chipHtml : 브라우저가 다시 그리는 칩. 컴포넌트를 못 쓴다
+ * 셋 다 .chip 을 쓰므로 색과 치수는 global.css 를 고치면 한 번에 따라온다
+ */
 interface Props {
   value: string;
   kind?: 'category' | 'tag';
   onDark?: boolean;
+  as?: 'link' | 'button';
+  dataKey?: 'cat' | 'tag';
+  label?: string;
 }
-const { value, kind = 'category', onDark = false } = Astro.props;
+const { value, kind = 'category', onDark = false, as = 'link', dataKey = 'cat', label } = Astro.props;
+const text = label ?? (kind === 'tag' ? `#${value}` : value);
+const cls = ['chip', kind === 'tag' && 'chip-tag', onDark && 'chip-on-dark'];
 ---
-<a
-  href={`/category/#${encodeURIComponent(value)}`}
-  class:list={['chip', kind === 'tag' && 'chip-tag', onDark && 'chip-on-dark']}
->{kind === 'tag' ? `#${value}` : value}</a>
+{as === 'link' ? (
+  <a href={`/category/#${encodeURIComponent(value)}`} class:list={cls}>{text}</a>
+) : (
+  <button type="button" data-k={dataKey} data-v={value} class:list={cls}>{text}</button>
+)}

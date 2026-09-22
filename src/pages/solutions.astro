@@ -12,7 +12,13 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft))
 ---
 <Base description={`문제풀이 ${posts.length}편`}>
   <div class="shell py-12">
-    <h1 class="text-3xl tracking-tight">Solutions</h1>
+    {/* NOTE 검색으로 바로 들어오는 사람이 많아 history.back() 을 쓰지 않는다 [문제풀이 분리]
+     * - 앞 기록이 없으면 아무 일도 안 일어난다. 어디서 왔든 같은 곳으로 보내는 링크를 둔다
+     */}
+    <a href={`/category/#${encodeURIComponent(SOLUTION_CATEGORIES[0])}`} class="link-title link-back text-muted">
+      <span aria-hidden="true">&larr;</span>카테고리
+    </a>
+    <h1 class="mt-2 text-3xl tracking-tight">Solutions</h1>
     <p class="mt-2 text-muted">총 {posts.length}개의 포스트가 있어요</p>
     <div class="mt-8">
       {posts.map((p) => (

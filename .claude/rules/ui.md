@@ -4,35 +4,27 @@
 
 Declare it in `@theme` in `src/styles/global.css`, then **redefine the same name** under
 `:root[data-theme="dark"]`. Never write a color value into a utility class or a component.
+`global.css` is the only place the values live; this file does not repeat them.
 
-| Token | Light | Dark | Used for |
-| --- | --- | --- | --- |
-| `--color-bg` | `#fbfbf9` | `#15181c` | Page background. A light paper tone, not pure white |
-| `--color-fg` | `#3b4149` | `#e7ebef` | Base text and headings |
-| `--color-body` | `#474e55` | `#c6cdd4` | Long-form body text |
-| `--color-muted` | `#5b6168` | `#a6adb4` | Dates and secondary text |
-| `--color-accent` | `#2569bd` | `#6aa9f0` | Links and hover |
-| `--color-quote` | `#a7adb3` | `#666e77` | Bullets and separators |
-| `--color-brand` | `#2a3038` | `#eef1f4` | Logo |
-| `--color-fg-strong` | `#1f242a` | `#f4f4f2` | A hovered title |
+Pure black on a white ground is too hard to read for long, so the base text color is a dark grey on
+a paper tone rather than black on white.
 
-Pure black on a white ground is too hard to read for long, which is why the base is `#3b4149`
-on paper rather than black on white.
+**When a color changes, measure the contrast again.** Body links must clear AA (4.5:1). Softening
+the background once dropped the accent below that without anything looking wrong.
 
-**When a color changes, measure the contrast again.** Body links must clear AA (4.5:1).
-Softening the background to paper once dropped the accent to 4.26:1 without anything looking wrong.
-
-## Blue means "takes you somewhere", grey means "operates the screen"
+## Blue is for going to a post, everything else is grey
 
 | What | Hover |
 | --- | --- |
-| Links to a post or a category (card titles, chips that navigate) | Blue (`--color-accent`) |
-| Controls (carousel arrows, filter chips, "see all", collapse) | Grey |
+| A link to a post (`.link-title`) | Accent |
+| Chips, whatever they do | Grey |
 | Anything sitting on a photo | White family |
+| A chip that is currently on | The strongest neutral, so it beats hover |
 
-Blue is the strongest color on the site. On a control it makes the thing you just turned off look
-louder than the thing that is on. Header navigation follows the same idea from the other side:
-over a photo it does not change color, it gets sharper.
+Blue is the strongest color here, so it means one thing only. Chips are grey whether they navigate
+or filter, which means a new chip needs no decision: its element and its position do not change the
+color. Header navigation follows the same idea from the other side: over a photo it does not change
+color, it gets sharper.
 
 ## Height gets a minimum, never a ratio
 
@@ -44,6 +36,19 @@ What grows is the empty band above the title.
 
 ## Mobile
 
-- Tap targets are **at least 44px**, even when the icon inside is 20px.
-- **`:hover` sticks after a tap** and stays until the next tap elsewhere.
-  Never let hover be the only signal for a state.
+**A 44px tap target has to be built, not declared.** `global.css` carries
+`@media (pointer: coarse) { a, button { min-height: 44px } }`, and that rule does nothing on its own:
+
+- an `inline` element ignores `min-height` entirely, so plain text links are unaffected
+- a component that sets its own height wins on specificity, so `.chip` stays 26px
+
+It only lands where the element is already `flex`, `grid` or `inline-flex` and sets no height of its
+own. Icon buttons (theme toggle, hamburger, social links) get their 44px from an explicit size class.
+When a link genuinely needs a finger-sized box, give it `display: inline-flex` and let the rule apply,
+or set the height there.
+
+Small inline chips are acceptable at 26px because they are wide enough to hit, but do not claim they
+are 44px.
+
+**`:hover` sticks after a tap** and stays until the next tap elsewhere. Never let hover be the only
+signal for a state.

@@ -18,6 +18,15 @@ or into `.claude/rules/`.
 
 The rule set is meant to stay small, not to grow with every session.
 
+**Only what does not change belongs here.** A rule has to be something you would call *always* or
+*never*: a platform behaviour, a constraint you cannot trade away, a decision that is settled.
+Before writing one, ask whether it has changed recently. If it has, it is still being decided, and
+writing it down makes the file lie the next time it moves.
+
+Values live in code, not in rules. Color tokens, category lists, sizes and counts belong in
+`global.css` and `config.ts`, which are the only source of truth for them. A rule may say
+*measure the contrast again*; it may not list the hex values, because then every change breaks it.
+
 - **Read the existing files first.** A new rule may not repeat one that is already there.
 - If it is close to an existing rule, **strengthen that rule instead of adding a sibling**:
   fold in the new evidence or the new way it fails. Two sections on one subject is the defect

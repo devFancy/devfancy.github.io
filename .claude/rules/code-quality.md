@@ -1,16 +1,35 @@
 # Code quality rules
 
-## Comments carry only what the code cannot say
+## Write no comment unless the code cannot say it
 
-Three kinds stay. Everything else goes.
+**The default is no comment.** Reach for one only after trying to make the code say it instead:
+rename the thing, extract the condition, restructure. A prop called `filter` that rendered a
+`<button>` needed a comment; renaming it to `button` needed none.
+
+Only three kinds earn a place.
 
 1. Browser and platform traps, with the symptom named.
 2. Jekyll URL compatibility, so nobody "cleans up" a rule that keeps 319 URLs alive.
 3. A decision **not** taken, so nobody undoes it by accident.
 
-A comment that restates the code becomes a lie the moment the code changes. That is why this
-repository went from 365 comment lines to around a hundred. A bracketed keyword at the end of a comment
-(`[URL 보존]`) groups related places; `docs/COMMENT-KEYWORDS.md` lists the ones in use.
+### A comment is a claim you have to keep true
+
+Each one is a promise that ages badly. Three broke in a single day of work here.
+
+- Reverting a height experiment left **two stacked blocks** saying the same thing. Nobody deleted
+  the old one, because adding is easier than editing.
+- A component header said it was the **only** place chips are built. Two other places built them.
+  The word "only" was true when written and false a week later.
+- A comment explaining that stray words leak into the CSS bundle **contained such a word**, and
+  shipped 1,166 bytes of unused CSS. Source files are scanned too, so a comment is not inert text.
+
+So: when you change a line, the comment above it is part of that change. Avoid "only", "always" and
+"every" unless you just verified it and re-verifying is cheap. Never restate what the line does.
+
+If a comment is longer than the code it explains, that usually means the code should change.
+
+A bracketed keyword at the end (`[URL 보존]`) groups related places; `docs/COMMENT-KEYWORDS.md`
+lists the ones in use. Do not invent a new keyword without adding it there.
 
 ## Define a thing in one place
 
