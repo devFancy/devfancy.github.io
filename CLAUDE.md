@@ -75,6 +75,8 @@ CI sets it for the whole job.
   PR, move the base of the one above it and confirm it is not already merged.
 - Write issues and PRs **in English**, following the templates as they are
   (`.github/ISSUE_TEMPLATE/task.md`, `.github/PULL_REQUEST_TEMPLATE.md`).
+- A PR body carries only what a reviewer needs to decide where to look. What the diff already shows
+  does not get restated in prose.
 - Put `devFancy` in `assignees` on every issue and PR.
 - No em dashes and no emoji in issue bodies, PR bodies or commit messages. Use a hyphen.
 
