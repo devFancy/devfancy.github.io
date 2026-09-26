@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "likes": {
+      "$slug": {
+        ".read": true,
+        ".write": "newData.isNumber() && newData.val() >= 0 && newData.val() < 1000000 && (newData.val() === (data.exists() ? data.val() : 0) + 1 || newData.val() === (data.exists() ? data.val() : 0) - 1)"
+      }
+    }
+  }
+}

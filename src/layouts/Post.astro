@@ -3,6 +3,7 @@ import type { MarkdownHeading } from 'astro';
 import Base from './Base.astro';
 import Chip from '../components/Chip.astro';
 import Hero from '../components/Hero.astro';
+import LikeButton from '../components/LikeButton.astro';
 import Recommend from '../components/Recommend.astro';
 import Toc from '../components/Toc.astro';
 
@@ -60,6 +61,7 @@ const iso = date.toISOString().slice(0, 10);
         </div>
       )}
       <div class:list={['prose', cover ? 'mt-0' : 'mt-10']}><slot /></div>
+      <LikeButton slug={id} />
       <Recommend currentId={id} categories={categories} />
     </article>
 

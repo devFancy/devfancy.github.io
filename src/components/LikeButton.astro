@@ -1,0 +1,111 @@
+---
+import { LIKES_DB } from '../config';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+---
+{LIKES_DB && (
+  <div class="like-row">
+    <button type="button" class="like" data-slug={slug} data-db={LIKES_DB} data-count="0"
+      aria-pressed="false" aria-label="이 글이 좋았어요">
+      <svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" />
+      </svg>
+      <span class="like-count"><span class="like-num">0</span></span>
+    </button>
+  </div>
+)}
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('.like');
+
+  if (button) {
+    const slug = button.dataset.slug ?? '';
+    const db = button.dataset.db ?? '';
+    const node = `${db}/likes/${encodeURIComponent(slug)}.json`;
+    const memory = `liked:${slug}`;
+    const box = button.querySelector<HTMLElement>('.like-count');
+    const label = button.querySelector<HTMLElement>('.like-num');
+    const icon = button.querySelector('.like-icon');
+
+    const show = (count: number) => {
+      if (label) label.textContent = String(count);
+      button.dataset.count = String(count);
+      button.setAttribute(
+        'aria-label',
+        count === 0 ? '이 글이 좋았어요' : `이 글이 좋았어요. 지금까지 ${count}명`,
+      );
+    };
+
+    let liked = false;
+    try {
+      liked = localStorage.getItem(memory) === '1';
+    } catch {
+      // NOTE: 시크릿 창에서는 읽기가 막힌다. 누른 기록 없이 동작한다
+    }
+    button.setAttribute('aria-pressed', String(liked));
+
+    fetch(node)
+      .then((r) => (r.ok ? r.json() : 0))
+      .then((n) => show(typeof n === 'number' ? n : 0))
+      .catch(() => show(0));
+
+    // NOTE: 애니메이션이 끝나면 클래스를 떼야 다음에 다시 재생된다
+    button.addEventListener('animationend', (e) => {
+      if (e.target === icon) button.classList.remove('is-on');
+      if (e.target === label) box?.classList.remove('is-rolling');
+    });
+
+    let busy = false;
+
+    button.addEventListener('click', async () => {
+      if (busy) return; // NOTE: 응답 전에 또 누르면 서버와 화면이 어긋난다
+      busy = true;
+
+      const was = button.getAttribute('aria-pressed') === 'true';
+      const shown = Number(label?.textContent ?? 0);
+      const step = was ? -1 : 1;
+
+      button.setAttribute('aria-pressed', String(!was));
+      show(Math.max(0, shown + step));
+      try {
+        if (was) localStorage.removeItem(memory);
+        else localStorage.setItem(memory, '1');
+      } catch {
+        // NOTE: 저장이 막혀도 이번 화면에서는 바뀐 상태로 둔다
+      }
+
+      if (!was) {
+        button.classList.remove('is-on');
+        box?.classList.remove('is-rolling');
+        void button.offsetWidth; // NOTE: 연달아 눌러도 다시 재생되도록 리플로를 강제한다
+        button.classList.add('is-on');
+        box?.classList.add('is-rolling');
+      }
+
+      try {
+        const res = await fetch(node, {
+          method: 'PUT',
+          body: JSON.stringify({ '.sv': { increment: step } }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        const n = await res.json();
+        if (typeof n === 'number') show(n);
+      } catch {
+        // NOTE: 세어지지 않은 수를 보여주지 않는다
+        button.setAttribute('aria-pressed', String(was));
+        show(shown);
+        try {
+          if (was) localStorage.setItem(memory, '1');
+          else localStorage.removeItem(memory);
+        } catch {
+          // NOTE: 되돌리지 못해도 다음 로드에서 서버 수가 이긴다
+        }
+      } finally {
+        busy = false;
+      }
+    });
+  }
+</script>

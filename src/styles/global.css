@@ -36,6 +36,7 @@
   --color-quote-bg: #f4f5f6;
   --color-fg-strong: #1f242a;
 
+
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -534,6 +535,95 @@ blockquote.quote {
   border-color: var(--color-tag-on);
   color: var(--color-bg);
 }
+
+/* NOTE: 글 끝 좋아요 버튼. 치수와 색을 여기 한 곳에 둔다
+ * - 컴포넌트 <style> 에 두면 글 319편 HTML 마다 2.5KB 씩 인라인으로 박힌다
+ */
+.like-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 56px;
+}
+
+/* NOTE: display 가 flex 계열이라야 min-height 가 먹는다 [모바일 터치 타깃] */
+.like {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--color-rule);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-muted);
+  line-height: 1;
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+
+/* NOTE: 누른 상태를 :not 으로 빼둔다. 특이도가 같아 순서에 기대면 규칙을 옮길 때 깨진다 [호버 반응] */
+.like:not([aria-pressed='true']):hover {
+  border-color: var(--color-quote);
+  background: var(--color-tag);
+  color: var(--color-fg);
+}
+
+/* NOTE: 탭 뒤에도 :hover 가 남는다. 그래서 누른 표시는 색만이 아니라 아이콘 채움으로도 낸다 */
+.like[aria-pressed='true'] {
+  border-color: var(--color-tag-on);
+  background: var(--color-tag);
+  color: var(--color-fg-strong);
+}
+
+.like-icon {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.like[aria-pressed='true'] .like-icon {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* NOTE: 감추되 자리는 남긴다. 지우면 첫 좋아요에 버튼 폭이 튄다 */
+.like-count {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  overflow: hidden;
+  height: 16px;
+  min-width: 2ch;
+}
+.like[data-count='0'] .like-count { visibility: hidden; }
+
+.like-num {
+  display: block;
+  height: 16px;
+  line-height: 16px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+/* NOTE: 올라갈 때만 굴린다. 취소는 되돌리는 동작이라 축하하지 않는다 */
+@keyframes like-roll {
+  from { transform: translateY(100%); }
+  to   { transform: none; }
+}
+.like-count.is-rolling .like-num { animation: like-roll .34s cubic-bezier(.3, .8, .3, 1); }
+
+@keyframes like-pop {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.35); }
+  60%  { transform: scale(.92); }
+  100% { transform: scale(1); }
+}
+.like.is-on .like-icon { animation: like-pop .42s cubic-bezier(.2, .9, .3, 1.2); }
 
 /* NOTE: 터치 타깃 최소 44px [모바일 터치 타깃] */
 @media (pointer: coarse) {
