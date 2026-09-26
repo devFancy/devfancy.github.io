@@ -26,7 +26,20 @@ Each one is a promise that ages badly. Three broke in a single day of work here.
 So: when you change a line, the comment above it is part of that change. Avoid "only", "always" and
 "every" unless you just verified it and re-verifying is cheap. Never restate what the line does.
 
+**Never restate a rule either.** These files are the source for how the site is built, so a comment
+that repeats one gives it a second home that ages separately. A comment saying chips react in grey
+was deleted for this: `ui.md` already says it, and the code around it was already grey.
+
 If a comment is longer than the code it explains, that usually means the code should change.
+
+### Form
+
+Every comment opens with `NOTE:`, at any length. It is not decoration: it makes the claims
+greppable, so `grep -rn 'NOTE:' src/` lists everything that has to be re-verified when the code
+around it moves.
+
+One line takes `//`. Two or more take `/* */`. CSS has no line comment, so it takes `/* */`
+at any length. Reach for the block form because the comment needs the room, never by habit.
 
 A bracketed keyword at the end (`[URL 보존]`) groups related places; `docs/COMMENT-KEYWORDS.md`
 lists the ones in use. Do not invent a new keyword without adding it there.
