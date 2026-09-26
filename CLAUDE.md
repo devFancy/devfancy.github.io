@@ -16,25 +16,16 @@ or into `.claude/rules/`.
 
 ### Adding a rule
 
-The rule set is meant to stay small, not to grow with every session.
+The rule set is meant to stay small. **Only what does not change belongs here**: a platform
+behaviour, a constraint you cannot trade away, a decision that is settled. If it has moved
+recently it is still being decided, and writing it down makes the file lie the next time it moves.
 
-**Only what does not change belongs here.** A rule has to be something you would call *always* or
-*never*: a platform behaviour, a constraint you cannot trade away, a decision that is settled.
-Before writing one, ask whether it has changed recently. If it has, it is still being decided, and
-writing it down makes the file lie the next time it moves.
-
-Values live in code, not in rules. Color tokens, category lists, sizes and counts belong in
-`global.css` and `config.ts`, which are the only source of truth for them. A rule may say
-*measure the contrast again*; it may not list the hex values, because then every change breaks it.
-
-- **Read the existing files first.** A new rule may not repeat one that is already there.
-- If it is close to an existing rule, **strengthen that rule instead of adding a sibling**:
-  fold in the new evidence or the new way it fails. Two sections on one subject is the defect
+- **Values live in code.** Color tokens, category lists, sizes and counts belong in `global.css`
+  and `config.ts`. A rule may say *measure the contrast again*; it may not list the hex values.
+- **Read the existing files first**, and when a new rule is close to one that is there,
+  strengthen that one instead of adding a sibling. Two sections on one subject is the defect
   the comment policy warns about, one level up.
-- When a rule is replaced by a later decision, **rewrite it**. Do not stack the new version
-  on top of the old one.
-- Open a new section only when the subject has no home yet. If it fits none of the files,
-  that usually means it is not a rule yet.
+- When a later decision replaces a rule, **rewrite it** rather than stacking the new version on top.
 - A rule earns its place by **recurring**. A single incident goes to `docs/`, not here.
 
 ---
@@ -59,7 +50,7 @@ migration. It is the only source of truth for what a URL used to be, so it is ne
 ```bash
 nvm use && npm ci
 npm run dev      # http://localhost:4321
-npm run build    # 325 pages
+npm run build
 npm run check    # astro check
 npm run lint     # biome
 ```
@@ -75,8 +66,6 @@ CI sets it for the whole job.
   PR, move the base of the one above it and confirm it is not already merged.
 - Write issues and PRs **in English**, following the templates as they are
   (`.github/ISSUE_TEMPLATE/task.md`, `.github/PULL_REQUEST_TEMPLATE.md`).
-- A PR body carries only what a reviewer needs to decide where to look. What the diff already shows
-  does not get restated in prose.
 - Put `devFancy` in `assignees` on every issue and PR.
 - No em dashes and no emoji in issue bodies, PR bodies or commit messages. Use a hyphen.
 
@@ -107,9 +96,6 @@ with caching, inheritance and selector specificity sitting in between.
 
 ## Deployment
 
-`main` pushes run `.github/workflows/deploy.yml`, which builds and publishes to GitHub Pages.
-Lint and type checks run before the build so a broken commit never reaches the site.
-
-Build and deploy have **separate concurrency groups on purpose**. Builds cancel each other so only
-the newest commit is built; deploys never cancel, so Pages is not left half-published. Merging
-several PRs in a row without this published intermediate states.
+`main` pushes run `.github/workflows/deploy.yml`, which lints, type checks, builds, and publishes
+to GitHub Pages. Why the build and deploy jobs have separate concurrency groups is commented in
+that file, next to the setting it explains.
