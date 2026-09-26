@@ -1,6 +1,6 @@
 # NOTE Astro 를 빌드해 GitHub Pages 로 올린다
 # - 저장소 설정 Pages -> Source 가 "GitHub Actions" 여야 동작한다
-# - 이미지가 586MB 라 체크아웃과 업로드가 느리다. 타임아웃을 넉넉히 둔다
+# - 이미지가 많아 체크아웃과 업로드가 느리다. 타임아웃을 넉넉히 둔다
 name: Deploy
 
 on:

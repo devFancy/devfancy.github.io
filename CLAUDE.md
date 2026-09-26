@@ -32,8 +32,8 @@ recently it is still being decided, and writing it down makes the file lie the n
 
 ## The one hard constraint: URLs do not change
 
-The URLs of 319 posts are already in search results and in links other people wrote.
-Every other decision is tied to this.
+Every post URL is already in search results and in links other people wrote. Every other decision
+is tied to this.
 
 - A post URL is its filename. There is no date prefix and **some contain uppercase letters**
   (`/Algorithm-Baekjoon-24479/`).
@@ -60,7 +60,8 @@ CI sets it for the whole job.
 
 ## How work is done
 
-- **Never commit directly to `main`.** Branch, then open a PR.
+- Branch and open a PR for anything that can change the built site. Rules and docs go straight
+  to `main`.
 - Stop at each phase, get approval, then move on. Do not open the next branch before that.
 - Stack branches when the work depends on earlier work, and merge in order. After merging a lower
   PR, move the base of the one above it and confirm it is not already merged.

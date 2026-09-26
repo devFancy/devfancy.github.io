@@ -1,11 +1,10 @@
 # Content rules
 
-Posts live in `src/content/posts/*.md`. **The filename is the URL.**
+Posts live in `src/content/posts/*.md`. Why the filename is the URL, and what that forbids, is in
+`CLAUDE.md`.
 
-Name a new file in lowercase with hyphens (`spring-boot-kafka-dlq.md`). The 305 existing posts
-carrying uppercase are left as they are: their addresses are already indexed, and renaming them
-would change almost every URL on the site. New posts have been lowercase since late 2025, so the
-convention arrives on its own without touching anything old.
+Name a new file in lowercase with hyphens (`spring-boot-kafka-dlq.md`). New posts have been
+lowercase since late 2025, so the convention arrives on its own without renaming anything old.
 
 ```yaml
 ---
@@ -33,8 +32,8 @@ silently dropping a post.
 ## Cover images
 
 - A cover appears only when the post declares `thumbnail`. **Never derive one from the first image
-  in the body**: 172 of 190 posts start with a screenshot or a diagram, which pushes the title down
-  and shows something the reader is about to see anyway.
+  in the body**: most posts with images start with a screenshot or a diagram, which pushes the
+  title down and shows something the reader is about to see anyway.
 - **Landscape only.** Portrait loses its subject when cropped to 16:9.
 - `scripts/make-covers.mjs` builds the 16:9 file before `dev` and `build`. Output goes to
   `public/assets/cover/`, which is gitignored and rebuilt by CI.
