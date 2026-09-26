@@ -65,6 +65,11 @@ export const FEATURED = [
 // NOTE: 문제풀이는 메인/목록에서 빼고 /solutions/ 에 모은다. 글 URL 은 그대로 [문제풀이 분리]
 export const SOLUTION_CATEGORIES = ["알고리즘"] as const;
 
+/* NOTE: 좋아요 카운터가 사는 Realtime Database. 비어 있으면 버튼이 렌더되지 않는다
+ * - 규칙은 firebase/database.rules.json 에 있다
+ */
+export const LIKES_DB = "https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app";
+
 export const SOCIAL = [
   { name: "GitHub", url: "https://github.com/devFancy" },
   { name: "Mail", url: "mailto:fancy.junyongmoon@gmail.com" },
