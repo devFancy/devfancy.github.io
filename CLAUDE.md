@@ -60,13 +60,16 @@ CI sets it for the whole job.
 
 ## How work is done
 
-- Branch and open a PR for anything that can change the built site. Rules and docs go straight
-  to `main`.
+- Branch and open a PR for anything that changes the built site. Work that leaves the output
+  byte-identical goes straight to `main`.
 - Stop at each phase, get approval, then move on. Do not open the next branch before that.
 - Stack branches when the work depends on earlier work, and merge in order. After merging a lower
   PR, move the base of the one above it and confirm it is not already merged.
 - Write issues and PRs **in English**, following the templates as they are
   (`.github/ISSUE_TEMPLATE/task.md`, `.github/PULL_REQUEST_TEMPLATE.md`).
+- The repository is public. An external identifier belongs in the code only if the browser has to
+  send it; everything else goes in Actions secrets. Not being a credential is not a reason to
+  publish, and an issue body is as public as the code.
 - Put `devFancy` in `assignees` on every issue and PR.
 - No em dashes and no emoji in issue bodies, PR bodies or commit messages. Use a hyphen.
 
