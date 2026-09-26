@@ -71,7 +71,8 @@ CI sets it for the whole job.
 
 ### Commits
 
-- One line for the subject, written in Korean, saying what changed and why.
+- One line for the subject, written in Korean. Name the thing that changed and stop there.
+  The reasoning belongs in the PR body, where a reviewer is already reading for it.
 - Group by meaning, but **do not split more than the meaning requires**.
 - Do not add a `Co-Authored-By` line.
 - When regrouping commits that are already stacked up (rebase, squash),
