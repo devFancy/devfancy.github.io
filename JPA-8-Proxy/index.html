@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[JPA] 프록시와 연관관계 관리 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/JPA-8-Proxy/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[JPA] 프록시와 연관관계 관리</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-12-15" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-12-15</time><a href="/category/#JPA" class="chip chip-tag">#JPA</a></div><p class="view-count text-sm text-muted">조회수 29회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 [자바 ORM 표준 JPA 프로그래밍 - 기본편] 강의를 듣고 정리한 내용입니다.</p>
+</blockquote>
+<h2 id="프록시">프록시</h2>
+<ul>
+<li>
+<p>JPA에서 <code>프록시</code>는 <strong>실제 엔티티 객체를 대신하여 데이터베이스 조회를 지연할 수 있는 <code>가짜 객체</code>를 의미</strong>한다.</p>
+</li>
+<li>
+<p>가짜 객체라 해서 실제 엔티티의 동작을 수행하지 못하는 것은 아니다.</p>
+<ul>
+<li>실제 엔티티 클래스로부터 상속받아 생성하기 때문에, 실제 클래스와 겉 모양은 같으므로 (이론상) 사용하는 입장에서는 구분하기 않고 사용하면 된다.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>em.find() vs em.getReference</p>
+</blockquote>
+<ul>
+<li>
+<p><code>em.find()</code> 는 데이터베이스를 통해 실제 엔티티 객체를 조회하는 메서드이다.</p>
+</li>
+<li>
+<p><code>em.getReference()</code>는 데이터베이스 조회를 지연하는 가짜 객체(프록시)를 조회한다. -> DB에 쿼리가 안나가는데 조회가 된다.</p>
+<ul>
+<li>
+<p>실제 엔티티 클래스로부터 상속받지만, 내부는 null 값을 가지고 있다.</p>
+</li>
+<li>
+<p>하이버네이트가 내부의 라이브러리를 써서 <code>프록시</code>라는 가짜 엔티티를 주게 된다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Proxy-1.png" alt=""></p>
+<ul>
+<li>
+<p>프록시 객체는 실제 객체의 참조(target)를 보관한다.</p>
+</li>
+<li>
+<p>프록시 객체를 호출하면, 프록시 객체는 실제 객체의 메서드를 호출한다.</p>
+</li>
+</ul>
+<h3 id="프록시-객체의-초기화">프록시 객체의 초기화</h3>
+<p><img src="/assets/img/server/jpa/JPA-Proxy-2.png" alt=""></p>
+<ul>
+<li>위의 그림을 통해 프록시 객체의 초기화하는 과정은 다음과 같다.</li>
+</ul>
+<ol>
+<li>
+<p>getName() 메서드를 호출하면 처음에 <code>Member target</code>에 값이 없다. (만약 1차 캐시가 존재한다면 프록시 객체가 아닌 실제 객체를 반환한다)</p>
+</li>
+<li>
+<p>그래서 JPA가 영속성 컨텍스트에 진짜 Member 객체를 가져오기 위해 초기화를 요청한다.</p>
+</li>
+<li>
+<p>영속성 컨텍스트에는 DB를 조회한다.</p>
+</li>
+<li>
+<p>그런 다음 실제 엔티티 객체를 생성해서 Member 엔티티에 넘겨준다.</p>
+</li>
+<li>
+<p>그리고 MemberProxy에 있는 <code>Member target</code>을 실제 Member 엔티티(진짜 객체)와 연결시켜준다.</p>
+</li>
+</ol>
+<ul>
+<li>정리하면 <code>getName()</code>을 영속성 컨텍스트를 총해 초기화 요청 및 DB에서 조회한 다음, 가짜 객체를 실제 객체와 연결시켜서 값을 받아온다.</li>
+</ul>
+<p>코드로 확인하면 아래와 같다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> JpaMain</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        EntityManagerFactory emf </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Persistence.</span><span style="color:#B392F0">createEntityManagerFactory</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"hello"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        EntityManager em </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> emf.</span><span style="color:#B392F0">createEntityManager</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        EntityTransaction tx </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> em.</span><span style="color:#B392F0">getTransaction</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        tx.</span><span style="color:#B392F0">begin</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            Member member </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            member.</span><span style="color:#B392F0">setName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"woochang"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            em.</span><span style="color:#B392F0">persist</span><span style="color:#E1E4E8">(member);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">            em.</span><span style="color:#B392F0">flush</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            em.</span><span style="color:#B392F0">clear</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">            // 실제 엔티티를 조회하는 경우</span></span>
+<span class="line"><span style="color:#E1E4E8">            Member findMember </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> em.</span><span style="color:#B392F0">find</span><span style="color:#E1E4E8">(Member.class, member.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#6A737D">            // 프록시를 사용하는 경우</span></span>
+<span class="line"><span style="color:#E1E4E8">            Member findMember </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> em.</span><span style="color:#B392F0">getReference</span><span style="color:#E1E4E8">(Member.class, member.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(findMember.</span><span style="color:#B392F0">getClass</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getName</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">            tx.</span><span style="color:#B392F0">commit</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            tx.</span><span style="color:#B392F0">rollback</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            em.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        emf.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>EntityManager</code>의 <code>getReference()</code> 메서드를 통해 프록시 객체를 가져온다.</p>
+</li>
+<li>
+<p>실행 결과로 <code>package명.Member$HibernateProxy$chd0xZ3</code> 이라는 형태로 출력하게 되는데, 이를 통해 프록시 객체임을 확인할 수 있다.</p>
+</li>
+<li>
+<p>프록시 객체는 메서드 호출(getName()) 과 같이 실제 사용될 때 데이터베이스를 조회해서 실제 엔티티 객체를 생성 후 해당 객체를 참조로 가지게 된다.</p>
+</li>
+<li>
+<p>이를 <code>프록시 객체의 초기화</code> 라고 한다.</p>
+</li>
+</ul>
+<h3 id="프록시의-특징">프록시의 특징</h3>
+<ul>
+<li>
+<p>프록시 객체는 처음 사용할 때 <strong>한 번만</strong> 초기화한다.</p>
+</li>
+<li>
+<p><strong>프록시 객체를 초기화 할 때, 프록시 객체가 실제 엔티티로 바뀌는 것은 아니다.</strong></p>
+<ul>
+<li>초기화되면 프록시 객체를 통해서 실제 엔티티에 접근이 가능한 것이다. -> 교체되는게 아니라 프록시는 유지되고 내부에 값이 채워진 것이다.</li>
+</ul>
+</li>
+<li>
+<p>프록시 객체는 원본 엔티티를 상속받는다. 따라서 <strong>타입 체크시 주의</strong>해야 한다. -> <code>==</code> 로 비교하는 대신, <code>instanceof</code>로 사용해야 한다)</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ProxyEx</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> logic</span><span style="color:#E1E4E8">(Member </span><span style="color:#FFAB70">m1</span><span style="color:#E1E4E8">, Member </span><span style="color:#FFAB70">m2</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"m1 == m2: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> (m1 </span><span style="color:#F97583">instanceof</span><span style="color:#E1E4E8"> Member)); </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"m1 == m2: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> (m2 </span><span style="color:#F97583">instanceof</span><span style="color:#E1E4E8"> Member)); </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>영속성 컨텍스트에 찾는 엔티티가 이미 있으면(1차 캐시), <code>em.getReference()</code>를 호출해도 실제 엔티티를 반환된다.</p>
+<ul>
+<li>JPA에서는 같은 트랜잭션 안에서 영속 엔티티의 동일성을 보장한다.</li>
+</ul>
+</li>
+<li>
+<p>초기화는 영속성 컨텍스트의 도움을 받아야 하기에 <strong>준영속 상태의 프록시를 초기화하면 문제가 발생한다.</strong></p>
+</li>
+</ul>
+<h3 id="프록시-확인">프록시 확인</h3>
+<p>해당 객체가 프록시인지 확인하는 방법은 다음과 같다.</p>
+<ul>
+<li>
+<p><code>PersistenceUnitUtil.isLoaded(Object entity)</code> : 프록시 인스턴스의 초기화 여부 확인</p>
+</li>
+<li>
+<p><code>entity.getClass().getName()</code> : 프록시 클래스 확인하는 방법</p>
+</li>
+<li>
+<p><code>org.hibernate.Hibernate.initialize(entity);</code> : 프록시 강제 초기화 (JPA 표준은 강제하는 초기화가 없다)</p>
+</li>
+</ul>
+<h2 id="즉시-로딩과-지연-로딩">즉시 로딩과 지연 로딩</h2>
+<h3 id="즉시-로딩">즉시 로딩</h3>
+<p><img src="/assets/img/server/jpa/JPA-Proxy-3.png" alt=""></p>
+<ul>
+<li>
+<p><code>즉시로딩</code>은 엔티티를 조회할 때 <strong>연관관계가 있는 실제 엔티티도 함께 조회하는 방법</strong>이다.</p>
+</li>
+<li>
+<p>즉시 로딩을 사용하기 위해서는 fetch 속성을 <code>FetchType.EAGER</code> 으로 지정하면 된다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">ManyToOne</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">fetch</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> FetchType.EAGER) </span><span style="color:#6A737D">// 즉시 로딩</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">JoinColumn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "TEAM_ID"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Team team;</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>즉시 로딩을 사용하면, JPA 구현체가 가능하면 조인을 사용해서 SQL에서 한번에 함께 조회하게 된다.</p>
+<ul>
+<li>
+<p>이때 <code>외부 조인(left outer join)</code> 을 사용하는 것을 확인할 수 있는데, 이는 <code>Null</code> 가능성 때문이다.</p>
+</li>
+<li>
+<p>내부 조인이 외부 조인보다 좋은 이유는 성능이 좋기에 최적화에 유리하지만, 이때 외래키에 <code>NOT NULL</code> 제약조건이 필요하다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">ManyToOne</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">fetch</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> FetchType.EAGER) </span><span style="color:#6A737D">// 즉시 로딩</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">JoinColumn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "TEAM_ID"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">nullable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Team team;</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="지연-로딩">지연 로딩</h3>
+<p><img src="/assets/img/server/jpa/JPA-Proxy-4.png" alt=""></p>
+<ul>
+<li>
+<p><code>지연 로딩</code> 은 연관된 엔티티를 실제 사용할 때 조회하는 방법이다.</p>
+</li>
+<li>
+<p>지연 로딩을 사용하기 위해서는 fetch 속성을 <code>FetchType.LAZY</code> 으로 지정하면 된다.</p>
+</li>
+<li>
+<p>지연 로딩을 사용하게 되는 경우 실제 엔티티 객체 대신 앞에서 설명한 <strong>프록시 객체</strong>가 들어가게 된다.</p>
+</li>
+<li>
+<p>아래에서 <code>team</code>이라는 연관된 엔티티를 실제 사용할 때 (ex. team.getName()), 그 시점에 초기화, 즉 DB 조회가 이루어진다는 의미이다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">ManyToOne</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">fetch</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> FetchType.LAZY) </span><span style="color:#6A737D">// 지연로딩</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">JoinColumn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "TEAM_ID"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Team team;</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>지연 로딩</code>은 연관된 엔티티(team)를 사용할 때에만 <strong>프록시 객체</strong>를 통해 조회하는 반면, <code>즉시 로딩</code>은 연관된 엔티티를 사용하지 않더라도 <strong>실제 객체</strong>를 통해 함께 조회가 된다.</p>
+</li>
+<li>
+<p>Member에만 조회하는 경우가 많으면 <code>지연 로딩</code>을 사용하고, Member와 Team을 같이 사용하면 <code>즉시 로딩</code>을 사용하는 걸 권장한다.</p>
+</li>
+</ul>
+<h3 id="프록시와-즉시로딩-주의">프록시와 즉시로딩 주의</h3>
+<ul>
+<li>
+<p><strong>실무에서는 가급적 <code>지연 로딩</code>만 사용</strong>한다.</p>
+<ul>
+<li>
+<p>즉시 로딩을 적용하면 예상하지 못한 SQL이 발생한다.</p>
+</li>
+<li>
+<p>즉시 로딩은 JPQL에서 <strong>N+1 문제</strong>를 일으킨다. -> <code>select</code>로 <code>Member</code>만 가져오는 SQL을 작성했지만, 해당 SQL의 개수만큼 필요하지도 않은 <code>Team select SQL</code>가 발생하게 될 수도 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>로딩 전략 - 테이블이 복잡하게 얽혀있는 경우에는 지연 로딩을 사용하는 것을 권장한다.</p>
+<ul>
+<li>
+<p><strong>@ManyToOne, @OneToOne</strong>은 기본이 <code>즉시 로딩</code> -> 실무에서 <code>지연 로딩</code>으로 바꾸고 진행한다.</p>
+</li>
+<li>
+<p><strong>@OneToMany, @ManyToMany</strong>는 기본이 <code>지연 로딩</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>예시 - 지연 로딩 활용</p>
+</blockquote>
+<p><img src="/assets/img/server/jpa/JPA-Proxy-5.png" alt=""></p>
+<ul>
+<li>
+<p><code>Member</code>와 <code>Team</code>(다대일)은 자주 함께 사용 -> 즉시 로딩</p>
+</li>
+<li>
+<p><code>Member</code>와 <code>Order</code>(일대다)는 가끔 사용 -> 지연 로딩</p>
+</li>
+<li>
+<p><code>Order</code>와 <code>Product</code>(다대일)는 자주 함께 사용 -> 즉시 로딩</p>
+</li>
+</ul>
+<h2 id="영속성-전이-cascade">영속성 전이: CASCADE</h2>
+<blockquote>
+<p>참고로 <code>영속성 전이</code>는 위에서 다룬 프록시 객체와 로딩 전략과 연관이 없는 개념이다)</p>
+</blockquote>
+<ul>
+<li>
+<p><code>영속성 전이</code>란 특정 엔티티를 영속 상태로 만들 때, <strong>연관된 엔티티도 함께 영속 상태로 만들고 싶을 때</strong> 사용한다.</p>
+</li>
+<li>
+<p>예를 들어 아래 그림처럼 부모 엔티티를 저장할 때 자식 엔티티도 함께 저장하는 경우에 사용한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Proxy-6.png" alt=""></p>
+<p>코드로 적용하면 아래와 같다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Getter</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Parent</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Id</span><span style="color:#E1E4E8"> @</span><span style="color:#F97583">GeneratedValue</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "PARENT_ID"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Long id;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String name;</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">OneToMany</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">mappedBy</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "parent"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">cascade</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> CascadeType.PERSIST) </span><span style="color:#6A737D">// 영속성 전이</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Child</span><span style="color:#E1E4E8">> children </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;</span><span style="color:#F97583">Child</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>부모만 영속화하면 <code>CascadeType.PERSIST</code>로 설정한 자식 엔티티까지 함께 영속화해서 저장한다.</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Proxy-7.png" alt=""></p>
+<h3 id="영속성-전이-cascade-주의할-점">영속성 전이: CASCADE 주의할 점</h3>
+<ul>
+<li>
+<p>영속성 전이는 연관관계를 매핑하는 것과 아무 관련이 없다.</p>
+</li>
+<li>
+<p>단지, 엔티티를 영속화 할 때 연관된 엔티티도 같이 영속화하는 편리함을 제공할 뿐입니다.</p>
+</li>
+</ul>
+<p>JPA에서 제공하는 <code>CascadeType</code>의 종류는 아래와 같다.</p>
+<p><img src="/assets/img/server/jpa/JPA-Proxy-8.png" alt=""></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> enum</span><span style="color:#B392F0"> CascadeType</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">    ALL</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// 모두적용 </span></span>
+<span class="line"><span style="color:#79B8FF">    PERSIST</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// 영속</span></span>
+<span class="line"><span style="color:#79B8FF">    MERGE</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// 병합</span></span>
+<span class="line"><span style="color:#79B8FF">    REMOVE</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// 삭제</span></span>
+<span class="line"><span style="color:#79B8FF">    REFRESH</span><span style="color:#E1E4E8">, </span><span style="color:#6A737D">// REFRESH</span></span>
+<span class="line"><span style="color:#79B8FF">    DETACH</span><span style="color:#6A737D"> // DETACH</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>주로 <code>ALL</code> 또는 <code>PERSIST</code>만 사용한다.</p>
+</li>
+<li>
+<p>그리고 다음과 같이 아래 속성을 같이 사용할 수 있다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>cascade = {CascadeType.PERSIST, CascadeType.REMOVE}</span></span></code></pre>
+<ul>
+<li>참고로 <code>CascadeType.PERSIST</code>, <code>CascadeType.REMOVE</code>는 em.persist(), em.remove()를 실행 할 때 바로 전이가 발생하지 않고 <strong><code>플러시</code>를 호출 할 때 전이가 발생</strong>한다.</li>
+</ul>
+<h2 id="고아-객체">고아 객체</h2>
+<ul>
+<li>
+<p><code>고아 객체</code>란 <strong><code>부모 엔티티</code>와 연관관계가 끊어진 <code>자식 엔티티</code>를 자동으로 삭제하는 기능</strong>을 제공하는 걸 말한다.</p>
+</li>
+<li>
+<p>이 기능을 사용해서 <code>부모 엔티티</code>의 컬렉션에서 <code>자식 엔티티</code>의 참조만 제거하면 자식 엔티티가 자동으로 삭제하도록 코드를 작성해보면 아래와 같다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Parent</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Id</span><span style="color:#E1E4E8"> @</span><span style="color:#F97583">GeneratedValue</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "PARENT_ID"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Long id;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String name;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">OneToMany</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">mappedBy</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "parent"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">orphanRemoval</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Child</span><span style="color:#E1E4E8">> children </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;</span><span style="color:#F97583">Child</span><span style="color:#E1E4E8">>();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>고아 객체 제거 기능을 활성화하기 위해 컬렉션에 <code>orphanRemoval = true</code>를 설정하면, 컬렉션에서 제거한 엔티티는 자동으로 삭제된다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">Parent parent1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> em.</span><span style="color:#B392F0">find</span><span style="color:#E1E4E8">(Parent.class, id);</span></span>
+<span class="line"><span style="color:#E1E4E8">parent1.</span><span style="color:#B392F0">getChildren</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">//자식 엔티티를 컬렉션에서 제거</span></span></code></pre>
+<ul>
+<li>
+<p>사용 코드를 보면 컬렉션에서 첫 번째 자식을 제거한다.</p>
+</li>
+<li>
+<p><code>고아 객체</code> 제거 기능은 영속성 컨텍스트를 플러시할 때 적용되므로 <strong>플러시 시점에 DELETE SQL이 실행</strong>된다.</p>
+</li>
+</ul>
+<h3 id="고아객체-주의할-점">고아객체 주의할 점</h3>
+<ul>
+<li>
+<p>게시판의 첨부파일을 삭제하는 것처럼 <strong>참조하는 곳이 하나일 때</strong> 사용해야 한다.</p>
+</li>
+<li>
+<p>쉽게 말해, <strong>특정 엔티티가 개인으로 소유하는 엔티티에만 이 기능을 적용</strong>한다.</p>
+</li>
+<li>
+<p>보통은 <code>@OneToOne</code>, <code>@OneToMany</code>만 가능하다.</p>
+</li>
+<li>
+<p>만약, 삭제한 엔티티를 다른 곳에서도 참조한다면, 문제가 발생할 수 있다.</p>
+</li>
+</ul>
+<h3 id="영속성-전이--고아-객체-생명주기">영속성 전이 + 고아 객체, 생명주기</h3>
+<ul>
+<li>
+<p><code>CascadeType.ALL + orphanRemoval=true</code> 해두면 스스로 생명주기를 관리하는 엔티티는 em.persist()로 영속화, em.remove()로 제거할 수 있다.</p>
+<ul>
+<li>두 옵션을 모두 활성화 하면 부모 엔티티를 통해서 자식의 생명주기를 관리할 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/ORM-JPA-Basic/dashboard">자바 ORM 표준 JPA 프로그래밍 - 기본편</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="JPA-8-Proxy" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#프록시" data-toc="프록시" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">프록시</a></li><li><a href="#프록시-객체의-초기화" data-toc="프록시-객체의-초기화" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">프록시 객체의 초기화</a></li><li><a href="#프록시의-특징" data-toc="프록시의-특징" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">프록시의 특징</a></li><li><a href="#프록시-확인" data-toc="프록시-확인" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">프록시 확인</a></li><li><a href="#즉시-로딩과-지연-로딩" data-toc="즉시-로딩과-지연-로딩" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">즉시 로딩과 지연 로딩</a></li><li><a href="#즉시-로딩" data-toc="즉시-로딩" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">즉시 로딩</a></li><li><a href="#지연-로딩" data-toc="지연-로딩" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">지연 로딩</a></li><li><a href="#프록시와-즉시로딩-주의" data-toc="프록시와-즉시로딩-주의" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">프록시와 즉시로딩 주의</a></li><li><a href="#영속성-전이-cascade" data-toc="영속성-전이-cascade" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">영속성 전이: CASCADE</a></li><li><a href="#영속성-전이-cascade-주의할-점" data-toc="영속성-전이-cascade-주의할-점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">영속성 전이: CASCADE 주의할 점</a></li><li><a href="#고아-객체" data-toc="고아-객체" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">고아 객체</a></li><li><a href="#고아객체-주의할-점" data-toc="고아객체-주의할-점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">고아객체 주의할 점</a></li><li><a href="#영속성-전이--고아-객체-생명주기" data-toc="영속성-전이--고아-객체-생명주기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">영속성 전이 + 고아 객체, 생명주기</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

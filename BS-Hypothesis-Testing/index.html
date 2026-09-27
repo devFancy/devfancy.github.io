@@ -1,0 +1,320 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>10. 단일표본 가설검정 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/BS-Hypothesis-Testing/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><link rel="stylesheet" href="/katex/katex.min.css"><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EB%8C%80%ED%95%99%EA%B5%90" class="hover:underline" data-astro-cid-g5songws>대학교</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>10. 단일표본 가설검정</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-06-23" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-06-23</time><a href="/category/#%EA%B2%BD%EC%98%81%ED%86%B5%EA%B3%84" class="chip chip-tag">#경영통계</a></div><p class="view-count text-sm text-muted">조회수 13회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 경영학부 경영통계 수업에서 배운 자료들을 정리한 내용입니다.</p>
+</blockquote>
+<h2 id="contents">Contents</h2>
+<ul>
+<li>
+<p>가설검정 과정을 설명한다.</p>
+</li>
+<li>
+<p>여섯 단계의 가설검정 과정을 적용한다.</p>
+</li>
+<li>
+<p>한쪽꼬리검정과 양쪽꼬리검정을 구별한다.</p>
+</li>
+<li>
+<p>모평균에 대한 가설검정을 수행한다.</p>
+</li>
+<li>
+<p>P-값을 계산하고 해석한다.</p>
+</li>
+<li>
+<p>가설검정을 위해 t 통계량을 사용한다.</p>
+</li>
+</ul>
+<h2 id="가설과-가설검정">가설과 가설검정</h2>
+<ul>
+<li>
+<p>가설(Hypothesis)</p>
+<ul>
+<li>모집단의 모수에 대한 진술, 주장, 표본추출을 통한 통계분석으로 검정해야 할 대상</li>
+</ul>
+</li>
+<li>
+<p>가설검정(Hypothesis testing)</p>
+<ul>
+<li>모수에 대한 어떤 가설을 수립하고 수집된 표본정보를 이용해 가설의 옳고 그름을 판정하는 과정</li>
+</ul>
+</li>
+</ul>
+<h2 id="귀무가설-대립가설">귀무가설, 대립가설</h2>
+<ul>
+<li>
+<p>두 가설은 항상 함께 표현되며, 서로 여집합의 관계 (서로 상호배타적이며 포괄적)</p>
+</li>
+<li>
+<p>귀무가설(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">H_{0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, Null hypothesis)</p>
+<ul>
+<li>
+<p>수치증거를 검정하기 위한 목표로 만들어진 모집단 모수 값에 대한 진술</p>
+</li>
+<li>
+<p>현재 진실로 받아들여지고 있는 사실 또는 일반적으로 알려져 있는 내용</p>
+</li>
+<li>
+<p>등호가 항상 포함됨(”=”, “≥”, “≤”)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>대립가설(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">H_{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, Alternative hypothesis) == 연구가설(research hypothesis)</p>
+<ul>
+<li>
+<p>표본의 데이터 정보가 귀무가설이 거짓이라는 충분한 증거를 제시할 때 채택되는 진술</p>
+</li>
+<li>
+<p>귀무가설을 부정함으로써 새롭게 입증하려는 내용</p>
+</li>
+<li>
+<p>등호를 포함하지 않음. (”&#x3C;”, “>”, “ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo mathvariant="normal">≠</mo></mrow><annotation encoding="application/x-tex">\ne</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span></span></span></span>”)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="검정통계량-기각역">검정통계량, 기각역</h2>
+<ul>
+<li>
+<p>검정통계량(test statistic) → 귀무가설 “결백”</p>
+<ul>
+<li>
+<p>가설검정을 위해 사용되는 통계량. Ex) <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo separator="true">,</mo><mi>t</mi><mo separator="true">,</mo><mi>F</mi><mo separator="true">,</mo><msup><mi>λ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">z, t, F, \lambda^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>
+<p>가설검정은 항상 귀무가설이 사실이라는 전제하에 진행됨</p>
+</li>
+</ul>
+</li>
+<li>
+<p>기각역(rejection region)</p>
+<ul>
+<li>
+<p>귀무가설을 기각할 수 있는 검정통계량 값의 범위</p>
+</li>
+<li>
+<p>추출된 표본으로부터 검정통계량 값이 이 기각역에 들어가면 귀무가설을 기각하고, 대립가설을 채택하게 됨.</p>
+</li>
+<li>
+<p>가설이 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo mathvariant="normal">≠</mo></mrow><annotation encoding="application/x-tex">\ne</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span></span></span></span> 형태 → 양쪽꼬리(양측)검정(two-sided test)</p>
+</li>
+<li>
+<p>가설이 “&#x3C;”, “>” 형태일 때는 한쪽꼬리(단측)검정(one-sided test)</p>
+</li>
+<li>
+<p>기각역이 넓으면 귀무가설을 기각할 가능성이 높아짐(기각역의 범위가 넓어지기 때문이다)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="가설-검정의-종류">가설 검정의 종류</h2>
+<ul>
+<li>
+<p>가설 검정의 종류</p>
+<ul>
+<li>
+<p>양쪽꼬리(양측)검정</p>
+</li>
+<li>
+<p>한쪽꼬리(단측)검정 : 대립가설의 기호의 방향을 따름.</p>
+</li>
+</ul>
+<img src="/assets/img/university/business-statistics/bs-hypothesis-testing_1.png" alt="" width="600">
+</li>
+<li>
+<p>가설검정의 목적 및 결론</p>
+<ul>
+<li>
+<p>귀무가설에 검증이 필요하기 때문</p>
+</li>
+<li>
+<p>일단 귀무가설이 맞다는 가정 하에 가설 검정을 수행</p>
+</li>
+<li>
+<p>귀무가설을 기각할 수 있으면 → 강한 결론(strong conclusion): 귀무가설을 기각하고 대립가설을 채택</p>
+</li>
+<li>
+<p>귀무가설을 기각할 수 없으면 → “증거가 불충분하므로 무죄를 선언한다”</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="가설검증-단계">가설검증 단계</h2>
+<ul>
+<li>
+<p>1단계 : 가설의 설정 → 귀무가설 &#x26; 대립가설</p>
+</li>
+<li>
+<p>2단계: 유의수준 결정 → <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span> = 0.05 or 0.01</p>
+</li>
+<li>
+<p>3단계: 검정통계량 선택 → z or t</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><mfrac><mrow><mover accent="true"><mi>X</mi><mo>ˉ</mo></mover><mo>−</mo><mi>μ</mi></mrow><mfrac><mi>σ</mi><msqrt><mi>n</mi></msqrt></mfrac></mfrac></mrow><annotation encoding="application/x-tex">z = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.7616em;vertical-align:-0.7415em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0202em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6915em;"><span style="top:-2.6009em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8059em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight" style="padding-left:0.833em;"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-2.7659em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2341em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">σ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5664em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord accent mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord mathnormal mtight" style="margin-right:0.0785em;">X</span></span><span style="top:-2.9523em;"><span class="pstrut" style="height:2.7em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord mtight">ˉ</span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7415em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>z</mi><mo>=</mo><mfrac><mrow><mover accent="true"><mi>X</mi><mo>ˉ</mo></mover><mo>−</mo><mi>μ</mi></mrow><mfrac><mi>s</mi><msqrt><mi>n</mi></msqrt></mfrac></mfrac></mrow><annotation encoding="application/x-tex">z = \frac{\bar{X} - \mu}{\frac{s}{\sqrt{n}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.7616em;vertical-align:-0.7415em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0202em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6915em;"><span style="top:-2.6009em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8059em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight" style="padding-left:0.833em;"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-2.7659em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2341em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5664em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord accent mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord mathnormal mtight" style="margin-right:0.0785em;">X</span></span><span style="top:-2.9523em;"><span class="pstrut" style="height:2.7em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord mtight">ˉ</span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7415em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mfrac><mrow><mover accent="true"><mi>X</mi><mo>ˉ</mo></mover><mo>−</mo><mi>μ</mi></mrow><mfrac><mi>σ</mi><msqrt><mi>n</mi></msqrt></mfrac></mfrac></mrow><annotation encoding="application/x-tex">t= \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.7616em;vertical-align:-0.7415em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0202em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6915em;"><span style="top:-2.6009em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8059em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight" style="padding-left:0.833em;"><span class="mord mathnormal mtight">n</span></span></span><span style="top:-2.7659em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2341em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.2255em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.384em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0359em;">σ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5664em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord accent mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord mathnormal mtight" style="margin-right:0.0785em;">X</span></span><span style="top:-2.9523em;"><span class="pstrut" style="height:2.7em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord mtight">ˉ</span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mathnormal mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7415em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+</ul>
+</li>
+<li>
+<p>4단계: 임계값 및 기각영역 결정</p>
+<ul>
+<li>임계값:  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>에 대항하는 양측일 때 → <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">z_{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7858em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span><span class="mord mtight">/2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span></span></span></span> or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">t_{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9703em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span><span class="mord mtight">/2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span></span></span></span> / 한쪽일 때 → <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mi>α</mi></msub></mrow><annotation encoding="application/x-tex">z_{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>  or <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>α</mi></msub></mrow><annotation encoding="application/x-tex">t_{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+</li>
+</ul>
+<img src="/assets/img/university/business-statistics/bs-hypothesis-testing_2.png" alt="" width="600">
+<ul>
+<li>
+<p>기각영역: 임계값이 결정</p>
+</li>
+<li>
+<p>5단계: 귀무가설의 기각여부 결정</p>
+<ul>
+<li>
+<p>검정통계량 계산</p>
+</li>
+<li>
+<p>임계값 또는 기각영역과 비교</p>
+</li>
+</ul>
+<img src="/assets/img/university/business-statistics/bs-hypothesis-testing_3.png" alt="" width="500">
+<img src="/assets/img/university/business-statistics/bs-hypothesis-testing_4.png" alt="" width="500">
+</li>
+</ul>
+<h2 id="한쪽-꼬리검정과-양쪽-꼬리-검정">한쪽 꼬리검정과 양쪽 꼬리 검정</h2>
+<ul>
+<li>
+<p>한쪽 꼬리 검정 ⇒ 왼쪽 or 오른쪽</p>
+</li>
+<li>
+<p>양쪽 꼬리 검정</p>
+</li>
+<li>
+<p>예) 정규분포의 면적은 1이다.</p>
+</li>
+</ul>
+<img src="/assets/img/university/business-statistics/bs-hypothesis-testing_5.png" alt="" width="600">
+<h2 id="모평균에-대한-가설검정">모평균에 대한 가설검정</h2>
+<ul>
+<li>
+<p>모표준편차(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span></span></span></span>)을 아는 경우 → <strong>z 분포</strong> - 양쪽 꼬리 검정 또는 한쪽 꼬리 검정</p>
+</li>
+<li>
+<p>모표준편차(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span></span></span></span>)을 모르는 경우 and n &#x3C; 30인 경우 → <strong>t 분포</strong>- 양쪽 꼬리 검정 또는 한쪽 꼬리 검정</p>
+<ul>
+<li>조건: <strong>n &#x3C; 30 이고, 모표준편차를 모르는 경우</strong> t 분포를 사용한다.</li>
+</ul>
+</li>
+<li>
+<p>t 분포의 주요 특징</p>
+<ul>
+<li>
+<p>종모양의 좌우대칭형 연속분포이다.</p>
+</li>
+<li>
+<p>자유도가 변할 때마다 새로운 분포가 형성된다.</p>
+</li>
+<li>
+<p>자유도가 증가함에 따라 t 분포의 모양은 표준 정규분포의 모양에 가까워진다.</p>
+</li>
+<li>
+<p>표준 정규분포보다 더 평평한 모양을 가짐 → <strong>z 분포보다 더 큰 값을 가진다.</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="p-값을-이용한-가설검정">p-값을 이용한 가설검정</h2>
+<ul>
+<li>
+<p><code>p-값</code>: 귀무가설이 참이라고 가정할 때 실제 관측지보다 극단적인 결과가 실제로 관측될 확률</p>
+</li>
+<li>
+<p>p-값은 <strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">H_{0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>  이 거짓이라는 가능성을 표현하는 방식</strong>임</p>
+</li>
+<li>
+<p><strong>p-값과 유의수준(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span>)을 비교</strong> → 유의수준보다 작으면 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">H_{0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 기각함.</p>
+</li>
+<li>
+<p><strong>정리</strong></p>
+<ul>
+<li>
+<p>[1] 검정통계량(z값, t값)에 해댱하는 꼬리 쪽의 확률 → p-값</p>
+</li>
+<li>
+<p>[2] 그런 p-값과 유의수준을 비교하여 작으면 귀무가설을 기각하고, 아니면 기각하지 않는다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="모비율에-대한-가설검정">모비율에 대한 가설검정</h2>
+<p>Step 1, 3 ⇒ Step1(가설 설정)과 Step3(검정통계량)에 수정을 제외하고 나머지 순서는 같다.</p>
+<ul>
+<li>
+<p>Step 1: 모비율  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span>  를 이용한 가설 검정 ⇒ 대립가설로 방향 결정하는 것은 같다.</p>
+</li>
+<li>
+<p>Step 3: 검정통계량 선택 ⇒ <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mi>π</mi><mo separator="true">,</mo><msup><mi>σ</mi><mn>2</mn></msup><mo>=</mo><mi>π</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>π</mi><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>n</mi></mrow><annotation encoding="application/x-tex">\mu = \pi, \sigma^{2} = \pi(1-\pi)/n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">μ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathnormal">n</span></span></span></span> 이용</p>
+<ul>
+<li>
+<p>귀무가설이 참이라는 가정하에 검증시작( 항상 모분산이 주어짐)</p>
+</li>
+<li>
+<p>z 분포를 사용할 수 있음</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://m.yes24.com/Goods/Detail/60561679">경영경제통계학17판</a></p>
+<ul>
+<li>Lind, Marchal, Wathen, (2018), McGrawHill, 강종열 등 역, 지필미디어</li>
+</ul>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="BS-Hypothesis-Testing" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/PS-04-Continuous-Probability-Distributions/" class="link-title leading-snug">04. Continuous Probability Distributions</a><time datetime="2022-06-30" class="mt-1.5 block text-sm text-muted">2022-06-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/EF-10-Blockchain-Technology/" class="link-title leading-snug">10. Blockchain Technology</a><time datetime="2022-06-26" class="mt-1.5 block text-sm text-muted">2022-06-26</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/BS-Analysis-Of-Variance/" class="link-title leading-snug">12. 분산분석</a><time datetime="2022-06-25" class="mt-1.5 block text-sm text-muted">2022-06-25</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#contents" data-toc="contents" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Contents</a></li><li><a href="#가설과-가설검정" data-toc="가설과-가설검정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">가설과 가설검정</a></li><li><a href="#귀무가설-대립가설" data-toc="귀무가설-대립가설" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">귀무가설, 대립가설</a></li><li><a href="#검정통계량-기각역" data-toc="검정통계량-기각역" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">검정통계량, 기각역</a></li><li><a href="#가설-검정의-종류" data-toc="가설-검정의-종류" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">가설 검정의 종류</a></li><li><a href="#가설검증-단계" data-toc="가설검증-단계" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">가설검증 단계</a></li><li><a href="#한쪽-꼬리검정과-양쪽-꼬리-검정" data-toc="한쪽-꼬리검정과-양쪽-꼬리-검정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">한쪽 꼬리검정과 양쪽 꼬리 검정</a></li><li><a href="#모평균에-대한-가설검정" data-toc="모평균에-대한-가설검정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">모평균에 대한 가설검정</a></li><li><a href="#p-값을-이용한-가설검정" data-toc="p-값을-이용한-가설검정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">p-값을 이용한 가설검정</a></li><li><a href="#모비율에-대한-가설검정" data-toc="모비율에-대한-가설검정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">모비율에 대한 가설검정</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

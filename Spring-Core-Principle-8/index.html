@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Spring 핵심원리 - 기본편 : 빈 생명주기 콜백 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Spring-Core-Principle-8/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Spring 핵심원리 - 기본편 : 빈 생명주기 콜백</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-01-24" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-01-24</time><a href="/category/#Spring" class="chip chip-tag">#Spring</a></div><p class="view-count text-sm text-muted">조회수 30회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글의 코드와 정보들은 [스프링 핵심원리 기본편] 강의를 들으며 정리한 내용을 토대로 작성하였습니다.</p>
+</blockquote>
+<h2 id="contents">Contents</h2>
+<ul>
+<li>다음 순서에 맞게 보시는 것을 권장해드립니다.</li>
+</ul>
+<ol>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-1/">Spring 핵심원리 - 기본편 : 객체 지향 설계와 스프링</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-2/">Spring 핵심원리 - 기본편 : 객체 지향 원리 적용</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-4/">Spring 핵심원리 - 기본편 : 스프링 컨테이너와 스프링 빈</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-4-2/">Spring 핵심원리 - 기본편 : 스프링 컨테이너에 등록된 빈 조회</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-5/">Spring 핵심원리 - 기본편 : 싱글톤 컨테이너</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-6/">Spring 핵심원리 - 기본편 : 컴포넌트 스캔</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-7/">Spring 핵심원리 - 기본편 : 의존관계 자동 주입</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-8/">Spring 핵심원리 - 기본편 : 빈 생명주기 콜백</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-9/">Spring 핵심원리 - 기본편 : 빈 스코프</a></p>
+</li>
+</ol>
+<h2 id="빈-생명주기-콜백-개념">빈 생명주기 콜백 개념</h2>
+<ul>
+<li>
+<p>애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 안전상 연결을 모두 종료하는 작업을 하기 위해서는 객체의 초기화와 종료 작업이 필요하다.</p>
+</li>
+<li>
+<p>이러한 객체의 초기화와 종료 작업이 필요한 경우 <code>빈 생명주기 콜백</code>을 사용한다.</p>
+</li>
+</ul>
+<h2 id="스프링-빈의-이벤트-lifecycle">스프링 빈의 이벤트 lifecycle</h2>
+<ul>
+<li>스프링 빈은 다음과 같은 lifecycle을 가진다.</li>
+</ul>
+<blockquote>
+<p>스프링 컨테이너 생성 -> 스프링 빈 생성 -> 의존관계 주입 -> <strong>초기화 콜백</strong> -> 사용 -> <strong>소멸전 콜백</strong> -> 스프링 종료</p>
+</blockquote>
+<ul>
+<li>
+<p><code>초기화 콜백</code> : 빈이 생성되고, 빈의 의존관계 주입이 완료된 후에 호출된다.</p>
+</li>
+<li>
+<p><code>소멸전 콜백</code> : 빈이 소멸되기 직전에 호출된다.</p>
+</li>
+<li>
+<p>참고로 <strong>객체의 생성과 초기화 작업을 분리</strong>하는 것이 좋다.</p>
+<ul>
+<li>
+<p>생성자는 필수 정보(파라미터)를 받고, 메모리를 할당해서 객체를 생성하는 책임을 가진 반면에 초기화는 이렇게 생성된 값들을 활용해서 외부 커넥션을 연결하는 등 무거운 동작을 수행한다.</p>
+</li>
+<li>
+<p>무거운 작업을 하는 경우에는 생성과 초기화 하는 부분을 명확하게 나누는 것이 유지보수 관점에서 좋다.</p>
+</li>
+<li>
+<p>단순한 작업을 하는 경우에는 생성자에서 한번에 다 처리해도 된다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>스프링은 크게 3가지 방법으로 빈 생명주기 콜백을 지원한다.</p>
+</li>
+</ul>
+<h2 id="인터페이스-initializingbean-disposablebean">인터페이스 (InitializingBean, DisposableBean)</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.beans.factory.InitializingBean;</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> NetworkClient</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> InitializingBean</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">DisposableBean</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">private</span><span style="color:#E1E4E8"> String url;</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#B392F0"> NetworkClient</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"생성자 호출, url = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> url); }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> setUrl</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">url</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.url </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> url;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    //서비스 시작시 호출</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> connect</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"connect: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> url);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> call</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"call: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> url </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> " message = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> message);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    //서비스 종료시 호출</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> disConnect</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"close + "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> url);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    //의존관계 주입이 끝나면 호출 - 초기화를 지원한다.</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> afterPropertiesSet</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
+<span class="line"><span style="color:#B392F0">    connect</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">    call</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"초기화 연결 메시지"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    ///종료전에 콜백 호출 - 소멸을 지원한다.</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> destroy</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
+<span class="line"><span style="color:#B392F0">        disConnect</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>InitializingBean</code> 은 <code>afterPropertiesSet()</code> 메서드로 초기화를 지원한다.</p>
+</li>
+<li>
+<p><code>DisposableBean</code> 은 <code>destroy()</code> 메서드로 소멸을 지원한다.</p>
+</li>
+</ul>
+<p><strong>출력 결과</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>생성자 호출, url = null</span></span>
+<span class="line"><span>connect :null</span></span>
+<span class="line"><span>call : null message = 초기화 연결 메시지</span></span>
+<span class="line"><span>NetworkClient.afterPropertiesSet</span></span>
+<span class="line"><span>connect :http://hello-spring.dev</span></span>
+<span class="line"><span>call : http://hello-spring.dev message = 초기화 연결 메시지</span></span>
+<span class="line"><span>17:52:32.252 [Test worker] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@7cf6a5f9, started on Sun Jan 29 17:52:32 KST 2023</span></span>
+<span class="line"><span>NetworkClient.destroy</span></span>
+<span class="line"><span>close : http://hello-spring.dev</span></span></code></pre>
+<ul>
+<li>
+<p>출력 결과를 보면 초기화 메서드(<code>afterPropertiesSet()</code>)가 주입 완료 후에 호출 되었고,</p>
+</li>
+<li>
+<p>스프링 컨테이너의 종료가 호출되자 소멸 메서드(<code>destroy()</code>)가 호출 된 것을 확인할 수 있다.</p>
+</li>
+<li>
+<p><strong>초기화, 소멸 인터페이스 단점</strong></p>
+<ul>
+<li>
+<p>이 인터페이스는 스프링 전용 인터페이스다. 해당 코드가 스프링 전용 인터페이스에 의존한다.</p>
+</li>
+<li>
+<p>초기화, 소멸 메서드의 이름을 변경할 수 없다.</p>
+</li>
+<li>
+<p>내가 코드를 고칠 수 없는 외부 라이브러리에 적용할 수 없다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>이러한 초기화, 종료 방법은 <strong>스프링 초창기(2003.12.08)에 나온 방법들이고 현재는 거의 사용하지 않는다.</strong> (이보다 더 좋은 방법이 있기 때문)</p>
+</li>
+</ul>
+<h2 id="빈-등록-초기화-소멸-메서드-지정">빈 등록 초기화, 소멸 메서드 지정</h2>
+<ul>
+<li>설정 정보에 <code>@Bean(initMethod = "init", destroyMethod = "close")</code> 처럼 초기화, 소멸 메서드를 지정할 수 있다.</li>
+</ul>
+<p>NetworkClient 클래스</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.core.lifecycle;</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> NetworkClient</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> init</span><span style="color:#E1E4E8">() { System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"NetworkClient.init"</span><span style="color:#E1E4E8">); </span><span style="color:#B392F0">connect</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">      call</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"초기화 연결 메시지"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> close</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">      System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"NetworkClient.close"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">      disConnect</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>NetworkClient 클래스에서 init(), close() 메서드로 수정한다.</li>
+</ul>
+<p>BeanLifeCycleTest 클래스</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> BeanLifeCycleTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> lifeCycleTest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        ConfigurableApplicationContext ac </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AnnotationConfigApplicationContext</span><span style="color:#E1E4E8">(LifeCycleConfig.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">        NetworkClient client </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(NetworkClient.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">        ac.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Configuration</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> LifeCycleConfig</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Bean</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">initMethod</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF">  "init"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">destroyMethod</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "close"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> NetworkClient </span><span style="color:#B392F0">networkClient</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">            NetworkClient networkClient </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> NetworkClient</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            networkClient.</span><span style="color:#B392F0">setUrl</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"http://hello-spring.dev"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> networkClient;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>BeanLifeCycleTest 클래스에서 설정 정보에 <code>@Bean(initMethod =  "init", destroyMethod = "close")</code> 으로 수정한다.</li>
+</ul>
+<h3 id="설정-정보-사용-특징">설정 정보 사용 특징</h3>
+<ul>
+<li>
+<p>메서드 이름을 자유롭게 줄 수 있다.</p>
+</li>
+<li>
+<p>스프링 빈이 스프링 코드에 의존하지 않는다.</p>
+</li>
+<li>
+<p>외부 라이브러리에도 초기화, 종료 메서드를 적용할 수 있다.</p>
+</li>
+<li>
+<p>Tip : <code>@Bean의 destroyMethod</code> 속성에는 기본값이 <code>(inferred)</code> 추론으로 등록되어 있고 이 추론 기능이 <code>close</code>, <code>shutdown</code> 이름의 메서드를 자동으로 호출해준다.</p>
+<ul>
+<li>추론 기능을 사용하기 싫으면 <code>destroyMethod=""</code> 처럼 빈 공백으로 지정하면 된다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="애노테이션-postconstruct-predestroy">애노테이션 @PostConstruct, @PreDestroy</h2>
+<ul>
+<li><strong>결론적으로 세가지 방법중에 <code>@PostConstruct, @PreDestroy</code> 애노테이션 방법을 가장 많이 사용한다.</strong> (최신 스프링에서 가장 권장하는 방법이다)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> NetworkClient</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">PostConstruct</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> init</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"NetworkClient.init"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">        connect</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">        call</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"초기화 연결 메시지"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">PreDestroy</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> close</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"NetworkClient.close"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">        disConnect</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> BeanLifeCycleTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Configuration</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> LifeCycleConfig</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> NetworkClient </span><span style="color:#B392F0">networkClient</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">            NetworkClient networkClient </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> NetworkClient</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            networkClient.</span><span style="color:#B392F0">setUrl</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"http://hello-spring.dev"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> networkClient;</span></span>
+<span class="line"><span style="color:#E1E4E8">          }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="postconstruct-predestroy-애노테이션-특징">@PostConstruct, @PreDestroy 애노테이션 특징</h3>
+<ul>
+<li>
+<p><code>@PostConstruct</code>, <code>@PreDestroy</code> 이 두 애노테이션을 사용하면 <strong>가장 편리하게 초기화와 종료를 실행</strong>할 수 있다.</p>
+</li>
+<li>
+<p>유일한 단점은 <code>외부 라이브러리</code>에는 적용하지 못한다.</p>
+</li>
+<li>
+<p>만약 초기화, 종료를 해야 한다면, <code>@Bean</code>의 <code>initMethod</code>, <code>destroyMethod</code>(빈 등록 초기화, 소멸 메서드 지정 방법)을 사용한다.</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard">스프링 핵심 원리 - 기본편</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Spring-Core-Principle-8" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#contents" data-toc="contents" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Contents</a></li><li><a href="#빈-생명주기-콜백-개념" data-toc="빈-생명주기-콜백-개념" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">빈 생명주기 콜백 개념</a></li><li><a href="#스프링-빈의-이벤트-lifecycle" data-toc="스프링-빈의-이벤트-lifecycle" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">스프링 빈의 이벤트 lifecycle</a></li><li><a href="#인터페이스-initializingbean-disposablebean" data-toc="인터페이스-initializingbean-disposablebean" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">인터페이스 (InitializingBean, DisposableBean)</a></li><li><a href="#빈-등록-초기화-소멸-메서드-지정" data-toc="빈-등록-초기화-소멸-메서드-지정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">빈 등록 초기화, 소멸 메서드 지정</a></li><li><a href="#설정-정보-사용-특징" data-toc="설정-정보-사용-특징" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">설정 정보 사용 특징</a></li><li><a href="#애노테이션-postconstruct-predestroy" data-toc="애노테이션-postconstruct-predestroy" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">애노테이션 @PostConstruct, @PreDestroy</a></li><li><a href="#postconstruct-predestroy-애노테이션-특징" data-toc="postconstruct-predestroy-애노테이션-특징" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">@PostConstruct, @PreDestroy 애노테이션 특징</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

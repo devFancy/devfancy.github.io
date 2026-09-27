@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[DB] 트랜잭션 격리 수준 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/DB-Transaction-Isolation-Level/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[DB] 트랜잭션 격리 수준</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-02-20" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-02-20</time><a href="/category/#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4" class="chip chip-tag">#데이터베이스</a></div><p class="view-count text-sm text-muted">조회수 212회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<ul>
+<li><a href="https://devFancy.github.io/DB-Transaction/">이전 트랜잭션</a>의 ACID 특성 중 한 가지인 <strong>격리성</strong>에 대해 조금 더 깊게 공부하기 위해 해당 포스트를 작성하게 되었다.</li>
+</ul>
+<h2 id="격리성">격리성</h2>
+<ul>
+<li>
+<p>트랜잭션의 특성 중 한 가지인 <code>격리성</code>(Isolation)은 현재 수행 중인 트랜잭션이 완료될 때까지 트랜잭션이 생성된 중간 연산 결과에 <strong>다른 트랜잭션들이 접근할 수 없음</strong>을 의미한다.</p>
+</li>
+<li>
+<p>격리성은 여러 개의 격리 수준으로 나뉘어 격리성을 보장한다.</p>
+</li>
+<li>
+<p>격리 수준은 아래와 같이 4개가 있다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/db-transaction-isolation-level-1.jpg" alt=""></p>
+<ul>
+<li>
+<p>위로 갈수록 동시성이 강해지지만 격리성은 약해지고, 아래로 갈수록 동시성은 약해지지만 격리성은 강해진다.</p>
+</li>
+<li>
+<p>또한 각 단계마다 나타나는 현상이 있다.</p>
+<ul>
+<li>
+<p><code>READ_UNCOMMITTED</code> - 팬텀 리드, 반복 가능하지 않는 조회, 더티 리드가 발생할 수 있다.</p>
+</li>
+<li>
+<p><code>READ_COMMITTED</code> - 팬텀 리드, 반복 가능하지 않는 조회가 발생한다.</p>
+</li>
+<li>
+<p><code>REPEATABLE_READ</code> - 팬텀 리드가 발생한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="격리-수준에-따라-발생하는-현상">격리 수준에 따라 발생하는 현상</h2>
+<ul>
+<li>격리 수준에 따라 발생하는 현상은 더티 리드, 반복 가능하지 않는 조회, 팬텀 리드가 있다.</li>
+</ul>
+<h3 id="더티-리드">더티 리드</h3>
+<ul>
+<li>
+<p>더티 리드(Dirty Read)는 반복 가능하지 않은 조회와 유사하며 한 트랜잭션이 실행 중일 때 <strong>다른 트랜잭션에 의해 수정되었지만 아직 ‘커밋되지 않은’행의 데이터를 읽을 경우</strong> 발생한다.</p>
+</li>
+<li>
+<p>예를 들어 사용자 A의 계좌(A 트랜잭션)가 $100을 $0으로 변경한 내용이 <strong>아직 커밋되지 않은</strong> 상태라도 그 이후에 사용자 B가 조회했을 때 결과가 $0으로 나온 경우를 말한다.</p>
+</li>
+<li>
+<p>만약 <strong>수정한</strong> 트랜잭션 A가 그 변경 사항을 <strong>롤백</strong>하면, 그 데이터를 읽은 다른 트랜잭션 B가 <strong>더티 데이터</strong>를 가지고 있다고 말한다.</p>
+</li>
+</ul>
+<h3 id="반복-가능하지-않은-조회">반복 가능하지 않은 조회</h3>
+<ul>
+<li>
+<p>반복 가능하지 않은 조회(Non-Repeatable Read)는 한 트랜잭션 내의 <strong>같은 행</strong>에 두 번 이상 조회가 발생했는데, 그 <strong>값이 다른 경우</strong>를 가리킨다.</p>
+</li>
+<li>
+<p>예를 들어 팬시의 계좌가 1번인 잔고 안에 $100가 들어 있다.</p>
+<p>처음에 계좌 1번의 데이터를 읽으면, $100를 읽게 된다.</p>
+<p>하지만 이 때 팬시가 계좌가 1번인 잔고에서 $10을 다른 계좌로 송금했다.</p>
+<p>그러면 두 번째로 계좌 1번의 데이터를 읽을 때에는 $90를 읽게 된다.</p>
+</li>
+<li>
+<p>이처럼 한 트랜잭션 내에서 <strong>같은 Key</strong>를 가진 Row를 두 번 읽었는데 그 사이에 <strong>값이 변경되거나 삭제</strong>되어 결과가 다르게 나타나는 현상을 말한다.</p>
+</li>
+</ul>
+<h3 id="팬텀-리드">팬텀 리드</h3>
+<ul>
+<li>
+<p>팬텀 리드(Phantom Read)는 한 트랜잭션 내에서 동일한 쿼리를 보냈을 때 <strong>해당 조회 결과가 다른 경우</strong>를 말한다.</p>
+</li>
+<li>
+<p>다른 트랜잭션 의한 변경 사항으로 인해 현재 사용중인 트랜잭션의 Where 절의 <strong>조건</strong>에 맞는 <strong>새로운 행</strong>이 생길 수 있는 경우에 관한 것이다.</p>
+</li>
+<li>
+<p>예를 들어, 팬시의 잔고가 $100 미만인 계좌가 2개인 DB에서</p>
+<p>$100 미만인 계좌를 찾는 트랜잭션이 있고, 그 트랜잭션안에서 Select 쿼리를 2번 수행한다고 가정하자.</p>
+<p>처음에 데이터를 읽으면 <strong>2개</strong>의 계좌를 찾게 된다.</p>
+<p>하지만 이 때 다른 트랜잭션에서 <strong>$0인 계좌</strong>를 새로 만들고 난 이후에</p>
+<p>두 번째 데이터를 읽을 때에는 <strong>3개</strong>의 계좌를 찾게 된다.</p>
+</li>
+<li>
+<p>이처럼 Where 절의 조건에 맞는 새로운 행이 생길 수 있는 경우를 말한다.</p>
+</li>
+</ul>
+<h2 id="격리-수준">격리 수준</h2>
+<p><img src="/assets/img/cs/db/db-transaction-isolation-level-2.png" alt=""></p>
+<ul>
+<li>
+<p>위의 표에서 알 수 있듯이 엄격해질수록 이상 현상을 허용하지 않는다.</p>
+</li>
+<li>
+<p>격리 수준은 세 가지 이상 현상을 정의한 뒤 어떤 현상을 허용/허용하지 않는지에 따라 격리 수준이 나뉜다.</p>
+</li>
+<li>
+<p>개발자는 이 격리 수준을 통해 전체 <strong>처리량</strong>(Throughput)과 <strong>데이터 일관성</strong> 사이에서 <strong>trade</strong> 할 수 있다.</p>
+</li>
+</ul>
+<h3 id="격리-수준의-필요성">격리 수준의 필요성</h3>
+<ul>
+<li>
+<p>DB는 데이터 무결성을 보장하는 것이 중요하다. <code>데이터 무결성</code>은 데이터의 정확성과 일관성을 유지하고 보증하는 것을 말한다.</p>
+<p>그리고 그 무결성을 보장하기 위한 특징이 <strong>ACID</strong>(Atomicity, Consistency, Isolation, Durability)이다.</p>
+<p>데이터베이스는 ACID 특징과 같이 트랜잭션이 독립적인 수행을 하도록 한다. 그래서 등장한 개념이 <strong>Locking</strong>이다.</p>
+</li>
+<li>
+<p><code>Locking</code>은 트랜잭션이 DB를 다루는 동안 다른 트랜잭션이 관여하지 못하게 막는 역할이다.</p>
+<p>하지만 <strong>무조건적인 Locking</strong>으로 동시에 수행되는 수많은 트랜잭션들을 순서대로 처리하면 <strong>DB의 성능</strong>은 현저히 떨어지게 될 것이다.</p>
+<p>그렇다고 해서 성능을 높이기 위해 <strong>Locking 범위</strong>를 줄인다면, 잘못된 값이 처리될 수 있다.</p>
+<p>그래서 최대한 효율적인 <strong>Locking 방법</strong>이 필요하다.</p>
+</li>
+<li>
+<p>이와 관련된 Locking 방법이 <strong>격리 수준</strong>(Isolation Level)이다.</p>
+</li>
+</ul>
+<h3 id="read_uncommitted">READ_UNCOMMITTED</h3>
+<ul>
+<li>
+<p>가장 낮은 격리 수준으로, 하나의 트랜잭션이 커밋되기 이전에 다른 트랜잭션에 <strong>노출</strong>되는 문제가 있지만 가장 빠르다.</p>
+</li>
+<li>
+<p>이는 데이터 무결성을 위해 되도록이면 사용하지 않는 것이 이상적이나, 몇몇 행이 제대로 조회되지 않더라도 괜찮은 거대한 양의 데이터를 <strong>어림잡아 집계</strong>하는 데는 사용하면 좋다.</p>
+</li>
+<li>
+<p>발생할 수 있는 문제</p>
+<ul>
+<li>
+<p>Phantom Read</p>
+</li>
+<li>
+<p>Non-Repeatable Read</p>
+</li>
+<li>
+<p>Dirty Read</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="read_committed">READ_COMMITTED</h3>
+<ul>
+<li>
+<p>가장 많이 사용하는 격리 수준이며, PostgreSQL, SQL Server, 오라클에서 기본값으로 설정되어 있다.</p>
+</li>
+<li>
+<p>READ_UNCOMMITTED 와 달리 다른 트랜잭션이 커밋 되지 않은 정보는 읽을 수 없다.</p>
+<p>즉, <strong>커밋 완료된 데이터</strong>만 조회를 허용한다.</p>
+</li>
+<li>
+<p>하지만, 어떤 트랜잭션이 접근한 행을 다른 트랜잭션이 <strong>수정</strong>할 수 있다.</p>
+<p>예를 들어 트랜잭션 A가 수정한 행을 트랜잭션 B가 수정할 수 있다.</p>
+</li>
+<li>
+<p>발생할 수 있는 문제</p>
+<ul>
+<li>
+<p>Phantom Read</p>
+</li>
+<li>
+<p>Non-Repeatable Read</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="repeatable_read">REPEATABLE_READ</h3>
+<blockquote>
+<p>“REPEATABLE READ: This is the default isolation level for InnoDB.” - MySQL 공식문서 -</p>
+</blockquote>
+<ul>
+<li>
+<p><strong><code>MySQL의 InnoDB엔진</code>의 기본 격리수준</strong>으로, 하나의 트랜잭션이 수정한 행을 다른 트랜잭션이 수정할 수 없도록 막아주지만 <strong>새로운 행을 추가</strong>하는 것은 막지 않는다.</p>
+<p>따라서 이후에 <strong>추가된 행</strong>이 발견될 수 있다.</p>
+</li>
+<li>
+<p>발생할 수 있는 문제</p>
+<ul>
+<li>Phantom Read</li>
+</ul>
+</li>
+</ul>
+<h4 id="repeatable-read와-스냅샷">REPEATABLE READ와 스냅샷</h4>
+<blockquote>
+<p>2025.07.23 업데이트</p>
+</blockquote>
+<p>앞선 설명만 보면 한 가지 의문이 생길 수 있다.</p>
+<p>“REPEATABLE READ도 커밋된 데이터를 읽는다고 했는데, 왜 다른 트랜잭션이 커밋한 최신 데이터를 보지 못하는 걸까?”</p>
+<p>앞선 설명만 보면 한 가지 의문이 생길 수 있습니다. “REPEATABLE READ도 커밋된 데이터를 읽는다고 했는데, 왜 다른 트랜잭션이 커밋한 최신 데이터를 보지 못하는 걸까?”</p>
+<p>결론부터 말하면 <strong><code>REPEATABLE READ</code>는 트랜잭션 내 첫 <code>SELECT</code> 시점의 ‘스냅샷(Snapshot)‘을 만들어, 트랜잭션이 끝날 때까지 그 스냅샷의 데이터만 일관되게 보여주기 때문</strong>이다. 이는 MySQL의 <strong>MVCC(Multi-Version Concurrency Control)</strong> 와 관련된 핵심 동작 방식이다.</p>
+<p>다른 트랜잭션이 데이터를 변경하고 커밋해도, 현재 트랜잭션은 <strong>‘반복 가능한 읽기’를 보장하기 위해 의도적으로 최신 변경 사항을 무시</strong>하고 자신만의 스냅샷을 참조한다.</p>
+<p>아래 그림은 동시 결제 요청 시 스냅샷으로 인해 문제가 발생하는 과정을 보여준다.</p>
+<blockquote>
+<p>REPEATABLE READ의 스냅샷 동작 원리</p>
+</blockquote>
+<p><img src="/assets/img/cs/db/DB-Concurrency-Issue-Scenario.png" alt=""></p>
+<p>시나리오 분석: 아래 타임라인을 통해 두 트랜잭션이 어떻게 상호작용하는지 자세히 살펴보자.</p>
+<ul>
+<li>
+<p>T1: 트랜잭션 A(5,000원 결제)와 B(3,000원 결제)가 거의 동시에 시작된다. 트랜잭션 B는 잔액 <code>10,000원</code>을 조회하고, 이 시점에 <strong>B를 위한 데이터 스냅샷(Snapshot)이 생성된다.</strong></p>
+</li>
+<li>
+<p>T2 ~ T3: 트랜잭션 A가 먼저 DB Lock을 획득하여 결제를 처리한다. 트랜잭션 B는 동일한 데이터에 접근하려다 Lock을 얻지 못하고 <strong>대기(Blocked) 상태</strong>가 된다.</p>
+</li>
+<li>
+<p>T4: 트랜잭션 A가 처리를 마치고 <code>5,000원</code>이 차감된 잔액을 <strong>커밋(Commit)</strong>한다. DB의 실제 잔액은 <code>5,000원</code>이 되고 Lock은 해제된다. 대기하던 트랜잭션 B가 드디어 Lock을 획득하고 깨어난다.</p>
+</li>
+<li>
+<p>T5: 로직을 재개한 트랜잭션 B가 비즈니스 로직을 위해 잔액을 참조한다. 이때 B는 DB의 최신 값(5,000원)을 보는 것이 아니라, <strong>T1에서 생성한 자신만의 스냅샷</strong>을 일관되게 참조한다. 따라서 B에게 잔액은 여전히 <code>10,000원</code>으로 보인다. 이것이 바로 <code>REPEATABLE READ</code>의 핵심 동작이다.</p>
+</li>
+<li>
+<p>T6 ~ T7: 트랜잭션 B는 10,000원을 기준으로 3,000원 결제를 처리한 후, <code>UPDATE ... WHERE balance = 10000</code> 쿼리를 실행한다. 하지만 T4 시점에 A가 커밋한 DB의 실제 잔액은 5,000원이므로 <code>WHERE</code> 조건이 불일치하여 <strong>최종 업데이트는 실패</strong>한다.</p>
+</li>
+</ul>
+<p>이처럼 <code>REPEATABLE READ</code>는 <strong>‘트랜잭션 내의 일관성’</strong> 을 위해 <strong>‘데이터 정합성’</strong> 을 일부 희생하는 전략을 사용한다. 이 특징을 이해해야 동시성 이슈가 발생했을 때 정확한 원인을 파악하고 <code>READ COMMITTED</code>와 같은 다른 격리 수준을 대안으로 고려할 수 있다.</p>
+<h3 id="serializable">SERIALIZABLE</h3>
+<ul>
+<li>
+<p>말 그대로 트랜잭션을 순차적으로 진행시키는 것을 말한다.(직렬화)</p>
+<p>여러 트랜잭션이 동시에 같은 행에 접근할 수 없다.</p>
+<p>이 수준은 <strong>매우 엄격한 수준</strong>으로 해당 행에 대해 격리시키고, 이후 트랜잭션이 이 행에 대해 일어난다면 <strong>기다려야</strong> 한다.</p>
+<p>그렇기 때문에 <strong>교착 상태</strong>가 일어날 확률도 많고 <strong>가장 성능이 떨어지는</strong> 격리수준이다.</p>
+</li>
+</ul>
+<blockquote>
+<p>교착 상태(Dead Lock)란 두 트랜잭션이 각각 Lock을 설정한 다음 <strong>서로의 Lock에 접근</strong>하여 값을 얻어오려고 할 때 이미 각각의 <strong>트랜잭션</strong>에 의해 Lock이 설정되어 있기 때문에 양쪽 트랜잭션 모두 <strong>무한정 기다려야 하는 상태</strong>를 말한다.</p>
+</blockquote>
+<ul>
+<li>발생할 수 있는 문제 X</li>
+</ul>
+<h3 id="어떤-격리-수준을-선택해야-할까">어떤 격리 수준을 선택해야 할까?</h3>
+<p>지금까지의 내용을 보면 <code>REPEATABLE READ</code>의 스냅샷 동작 방식이 문제를 일으켰으니, 무조건 <code>READ COMMITTED</code>를 써야 할 것처럼 보일 수 있다. <strong>하지만 항상 그런 것은 아니다.</strong></p>
+<p><strong><code>REPEATABLE READ</code>가 유리한 경우도 있다.</strong>
+예를 들어, 사용자가 쇼핑몰에서 1,000원짜리 상품을 보고 결제를 진행한다고 상상해 보자. 만약 격리 수준이 <code>READ COMMITTED</code>라면, 사용자가 결제하는 그 짧은 순간에 운영자가 상품 가격을 1,500원으로 변경하고 커밋할 수 있다. 이 경우 사용자는 1,000원을 예상했지만 실제로는 1,500원이 결제되는 혼란스러운 상황을 겪게 된다.</p>
+<p>반면, <code>REPEATABLE READ</code> 환경에서는 사용자의 결제 트랜잭션이 시작될 때 상품 가격(1,000원)이 스냅샷으로 저장된다. 중간에 가격이 1,500원으로 변경되더라도 사용자의 트랜잭션 내에서는 일관되게 1,000원으로 처리되어 예측 가능한 경험을 제공한다.</p>
+<p>결국 정답은 없다.
+격리 수준의 선택은 ‘데이터의 정합성’과 <strong>‘트랜잭션 내의 일관성(논리적 정합성)’</strong> 사이의 트레이드오프이다.</p>
+<ul>
+<li><code>READ COMMITTED</code>: 다른 트랜잭션의 변경 사항을 빠르게 반영해야 하는 금융 정보 조회 등 <strong>데이터 정합성(최신 데이터 반영)</strong>이 중요할 때 유리하다. (ex: 계좌 잔액)</li>
+<li><code>REPEATABLE READ</code>: 하나의 비즈니스 로직이 진행되는 동안 데이터의 일관성을 유지하는 것이 더 중요할 때 유리하다. (ex: 결제 시점의 상품 가격, 재고 수량 등)</li>
+</ul>
+<p>따라서 개발자는 RDBMS(Oracle, MySQL 등)별 기본 격리 수준을 인지하고, 서비스의 비즈니스 정책과 요구사항을 면밀히 분석하여 각 트랜잭션에 가장 적합한 격리 수준을 적용해야 한다.</p>
+<h2 id="예상-질문">예상 질문</h2>
+<ul>
+<li>
+<p>트랜잭션 격리 수준이 필요한 이유는 무엇일까요?</p>
+</li>
+<li>
+<p>트랜잭션 격리 수준에 대해 설명해 주세요.</p>
+</li>
+<li>
+<p>트랜잭션 격리 수준에 따라 발생하는 현상에 대해 설명해 주세요.</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p>면접을 위한 CS 전공지식 노트</p>
+</li>
+<li>
+<p><a href="https://sabarada.tistory.com/117">[DB] 트랜잭션과 격리성</a></p>
+</li>
+<li>
+<p><a href="https://goodgid.github.io/Transaction-Isolation-Level/">트랜잭션 고립화 레벨</a></p>
+</li>
+<li>
+<p><a href="https://gyoogle.dev/blog/computer-science/data-base/Transaction%20Isolation%20Level.html">트랜잭션 격리 수준</a></p>
+</li>
+<li>
+<p><a href="https://github.com/devfancy/2023-CS-Study/blob/main/DB/db_transaction_isolation_level.md">트랜잭션 - Isolation level(격리 수준)과 이상 현상</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/naverfinancial/%EC%8B%A4%EB%AC%B4%EC%97%90%EC%84%9C-%EB%A7%8C%EB%82%98%EB%8A%94-db-isolation-level-e94a904bbf9d">[네이버페이] 실무에서 만나는 DB isolation level</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="DB-Transaction-Isolation-Level" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#격리성" data-toc="격리성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">격리성</a></li><li><a href="#격리-수준에-따라-발생하는-현상" data-toc="격리-수준에-따라-발생하는-현상" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">격리 수준에 따라 발생하는 현상</a></li><li><a href="#더티-리드" data-toc="더티-리드" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">더티 리드</a></li><li><a href="#반복-가능하지-않은-조회" data-toc="반복-가능하지-않은-조회" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">반복 가능하지 않은 조회</a></li><li><a href="#팬텀-리드" data-toc="팬텀-리드" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">팬텀 리드</a></li><li><a href="#격리-수준" data-toc="격리-수준" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">격리 수준</a></li><li><a href="#격리-수준의-필요성" data-toc="격리-수준의-필요성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">격리 수준의 필요성</a></li><li><a href="#read_uncommitted" data-toc="read_uncommitted" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">READ_UNCOMMITTED</a></li><li><a href="#read_committed" data-toc="read_committed" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">READ_COMMITTED</a></li><li><a href="#repeatable_read" data-toc="repeatable_read" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">REPEATABLE_READ</a></li><li><a href="#serializable" data-toc="serializable" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">SERIALIZABLE</a></li><li><a href="#어떤-격리-수준을-선택해야-할까" data-toc="어떤-격리-수준을-선택해야-할까" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">어떤 격리 수준을 선택해야 할까?</a></li><li><a href="#예상-질문" data-toc="예상-질문" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">예상 질문</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

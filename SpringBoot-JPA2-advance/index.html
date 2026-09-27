@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 지연 로딩과 조회 성능 최적화 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/SpringBoot-JPA2-advance/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>실전! 스프링 부트와 JPA 활용2: API 개발 고급 - 지연 로딩과 조회 성능 최적화</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-10-19" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-10-19</time><a href="/category/#JPA" class="chip chip-tag">#JPA</a></div><p class="view-count text-sm text-muted">조회수 48회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글의 코드와 정보들은 [실전! 스프링 부트와 JPA 활용 2] 강의를 들으며 정리한 내용을 토대로 작성하였습니다.</p>
+</blockquote>
+<h2 id="api-개발-고급">API 개발 고급</h2>
+<p>주문 + 배송정보 + 회원을 조회하는 API를 만들면서 지연 로딩 때문에 발생하는 성능 문제를 단계적으로 해결하는 과정을 정리했다.</p>
+<h2 id="간단한-주문-조회-v1-엔티티를-직접-노출">간단한 주문 조회 V1: 엔티티를 직접 노출</h2>
+<p>OrderSimpleApiController</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> jpabook.jpashop.api;</span></span>
+<span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * xToOne(ManyToOne, OneToOne) - 성능 최적화</span></span>
+<span class="line"><span style="color:#6A737D"> * Order</span></span>
+<span class="line"><span style="color:#6A737D"> * Order -> Member</span></span>
+<span class="line"><span style="color:#6A737D"> * Order -> Delivery</span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> OrderSimpleApiController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> OrderRepository orderRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    /**</span></span>
+<span class="line"><span style="color:#6A737D">     * V1. 엔티티 직접 노출</span></span>
+<span class="line"><span style="color:#6A737D">     * - Hibernate5Module 모듈 등록, LAZY=null 처리 * - 양방향 관계 문제 발생 -> @JsonIgnore</span></span>
+<span class="line"><span style="color:#6A737D">     */</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/v1/simple-orders"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Order</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">ordersV1</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        List&#x3C;</span><span style="color:#F97583">Order</span><span style="color:#E1E4E8">> all </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderRepository.</span><span style="color:#B392F0">findAllByString</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> OrderSearch</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (Order order </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> all) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            order.</span><span style="color:#B392F0">getMember</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getName</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            order.</span><span style="color:#B392F0">getDelivery</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getAddress</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> all;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>엔티티를 직접 노출하는 것은 좋지 않다. (이러한 이유에 대해서는 <a href="https://devfancy.github.io/SpringBoot-JPA2-basic/">이전글</a>에서 이미 설명했음)</p>
+</li>
+<li>
+<p><code>order</code> -> <code>member</code>, <code>order</code> -> <code>delivery</code>는 지연 로딩으로 실제 엔티티 대신에 프록시가 존재하게 된다.</p>
+<ul>
+<li>(참고로, <code>Order</code> - <code>Member</code> 엔티티는 다대일 관계, <code>Order</code>와 <code>Delivery</code>는 일대일 관계)</li>
+</ul>
+</li>
+<li>
+<p>jackson 라이브러리는 기본적이로 이 프록시 객체를 json으로 어떻게 생성하는지 모르기 때문에 예외가 발생한다.</p>
+<ul>
+<li>예외 내용: <code>No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: java.util.ArrayList[0]->jpabook.jpashop.domain.Order["member"]->jpabook.jpashop.domain.Member$HibernateProxy$5vbd87AL["hibernateLazyInitializer"])</code></li>
+</ul>
+</li>
+<li>
+<p>따라서 <code>Hibernate5Module</code>을 스프링 빈으로 등록하면 해결된다.</p>
+<ul>
+<li>스프링 부트 3.0 미만인 경우 <code>build.gradle</code> 에서 다음 라이브러리를 추가한다.</li>
+<li><code>implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5'</code></li>
+</ul>
+</li>
+<li>
+<p>그런 다음, <code>JpashopApplication</code> 에 다음 코드를 추가해준다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">SpringBootApplication</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> JpashopApplication</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">	public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">		SpringApplication.</span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(JpashopApplication.class, args);</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">	@</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#E1E4E8">	Hibernate5Module </span><span style="color:#B392F0">hibernate5Module</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">		Hibernate5Module hibernate5Module </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Hibernate5Module</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">		//강제 지연 로딩 설정 (사실 아래에 있는 건 쓰면 안됨)</span></span>
+<span class="line"><span style="color:#E1E4E8">		hibernate5Module.</span><span style="color:#B392F0">configure</span><span style="color:#E1E4E8">(Hibernate5Module.Feature.FORCE_LAZY_LOADING,</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">		return</span><span style="color:#E1E4E8"> hibernate5Module;</span></span>
+<span class="line"><span style="color:#E1E4E8">	}</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>이 옵션을 키면, 양방향 연관관계(order -> member, member -> orders)로 계속 로딩하게 된다. 따라서 <code>@JsonIgnore</code> 옵션을 두개의 엔티티중 한곳에 주어야 한다.</li>
+</ul>
+<p>정리: 해당 방법은 강제로 지연 로딩을 설정해서 에러를 해결했으나, 이전에 말했듯이 엔티티를 API 응답으로 외부로 노출하는 것은 좋지 않다. 따라서 <code>Hibernate5Module</code>를 사용하기 보다는 <strong><code>DTO</code>로 변환해서 하는 것</strong>이 좋은 방법이다.</p>
+<h2 id="간단한-주문-조회-v2-엔티티를-dto로-변환">간단한 주문 조회 V2: 엔티티를 DTO로 변환</h2>
+<p>OrderSimpleApiController - 추가</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> jpabook.jpashop.api;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> OrderSimpleApiController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> OrderRepository orderRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/v2/simple-orders"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">SimpleOrderDto</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">ordersV2</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // ORDER 2개</span></span>
+<span class="line"><span style="color:#6A737D">        // N + 1 -> 1 + N(2): 첫번째 쿼리의 결과로 n번만큼 query가 추가 실행되는 게 N + 1이라는 의미임.</span></span>
+<span class="line"><span style="color:#6A737D">        // N + 1 -> 1 + 회원 N + 배송 N</span></span>
+<span class="line"><span style="color:#E1E4E8">        List&#x3C;</span><span style="color:#F97583">Order</span><span style="color:#E1E4E8">> orders </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderRepository.</span><span style="color:#B392F0">findAllByString</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> OrderSearch</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        List&#x3C;</span><span style="color:#F97583">SimpleOrderDto</span><span style="color:#E1E4E8">> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orders</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">stream</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(o </span><span style="color:#F97583">-></span><span style="color:#F97583"> new</span><span style="color:#B392F0"> SimpleOrderDto</span><span style="color:#E1E4E8">(o))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">collect</span><span style="color:#E1E4E8">(Collectors.</span><span style="color:#B392F0">toList</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> result;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Data</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> SimpleOrderDto</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#E1E4E8"> Long orderId;</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#E1E4E8"> String name;</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#E1E4E8"> LocalDateTime orderDate;</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#E1E4E8"> OrderStatus orderStatus;</span></span>
+<span class="line"><span style="color:#F97583">        private</span><span style="color:#E1E4E8"> Address address;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#B392F0"> SimpleOrderDto</span><span style="color:#E1E4E8">(Order </span><span style="color:#FFAB70">order</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            orderId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> order.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            name </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> order.</span><span style="color:#B392F0">getMember</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getName</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// LAZY 초기화</span></span>
+<span class="line"><span style="color:#E1E4E8">            orderDate </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> order.</span><span style="color:#B392F0">getOrderDate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            orderStatus </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> order.</span><span style="color:#B392F0">getStatus</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            address </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> order.</span><span style="color:#B392F0">getDelivery</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getAddress</span><span style="color:#E1E4E8">();  </span><span style="color:#6A737D">// LAZY 초기화</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>V1과 다르게 V2에서는 엔티티를 DTO로 변환한 일반적인 방법이다.</p>
+</li>
+<li>
+<p>하지만 V2에서는 실제 쿼리를 실행했을 때 <code>N+1</code> 문제가 생긴다.</p>
+<ul>
+<li>
+<p>현재 로직상 <code>order</code>와 연관된 <code>member</code>와 <code>delivery</code>에서 지연 로딩으로 인해 조회가 N번 실행된다.</p>
+</li>
+<li>
+<p>그래서 쿼리가 총 <code>1 + N + N</code>번 실행된다. (이는 V1에서의 쿼리 수 결과와 같다)</p>
+</li>
+<li>
+<p>자세하게 설명하면, <code>order</code> 조회에서 1번, <code>order -> member</code> 지연 로딩 조회에서 N번, <code>order -> delivery</code> 지연 로딩 조회에서 N번이 실행된다.</p>
+</li>
+<li>
+<p>만약 같은 회원이였으면 N번이 아닌 1번인데, 서로 다른 회원이므로 N번이 된 것이다.</p>
+</li>
+<li>
+<p>지연로딩은 영속성 컨텍스트에서 조회하므로, 이미 조회된 경우 쿼리를 생략한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>따라서 이러한 <code>N+1</code> 문제를 해결하기 위해 <strong>페치 조인</strong>(fetch join)을 통해 성능을 최적화하는 방법을 사용한다.</p>
+</li>
+</ul>
+<h2 id="간단한-주문-조회-v3-엔티티를-dto로-변환---페치-조인-최적화">간단한 주문 조회 V3: 엔티티를 DTO로 변환 - 페치 조인 최적화</h2>
+<p>OrderSimpleApiController - 추가</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> jpabook.jpashop.api;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> OrderSimpleApiController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> OrderRepository orderRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/v3/simple-orders"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">SimpleOrderDto</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">ordersV3</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        List&#x3C;</span><span style="color:#F97583">Order</span><span style="color:#E1E4E8">> orders </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderRepository.</span><span style="color:#B392F0">findAllWithMemberDelivery</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        List&#x3C;</span><span style="color:#F97583">SimpleOrderDto</span><span style="color:#E1E4E8">> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orders.</span><span style="color:#B392F0">stream</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(o </span><span style="color:#F97583">-></span><span style="color:#F97583"> new</span><span style="color:#B392F0"> SimpleOrderDto</span><span style="color:#E1E4E8">(o))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">collect</span><span style="color:#E1E4E8">(Collectors.</span><span style="color:#B392F0">toList</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> result;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>OrderRepository - 추가 코드</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Repository</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> OrderRepository</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> EntityManager em;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 재사용성 O</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Order</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">findAllWithMemberDelivery</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> em.</span><span style="color:#B392F0">createQuery</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">                "select o from Order o"</span><span style="color:#F97583"> +</span></span>
+<span class="line"><span style="color:#9ECBFF">                        " join fetch o.member m"</span><span style="color:#F97583"> +</span></span>
+<span class="line"><span style="color:#9ECBFF">                        " join fetch o.delivery d"</span><span style="color:#E1E4E8">, Order.class</span></span>
+<span class="line"><span style="color:#E1E4E8">        ).</span><span style="color:#B392F0">getResultList</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>엔티티를 페치 조인(fetch join)을 사용해서 5번이였던 쿼리를 1번만 조회할 수 있는 효과를 볼 수 있다.</p>
+</li>
+<li>
+<p>페치 조인으로 인해 <code>order -> member</code>, <code>order -> delivery</code>는 이미 조회된 상태이므로 지연로딩이 되지 않는다.</p>
+</li>
+<li>
+<p>실제 쿼리를 돌려보면 아래와 같이 조회 결과가 나오게 된다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">select</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_id1_6_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> member_i1_4_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> delivery1_2_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> delivery4_6_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> member_i5_6_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_date</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_da2_6_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> status3_6_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> city2_4_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> street3_4_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> zipcode4_4_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> name5_4_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> city2_2_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> street3_2_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> zipcode4_2_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> status5_2_2_ </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        orders order0_ </span></span>
+<span class="line"><span style="color:#F97583">    inner join</span></span>
+<span class="line"><span style="color:#E1E4E8">        member member1_ </span></span>
+<span class="line"><span style="color:#F97583">            on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    inner join</span></span>
+<span class="line"><span style="color:#E1E4E8">        delivery delivery2_ </span></span>
+<span class="line"><span style="color:#F97583">            on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span></span>
+<span class="line"><span style="color:#79B8FF">2023</span><span style="color:#F97583">-</span><span style="color:#79B8FF">10</span><span style="color:#F97583">-</span><span style="color:#79B8FF">19</span><span style="color:#79B8FF"> 14</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">56</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">18</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">992</span><span style="color:#E1E4E8">  INFO </span><span style="color:#79B8FF">48324</span><span style="color:#6A737D"> --- [nio-8080-exec-5] p6spy                                    : #1697694978992 | took 0ms | statement | connection 9| url jdbc:h2:tcp://localhost/~/jpashop</span></span>
+<span class="line"><span style="color:#F97583">select</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_id1_6_0_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> member_i1_4_1_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> delivery1_2_2_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> delivery4_6_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> member_i5_6_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_date</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_da2_6_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> status3_6_0_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> city2_4_1_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> street3_4_1_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> zipcode4_4_1_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> name5_4_1_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> city2_2_2_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> street3_2_2_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> zipcode4_2_2_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> status5_2_2_ </span><span style="color:#F97583">from</span><span style="color:#E1E4E8"> orders order0_ </span><span style="color:#F97583">inner join</span><span style="color:#E1E4E8"> member member1_ </span><span style="color:#F97583">on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> inner join</span><span style="color:#E1E4E8"> delivery delivery2_ </span><span style="color:#F97583">on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span></span>
+<span class="line"><span style="color:#F97583">select</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_id1_6_0_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> member_i1_4_1_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> delivery1_2_2_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> delivery4_6_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> member_i5_6_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_date</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_da2_6_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> status3_6_0_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> city2_4_1_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> street3_4_1_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> zipcode4_4_1_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> name5_4_1_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> city2_2_2_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> street3_2_2_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> zipcode4_2_2_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> status5_2_2_ </span><span style="color:#F97583">from</span><span style="color:#E1E4E8"> orders order0_ </span><span style="color:#F97583">inner join</span><span style="color:#E1E4E8"> member member1_ </span><span style="color:#F97583">on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> inner join</span><span style="color:#E1E4E8"> delivery delivery2_ </span><span style="color:#F97583">on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h2 id="간단한-주문-조회-v4-jpa에서-dto로-바로-조회">간단한 주문 조회 V4: JPA에서 DTO로 바로 조회</h2>
+<p>OrderSimpleApiController - 추가</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> OrderSimpleApiController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> OrderRepository orderRepository;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> OrderSimpleQueryRepository orderSimpleQueryRepository; </span><span style="color:#6A737D">// 의존관계 주입(V4)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/v4/simple-orders"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">OrderSimpleQueryDto</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">ordersV4</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> orderSimpleQueryRepository.</span><span style="color:#B392F0">findOrderDto</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>OrderSimpleQueryRepository 조회 전용 리포지토리</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> jpabook.jpashop.repository.order.simplequery;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * 성능 최적화 관련 레포지토리 경우</span></span>
+<span class="line"><span style="color:#6A737D"> * 따로 패키지를 만들어서 그 안에 관련 클래스를 만든다.</span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Repository</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> OrderSimpleQueryRepository</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> EntityManager em;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 재사용 X, 유지보수성 O</span></span>
+<span class="line"><span style="color:#6A737D">    // 이런 식으로 성능 최적화에 대한 것은 따로 패키지를 분리하는 것을 권장함</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">OrderSimpleQueryDto</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">findOrderDto</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> em.</span><span style="color:#B392F0">createQuery</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">                        "select new jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address)"</span><span style="color:#F97583"> +</span></span>
+<span class="line"><span style="color:#9ECBFF">                                " from Order o"</span><span style="color:#F97583"> +</span></span>
+<span class="line"><span style="color:#9ECBFF">                                " join o.member m"</span><span style="color:#F97583"> +</span></span>
+<span class="line"><span style="color:#9ECBFF">                                " join o.delivery d"</span><span style="color:#E1E4E8">, OrderSimpleQueryDto.class)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">getResultList</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>OrderSimpleQueryDto 리포지토리에서 DTO 직접 조회</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> jpabook.jpashop.repository.order.simplequery;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Data</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> OrderSimpleQueryDto</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Long orderId;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String name;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> LocalDateTime orderDate;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> OrderStatus orderStatus;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Address address;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> OrderSimpleQueryDto</span><span style="color:#E1E4E8">(Long </span><span style="color:#FFAB70">orderId</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">name</span><span style="color:#E1E4E8">, LocalDateTime </span><span style="color:#FFAB70">orderDate</span><span style="color:#E1E4E8">, OrderStatus </span><span style="color:#FFAB70">orderStatus</span><span style="color:#E1E4E8">, Address </span><span style="color:#FFAB70">address</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">. orderId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderId;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.name </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.orderDate </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderDate;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.orderStatus </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderStatus;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.address </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> address;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>일반적인 SQL을 사용할 때 처럼 원하는 값을 선택해서 조회하는 방법이다.</p>
+</li>
+<li>
+<p><code>new</code> 명령어를 사용해서 JPQL의 결과를 DTO로 즉시 반환한다.</p>
+</li>
+<li>
+<p>SELECT 절에서 원하는 데이터를 직접 선택하므로 DB 면에서 에플리케이션 네트워트 용량을 최적화할 수 있지만 생각보다 미비하다.</p>
+</li>
+<li>
+<p>실제 쿼리를 돌려보면 아래와 같이 조회 결과가 나오게 된다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">select</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_0_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_1_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_date</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_2_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_3_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_2_ </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        orders order0_ </span></span>
+<span class="line"><span style="color:#F97583">    inner join</span></span>
+<span class="line"><span style="color:#E1E4E8">        member member1_ </span></span>
+<span class="line"><span style="color:#F97583">            on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    inner join</span></span>
+<span class="line"><span style="color:#E1E4E8">        delivery delivery2_ </span></span>
+<span class="line"><span style="color:#F97583">            on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span></span>
+<span class="line"><span style="color:#79B8FF">2023</span><span style="color:#F97583">-</span><span style="color:#79B8FF">10</span><span style="color:#F97583">-</span><span style="color:#79B8FF">19</span><span style="color:#79B8FF"> 15</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">28</span><span style="color:#E1E4E8">:</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">970</span><span style="color:#E1E4E8">  INFO </span><span style="color:#79B8FF">48765</span><span style="color:#6A737D"> --- [nio-8080-exec-3] p6spy                                    : #1697696930970 | took 0ms | statement | connection 7| url jdbc:h2:tcp://localhost/~/jpashop</span></span>
+<span class="line"><span style="color:#F97583">select</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_0_0_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_1_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_date</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_2_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_3_0_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_0_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_1_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_2_ </span><span style="color:#F97583">from</span><span style="color:#E1E4E8"> orders order0_ </span><span style="color:#F97583">inner join</span><span style="color:#E1E4E8"> member member1_ </span><span style="color:#F97583">on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> inner join</span><span style="color:#E1E4E8"> delivery delivery2_ </span><span style="color:#F97583">on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span></span>
+<span class="line"><span style="color:#F97583">select</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_0_0_, </span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_1_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_date</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_2_0_, </span><span style="color:#79B8FF">order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_3_0_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_0_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_1_, </span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">zipcode</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> col_4_2_ </span><span style="color:#F97583">from</span><span style="color:#E1E4E8"> orders order0_ </span><span style="color:#F97583">inner join</span><span style="color:#E1E4E8"> member member1_ </span><span style="color:#F97583">on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">member1_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">member_id</span><span style="color:#F97583"> inner join</span><span style="color:#E1E4E8"> delivery delivery2_ </span><span style="color:#F97583">on</span><span style="color:#79B8FF"> order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#F97583">=</span><span style="color:#79B8FF">delivery2_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">delivery_id</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<ul>
+<li>
+<p>사실 V3와 V4간의 성능 차이가 크게 나진 않는다.</p>
+<ul>
+<li>
+<p>V4의 경우, DTO에 직접 조회하기 때문에 리포지토리 재사용성이 떨어지고, API 스펙에 맞춘 코드가 리포지토리에 들어가는 단점이 존재한다.</p>
+</li>
+<li>
+<p>반면에 V3의 경우, 엔티티로 조회해서 리포지토리 재사용성이 좋고 개발도 단순하다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>엔티티를 DTO로 변환하거나(V3), DTO로 바로 조회하는(V4) 두 가지 방법이 각각 장단점이 존재하기 때문에, 아래와 같은 <strong>쿼리 방식을 선택할 때 권장하는 순서</strong>를 정리했다.</p>
+</li>
+</ul>
+<blockquote>
+<p>쿼리 방식 선택 권장 순서</p>
+</blockquote>
+<ol>
+<li>우선 엔티티 -> DTO로 변환하여 API 기능 개발한다. => 필수, V2</li>
+<li>필요하면 <strong>페치 조인</strong>(fetch join)으로 성능을 최적화한다. (대부분의 성능 이슈가 90% 해결된다) => V3</li>
+<li>그래도 안되면 DTO로 직접 조회하는 방법을 사용한다 => V4</li>
+<li>최후의 방법은 JPA가 제공하는 네이티브 SQL이나 스프링 JDBC Template을 사용해서 SQL을 직접 사용한다.</li>
+</ol>
+<p>(4번의 경우, 이 강의에서는 다루지 않아서 추후 실제 개발하면서 문제가 생기는 경우, 그때 가서 다시 정리할 예정이다)</p>
+<h2 id="review">Review</h2>
+<p>조회하는 부분에서 쿼리를 실행했을 때 <code>N+1</code> 문제가 발생하는 점과 그러한 문제를 <code>페치 조인</code>(fetch join)으로 해결하는 방법도 알게되었다.</p>
+<p>현재 혹은 미래에 내가 진행하는 프로젝트에서 위와 비슷한 문제가 생겼을 때, <code>페치 조인</code>(fetch join)으로 성능을 최적화하는 걸 적용해보도록 하자.</p>
+<p>(해당 강의에서는 예시로 만든 자료이고, 예시에 있는 데이터가 적기도 해서 최적화하는 방법이 간단했지만, 실제 업무에서는 최적화를 적용하기가 어려울 것이라 생각한다)</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-JPA-API%EA%B0%9C%EB%B0%9C-%EC%84%B1%EB%8A%A5%EC%B5%9C%EC%A0%81%ED%99%94/dashboard">실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화 - API 개발 고급</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="SpringBoot-JPA2-advance" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#api-개발-고급" data-toc="api-개발-고급" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">API 개발 고급</a></li><li><a href="#간단한-주문-조회-v1-엔티티를-직접-노출" data-toc="간단한-주문-조회-v1-엔티티를-직접-노출" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">간단한 주문 조회 V1: 엔티티를 직접 노출</a></li><li><a href="#간단한-주문-조회-v2-엔티티를-dto로-변환" data-toc="간단한-주문-조회-v2-엔티티를-dto로-변환" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">간단한 주문 조회 V2: 엔티티를 DTO로 변환</a></li><li><a href="#간단한-주문-조회-v3-엔티티를-dto로-변환---페치-조인-최적화" data-toc="간단한-주문-조회-v3-엔티티를-dto로-변환---페치-조인-최적화" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">간단한 주문 조회 V3: 엔티티를 DTO로 변환 - 페치 조인 최적화</a></li><li><a href="#간단한-주문-조회-v4-jpa에서-dto로-바로-조회" data-toc="간단한-주문-조회-v4-jpa에서-dto로-바로-조회" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">간단한 주문 조회 V4: JPA에서 DTO로 바로 조회</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

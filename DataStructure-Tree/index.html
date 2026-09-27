@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>트리 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/DataStructure-Tree/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><link rel="stylesheet" href="/katex/katex.min.css"><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>트리</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-03-20" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-03-20</time><a href="/category/#%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0" class="chip chip-tag">#자료구조</a></div><p class="view-count text-sm text-muted">조회수 27회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글의 코드와 정보들은 책을 공부하며 정리한 내용을 토대로 작성하였습니다.</p>
+</blockquote>
+<h2 id="트리">트리</h2>
+<ul>
+<li>
+<p><code>트리</code>는 0개 이상의 다른 노드에 대한 레퍼런스가 들어 있는 노드(데이터 원소)로 구성된다.</p>
+</li>
+<li>
+<p>트리를 그림으로 표현하면 아래와 같다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/datastructure/tree-1.png" alt=""></p>
+<ul>
+<li>
+<p>연결 리스트에서와 마찬가지로 <code>노드</code>는 구조체 또는 클래스로 표현되며, 트리는 포인터 또는 레퍼런스만 있다면 어떤 언어로든 구현할 수 있다.</p>
+</li>
+<li>
+<p>객체지향 언어에서는 보통 노드의 공통적인 부분을 하나의 클래스로 정의하고, 노드에 들어가는 데이터를 위해 서브클래스를 만들어서 사용한다.</p>
+</li>
+<li>
+<p>실제 코딩을 할 때는 children은 비공개(private)로 선언하고 그 배열을 건드리기 위한 메서드만 공개하는 방법을 써야 할 것이다.</p>
+</li>
+<li>
+<p>정수가 저장되는 클래스를 메서드와 생성자를 모두 제대로 갖춘 <strong>자바</strong>로 만든다면 다음과 같은 식의 코드를 쓰면 된다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Node</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> Node</span><span style="color:#E1E4E8">[] children;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#B392F0"> Node</span><span style="color:#E1E4E8">( </span><span style="color:#F97583">Node</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">children</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">      this</span><span style="color:#E1E4E8">.children </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> children;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getNumChildren</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> children.length;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#E1E4E8"> Node </span><span style="color:#B392F0">getChildren</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> index</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> children[index];</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> IntNode</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Node</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> value;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> IntNode</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">Node</span><span style="color:#E1E4E8"> [] </span><span style="color:#FFAB70">children</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> value</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">(children);</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.value </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> value;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> getValue</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> value;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>다음은 [그림 6-1]을 참고해서 트리와 관련된 용어들을 몇 가지 정리했다.</li>
+</ul>
+<p><img src="/assets/img/cs/datastructure/tree-2.jpg" alt=""></p>
+<ul>
+<li>
+<p>부모(Parent) : 다른 노드를 가리키는 노드는 그 노드의 부모가 된다. 루트를 제외한 모든 노드에는 부모가 하나씩 있다.</p>
+<ul>
+<li>[그림 6-1]에서 B는 D, E, F의 부모 노드가 된다.</li>
+</ul>
+</li>
+<li>
+<p>자식(Child) : 루트를 제외한 모든 노드는 그 노드를 가리키는 노드의 자식이 된다.</p>
+<ul>
+<li>[그림 6-1]에서 D, E, F는 B의 자식 노드가 된다.</li>
+</ul>
+</li>
+<li>
+<p>자손(Descendant) : 특정 노드로부터 자식 노드로 이어지는 경로를 따라 도달할 수 있는 모든 노드는 그 특정 노드의 자손이다.</p>
+<ul>
+<li>[그림 6-1]에서 D, E, F, H, I, J, K는 모두 B의 자손이다.</li>
+</ul>
+</li>
+<li>
+<p>조상(Ancestor) : 어떤 노드를 자손으로 삼고 있는 노드는 모두 그 노드의 조상이다.</p>
+<ul>
+<li>예를 들어 A, B, D는 모두 I의 조상이다.</li>
+</ul>
+</li>
+<li>
+<p>잎(Leaves) : 자식이 없는 노드를 잎이라고 부른다. G, H, I, K는 모두 잎이다.</p>
+</li>
+</ul>
+<h2 id="이진-트리">이진 트리</h2>
+<ul>
+<li>
+<p>실전에서는 면접관이 <strong>트리</strong>라고 하면 보통 <code>이진 트리(binary tree)</code>라는 트리의 한 종류를 일컫는 경우가 많다.</p>
+</li>
+<li>
+<p>이진 트리는 한 노드에 <strong>자식이 최대 2개</strong>까지만 있을 수 있으며, 그 두 자식은 각각 왼쪽 자식(left subtree)과 오른쪽 자식(right subtree)이라고 부른다.</p>
+</li>
+<li>
+<p>[그림 6-2]에 이진 트리의 예가 나와있다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/datastructure/tree-3.jpg" alt=""></p>
+<ul>
+<li>이진 트리를 간단하게 구현하면 다음과 같다. 편의상 한 클래스에 모든 것을 집어넣었다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Node</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Node left;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Node right;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> value;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> Node</span><span style="color:#E1E4E8">(Node </span><span style="color:#FFAB70">left</span><span style="color:#E1E4E8">, Node </span><span style="color:#FFAB70">right</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> value</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.left </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> left;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.right </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> right;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.value </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> value;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Node </span><span style="color:#B392F0">getLeft</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> left;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Node </span><span style="color:#B392F0">getRight</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> right;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Node </span><span style="color:#B392F0">getValue</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> value;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>어떤 원소에 왼쪽 또는 오른쪽 자식이 없으면 left or right에 NULL 레퍼런스를 집어넣는다.</li>
+</ul>
+<h2 id="이진-트리-속성">이진 트리 속성</h2>
+<ul>
+<li>교재마다 시작 레벨을 다르게 하는 경우가 많은데, 여기서는 시작 레벨을 <code>1</code>로 가정한다고 치자.</li>
+</ul>
+<p><img src="/assets/img/cs/datastructure/tree-4.png" alt=""></p>
+<ul>
+<li>
+<p>[1] 이진 트리의 레벨 i번째의 최대 노드 개수는 <strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2^{i-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8247em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8247em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></strong> 이다. (단, i >=1 인 경우) 예를 들어 레벨이 3인 경우, 레벨 3의 최대 노드 개수는 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mn>3</mn><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">2^{3-1} = 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>이다.</p>
+</li>
+<li>
+<p>[2] 높이 k인 이진 트리의 최대 노드 개수는 <strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>k</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^{k} -1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9324em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></strong> 이다. (단, k >=1 인 경우) 예를 들어 높이가 3인 경우, 전체 노드의 최대 개수는 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mo>−</mo><mn>1</mn><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">2^{3} - 1 = 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span>이다.</p>
+</li>
+</ul>
+<h2 id="이진-검색-트리">이진 검색 트리</h2>
+<ul>
+<li>
+<p>트리를 써서, <strong>정렬된</strong>, 또는 <strong>순서가 정해진 자료를 저장</strong>하는 경우를 흔하게 볼 수 있다.</p>
+</li>
+<li>
+<p>그중에서도 트리에 데이터를 저장할 때 가장 흔하게 쓰이는 것은 <code>이진 검색 트리</code>(BST, Binary Search Tree)이다.</p>
+</li>
+<li>
+<p>BST에서는 노드의 왼쪽 자식의 값이 <strong>반드시 자신의 값 이하</strong>이며, 오른쪽 자신의 값은 <strong>반드시 자신의 값 이상</strong>이다.</p>
+</li>
+<li>
+<p>즉, BST의 데이터는 값으로 정렬된다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/datastructure/tree-5.png" alt=""></p>
+<ul>
+<li>Key = {5, 3, 1, 4, 10, 7, 12}로 주어진다면, 아래와 같이 [그림 6-3]으로 나타낼 수 있다.</li>
+</ul>
+<p><img src="/assets/img/cs/datastructure/tree-6.jpg" alt=""></p>
+<ul>
+<li>
+<p>이진 검색 트리의 장점 가운데 하나로 <strong>룩업 연산</strong>(lookup, 트리에 있는 특정 노드의 위치를 알아내는 연산)을 빠르고 간단하게 처리할 수 있다는 점을 들 수 있다.</p>
+</li>
+<li>
+<p>이런 장점은 <strong>자료를 저장</strong>할 때 그 위력을 발휘한다.</p>
+</li>
+<li>
+<p>BST를 다음과 같이 재귀 메서드와 반복 메서드로 구현할 수 있다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> iType;</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> key;</span><span style="color:#6A737D">  //찾을 값</span></span>
+<span class="line"><span style="color:#B392F0">    iType</span><span style="color:#E1E4E8"> item;</span><span style="color:#6A737D"> //저장할 값(이름, 주소, 전화번호)</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#B392F0">element</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> node</span><span style="color:#E1E4E8"> *treePointer;</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> node</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    element</span><span style="color:#E1E4E8"> data;</span></span>
+<span class="line"><span style="color:#B392F0">    treePointer</span><span style="color:#E1E4E8"> leftChild, rightChild;</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#B392F0">tNode</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/* Resursive */</span></span>
+<span class="line"><span style="color:#B392F0">element</span><span style="color:#F97583">*</span><span style="color:#B392F0"> search</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">treePointer</span><span style="color:#FFAB70"> root</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> k</span><span style="color:#E1E4E8">) </span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#6A737D"> /* return a pointer to the element whose key is k, if there is no such element, return NULL. */</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">root) </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> NULL</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (k </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> root->data.key) </span><span style="color:#F97583">return</span><span style="color:#F97583"> &#x26;</span><span style="color:#E1E4E8">(root->data);</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (k </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> root->data.key)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#B392F0"> search</span><span style="color:#E1E4E8">(root->leftChild, k);</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#B392F0"> search</span><span style="color:#E1E4E8">(root->rightChild, k);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/* Iterative */</span></span>
+<span class="line"><span style="color:#B392F0">element</span><span style="color:#F97583">*</span><span style="color:#B392F0"> iterSearch</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">treePointer</span><span style="color:#FFAB70"> tree</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> k</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#6A737D"> /* return a pointer to the element whose key is k, if there is no such element, return NULL. */</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  while</span><span style="color:#E1E4E8">(tree) {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (k </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> tree->data.key) </span><span style="color:#F97583">return</span><span style="color:#F97583"> &#x26;</span><span style="color:#E1E4E8">(tree->data);</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (k </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> tree->data.key)</span></span>
+<span class="line"><span style="color:#E1E4E8">        tree </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tree->leftChild;</span></span>
+<span class="line"><span style="color:#F97583">    else</span></span>
+<span class="line"><span style="color:#E1E4E8">        tree </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tree->rightChild;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> NULL</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>&#x26;</code>을 쓰는 이유는 비선형 자료구조며 Index가 존재하지 않고, 노드 자체를 return 하므로 <strong>주소</strong>로 접근해야 한다.</p>
+</li>
+<li>
+<p>평균적인 케이스로 BST의 높이가 n일 경우 시간복잡도는 <strong>O(log(n))</strong> 이며, 최악의 케이스인 경우 <strong>O(n)</strong> 이 된다.</p>
+</li>
+</ul>
+<h2 id="힙">힙</h2>
+<ul>
+<li>
+<p>힙도 매우 많이 쓰이는 트리 가운데 하나다.</p>
+</li>
+<li>
+<p>힙은 이진 트리로, 노드의 각 자식의 값은 노드 자신의 값 이하여야 하며, 이를 보통 <code>max heap</code>이라고 부른다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/datastructure/tree-7.png" alt=""></p>
+<ul>
+<li>
+<p>결과적으로 루트 노드의 값은 그 트리에서 가장 큰 값이며, <strong><code>우선순위 큐</code>(Priority queues)를 구현하기 위해 <code>max heap</code>을 사용</strong>한다.</p>
+</li>
+<li>
+<p>예를 들어, 병원 응급실에서 대기 중인 환자들을 힙으로 모델링할 수 있다. 환자가 들어올 때 손가락을 다쳐서 온 환자보다 심장마비 환자에게 <strong>더 높은 우선순위를 부여</strong>하는 식으로</p>
+</li>
+<li>
+<p>우선순위를 부여하여 힙에 집어넣는다. 의사가 다음 환자를 볼 수 있게 되면 가장 우선순위가 높은 환자부터 치료를 시작한다.</p>
+</li>
+<li>
+<p>하지만 문제에 따라서 <code>min heap</code>이 주어지는 경우도 있다. <code>min heap</code>은 반대로 가장 작은 값이 루트에 오는 경우이다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/datastructure/tree-8.png" alt=""></p>
+<ul>
+<li>시간복잡도에 대해서 삽입과 삭제는 <strong>O(log(n))</strong> 이지만, 룩업은 <strong>O(n)</strong> 이다.</li>
+</ul>
+<h2 id="일반적인-검색-방법">일반적인 검색 방법</h2>
+<ul>
+<li>
+<p>BST나 힙처럼 정렬되는 특성을 가진 트리가 아닌 가계도나 회사의 직위체계 등을 나타내는 트리가 있다.</p>
+</li>
+<li>
+<p>이렇게 특정 노드를 검색하는 것과 관련된 문제들이 자주 나오는데, 이런 문제들을 해결하기 위해서는 가장 많이 쓰이는 알고리즘 두 가지를 쓰면 된다.</p>
+</li>
+</ul>
+<h3 id="너비-우선-검색bfs">너비 우선 검색(BFS)</h3>
+<ul>
+<li>
+<p>트리를 검색하는 방법 가운데 하나로 <code>너비 우선 탐색</code>(BFS, Breath-First-Search)가 있다.</p>
+</li>
+<li>
+<p>BFS에서는 루트에서 시작하여 둘째 층을 왼쪽에서 오른쪽으로 훑어나가고, 그 다음 층 역시 왼쪽에서 오른쪽으로 훑어나가는 식으로 검색을 한다.</p>
+</li>
+<li>
+<p>원하는 노드를 찾거나 모든 노드를 다 확인하면 검색이 끝나는 검색(=탐색) 기법이다.</p>
+</li>
+<li>
+<p>노드를 찾아내는 데 걸리는 시간은 <strong>O(n)</strong> 이므로 큰 트리에 대해서는 이런 식으로 검색하지 않는 것이 좋다.</p>
+</li>
+<li>
+<p>BFS에서는 어떤 층을 검색할 때 <strong>그 층에 있는 모든 노드의 자식 노드를 저장</strong>해둬야 하기 때문에 <strong>메모리도 꽤 많이 사용</strong>해야 한다.</p>
+</li>
+</ul>
+<h3 id="깊이-우선-검색dfs">깊이 우선 검색(DFS)</h3>
+<ul>
+<li>
+<p>트리를 검색하는 두 번째 방법으로 <code>깊이 우선 검색</code>(DFS, Depth-First-Search)가 있다.</p>
+</li>
+<li>
+<p>깊이 우선 검색에서는 원하는 노드를 찾거나 끝까지 다다를때 까지 한 가지를 따라 쭉 내려가는 방식이다.</p>
+</li>
+<li>
+<p>더 이상 검색할 수 없다면 확인하지 않는 자식이 있는 가장 가까운 조상 노드로 돌아가서 검색을 계속하는 기법이다.</p>
+</li>
+<li>
+<p>DFS에서는 BFS와 다르게 각 층별로 모든 자식 노드를 저장해야 할 필요가 없기 때문에 <strong>메모리 요구량이 훨씬 적다.</strong></p>
+</li>
+<li>
+<p>그리고 특정 층을 마지막으로 검색하는 문제가 없다는 점도 장점이 될 수 있다. (BFS에서는 가장 낮은 층을 마지막에 확인함)</p>
+</li>
+<li>
+<p>예를 들어, 회사의 조직도를 나타내는 트리가 주어졌는데, 신입사원을 찾는다면 트리 아래쪽에 주로 있을 것으로 예상할 수 있다.</p>
+</li>
+<li>
+<p>이런 경우 BFS보다 DFS로 검색을 하면 원하는 노드를 빨리 찾을 수 있을 것이다.</p>
+</li>
+</ul>
+<h2 id="종주traversal">종주(Traversal)</h2>
+<ul>
+<li>
+<p>종주도 자주 나오는 문제 유형 가운데 하나다.</p>
+</li>
+<li>
+<p>특정 노드를 찾으면 작업을 멈추는 검색과는 달리 종주를 할 때는 <strong>모든 노드를 방문하면서 각 노드에 대해 어떤 작업을 수행</strong>하게 된다.</p>
+</li>
+<li>
+<p>종주에는 세 가지 방법이 있으며, 각 방법에 따라 노드를 방문하는 순서가 달라진다.</p>
+<ul>
+<li>
+<p><code>Preorder</code>(VLR) : 우선 노드 자체에 대해 작업을 수행하고 왼쪽, 오른쪽 자손 순으로 처리한다. 항상 노드를 먼저 방문한다. Value -> Left -> Right</p>
+</li>
+<li>
+<p><code>Inorder</code>(LVR) : 우선 노드의 왼쪽 자손을 처리한 다음 노드 자체에 대해 작업을 수행하고, 마지막으로 오른쪽 자손을 처리한다. Left -> Value -> Right</p>
+</li>
+<li>
+<p><code>Postorder</code>(LRV) : 우선 노드의 왼쪽 자손을 처리한 다음, 오른쪽 자손을 처리하고 마지막에 그 노드 자체를 처리한다. Left -> Right -> Value</p>
+</li>
+</ul>
+</li>
+<li>
+<p>종주를 구현하는 가장 간단한 방법은 <strong>재귀 호출</strong>을 이용하는 방법이다.</p>
+</li>
+<li>
+<p>아래와 같이 C 언어로 구현했다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#6A737D">/* Preorder */</span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> preorder</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">treePointer</span><span style="color:#FFAB70"> ptr</span><span style="color:#E1E4E8">) </span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#6A737D"> /* preorder tree traversal */</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (ptr) {</span></span>
+<span class="line"><span style="color:#B392F0">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, ptr->data);</span><span style="color:#6A737D">   //V</span></span>
+<span class="line"><span style="color:#B392F0">    preorder</span><span style="color:#E1E4E8">(ptr->leftChild);</span><span style="color:#6A737D">  //L</span></span>
+<span class="line"><span style="color:#B392F0">    preorder</span><span style="color:#E1E4E8">(ptr->rightChild);</span><span style="color:#6A737D"> //R</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/* Inorder */</span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> inorder</span><span style="color:#E1E4E8">(treePointer ptr) </span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#6A737D"> /* inorder tree traversal */</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (ptr) {</span></span>
+<span class="line"><span style="color:#B392F0">    inorder</span><span style="color:#E1E4E8">(ptr->leftChild);</span><span style="color:#6A737D">  //L</span></span>
+<span class="line"><span style="color:#B392F0">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, ptr->data);</span><span style="color:#6A737D">   //V</span></span>
+<span class="line"><span style="color:#B392F0">    inorder</span><span style="color:#E1E4E8">(ptr->rightChild);</span><span style="color:#6A737D"> //R</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/* Postorder */</span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> postorder</span><span style="color:#E1E4E8">(treePointer ptr) </span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#6A737D"> /* postorder tree traversal */</span></span>
+<span class="line"><span style="color:#F97583">  if</span><span style="color:#E1E4E8"> (ptr) {</span></span>
+<span class="line"><span style="color:#B392F0">    postorder</span><span style="color:#E1E4E8">(ptr->leftChild);</span><span style="color:#6A737D">  //L</span></span>
+<span class="line"><span style="color:#B392F0">    postorder</span><span style="color:#E1E4E8">(ptr->rightChild);</span><span style="color:#6A737D"> //R</span></span>
+<span class="line"><span style="color:#B392F0">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, ptr->data);</span><span style="color:#6A737D">   //V</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="http://www.yes24.com/Product/Goods/75187284">프로그래밍 면접 이렇게 준비한다: p.152 - p.162</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Fundamentals-Data-Structures-Ellis-Horowitz/dp/0929306406">Fundamentals of data structures in C, 2nd edition - Trees</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="DataStructure-Tree" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#트리" data-toc="트리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">트리</a></li><li><a href="#이진-트리" data-toc="이진-트리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">이진 트리</a></li><li><a href="#이진-트리-속성" data-toc="이진-트리-속성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">이진 트리 속성</a></li><li><a href="#이진-검색-트리" data-toc="이진-검색-트리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">이진 검색 트리</a></li><li><a href="#힙" data-toc="힙" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">힙</a></li><li><a href="#일반적인-검색-방법" data-toc="일반적인-검색-방법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">일반적인 검색 방법</a></li><li><a href="#너비-우선-검색bfs" data-toc="너비-우선-검색bfs" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">너비 우선 검색(BFS)</a></li><li><a href="#깊이-우선-검색dfs" data-toc="깊이-우선-검색dfs" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">깊이 우선 검색(DFS)</a></li><li><a href="#종주traversal" data-toc="종주traversal" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">종주(Traversal)</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[Programmers] SQL &gt; String, Date 풀이 모음 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/SQL-String-and-Date/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="hover:underline" data-astro-cid-g5songws>알고리즘</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[Programmers] SQL &gt; String, Date 풀이 모음</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-12-22" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-12-22</time><a href="/category/#SQL" class="chip chip-tag">#SQL</a><a href="/category/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4" class="chip chip-tag">#프로그래머스</a></div><p class="view-count text-sm text-muted">조회수 32회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="자동차-대여-기록에서-장기단기-대여-구분하기lv1">자동차 대여 기록에서 장기/단기 대여 구분하기(Lv.1)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/151138">자동차 대여 기록에서 장기/단기 대여 구분하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>CAR_RENTAL_COMPANY_RENTAL_HISTORY</code> 테이블에서 대여 시작일이</p>
+<p>2022년 9월에 속하는 대여 기록에 대해서 대여 기간이 30일 이상이면 ‘장기 대여’</p>
+<p>그렇지 않으면 ‘단기 대여’ 로 표시하는 컬럼(컬럼명: RENT_TYPE)을 추가하여</p>
+<p>대여기록을 출력하는 SQL문을 작성해주세요.</p>
+<p>결과는 대여 기록 ID를 기준으로 내림차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code20231222">Answer Code(2023.12.22)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> HISTORY_ID, CAR_ID, </span></span>
+<span class="line"><span style="color:#F97583">DATE_FORMAT</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">START_DATE</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'%Y-%m-%d'</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#F97583"> START_DATE</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">DATE_FORMAT</span><span style="color:#E1E4E8">(END_DATE,  </span><span style="color:#9ECBFF">'%Y-%m-%d'</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> END_DATE,</span></span>
+<span class="line"><span style="color:#F97583">CASE</span><span style="color:#F97583"> WHEN</span><span style="color:#79B8FF"> DATEDIFF</span><span style="color:#E1E4E8">(END_DATE, </span><span style="color:#F97583">START_DATE</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583"> >=</span><span style="color:#79B8FF"> 30</span><span style="color:#F97583"> THEN</span><span style="color:#9ECBFF"> "장기 대여"</span></span>
+<span class="line"><span style="color:#F97583">ELSE</span><span style="color:#9ECBFF"> "단기 대여"</span><span style="color:#F97583"> END</span><span style="color:#F97583"> AS</span><span style="color:#E1E4E8"> RENT_TYPE</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> CAR_RENTAL_COMPANY_RENTAL_HISTORY</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#F97583"> START_DATE</span><span style="color:#F97583"> BETWEEN</span><span style="color:#9ECBFF"> '2022-09-01'</span><span style="color:#F97583"> AND</span><span style="color:#9ECBFF"> '2022-09-30'</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#E1E4E8"> HISTORY_ID </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="문제-풀이">문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li>대여시작일이 2022년 9월인 기옥에 대해서 대여 기간이 30일 이상인 경우 “장기 대여” 그렇지 않으면 “단기 대여”로 구분(<code>RENT_TYPE</code> 컬럼 추가)</li>
+<li>데이터 포맷은 예시와 동일하게 나타내기</li>
+<li><code>대여 기옥 ID</code>를 기준으로 내림차순하기</li>
+</ol>
+<blockquote>
+<p><code>DATE_FORMAT</code> : MySQL에서 사용되는 <strong>날짜 데이터의 출력 형식을 지정하는 함수</strong></p>
+</blockquote>
+<ul>
+<li>
+<p><code>DATE_FORMAT(START_DATE, '%Y-%m-%d')</code>은 start_date 에서 <code>'%Y-%m-%d'</code> 형식으로 반환해준다.</p>
+<p>(대부분의 날짜 데이터는 <strong><code>%Y-%m-%d</code> 형식</strong>을 많이 사용한다.)</p>
+</li>
+<li>
+<p><code>%Y</code> : 4자리 연도(예: 2023) / <code>%y</code> : 2자리 연도 (예: 23)</p>
+</li>
+<li>
+<p><code>%m</code>: 월 (01부터 12까지)</p>
+</li>
+<li>
+<p><code>%d</code>: 일 (01부터 31까지)</p>
+</li>
+</ul>
+<blockquote>
+<p><code>DATEDIFF</code>: MySQL에서 사용되는 <strong>두 날짜 간의 차이를 계산하는 함수</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>이 함수는 첫 번째 날짜에서 두 번째 날짜를 뺀 결과를 반환해준다.</p>
+</li>
+<li>
+<p>기본 사용 형식: <code>DATEDIFF(END_DATE, START_DATE)</code></p>
+</li>
+<li>
+<p><strong>중요)</strong> 오늘 대여하고 오늘 반납해도 대여 기간은 하루 기간이기 때문에, <strong>(END_DATE - START_DATE) +1 >= 30</strong> 으로 계산해야 한다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span># 대여기간 예시</span></span>
+<span class="line"><span>2023년 12월 22일 대여 >> 2023년 12월 22일 반납: 1일</span></span>
+<span class="line"><span>= (22 - 22)일 + 1일</span></span>
+<span class="line"><span>= 1일</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>2023년 12월 22일 대여 >> 2023년 12월 23일 반납: 2일</span></span>
+<span class="line"><span>= (23 - 22)일 + 1일</span></span>
+<span class="line"><span>= 2일</span></span></code></pre>
+<blockquote>
+<p><code>CASE 문</code>: 조건에 따라 새로운 값을 부여하여 <strong>새로운 컬럼을 부여</strong>하는 경우에 사용한다.</p>
+</blockquote>
+<ul>
+<li>아래는 <code>CASE 문</code>의 기본 사용 형식이다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">CASE</span></span>
+<span class="line"><span style="color:#F97583">WHEN</span><span style="color:#E1E4E8"> 조건 </span><span style="color:#79B8FF">1</span></span>
+<span class="line"><span style="color:#F97583">THEN</span><span style="color:#E1E4E8"> 조건 </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8"> 만족 시 반환하는 값</span></span>
+<span class="line"><span style="color:#F97583">WHEN</span><span style="color:#E1E4E8"> 조건 </span><span style="color:#79B8FF">2</span></span>
+<span class="line"><span style="color:#F97583">THEN</span><span style="color:#E1E4E8"> 조건 </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8"> 만족 시 반환하는 값</span></span>
+<span class="line"><span style="color:#F97583">ELSE</span><span style="color:#E1E4E8"> 조건들에 만족 안 하는 경우 반환 값</span></span>
+<span class="line"><span style="color:#F97583">END</span><span style="color:#E1E4E8"> </span></span></code></pre>
+<h2 id="특정-옵션이-포함된-자동차-리스트-구하기lv1">특정 옵션이 포함된 자동차 리스트 구하기(Lv.1)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/157343">특정 옵션이 포함된 자동차 리스트 구하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>CAR_RENTAL_COMPANY_CAR</code> 테이블에서 ‘네비게이션’ 옵션이 포함된 자동차 리스트를 출력하는 SQL문을 작성해주세요.</p>
+<p>결과는 자동차 ID를 기준으로 내림차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code1">Answer Code1</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">select</span><span style="color:#E1E4E8"> car_id, car_type, daily_fee, options</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> car_rental_company_car</span></span>
+<span class="line"><span style="color:#F97583">where</span><span style="color:#E1E4E8"> options </span><span style="color:#F97583">like</span><span style="color:#9ECBFF"> '%네비게이션%'</span></span>
+<span class="line"><span style="color:#F97583">order by</span><span style="color:#E1E4E8"> car_id </span><span style="color:#F97583">desc</span></span></code></pre>
+<h3 id="문제-풀이-1">문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li><code>네비게이션</code> 옵션이 포함된 자동차 리스트를 출력한다.</li>
+<li>자동차 ID를 기준으로 내림차순으로 정렬한다.</li>
+</ol>
+<ul>
+<li>
+<p><code>CAR_RENTAL_COMPANY_CAR</code> 테이블에서 ‘네비게이션’ 옵션이 포함 => <strong>where + like</strong> 절을 사용한다. => <code>like '%네비게이션%'</code></p>
+</li>
+<li>
+<p><code>order by car_id desc</code> => <code>DESC</code>는 내림차순(<code>ASC</code>는 오름차순 이다)</p>
+</li>
+</ul>
+<h2 id="조건에-부합하는-중고거래-상태-조회하기lv-2">조건에 부합하는 중고거래 상태 조회하기(Lv 2)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/164672">조건에 부합하는 중고거래 상태 조회하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>USED_GOODS_BOARD</code> 테이블에서 2022년 10월 5일에 등록된</p>
+<p>중고거래 게시물의 게시글 ID, 작성자 ID, 게시글 제목, 가격, 거래상태를 조회하는 SQL문을 작성해주세요.</p>
+<p>거래상태가 SALE 이면 판매중, RESERVED이면 예약중, DONE이면 거래완료 분류하여 출력해주시고,</p>
+<p>결과는 게시글 ID를 기준으로 내림차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code">Answer Code</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> BOARD_ID, WRITER_ID, TITLE, PRICE, </span></span>
+<span class="line"><span style="color:#F97583">    CASE</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">        WHEN</span><span style="color:#F97583"> STATUS</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> 'SALE'</span><span style="color:#F97583"> THEN</span><span style="color:#9ECBFF"> '판매중'</span></span>
+<span class="line"><span style="color:#F97583">        WHEN</span><span style="color:#F97583"> STATUS</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> 'RESERVED'</span><span style="color:#F97583"> THEN</span><span style="color:#9ECBFF"> '예약중'</span></span>
+<span class="line"><span style="color:#F97583">        WHEN</span><span style="color:#F97583"> STATUS</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> 'DONE'</span><span style="color:#F97583"> THEN</span><span style="color:#9ECBFF"> '거래완료'</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">        END</span><span style="color:#F97583"> STATUS</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> USED_GOODS_BOARD</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8"> BOARD_ID </span><span style="color:#F97583">IN</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">  SELECT</span><span style="color:#E1E4E8"> BOARD_ID </span></span>
+<span class="line"><span style="color:#F97583">  FROM</span><span style="color:#E1E4E8"> USED_GOODS_BOARD</span></span>
+<span class="line"><span style="color:#F97583">  WHERE</span><span style="color:#E1E4E8"> CREATED_DATE </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '2022-10-05'</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">ORDER </span></span>
+<span class="line"><span style="color:#F97583">    BY</span><span style="color:#E1E4E8"> BOARD_ID </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="문제-풀이-2">문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li>2022년 10월 5일에 등록된 중고 거래 게시물에서 (WHERE)</li>
+<li>필요한 컬럼들 조회(SELECT)</li>
+<li>거래 상태에 따라 분류해서 출력(CASE)</li>
+<li>게시글 ID를 기준으로 내림차순 정렬(ORDER BY)</li>
+</ol>
+<h2 id="조건에-맞는-사용자-정보-조회하기lv3">조건에 맞는 사용자 정보 조회하기(Lv.3)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/164670">조건에 맞는 사용자 정보 조회하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>USED_GOODS_BOARD</code>와 <code>USED_GOODS_USER</code> 테이블에서</p>
+<p>중고 거래 게시물을 3건 이상 등록한 사용자의 사용자 ID, 닉네임, 전체주소, 전화번호를 조회하는 SQL문을 작성해주세요.</p>
+<p>이때, 전체 주소는 시, 도로명 주소, 상세 주소가 함께 출력되도록 해주시고,</p>
+<p>전화번호의 경우 <code>xxx-xxxx-xxxx</code> 같은 형태로 하이픈 문자열(-)을 삽입하여 출력해주세요.</p>
+<p>결과는 회원 ID를 기준으로 내림차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code-1">Answer Code</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">select</span><span style="color:#79B8FF"> user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">user_id</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">nickname</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#79B8FF">concat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">' '</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street_address1</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">' '</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street_address2</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> 전체주소,</span></span>
+<span class="line"><span style="color:#79B8FF">concat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">LEFT</span><span style="color:#E1E4E8">(tlno, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, MID(tlno, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">),</span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">RIGHT</span><span style="color:#E1E4E8">(tlno, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">)) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> 전화번호</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> used_goods_user </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> user</span></span>
+<span class="line"><span style="color:#F97583">join</span><span style="color:#E1E4E8"> used_goods_board </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> board</span></span>
+<span class="line"><span style="color:#F97583">on</span><span style="color:#79B8FF"> user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">user_id</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> board</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">writer_id</span></span>
+<span class="line"><span style="color:#F97583">group by</span><span style="color:#79B8FF"> board</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">writer_id</span></span>
+<span class="line"><span style="color:#F97583">having</span><span style="color:#79B8FF"> count</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">board</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">writer_id</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 3</span></span>
+<span class="line"><span style="color:#F97583">order by</span><span style="color:#79B8FF"> user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">user_id</span><span style="color:#F97583"> desc</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="문제-풀이-3">문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li><code>USED_GOODS_BOARD</code> 테이블에서 writer_id 컬럼의 값을 count하여 3개 이상인 writer_id 찾기</li>
+<li>CONCAT() 함수와 <code>USED_GOODS_USER</code>의 CITY, STREET_ADDRESS1, STREET_ADDRESS2를 활용하여 ‘전체주소’ 생성하기</li>
+<li>CONCAT() 함수와 <code>USED_GOODS_USER</code>의 TLNO를 활용하여 ‘전화번호’ 생성하기</li>
+<li>USER_ID 기준으로 내림차순하기</li>
+</ol>
+<blockquote>
+<p><code>GROUP BY</code> 구문: 주로 집계 함수(COUNT)와 함께 사용되어 특정 열의 값에 기반하여 그룹을 형성하는 역할</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">group by</span><span style="color:#79B8FF"> board</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">writer_id</span></span>
+<span class="line"><span style="color:#F97583">having</span><span style="color:#79B8FF"> count</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">board</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">writer_id</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 3</span></span></code></pre>
+<ul>
+<li>
+<p><code>USER_GOODS_BOARD</code> 테이블에서 <code>WRITER_ID</code> 열을 기준으로 그룹을 형성한다.</p>
+</li>
+<li>
+<p>그런 다음, <code>HAVING</code> 구문을 사용하여 <code>USER_GOOD_BOARD</code> 테이블에서 각 작성자(<code>WRITER_ID</code>)가 최소 3개 이상의 게시물을 작성한 경우에만 해당 그룹이 선택된다.</p>
+</li>
+</ul>
+<blockquote>
+<p><code>CONCAT()</code> 함수: SQL에서 사용되는 문자열을 연결하는 함수</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#79B8FF">concat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">city</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">' '</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street_address1</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">' '</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">user</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">street_address2</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> 전체주소</span></span></code></pre>
+<ul>
+<li>
+<p>SELECT 절에서 “CONCAT() 함수”를 이용해서 <code>CITY</code>, <code>STREET_ADDRESS1</code>, <code>STREET_ADDRESS2</code> 컬럼을 <strong>하나의 문자열</strong>로 연결하는 작업이다.</p>
+</li>
+<li>
+<p>예시에서 나온 것과 같게 만들기 위해서는 <strong>공백(’ ‘)으로 각 컬럼의 값을 구분하고, AS 절을 이용하여 요구한 컬럼의 이름과 동일하게 <code>전체주소</code> 라는 컬럼을 부여</strong>했다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#79B8FF">concat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">LEFT</span><span style="color:#E1E4E8">(tlno, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, MID(tlno, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">),</span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">RIGHT</span><span style="color:#E1E4E8">(tlno, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">)) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> 전화번호</span></span></code></pre>
+<ul>
+<li>
+<p>“CONCAT() 함수”를 이용해서 연결 사이에 ’-’ 으로 구분하여 하나의 문자열을 만들었다.</p>
+<ul>
+<li>
+<p>LEFT(tlno, 3): 전화번호 문자열의 왼쪽에서 3자리를 추출</p>
+</li>
+<li>
+<p>MID(tlno, 4, 4): 전화번호 문자열에서 4번째 위치에서부터 4자리를 추출</p>
+</li>
+<li>
+<p>RIGHT(tlno, 4): 전화번호 문자열의 오른쪽에서 4자리를 추출합니다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>다른 방법: SUBSTR((또는 SUBSTRING)) 함수 사용 : <strong>문자열에서 일부분을 추출</strong>하는 데 사용되는 SQL 함수이다.</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#79B8FF">CONCAT</span><span style="color:#E1E4E8">(SUBSTR(TLNO, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, SUBSTR(TLNO, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, SUBSTR(TLNO, </span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">)) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> 전화번호</span></span></code></pre>
+<ul>
+<li>
+<p>일반적인 사용 형식: <code>SUBSTR(string, start_position, length)</code></p>
+<ul>
+<li>
+<p>string: 추출하려는 문자열</p>
+</li>
+<li>
+<p>start_position: 추출을 시작할 위치입니다. 1부터 시작한다.</p>
+</li>
+<li>
+<p>length (선택사항): 추출하려는 부분의 길이를 지정한다. 만약 이 부분을 생략하면 시작 위치부터 문자열의 끝까지 추출하게 된다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>SUBSTR()</code> (또는 SUBSTRING) 함수: <strong>문자열에서 일부분을 추출</strong>하는 데 사용되는 SQL 함수이다.</p>
+<ul>
+<li>
+<p>SUBSTR(TLNO, 1, 3): 전화번호 문자열의 1번째 위치에서부터 3자리를 추출</p>
+</li>
+<li>
+<p>SUBSTR(TLNO, 4, 4): 전화번호 문자열에서 4번째 위치에서부터 4자리를 추출</p>
+</li>
+<li>
+<p>SUBSTR(TLNO, 8): 전화번호 문자열의 8번째 위치에서부터 끝까지 추출</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="answer-code2">Answer Code2</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8">  USER_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">        , NICKNAME</span></span>
+<span class="line"><span style="color:#E1E4E8">        , </span><span style="color:#79B8FF">CONCAT</span><span style="color:#E1E4E8">(CITY, </span><span style="color:#9ECBFF">' '</span><span style="color:#E1E4E8">, STREET_ADDRESS1, </span><span style="color:#9ECBFF">' '</span><span style="color:#E1E4E8">, STREET_ADDRESS2) </span><span style="color:#F97583">AS</span><span style="color:#9ECBFF"> '전체주소'</span></span>
+<span class="line"><span style="color:#E1E4E8">        , </span><span style="color:#79B8FF">CONCAT</span><span style="color:#E1E4E8">(SUBSTR(TLNO, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, SUBSTR(TLNO, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">), </span><span style="color:#9ECBFF">'-'</span><span style="color:#E1E4E8">, SUBSTR(TLNO, </span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">)) </span><span style="color:#F97583">AS</span><span style="color:#9ECBFF"> '전화번호'</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8">    USED_GOODS_USER </span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8">   USER_ID </span><span style="color:#F97583">IN</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#F97583">                     SELECT</span><span style="color:#E1E4E8">  WRITER_ID</span></span>
+<span class="line"><span style="color:#F97583">                     FROM</span><span style="color:#E1E4E8">    USED_GOODS_BOARD</span></span>
+<span class="line"><span style="color:#F97583">                     GROUP BY</span><span style="color:#E1E4E8"> WRITER_ID</span></span>
+<span class="line"><span style="color:#F97583">                     HAVING</span><span style="color:#79B8FF">  COUNT</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 3</span></span>
+<span class="line"><span style="color:#E1E4E8">                 )</span></span>
+<span class="line"><span style="color:#E1E4E8">ORDER </span></span>
+<span class="line"><span style="color:#F97583">  BY</span><span style="color:#E1E4E8">  USER_ID </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="문제-풀이-4">문제 풀이</h3>
+<ul>
+<li>
+<p>위 정답은 다른 사람이 푼 것을 가져와봤다.</p>
+</li>
+<li>
+<p><code>Answer Code1</code>는 join을 사용했는데, <code>Answer Code2</code>는 join 없이 서브 쿼리를 사용한 SQL 구문이다.</p>
+</li>
+</ul>
+<h2 id="조회수가-가장-높은-중고거래-게시물에-대한-첨부파일-경로를-조회하기lv3">조회수가 가장 높은 중고거래 게시물에 대한 첨부파일 경로를 조회하기(Lv.3)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/164671">조회수가 가장 높은 중고거래 게시물에 대한 첨부파일 경로를 조회하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>USED_GOODS_BOARD</code>와 <code>USED_GOODS_FILE</code> 테이블에서</p>
+<p>조회수가 가장 높은 중고거래 게시물에 대한 첨부파일 경로를 조회하는 SQL문을 작성해주세요.</p>
+<p>첨부파일 경로는 FILE ID를 기준으로 내림차순 정렬해주세요.</p>
+<p>기본적인 파일경로는 /home/grep/src/ 이며, 게시글 ID를 기준으로 디렉토리가 구분되고,</p>
+<p>파일이름은 파일 ID, 파일 이름, 파일 확장자로 구성되도록 출력해주세요.</p>
+<p>조회수가 가장 높은 게시물은 하나만 존재합니다.</p>
+</li>
+</ul>
+<h3 id="answer-code1-1">Answer Code1</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF">  CONCAT</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/home/grep/src/'</span><span style="color:#E1E4E8">, BOARD_ID, </span><span style="color:#9ECBFF">'/'</span><span style="color:#E1E4E8">, FILE_ID, FILE_NAME, FILE_EXT) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> FILE_PATH</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8">  USED_GOODS_FILE</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8">  BOARD_ID </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#F97583">  SELECT</span><span style="color:#E1E4E8"> BOARD_ID</span></span>
+<span class="line"><span style="color:#F97583">  FROM</span><span style="color:#E1E4E8"> USED_GOODS_BOARD</span></span>
+<span class="line"><span style="color:#F97583">  ORDER BY</span><span style="color:#E1E4E8"> VIEWS </span><span style="color:#F97583">DESC</span></span>
+<span class="line"><span style="color:#F97583">  LIMIT</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">ORDER</span></span>
+<span class="line"><span style="color:#F97583">  BY</span><span style="color:#E1E4E8">  FILE_ID </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="문제-풀이-5">문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li>CONCAT() 함수를 이용하여 <code>USED_GOODS_FILE</code> 테이블에서 BOARD_ID 를 기준으로 디렉터리를 ’/’ 으로 구분하고, 파일이름은 FILE_ID, FILE_NAME, FILE_EXT로 구성되도록 한다.</li>
+<li>조건 WHERE 절에서 <code>USED_GOODS_BOARD</code> 테이블에서 가장 높은 조회수(VIEW)를 SELECT 절과 MAX를 이용해서 하나만 조회하도록 한다.</li>
+<li>FILE_ID를 기준으로 내림차순 정렬하여 결과를 출력한다.</li>
+</ol>
+<p>[1]. CONCAT() 함수를 이용하여 <code>USED_GOODS_FILE</code> 테이블에서 BOARD_ID 를 기준으로 디렉터리를 ’/’ 으로 구분하고, 파일이름은 FILE_ID, FILE_NAME, FILE_EXT로 구성되도록 한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF">  CONCAT</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/home/grep/src/'</span><span style="color:#E1E4E8">, BOARD_ID, </span><span style="color:#9ECBFF">'/'</span><span style="color:#E1E4E8">, FILE_ID, FILE_NAME, FILE_EXT) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> FILE_PATH</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8">  USED_GOODS_FILE</span></span></code></pre>
+<p>[2]. 조건 where 절에서 <code>USED_GOODS_BOARD</code> 테이블에서 가장 높은 조회수(VIEW)를 SELECT 절과 ORDER BY, LIMIT절을 이용해서 하나만 조회한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8">  BOARD_ID </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#F97583">  SELECT</span><span style="color:#E1E4E8"> BOARD_ID</span></span>
+<span class="line"><span style="color:#F97583">  FROM</span><span style="color:#E1E4E8"> USED_GOODS_BOARD</span></span>
+<span class="line"><span style="color:#F97583">  ORDER BY</span><span style="color:#E1E4E8"> VIEWS </span><span style="color:#F97583">DESC</span></span>
+<span class="line"><span style="color:#F97583">  LIMIT</span><span style="color:#79B8FF"> 1</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>[3]. FILE_ID를 기준으로 내림차순 정렬하여 결과를 출력한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#E1E4E8">ORDER</span></span>
+<span class="line"><span style="color:#F97583">  BY</span><span style="color:#E1E4E8">  FILE_ID </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="answer-code2-1">Answer Code2</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span></span>
+<span class="line"><span style="color:#79B8FF">    CONCAT</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/home/grep/src/'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">FILE</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">BOARD_ID</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'/'</span><span style="color:#E1E4E8">, FILE_ID, FILE_NAME, FILE_EXT) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> FILE_PATH</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> USED_GOODS_FILE </span><span style="color:#F97583">AS</span><span style="color:#F97583"> FILE</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> USED_GOODS_BOARD </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> BOARD</span></span>
+<span class="line"><span style="color:#F97583">ON</span><span style="color:#79B8FF"> FILE</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">BOARD_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> BOARD</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">BOARD_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8"> VIEWS </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> MAX</span><span style="color:#E1E4E8">(VIEWS) </span><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> USED_GOODS_BOARD)</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#E1E4E8"> FILE_ID </span><span style="color:#F97583">DESC</span></span></code></pre>
+<h2 id="조건별로-분류하여-주문상태-출력하기lv-3">조건별로 분류하여 주문상태 출력하기(Lv 3)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/131113">조건별로 분류하여 주문상태 출력하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>FOOD_ORDER</code> 테이블에서 5월 1일을 기준으로 주문 ID, 제품 ID, 출고일자, 출고여부를 조회하는 SQL문을 작성해주세요.</p>
+<p>출고여부는 5월 1일까지 출고완료로 이 후 날짜는 출고 대기로 미정이면 출고미정으로 출력해주시고,</p>
+<p>결과는 주문 ID를 기준으로 오름차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-cod20231226">Answer Cod(2023.12.26)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8">  ORDER_ID, PRODUCT_ID, </span><span style="color:#F97583">DATE_FORMAT</span><span style="color:#E1E4E8">(OUT_DATE, </span><span style="color:#9ECBFF">'%Y-%m-%d'</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> OUT_DATE,</span></span>
+<span class="line"><span style="color:#F97583">        case</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">            when</span><span style="color:#E1E4E8"> OUT_DATE </span><span style="color:#F97583">&#x3C;=</span><span style="color:#9ECBFF"> '2022-05-01'</span><span style="color:#F97583"> then</span><span style="color:#9ECBFF"> '출고완료'</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">            when</span><span style="color:#E1E4E8"> OUT_DATE </span><span style="color:#F97583">></span><span style="color:#9ECBFF"> '2022-05-01'</span><span style="color:#F97583"> then</span><span style="color:#9ECBFF"> '출고대기'</span></span>
+<span class="line"><span style="color:#F97583">            else</span><span style="color:#9ECBFF"> '출고미정'</span></span>
+<span class="line"><span style="color:#F97583">        end</span><span style="color:#9ECBFF">  '출고여부'</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> FOOD_ORDER</span></span>
+<span class="line"><span style="color:#F97583">order by</span><span style="color:#E1E4E8"> ORDER_ID </span><span style="color:#F97583">asc</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="문제-풀이-6">문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li><code>FOOD_ORDER</code> 테이블에서 5월 1일을 기준으로 ORDER_ID, PRODUCT_ID, OUT_DATE, 출고여부를 조회한다.</li>
+<li>이때 <code>출고여부</code>는 5월 1일까지 <code>출고완료</code>로, 이후 날짜는 <code>출고대기</code>, 미정이면 <code>출고미정</code>으로 출력한다. -> CASE 문을 사용</li>
+<li>예시처럼 <code>OUT_DATE</code>를 yyyy-mm-dd 처럼 출력하기 위해 DATE_FORMAT(OUT_DATE, ‘%Y-%m-%d’) 를 사용한다. 이때 대문자 Y는 4자리, 소문자 y는 2자리 숫자를 출력해준다.</li>
+<li>ORDER_ID 를 기준으로 오름차순 정렬해준다. -> ORDER BY ORDER_ID ASC;</li>
+</ol>
+<h2 id="대여-기록이-존재하는-자동차-리스트-구하기lv-3">대여 기록이 존재하는 자동차 리스트 구하기(Lv 3)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/157341">대여 기록이 존재하는 자동차 리스트 구하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>CAR_RENTAL_COMPANY_CAR</code> 테이블과 <code>CAR_RENTAL_COMPANY_RENTAL_HISTORY</code> 테이블에서</p>
+<p>자동차 종류가 ‘세단’인 자동차들 중 10월에 대여를 시작한 기록이 있는 자동차 ID 리스트를 출력하는 SQL문을 작성해주세요.</p>
+<p>자동차 ID 리스트는 중복이 없어야 하며, 자동차 ID를 기준으로 내림차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code20231226">Answer Code(2023.12.26)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT DISTINCT</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CAR_ID</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> CAR_RENTAL_COMPANY_RENTAL_HISTORY A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> CAR_RENTAL_COMPANY_CAR B </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CAR_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CAR_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CAR_TYPE</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> '세단'</span></span>
+<span class="line"><span style="color:#F97583">    AND</span><span style="color:#E1E4E8"> SUBSTR(</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">START_DATE</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">ORDER </span></span>
+<span class="line"><span style="color:#F97583">    BY</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CAR_ID</span><span style="color:#F97583"> DESC</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="문제풀이">문제풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li>CAR_RENTAL_COMPANY_RENTAL_HISTORY 테이블과 CAR_RENTAL_COMPANY_CAR 테이블을 조인하기 -> JOIN</li>
+<li>자동차 종류가 ‘세단’인 CAR_ID를 선택 -> WHERE</li>
+<li>그리고 10월에 대여를 시작한 기록 -> 데이터 필터링(AND SUBSTR)</li>
+<li>CAR_ID 리스트를 출력</li>
+<li>CAR_ID 중복 제거 -> DISTINCT</li>
+<li>CAR_ID를 기준으로 내림차순 정렬</li>
+</ol>
+<ul>
+<li>
+<p>CAR_RENTAL_COMPANY_RENTAL_HISTORY 테이블에서 CAR_RENTAL_COMPANY_CAR 테이블을 <code>LEFT JOIN</code>으로 조인을 실행해줬다.</p>
+</li>
+<li>
+<p>기준은 두 테이블에서 CAR_ID가 동일한 컬럼과 값을 가지고 있어서 CAR_ID를 이용했다.</p>
+</li>
+<li>
+<p>두번째 작업은 WHERE 절에서 CAR_ID가 ‘세단’인 데이터만 조회가 되도록 조건 필터링을 넣어줬다.</p>
+</li>
+<li>
+<p>세번째 작업은 데이터 필터링을 위해 SUBSTR()을 이용해 ‘월’ 정보만을 가져온 다음 이 내역이 10인 데이터만 가져오도록 조건 필터링을 넣어줬다.</p>
+</li>
+<li>
+<p>네번째 작업은 CAR_ID 중복 제거를 위해 DISTINCT를 사용했다.</p>
+</li>
+</ul>
+<h2 id="오랜-기간-보호한-동물2lv-3">오랜 기간 보호한 동물(2)(Lv 3)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/59411">오랜 기간 보호한 동물(2)</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: 입양을 간 동물 중, 보호 기간이 가장 길었던 동물 두 마리의 아이디와 이름을 조회하는 SQL문을 작성해주세요.</p>
+<p>이때 결과는 보호 기간이 긴 순으로 조회해야 합니다.</p>
+</li>
+</ul>
+<h3 id="answer-code20231227">Answer Code(2023.12.27)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">NAME</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> ANIMAL_INS A</span></span>
+<span class="line"><span style="color:#F97583">    LEFT JOIN</span><span style="color:#E1E4E8"> ANIMAL_OUTS B </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span><span style="color:#F97583"> -</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span><span style="color:#F97583"> DESC</span></span>
+<span class="line"><span style="color:#F97583">LIMIT</span><span style="color:#79B8FF"> 2</span></span></code></pre>
+<h3 id="문제-풀이-7">문제 풀이</h3>
+<blockquote>
+<p>문제 접근</p>
+</blockquote>
+<ol>
+<li>두 개의 테이블 조인(JOIN)</li>
+<li>보호 기간이 가장 길었던 동물 두마리에 대한 필터링(ORDER BY, LIMIT)</li>
+<li>아이디와 이름을 조회(SELECT)</li>
+</ol>
+<h2 id="취소되지-않은-진료-예약-조회하기lv-4">취소되지 않은 진료 예약 조회하기(Lv 4)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/132204">취소되지 않은 진료 예약 조회하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>PATIENT</code>, <code>DOCTOR</code> 그리고 <code>APPOINTMENT</code> 테이블에서</p>
+<p>2022년 4월 13일 취소되지 않은 흉부외과(CS) 진료 예약 내역을 조회하는 SQL문을 작성해주세요.</p>
+<p>진료예약번호, 환자이름, 환자번호, 진료과코드, 의사이름, 진료예약일시 항목이 출력되도록 작성해주세요.</p>
+<p>결과는 진료예약일시를 기준으로 오름차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code20231226-1">Answer Code(2023.12.26)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">APNT_NO</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">       P</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PT_NAME</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">       A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PT_NO</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">       A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">MCDP_CD</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">       D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DR_NAME</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">       A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">APNT_YMD</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> APPOINTMENT A</span></span>
+<span class="line"><span style="color:#F97583">    LEFT JOIN</span><span style="color:#E1E4E8"> PATIENT P </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PT_NO</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> P</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PT_NO</span></span>
+<span class="line"><span style="color:#F97583">    LEFT JOIN</span><span style="color:#E1E4E8"> DOCTOR D </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">MDDR_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DR_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">MCDP_CD</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> 'CS'</span></span>
+<span class="line"><span style="color:#F97583">    AND</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">APNT_CNCL_YN</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> 'N'</span></span>
+<span class="line"><span style="color:#F97583">    AND</span><span style="color:#79B8FF"> LEFT</span><span style="color:#E1E4E8">(APNT_YMD, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '2022-04-13'</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span></span>
+<span class="line"><span style="color:#79B8FF">    A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">APNT_YMD</span><span style="color:#F97583"> ASC</span></span></code></pre>
+<h3 id="문제-풀이-8">문제 풀이</h3>
+<blockquote>
+<p>문제 접근</p>
+</blockquote>
+<ol>
+<li>3개의 테이블 조인하기(JOIN)</li>
+<li>APPOINTMENT 테이블에서 조건에 맞는 데이터 필터링(WHERE)</li>
+<li>필요한 컬럼들 선택(SELECT)</li>
+<li>진료 예약일시 기준으로 오름차순 정렬</li>
+</ol>
+<hr>
+<p>[1] 3개의 테이블 조인하기</p>
+<ul>
+<li>
+<p>APPOINTMENT 테이블을 기준으로 PATIENT 테이블과 환자 번호(PT_NO)로 LEFT JOIN</p>
+</li>
+<li>
+<p>그리고 APPOINTMENT 테이블을 기준으로 DOCTOR 테이블과 의사 아이디(MDDR_ID)로 LEFT JOIN</p>
+</li>
+</ul>
+<p>[2] WHERE절에서 조건에 맞는 데이터만 조회가 되도록 3개의 조건 필터링을 걸어준다.</p>
+<ul>
+<li>
+<p>진료과 코드가 ‘흉부외과’인 데이터 (MCDP_CD = ‘CS’)</p>
+</li>
+<li>
+<p>진료 예약이 취소되지 않은 데이터 (APNT_CNCL_YN = ‘N’)</p>
+</li>
+<li>
+<p>진료 예약일이 ‘2022-04-13’인 데이터(LEFT(APNT_YMD,10) = ‘2022-04-13’)</p>
+</li>
+</ul>
+<p>[3] SELECT 문에서 필요한 컬럼을 불러온다.</p>
+<ul>
+<li>진료예약번호(APPOINTMENT.APNT_NO),</li>
+<li>환자이름(PATIENT.PT_NAME),</li>
+<li>환자번호(APPOINTMENT.PT_NO)</li>
+<li>진료과코드(APPOINTMENT.MCDP_CD),</li>
+<li>의사이름(DOCTOR.DR_NAME),</li>
+<li>진료예약일시(APPOINTMENT.APNT_YMD)</li>
+</ul>
+<p>[4] 진료 예약일시(A.APNT_YMD) 기준으로 오름차순 정렬</p>
+<ul>
+<li>ORDER BY A.APNY_YMD ASC</li>
+<li>마지막 작업은 CAR_ID를 기준으로 내림차순 정렬을 위해 ORDER BY 절을 사용했고, 내림차순(DESC)으로 정렬했다.</li>
+</ul>
+<h2 id="자동차-대여-기록-별-대여-금액-구하기lv4">자동차 대여 기록 별 대여 금액 구하기(Lv.4)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/151141">자동차 대여 기록 별 대여 금액 구하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>CAR_RENTAL_COMPANY_CAR</code> 테이블과 <code>CAR_RENTAL_COMPANY_RENTAL_HISTORY</code> 테이블과 <code>CAR_RENTAL_COMPANY_DISCOUNT_PLAN</code> 테이블에서</p>
+<p>자동차 종류가 ‘트럭’인 자동차의 대여 기록에 대해서 대여 기록 별로 대여 금액(컬럼명: FEE)을 구하여</p>
+<p>대여 기록 ID와 대여 금액 리스트를 출력하는 SQL문을 작성해주세요.</p>
+<p>결과는 대여 금액을 기준으로 내림차순 정렬하고,</p>
+<p>대여 금액이 같은 경우 대여 기록 ID를 기준으로 내림차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code-2">Answer Code</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF">  D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">HISTORY_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">        , </span><span style="color:#79B8FF">ROUND</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">IF</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DISCOUNT_RATE</span><span style="color:#F97583"> IS</span><span style="color:#F97583"> NULL</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DAILY_FEE</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATE_DIFF</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DAILY_FEE</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATE_DIFF</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">100</span><span style="color:#F97583">-</span><span style="color:#79B8FF">D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DISCOUNT_RATE</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">*</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">01</span><span style="color:#E1E4E8">),</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> FEE</span></span>
+<span class="line"><span style="color:#F97583">  FROM</span><span style="color:#E1E4E8">  (</span></span>
+<span class="line"><span style="color:#F97583">        SELECT</span><span style="color:#E1E4E8">  A.</span><span style="color:#F97583">*</span></span>
+<span class="line"><span style="color:#E1E4E8">                , </span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">HISTORY_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">                , </span><span style="color:#79B8FF">DATEDIFF</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">END_DATE</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">START_DATE</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583"> AS</span><span style="color:#E1E4E8"> DATE_DIFF</span></span>
+<span class="line"><span style="color:#E1E4E8">                , </span><span style="color:#79B8FF">C</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DISCOUNT_RATE</span></span>
+<span class="line"><span style="color:#F97583">          FROM</span><span style="color:#E1E4E8">  CAR_RENTAL_COMPANY_CAR A</span></span>
+<span class="line"><span style="color:#E1E4E8">          LEFT</span></span>
+<span class="line"><span style="color:#F97583">          JOIN</span><span style="color:#E1E4E8">  CAR_RENTAL_COMPANY_RENTAL_HISTORY B</span></span>
+<span class="line"><span style="color:#F97583">            ON</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CAR_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CAR_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">          LEFT</span></span>
+<span class="line"><span style="color:#F97583">          JOIN</span><span style="color:#E1E4E8">  CAR_RENTAL_COMPANY_DISCOUNT_PLAN C</span></span>
+<span class="line"><span style="color:#F97583">            ON</span><span style="color:#F97583">  CASE</span><span style="color:#F97583"> WHEN</span><span style="color:#79B8FF"> DATEDIFF</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">END_DATE</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">START_DATE</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">BETWEEN</span><span style="color:#79B8FF"> 7</span><span style="color:#F97583"> AND</span><span style="color:#79B8FF"> 29</span><span style="color:#F97583"> THEN</span><span style="color:#79B8FF"> C</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PLAN_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 10</span></span>
+<span class="line"><span style="color:#F97583">                     WHEN</span><span style="color:#79B8FF"> DATEDIFF</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">END_DATE</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">START_DATE</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">BETWEEN</span><span style="color:#79B8FF"> 30</span><span style="color:#F97583"> AND</span><span style="color:#79B8FF"> 89</span><span style="color:#F97583"> THEN</span><span style="color:#79B8FF"> C</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PLAN_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 11</span></span>
+<span class="line"><span style="color:#F97583">                     WHEN</span><span style="color:#79B8FF"> DATEDIFF</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">END_DATE</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">START_DATE</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 90</span><span style="color:#F97583"> THEN</span><span style="color:#79B8FF"> C</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PLAN_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 12</span><span style="color:#F97583"> END</span></span>
+<span class="line"><span style="color:#F97583">         WHERE</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CAR_TYPE</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> '트럭'</span></span>
+<span class="line"><span style="color:#E1E4E8">         ) D </span></span>
+<span class="line"><span style="color:#E1E4E8"> ORDER</span></span>
+<span class="line"><span style="color:#F97583">    BY</span><span style="color:#E1E4E8">   FEE </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">         , HISTORY_ID </span><span style="color:#F97583">DESC</span></span></code></pre>
+<h3 id="문제-풀이-9">문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li>자동차 종류가 ‘트럭’인 자동차 필터링 작업</li>
+<li>자동차 대여 일자 계산하기</li>
+<li>대여 일자에 맞게 할인률 반영하여 JOIN 하기</li>
+<li>일일 대여 금액, 대여 일자, 할인율을 반영한 대여 금액 계산하기</li>
+<li>대여 금액 내림차순, 대여 기록 ID 내림차순 정렬</li>
+</ol>
+<ul>
+<li>첫 번째 작업을 해결하기 위해 <code>CAR_RENTAL_COMPANY_CAR</code> 테이블에 CAR_TYPE(자동차 종류)이 ‘트럭’인 자동차만 선택하는 쿼리를 작성한다.</li>
+</ul>
+<blockquote>
+<p>[1] WHERE A.CAR_TYPE = ‘트럭’</p>
+</blockquote>
+<ul>
+<li>
+<p>두 번째 작업은 자동차 대여 일자 계산하는 것인데, START_DATE 부터 END_DATE 까지 대여한 일자를 구하기 위해</p>
+</li>
+<li>
+<p>DATEDIFF(B.END_DATE, B.START_DATE) + 1을 사용해서 쿼리를 작성했다.</p>
+</li>
+<li>
+<p>1을 더해준 이유는 하루만 대여를 한 경우에도 0일이 아닌 1일이 되도록 보장하기 위해서이다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[2] DATEDIFF(B.END_DATE,B.START_DATE) + 1 AS DATE_DIFF</p>
+</blockquote>
+<ul>
+<li>
+<p>세 번째 작업은, 대여 일자에 맞게 할인율을 반영하여 JOIN 하는 과정이다.</p>
+</li>
+<li>
+<p>대여 일자를 <code>DATE_DIFF</code>로 생성했고, CASE 구문내에서 DATE_DIFF를 통해 대여 일수에 따라 PLAN_ID를 매칭하여 LEFT JOIN 하도록 쿼리를 작성했다.</p>
+</li>
+<li>
+<p>네 번째 작업은, 일일 대여 금액, 대여 일자, 할인율을 반영한 대여 금액(FEE)를 계산하는 것이다.</p>
+</li>
+<li>
+<p>LEFT JOIN으로 할인율을 적용해서 본 결과, 할인이 적용되지 않는 데이터에는 할인율이 NULL 값으로 들어가 있다.</p>
+</li>
+<li>
+<p>그래서 IF와 IS NULL 함수를 통해 아래와 같이 계산하도록 쿼리를 작성한다.</p>
+<ul>
+<li>
+<p>할인율이 NULL 값인 경우: 일일 대여 금액 * 대여 일자 = 대여 금액(FEE)</p>
+</li>
+<li>
+<p>할인율이 있는 경우: 일일 대여 금액 * 대여 일자 * (100 - 할인율) * 100 = 대여 금액(FEE)</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF">  D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">HISTORY_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">                , </span><span style="color:#79B8FF">ROUND</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">IF</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DISCOUNT_RATE</span><span style="color:#F97583"> IS</span><span style="color:#F97583"> NULL</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DAILY_FEE</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATE_DIFF</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    , </span><span style="color:#79B8FF">D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DAILY_FEE</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATE_DIFF</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">100</span><span style="color:#F97583">-</span><span style="color:#79B8FF">D</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DISCOUNT_RATE</span><span style="color:#E1E4E8">)</span><span style="color:#F97583">*</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">01</span><span style="color:#E1E4E8">),</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> FEE</span></span></code></pre>
+<ul>
+<li>마지막으로, 문제에서 요구한 정렬 조건과 같이 ORDER BY를 이용한다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#E1E4E8">ORDER</span></span>
+<span class="line"><span style="color:#F97583">       BY</span><span style="color:#E1E4E8">   FEE </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">               , HISTORY_ID </span><span style="color:#F97583">DESC</span></span></code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://kkw-da.tistory.com/category/Skill%20Sets/SQL">https://kkw-da.tistory.com/category/Skill%20Sets/SQL</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="SQL-String-and-Date" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-383-Ransom-Note/" class="link-title leading-snug">383. Ransom Note</a><time datetime="2024-09-17" class="mt-1.5 block text-sm text-muted">2024-09-17</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-232-Implement-Queue-using-Stacks/" class="link-title leading-snug">32. Implement Queue using Stacks</a><time datetime="2024-09-14" class="mt-1.5 block text-sm text-muted">2024-09-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Programmers-118667/" class="link-title leading-snug">[Programmers] 118667. 두 큐 합 같게 만들기(queue)</a><time datetime="2023-12-28" class="mt-1.5 block text-sm text-muted">2023-12-28</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#자동차-대여-기록에서-장기단기-대여-구분하기lv1" data-toc="자동차-대여-기록에서-장기단기-대여-구분하기lv1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">자동차 대여 기록에서 장기/단기 대여 구분하기(Lv.1)</a></li><li><a href="#answer-code20231222" data-toc="answer-code20231222" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code(2023.12.22)</a></li><li><a href="#문제-풀이" data-toc="문제-풀이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#특정-옵션이-포함된-자동차-리스트-구하기lv1" data-toc="특정-옵션이-포함된-자동차-리스트-구하기lv1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">특정 옵션이 포함된 자동차 리스트 구하기(Lv.1)</a></li><li><a href="#answer-code1" data-toc="answer-code1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code1</a></li><li><a href="#문제-풀이-1" data-toc="문제-풀이-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#조건에-부합하는-중고거래-상태-조회하기lv-2" data-toc="조건에-부합하는-중고거래-상태-조회하기lv-2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">조건에 부합하는 중고거래 상태 조회하기(Lv 2)</a></li><li><a href="#answer-code" data-toc="answer-code" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code</a></li><li><a href="#문제-풀이-2" data-toc="문제-풀이-2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#조건에-맞는-사용자-정보-조회하기lv3" data-toc="조건에-맞는-사용자-정보-조회하기lv3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">조건에 맞는 사용자 정보 조회하기(Lv.3)</a></li><li><a href="#answer-code-1" data-toc="answer-code-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code</a></li><li><a href="#문제-풀이-3" data-toc="문제-풀이-3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#answer-code2" data-toc="answer-code2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code2</a></li><li><a href="#문제-풀이-4" data-toc="문제-풀이-4" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#조회수가-가장-높은-중고거래-게시물에-대한-첨부파일-경로를-조회하기lv3" data-toc="조회수가-가장-높은-중고거래-게시물에-대한-첨부파일-경로를-조회하기lv3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">조회수가 가장 높은 중고거래 게시물에 대한 첨부파일 경로를 조회하기(Lv.3)</a></li><li><a href="#answer-code1-1" data-toc="answer-code1-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code1</a></li><li><a href="#문제-풀이-5" data-toc="문제-풀이-5" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#answer-code2-1" data-toc="answer-code2-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code2</a></li><li><a href="#조건별로-분류하여-주문상태-출력하기lv-3" data-toc="조건별로-분류하여-주문상태-출력하기lv-3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">조건별로 분류하여 주문상태 출력하기(Lv 3)</a></li><li><a href="#answer-cod20231226" data-toc="answer-cod20231226" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Cod(2023.12.26)</a></li><li><a href="#문제-풀이-6" data-toc="문제-풀이-6" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#대여-기록이-존재하는-자동차-리스트-구하기lv-3" data-toc="대여-기록이-존재하는-자동차-리스트-구하기lv-3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">대여 기록이 존재하는 자동차 리스트 구하기(Lv 3)</a></li><li><a href="#answer-code20231226" data-toc="answer-code20231226" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code(2023.12.26)</a></li><li><a href="#문제풀이" data-toc="문제풀이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제풀이</a></li><li><a href="#오랜-기간-보호한-동물2lv-3" data-toc="오랜-기간-보호한-동물2lv-3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">오랜 기간 보호한 동물(2)(Lv 3)</a></li><li><a href="#answer-code20231227" data-toc="answer-code20231227" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code(2023.12.27)</a></li><li><a href="#문제-풀이-7" data-toc="문제-풀이-7" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#취소되지-않은-진료-예약-조회하기lv-4" data-toc="취소되지-않은-진료-예약-조회하기lv-4" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">취소되지 않은 진료 예약 조회하기(Lv 4)</a></li><li><a href="#answer-code20231226-1" data-toc="answer-code20231226-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code(2023.12.26)</a></li><li><a href="#문제-풀이-8" data-toc="문제-풀이-8" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#자동차-대여-기록-별-대여-금액-구하기lv4" data-toc="자동차-대여-기록-별-대여-금액-구하기lv4" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">자동차 대여 기록 별 대여 금액 구하기(Lv.4)</a></li><li><a href="#answer-code-2" data-toc="answer-code-2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code</a></li><li><a href="#문제-풀이-9" data-toc="문제-풀이-9" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

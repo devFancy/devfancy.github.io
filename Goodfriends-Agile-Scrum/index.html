@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[Goodfriends] Agile 기반 Scrum 프로세스 도입 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Goodfriends-Agile-Scrum/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="hover:underline" data-astro-cid-g5songws>프로젝트</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[Goodfriends] Agile 기반 Scrum 프로세스 도입</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-08-17" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-08-17</time><a href="/category/#%EC%82%AC%EC%9D%B4%EB%93%9C%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="chip chip-tag">#사이드프로젝트</a></div><p class="view-count text-sm text-muted">조회수 18회</p></div><div class="prose mt-10" data-astro-cid-g5songws><p><a href="https://goodfriends-team.tistory.com/">굿프렌즈 기술 블로그 방문하기 🎋</a></p>
+<blockquote>
+<p>이 글은 우리FISA 1기 <a href="https://goodfriends-team.tistory.com/5">굿프렌즈팀의 기술 블로그</a>에 게시된 글 입니다.</p>
+</blockquote>
+<h2 id="애자일agile이란">애자일(Agile)이란?</h2>
+<blockquote>
+<p>애자일 소프트웨어 개발(Agile software development) 혹은 애자일 개발 프로세스는 소프트웨어 엔지니어링에 대한 개념적인 얼개로, 프로젝트의 생명주기동안 반복적인 개발을 촉진한다. - 위키백과 -</p>
+</blockquote>
+<p><code>**Agile**</code>은 소프트 웨어 개발 방법론 중 하나로, 서로 다른 여러 맥락에서 따른 방법론과 테크닉의 조합이다.</p>
+<p>애자일 원칙의 <code>절차적인 부분</code>들은 <strong>팀과 조직이 어떻게 구성되고 협업해야 하는지에 대한 것들을 규정</strong>한다.</p>
+<ul>
+<li>
+<p>회의 방식, 구성원 각각의 역할, 요구사항 파악 방법, 작업 진척 속도 파악 방법, 점진적/반복적으로 일할 때 취하는 방식 등과 같은 것들이다.</p>
+</li>
+<li>
+<p>팀에 정말로 중요한 것, 비즈니스 가치가 있는 것에 집중한다.</p>
+</li>
+</ul>
+<p>애자일 원칙의 <code>기술적인 부분</code>들은 <strong>개발, 확장, 유지보수, 제품을 출하면서 어려움들에 대해 특정한 기술적 관례나 기술 자체를 매우 구체적으로 가이드</strong>한다.</p>
+<ul>
+<li>테스트 주도 개발(TDD), 페어 프로그래밍, 지속적인 통합, 단순한 디자인 원칙 등과 같은 것들이다.</li>
+</ul>
+<h2 id="애자일-개발-프로세스">애자일 개발 프로세스</h2>
+<p><img src="/assets/img/project/goodfriends/agile_1.png" alt=""></p>
+<p>애자일 방법론은 <code>프로세스 전반적인 과정(기획->디자인->개발->테스트->배포)</code>을 <strong>최대한 신속하고 시간낭비 없이 프로덕트를 만드는</strong> 다양한 방법론 전체를 일컫는다.</p>
+<p><img src="/assets/img/project/goodfriends/agile_2.png" alt=""></p>
+<p>그 예로 스크럼(Scrum), 익스트림 프로그래밍(XP), 칸반(Kanban) 등이 있으며 가장 대표적인 것이 <code>스크럼</code>이다.</p>
+<h2 id="스크럼">스크럼</h2>
+<blockquote>
+<p>스크럼(scrum)은 프로젝트 관리를 위한 상호, 점진적 개발방법론이며, 애자일 소프트웨어 개발 중의 하나이다. - 위키백과 -</p>
+</blockquote>
+<ul>
+<li><code>스크럼</code>은 작은 주기(Sprint)로 개발 및 검토를 하며 효율적인 협업 방법을 제공한다.</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/agile_3.png" alt=""></p>
+<h3 id="주요-용어">주요 용어</h3>
+<ul>
+<li>
+<p>제품 백로그(Product Backlog): 개발할 제품의 요구사항인 사용자 스토리 집합이며, 우선순위로 관리한다.</p>
+</li>
+<li>
+<p>스프린트(Sprint): 기획, 개발, 테스트, 배포 작업 등의 최소 단위의 Cycle이다.</p>
+</li>
+<li>
+<p>스프린트 계획 회의(Sprint Planning Meeting): 스프린트 목표와 스프린트 백로그를 계획하는 회의</p>
+</li>
+<li>
+<p>스프린트 백로그(Sprint Backlog): 각각의 스프리트 목표에 도달하기 위한 필요한 작업 목록</p>
+</li>
+<li>
+<p>일일 스크럼(Daily Scrum): 하루의 할 일을 공유하는 회의(매일 15~20분 정도 수행)</p>
+</li>
+<li>
+<p>스프린트 리뷰(Sprint Review): 스프린트 마지막날 개발자가 개발한 내용을 주주, 고객, 제품 책임자에게 시연하고 검토(4주 스프린트 기준 4시간 정도 수행)</p>
+</li>
+<li>
+<p>스프린트 회고(Sprint Retrospective): 스프린트 마지막날 좋았던 점, 문제점, 개선할 점을 KPT(Keep, Problem, Try) 형식으로 정리한다.(4주 스프린트 기준 3시간 정도 수행)</p>
+</li>
+<li>
+<p>사용자 스토리(User Story): 사용자가 사용하는 관점에서 어떤 가치를 제공할 것인지를 설명한다.</p>
+</li>
+<li>
+<p>인수 기준(Acceptance Criteria): 사용자 스토리를 완료시키기 위한 조건 명세(Given, When, Then)이다.</p>
+</li>
+<li>
+<p>최소 실행 가능한 제품(Minimum Viable Product, <strong>MVP</strong>): 팀이 최소 노력으로 고객에게 검증 결과를 받을 수 있는 수준의 제품</p>
+</li>
+<li>
+<p>칸반 보드(Kanban Board): 작업을 시각적으로 업무 상태, 흐름을 보여주는 게시판</p>
+</li>
+</ul>
+<h3 id="스크럼-프로세스">스크럼 프로세스</h3>
+<p>우리 팀은 <code>애자일 방법론</code> 중에 <code>스크럼</code>을 선택하게 되었고, 아래의 스크럼 프로세스 순서로 프로젝트를 진행했다.</p>
+<p>우리 굿프렌즈팀은 기획자가 없고 전부 개발자이기 때문에, 모두가 동등한 자율과 책임 권한으로 기획을 다 같이 진행하기로 결정했습니다.</p>
+<ol>
+<li>
+<p>PO(팀원 모두)는 제품의 요구 사항 정의서와 우선 순위를 제품 백로그로 정리한다.</p>
+</li>
+<li>
+<p>제품 백로그를 기준으로 스프린트 계획 미팅을 진행해서 스프린트 목표 설정과 스프린트 백로그를 정리한다.</p>
+</li>
+<li>
+<p>스프린트 주기(1주) 동안 프로젝트를 진행한다.</p>
+</li>
+<li>
+<p>데일리 스크럼 미팅을 통해 각자의 이슈를 공유한다.</p>
+</li>
+<li>
+<p>스프린트 종료시 모두가 모여서 스프린트 리뷰를 진행하여 중요한 코드 리뷰 및 팀원들의 산출물을 함께 살펴본다. (1주 스프린트 기준 1시간 진행)</p>
+</li>
+<li>
+<p>매회의 스프린트가 종료할 때마다, KPT 회고를 작성하여 한 단계 발전된 팀으로 다음 스프린트를 수행할 준비를 한다.</p>
+</li>
+<li>
+<p>2번으로 돌아가 반복한다. (제품의 요구 사항 정의서가 바뀐다면, 1번으로 돌아간다)</p>
+</li>
+</ol>
+<p>이를 기반으로 <strong>굿프렌즈팀의 Github -> <a href="https://github.com/woorifisa-projects/GoodFriends/wiki/%EB%8D%B0%EC%9D%BC%EB%A6%AC-%EC%8A%A4%ED%81%AC%EB%9F%BC-%EA%B8%B0%EB%A1%9D">Wiki</a></strong>에 정리한 데일리 스크럼 및 스프린트를 기록하고 있습니다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://miro.com/blog/choose-between-agile-lean-scrum-kanban/">(외국) 기술 블로그: Visual guide to Agile methodologies for modern product management</a></p>
+</li>
+<li>
+<p><a href="https://ko.wikipedia.org/wiki/%EC%95%A0%EC%9E%90%EC%9D%BC_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4_%EA%B0%9C%EB%B0%9C">위키백과: 애자일 소프트웨어 개발</a></p>
+</li>
+<li>
+<p><a href="https://ko.wikipedia.org/wiki/%EC%8A%A4%ED%81%AC%EB%9F%BC_(%EC%95%A0%EC%9E%90%EC%9D%BC_%EA%B0%9C%EB%B0%9C_%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4)">위키백과: 스크럼(애자일_개발_프로세스)</a></p>
+</li>
+<li>
+<p><a href="https://www.scrum.org/resources/what-scrum-module">공식문서: What is Scrum?</a></p>
+</li>
+<li>
+<p><a href="https://brunch.co.kr/@insuk/5">기술 블로그: 애자일이 무엇인가요?</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/dtevangelist/scrum-dfc6523a3604">기술 블로그: 애자일 스크럼 이해하기</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Goodfriends-Agile-Scrum" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/ETC-Sipethon-Slackbot/" class="link-title leading-snug">SIPE 커뮤니티를 위한 슬랙 봇 만들기 (feat. 사이프톤)</a><time datetime="2025-01-19" class="mt-1.5 block text-sm text-muted">2025-01-19</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Hibit-Retrospective/" class="link-title leading-snug">[Hibit] 히빗 V2 업그레이드: 백엔드 개선과 개발자 성장기</a><time datetime="2024-02-04" class="mt-1.5 block text-sm text-muted">2024-02-04</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Goodfriends-Nginx-SSL-HTTPS/" class="link-title leading-snug">[Goodfriends] Nginx와 Let&#39;s Encrypt로 HTTPS 웹 서비스 배포하기</a><time datetime="2023-11-15" class="mt-1.5 block text-sm text-muted">2023-11-15</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#애자일agile이란" data-toc="애자일agile이란" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">애자일(Agile)이란?</a></li><li><a href="#애자일-개발-프로세스" data-toc="애자일-개발-프로세스" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">애자일 개발 프로세스</a></li><li><a href="#스크럼" data-toc="스크럼" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">스크럼</a></li><li><a href="#주요-용어" data-toc="주요-용어" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">주요 용어</a></li><li><a href="#스크럼-프로세스" data-toc="스크럼-프로세스" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">스크럼 프로세스</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

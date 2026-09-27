@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Spring 핵심원리 - 기본편 : 스프링 컨테이너에 등록된 빈 조회 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Spring-Core-Principle-4-2/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Spring 핵심원리 - 기본편 : 스프링 컨테이너에 등록된 빈 조회</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-01-18" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-01-18</time><a href="/category/#Spring" class="chip chip-tag">#Spring</a></div><p class="view-count text-sm text-muted">조회수 55회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글의 코드와 정보들은 [스프링 핵심원리 기본편] 강의를 들으며 정리한 내용을 토대로 작성하였습니다.</p>
+</blockquote>
+<h2 id="contents">Contents</h2>
+<ul>
+<li>다음 순서에 맞게 보시는 것을 권장해드립니다.</li>
+</ul>
+<ol>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-1/">Spring 핵심원리 - 기본편 : 객체 지향 설계와 스프링</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-2/">Spring 핵심원리 - 기본편 : 객체 지향 원리 적용</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-4/">Spring 핵심원리 - 기본편 : 스프링 컨테이너와 스프링 빈</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-4-2/">Spring 핵심원리 - 기본편 : 스프링 컨테이너에 등록된 빈 조회</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-5/">Spring 핵심원리 - 기본편 : 싱글톤 컨테이너</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-6/">Spring 핵심원리 - 기본편 : 컴포넌트 스캔</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-7/">Spring 핵심원리 - 기본편 : 의존관계 자동 주입</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-8/">Spring 핵심원리 - 기본편 : 빈 생명주기 콜백</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-Core-Principle-9/">Spring 핵심원리 - 기본편 : 빈 스코프</a></p>
+</li>
+</ol>
+<ul>
+<li>스프링 컨테이너에 실제 스프링 빈들이 잘 등록되었는지 테스트코드에서 확인해보자.</li>
+</ul>
+<h2 id="컨테이너에-등록된-모든-빈-조회">컨테이너에 등록된 모든 빈 조회</h2>
+<h3 id="applicationcontextinfotest-클래스">ApplicationContextInfoTest 클래스</h3>
+<h4 id="모든-빈-조회-출력하기">모든 빈 조회 (출력하기)</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.core.beanfind;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.DisplayName;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.Test;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.beans.factory.config.BeanDefinition;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.AppConfig;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ApplicationContextInfoTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    AnnotationConfigApplicationContext ac </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AnnotationConfigApplicationContext</span><span style="color:#E1E4E8">(AppConfig.class);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"모든 빈 출력하기"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> finaAllBean</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        String</span><span style="color:#E1E4E8">[] beanDefinitionNames </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBeanDefinitionNames</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (String beanDefinitionName </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> beanDefinitionNames) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            Object bean </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(beanDefinitionName);</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> beanDefinitionName </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> " object = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> bean);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>실행하면 스프링에 등록된 모든 빈 정보를 출력할 수 있다.</p>
+</li>
+<li>
+<p><code>ac.getBeanDefinitionNames()</code> : 스프링에 등록된 모든 빈 이름을 조회한다.</p>
+</li>
+<li>
+<p><code>ac.getBean()</code> : 빈 이름으로 빈 객체(인스턴스)를 조회한다.</p>
+</li>
+<li>
+<p>참고1) <code>ac.getBean(beanDefinitionName)</code>에서 <code>option + enter</code> 또는 <code>option + cmd + v</code> 누르면 자동으로 변수가 생성된다.</p>
+</li>
+<li>
+<p>참고2) <code>soutv</code> 를 입력하면 자동으로 System.out.println과 변수명이 생성된다.</p>
+</li>
+</ul>
+<h4 id="애플리케이션-빈-조회출력하기">애플리케이션 빈 조회(출력하기)</h4>
+<ul>
+<li>하지만 위에 있는 출력은 스프링 내부에 있는 빈 정보들까지 모두 출력하므로, 내가 등록한 빈만 출력하려면 추가로 입력하는 부분이 있다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.core.beanfind;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.DisplayName;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.Test;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.beans.factory.config.BeanDefinition;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.AppConfig;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ApplicationContextInfoTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"애플리케이션 빈 출력하기"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> finaApplicationBean</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        String</span><span style="color:#E1E4E8">[] beanDefinitionNames </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBeanDefinitionNames</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (String beanDefinitionName </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> beanDefinitionNames) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            BeanDefinition beanDefinition </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBeanDefinition</span><span style="color:#E1E4E8">(beanDefinitionName);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">            //Role ROLE_APPLICATION: 직접 등록한 애플리케이션 빈</span></span>
+<span class="line"><span style="color:#6A737D">            //Role ROLE_INFRASTRUCTURE: 스프링이 내부에서 사용하는 빈</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (beanDefinition.</span><span style="color:#B392F0">getRole</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> BeanDefinition.ROLE_APPLICATION) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                Object bean </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(beanDefinitionName);</span></span>
+<span class="line"><span style="color:#E1E4E8">                System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"name = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> beanDefinitionName </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> " object = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> bean);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>스프링 내부에서 사용하는 빈은 <code>getRole()</code>로 구분할 수 있다.</p>
+<ul>
+<li>
+<p><code>ROLE_APPLICATION</code> : <strong>일반적으로 사용자가 정의한 빈</strong></p>
+</li>
+<li>
+<p><code>ROLE_INFRASTRUCTURE</code> : 스프링이 내부에서 사용하는 빈</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="스프링-빈-조회---기본">스프링 빈 조회 - 기본</h2>
+<h3 id="applicationcontextbasicfindtest-클래스">ApplicationContextBasicFindTest 클래스</h3>
+<ul>
+<li>
+<p>스프링 컨테이너에서 스프링 빈을 찾는 가장 기본적인 조회 방법</p>
+<ul>
+<li><code>ac.getBean(빈이름, 타입)</code> 또는 <code>ac.getBean(타입)</code></li>
+</ul>
+</li>
+<li>
+<p>조회 대상 스프링 빈이 없으면 다음과 같은 예외가 발생한다.</p>
+<ul>
+<li><code>NoSuchBeanDefinitionException: No bean named 'xxxxx' available</code></li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.core.beanfind;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> org.assertj.core.api.Assertions.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> org.junit.jupiter.api.Assertions.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.DisplayName;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.Test;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.beans.factory.NoSuchBeanDefinitionException;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.AppConfig;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.member.MemberService;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.member.MemberServiceImpl;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ApplicationContextBasicFindTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    AnnotationConfigApplicationContext ac </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AnnotationConfigApplicationContext</span><span style="color:#E1E4E8">(AppConfig.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"빈 이름과 타입으로 조회"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanByName</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        MemberService memberService </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"memberService"</span><span style="color:#E1E4E8">, MemberService.class);</span></span>
+<span class="line"><span style="color:#6A737D">        //System.out.println("memberService = " + memberService);</span></span>
+<span class="line"><span style="color:#6A737D">        //System.out.println("memberService.getClass() = " + memberService.getClass());</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(memberService).</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(MemberServiceImpl.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름 없이 타입으로만 조회"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanByType</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        MemberService memberService </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(MemberService.class);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(memberService).</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(MemberServiceImpl.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"구체 타입 조회"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanByName2</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        MemberService memberService </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"memberService"</span><span style="color:#E1E4E8">, MemberServiceImpl.class);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(memberService).</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(MemberServiceImpl.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"빈 이름으로 조회X"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanByNameX</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        //ac.getBean("xxxxx", MemberService.class);</span></span>
+<span class="line"><span style="color:#6A737D">        // 오른쪽에 있는 로직이 실행하면 왼쪽에 있는 예외가 터지면 성공, 아니면 실패</span></span>
+<span class="line"><span style="color:#B392F0">        assertThrows</span><span style="color:#E1E4E8">(NoSuchBeanDefinitionException.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">            () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"xxxxx"</span><span style="color:#E1E4E8">, MemberService.class));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>검증은 <code>Assertions</code>을 사용하고, <code>Assertions</code>는 <code>org.assertJ.core.api</code>를 사용한다.</p>
+<ul>
+<li>assertThat : 검증할 때 쓰는 메소드</li>
+</ul>
+</li>
+<li>
+<p>구체 타입 조회는 타입으로 반환형인 <code>MemberServiceImpl.class</code>로 조회를 한다. 하지만 역할과 구현을 구분해야하고 역할에 의존해야하므로 구체 타입 조회는 안쓰는 것이 좋다.</p>
+</li>
+<li>
+<p>중요) 항상 테스트는 <strong>실패 테스트</strong>를 만들어야 한다. 그러기 위해서는 <code>Assertions</code>을 사용하고, <code>Assertions</code>는 <code>org.junit.jupiter.api</code>를 사용한다.</p>
+<ul>
+<li>
+<p>assertThrows : 실패할 때 쓰는 메소드로, 예외가 터질 때 테스트가 성공이 나온다.</p>
+</li>
+<li>
+<p>오른쪽에 있는 <code>() -> ac.getBean("xxxxx", MemberService.class)</code>이 실행을 하면, 왼쪽에 있는 <code>NoSuchBeanDefinitionException.class</code> 예외가 터진다는 의미이다.</p>
+</li>
+<li>
+<p>참고) Assertions를 static import(축약)를 하려면 <code>option + enter</code>를 눌러서 <code>Add on-demand static import</code>를 선택하면 된다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="스프링-빈-조회---동일한-타입-둘-이상">스프링 빈 조회 - 동일한 타입 둘 이상</h2>
+<h3 id="applicationcontextsamebeanfindtest-클래스">ApplicationContextSameBeanFindTest 클래스</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.core.beanfind;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> org.assertj.core.api.Assertions.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> org.junit.jupiter.api.Assertions.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Map;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.DisplayName;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.Test;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.beans.factory.NoUniqueBeanDefinitionException;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.Bean;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.Configuration;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.member.MemberRepository;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.member.MemoryMemberRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ApplicationContextSameBeanFindTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    AnnotationConfigApplicationContext ac </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AnnotationConfigApplicationContext</span><span style="color:#E1E4E8">(SameBeanConfig.class);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"타입으로 조회시 같은 타입으로 둘 이상 있으면, 중복 오류가 발생한다"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanByTypeDuplicate</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#B392F0">        assertThrows</span><span style="color:#E1E4E8">(NoUniqueBeanDefinitionException.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">            () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(MemberRepository.class));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"타입으로 조회시 같은 타입이 둘 이상 있으면, 빈 이름을 지정하면 된다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanByName</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        MemberRepository memberRepository </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"memberRepository1"</span><span style="color:#E1E4E8">, MemberRepository.class);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(memberRepository).</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(MemberRepository.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"특정 타입을 모두 조회하기"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findAllBeanByType</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">MemberRepository</span><span style="color:#E1E4E8">> beansOfType </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBeansOfType</span><span style="color:#E1E4E8">(MemberRepository.class);</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (String key </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> beansOfType.</span><span style="color:#B392F0">keySet</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"key = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> key </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> " value = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> beansOfType.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(key));</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"beansOfType = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> beansOfType);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(beansOfType.</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Configuration</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> SameBeanConfig</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> MemberRepository </span><span style="color:#B392F0">memberRepository1</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MemoryMemberRepository</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> MemberRepository </span><span style="color:#B392F0">memberRepository2</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MemoryMemberRepository</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>특정 타입을 모두 조회하려면 <code>ac.getBeansOfType()</code> 을 사용하면 된다.</li>
+</ul>
+<h2 id="스프링-빈-조회---상속-관계">스프링 빈 조회 - 상속 관계</h2>
+<ul>
+<li>
+<p><strong>상속 관계는 중요하다.</strong></p>
+</li>
+<li>
+<p>스프링 빈은 부모 타입으로 조회하면, 자식 타입도 함께 조회된다.</p>
+</li>
+<li>
+<p>참고로 스프링의 최상위 부모 <code>Object</code> 타입을 조회하면, 모든 스프링 빈을 조회하게 된다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/spring/spring-core-principle-4-2-1.md.png" alt=""></p>
+<h3 id="applicationcontextextendsfindtest-클래스">ApplicationContextExtendsFindTest 클래스</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.core.beanfind;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> org.assertj.core.api.Assertions.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> org.junit.jupiter.api.Assertions.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Map;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.DisplayName;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.junit.jupiter.api.Test;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.beans.factory.NoUniqueBeanDefinitionException;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.Bean;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.context.annotation.Configuration;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.discount.DiscountPolicy;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.discount.FixDiscountPolicy;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.core.discount.RateDiscountPolicy;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ApplicationContextExtendsFindTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    AnnotationConfigApplicationContext ac </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AnnotationConfigApplicationContext</span><span style="color:#E1E4E8">(TestConfig.class);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"부모 타입으로 조회시, 자식이 둘 이상 있으면, 중복 오류가 발생한다"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanByParentTypeDuplicate</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#B392F0">        assertThrows</span><span style="color:#E1E4E8">(NoUniqueBeanDefinitionException.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">            () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(DiscountPolicy.class));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"부모 타입으로 조회시, 자식이 둘 이상 있으면, 빈 이름을 지정하면 된다"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanByParentTypeBeanName</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        DiscountPolicy rateDiscountPolicy </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"rateDiscountPolicy"</span><span style="color:#E1E4E8">, DiscountPolicy.class);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(rateDiscountPolicy).</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(RateDiscountPolicy.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"특정 하위 타입으로 조회"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> findBeanBySubType</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        RateDiscountPolicy bean </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBean</span><span style="color:#E1E4E8">(RateDiscountPolicy.class);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(bean).</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(RateDiscountPolicy.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"부모 타입으로 모두 조회하기"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> finaAllBeanByParentType</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">DiscountPolicy</span><span style="color:#E1E4E8">> beansOfType </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBeansOfType</span><span style="color:#E1E4E8">(DiscountPolicy.class);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(beansOfType.</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (String key </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> beansOfType.</span><span style="color:#B392F0">keySet</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">" key =  "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> key </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "value = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> beansOfType.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(key));</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"부모 타입으로 모두 조회하기 - Object"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> finaAllBeanByObjectType</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">      Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Object</span><span style="color:#E1E4E8">> beansOfType </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ac.</span><span style="color:#B392F0">getBeansOfType</span><span style="color:#E1E4E8">(Object.class);</span></span>
+<span class="line"><span style="color:#F97583">      for</span><span style="color:#E1E4E8"> (String key </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> beansOfType.</span><span style="color:#B392F0">keySet</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">" key =  "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> key </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "value = "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> beansOfType.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(key));</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Configuration</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> TestConfig</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> DiscountPolicy </span><span style="color:#B392F0">rateDiscountPolicy</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> RateDiscountPolicy</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Bean</span></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#E1E4E8"> DiscountPolicy </span><span style="color:#B392F0">fixDiscountPolicy</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> FixDiscountPolicy</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>특정 하위 타입으로 조회하는 것보다 빈 이름을 지정해주는 것이 더 좋다.</p>
+</li>
+<li>
+<p>부모 타입으로 모두 조회하는 경우 <code>ac.getBeansOfType()</code> 을 사용하면 된다.</p>
+<ul>
+<li>(실무)실제 테스트 케이스에서는 출력문을 사용하면 안된다. (시스템이 자동으로 통과하는지 안하는지 스스로 결정하기 때문이다)</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard">스프링 핵심 원리 - 기본편</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Spring-Core-Principle-4-2" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#contents" data-toc="contents" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Contents</a></li><li><a href="#컨테이너에-등록된-모든-빈-조회" data-toc="컨테이너에-등록된-모든-빈-조회" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">컨테이너에 등록된 모든 빈 조회</a></li><li><a href="#applicationcontextinfotest-클래스" data-toc="applicationcontextinfotest-클래스" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">ApplicationContextInfoTest 클래스</a></li><li><a href="#스프링-빈-조회---기본" data-toc="스프링-빈-조회---기본" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">스프링 빈 조회 - 기본</a></li><li><a href="#applicationcontextbasicfindtest-클래스" data-toc="applicationcontextbasicfindtest-클래스" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">ApplicationContextBasicFindTest 클래스</a></li><li><a href="#스프링-빈-조회---동일한-타입-둘-이상" data-toc="스프링-빈-조회---동일한-타입-둘-이상" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">스프링 빈 조회 - 동일한 타입 둘 이상</a></li><li><a href="#applicationcontextsamebeanfindtest-클래스" data-toc="applicationcontextsamebeanfindtest-클래스" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">ApplicationContextSameBeanFindTest 클래스</a></li><li><a href="#스프링-빈-조회---상속-관계" data-toc="스프링-빈-조회---상속-관계" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">스프링 빈 조회 - 상속 관계</a></li><li><a href="#applicationcontextextendsfindtest-클래스" data-toc="applicationcontextextendsfindtest-클래스" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">ApplicationContextExtendsFindTest 클래스</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

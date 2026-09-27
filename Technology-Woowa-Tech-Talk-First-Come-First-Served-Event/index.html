@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[우아한테크토크] 선착순 이벤트 서버 생존기! 47만 RPM에서 살아남다?! | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Technology-Woowa-Tech-Talk-First-Come-First-Served-Event/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[우아한테크토크] 선착순 이벤트 서버 생존기! 47만 RPM에서 살아남다?!</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2024-02-03" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2024-02-03</time><a href="/category/#%ED%9B%84%EA%B8%B0" class="chip chip-tag">#후기</a></div><p class="view-count text-sm text-muted">조회수 8회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="선착순-이벤트-배너">선착순 이벤트 배너</h2>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-1.png" alt=""></p>
+<ul>
+<li>역대급 이벤트</li>
+<li>어떤 반응인지 커뮤니티를 참고</li>
+<li>그 중에서 “배민 또 장애 나겠네..” 반응도 있었음</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-2.png" alt=""></p>
+<ul>
+<li>장애나는 날 전화가 폭주함</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-3.png" alt=""></p>
+<ul>
+<li>2가지 큰 목표를 잡음</li>
+<li>개발 기간이 1~2주 → 빠르게 개발, 최대한 기존 로직은 건드리지 않고 새로운 시스템을 가지고 구성하려했음</li>
+</ul>
+<hr>
+<h2 id="문제-상황">문제 상황</h2>
+<h2 id="기존의-주문-시스템">기존의 주문 시스템</h2>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-4.png" alt=""></p>
+<ul>
+<li>주문에 들어가기전에 여러 유효성 검사처리를 하고, 해당 데이터들을 세션에 저장을 한다.</li>
+<li>고객이 주문지연 웹 뷰에 들어와서 정보를 입력 → 결제 → 결제완료 ⇒ 하나의 주문 건 완성</li>
+<li>하나의 주문이 완성하려면 수십건의 API 요청을 해야함</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-5.png" alt=""></p>
+<ul>
+<li>이렇게 “주문”은 여러 개의 시스템과 연계되어있음</li>
+</ul>
+<h3 id="이벤트시-문제점">이벤트시 문제점</h3>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-6.png" alt=""></p>
+<ul>
+<li>평소보다 10배이상 트래픽이 발생하게 됨</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-7.png" alt=""></p>
+<ul>
+<li>주말피크와 이벤트 최고 RPM 차이는 약 <strong>150배</strong> 차이가 남</li>
+<li>예상하지 못한 트래픽이 발생함(예상: 10배, 실제 150배)</li>
+<li>이렇게 예측을 못하게 되면 시스템은 장애가 날 수 밖에 없음 → 난리 나는 거임</li>
+<li>데이터 정합성에 맞는 노력을 할 것임</li>
+</ul>
+<p>스케일 아웃 / 스케일 업 ⇒ 할 수도 있지만, 10배를 대비해봤자 그 이상이 나오면 장애가 날 거임</p>
+<h2 id="해결-방안">해결 방안</h2>
+<ul>
+<li>골목식당에서 줄 서는 것도 장애가 나는거와 비슷함</li>
+<li>솔루션을 제공하는 백종원 아저씨가 항상 하는 말씀이 “<strong>처리할 수 있을 만큼만 순서대로 입장시켜라</strong>”</li>
+<li>김성주의 안내로 번호표를 통해 대기줄을 빠르게 정리되고 있었음</li>
+<li>저희는 이 김성주에 집중을 했음 ⇒ 모든 트래픽을 차례대로 처리할 수 있을 만큼 들여보내자.</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-8.png" alt=""></p>
+<ul>
+<li>일단 Redis를 선택함</li>
+</ul>
+<blockquote>
+<p>왜 Redis 를 선택했을까?</p>
+</blockquote>
+<ul>
+<li>많은 서비스에서 사용하는 검증된 저장소</li>
+<li>입/출력이 빠른 In-Memory 데이터베이스</li>
+<li>다양한 자료구조 지원, 요구사항을 쉽게 해결할 수 있었음</li>
+</ul>
+<blockquote>
+<p>어떤 요구사항인가?</p>
+</blockquote>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-9.png" alt=""></p>
+<h3 id="해결---sorted-set">해결 - Sorted set</h3>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-10.png" alt=""></p>
+<ul>
+<li>해당 자료구조 하나로 쉽게 처리할 수 있었음</li>
+</ul>
+<blockquote>
+<p>레디스 사용시 고려사항</p>
+</blockquote>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-11.png" alt=""></p>
+<ul>
+<li>Keys 명령어는 쓰면 장애가 남</li>
+<li>각 명령어의 시간복잡도를 확인해봐야 함 ⇒ Sorted Set의 경우 시간복잡도 O(log(n))</li>
+</ul>
+<h3 id="큐-시스템-플로우">큐 시스템 플로우</h3>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-12.png" alt=""></p>
+<ul>
+<li>이벤트 주문 요청을 하면 → 대기번호 발급 받음</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-13.png" alt=""></p>
+<ul>
+<li>현재 내 상태(참가열, 대기열)에 있는지 → 대기열이면 몇 번인지 조회</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-14.png" alt=""></p>
+<p>프로모션 스케줄러를 통해서 뒤로 흘리는 TPS를 조절</p>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-15.png" alt=""></p>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-16.png" alt=""></p>
+<ul>
+<li>순간적인 <strong>대량 트래픽</strong> 소화</li>
+<li>이제는 트래픽을 일정하게 보낼 수 있게 됨</li>
+</ul>
+<h3 id="주문라우터">주문라우터</h3>
+<p>하나의 문제점 → <code>큐 시스템</code>을 <strong>중간에 어떻게 끼워넣지?</strong></p>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-17.png" alt=""></p>
+<ul>
+<li>우아한형제들 회사에서 만든 <code>주문라우터</code> 를 이용</li>
+<li><code>주문라우터</code>에 있는 해당 Rule을 이용한다.</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-18.png" alt=""></p>
+<ul>
+<li>회원번호, 업소번호를 보고 → Rule에 들어있으면 ⇒ 설정된 post로 라우팅을 해준다. ⇒ 큐 시스템으로 넘어간다.</li>
+<li>만약 Rule 에 들어있지 않으면 → 주문 으로 넘어간다.</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-19.png" alt=""></p>
+<ul>
+<li>일반 사용자는 기존 프로세스의 경우 <strong>주문 라우터 → 주문</strong></li>
+<li>쿠폰발급 + 이벤트업소의 경우 <strong>주문 라우터 → 큐 시스템 → 주문</strong> 순으로 구현</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-20.png" alt=""></p>
+<ul>
+<li>AWS 사용하는 경우 주문 시스템을 “이벤트용 주문”에 복제해서 큐 시스템 뒤에 붙였음</li>
+<li>이렇게 하면 일반 사용자는 해당 영향을 받지 않도록 시스템을 격리시킴</li>
+</ul>
+<p>⇒ 이벤트에 영향없이 <strong>일반주문은 가능</strong>하도록 장애 격리</p>
+<h2 id="최종-아키텍쳐">최종 아키텍쳐</h2>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-21.png" alt=""></p>
+<blockquote>
+<p>모니터링 - CloudWatch</p>
+</blockquote>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-22.png" alt=""></p>
+<ul>
+<li>주요 서버들, 확인해야할 지표들만 가지고 대시보드로 구성해서 모니터링을 진행함</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-23.png" alt=""></p>
+<ul>
+<li>어드민을 만들어서 대기열, 참가열 모니터링, 변수 셋팅을 했음</li>
+</ul>
+<p><img src="/assets/img/server/technology/woowabros/Woowa-Tech-Talk-First-Come-First-Served-Event-24.png" alt=""></p>
+<ul>
+<li>이상 이벤트에 대한 대응을 잘했음</li>
+</ul>
+<h2 id="review">Review</h2>
+<p>10만 이상의 트래픽 경험을 쌓기 위해 해당 영상을 참고하게 되었다.</p>
+<p>해당 방식은 2019년 우아한형제들에서 발표한 내용으로 현재(2024) 사용하는 방식과 다소 차이가 있을 수 있다.</p>
+<p>또한 기존 Mysql 외에 Redis를 사용하면 비용과 관리도 그 만큼 증가하기 때문에, 상황에 맞게 적절히 사용하는게 엔지니어링의 역할이자 책임인 것 같다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=MTSn93rNPPE&#x26;ab_channel=%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC">[우아한테크토크] 선착순 이벤트 서버 생존기! 47만 RPM에서 살아남다?!</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Technology-Woowa-Tech-Talk-First-Come-First-Served-Event" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#선착순-이벤트-배너" data-toc="선착순-이벤트-배너" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">선착순 이벤트 배너</a></li><li><a href="#문제-상황" data-toc="문제-상황" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">문제 상황</a></li><li><a href="#기존의-주문-시스템" data-toc="기존의-주문-시스템" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">기존의 주문 시스템</a></li><li><a href="#이벤트시-문제점" data-toc="이벤트시-문제점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">이벤트시 문제점</a></li><li><a href="#해결-방안" data-toc="해결-방안" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">해결 방안</a></li><li><a href="#해결---sorted-set" data-toc="해결---sorted-set" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">해결 - Sorted set</a></li><li><a href="#큐-시스템-플로우" data-toc="큐-시스템-플로우" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">큐 시스템 플로우</a></li><li><a href="#주문라우터" data-toc="주문라우터" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">주문라우터</a></li><li><a href="#최종-아키텍쳐" data-toc="최종-아키텍쳐" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">최종 아키텍쳐</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

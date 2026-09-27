@@ -1,0 +1,550 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[Programmers] SQL &gt; JOIN 풀이 모음 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/SQL-Join/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="hover:underline" data-astro-cid-g5songws>알고리즘</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[Programmers] SQL &gt; JOIN 풀이 모음</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-12-27" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-12-27</time><a href="/category/#SQL" class="chip chip-tag">#SQL</a><a href="/category/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4" class="chip chip-tag">#프로그래머스</a></div><p class="view-count text-sm text-muted">조회수 35회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="상품-별-오프라인-매출-구하기lv2">상품 별 오프라인 매출 구하기(Lv.2)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/131533">상품 별 오프라인 매출 구하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>PRODUCT</code> 테이블과 <code>OFFLINE_SALE</code> 테이블에서</p>
+<p>상품코드 별 매출액(판매가 * 판매량) 합계를 출력하는 SQL문을 작성해주세요.</p>
+<p>결과는 매출액을 기준으로 내림차순 정렬해주시고</p>
+<p>매출액이 같다면 상품코드를 기준으로 오름차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code-1-231227">Answer Code 1 (23.12.27)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_CODE</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">       (</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRICE</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOT_SALES_AMOUNT</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> SALES</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> PRODUCT A</span></span>
+<span class="line"><span style="color:#F97583">       LEFT JOIN</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#F97583">  SELECT</span><span style="color:#E1E4E8"> PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">       , </span><span style="color:#79B8FF">SUM</span><span style="color:#E1E4E8">(SALES_AMOUNT) TOT_SALES_AMOUNT</span></span>
+<span class="line"><span style="color:#F97583">  FROM</span><span style="color:#E1E4E8"> OFFLINE_SALE B</span></span>
+<span class="line"><span style="color:#F97583">  GROUP BY</span></span>
+<span class="line"><span style="color:#E1E4E8">    PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">) B</span></span>
+<span class="line"><span style="color:#F97583">                 ON</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_ID</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#E1E4E8"> SALES </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8">, PRODUCT_CODE </span><span style="color:#F97583">ASC</span></span></code></pre>
+<h3 id="answer-code1---문제-풀이">Answer Code1 - 문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li>OFFLINE_SALE 테이블에서 PRODUCT_ID별 판매 수량 집계하기(GROUP BY)</li>
+<li>PRODUCT 테이블과 조인하기(JOIN)</li>
+<li>이때, 매출액은 상품코드 별 매출액(판매가 * 판매량) 합계를 계산(SUM)</li>
+<li>매출액을 기준으로 내림차순 정렬, 만약 매출액이 같다면 상품코드를 기준으로 오름차순 정렬(ORDER BY)</li>
+</ol>
+<ul>
+<li>
+<p>첫 번째 단계는 OFFLINE_SALE 테이블에서 PRODUCT_ID 별 판매 수량을 집계한다.</p>
+</li>
+<li>
+<p>이때 GROUP BY를 집계해서 각 상품별 수량을 산출한다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">        , </span><span style="color:#79B8FF">SUM</span><span style="color:#E1E4E8">(SALES_AMOUNT) TOT_SALES_AMOUNT</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> OFFLINE_SALE B</span></span>
+<span class="line"><span style="color:#F97583">GROUP BY</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">    PRODUCT_ID</span></span></code></pre>
+<ul>
+<li>
+<p>두 번째 단계는 앞에서 진행한 결과를 서브쿼리로 넣고, PRODUCT 테이블을 기준으로 LEFT JOIN을 해준다.</p>
+</li>
+<li>
+<p>이 결과를 통해 각 상품별 총 판매개수와 상품별 금액을 알 수 있다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> PRODUCT A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#F97583">            SELECT</span><span style="color:#E1E4E8"> PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">                 , </span><span style="color:#79B8FF">SUM</span><span style="color:#E1E4E8">(SALES_AMOUNT) TOT_SALES_AMOUNT</span></span>
+<span class="line"><span style="color:#F97583">            FROM</span><span style="color:#E1E4E8"> OFFLINE_SALE B</span></span>
+<span class="line"><span style="color:#F97583">            GROUP BY</span></span>
+<span class="line"><span style="color:#E1E4E8">              PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">) B</span></span>
+<span class="line"><span style="color:#F97583">  ON</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_ID</span></span></code></pre>
+<ul>
+<li>세 번째 단계는 상품코드와 상품코드별 매출액(판매가 * 판매량) 합계를 산출한다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_CODE</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">       (</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRICE</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOT_SALES_AMOUNT</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> SALES</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> PRODUCT A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#F97583">            SELECT</span><span style="color:#E1E4E8"> PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">                 , </span><span style="color:#79B8FF">SUM</span><span style="color:#E1E4E8">(SALES_AMOUNT) TOT_SALES_AMOUNT</span></span>
+<span class="line"><span style="color:#F97583">            FROM</span><span style="color:#E1E4E8"> OFFLINE_SALE B</span></span>
+<span class="line"><span style="color:#F97583">            GROUP BY</span></span>
+<span class="line"><span style="color:#E1E4E8">              PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">) B</span></span>
+<span class="line"><span style="color:#F97583">  ON</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_ID</span></span></code></pre>
+<ul>
+<li>마지막 단계에서는 매출액을 기준으로 내림차순 정렬, 만약 매출액이 같다면 상품코드를 기준으로 오름차순 정렬(ORDER BY)을 해준다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_CODE</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">       (</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRICE</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOT_SALES_AMOUNT</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> SALES</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> PRODUCT A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#F97583">            SELECT</span><span style="color:#E1E4E8"> PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">                 , </span><span style="color:#79B8FF">SUM</span><span style="color:#E1E4E8">(SALES_AMOUNT) TOT_SALES_AMOUNT</span></span>
+<span class="line"><span style="color:#F97583">            FROM</span><span style="color:#E1E4E8"> OFFLINE_SALE B</span></span>
+<span class="line"><span style="color:#F97583">            GROUP BY</span></span>
+<span class="line"><span style="color:#E1E4E8">              PRODUCT_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">) B</span></span>
+<span class="line"><span style="color:#F97583">  ON</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PRODUCT_ID</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#E1E4E8"> SALES </span><span style="color:#F97583">DESC</span><span style="color:#E1E4E8">, PRODUCT_CODE </span><span style="color:#F97583">ASC</span></span></code></pre>
+<hr>
+<h2 id="조건에-맞는-도서와-저자-리스트-출력하기lv2">조건에 맞는 도서와 저자 리스트 출력하기(Lv.2)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/144854">조건에 맞는 도서와 저자 리스트 출력하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: <code>'경제'</code> 카테고리에 속하는 도서들의</p>
+<p>도서 ID(<code>BOOK_ID</code>), 저자명(<code>AUTHOR_NAME</code>), 출판일(<code>PUBLISHED_DATE)</code> 리스트를 출력하는 SQL문을 작성해주세요.</p>
+<p>결과는 출판일을 기준으로 오름차순 정렬해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code-1-231227-1">Answer Code 1 (23.12.27)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">BOOK_ID</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#79B8FF">       B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_NAME</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#F97583">       DATE_FORMAT</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PUBLISHED_DATE</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'%Y-%m-%d'</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> PUBLISHED_DATE</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> BOOK A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> AUTHOR B </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CATEGORY</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> '경제'</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PUBLISHED_DATE</span><span style="color:#F97583"> ASC</span></span></code></pre>
+<h3 id="answer-code-1---문제-풀이">Answer Code 1 - 문제 풀이</h3>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ol>
+<li>‘경제’ 카테고리에 속하는 도서들을 -> WHERE</li>
+<li>AUTHOR 테이블과 조인한 뒤, BOOK_ID, AUTHOR_NAME, PUBLISHED_DATE 조회 -> SELECT</li>
+<li>PUBLISHED_DATE 기준으로 오름차순 -> ORDER BY</li>
+<li>PUBLISHED_DATE를 예시와 같이 DATE_FORMAT을 사용하여 조회한다.</li>
+</ol>
+<ul>
+<li>첫 번째 단계에서는 BOOK 테이블에서 ‘경제’ 카테고리에 속하는 도서들을 조회한다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> BOOK</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8"> CATEGORY </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '경제'</span></span></code></pre>
+<ul>
+<li>
+<p>두 번째 단계에서는 AUTHOR_NAME을 조회하기 위해 AUTHOR_ID를 기준으로 AUTHOR 테이블과 조인한다.</p>
+</li>
+<li>
+<p>그런 다음, BOOK_ID, AUTHOR_NAME, PUBLISHED_DATE 조회한다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">BOOK_ID</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_NAME</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PUBLISHED_DATE</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> BOOK A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> AUTHOR B </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CATEGORY</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> '경제'</span></span></code></pre>
+<ul>
+<li>세 번째 단계에서는 PUBLISHED_DATE 기준으로 오름차순으로 정렬해준다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">BOOK_ID</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_NAME</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PUBLISHED_DATE</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> BOOK A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> AUTHOR B </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CATEGORY</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> '경제'</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PUBLISHED_DATE</span><span style="color:#F97583"> ASC</span></span></code></pre>
+<ul>
+<li>
+<p>마지막 단계에서는 PUBLISHED_DATE를 예시와 같이 DATE_FORMAT을 사용하여 조회한다.</p>
+</li>
+<li>
+<p>DATE_FORMAT을() 함수를 이용해 <code>'%Y-%m-%d'</code> 형태로 변경해주면 된다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">BOOK_ID</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#79B8FF">       B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_NAME</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#F97583">       DATE_FORMAT</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PUBLISHED_DATE</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'%Y-%m-%d'</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> PUBLISHED_DATE</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> BOOK A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> AUTHOR B </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CATEGORY</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> '경제'</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PUBLISHED_DATE</span><span style="color:#F97583"> ASC</span></span></code></pre>
+<h3 id="answer-code-2-231227">Answer Code 2 (23.12.27)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">BOOK_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">        , </span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_NAME</span></span>
+<span class="line"><span style="color:#E1E4E8">        , </span><span style="color:#F97583">DATE_FORMAT</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">PUBLISHED_DATE</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'%Y-%m-%d'</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> PUBLISHED_DATE</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8">  (</span></span>
+<span class="line"><span style="color:#F97583">      SELECT</span><span style="color:#F97583">  *</span></span>
+<span class="line"><span style="color:#F97583">        FROM</span><span style="color:#E1E4E8">  BOOK </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> A</span></span>
+<span class="line"><span style="color:#F97583">       WHERE</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">CATEGORY</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> '경제'</span></span>
+<span class="line"><span style="color:#E1E4E8">      ) A</span></span>
+<span class="line"><span style="color:#E1E4E8">LEFT </span></span>
+<span class="line"><span style="color:#F97583">JOIN</span><span style="color:#E1E4E8">  AUTHOR </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> B</span></span>
+<span class="line"><span style="color:#F97583">  ON</span><span style="color:#79B8FF">  A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">AUTHOR_ID</span></span>
+<span class="line"><span style="color:#E1E4E8">ORDER</span></span>
+<span class="line"><span style="color:#F97583">  BY</span><span style="color:#E1E4E8">  PUBLISHED_DATE </span><span style="color:#F97583">ASC</span></span></code></pre>
+<h3 id="answer-code-2---문제-풀이">Answer Code 2 - 문제 풀이</h3>
+<ul>
+<li>
+<p>두 번재 풀이의 경우, BOOK 테이블과 AUTHOR 테이블을 결합하기 전에 BOOK 테이블에서 CATEGORY 컬럼에서 ‘경제’ 값만 먼저 추출해주는 것이다.</p>
+</li>
+<li>
+<p>이후 AUTHOR 테이블과 조인을 통해 결합을 했다.</p>
+</li>
+</ul>
+<h3 id="review">Review</h3>
+<ul>
+<li>
+<p>1번째 풀이 방식이 2번째보다 더 효율적이라고 생각한다.</p>
+</li>
+<li>
+<p>데이터의 양이 많을 경우 1번째 처럼 LEFT JOIN을 먼저 실행하고 WHERE 절을 적용하면, JOIN하는 과정에서 <strong>데이터가 더 많아져서 비효율적</strong>이라고 본다.</p>
+</li>
+<li>
+<p>반면에, 2번째 풀이 방식처럼 <strong>서브 쿼리가 들어가더라도 필요한 컬럼과 필요한 조건에 해당하는 데이터만 추출하여, 데이터의 크기(size)가 축소한 이후에 JOIN이 이뤄진다면</strong></p>
+</li>
+<li>
+<p>1번째 보다 더 효율적이라고 생각한다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="오랜-기간-보호한-동물1-lv3">오랜 기간 보호한 동물(1) (Lv.3)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/59044">오랜 기간 보호한 동물(1)</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: 아직 입양을 못 간 동물 중,</p>
+<p>가장 오래 보호소에 있었던 동물 3마리의 이름과 보호 시작일을 조회하는 SQL문을 작성해주세요.</p>
+<p>이때 결과는 보호 시작일 순으로 조회해야 합니다.</p>
+</li>
+</ul>
+<h3 id="answer-code1-250904">Answer Code1 (25.09.04)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> INS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">NAME</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">INS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> ANIMAL_INS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> INS</span></span>
+<span class="line"><span style="color:#F97583">       LEFT JOIN</span><span style="color:#E1E4E8"> ANIMAL_OUTS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> OUTS </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> INS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> OUTS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> OUTS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span><span style="color:#F97583"> IS</span><span style="color:#F97583"> NULL</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> INS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span></span>
+<span class="line"><span style="color:#F97583">  LIMIT</span><span style="color:#79B8FF"> 3</span></span></code></pre>
+<h3 id="answer-code1---문제-풀이-1">Answer Code1 - 문제 풀이</h3>
+<p>ANIMAL_INS - 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부</p>
+<p>ANIMAL_OUTS - 동물의 아이디, 생물 종, 입양일, 이름, 성별 및 중성화 여부</p>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ul>
+<li>
+<p><code>ANIMAL_ID</code>를 기준으로 <code>ANIMAL_INS</code> 테이블과 <code>ANIMAL_OUTS</code> 테이블을 JOIN</p>
+</li>
+<li>
+<p><code>JOIN</code>: ANIMAL_INS 테이블(INS)을 기준으로, ANIMAL_OUTS 테이블(OUTS)과 ANIMAL_ID로 LEFT JOIN 한다.</p>
+</li>
+<li>
+<p><strong>입양 못 간 동물 조회 (WHERE)</strong>: LEFT JOIN을 하면 입양 기록이 없는 동물의 OUTS 테이블 정보는 <code>NULL</code> 이 된다. 이 원리를 이용해 <code>WHERE OUTS.DATETIME IS NULL</code> 조건으로 입양 가지 못한 동물만 골라낸다.</p>
+</li>
+<li>
+<p>정렬 (ORDER BY): 가장 오래 보호소에 있었던 동물’은 <strong>‘보호 시작일이 가장 빠른 동물’</strong> 과 같다. 따라서 보호 시작일 순서대로 정렬한다. (ORDER BY INS.DATETIME)</p>
+<ul>
+<li>참고로, ORDER BY의 <strong>기본 정렬은 오름차순(ASC)</strong> 이다.</li>
+</ul>
+</li>
+<li>
+<p>결과 수 제한 (LIMIT): 정렬된 결과 중 상위 3마리만 선택한다. (LIMIT 3)</p>
+</li>
+<li>
+<p>최종 조회 (SELECT): 해당 동물의 이름(INS.NAME)과 보호 시작일(INS.DATETIME)을 조회한다.</p>
+</li>
+</ul>
+<blockquote>
+<p>LIMIT 3가 마지막에 오는 이유</p>
+</blockquote>
+<ul>
+<li>
+<p>LIMIT가 마지막에 오는 이유는 <strong>SQL 쿼리의 실행 순서</strong> 때문이다.</p>
+</li>
+<li>
+<p>보통은 쿼리의 실행 순서는 아래와 같이 진행된다.</p>
+<ul>
+<li>
+<p>(1) FROM / JOIN: NIMAL_INS와 ANIMAL_OUTS 테이블을 합친다.</p>
+</li>
+<li>
+<p>(2) WHERE: 친 데이터에서 입양 간 동물들을 제외한다. (OUTS.DATETIME IS NULL).</p>
+</li>
+<li>
+<p>(3) ORDER BY: 은 동물들을 보호 시작일(INS.DATETIME) 순서대로 정렬한다.</p>
+</li>
+<li>
+<p>(4) SELECT: 정렬된 결과에서 이름과 보호 시작일을 선택한다.</p>
+</li>
+<li>
+<p>(5) LIMIT: 최종적으로 정렬된 결과의 맨 위에서 3개만 잘라낸다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>따라서 <strong>원하는 순서대로 모든 데이터를 정렬한 뒤</strong>(<code>ORDER BY</code>), 그중에서 원하는 개수만큼만 가져오기 위해 <code>LIMIT</code>는 <strong>항상 <code>ORDER BY </code>뒤에 위치</strong>해야 한다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="없어진-기록-찾기-lv3">없어진 기록 찾기 (LV.3)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/59042">없어진 기록 찾기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제:</p>
+<ul>
+<li>
+<p>천재지변으로 인해 일부 데이터가 유실되었습니다.</p>
+</li>
+<li>
+<p>입양을 간 기록은 있는데,</p>
+</li>
+<li>
+<p>보호소에 들어온 기록이 없는 동물의 ID와 이름을 ID 순으로 조회하는 SQL문을 작성해주세요.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="answer-code-1240103">Answer Code 1(24.01.03)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> O</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">O</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">NAME</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> ANIMAL_INS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> I</span></span>
+<span class="line"><span style="color:#F97583">RIGHT JOIN</span><span style="color:#E1E4E8"> ANIMAL_OUTS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> O </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> I</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> O</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> I</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#F97583"> IS</span><span style="color:#F97583"> NULL</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> O</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="answer-code-1---문제-풀이-1">Answer Code 1 - 문제 풀이</h3>
+<p>ANIMAL_INS</p>
+<ul>
+<li>동물 보호소에 들어온 동물의 정보.</li>
+<li>동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부</li>
+</ul>
+<p>ANIMAL_OUTS</p>
+<ul>
+<li>동물 보호소에서 입양 보낸 동물의 정보</li>
+<li>각각 동물의 아이디, 생물 종, 입양일, 이름, 성별 및 중성화 여부</li>
+</ul>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ul>
+<li>
+<p><code>ANIMAL_OUTS</code> 테이블 기준으로 <code>ANIMAL_INS</code> 테이블과 <code>ANIMAL_ID</code>으로 <strong>RIGHT JOIN</strong></p>
+</li>
+<li>
+<p>입양일은 존재하나, 보호 시작일이 존재하지 않은 동물 -> ANIMAL_INS 테이블에서 ANIMAL_ID가 없는 경우</p>
+</li>
+<li>
+<p>ID와 이름을 조회(SELECT)</p>
+</li>
+<li>
+<p>ID 순으로 조회(ORDER)</p>
+</li>
+</ul>
+<hr>
+<p><img src="/assets/img/algorithm/sql/sql-right-join.png" alt=""></p>
+<ul>
+<li>
+<p>위 그림처럼 INNER JOIN은 두 개의 테이블에 모두 속하는 교집합에 대한 결과를 찾아내는 것이고,</p>
+<p>OUTER JOIN은 교집합에 대해 포함된 결과와 LEFT, RIGHT 중 하나의 테이블은 무조건 결과에 포함시키는 쿼리이다.</p>
+</li>
+<li>
+<p>예를 들어, TABLE_A LEFT JOIN TABLE_B -> TABLE_A의 결과는 모두 노출하고 A와 교집합이 있는 B만 추가로 추출한다는 뜻이다.</p>
+</li>
+<li>
+<p>이 문제에서는 <code>ANIMAL_OUTS</code> 테이블을 기준으로 ID와 이름을 조회할 때 <strong>RIGHT JOIN</strong>을 사용하면,</p>
+</li>
+<li>
+<p>오른쪽에는 <code>ANIMAL_OUTS</code> 테이블을 작성하고, 왼쪽인 FROM 절 뒤에는 <code>ANIMAL_OUTS</code> 테이블이 아닌 <code>ANIMAL_INS</code> 테이블을 작성한다.</p>
+</li>
+</ul>
+<h3 id="answer-code-2250904">Answer Code 2(25.09.04)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#6A737D">-- ANIMAL_INS: 동물 보호소에 들어온 동물의 정보</span></span>
+<span class="line"><span style="color:#6A737D">-- ANIMAL_OUTS: 동물 보호소에서 입양 보낸 동물의 정보</span></span>
+<span class="line"><span style="color:#6A737D">-- 보호소에 들어온 기록이 없는 동물의 ID, 이름을 ID순으로 조회</span></span>
+<span class="line"><span style="color:#6A737D">-- Allie -> 입양 보낸 기록은 있는데, 들어온 기록은 없음</span></span>
+<span class="line"><span style="color:#6A737D">-- Spice -> 역시 마찬가지</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> O</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">O</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">NAME</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> ANIMAL_OUTS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> O</span></span>
+<span class="line"><span style="color:#F97583">       LEFT JOIN</span><span style="color:#E1E4E8"> ANIMAL_INS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> I </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> O</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> I</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> I</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#F97583"> IS</span><span style="color:#F97583"> NULL</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> O</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="answer-code-2---문제-풀이-1">Answer Code 2 - 문제 풀이</h3>
+<ul>
+<li>
+<p><code>ANIMAL_OUTS</code> 테이블을 기준으로 <code>ANIMAL_INS</code> 테이블과 <code>ANIMAL_ID</code>로 LEFT JOIN을 수행한다.</p>
+</li>
+<li>
+<p>입양 기록(<code>ANIMAL_OUTS</code>)은 있지만 보호소에 들어온 기록(<code>ANIMAL_INS</code>)이 없는 동물을 찾는다. (<code>WHERE I.ANIMAL_ID IS NULL</code> 조건)</p>
+</li>
+<li>
+<p>찾아낸 동물의 ID와 이름을 조회(<code>SELECT</code>)한다.</p>
+</li>
+<li>
+<p>결과를 ID 순으로 정렬(<code>ORDER BY</code>)한다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="있었는데요-없었습니다-lv3">있었는데요 없었습니다. (LV.3)</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/59043">있었는데요 없었습니다</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: 관리자의 실수로 일부 동물의 입양일이 잘못 입력되었습니다.</p>
+<p>보호 시작일보다 입양일이 더 빠른 동물의 아이디와 이름을 조회하는 SQL문을 작성해주세요.</p>
+<p>이때 결과는 보호 시작일이 빠른 순으로 조회해야합니다.</p>
+</li>
+</ul>
+<h3 id="answer-code-1240104">Answer Code 1(24.01.04)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> ANIMAL_ID, </span><span style="color:#F97583">NAME</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> ANIMAL_OUTS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> A</span></span>
+<span class="line"><span style="color:#F97583">LEFT JOIN</span><span style="color:#E1E4E8"> ANIMAL_INS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> B </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span><span style="color:#F97583"> &#x3C;</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span></span></code></pre>
+<h3 id="answer-code-1---문제-풀이-2">Answer Code 1 - 문제 풀이</h3>
+<p>ANIMAL_INS - 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부</p>
+<p>ANIMAL_OUTS - 각각 동물의 아이디, 생물 종, 입양일, 이름, 성별 및 중성화 여부</p>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ul>
+<li>
+<p>입양일 필드를 가지고 있는 <code>ANIMAL_OUTS</code> 테이블을 기준으로 <code>ANIMAL_INS</code> 테이블과 JOIN</p>
+</li>
+<li>
+<p>보호 시작일보다 입양일이 더 빠른 동물 -> <strong><code>ANIMAL_INS.DATETIME(보호 시작일) > ANIMAL_OUTS.DATETIME(입양일)</code></strong></p>
+<ul>
+<li>더 빠른 요일은 <strong>더 작다는 것</strong>을 의미하기 때문에, 보호 시작일이 입양일보다 커야 한다.</li>
+</ul>
+</li>
+<li>
+<p>동물의 아이디와 이름을 조회 -> SELECT</p>
+</li>
+<li>
+<p>보호 시작일을 기준으로 내림차순 정렬하여 결과를 출력한다.</p>
+</li>
+</ul>
+<h3 id="answer-code-2250904-1">Answer Code 2(25.09.04)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#6A737D">-- INS: 동물 보호소에 들어온 동물의 정보</span></span>
+<span class="line"><span style="color:#6A737D">-- OUTS: 테이블은 동물 보호소에서 입양 보낸 동물의 정보</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> OUTS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">OUTS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">NAME</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> ANIMAL_OUTS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> OUTS</span></span>
+<span class="line"><span style="color:#F97583">       LEFT JOIN</span><span style="color:#E1E4E8"> ANIMAL_INS </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> INS </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> OUTS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> INS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">ANIMAL_ID</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> OUTS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span><span style="color:#F97583"> &#x3C;</span><span style="color:#79B8FF"> INS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> INS</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">DATETIME</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h3 id="answer-code-2---문제-풀이-2">Answer Code 2 - 문제 풀이</h3>
+<ul>
+<li>
+<p>보호 시작일(INS)보다 입양일(OUTS)이 더 빠른 동물의 아이디와 이름을 조회하는 문제.</p>
+<ul>
+<li>
+<p>더 빠르다는 것은 더 작다는것이므로 => <code>OUTS.DATETIME (입양일) &#x3C; INS.DATETIME(보호 시작일)</code></p>
+</li>
+<li>
+<p>결과는 보호 시작일(INS)이 빠른 순 -> 오름차순</p>
+</li>
+</ul>
+</li>
+<li>
+<p>날짜와 시간 데이터에서 <strong>‘빠르다’는 것은 ‘더 이전’을 의미하고, 이는 곧 ‘더 작은 숫자’</strong> 에 해당한다.</p>
+<ul>
+<li>
+<p>빠른 날짜 (과거): 2023년 1월 1일</p>
+</li>
+<li>
+<p>늦은 날짜 (미래): 2025년 9월 4일</p>
+</li>
+</ul>
+</li>
+<li>
+<p>데이터로 변환하면 과거의 날짜가 더 작은 값을 가집니다. 즉, <code>2023-01-01</code> &#x3C; <code>2025-09-04</code> 이다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="주문량이-많은-아이스크림들-조회하기">주문량이 많은 아이스크림들 조회하기</h2>
+<blockquote>
+<p><a href="https://school.programmers.co.kr/learn/courses/30/lessons/133027">주문량이 많은 아이스크림들 조회하기</a></p>
+</blockquote>
+<ul>
+<li>
+<p>문제: 7월 아이스크림 총 주문량과 상반기의 아이스크림 총 주문량을 더한 값이 큰 순서대로</p>
+<p>상위 3개의 맛을 조회하는 SQL 문을 작성해주세요.</p>
+</li>
+</ul>
+<h3 id="answer-code240104">Answer Code(24.01.04)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> FIRST_HALF </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> A</span></span>
+<span class="line"><span style="color:#F97583">       JOIN</span><span style="color:#E1E4E8"> JULY </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> B </span></span>
+<span class="line"><span style="color:#F97583">           ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span></span>
+<span class="line"><span style="color:#F97583">GROUP BY</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> SUM</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOTAL_ORDER</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> SUM</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOTAL_ORDER</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">DESC</span><span style="color:#F97583"> LIMIT</span><span style="color:#79B8FF"> 3</span></span></code></pre>
+<h3 id="문제-풀이">문제 풀이</h3>
+<p>FIRST_HALF :  아이스크림 가게의 상반기 주문 정보 -  SHIPMENT_ID(JULY테이블의 SHIPMENT_ID의 외래 키), FLAVOR(기본 키), TOTAL_ORDER</p>
+<p>JULY : 7월의 아이스크림 주문 정보 - SHIPMENT_ID(기본 키), FLAVOR(FIRST_HALF 테이블의 FLAVOR의 외래 키), TOTAL_ORDER</p>
+<blockquote>
+<p>문제를 풀기 위해서 해야할 작업들</p>
+</blockquote>
+<ul>
+<li>
+<p><code>FLAVOR</code> 이 조회되는 것이므로 해당 기본 키를 갖고 있는 테이블인 <code>FIRST_HALF</code> 테이블을 기준으로 <code>JULY</code> 테이블과 JOIN</p>
+</li>
+<li>
+<p>7월 아이스크림 총 주문량과 상반기 아이스크림 총 주문량을 더한 값을 구한다.</p>
+</li>
+<li>
+<p>상위 3개 맛을 조회하기 위해 LIMIT 절을 사용하고, FLAVOR을 기준으로 내림차순 정렬하여 결과를 출력한다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[1] <code>FLAVOR</code> 이 조회되는 것이므로 해당 기본 키를 갖고 있는 테이블인 <code>FIRST_HALF</code> 테이블을 기준으로 <code>JULY</code> 테이블과 JOIN</p>
+</blockquote>
+<ul>
+<li>FLAVOR를 기준으로 JULY 테이블과 JOIN한다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> FIRST_HALF </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> A </span></span>
+<span class="line"><span style="color:#F97583">    JOIN</span><span style="color:#E1E4E8"> JULY </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> B </span></span>
+<span class="line"><span style="color:#F97583">        ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span></span></code></pre>
+<blockquote>
+<p>[2] 7월 아이스크림 총 주문량과 상반기 아이스크림 총 주문량을 더한 값을 구한다.</p>
+</blockquote>
+<ul>
+<li>상반기 아이스크림과 7월 아이스크림 총 주문량을 각각 계산해서 더해준다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> SUM</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOTAL_ORDER</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> SUM</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOTAL_ORDER</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<blockquote>
+<p>[3] 상위 3개 맛을 조회하기 위해 LIMIT 절을 사용하고, FLAVOR을 기준으로 내림차순 정렬하여 결과를 출력한다.</p>
+</blockquote>
+<ul>
+<li>
+<p>2번에서 풀이한 것을 바탕으로 LIMIT 절과 FLAVOR을 기준으로 내림차순 해준다.</p>
+</li>
+<li>
+<p>이때, FIRST_HALF 테이블의 기본키인 FLAVOR을 기준으로 그룹핍을 해준다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> FIRST_HALF </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> A</span></span>
+<span class="line"><span style="color:#F97583">       JOIN</span><span style="color:#E1E4E8"> JULY </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> B </span></span>
+<span class="line"><span style="color:#F97583">           ON</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span></span>
+<span class="line"><span style="color:#F97583">GROUP BY</span><span style="color:#79B8FF"> A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">FLAVOR</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#79B8FF"> SUM</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">A</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOTAL_ORDER</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> SUM</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">B</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TOTAL_ORDER</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">DESC</span><span style="color:#F97583"> LIMIT</span><span style="color:#79B8FF"> 3</span></span></code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://kkw-da.tistory.com/">https://kkw-da.tistory.com/</a></li>
+<li><a href="https://habiis.tistory.com/118">https://habiis.tistory.com/118</a> (JOIN 종류)</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="SQL-Join" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-383-Ransom-Note/" class="link-title leading-snug">383. Ransom Note</a><time datetime="2024-09-17" class="mt-1.5 block text-sm text-muted">2024-09-17</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-232-Implement-Queue-using-Stacks/" class="link-title leading-snug">32. Implement Queue using Stacks</a><time datetime="2024-09-14" class="mt-1.5 block text-sm text-muted">2024-09-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Programmers-118667/" class="link-title leading-snug">[Programmers] 118667. 두 큐 합 같게 만들기(queue)</a><time datetime="2023-12-28" class="mt-1.5 block text-sm text-muted">2023-12-28</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#상품-별-오프라인-매출-구하기lv2" data-toc="상품-별-오프라인-매출-구하기lv2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">상품 별 오프라인 매출 구하기(Lv.2)</a></li><li><a href="#answer-code-1-231227" data-toc="answer-code-1-231227" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 1 (23.12.27)</a></li><li><a href="#answer-code1---문제-풀이" data-toc="answer-code1---문제-풀이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code1 - 문제 풀이</a></li><li><a href="#조건에-맞는-도서와-저자-리스트-출력하기lv2" data-toc="조건에-맞는-도서와-저자-리스트-출력하기lv2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">조건에 맞는 도서와 저자 리스트 출력하기(Lv.2)</a></li><li><a href="#answer-code-1-231227-1" data-toc="answer-code-1-231227-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 1 (23.12.27)</a></li><li><a href="#answer-code-1---문제-풀이" data-toc="answer-code-1---문제-풀이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 1 - 문제 풀이</a></li><li><a href="#answer-code-2-231227" data-toc="answer-code-2-231227" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 2 (23.12.27)</a></li><li><a href="#answer-code-2---문제-풀이" data-toc="answer-code-2---문제-풀이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 2 - 문제 풀이</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Review</a></li><li><a href="#오랜-기간-보호한-동물1-lv3" data-toc="오랜-기간-보호한-동물1-lv3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">오랜 기간 보호한 동물(1) (Lv.3)</a></li><li><a href="#answer-code1-250904" data-toc="answer-code1-250904" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code1 (25.09.04)</a></li><li><a href="#answer-code1---문제-풀이-1" data-toc="answer-code1---문제-풀이-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code1 - 문제 풀이</a></li><li><a href="#없어진-기록-찾기-lv3" data-toc="없어진-기록-찾기-lv3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">없어진 기록 찾기 (LV.3)</a></li><li><a href="#answer-code-1240103" data-toc="answer-code-1240103" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 1(24.01.03)</a></li><li><a href="#answer-code-1---문제-풀이-1" data-toc="answer-code-1---문제-풀이-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 1 - 문제 풀이</a></li><li><a href="#answer-code-2250904" data-toc="answer-code-2250904" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 2(25.09.04)</a></li><li><a href="#answer-code-2---문제-풀이-1" data-toc="answer-code-2---문제-풀이-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 2 - 문제 풀이</a></li><li><a href="#있었는데요-없었습니다-lv3" data-toc="있었는데요-없었습니다-lv3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">있었는데요 없었습니다. (LV.3)</a></li><li><a href="#answer-code-1240104" data-toc="answer-code-1240104" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 1(24.01.04)</a></li><li><a href="#answer-code-1---문제-풀이-2" data-toc="answer-code-1---문제-풀이-2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 1 - 문제 풀이</a></li><li><a href="#answer-code-2250904-1" data-toc="answer-code-2250904-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 2(25.09.04)</a></li><li><a href="#answer-code-2---문제-풀이-2" data-toc="answer-code-2---문제-풀이-2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code 2 - 문제 풀이</a></li><li><a href="#주문량이-많은-아이스크림들-조회하기" data-toc="주문량이-많은-아이스크림들-조회하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">주문량이 많은 아이스크림들 조회하기</a></li><li><a href="#answer-code240104" data-toc="answer-code240104" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Answer Code(24.01.04)</a></li><li><a href="#문제-풀이" data-toc="문제-풀이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 풀이</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

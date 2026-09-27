@@ -1,0 +1,315 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>MDC와 GlobalTraceId를 활용한 분산 추적 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/SpringBoot-Distributed-Tracing-With-MDC/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>MDC와 GlobalTraceId를 활용한 분산 추적</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2025-06-18" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2025-06-18</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 114회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<p>이번 글에서는 분산 시스템 환경에서 서로 다른 서버의 로그에 동일한 TraceId를 적용한 과정을 간단하게 정리해보고자 한다.</p>
+<ul>
+<li>
+<p>분산 아키텍처에서는 하나의 요청이 여러 서비스(예: API 서버, 메시지 큐 컨슈머)를 거쳐 처리되는 경우가 많다.</p>
+<p>이때 각 시스템에 분산된 로그를 하나의 흐름으로 묶어 추적할 수 없다면, 장애 발생 시 원인을 파악하기 매우 어려워진다.</p>
+</li>
+<li>
+<p>현재 진행 중인 개인 프로젝트(쿠폰 시스템)에서 쿠폰 발급 요청이</p>
+<p>API 서버에서 시작되어 카프카(Kafka)를 통해 컨슈머 서버로 전달되는 과정이 있다.</p>
+<p>이 두 서버의 로그에 동일한 식별자를 부여하여 요청 흐름을 쉽게 추적할 수 있도록 <code>GlobalTraceId</code>를 적용한 경험을 공유한다.</p>
+</li>
+</ul>
+<blockquote>
+<p><code>참고</code>: 본 글에서 소개되는 코드 예시는 현재 시점의 구현을 바탕으로 작성되었으며, 프로젝트가 발전함에 따라 내용이 변경되거나 개선될 수 있음을 미리 알려드립니다.</p>
+<p>이 글에서 다루는 모든 코드는 <a href="https://github.com/devFancy/springboot-coupon-system">깃허브</a>에서 확인하실 수 있습니다.</p>
+</blockquote>
+<hr>
+<h2 id="현재-상황-분리된-로그의-파편">현재 상황: 분리된 로그의 파편</h2>
+<p>현재 쿠폰 발급 API는 요청을 받으면 내부 로직을 처리한 후, 최종 데이터 저장을 위해 카프카에 메시지를 발행(produce)한다.</p>
+<p>그리고 별도의 컨슈머 애플리케이션이 이 메시지를 구독(consume)하여 데이터베이스에 저장하는 구조를 가진다.</p>
+<p>핵심 흐름은 다음과 같다.</p>
+<ul>
+<li>HTTP Request -> <code>쿠폰 API 서버</code> -> Kafka Producer -> Kafka Consumer -> <code>컨슈머 서버</code> -> DB 저장</li>
+</ul>
+<p>이 구조에서 Spring Boot Actuator와 Micrometer Tracing 같은 라이브러리를 사용하면 각 애플리케이션 내에서는 <code>traceId</code>와 <code>spanId</code>가 자동으로 생성되어 로그에 포함된다.</p>
+<p>문제는 <strong>API 서버에서 생성된 <code>traceId</code>가 카프카를 거쳐 컨슈머 서버로 전파되지 않는다는 점</strong>이다.</p>
+<p>카프카는 메시지를 전달할 뿐, 생산자(Producer)의 실행 컨텍스트(MDC 정보 포함)를 소비자(Consumer)에게 자동으로 넘겨주지 않는다.</p>
+<p>결과적으로 컨슈머는 새로운 요청으로 인지하고, 완전히 새로운 <code>traceId</code>를 생성하게 된다.</p>
+<blockquote>
+<p>MDC 컨텍스트가 전파되지 않는 이유</p>
+</blockquote>
+<ul>
+<li>
+<p><code>MDC</code>(Mapped Diagnostic Context)는 스레드 로컬(thread-local)에 데이터를 저장하여 로깅 프레임워크(Logback 등)가 참조할 수 있도록 하는 SLF4J의 기능이다.</p>
+</li>
+<li>
+<p>Micrometer Tracing은 이 MDC에 <code>traceId</code>와 <code>spanId</code>를 저장하여 로그에 컨텍스트 정보가 남도록 한다.</p>
+</li>
+<li>
+<p>그러나 API 서버의 요청 처리 스레드와 컨슈머의 메시지 처리 스레드는 완전히 분리되어 있다.</p>
+</li>
+<li>
+<p>따라서 API 서버의 MDC 정보는 카프카 메시지와 함께 자동으로 전송되지 않아 컨슈머의 MDC에서 조회할 수 없다. 이로 인해 두 서버의 로그가 단절되는 것이다.</p>
+</li>
+</ul>
+<p>아래 로그를 보면, 두 서버의 <code>traceId</code>가 서로 다른 것을 명확히 확인할 수 있다.</p>
+<blockquote>
+<p>API 서버 로그 (traceId: <code>6852b11d...</code>)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">21:29:03.238</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">6852b11d60ddb3445244ba6270080315,5244ba6270080315</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.a.c.i.r.aop.DistributedLockAop</span><span style="color:#F97583">    |</span><span style="color:#B392F0">락</span><span style="color:#9ECBFF"> 획득</span><span style="color:#9ECBFF"> 성공...</span></span>
+<span class="line"><span style="color:#B392F0">21:29:03.268</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">6852b11d60ddb3445244ba6270080315,5244ba6270080315</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.a.c.application.CouponService</span><span style="color:#F97583">     |</span><span style="color:#B392F0">중복</span><span style="color:#9ECBFF"> 발급</span><span style="color:#9ECBFF"> 요청</span><span style="color:#9ECBFF"> 감지...</span></span></code></pre>
+<blockquote>
+<p>컨슈머 서버 로그 (traceId: <code>6852b10f...</code>)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">21:29:03.404</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">6852b10febe4df79b383d66d36df8483,b383d66d36df8483</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.k.c.a.CouponIssueConsumer</span><span style="color:#F97583">         |</span><span style="color:#B392F0">발급</span><span style="color:#9ECBFF"> 처리</span><span style="color:#9ECBFF"> 메시지</span><span style="color:#9ECBFF"> 수신...</span></span>
+<span class="line"><span style="color:#B392F0">21:29:03.488</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">6852b10febe4df79b383d66d36df8483,b383d66d36df8483</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.k.c.a.CouponIssueConsumer</span><span style="color:#F97583">         |</span><span style="color:#B392F0">쿠폰</span><span style="color:#9ECBFF"> 발급</span><span style="color:#9ECBFF"> 완료...</span></span></code></pre>
+<h2 id="해결-방안-globaltraceid를-이용한-수동-전파">해결 방안: GlobalTraceId를 이용한 수동 전파</h2>
+<blockquote>
+<p>GlobalTraceId를 개인 프로젝트에 적용한 부분과 관련된 코드는 깃허브 <a href="https://github.com/devFancy/springboot-coupon-system/pull/33">PR</a> 에서 확인할 수 있다.</p>
+</blockquote>
+<p>이 문제를 해결하기 위해 전체 요청 흐름을 관통하는 단일 식별자인 <code>GlobalTraceId</code>를 도입한다.</p>
+<p>이 ID를 HTTP 요청의 시작점에서 생성하고, 카프카 메시지 헤더를 통해 컨슈머까지 명시적으로 전달하는 것이다.</p>
+<ul>
+<li>
+<p>참고) Micrometer의 자동 전파 기능과 <code>GlobalTraceId</code>의 차이점</p>
+<ul>
+<li>
+<p>Spring Boot 3.x 환경에서 <code>micrometer-tracing-bridge-brave</code>나 <code>micrometer-tracing-bridge-otel</code> 의존성을 추가하면,
+Micrometer가 자동으로 Kafka Producer와 Consumer를 계측하여 트레이스 컨텍스트(traceId, spanId)를 전파해 준다.
+Spring Boot 2.x에서는 Spring Cloud Sleuth가 이 역할을 했다.</p>
+</li>
+<li>
+<p>하지만 이 글에서 다루는 <code>GlobalTraceId</code>는 필자가 <strong>직접 만든 커스텀 필드</strong>이므로 이러한 자동 전파의 대상이 아니다.
+이처럼 라이브러리가 모르는 커스텀 식별자를 서비스 간에 전달해야 할 때는,
+이 글에서 소개한 것처럼 <strong>직접 헤더에 담아 전달하는 수동 전파 방식</strong>이 필요하다.</p>
+</li>
+<li>
+<p>이는 분산 추적의 핵심 원리를 이해하고 우리가 원하는 식별자를 직접 제어할 수 있다는 장점이 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-logback-설정-globaltraceid-출력-필드-추가">1. Logback 설정: GlobalTraceId 출력 필드 추가</h3>
+<p>먼저, 로그 패턴에 <code>GlobalTraceId</code>를 출력할 수 있도록 <code>logback-spring.xml</code> 설정에 globalTraceId 필드를 추가한다.</p>
+<p>이 필드는 MDC에 해당 키가 존재할 경우 그 값을 출력한다.</p>
+<blockquote>
+<p>logback-local.xml</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">configuration</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">appender</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"STDOUT"</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"ch.qos.logback.core.ConsoleAppender"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">encoder</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">pattern</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                %clr(%d{HH:mm:ss.SSS}){faint}|%clr(${level:-%5p})|%32X{globalTraceId:-}|%32X{traceId:-},%16X{spanId:-}|%clr(%-40.40logger{39}){cyan}%clr(|){faint}%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">pattern</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">charset</span><span style="color:#E1E4E8">>utf8&#x3C;/</span><span style="color:#85E89D">charset</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">encoder</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">appender</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">configuration</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h3 id="2-filter-globaltraceid-생성-및-mdc-적용">2. Filter: GlobalTraceId 생성 및 MDC 적용</h3>
+<p>HTTP 요청이 들어오는 가장 앞단에서 <code>GlobalTraceId</code>를 생성하거나,</p>
+<p>외부 시스템으로부터 이미 전달받았다면 해당 값을 사용하도록 필터를 구현한다.</p>
+<ul>
+<li>
+<p>요청 헤더에 <code>X-Global-Trace-Id</code>가 있으면 그 값을 사용한다.</p>
+</li>
+<li>
+<p>없으면 <code>UUID</code>를 이용해 새로운 ID를 생성한다.</p>
+</li>
+<li>
+<p>생성된 ID를 MDC에 <code>globalTraceId</code>라는 키로 저장하여 이후의 모든 로그에 기록될 수 있도록 한다.</p>
+</li>
+<li>
+<p>요청 처리가 끝나면 반드시 <code>MDC.remove()</code>를 호출하여 메모리 누수를 방지한다.</p>
+</li>
+</ul>
+<blockquote>
+<p>HttpRequestAndResponseLoggingFilter.java</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpRequestAndResponseLoggingFilter</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> OncePerRequestFilter</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String GLOBAL_TRACE_ID_HEADER </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "X-Global-Trace-Id"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String GLOBAL_TRACE_ID_KEY </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "globalTraceId"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doFilterInternal</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletRequest </span><span style="color:#FFAB70">request</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    @</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletResponse </span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    @</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> FilterChain </span><span style="color:#FFAB70">filterChain</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // 중간 생략 (request/response wrapper)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        String globalTraceId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> request.</span><span style="color:#B392F0">getHeader</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_HEADER);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">StringUtils.</span><span style="color:#B392F0">hasText</span><span style="color:#E1E4E8">(globalTraceId)) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            globalTraceId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> UUID.</span><span style="color:#B392F0">randomUUID</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">toString</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">replaceAll</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"-"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">32</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        MDC.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_KEY, globalTraceId);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            filterChain.</span><span style="color:#B392F0">doFilter</span><span style="color:#E1E4E8">(request, response);</span></span>
+<span class="line"><span style="color:#6A737D">            // 중간 생략 (로깅 처리)</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">            // 중간 생략 (예외 처리)</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // 요청 처리가 끝나면 반드시 MDC에서 제거해야 한다.</span></span>
+<span class="line"><span style="color:#E1E4E8">            MDC.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_KEY);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // 뒷부분 생략</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="3kafka-producer-메시지-헤더에-globaltraceid-주입">3.Kafka Producer: 메시지 헤더에 GlobalTraceId 주입</h3>
+<p>API 서버에서 카프카로 메시지를 보낼 때, 현재 스레드의 MDC에서 <code>globalTraceId</code>를 꺼내 카프카 메시지 헤더에 추가한다.</p>
+<p>이 헤더가 바로 서버 간 컨텍스트를 이어주는 <strong>다리 역할</strong>을 한다.</p>
+<blockquote>
+<p>CouponIssueProducer.java</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Component</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> CouponIssueProducer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> KafkaTemplate&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Object</span><span style="color:#E1E4E8">> kafkaTemplate;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String GLOBAL_TRACE_ID_HEADER </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "globalTraceId"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Logger log </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoggerFactory.</span><span style="color:#B392F0">getLogger</span><span style="color:#E1E4E8">(CouponIssueProducer.class);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 중간 생략 (생성자)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    /**</span></span>
+<span class="line"><span style="color:#6A737D">     * 쿠폰 발급 요청 메시지를 동기적으로 Kafka에 발행한다.</span></span>
+<span class="line"><span style="color:#6A737D">     * .join()을 호출하여 메시지 전송이 완료될 때까지 현재 스레드를 블로킹한다.</span></span>
+<span class="line"><span style="color:#6A737D">     */</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> issue</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">final</span><span style="color:#E1E4E8"> UUID </span><span style="color:#FFAB70">userId</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">final</span><span style="color:#E1E4E8"> UUID </span><span style="color:#FFAB70">couponId</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        CouponIssueMessage payload </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> CouponIssueMessage</span><span style="color:#E1E4E8">(userId, couponId);</span></span>
+<span class="line"><span style="color:#E1E4E8">        String globalTraceId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> MDC.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"globalTraceId"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        ProducerRecord&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Object</span><span style="color:#E1E4E8">> record </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ProducerRecord&#x3C;>(KafkaTopic.COUPON_ISSUE.</span><span style="color:#B392F0">getTopicName</span><span style="color:#E1E4E8">(), payload);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (globalTraceId </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            record.</span><span style="color:#B392F0">headers</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_HEADER, globalTraceId.</span><span style="color:#B392F0">getBytes</span><span style="color:#E1E4E8">(StandardCharsets.UTF_8));</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        kafkaTemplate.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(record).</span><span style="color:#B392F0">whenComplete</span><span style="color:#E1E4E8">((result, ex) </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">        }).</span><span style="color:#B392F0">join</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="4-kafka-consumer-헤더에서-globaltraceid-추출-및-mdc-탑재">4. Kafka Consumer: 헤더에서 GlobalTraceId 추출 및 MDC 탑재</h3>
+<p>마지막으로, 컨슈머는 메시지를 수신할 때 헤더에 포함된 <code>globalTraceId</code>를 추출하여 자신의 MDC에 설정한다.</p>
+<p>이로써 컨슈머에서 발생하는 모든 로그에도 API 서버와 동일한 <code>GlobalTraceId</code>가 남게 된다.</p>
+<blockquote>
+<p>CouponIssueConsumer.java</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Component</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> CouponIssueConsumer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> CouponIssuanceService couponIssuanceService;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Logger log </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoggerFactory.</span><span style="color:#B392F0">getLogger</span><span style="color:#E1E4E8">(CouponIssueConsumer.class);</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String GLOBAL_TRACE_ID_KEY </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "globalTraceId"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 중간 생략 (생성자)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    /**</span></span>
+<span class="line"><span style="color:#6A737D">     * Kafka 토픽으로부터 메시지를 수신하여 쿠폰을 발급한다.</span></span>
+<span class="line"><span style="color:#6A737D">     */</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">KafkaListener</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">topics</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "..."</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">groupId</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "..."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> listener</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">final</span><span style="color:#E1E4E8"> CouponIssueMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                         @</span><span style="color:#F97583">Header</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> GLOBAL_TRACE_ID_KEY, </span><span style="color:#79B8FF">required</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">final</span><span style="color:#E1E4E8"> String </span><span style="color:#FFAB70">globalTraceId</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">                         final</span><span style="color:#E1E4E8"> Acknowledgment </span><span style="color:#FFAB70">ack</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">Objects.</span><span style="color:#B392F0">isNull</span><span style="color:#E1E4E8">(globalTraceId)) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            MDC.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_KEY, globalTraceId);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"발급 처리 메시지 수신: {}"</span><span style="color:#E1E4E8">, message);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            couponIssuanceService.</span><span style="color:#B392F0">process</span><span style="color:#E1E4E8">(message);</span></span>
+<span class="line"><span style="color:#E1E4E8">            ack.</span><span style="color:#B392F0">acknowledge</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메시지 처리 실패, 재처리를 위해 커밋하지 않음: {}"</span><span style="color:#E1E4E8">, message, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // 메시지 처리가 끝나면 반드시 MDC에서 제거한다.</span></span>
+<span class="line"><span style="color:#E1E4E8">            MDC.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_KEY);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="결과-통합된-로그">결과: 통합된 로그</h2>
+<p>이제 다시 애플리케이션 2대를 실행하고, API 테스트 도구(예. Postman)를 사용하여 쿠폰 발급 요청을 보낼 때, 헤더에 <code>X-Global-Trace-Id</code>를 담아 보내보자</p>
+<ul>
+<li>(예: X-Global-Trace-Id: gtxid-coupon-issue-test)</li>
+</ul>
+<blockquote>
+<p>API 서버 로그 (GlobalTraceId가 gtxid-coupon-issue-test로 동일)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">21:49:30.685</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">         gtxid-coupon-issue-test</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.a.c.i.r.aop.DistributedLockAop</span><span style="color:#F97583">    |</span><span style="color:#B392F0">락</span><span style="color:#9ECBFF"> 획득</span><span style="color:#9ECBFF"> 성공...</span></span>
+<span class="line"><span style="color:#B392F0">21:49:30.704</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">         gtxid-coupon-issue-test</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.a.c.application.CouponService</span><span style="color:#F97583">     |</span><span style="color:#B392F0">쿠폰</span><span style="color:#9ECBFF"> 발급</span><span style="color:#9ECBFF"> 요청</span><span style="color:#9ECBFF"> Kafka</span><span style="color:#9ECBFF"> 전송</span><span style="color:#9ECBFF"> 성공...</span></span>
+<span class="line"><span style="color:#B392F0">21:49:30.711</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">         gtxid-coupon-issue-test</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">.f.v.HttpRequestAndResponseLoggingFilter</span><span style="color:#F97583">|</span><span style="color:#E1E4E8">[REQUEST] POST /api/coupon/...</span></span></code></pre>
+<blockquote>
+<p>컨슈머 서버 로그 (GlobalTraceId가 gtxid-coupon-issue-test로 동일)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">21:49:30.821</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">         gtxid-coupon-issue-test</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.k.c.a.CouponIssueConsumer</span><span style="color:#F97583">         |</span><span style="color:#B392F0">발급</span><span style="color:#9ECBFF"> 처리</span><span style="color:#9ECBFF"> 메시지</span><span style="color:#9ECBFF"> 수신...</span></span>
+<span class="line"><span style="color:#B392F0">21:49:30.825</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">         gtxid-coupon-issue-test</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.k.c.a.CouponIssueConsumer</span><span style="color:#F97583">         |</span><span style="color:#B392F0">쿠폰</span><span style="color:#9ECBFF"> 발급</span><span style="color:#9ECBFF"> 완료...</span></span></code></pre>
+<hr>
+<p>만약 헤더에 <code>X-Global-Trace-Id</code>를 보내지 않더라도 필터에서 랜덤 ID(98ac71d9…)가 생성되어 API 서버와 컨슈머 서버에서 동일하게 사용되는 것을 확인할 수 있다.</p>
+<blockquote>
+<p>API 서버 로그 (랜덤 생성된 GlobalTraceId)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">21:46:15.394</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">98ac71d934194fd59a2fb04b94021234</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.a.c.i.r.aop.DistributedLockAop</span><span style="color:#F97583">    |</span><span style="color:#B392F0">락</span><span style="color:#9ECBFF"> 획득</span><span style="color:#9ECBFF"> 성공...</span></span>
+<span class="line"><span style="color:#B392F0">21:46:15.685</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">98ac71d934194fd59a2fb04b94021234</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.a.c.application.CouponService</span><span style="color:#F97583">     |</span><span style="color:#B392F0">쿠폰</span><span style="color:#9ECBFF"> 발급</span><span style="color:#9ECBFF"> 요청</span><span style="color:#9ECBFF"> Kafka</span><span style="color:#9ECBFF"> 전송</span><span style="color:#9ECBFF"> 성공...</span></span></code></pre>
+<blockquote>
+<p>컨슈머 서버 로그 (API 서버와 동일한 GlobalTraceId)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">21:46:15.779</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">98ac71d934194fd59a2fb04b94021234</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.k.c.a.CouponIssueConsumer</span><span style="color:#F97583">         |</span><span style="color:#B392F0">발급</span><span style="color:#9ECBFF"> 처리</span><span style="color:#9ECBFF"> 메시지</span><span style="color:#9ECBFF"> 수신...</span></span>
+<span class="line"><span style="color:#B392F0">21:46:15.846</span><span style="color:#F97583">|</span><span style="color:#B392F0"> INFO</span><span style="color:#F97583">|</span><span style="color:#B392F0">98ac71d934194fd59a2fb04b94021234</span><span style="color:#F97583">|</span><span style="color:#79B8FF">...</span><span style="color:#F97583">|</span><span style="color:#B392F0">d.b.c.k.c.a.CouponIssueConsumer</span><span style="color:#F97583">         |</span><span style="color:#B392F0">쿠폰</span><span style="color:#9ECBFF"> 발급</span><span style="color:#9ECBFF"> 완료...</span></span></code></pre>
+<p>두 서버의 로그에 동일한 <code>GlobalTraceId</code>가 남음으로써, 특정 요청의 전체 처리 과정을 한눈에 추적할 수 있게 되었다.</p>
+<p>이제 로그 분석 시스템에서 <code>globalTraceId</code>로 필터링하기만 하면 분산된 로그를 손쉽게 모아볼 수 있다.</p>
+<h2 id="summary">Summary</h2>
+<p>위의 내용을 간단히 정리하면 아래와 같다.</p>
+<ul>
+<li>
+<p><code>문제점</code>: 분산 시스템(MSA) 환경에서 서비스 간 호출(예. 메시지 큐) 시, 각 시스템의 로그가 별도의 <code>traceId</code>를 가져 추적이 어렵다.</p>
+</li>
+<li>
+<p><code>원인</code>: 스레드 기반의 <code>MDC</code> 컨텍스트는 비동기/프로세스 경계를 넘어서 자동으로 전파되지 않는다.</p>
+</li>
+<li>
+<p><code>해결책</code>: 전체 트랜잭션을 대표하는 <code>GlobalTraceId</code>를 정의하고, 이를 서비스 간 통신(HTTP 헤더, Kafka 메시지 헤더 등)을 통해 명시적으로 전달한다.</p>
+</li>
+<li>
+<p><code>구현</code></p>
+<ul>
+<li>
+<p>최초 진입점(Filter)에서 GlobalTraceId를 생성하여 MDC에 저장한다.</p>
+</li>
+<li>
+<p>프로듀서에서 메시지 발행 시 MDC의 GlobalTraceId를 메시지 헤더에 포함시킨다.</p>
+</li>
+<li>
+<p>컨슈머에서 메시지 수신 시 헤더의 GlobalTraceId를 추출하여 MDC에 다시 저장한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>결과</code>: 모든 분산 로그에 동일한 식별자가 기록되어, <strong>Observability가 향상</strong>되고 장애 추적이 용이해진다.</p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a href="https://github.com/micrometer-metrics/micrometer">[Github] micrometer</a></p>
+</li>
+<li>
+<p><a href="https://micrometer.io/">Micrometer Tracing Documentation</a></p>
+</li>
+<li>
+<p><a href="https://www.baeldung.com/spring-cloud-sleuth-single-application">Spring Cloud Sleuth in a Monolith Application</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=Ifz0LsfAG94&#x26;ab_channel=%ED%86%A0%EC%8A%A4">토스ㅣSLASH 23 - 분산 추적 체계 &#x26; 로그 중심으로 Observability 확보하기</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="SpringBoot-Distributed-Tracing-With-MDC" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#현재-상황-분리된-로그의-파편" data-toc="현재-상황-분리된-로그의-파편" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">현재 상황: 분리된 로그의 파편</a></li><li><a href="#해결-방안-globaltraceid를-이용한-수동-전파" data-toc="해결-방안-globaltraceid를-이용한-수동-전파" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">해결 방안: GlobalTraceId를 이용한 수동 전파</a></li><li><a href="#1-logback-설정-globaltraceid-출력-필드-추가" data-toc="1-logback-설정-globaltraceid-출력-필드-추가" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">1. Logback 설정: GlobalTraceId 출력 필드 추가</a></li><li><a href="#2-filter-globaltraceid-생성-및-mdc-적용" data-toc="2-filter-globaltraceid-생성-및-mdc-적용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">2. Filter: GlobalTraceId 생성 및 MDC 적용</a></li><li><a href="#3kafka-producer-메시지-헤더에-globaltraceid-주입" data-toc="3kafka-producer-메시지-헤더에-globaltraceid-주입" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.Kafka Producer: 메시지 헤더에 GlobalTraceId 주입</a></li><li><a href="#4-kafka-consumer-헤더에서-globaltraceid-추출-및-mdc-탑재" data-toc="4-kafka-consumer-헤더에서-globaltraceid-추출-및-mdc-탑재" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">4. Kafka Consumer: 헤더에서 GlobalTraceId 추출 및 MDC 탑재</a></li><li><a href="#결과-통합된-로그" data-toc="결과-통합된-로그" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">결과: 통합된 로그</a></li><li><a href="#summary" data-toc="summary" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Summary</a></li><li><a href="#references" data-toc="references" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">References</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

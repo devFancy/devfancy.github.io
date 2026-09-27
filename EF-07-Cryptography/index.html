@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>07. Cryptography | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/EF-07-Cryptography/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><link rel="stylesheet" href="/katex/katex.min.css"><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EB%8C%80%ED%95%99%EA%B5%90" class="hover:underline" data-astro-cid-g5songws>대학교</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>07. Cryptography</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-06-01" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-06-01</time><a href="/category/#%EC%A0%84%EC%9E%90%EA%B8%88%EC%9C%B5" class="chip chip-tag">#전자금융</a></div><p class="view-count text-sm text-muted">조회수 22회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 카테고리는 경영학부 전자금융의 이해 수업을 듣고 정리한 내용을 바탕으로 글을 작성하였습니다.</p>
+</blockquote>
+<h2 id="cryptography">Cryptography</h2>
+<ul>
+<li>
+<p><code>Cryptography</code></p>
+<ul>
+<li>
+<p>(eng) The practice and study of techniques for secure communication in the presence of adversarial behavior</p>
+</li>
+<li>
+<p>(kor) 위험한 상황에서 메세지를 안전하게 보내기 위한 기술에 대한 연구</p>
+<ul>
+<li>
+<p>조건1) 엿들으면 안된다.</p>
+</li>
+<li>
+<p>조건2) 메세지에 대한 조작이 있으면 안된다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="cryptography---잘못된-예시">Cryptography - 잘못된 예시</h2>
+<img src="/assets/img/university/electronic-finance/ef-07-cryptography_1.png" alt="" width="500">
+<h2 id="encryption-and-decryption">Encryption and Decryption</h2>
+<ul>
+<li>
+<p><code>Encryption</code> is the process of turning a plaintext human message into <code>cyphertext</code>.</p>
+<ul>
+<li>알아볼 수 있는 문장 → 알아볼 수 없는 문장</li>
+</ul>
+</li>
+<li>
+<p><code>Decryption</code> is the process of turning the <code>cyphertext</code> back into readable plain text</p>
+<ul>
+<li>알아볼 수 없는 문장 → 알아볼 수 있는 문장</li>
+</ul>
+</li>
+</ul>
+<h2 id="symmetric-encryption">Symmetric Encryption</h2>
+<ul>
+<li>
+<p>Suppose Alice → Bob (message)</p>
+<ul>
+<li><code>Caesar cypher</code> : They encrypt the text by shifting each letter a set number of places in the alphabet. (글자들을 정해진 칸 만큼 각각의 글자들을 옮기는 것)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>Symmetric encryption :</strong> a type of encryption where only one key (a secret key) is used to both encrypt and decrypt electronic information</li>
+<li>kor) 어떤 메세지를 encrypt 과 decrypt 하는 오로지 하나의 key가 같을 때 쓰는 encryption 유형</li>
+<li>이런 유형은 실생활에서 사용하지 않는다.
+<ul>
+<li>spot 하고 break 하기 너무 쉽다.</li>
+<li>어떤 key를 사용해야할지 동의을 위한 의사소통이 필요하다. (They have to communicate to agree what key to use for scheme)</li>
+</ul>
+</li>
+</ul>
+<h2 id="symmetric-encryption-1">Symmetric Encryption</h2>
+<img src="/assets/img/university/electronic-finance/ef-07-cryptography_2.png" alt="" width="500">
+<h2 id="asymmetric-encryption">Asymmetric Encryption</h2>
+<ul>
+<li>
+<p><code>ASymmetric Encryption</code> (<strong>Public key Cryptography</strong>) : a cryptography system that uses pairs of keys. (서로 다른 키)</p>
+<ul>
+<li>
+<p>The key used to decrypt a message is different to the key used to encrypt message.</p>
+</li>
+<li>
+<p>You create two mathematically linked keys when you want to receive encrypted message.</p>
+<ul>
+<li>
+<p><code>Public key</code> : You can share it with the world, and anyone can use it to encrypt message for you. (누구나 공유할 수 있는 키)</p>
+</li>
+<li>
+<p><code>Private key</code> : It is know only to you. (오직 혼자만 아는 키)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="asymmetric-encryption-1">Asymmetric Encryption</h2>
+<img src="/assets/img/university/electronic-finance/ef-07-cryptography_3.png" alt="" width="500">
+<ul>
+<li>
+<p>Elliptic Curve Digital Signature Algorithm (<code>ESCADA</code>)</p>
+<ul>
+<li>
+<p>당신은 랜덤하게 발생되어 선택된 private key를 가지고 그것으로부터 mathematically 발생된 public key를 가집니다.</p>
+<ul>
+<li>
+<p>Private key: Pick a random number between 0 and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>256</mn></msup></mrow><annotation encoding="application/x-tex">2^{256}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">256</span></span></span></span></span></span></span></span></span></span></span></span> - 1 (78 digits).</p>
+</li>
+<li>
+<p>Public key: Do some ESCADA maths on the private key.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>정리) 랜덤한 숫자를 추출해서 private key를 만든 후 수학적인 함수를 적용해서 public key를 만든다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="hashes">Hashes</h2>
+<ul>
+<li>
+<p><code>Hash function</code> : A mathematical function that converts an input value into another compressed(압축된) value</p>
+<ul>
+<li>
+<p>The input to the function is called preimage or message.</p>
+</li>
+<li>
+<p>The output of the function is called fingerprint, digest, or hash</p>
+</li>
+<li>
+<p>Hash functions are <strong>deterministic</strong>  because the output is determined by the input.</p>
+</li>
+<li>
+<p><strong>Basic hash function</strong> (not used in blockchain)</p>
+<ul>
+<li>
+<p>input를 받으면 첫글자를 출력하는 것</p>
+</li>
+<li>
+<p>예) Hash(‘What time is it?’) ⇒ ‘W’</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cryptographic hash function</strong> (used in blockchains)</p>
+<ul>
+<li>예) MD5, SHA-256</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="cryptographic-hash-functions">Cryptographic Hash Functions</h2>
+<ul>
+<li>
+<p>Cryptographic hash Functions는 특별하고 유용하게 만드는 몇가지 특징들이 있습니다.</p>
+</li>
+<li>
+<p>이상적인 Cryptographic Hash Functions 위한 5가지 특징들</p>
+<ul>
+<li>
+<p>[1] It is deterministic so the same message always results in the same hash.</p>
+</li>
+<li>
+<p>[2] It is quick to compute the hash value for any given message (you can easily go ‘forwards’). ⇒ 계산이 빨라야한다 = 답을 간단하게 출력해야 한다.</p>
+</li>
+<li>
+<p>[3] It is not feasible to generate a message from its hash value except by trying all possible messages (you can’t go ‘backwards’).</p>
+<ul>
+<li>가능한 메세지를 시도하는 것을 제외한다면, 주어진 hash value로부터 원래의 메세지를 찾는 것이 불가능하다. ex) ‘W’ (hash value) → ‘What time is it?’(Digital message)</li>
+</ul>
+</li>
+<li>
+<p>[4] A small change to a message should change the hash value so extensively that the new hash value appears uncorrelated with the old hash value (a small change makes a big difference). ⇒ 조금의 변화라도 해쉬 값에 큰 차이를 가진다.</p>
+</li>
+<li>
+<p>[5] It is not feasible to find two different messages with the same hash value (it is hard to create a hash clash). ⇒ 같은 해쉬값을 가진 두가지 다른 메세지를 찾는것이 불가능하다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="cryptographic-hash-functions---properties">Cryptographic Hash Functions - Properties</h3>
+<ul>
+<li>
+<p>Cryptographic functions are sometimes called <strong>trapdoor</strong> function (Properties 2 and 3).</p>
+<ul>
+<li>message → hash (O) But, hash → message(X)</li>
+</ul>
+</li>
+<li>
+<p>Message 가 조금만 달라도 전혀다른 hash 값이 나온다. 즉, <strong>유추가 불가능하다.</strong></p>
+</li>
+</ul>
+<h3 id="what-is-good-cryptographic-hash-functions-">What is Good Cryptographic Hash Functions ?</h3>
+<ul>
+<li>
+<p>Is the <strong>hash function  ‘Use the first character’</strong> be good cryptographic hash functions ?</p>
+<ul>
+<li>
+<p>[1] Yes, it is deterministic</p>
+</li>
+<li>
+<p>[2] Yes, it is quick to compute the output.</p>
+</li>
+<li>
+<p>[3] Yes, by knowing only ‘W’ it is not feasible to guess the original sentence.</p>
+<ul>
+<li>ex)  ‘W’ → ‘What time is it?’ (X)</li>
+</ul>
+</li>
+<li>
+<p>[4] No, a small change in the message doesn’t necessarily change the output. ‘What time is at¿ also hashes down to ‘W’.’</p>
+</li>
+<li>
+<p>[5] No, we can easily create loads of inputs that will all hash down to the same output. Anything starting with ‘W’ will work.</p>
+</li>
+<li>
+<p>=> <strong>4,5 번에 의해 좋은 cryptographic hash function 될 수 없다.</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="digital-signatures">Digital Signatures</h2>
+<ul>
+<li>
+<p><code>Digital signature</code> : a specific type of electronic signature that requires the signer to authenticate their identity using a certified digital ID</p>
+<ul>
+<li>
+<p>It is created by taking the message you want to sign and applying a mathematical formula with your private key.</p>
+<ul>
+<li>Message + Private key → Digital signature</li>
+</ul>
+</li>
+<li>
+<p>Anyone who knows your public key can mathematically verify that this signature was indeed created by the holder of the private key.</p>
+<ul>
+<li>Message + Digital signature + Public key → Valid / Invaild</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="digital-signatures---그림">Digital Signatures - 그림</h3>
+<ul>
+<li>Here, you encrypt data with private key and decrypt it with a public key.</li>
+</ul>
+<p><img src="/assets/img/university/electronic-finance/ef-07-cryptography_4.png" alt=""></p>
+<h3 id="wet-ink-on-paper-signature">Wet-ink-on-paper signature</h3>
+<ul>
+<li>
+<p>There is no way of knowing if a document has been tampered after your signature is made. ⇒ 서명한 이후 조작되더라도 알 방법이 없다.</p>
+</li>
+<li>
+<p>Your signature can easily be copied and re-used with other documents without your knowledge. ⇒ 서명이 쉽게 copy 되고, 다른 문서와 함께 재사용할 수 있다.</p>
+</li>
+</ul>
+<h3 id="digital-signatures-1">Digital Signatures</h3>
+<ul>
+<li>
+<p>Any tampering with the message will result in the signature being invalidated. ⇒ 문서(메세지) 조작이 불가능하다</p>
+</li>
+<li>
+<p>It is only valid for that exact piece of data, and so it cannot be copied and pasted underneath another piece of data. ⇒ 한번 사용하는 것으로 복사/붙여넣기 할 수 없다.</p>
+</li>
+<li>
+<p>Digital signatures are used in blockchain transactions.</p>
+<ul>
+<li>
+<p>They prove <strong>account ownership</strong>.</p>
+</li>
+<li>
+<p><strong>No central organization</strong> (제 3자 개입 X)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://link.springer.com/book/10.1007/978-3-030-14533-0">The Future of Finance</a></p>
+<ul>
+<li>The Impact of Fintech, AI, and Crypto on Financial Services, Henry Arslanian and Fabrice Fischer, 2019, Springer</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Bitcoin-Blockchain-Cryptoassets-Comprehensive-Introduction/dp/0262539160">Bitcoin, Blockchain, and Cryptoassets</a></p>
+<ul>
+<li>A Comprehensive Introduction, Fabian Schär and Aleksander Berentsen, 2020, MIT Press</li>
+</ul>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="EF-07-Cryptography" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/PS-04-Continuous-Probability-Distributions/" class="link-title leading-snug">04. Continuous Probability Distributions</a><time datetime="2022-06-30" class="mt-1.5 block text-sm text-muted">2022-06-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/EF-10-Blockchain-Technology/" class="link-title leading-snug">10. Blockchain Technology</a><time datetime="2022-06-26" class="mt-1.5 block text-sm text-muted">2022-06-26</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/BS-Analysis-Of-Variance/" class="link-title leading-snug">12. 분산분석</a><time datetime="2022-06-25" class="mt-1.5 block text-sm text-muted">2022-06-25</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#cryptography" data-toc="cryptography" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Cryptography</a></li><li><a href="#cryptography---잘못된-예시" data-toc="cryptography---잘못된-예시" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Cryptography - 잘못된 예시</a></li><li><a href="#encryption-and-decryption" data-toc="encryption-and-decryption" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Encryption and Decryption</a></li><li><a href="#symmetric-encryption" data-toc="symmetric-encryption" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Symmetric Encryption</a></li><li><a href="#symmetric-encryption-1" data-toc="symmetric-encryption-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Symmetric Encryption</a></li><li><a href="#asymmetric-encryption" data-toc="asymmetric-encryption" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Asymmetric Encryption</a></li><li><a href="#asymmetric-encryption-1" data-toc="asymmetric-encryption-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Asymmetric Encryption</a></li><li><a href="#hashes" data-toc="hashes" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Hashes</a></li><li><a href="#cryptographic-hash-functions" data-toc="cryptographic-hash-functions" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Cryptographic Hash Functions</a></li><li><a href="#cryptographic-hash-functions---properties" data-toc="cryptographic-hash-functions---properties" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Cryptographic Hash Functions - Properties</a></li><li><a href="#what-is-good-cryptographic-hash-functions-" data-toc="what-is-good-cryptographic-hash-functions-" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">What is Good Cryptographic Hash Functions ?</a></li><li><a href="#digital-signatures" data-toc="digital-signatures" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Digital Signatures</a></li><li><a href="#digital-signatures---그림" data-toc="digital-signatures---그림" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Digital Signatures - 그림</a></li><li><a href="#wet-ink-on-paper-signature" data-toc="wet-ink-on-paper-signature" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Wet-ink-on-paper signature</a></li><li><a href="#digital-signatures-1" data-toc="digital-signatures-1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Digital Signatures</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

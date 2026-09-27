@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Spring Boot 환경의 Multi Module에서 logback 환경별 설정하기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Multi-Module-Logback-xml/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Spring Boot 환경의 Multi Module에서 logback 환경별 설정하기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2025-04-20" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2025-04-20</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 80회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<ul>
+<li>
+<p>멀티 모듈 프로젝트로 전환하면서 환경별 로그 설정의 필요성을 절실히 느꼈습니다.</p>
+</li>
+<li>
+<p>운영 환경에서는 로그의 형식과 수준이 서비스 안정성과 직결되기 때문에 더욱 중요합니다.</p>
+</li>
+<li>
+<p>이번 글은 실제 운영 환경에서 적용하는 것 보다는 멀티 모듈 구조에서 환경별로 <code>logback.xml</code>을 구성한 경험을 공유하기 위해 작성했습니다.</p>
+</li>
+</ul>
+<blockquote>
+<p>관련 포스팅</p>
+</blockquote>
+<ul>
+<li><a href="https://devfancy.github.io/SpringBoot-Logging-Filter/">Spring Boot에서 요청 흐름 추적: Logging Filter와 traceId 적용기</a></li>
+</ul>
+<hr>
+<h2 id="환경-구성">환경 구성</h2>
+<blockquote>
+<p>이 글에서 다루는 모든 코드는 <a href="https://github.com/devFancy/kotlin-java-playground/tree/main/springboot-java-practice">Github</a> 에서 확인하실 수 있습니다.</p>
+<p>멀티 모듈 구성에 대한 자세한 설명은 <a href="https://github.com/devFancy/kotlin-java-playground/blob/main/springboot-java-practice/README.md">README.md</a> 를 참고해 주시기 바랍니다.</p>
+</blockquote>
+<h3 id="기술-스택">기술 스택</h3>
+<ul>
+<li>Spring Boot: 3.2.5</li>
+<li>Java: 21</li>
+<li>Logback: Spring Boot 내장 로깅 프레임워크 사용</li>
+<li>Gradle 8.1</li>
+</ul>
+<h3 id="멀티-모듈-구조">멀티 모듈 구조</h3>
+<p>(시간이 지남에 따라 모듈 구조가 변할 수 있습니다)</p>
+<ul>
+<li>
+<p><code>core:core-api</code>: 애플리케이션 실행 및 API 계층을 담당하는 메인 모듈입니다. 다른 내부 모듈들과 연결되어 실제 서비스를 구동합니다.</p>
+</li>
+<li>
+<p><code>core:core-enum</code>: core-api 전반에서 공통으로 사용하는 Enum(열거형) 을 정의한 모듈입니다. 도메인 간 중복을 방지하고 일관된 값을 유지하기 위해 별도로 분리하여 관리합니다.</p>
+</li>
+<li>
+<p><code>support:logging</code>: 공통적인 로깅 설정을 담당하는 모듈이다. 공통적인 로깅 설정을 담당하는 모듈입니다. 여러 서비스에서 일관된 로그 포맷을 적용할 수 있으며, 필요 시 Sentry 연동도 고려할 수 있습니다.</p>
+</li>
+</ul>
+<h3 id="모듈-연동-설정">모듈 연동 설정</h3>
+<p>멀티 모듈 프로젝트에서 <code>support:logging</code> 모듈의 설정을 core-api 모듈에 적용하기 위해 다음 설정이 필요합니다.</p>
+<p><code>core-api</code> 모듈의 <code>resources/application.yml</code>에 <code>logging.yml</code>을 import 합니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">spring</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  config</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    import</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">      - </span><span style="color:#9ECBFF">logging.yml</span></span></code></pre>
+<p>그리고 core-api 모듈의 build.gradle에 support:logging 모듈을 의존성으로 추가합니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="groovy"><code><span class="line"><span style="color:#E1E4E8">dependencies {</span></span>
+<span class="line"><span style="color:#E1E4E8">    implementation project(</span><span style="color:#9ECBFF">":support:logging"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>이렇게 설정하면 <code>support:logging</code> 모듈에서 정의한 <code>logback.xml</code> 파일이 core-api 모듈에서 적용됩니다.</p>
+<h2 id="logbackxml-구성">logback.xml 구성</h2>
+<p>환경별 로깅 설정은 다음과 같이 별도의 XML 파일로 분리되어 있습니다.</p>
+<blockquote>
+<p>배포 단계 흐름: <code>local</code> (개인 개발) -> <code>dev</code> (통합 개발) -> <code>staging</code> (운영 전 최종 점검) -> <code>live</code> (=prod, 실제 서비스 운영)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">support/logging/src/main/resources/logback/</span></span>
+<span class="line"><span style="color:#E1E4E8">├── logback-dev.xml</span></span>
+<span class="line"><span style="color:#E1E4E8">├── logback-live.xml</span></span>
+<span class="line"><span style="color:#E1E4E8">├── logback-local.xml</span></span>
+<span class="line"><span style="color:#E1E4E8">└── logback-staging.xml</span></span></code></pre>
+<p>그리고 <code>logging.yml</code> 파일에서 다음처럼 설정되어 있어, <code>spring.profiles.active</code> 에 따라 자동으로 해당 설정 파일을 불러오게 됩니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">logging.config</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">classpath:logback/logback-${spring.profiles.active}.xml</span></span></code></pre>
+<p>이 구조를 통해 각 환경의 로그 패턴, 출력 대상(Appender), 로깅 레벨 등을 유연하게 관리할 수 있습니다.</p>
+<h2 id="logbackxml-구체적으로-살펴보기">logback.xml 구체적으로 살펴보기</h2>
+<h3 id="공통-구조">공통 구조</h3>
+<p>모든 환경은 아래 공통 구성을 따릅니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">include</span><span style="color:#B392F0"> resource</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"org/springframework/boot/logging/logback/defaults.xml"</span><span style="color:#E1E4E8">/></span></span></code></pre>
+<ul>
+<li>Spring Boot가 제공하는 기본 색상 설정과 변수(%clr, ${level:-%5p} 등)를 포함합니다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">appender</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"STDOUT"</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"ch.qos.logback.core.ConsoleAppender"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">encoder</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">pattern</span><span style="color:#E1E4E8">>...&#x3C;/</span><span style="color:#85E89D">pattern</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">charset</span><span style="color:#E1E4E8">>utf8&#x3C;/</span><span style="color:#85E89D">charset</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">encoder</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">appender</span><span style="color:#E1E4E8">></span></span></code></pre>
+<ul>
+<li>콘솔 출력용 Appender</li>
+<li>UTF-8 인코딩 사용</li>
+<li>각 환경에서 동일한 패턴을 사용하며 Appender만 다르게 구성할 수도 있습니다.</li>
+</ul>
+<h3 id="로그-출력-패턴-예시">로그 출력 패턴 예시</h3>
+<p>아래는 <code>logback-local.xml</code>에서 사용한 로그 출력 패턴입니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">pattern</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  %clr(%d{HH:mm:ss.SSS}){faint}|</span></span>
+<span class="line"><span style="color:#E1E4E8">  %clr(${level:-%5p})|</span></span>
+<span class="line"><span style="color:#E1E4E8">  %32X{traceId:-},</span></span>
+<span class="line"><span style="color:#E1E4E8">  %16X{spanId:-}|</span></span>
+<span class="line"><span style="color:#E1E4E8">  %clr(%-40.40logger{39}){cyan}</span></span>
+<span class="line"><span style="color:#E1E4E8">  %clr(|){faint}</span></span>
+<span class="line"><span style="color:#E1E4E8">  %m%n</span></span>
+<span class="line"><span style="color:#E1E4E8">  ${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">pattern</span><span style="color:#E1E4E8">></span></span></code></pre>
+<ul>
+<li>
+<p><code>%clr(...)</code>: Spring Boot에서 지원하는 색상 강조 기능으로 <code>&#x3C;include ...logback/defaults.xml></code> 을 통해 정의됩니다.</p>
+</li>
+<li>
+<p><code>{faint}</code>: 회색빛(faint) 으로 출력되며, 로그 가독성을 높이기 위한 장식적 용도이다. 중요도가 낮은 항목 (예: 시간, 구분자 등)에 자주 사용됩니다.</p>
+</li>
+<li>
+<p><code>%d{HH:mm:ss.SSS}</code>: 로그 발생 시간 (시:분:초.밀리초). 운영 환경에서는 날짜를 생략했습니다. (예: <code>23:55:10.123</code>)</p>
+</li>
+<li>
+<p><code>${level:-%5p}</code>: 로그 레벨(DEBUG, INFO, WARN, ERROR 등) 을 왼쪽/오른쪽 정렬 기준으로 <strong>최소 너비 5칸</strong>으로 출력합니다. (<code>%5p</code>는 기본적으로 오른쪽 정렬입니다.)
+가장 긴 로그 레벨인 ERROR(5자)에 맞춰 가독성을 높이기 위해 보통 5자 폭으로 설정합니다.
+예: <code>INFO</code>, <code>DEBUG</code>, <code>ERROR</code></p>
+</li>
+<li>
+<p><code>%X{traceId}, %X{spanId}</code>: MDC에 저장된 <code>traceId</code>와 <code>spanId</code>를 각각 32칸, 16칸 너비로 출력한다. 값이 없을 경우 빈 값으로 대체됩니다.
+주로 Spring Cloud Sleuth, Zipkin 등과 연동할 때 사용되며, 분산 트레이싱을 위한 정보로 활용된다.</p>
+</li>
+<li>
+<p><code>%clr(%-40.40logger{39}){cyan}</code>: 로거(Logger)의 이름(주로 클래스 경로)을 청록색(cyan)으로 출력합니다.</p>
+<ul>
+<li>
+<p><code>%-40.40</code>: 정확히 40칸의 너비를 차지하도록 고정합니다. <code>-</code>는 왼쪽 정렬을 의미하며, 이름이 짧으면 공백으로 채워 세로 줄을 맞춥니다.</p>
+</li>
+<li>
+<p><code>{39}</code>: 로거 이름이 39자를 초과하면 패키지명을 축약합니다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>%m%n</code>: 로그 메시지를 출력하고 줄 바꿈을 수행합니다.</p>
+</li>
+<li>
+<p><code>${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</code>: 예외(Exception)가 발생했을 때 전체 스택 트레이스를 출력하는 부분입니다. Spring Boot 기본 프로퍼티를 사용하며, 값이 없을 경우(<code>:-</code>) <code>%wEx</code>를 사용합니다</p>
+<ul>
+<li><code>%wEx</code>: 예외가 있을 경우, 예외의 원인(cause)을 포함한 전체 스택 트레이스를 상세하게 출력합니다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="실행-및-로그-확인">실행 및 로그 확인</h2>
+<p><code>local</code> 환경에서 애플리케이션을 실행하면, 아래와 같은 로그를 확인할 수 있습니다.</p>
+<blockquote>
+<p>실행 결과 예시</p>
+</blockquote>
+<p><img src="/assets/img/server/springboot/springboot-multi-module-logback-xml.png" alt=""></p>
+<p>위 로그에서 traceId, spanId 값이 비어 있는 이유는 <strong>Spring Cloud Sleuth 등 분산 추적 라이브러리를 적용하지 않았기 때문</strong>입니다.</p>
+<p>이 값을 출력하고 싶다면 Sleuth 또는 Micrometer Tracing 등의 설정이 필요합니다.</p>
+<p>또한 <code>/api/log</code> API 요청을 통해 다양한 로그 레벨의 로그를 출력해볼 수 있습니다.</p>
+<blockquote>
+<p>ExamplePostController</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequestMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ExamplePostController</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> ExamplePostControllerDocs</span><span style="color:#E1E4E8"> { </span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Logger log </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoggerFactory.</span><span style="color:#B392F0">getLogger</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">getClass</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/log"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ResponseEntity&#x3C;CommonResponse&#x3C;</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">>> </span><span style="color:#B392F0">logTest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">      log.</span><span style="color:#B392F0">debug</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"DEBUG 레벨 로그입니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">      log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"INFO 레벨 로그입니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">      log.</span><span style="color:#B392F0">warn</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"WARN 레벨 로그입니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">      log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"ERROR 레벨 로그입니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> ResponseEntity.</span><span style="color:#B392F0">ok</span><span style="color:#E1E4E8">(CommonResponse.</span><span style="color:#B392F0">success</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>API 실행 결과</p>
+</blockquote>
+<p><img src="/assets/img/server/springboot/springboot-multi-module-logback-xml-loglevel.png" alt=""></p>
+<h2 id="summary">Summary</h2>
+<p>이번 글에서는 멀티 모듈 기반의 Spring Boot 프로젝트에서 환경별 <code>logback.xml</code> 을 어떻게 구성하고 적용할 수 있는지 정리해보았습니다.</p>
+<p>특히 <code>%clr</code>, <code>${level:-%5p}</code>, <code>%X{traceId}</code> 등 로그 패턴 설정에 사용되는 문법을 하나씩 설명하고, 실제 로그 출력 결과를 통해 그 효과를 확인하실 수 있었습니다.</p>
+<p>다음 포스팅에서는 Spring Filter를 활용한 HTTP 요청/응답 로그 수집에 대해 작성해볼 예정입니다.</p>
+<p>지금까지 읽어주셔서 감사합니다.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a href="https://github.com/team-dodn/spring-boot-java-template">[Github] spring-boot-java-template</a></p>
+</li>
+<li>
+<p>[Docs] <a href="https://logback.qos.ch/manual/appenders.html">https://logback.qos.ch/manual/appenders.html</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Multi-Module-Logback-xml" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#환경-구성" data-toc="환경-구성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">환경 구성</a></li><li><a href="#기술-스택" data-toc="기술-스택" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">기술 스택</a></li><li><a href="#멀티-모듈-구조" data-toc="멀티-모듈-구조" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">멀티 모듈 구조</a></li><li><a href="#모듈-연동-설정" data-toc="모듈-연동-설정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">모듈 연동 설정</a></li><li><a href="#logbackxml-구성" data-toc="logbackxml-구성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">logback.xml 구성</a></li><li><a href="#logbackxml-구체적으로-살펴보기" data-toc="logbackxml-구체적으로-살펴보기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">logback.xml 구체적으로 살펴보기</a></li><li><a href="#공통-구조" data-toc="공통-구조" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">공통 구조</a></li><li><a href="#로그-출력-패턴-예시" data-toc="로그-출력-패턴-예시" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">로그 출력 패턴 예시</a></li><li><a href="#실행-및-로그-확인" data-toc="실행-및-로그-확인" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">실행 및 로그 확인</a></li><li><a href="#summary" data-toc="summary" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Summary</a></li><li><a href="#references" data-toc="references" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">References</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

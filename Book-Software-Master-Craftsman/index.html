@@ -1,0 +1,574 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[리뷰] 소프트웨어 장인 리뷰 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Book-Software-Master-Craftsman/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header is-overlay" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1"><section class="relative isolate flex overflow-hidden min-h-[25rem] sm:min-h-[clamp(32rem,26vw,40rem)] items-end"><img src="/assets/cover/Book-Software-Master-Craftsman.webp" alt="" loading="eager" fetchpriority="high" decoding="async" class="media-zoom absolute inset-0 -z-10 size-full object-cover object-center"><div class="media-scrim absolute inset-0 -z-10 bg-black/20"></div><div class="media-scrim absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/60 to-transparent"></div><div class="media-scrim absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent"></div><div class="shell pt-28 pb-14 sm:pb-28"><p class="hero-type mb-4 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-white/80" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%ED%8F%89" class="inline-block py-1 underline-offset-4 transition-colors hover:text-white hover:underline" data-astro-cid-g5songws>서평</a></p><h1 class="hero-type text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl">[리뷰] 소프트웨어 장인 리뷰</h1><div class="mt-5 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-02-06" class="hero-type mr-1 text-sm text-white/75" data-astro-cid-g5songws>2023-02-06</time></div><p class="view-count text-sm hero-type text-white/75">조회수 91회</p></div></section><div data-hero-end aria-hidden="true" class="h-px"></div><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div class="prose mt-0" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<img src="/assets/img/essay/book/book-software-master-craftsman.jpg" alt="" width="400">
+<ul>
+<li>
+<p>우아한테크코스의 캡틴으로 불리는 <code>박재성</code>님이 0순위로 추천한 책이다.</p>
+</li>
+<li>
+<p>책을 읽고 난 소감은 개발과 관련해서 더 나은 개발자가 되기 위한 <code>마인드</code> 위주의 책이었다.</p>
+</li>
+<li>
+<p>이 책은 개인적인 일화와 현장 경험에서 비롯된 <strong>무게감 있는 조건</strong>이 가득했다.</p>
+</li>
+<li>
+<p>자신의 일에 자부심을 갖는 프로페셔널로 도약하기 위해 필요한 계획, 전략, 태도, 원칙 등을 여러 가지 관점에서 조언했다.</p>
+</li>
+<li>
+<p>책을 읽으면서 내가 생각한 중요한 부분이나 기억해야 할 부분들을 정리해봤다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="part1이념과-태도">Part1.이념과 태도</h2>
+<h3 id="21세기-소프트웨어-개발">21세기 소프트웨어 개발</h3>
+<ul>
+<li>
+<p>개발자라면 다음과 같은 여러가지를 할 수 있어야 한다.</p>
+<ul>
+<li>
+<p>고객과 대화하기</p>
+</li>
+<li>
+<p>테스트/배포 자동화하기</p>
+</li>
+<li>
+<p>전체 비즈니스에 영향을 미칠 기술 선정하기</p>
+</li>
+<li>
+<p>지리적으로 분산된 팀들과 협업하기</p>
+</li>
+<li>
+<p>고객을 도와 필요한 작업을 정의하기</p>
+</li>
+<li>
+<p>우선순위 선정하기</p>
+</li>
+<li>
+<p>진척 상황 보고하기</p>
+</li>
+<li>
+<p>변경사항과 기대일정 관리하기</p>
+</li>
+<li>
+<p>잠재 고객 및 파트너에게 제품 소개하기</p>
+</li>
+<li>
+<p>사전 영업 활동 지원하기</p>
+</li>
+<li>
+<p>개발 일정과 비용 산출하기</p>
+</li>
+<li>
+<p>채용 면접하기</p>
+</li>
+<li>
+<p>아키텍쳐 설계하기</p>
+</li>
+<li>
+<p>비기능적 요구사항과 계약조건(SLAS) 검토하기</p>
+</li>
+<li>
+<p>사업 목표 이해하기</p>
+</li>
+<li>
+<p>주어진 여건에서 최적의 결정하기</p>
+</li>
+<li>
+<p>새로운 기술 주시하기</p>
+</li>
+<li>
+<p>더 나은 업무 방식 찾기</p>
+</li>
+<li>
+<p>고객에게 가치 있는 상품이 전달되고 있는지 고민하기</p>
+</li>
+</ul>
+</li>
+<li>
+<p>어떤 사람들은 <code>훌륭한 개발자</code>라면 위의 일들을 이미 해왔을 거라고 한다.</p>
+</li>
+</ul>
+<h3 id="애자일">애자일</h3>
+<ul>
+<li>
+<p><code>애자일</code>은 서로 다른 여러 맥락에서 따른 방법론과 테크닉의 조합이다.</p>
+</li>
+<li>
+<p>애자일 원칙의 <code>절차적인 부분</code>들은 <strong>팀과 조직이 어떻게 구성되고 협업해야 하는지에 대한 것들을 규정</strong>한다.</p>
+<ul>
+<li>
+<p>회의 방식, 구성원 각각의 역할, 요구사항 파악 방법, 작업 진척 속도 파악 방법,  점진적/반복적으로 일할 때 취하는 방식 등과 같은 것들이다.</p>
+</li>
+<li>
+<p>팀에 정말로 중요한 것, 비즈니스 가치가 있는 것에 집중한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>애자일 원칙의 <code>기술적인 부분</code>들은 개발, 확장, 유지보수, 제품을 출하면서 어려움들에 대해 특정한 기술적 관례나 기술 자체를 매우 구체적으로 가이드한다.</p>
+<ul>
+<li>테스트 주도 개발(TDD), 페어 프로그래밍, 지속적인 통합, 단순한 디자인 원칙 등과 같은 것들이다.</li>
+</ul>
+</li>
+<li>
+<p>게임 체인저</p>
+<ul>
+<li>
+<p>비즈니스와 고객 가치 창출에 개발자들이 직접 참여하는 것도 매우 중요하다고 주장한다.</p>
+</li>
+<li>
+<p>소프트웨어 프로젝트의 여러 다른 방면에서도 개발팀의 책임이 있다는 인식이 산업계의 판도를 바꾸고 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="애자일-매니페스토">애자일 매니페스토</h4>
+<ul>
+<li>
+<p>다음은 애자일 매니페스토 웹사이트에서 발췌한 내용이다.</p>
+</li>
+<li>
+<p>우리는 스스로 소프트웨어를 개발하고, 다른 사람들이 개발하는 것을 도와주면서 더 나은 소프트웨어 개발 방법들을 찾고 있다.</p>
+</li>
+<li>
+<p>이 과정에서 우리는 다음과 같은 <strong>가치</strong>를 중요하게 생각한다.</p>
+<ul>
+<li>
+<p>절차와 도구보다는 <strong>개성과 화합을</strong></p>
+</li>
+<li>
+<p>방대한 문서 작업보다는 <strong>동작하는 소프트웨어를</strong></p>
+</li>
+<li>
+<p>계약 조건에 대한 협상보다는 <strong>고객과의 협력을</strong></p>
+</li>
+<li>
+<p>계획을 따르는 것을 넘어서서 <strong>변화에 대처하는 것을</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>더 가치있게 여긴다. (우측의 사항에 더 높은 가치를 둔다)</p>
+</li>
+</ul>
+<h3 id="소프트웨어-장인정신">소프트웨어 장인정신</h3>
+<ul>
+<li>
+<p><code>소프트웨어 장인정신</code>은 소프트웨어 개발자가 <strong>스스로 선택한 커리어에 책임감을 가지고, 지속적으로 새로운 도구와 기술을 익히며 발전하겠다는 마음가짐</strong>이다.</p>
+</li>
+<li>
+<p>책임감, 프로페셔널리즘, 실용주의 그리고 소프트웨어 개발자로서의 <strong>자부심</strong>을 의미한다.</p>
+</li>
+</ul>
+<h4 id="매니페스토">매니페스토</h4>
+<ul>
+<li>
+<p>소프트웨어 장인을 열망하는 우리는, 스스로의 기술을 연마하고, 다른 사람들이 기술을 배울 수 있도록 도움으로써 프로페셔널 소프트웨어 개발의 수준을 높인다.</p>
+</li>
+<li>
+<p>이러한 일을 하는 과정에서 우리는 다음과 같은 가치들을 추구한다.</p>
+<ul>
+<li>
+<p>동작하는 SW뿐만 아니라, <strong>정교하고 솜씨 있게 만들어진 작품을</strong>,</p>
+</li>
+<li>
+<p>변화에 대응하는 것뿐만 아니라, <strong>계속해서 가치를 더하는 것을</strong>,</p>
+</li>
+<li>
+<p>개별적으로 협력하는 것뿐만 아니라, <strong>프로페셔널 커뮤니티를 조성하는 것을</strong>,</p>
+</li>
+<li>
+<p>고객과 협업하는 것뿐만 아니라, <strong>생산적인 동반자 관계를</strong>,</p>
+</li>
+</ul>
+</li>
+<li>
+<p>이 왼쪽의 항목들을 추구하는 과정에서, 오른쪽 항목들이 꼭 필요함을 의미한다.</p>
+</li>
+<li>
+<p>이 매니페스토의 핵심은 부제, <code>프로페셔널 소프트웨어 개발의 수준을 높인다</code>에 있다.</p>
+</li>
+</ul>
+<h3 id="소프트웨어-장인의-태도">소프트웨어 장인의 태도</h3>
+<ul>
+<li>
+<p>고객을 만족시키기 위한 투자는 스스로 해야 한다.</p>
+</li>
+<li>
+<p>고객은 프로페셔널의 교육이 아닌, <strong>그의 지식과 기술</strong>에 대한 돈을 지불하는 것이다.</p>
+</li>
+<li>
+<p>소프트웨어 프로페셔널로 대우받기를 원한다면 <strong>프로</strong>처럼 행동해야 한다.</p>
+</li>
+<li>
+<p>이는 스스로를 발전시키는 데 자신의 <code>돈</code>과 <code>시간</code>을 들여한다는 것이다.</p>
+</li>
+</ul>
+<h4 id="끊임없는-자기개발">끊임없는 자기개발</h4>
+<blockquote>
+<p>오늘날 우리는 계속해서 늘어만 가는 정보 속에, 계속해서 줄어만 가는 의미를 목도하는 세상에 살고 있다.</p>
+<ul>
+<li>장 보드리야르(Jean Baudrillard)</li>
+</ul>
+</blockquote>
+<p>독서</p>
+<ul>
+<li>커리어를 위해서라면 <code>개념</code>이나 <code>행동양식</code>에 대한 책들에 더 관심을 두는 것이 좋다.</li>
+</ul>
+<p>블로그</p>
+<ul>
+<li>
+<p><code>실제 경험</code>, <code>개인적인 발견</code>, <code>성공담</code>, <code>실패담</code>들이 짧게 담겨 있기 때문에 소프트웨어 장인정신이나 애자일 모델에 태생적으로 궁합이 잘 맞다.</p>
+</li>
+<li>
+<p>모든 소프트웨어 개발자는 경험 수준과 관계없이 블로그가 있어야 한다. 경험과 발견을 공유함으로써 훌륭한 <strong>프로페셔널 커뮤니티를 이루는 데 도움</strong>이 되어야 한다.</p>
+</li>
+<li>
+<p>우선 블로그는 우리의 배움과 자기개발에 대한 <strong>기록의 장</strong>으로 두는 게 좋다. 무엇이든 글로 써서 기록을 남기는 것은 <strong>가치</strong>가 있다.</p>
+</li>
+</ul>
+<p>기술 웹사이트</p>
+<ul>
+<li>기술 관련 웹사이트들도 <strong>시장의 최신 동향</strong>을 알아보기에 좋은 수단이다.</li>
+</ul>
+<h3 id="영웅-선의-그리고-프로페셔널리즘">영웅, 선의 그리고 프로페셔널리즘</h3>
+<ul>
+<li>
+<p>프로답게 행동하자. 빡빡한 일정을 다루기 가장 좋은 방법은 필요한 모든 것을 분석하여 <strong>가능한 위험과 우려사항을 터놓고 관계자들과 소통</strong>하는 것이다.</p>
+</li>
+<li>
+<p>불편한 사항들이나 우려되는 부분들은 <strong>최대한 이른 시점</strong>에 문제제기해야 한다.</p>
+</li>
+<li>
+<p>개발자들은 협상 기술을 익혀야 한다.</p>
+</li>
+<li>
+<p>다툼을 피하지 말고 부딪혀서 어려운 결정을 내릴 수 있어야 한다.</p>
+</li>
+<li>
+<p>우리가 정직하고 투명한 방법을 사용한다면 누군가 부당하게 피해를 입는 일 없이 팀 전체는 물론 회사에도 이득이 될 것이다.</p>
+</li>
+</ul>
+<h3 id="동작하는-소프트웨어">동작하는 소프트웨어</h3>
+<ul>
+<li>
+<p>동작하는 소프트웨어를 자주, 몇 주나 2개월 단위로, 가능하면 <strong>짧은 주기</strong>로 전달한다. (진척도를 가능하는 주된 기준)</p>
+</li>
+<li>
+<p>항상 프로젝트에 다른 사람들도 있다는 사실을 인식하고 전체 프로젝트에 미치는 영향을 감안하여 책임있게 행동해야 한다.</p>
+</li>
+<li>
+<p>점진적으로 기존 코드에 대한 테스트 코드를 작성하면서 코드에 대한 이해도를 높이고 리펙토링을 해나간다.</p>
+</li>
+</ul>
+<h3 id="기술적-실행-관례">기술적 실행 관례</h3>
+<ul>
+<li>
+<p>애자일 방법론은 빠르고 짧은 피드백 루프를 제공하여 우리가 <code>올바른 일</code>(Right Things)을 실행하고 있는지 점검하도록 도와준다.</p>
+</li>
+<li>
+<p>이것은 <strong>실행 관례와 몇몇 활동들의 조합</strong>으로 이루어진다.</p>
+</li>
+<li>
+<p>작업 진척도를 시각화하고, 즉각적으로 업무를 계획하거나, 우선순위를 조정하고, 최소 시장 충족 기능(MMFs: minimum marketable features)에 집중하고,</p>
+<p>백로그를 관리하고, 스탠딩업 미팅을 하고, 번-다운 차트를 만들고, 사용자 스토리와 시나리오를 쓰고, 제품 수용 기준을 정하는 등</p>
+</li>
+<li>
+<p>애자일 방법론에서 이야기하는 여러 다른 종류의 것들이 포함된다.</p>
+</li>
+<li>
+<p>익스트림 프로그래밍(XP)의 실행 관례에는 테스트 주도 개발(TDD), 페어 프로그래밍, 리펙토링, 단순한 디자인, 지속적인 통합 등이 있다.</p>
+</li>
+</ul>
+<img src="/assets/img/essay/book/book-software-master-craftsman_7.jpg" alt="" width="500">
+<h4 id="tdd테스트-주도-개발">TDD(테스트 주도 개발)</h4>
+<ul>
+<li>
+<p>TDD(테스트 주도 개발)은 테스트 코드를 먼저 작성하는 것의 진화된 버전이다.</p>
+</li>
+<li>
+<p><code>TDD</code>는 코드의 설계, 단순성, 유지보수 용이성에 대해 피드백이 빠르다. 또한 코드에 대한 살아 움직이는 문서 역할을 한다. 더불어 긍정적인 부가효과로 회귀 테스트 역할도 해준다.</p>
+</li>
+<li>
+<p>이러한 것이 <code>TDD</code>가 주는 비즈니스적 가치다.</p>
+</li>
+</ul>
+<h4 id="페어-프로그래밍">페어 프로그래밍</h4>
+<ul>
+<li>
+<p>코드의 품질을 보증하기 위해 코드 리뷰를 많은 팀들에서 흔히 적용하고 있다.</p>
+</li>
+<li>
+<p>코드 리뷰는 시스템에 대한 지식과 유용한 코딩 스킬을 팀 전체에 전하는 데도 좋다.</p>
+</li>
+</ul>
+<h4 id="리팩토링">리팩토링</h4>
+<ul>
+<li>프로젝트의 시작단계부터 리팩토링을 하면 코드가 점진적으로 상태가 향상되어 나중에 리팩토링에 너무 많은 시간을 들이는 일이 없어진다.</li>
+</ul>
+<h4 id="실용주의">실용주의</h4>
+<ul>
+<li>
+<p>무언가를 절대적인 진리로 바라보는 것은 바람직하지 않다.</p>
+</li>
+<li>
+<p>항상 우리가 무엇을 하고 있고 그것을 <strong>왜 하고 있는지 질문해야 한다</strong>.</p>
+</li>
+<li>
+<p>우리의 일에 항상 최선의 기술, 도구, 절차, 방법론 그리고 실행 관례를 선택할 수 있도록 <strong>개발적인 사고 방식</strong>을 가져아 한다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="part2완전한-전환">Part2.완전한 전환</h2>
+<h3 id="인재-채용">인재 채용</h3>
+<ul>
+<li>
+<p>이 Chapter은 지원자보다는 <strong>면접관 입장</strong> 위주 내용이었다.</p>
+</li>
+<li>
+<p>회사입장에서 채용공고를 작성할 때, 단순히 직무 요건 목록을 나열하는 것 보다 태도와 책임, 프로젝트 종류, 사용 기술 그리고 가치관과 회사의 문화에 집중된 내용으로 채워져야 한다.</p>
+</li>
+<li>
+<p>다음과 같은 요소를 채용공고에 넣으면 더 좋을 것 같다.</p>
+<ul>
+<li>
+<p>이런 분을 찾습니다. : 태도와 책임과 관련된 내용</p>
+</li>
+<li>
+<p>TDD : TDD를 중요시하는 회사라면 TDD 내용을, TDD가 아니면 그와 관련된 내용(이건 회사마다 Case by Case - TDD, DDD, BDD 등)</p>
+</li>
+<li>
+<p>직무 역할 : 일하는 방식(TDD, 페어프로그래밍, 리펙토링, 지속적인 제품 릴리즈, 정기적인 콘퍼런스 혹은 이벤트 참석 등)</p>
+</li>
+<li>
+<p>사용 중인 기술 : 프로젝트 종류와 사용 기술들</p>
+</li>
+</ul>
+</li>
+<li>
+<p>프로젝트 관리자나 중간 관리자가 아닌 <strong>개발자</strong>가 제품 오너 및 이해 관계자와 협력적인 방식으로 직접적으로 함께 일한다는 것을 전달하는 것이 중요하다.</p>
+</li>
+<li>
+<p>또한 개발자 역량 향상을 위해 배우고 연습할 시간(개발 스터디, 정기적인 콘퍼런스 참석, 독서모임)을 따로 제공하고 이러한 부분이 회사에 문화적으로 녹아 있음을 강조하는 것 역시 중요하다.</p>
+</li>
+<li>
+<p>이러한 공고를 낸다면 <strong>열정적이고 재능있는 개발자</strong>를 끌어들이는 데 최적화될 것이다.</p>
+</li>
+</ul>
+<h4 id="효과적인-선별-조건의-정의">효과적인 선별 조건의 정의</h4>
+<ul>
+<li>
+<p>이력서에 다음과 같은 내용을 추가하면 좋을 것 같다.</p>
+<ul>
+<li>
+<p>GitHub 계정</p>
+</li>
+<li>
+<p>블로그</p>
+</li>
+<li>
+<p>오픈 소스 활동</p>
+</li>
+<li>
+<p>기술 커뮤니티 혹은 사용자 그룹 활동 내역</p>
+</li>
+<li>
+<p>트위터 계정</p>
+</li>
+<li>
+<p>좋아하는 기술서적 목록</p>
+</li>
+<li>
+<p>참석했거나 발표했던 콘퍼런스</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="소프트웨어-장인-면접하기">소프트웨어 장인 면접하기</h3>
+<ul>
+<li>
+<p>면접은 <strong>비즈니스 협상</strong>을 하는 것이다. <code>회사</code>는 그들의 목적을 달성하는 데 도움을 줄 수 있는 개발자를 찾으려 하고, <code>개발자</code>는 자신의 열망과 커리어 방향에 적합한 회사를 찾으려 한다.</p>
+</li>
+<li>
+<p>면접은 <strong>회사와 개발자들이 <code>상호 생산적인 파트너십</code>이 가능할지를 판단</strong>하는 협상 자리다.</p>
+</li>
+<li>
+<p>생산적인 파트너십을 알아보는 방법은 각각의 관점마다 다르다.</p>
+<ul>
+<li>
+<p>회사 입장에서의 관점 : 성숙한 채용 문화의 회사라면 <strong>파트너십</strong>을 기대한다. 면접자의 역할은 지원자가 <code>협업</code>을 잘 할 수 있는지, <code>권한부여</code>를 잘 감당할 수 있는지 판별하는 것이다. 지원자가 얼마나 많은 질문을 하느냐는 면접관 입장에서 그 사람의 <strong>협업 능력</strong>과 <strong>비즈니스 기여 가능성</strong>을 가늠할 수 있는 중요한 단서가 된다. 즉, 항상 질문을 많이 하는 지원자를 우선시하는 것이 좋다.</p>
+</li>
+<li>
+<p>지원자 입장에서의 관점 : 다단계 면접으로 진행이 되는지, 그리고 면접관이 개발자인지를 파악해야 한다. 면접관이 개발자라면 회사의 관리층이 개발자를 신뢰할 수 있다는 의미이다. 다단계 면접이 좋은 이유는 회사에서 지원자의 서로 다른 여러 측면을 보는 것이기 때문에 <strong>제대로 된 프로페셔널을 채용하는 데 진지하게 임한다</strong>는 징표일 수 있다. 그리고 면접관들의 질문들을 중요시하게 봐야한다. 그러한 질문들은 대게 면접관이 중요하게 생각하는 것들을 반영하기 때문이다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="배움의-문화">배움의 문화</h3>
+<ul>
+<li>
+<p>관리자들을 개발자에게 권한을 위임하고 개발자들 스스로 배움의 문화를 만들어갈 수 있도록 북돋워야 한다.</p>
+</li>
+<li>
+<p>그러한 환경을 조성하기 위해 다음과 같은 해당 사항들을 고려하자.</p>
+<ul>
+<li>
+<p>북 클럽에 가입하기 - 한 주에 한 번정도 점심 시간이나 기타 여유 시간에 모여서 한 권의 책에 대해 서로 의견을 공유하고 대화를 시도해보기.</p>
+</li>
+<li>
+<p>테크 런치 진행하기 - 일주일에 한 번정도 점심 시간에 기술과 관련된 난상 토론회를 가지는 것을 제안하기.</p>
+</li>
+<li>
+<p>그룹 토론회에 참여하기 - 가장 많이 득표한 주제를 두 주제를 가지고 사람들을 두 그룹으로 나눈 다음 해당 주제에 대해 토론 시간을 가지기.</p>
+</li>
+<li>
+<p>업무 교환하기 - 업무가 반복적으로 찾아올 시기일 때 프로젝트의 한 업무 주기 동안 팀끼리 개발자를 서로 바꾸면서 새로운 것을 볼 기회를 만들어주기. 다른 팀의 개발자와 페어 프로그래밍을 하면 다른 기술, 테크닉, 업무 방식, 사고 경험을 경험하게 된다.</p>
+</li>
+<li>
+<p>그룹 코드 리뷰하기 - 서로간의 코드를 리뷰하면서 더 나은 개선점이 있는 지 확인한다.</p>
+</li>
+<li>
+<p>그 밖에 코딩 실습하기, 내부 학습 모임 만들기, 회사에서의 펫 프로젝트 시간을 허용하기, 외부 기술 커뮤니티와 교류하기 등 다양한 배움의 문화가 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>만약 아무도 참여하려 하지 않는다면 스스로 먼저 모범을 보이고, 관심을 보이는 사람들에게만 집중한다. 굳이 모든 사람들을 강제로 변화시키는 것은 욕심이고, 소수의 사람들이 변화된 것만으로 큰 진보를 나갈 수 있다.</p>
+</li>
+</ul>
+<h3 id="실용주의-장인정신">실용주의 장인정신</h3>
+<ul>
+<li>소프트웨어 장인이라면 <code>J.B. 레인스버거</code>이 말한 <strong>단순한 설계를 위한 네 가치 원칙</strong>을 먼저 생각해야 한다.</li>
+</ul>
+<ol>
+<li>
+<p>모든 테스트의 통과</p>
+</li>
+<li>
+<p>중복의 최소화</p>
+</li>
+<li>
+<p>명료성의 최대화</p>
+</li>
+<li>
+<p>구성요소의 최소화</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>장인이 가장 중요하게 초점을 맞추는 것은 <strong>고객의 만족</strong>이다.</p>
+</li>
+<li>
+<p>품질은 물론이고 시간과 비용도 고객만족을 위한 구성요소다. 고객에게 가치를 전달할 수 없다면 잘 작성된 코드라고 할 수 없다.</p>
+</li>
+<li>
+<p>깨끗하고 잘 작성된 코드는 비즈니스의 요구에 맞추어 빠르고 안전하게 변경할 수 있는 기반이 된다.</p>
+</li>
+<li>
+<p>요구사항의 변화에 맞추어 코드를 빠르게 바꿀 수 있는 것이 비즈니스를 돕는 최선의 방법이다.</p>
+</li>
+</ul>
+<h3 id="소프트웨어-장인으로서의-커리어">소프트웨어 장인으로서의 커리어</h3>
+<ul>
+<li>
+<p><code>열정</code>. 이 단어 하나가 모든 것을 요약한다.</p>
+</li>
+<li>
+<p>장인이 된다는 것은 새로운 것에 대해 호기심을 가지고 실험한다는 것과 같은 의미앋. 장인은 항상 주어진 문제에 가장 적합한 도구를 찾고 단순한 해결책을 추구한다.</p>
+</li>
+<li>
+<p>진정한 소프트웨어 장인은 가장 먼저, 코드 작성이 아니라 <strong>문제 해결</strong>에 집중한다.</p>
+</li>
+<li>
+<p><code>정직</code>과 <code>용기</code>는 소프트웨어 장인이 갖추어야 할 핵심적인 자질이다. 즉, 고객이 나쁜 의사결정을 할 때 그것이 적절치 못하다고 지적하는 정직함과 용기를 말한다.</p>
+</li>
+<li>
+<p>본인의 커리어를 만들어 나가기 위해서 일을 선택하기 전에 아래와 같은 질문들을 스스로에게 던져보고 생각해보자.</p>
+<ul>
+<li>
+<p>나의 커리어로부터 나는 무엇을 원하는가?</p>
+</li>
+<li>
+<p>그것이 성취하기 위한 다음 단계는 무엇인가?</p>
+</li>
+<li>
+<p>이 일은 나의 커리어 방향과 합치하는가?</p>
+</li>
+<li>
+<p>내가 이 회사에 줄 수 있는 가치의 양은 얼마나 되는가?</p>
+</li>
+<li>
+<p>그러한 투자에 대한 이익은 무엇인가?</p>
+</li>
+<li>
+<p>내가 되고자 하는 프로페셔널에 이르는 데 이 일은 어떻게 도움이 되는가?</p>
+</li>
+<li>
+<p>이 일에서 나는 자율성, 통달, 목적의식을 가질 수 있나?</p>
+</li>
+<li>
+<p>나의 고용주와 생산적인 동반자 관계를 맺을 수 있나? 양측 모두 가치 얻고 행복할 수 있나?</p>
+</li>
+</ul>
+</li>
+<li>
+<p>본인이 원하는 바를 모른다면 <strong>최대한 많은 문</strong>을 열어 보아야 한다. 커뮤니티 행사에 참석하고, 오픈소스에 기여하고, 토론 메일링 리스트에 참여한다. 영감을 줄 수 있는 사람도 찾아 나서는 게 좋다.</p>
+</li>
+<li>
+<p>밖으로 나가서 당신이 무엇을 할 수 있는지 다른 사람들에게 보여준다. 그렇게 하면 당신이 모르던 큰 세상이 있음을 알게 될 것이다.</p>
+</li>
+<li>
+<p>이렇게 하다보면 당신이 어디로 가고 싶어 하는지 감이 잡힐 것이다.</p>
+</li>
+</ul>
+<blockquote>
+<p>소프트웨어 장인의 사명</p>
+</blockquote>
+<ul>
+<li>
+<p>소프트웨어 장인은 자신만의 사명이 있다.</p>
+</li>
+<li>
+<p>더 나아지는 데 집중하고, 계속해서 자신의 커리어에 투자하며, 배우고, 가르치고, 공유한다.</p>
+</li>
+<li>
+<p>그가 많은 고객에게 항상 가치를 전달할 수 있도록 해야 한다.</p>
+</li>
+<li>
+<p>진정한 사명은 프로페셔널리즘, 열정, 관심으로 소프트웨어 산업의 수준을 높이는 것이다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="review">Review</h2>
+<ul>
+<li>
+<p>개발자가 쉽게 이해할 수 있는 코드를 구현하기 위한 개발의 실력도 중요하지만, IT 분야의 팀 프로젝트 전반적인 이해와 <strong>한 단계 성장하는 계발자</strong>가 되려면 어떤 요소가 필요한 것이 무엇인지 알려줬다.</p>
+</li>
+<li>
+<p>이 책의 아쉬운 점은 예비(신입)개발자 입장에서 보면 Part1의 내용들은 얻어갈 게 많았지만, Part2의 내용들은 Part1에서 얘기했던 내용들과 많은 부분들이 겹쳤고, 크게 중요하다고 생각하는 부분이 별로 없었다는 점이다.</p>
+</li>
+<li>
+<p>책 페이지 전체 수가 300 조금 넘지만, 나에게 실제로 얻어갈 내용은 100 안쪽이였다.</p>
+</li>
+<li>
+<p>그래도 개발자로서 어떻게 살아가야 할지 도움을 주었던 책이었고, 개발자에서의 자기개발 책으로서는 만족한 책이었다.</p>
+</li>
+<li>
+<p>앞으로 개발에 대한 마인드 셋이 필요할 때마다 해당 책을 참고하며 개발자의 마음가짐을 새겨두고 실전에 체화하자.</p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Book-Software-Master-Craftsman" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Book-The-One-Who-Leaves-People-Behind/" class="link-title leading-snug">&#39;삶을 재구성하는 관계의 법칙, 사람을 남기는 사람&#39; 책 리뷰</a><time datetime="2026-01-04" class="mt-1.5 block text-sm text-muted">2026-01-04</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Modern-AI-Development-at-KarrotReview/" class="link-title leading-snug">&#39;요즘 당근 AI 개발&#39; 책 후기</a><time datetime="2025-10-30" class="mt-1.5 block text-sm text-muted">2025-10-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DDD-Start-Review/" class="link-title leading-snug">&#39;도메인 주도 개발 시작하기&#39; 책 후기</a><time datetime="2025-10-10" class="mt-1.5 block text-sm text-muted">2025-10-10</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#part1이념과-태도" data-toc="part1이념과-태도" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Part1.이념과 태도</a></li><li><a href="#21세기-소프트웨어-개발" data-toc="21세기-소프트웨어-개발" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">21세기 소프트웨어 개발</a></li><li><a href="#애자일" data-toc="애자일" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">애자일</a></li><li><a href="#소프트웨어-장인정신" data-toc="소프트웨어-장인정신" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">소프트웨어 장인정신</a></li><li><a href="#소프트웨어-장인의-태도" data-toc="소프트웨어-장인의-태도" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">소프트웨어 장인의 태도</a></li><li><a href="#영웅-선의-그리고-프로페셔널리즘" data-toc="영웅-선의-그리고-프로페셔널리즘" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">영웅, 선의 그리고 프로페셔널리즘</a></li><li><a href="#동작하는-소프트웨어" data-toc="동작하는-소프트웨어" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">동작하는 소프트웨어</a></li><li><a href="#기술적-실행-관례" data-toc="기술적-실행-관례" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">기술적 실행 관례</a></li><li><a href="#part2완전한-전환" data-toc="part2완전한-전환" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Part2.완전한 전환</a></li><li><a href="#인재-채용" data-toc="인재-채용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">인재 채용</a></li><li><a href="#소프트웨어-장인-면접하기" data-toc="소프트웨어-장인-면접하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">소프트웨어 장인 면접하기</a></li><li><a href="#배움의-문화" data-toc="배움의-문화" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">배움의 문화</a></li><li><a href="#실용주의-장인정신" data-toc="실용주의-장인정신" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">실용주의 장인정신</a></li><li><a href="#소프트웨어-장인으로서의-커리어" data-toc="소프트웨어-장인으로서의-커리어" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">소프트웨어 장인으로서의 커리어</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

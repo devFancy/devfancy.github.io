@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>알고리즘 수업 - 깊이 우선 탐색 1(DFS) | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Algorithm-Baekjoon-24479/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="hover:underline" data-astro-cid-g5songws>알고리즘</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>알고리즘 수업 - 깊이 우선 탐색 1(DFS)</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-11-29" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-11-29</time><a href="/category/#%EB%B0%B1%EC%A4%80" class="chip chip-tag">#백준</a></div><p class="view-count text-sm text-muted">조회수 20회</p></div><div class="prose mt-10" data-astro-cid-g5songws><p><a href="https://www.acmicpc.net/problem/24479">문제 링크</a></p>
+<h2 id="성능-요약">성능 요약</h2>
+<ul>
+<li>메모리: 92592 KB, 시간: 1076 ms</li>
+</ul>
+<h2 id="구분">구분</h2>
+<ul>
+<li>그래프 이론, 그래프 탐색, 너비 우선 탐색, 깊이 우선 탐색</li>
+</ul>
+<h2 id="answer-code20231129">Answer Code(2023.11.29)</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> MAX </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 100000</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#E1E4E8"> ArrayList&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">>[] graph;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[] visited;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> N, M, R; </span><span style="color:#6A737D">// 정점(N)과 간선(M)</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8">[] answer;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> order;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> dfs</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> idx</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited[idx] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        answer[idx] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> order;</span></span>
+<span class="line"><span style="color:#E1E4E8">        order</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> graph[idx].</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(); i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            int</span><span style="color:#E1E4E8"> next </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> graph[idx].</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(i);</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8">(visited[next] </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">                dfs</span><span style="color:#E1E4E8">(graph[idx].</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(i));</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException{</span></span>
+<span class="line"><span style="color:#6A737D">        // 0. 입력 및 초기화</span></span>
+<span class="line"><span style="color:#E1E4E8">        BufferedReader br </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BufferedReader</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> InputStreamReader</span><span style="color:#E1E4E8">(System.in));</span></span>
+<span class="line"><span style="color:#E1E4E8">        BufferedWriter bw </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BufferedWriter</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> OutputStreamWriter</span><span style="color:#E1E4E8">(System.out));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        StringTokenizer st </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> StringTokenizer</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        N </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        M </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        R </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 1. graph에 연결 정보 채우기</span></span>
+<span class="line"><span style="color:#E1E4E8">        graph </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> ArrayList</span><span style="color:#E1E4E8">[MAX];</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> N; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            graph[i] </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[MAX];</span></span>
+<span class="line"><span style="color:#E1E4E8">        answer </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> [MAX];</span></span>
+<span class="line"><span style="color:#E1E4E8">        order </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> M; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            st </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> StringTokenizer</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#F97583">            int</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#F97583">            int</span><span style="color:#E1E4E8"> y </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            graph[x].</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(y);</span></span>
+<span class="line"><span style="color:#E1E4E8">            graph[y].</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(x);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 2. 오름차순 정렬</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> N; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            Collections.</span><span style="color:#B392F0">sort</span><span style="color:#E1E4E8">(graph[i]);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 3. dfs(재귀함수 호출)</span></span>
+<span class="line"><span style="color:#B392F0">        dfs</span><span style="color:#E1E4E8">(R);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 4. 출력</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> N; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            bw.</span><span style="color:#B392F0">write</span><span style="color:#E1E4E8">(String.</span><span style="color:#B392F0">valueOf</span><span style="color:#E1E4E8">(answer[i]));</span></span>
+<span class="line"><span style="color:#E1E4E8">            bw.</span><span style="color:#B392F0">newLine</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        bw.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        br.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="문제풀이">문제풀이</h2>
+<h3 id="step0-입력-및-초기화">Step0. 입력 및 초기화</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> MAX </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 100000</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#E1E4E8"> ArrayList&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">>[] graph;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[] visited;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> N, M, R; </span><span style="color:#6A737D">// 정점(N)과 간선(M)</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8">[] answer;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> order;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#6A737D">        // 0. 입력 및 초기화</span></span>
+<span class="line"><span style="color:#E1E4E8">        BufferedReader br </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BufferedReader</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> InputStreamReader</span><span style="color:#E1E4E8">(System.in));</span></span>
+<span class="line"><span style="color:#E1E4E8">        BufferedWriter bw </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BufferedWriter</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> OutputStreamWriter</span><span style="color:#E1E4E8">(System.out));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        StringTokenizer st </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> StringTokenizer</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        N </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        M </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        R </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>N의 최대값이 10만이므로, 2차원 배열로 쓰기에는 저장하기에 크기가 너무 커진다.</p>
+</li>
+<li>
+<p>그래서 필요할 때마다 쓰는, 동적 할당을 가능하게 해주는 <code>ArrayList</code>을 사용한다.</p>
+<ul>
+<li>
+<p>어떤 <code>특정 노드</code>를 기준으로 봤을 때, <strong>나랑 연결되어 있는 노드가 누가 있는지</strong> 는 이전에 배열로 썼던 것과 동일하다.</p>
+</li>
+<li>
+<p>다만, <code>ArrayList</code>로 만들었기 때문에 <strong>M개의 간선 정보에 맞춰서 그때그때마다 하나씩 노드를 추가해가는 구조</strong>이다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>answer</code>를 하나의 배열 형태로 만들어준 이유는 각각의 노드가 몇번째로 방문했는지 기록하고, 그것을 오름차순으로 출력하기 위해서이다.</p>
+</li>
+<li>
+<p><code>visited</code>는 이전 바이러스, 연결 요소의 개수 문제와 동일하게, 특정 노드를 방문했는지를 기록하기 위해 boolean 타입의 배열인 자료구조를 사용했다.</p>
+</li>
+</ul>
+<h3 id="step1-graph에-연결-정보-채우기">Step1. graph에 연결 정보 채우기</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> MAX </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 100000</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#E1E4E8"> ArrayList&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">>[] graph;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[] visited;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> N, M, R; </span><span style="color:#6A737D">// 정점(N)과 간선(M)</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8">[] answer;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> order;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#6A737D">        // 1. graph에 연결 정보 채우기</span></span>
+<span class="line"><span style="color:#E1E4E8">        graph </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> ArrayList</span><span style="color:#E1E4E8">[MAX];</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> N; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            graph[i] </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[MAX];</span></span>
+<span class="line"><span style="color:#E1E4E8">        answer </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8">[MAX];</span></span>
+<span class="line"><span style="color:#E1E4E8">        order </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> M; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">          st </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> StringTokenizer</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#F97583">          int</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#F97583">          int</span><span style="color:#E1E4E8"> y </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">          graph[x].</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(y);</span></span>
+<span class="line"><span style="color:#E1E4E8">          graph[y].</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(x);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>graph[x].add(y)</code>는 x번째 ArrayList 에서 y라는 값을 추가하겠다는 의미이다.</p>
+<p>반대 역시 마찬가지로, <code>graph[y].add(x)</code>은 y번째 ArrayList 에서 x라는 값을 추가하겠다는 의미이다.</p>
+</li>
+</ul>
+<h3 id="step2-dfs재귀함수-호출">Step2. dfs(재귀함수 호출)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> MAX </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 100000</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#E1E4E8"> ArrayList&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">>[] graph;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[] visited;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> N, M, R; </span><span style="color:#6A737D">// 정점(N)과 간선(M)</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8">[] answer;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> order;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> dfs</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> idx</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited[idx] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        answer[idx] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> order;</span></span>
+<span class="line"><span style="color:#E1E4E8">        order</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> graph[idx].</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">(); i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            int</span><span style="color:#E1E4E8"> next </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> graph[idx].</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(i);</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (visited[next] </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">                dfs</span><span style="color:#E1E4E8">(graph[idx].</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(i));</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#6A737D">        // 2. 오름차순 정렬</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> N; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">          Collections.</span><span style="color:#B392F0">sort</span><span style="color:#E1E4E8">(graph[i]);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">        // 3. dfs(재귀함수 호출)</span></span>
+<span class="line"><span style="color:#B392F0">        dfs</span><span style="color:#E1E4E8">(R);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>여기서 <code>order</code>라는 변수는 내가 지금 몇번째인지 순서를 담고 있는 변수이고, 순서를 <code>answer</code>라는 배열에 해당하는 인덱스 번째에 담는 것이다.</p>
+<p>그런 다음에, 1등, 2등, 3등 처럼 순서대로 담길 수 있도록 <code>order</code>에 +1을 증가시켜준다.</p>
+</li>
+<li>
+<p><code>for(int i = 0; i &#x3C; graph[idx].size(); i++)</code>은 인덱스번째의 노드랑 연결되어 있는 애들이 이 그래프의 인덱스번째의 ArrayList에 담겨져 있으므로 이 ArrayList를 하나씩 뒤져보겠다는 의미이다.</p>
+<p>예를 들어, 1번째 노드와 연결되어 있는 게 2,4라면 -> 2번 만큼 반복문을 돌리는 것이다.</p>
+<p>그리고 <code>dfs(graph[idx].get(i))</code>은 인덱스와 연결되어 있는 i번째 노드를 가져와서, i를 기준으로 DFS를 태우겠다는 의미이다.</p>
+<p>그런데 조건 없이 불러오면, 무한 루프에 빠질 수 있기 때문에 위에 조건문 <code>if(visited[next] == false)</code> 추가해준다.</p>
+<p>해당 조건문의 의미는 인덱스를 기준으로 i번째 연결되어 있는 요소를 <code>next</code>라는 int형 변수에 담고, <strong>다음 방문하려는 하는 곳이 방문할 기록이 없다면</strong> DFS를 태우겠다는 것이다.</p>
+</li>
+</ul>
+<h3 id="정리">정리</h3>
+<p><img src="/assets/img/algorithm/algorithm/Algorithm-Baekjoon-24479-1.jpeg" alt=""></p>
+<p>해당 문제를 풀면서, 아래의 순서에 맞게 생각하고 구현하면 풀 수 있는 문제였다.</p>
+<ol>
+<li>
+<p>DFS, 정점, 간선, 무방향 그래프 -> DFS/BFS</p>
+</li>
+<li>
+<p>서로 연결되었다는 정보를 어떻게 하나의 자료구조로 통합할까? -> 2차원 배열 vs ArrayList -> 범위가 크기 때문에 <code>ArrayList</code> 를 사용했다.</p>
+</li>
+<li>
+<p>이미 방문한 지점을 다시 방문하지 않으려면 어떤 자료구조를 사용해야 될까?</p>
+</li>
+<li>
+<p>어떻게 오름차순으로 방문할 수 있을까?</p>
+</li>
+<li>
+<p>방문 순서를 담기 위해서는 어떤 자료구조를 사용해야 될까?</p>
+</li>
+</ol>
+<h2 id="review">Review</h2>
+<ul>
+<li>
+<p>이전 DFS 유형인 <code>연결 요소의 개수</code> 문제와 다른 점은 크게 2가지 였다.</p>
+<ul>
+<li>
+<p>시작점이 주어진 것(R)이고,</p>
+</li>
+<li>
+<p>N이라는 값이 10만개까지 들어오기 때문에 단순히 2차원 배열로 쓸 수 없어서, 동적 할당을 가능하게 해주는 <code>ArryList</code>를 사용했다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>해당 문제에서 요구했던 건 몇 개를 방문했냐라는 하나의 정수값이 아니라 <strong>각각의 노드를 몇 번째로 방문했는지</strong> 그걸 알고 싶었기 때문에 이번에는 배열이라는 자료구조를 써야 됐다.</p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Algorithm-Baekjoon-24479" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-383-Ransom-Note/" class="link-title leading-snug">383. Ransom Note</a><time datetime="2024-09-17" class="mt-1.5 block text-sm text-muted">2024-09-17</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-232-Implement-Queue-using-Stacks/" class="link-title leading-snug">32. Implement Queue using Stacks</a><time datetime="2024-09-14" class="mt-1.5 block text-sm text-muted">2024-09-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Programmers-118667/" class="link-title leading-snug">[Programmers] 118667. 두 큐 합 같게 만들기(queue)</a><time datetime="2023-12-28" class="mt-1.5 block text-sm text-muted">2023-12-28</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#성능-요약" data-toc="성능-요약" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">성능 요약</a></li><li><a href="#구분" data-toc="구분" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">구분</a></li><li><a href="#answer-code20231129" data-toc="answer-code20231129" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Answer Code(2023.11.29)</a></li><li><a href="#문제풀이" data-toc="문제풀이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">문제풀이</a></li><li><a href="#step0-입력-및-초기화" data-toc="step0-입력-및-초기화" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Step0. 입력 및 초기화</a></li><li><a href="#step1-graph에-연결-정보-채우기" data-toc="step1-graph에-연결-정보-채우기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Step1. graph에 연결 정보 채우기</a></li><li><a href="#step2-dfs재귀함수-호출" data-toc="step2-dfs재귀함수-호출" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Step2. dfs(재귀함수 호출)</a></li><li><a href="#정리" data-toc="정리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">정리</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>성능 개념 및 주요 병목 지점, 성능 테스트 학습 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Performance-Concept/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>성능 개념 및 주요 병목 지점, 성능 테스트 학습</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2024-11-03" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2024-11-03</time><a href="/category/#%EC%84%B1%EB%8A%A5%ED%85%8C%EC%8A%A4%ED%8A%B8" class="chip chip-tag">#성능테스트</a></div><p class="view-count text-sm text-muted">조회수 111회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="성능-개념을-공부하게-된-이유">성능 개념을 공부하게 된 이유</h2>
+<p><code>성능</code>이라는 개념을 공부하기 전에, 왜 이 개념과 관련 도구들이 필요하게 되었는지 궁금했다.</p>
+<p>나는 아직 사용자 1000만 명 이상의 대규모 서비스를 개발한 경험이 없지만, 지금까지의 경험을 바탕으로 생각해보면 다음과 같다.</p>
+<ul>
+<li>
+<p>서비스 사용자가 증가할수록 트래픽 양도 함께 늘어나며, 서버가 이를 감당할 수 있는지 성능 테스트를 통해 확인하고 그에 맞게 대응하고 보완해야 한다.</p>
+</li>
+<li>
+<p>성능 테스트는 다양한 상황에서 시스템의 안정성과 효율성을 확인하는 데 중요한 역할을 한다. 내가 생각하는 성능 테스트의 활용 사례는 다음과 같다:</p>
+<ul>
+<li>
+<p>서비스를 출시하기 전, 예상되는 트래픽의 양을 서버가 감당할 수 있는지 성능 테스트로 파악한다. 일반적으로 예상 사용자 수의 3배로 부하 테스트를 수행해 예기치 않은 트래픽 급증에도 대비할 수 있도록 한다.</p>
+</li>
+<li>
+<p>기존 서비스를 운영하면서 선착순 이벤트 등으로 갑자기 트래픽이 몰릴 때 발생하는 병목 지점을 성능 테스트(예: 스파이크 테스트)를 통해 식별한다.</p>
+</li>
+<li>
+<p>멀티스레드 환경에서 비즈니스 로직을 비동기 방식으로 처리할 때, 논블로킹 방식 등을 고려하여 성능을 개선하기 위해 응답 속도와 TPS(초당 트랜잭션 수)를 성능 테스트로 측정한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>아래는 최근 내가 공부한 성능 개념과 주요 병목 지점, 그리고 성능 테스트에 대한 내용을 정리한 내용이다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="1-성능-최적화">1. 성능 최적화</h2>
+<h3 id="11-성능이란-무엇인가">1.1 성능이란 무엇인가?</h3>
+<p>성능은 시스템이나 애플리케이션이 주어진 자원 내에서 작업을 얼마나 효율적으로 처리하는지를 측정하는 개념이다. 이는 사용자 만족도와 서비스 품질에 직접적인 영향을 미치며, 성능이 높을수록 짧은 응답 시간과 높은 처리량을 제공해 자원을 효율적으로 사용하는 것이 목표이다.</p>
+<h3 id="12-성능-지표와-분석">1.2 성능 지표와 분석</h3>
+<p>성능을 측정하고 분석하기 위해 다양한 지표가 사용되는데, 대표적인 성능 지표는 다음과 같다.</p>
+<ul>
+<li><strong>Response Time (응답 시간)</strong>: 사용자가 요청을 보낸 순간부터 시스템이 응답을 반환하는 데 걸리는 시간이다. <strong>응답 시간이 짧을수록 사용자 경험이 향상된다.</strong></li>
+<li><strong>Latency (지연 시간)</strong>: 네트워크나 시스템에서 데이터가 전송되는 데 걸리는 시간이다. <strong>지연 시간이 길어지면 시스템의 응답 속도가 느려진다.</strong></li>
+<li><strong>Throughput (처리량)</strong>: 시스템이 일정 시간 동안 처리할 수 있는 작업의 수를 의미한다. <strong>처리량이 높을수록 시스템이 효율적으로 작동한다</strong></li>
+</ul>
+<p>성능 지표를 분석함으로써 시스템이 어떻게 작동하는지 이해하고, 개선이 필요한 부분을 식별할 수 있다.</p>
+<h3 id="13-성능-최적화의-필요성과-목표">1.3 성능 최적화의 필요성과 목표</h3>
+<p>성능 최적화는 시스템의 효율성과 사용자 만족도를 높이기 위해 필수적이다. 주요 목표는 다음과 같다:</p>
+<ul>
+<li><strong>사용자 경험 개선</strong>: 빠르고 원활한 응답을 제공해 사용자가 더 나은 경험을 할 수 있게 한다.</li>
+<li><strong>리소스 관리</strong>: 제한된 자원을 효율적으로 활용해 운영 비용을 절감하고, 불필요한 리소스 사용을 줄이며 필요할 때 최적화한다.</li>
+<li><strong>확장성 확보</strong>: 더 많은 사용자가 시스템을 동시에 사용할 수 있도록 성능을 강화하며, 증가하는 수요에도 시스템이 안정적으로 작동하도록 보장한다.</li>
+</ul>
+<h2 id="2-병목-현상의-이해와-원인">2. 병목 현상의 이해와 원인</h2>
+<h3 id="21-병목-현상의-정의">2.1 병목 현상의 정의</h3>
+<p><code>병목 현상</code>은 시스템의 특정 부분이 전체 성능을 저하시키는 현상을 의미한다. 하나의 구성 요소가 비효율적으로 작동하면 시스템 전체의 처리 속도가 느려질 수 있다. 이러한 현상은 시스템 자원의 불균형 사용으로 인해 발생하며, 성능 최적화의 주요 대상이 된다.</p>
+<ul>
+<li>예시: 인기 있는 레스토랑에 손님들이 몰려들어 예약이 끊이지 않지만, 주방의 불판과 조리 공간이 제한되어 있어 모든 손님을 빠르게 응대할 수 없는 상황이 발생한다. 그 결과, 손님들은 대기해야 하고 서비스 속도도 느려지게 된다.</li>
+</ul>
+<h3 id="22-시스템-병목의-주요-원인">2.2 시스템 병목의 주요 원인</h3>
+<p>병목 현상은 여러 가지 원인에 의해 발생할 수 있다. 주요 원인은 다음과 같다:</p>
+<ul>
+<li>
+<p><strong>CPU 병목</strong>: CPU가 과부하 상태일 경우 작업 처리 속도가 저하된다. 과도한 계산 작업이나 비효율적인 코드가 원인이 될 수 있다.</p>
+<ul>
+<li>
+<p><code>예시</code>: 넷플릭스는 방대한 콘텐츠를 사용자에게 제공하기 위해 추천 알고리즘을 실행한다.</p>
+</li>
+<li>
+<p>사용자가 선호할 만한 영상을 추천하는 과정에서 복잡한 기계 학습 모델이 사용된다.</p>
+</li>
+<li>
+<p>만약 특정 시간대에 많은 사용자가 동시에 접속해 추천 알고리즘이 과도한 연산을 요구하면, 서버의 CPU가 과부하 상태에 빠져 전체 응답 속도가 느려질 수 있다.</p>
+</li>
+<li>
+<p>이때 CPU 병목이 발생하며, 사용자가 스트리밍을 시작할 때 지연이 생길 위험이 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>메모리 병목</strong>: 메모리 사용이 한계에 도달하면 성능이 급격히 떨어진다. 메모리 누수나 대용량 데이터 처리가 원인이 될 수 있다.</p>
+<ul>
+<li>
+<p><code>예시</code>: 국민은행, 카카오뱅크와 같은 시중 은행 및 인터넷 은행의 송금 시스템에서 대량의 거래 데이터를 실시간으로 처리할 때, 메모리를 효율적으로 사용하지 못하면 문제가 생길 수 있다.</p>
+</li>
+<li>
+<p>예를 들어, 수많은 사용자 거래를 메모리에 유지하면서 여러 검증 작업을 동시에 수행할 경우 메모리 한계에 도달해 성능이 급격히 저하될 수 있다.</p>
+</li>
+<li>
+<p>메모리 누수나 비효율적인 데이터 구조 사용이 원인일 수 있으며, 이런 상황에서는 실시간 송금이 지연되거나 오류가 발생할 위험이 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>네트워크 병목</strong>: 네트워크 대역폭이 부족하거나 데이터 전송 속도가 느릴 때 발생한다. 대량의 데이터 전송이 필요한 작업이 주된 원인이다.</p>
+<ul>
+<li>
+<p><code>예시</code>: 페이팔 같은 결제 서비스는 여러 국가의 은행과 통신해 거래를 처리한다.</p>
+</li>
+<li>
+<p>만약 페이팔 서버가 해외 은행과의 네트워크 연결 속도가 느려지면 사용자 결제 승인 과정이 지연될 수 있다.</p>
+</li>
+<li>
+<p>특히 블랙프라이데이 같은 대규모 이벤트 때 대량의 결제 요청이 몰리면 네트워크 병목이 발생할 가능성이 높다.</p>
+</li>
+<li>
+<p>이 병목은 사용자에게 결제 대기 화면을 보여주며, 거래가 정상적으로 완료되지 않아 불편함을 초래할 수 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>I/O 병목</strong>: 디스크 읽기/쓰기 속도가 느릴 때 성능 저하가 발생한다. 데이터베이스나 파일 입출력이 많을 때 흔히 나타난다.</p>
+<ul>
+<li>
+<p><code>예시</code>: AWS에서 호스팅된 웹 애플리케이션이 대량의 로그를 S3 같은 스토리지에 지속적으로 기록할 때, 디스크 쓰기 속도가 느리면 전체 애플리케이션 성능이 저하될 수 있다.</p>
+</li>
+<li>
+<p>대량의 데이터베이스 읽기/쓰기 작업이 동시에 수행되면 I/O 병목이 발생할 수 있다.</p>
+</li>
+<li>
+<p>이런 문제는 클라우드 환경에서 특히 중요하며, 파일 시스템이 제대로 최적화되지 않으면 서비스의 응답 시간이 길어질 수 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-병목-지점-식별-방법">2.3 병목 지점 식별 방법</h3>
+<p>병목 지점을 식별하기 위해 다음 방법을 사용할 수 있다:</p>
+<ul>
+<li><strong>모니터링 도구</strong>: <code>top</code>, <code>htop</code>, <code>iostat</code>, <code>vmstat</code> 같은 시스템 모니터링 도구를 사용해 자원의 사용률을 확인하고, CPU, 메모리, 네트워크, I/O 상태를 실시간으로 관찰한다.</li>
+<li><strong>프로파일링</strong>: 애플리케이션 프로파일링 도구를 사용해 코드의 성능 병목 지점을 분석한다. 예를 들어, <strong>JProfiler</strong>나 <strong>VisualVM</strong>을 사용해 메서드 호출 시간과 메모리 사용량을 분석하고, 비효율적인 코드나 과도한 객체 생성 지점을 식별할 수 있다.</li>
+<li><strong>로그 분석</strong>: 로그 데이터를 통해 응답 시간이나 오류 발생 지점을 분석한다. 예를 들어, <strong>ELK Stack</strong>이나 <strong>Splunk</strong>를 사용해 특정 API의 응답 시간 증가 패턴이나 빈번한 에러 발생 지점을 추적할 수 있다.</li>
+</ul>
+<p>이 도구들(예: JProfiler, VisualVM, ELK Stack, Splunk)은 <strong>성능 모니터링 및 분석 도구</strong>에 해당한다. 성능 테스트는 부하를 생성해 시스템의 한계를 평가하는 과정이며, VisualVM 같은 도구는 테스트가 끝난 후 <strong>병목 지점을 식별</strong>하거나 <strong>리소스 사용을 분석</strong>하는 데 사용된다.</p>
+<h2 id="3-성능-테스트의-기본과-과정">3. 성능 테스트의 기본과 과정</h2>
+<h3 id="31-성능-테스트-이해하기">3.1 성능 테스트 이해하기</h3>
+<blockquote>
+<p><code>워크로드</code>란, 가장 일반적인 의미에서 시스템이나 네트워크가 작업을 완료하거나 특정 출력을 생성하는 데 걸리는 시간과 사용되는 컴퓨터 리소스를 말한다. - IBM</p>
+</blockquote>
+<p><strong>성능 테스트</strong>는 특정 워크로드에서 소프트웨어의 응답 시간, 안정성, 확장성, 가용성 등을 평가하여 고객에게 최적의 소프트웨어 성능을 제공할 수 있는지를 측정하는 과정이다.</p>
+<ul>
+<li><strong>응답 시간</strong>: 사용자의 요청으로부터 결과를 반환하기까지 걸리는 시간.</li>
+<li><strong>안정성</strong>: 다양한 문제 상황에서도 일정한 품질의 서비스를 안정적으로 제공할 수 있는지 여부.</li>
+<li><strong>확장성</strong>: 부하가 증가하거나 시스템 용량이 한계에 도달했을 때 수직 또는 수평 확장을 통해 서비스 품질을 유지할 수 있는지 여부.</li>
+<li><strong>가용성</strong>: 물리적 장애나 높은 부하가 발생해도 일정한 품질을 유지하며 서비스를 제공할 수 있는지 여부.</li>
+</ul>
+<h3 id="32-성능-테스트를-통해-알-수-있는-것">3.2 성능 테스트를 통해 알 수 있는 것</h3>
+<ul>
+<li>
+<p>예상 목표 TPS를 달성할 수 있는지.</p>
+</li>
+<li>
+<p>피크 시간대에도 서비스가 원활히 제공되는지.</p>
+</li>
+<li>
+<p>장시간 운영 시 자원 누수 없이 안정적으로 작동하는지.</p>
+</li>
+<li>
+<p>사용자가 증가할 경우 수평/수직 확장을 위한 기준이 무엇인지.</p>
+</li>
+<li>
+<p>일부 시스템이 다운되더라도 최소한의 리소스로 서비스가 유지되는지.</p>
+</li>
+<li>
+<p>시스템 리소스가 과도하게 할당되지 않았는지.</p>
+</li>
+<li>
+<p>시스템 메트릭이 시스템 상태를 정확히 설명하는지.</p>
+</li>
+<li>
+<p>최적의 하드웨어 및 소프트웨어 설정값이 무엇인지.</p>
+</li>
+</ul>
+<h3 id="33-성능-테스트의-주요-용어">3.3 성능 테스트의 주요 용어</h3>
+<ul>
+<li><code>트랜잭션</code> (Transaction): DB 트랜잭션과는 다르게, 논리적인 업무 요청의 단위로, 사용자가 한 번의 요청을 보내는 행위.</li>
+<li><code>총 사용자</code> (Total User): 현재 서비스 요청자 + 대기자 + 비접속자.</li>
+<li><code>현재 서비스 요청자</code> (Active User): 현재 서비스에 요청을 보낸 사용자.</li>
+<li><code>서비스 대기자</code> (Inactive User): 서비스에 접속해 있지만 아직 요청을 보내지 않은 사용자.</li>
+<li><code>동시 사용자</code> (Concurrency User): Active User + Inactive User.</li>
+</ul>
+<hr>
+<ul>
+<li><code>처리량</code> (Throughput): 단위 시간당 처리되는 작업의 양 (TPS: 초당 트랜잭션 수, RPS: 초당 요청 수).</li>
+<li>처리량 계산: <strong>TPS</strong> = <strong>현재 서비스 요청자(Active User) / 평균 응답 시간(Average Response Time)</strong></li>
+<li>Active User 계산: <strong>Active User = 처리량(TPS) × 평균 응답 시간(Average Response Time)</strong></li>
+<li><code>응답 시간</code> (Response Time): 사용자가 서버에 요청을 보낸 후 응답을 받기까지 걸리는 시간.</li>
+<li><code>요청 주기</code> (Request Interval): 요청 주기는 응답 시간 + 생각 시간 + 조작 시간.</li>
+<li><code>생각 시간</code> (Think Time): 사용자가 응답을 받은 후 화면을 보며 생각하는 시간.</li>
+<li><code>조작 시간</code> (Operation Time): 사용자가 데이터를 입력하거나 화면을 채우는 시간 (예: 로그인 시 아이디와 비밀번호를 입력하는 시간).</li>
+</ul>
+<h3 id="34-성능-테스트-과정">3.4 성능 테스트 과정</h3>
+<p>성능 테스트 과정은 아래의 크게 4가지로 구분되어 진행된다.</p>
+<ol>
+<li>
+<p><code>테스트 항목</code>: 현재 테스트할 모든 애플리케이션을 나열하고, 우선순위를 기준으로 테스트 범위를 정한다.</p>
+</li>
+<li>
+<p><code>테스트 조건</code>: 각 애플리케이션이 충족해야 할 조건을 설정한다.</p>
+</li>
+<li>
+<p><code>테스트 시나리오</code>: 워크로드 모델을 작성하여, 업무 중요도가 높은 항목을 선정하고 가설을 세워 성능 테스트 대상을 설정한다. (워크로드 모델, 목표 TPS, 사용자 수, 응답 시간(sec), 생각 시간, 결과 TPS)</p>
+</li>
+<li>
+<p><code>점검 항목</code>: TPS, 응답 시간, 시스템 메트릭, 에러 발생률, 네트워크 사용률, 로드 밸런서 부하 등을 점검한다.</p>
+</li>
+</ol>
+<h3 id="35-성능-테스트-graph">3.5 성능 테스트 Graph</h3>
+<p><img src="/assets/img/server/technology/Performance-Concept-Common-Throughput-Curve.png" alt=""></p>
+<p>(출처: <a href="https://publib.boulder.ibm.com/httpserv/cookbook/Cookbook_General-Theory.html">IBM: Aspects of Performance Tuning</a>)</p>
+<ul>
+<li>
+<p>A: 사용자가 증가되는 시점 (Ramp Up)</p>
+<ul>
+<li>해당 지점동안 사용자가 증가하면서 처리량도 함께 증가한다.</li>
+</ul>
+</li>
+<li>
+<p>Saturation point: 임계지점(포화지점)</p>
+<ul>
+<li>
+<p>사용자가 증가해도 더 이상 처리량이 증가되지 않는 상태가 되는 시점</p>
+</li>
+<li>
+<p>이 상태가 되면 현재 시스템이 처리할 수 있는 최대 Capacity 에 도달했음을 나타낸다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>B: 최대 부하 지점</p>
+<ul>
+<li>
+<p>사용자가 증가해도 처리량이 일정하게 유지되는 지점</p>
+</li>
+<li>
+<p>이때 그래프가 고르고 안정적이라면 서비스가 최대 Capacity로 유지될 수 있음을 나타낸다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>C: Buckie 영역(성능 감소지점)</p>
+<ul>
+<li>
+<p>최대 처리를 더 이상 견뎌내니 못하고 성능이 감소되는 지점</p>
+</li>
+<li>
+<p>이 시점은 시스템의 한계를 초과했을 때 혹은 네트워크 대역폭을 전부 사용한 경우에 이런 현상이 발생한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="36-성능-테스트별-그래프">3.6 성능 테스트별 그래프</h3>
+<p>성능테스트 방법에 따라 그래프 패턴을 확인할 수 있다.</p>
+<p>(자세한 내용은 <a href="https://grafana.com/docs/k6/latest/testing-guides/test-types/">Grafana Labs - Load test types</a> 에서 확인한다)</p>
+<p><img src="/assets/img/server/technology/Performance-ConCept-Load-Test-Type.png" alt=""></p>
+<ul>
+<li>
+<p><code>Smoke 테스트</code>는 스크립트가 제대로 작동하는지와 시스템이 최소한의 부하에서 적절하게 성능을 발휘하는지를 검증한다.</p>
+</li>
+<li>
+<p><code>Average Load 테스트</code>는 시스템이 예상되는 정상적인 조건에서 어떻게 작동하는지를 평가한다.</p>
+</li>
+<li>
+<p><code>Stress 테스트</code>는 부하가 예상 평균을 초과할 때 시스템이 한계에서 어떻게 작동하는지를 평가한다.</p>
+</li>
+<li>
+<p><code>Soak 테스트</code>는 시스템의 신뢰성과 성능을 장시간에 걸쳐 평가한다.</p>
+</li>
+<li>
+<p><code>Breakpoint 테스트</code>는 부하를 점진적으로 증가시켜 시스템의 용량 한계를 식별한다.</p>
+</li>
+<li>
+<p><code>Spike 테스트</code>는 갑작스럽고 짧으며 대규모로 증가하는 활동에서 시스템의 동작과 생존 여부를 검증한다.</p>
+</li>
+</ul>
+<h3 id="37-워크로드-모델링">3.7 워크로드 모델링</h3>
+<ul>
+<li>
+<p><code>워크로드 모델링</code>은 성능 테스트 대상 워크로드를 나열하고, <strong>업무 중요도가 높은 순서로 가설을 설정해 성능 테스트 대상을 선정</strong>하는 작업이다.</p>
+</li>
+<li>
+<p>시스템에서 사용하는 모든 워크로드를 나열한 후, <strong>가장 많이 사용되는 70~80%</strong> 의 워크로드만을 성능 테스트 대상으로 삼는다.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>워크로드</th><th>Target TPS</th><th>User</th><th>Response Time (sec)</th><th>Think Time</th><th>TPS</th></tr></thead><tbody><tr><td>메인화면</td><td>20</td><td>60</td><td>2</td><td>1 sec</td><td>20</td></tr><tr><td>로그인</td><td>15</td><td>45</td><td>1</td><td>2 sec</td><td>15</td></tr><tr><td>마이페이지</td><td>10</td><td>50</td><td>3</td><td>2 sec</td><td>10</td></tr><tr><td>상품</td><td>25</td><td>75</td><td>2</td><td>1 sec</td><td>25</td></tr><tr><td>이체</td><td>10</td><td>70</td><td>4</td><td>3 sec</td><td>10</td></tr><tr><td>혜택</td><td>8</td><td>32</td><td>2</td><td>2 sec</td><td>8</td></tr><tr><td>알림</td><td>12</td><td>36</td><td>1</td><td>2 sec</td><td>12</td></tr><tr><td>Total</td><td>100</td><td>368</td><td>-</td><td>-</td><td>100</td></tr></tbody></table>
+<ul>
+<li>
+<p>위 워크로드는 7개의 주요 애플리케이션을 나열한 것이다. (실제 워크로드는 이보다 많지만, 여기서는 약 80%의 주요 워크로드만 모델링했다.)</p>
+</li>
+<li>
+<p>표에서 사용된 용어들은 다음과 같다. (위에 있는 “3.3 성능 테스트의 주요 용어”와 같은 내용이다)</p>
+<ul>
+<li>
+<p><code>Target TPS</code>: 목표로 하는 초당 트랜잭션 수.</p>
+</li>
+<li>
+<p><code>User</code>: 가상 사용자 수로, 예상되는 사용자 수를 설정한다.</p>
+<ul>
+<li>현재 서비스 사용자 수: 처리량(TPS) × 평균 응답 시간(Response Time + Think Time)</li>
+</ul>
+</li>
+<li>
+<p><code>Reponse Time</code>: 응답 시간.</p>
+</li>
+<li>
+<p><code>TPS</code>: 실제로 측정된 처리량.</p>
+<ul>
+<li>처리량: 현재 서비스 요청자 수 / 평균 응답 시간(Response Time + Think Time)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>위와 같은 워크로드 모델을 구성하여 성능 테스트를 진행하고, 각 워크로드에 부하를 균등하게 분산해 주입할 방안을 결정한다.</p>
+</li>
+</ul>
+<h3 id="38-주요-성능-테스트-도구-소개">3.8 주요 성능 테스트 도구 소개</h3>
+<p>오픈 소스로 공개된 성능 테스트 도구들 중 nGrinder와 K6에 대해 정리했다.</p>
+<ul>
+<li>
+<p>nGrinder</p>
+<ul>
+<li><strong>구성</strong>: 스크립트 기반 부하 테스트 플랫폼으로, 테스트 관리를 담당하는 <strong>Controller</strong>와 부하 생성을 위한 <strong>Agent</strong>로 구성된다.</li>
+<li><strong>기능</strong>:
+<ul>
+<li><strong>스크립트 기반 시나리오 작성</strong>: Jython 또는 Groovy 스크립트를 사용해 테스트 시나리오를 작성할 수 있으며, 여러 Agent를 통해 JVM에서 부하를 생성한다.</li>
+<li><strong>확장 가능한 테스트</strong>: 사용자 정의 라이브러리(JAR, Python 스크립트, Maven 의존성)를 추가하여 무제한으로 테스트를 확장할 수 있다.</li>
+<li><strong>웹 기반 인터페이스</strong>: 프로젝트 관리, 모니터링, 결과 관리, 리포트 관리를 위한 웹 기반 UI를 제공한다.</li>
+<li><strong>IDE 지원</strong>: Groovy 스크립트를 IDE에서 개발하고, 분산 Agent를 통해 실행할 수 있다.</li>
+<li><strong>병렬 테스트</strong>: 여러 테스트를 동시에 실행하며, 각 Agent의 자원 활용도를 극대화할 수 있다.</li>
+<li><strong>다중 네트워크 지역</strong>: 다양한 네트워크 위치에서 테스트를 실행할 수 있도록 여러 네트워크 지역에 Agent를 배포할 수 있다.</li>
+<li><strong>내장 Subversion</strong>: 스크립트 관리를 위해 Subversion이 내장되어 있다.</li>
+<li><strong>모니터링</strong>: 부하를 생성하는 Agent의 상태와 부하를 받는 대상 시스템을 실시간으로 모니터링할 수 있다.</li>
+</ul>
+</li>
+<li><strong>장점</strong>: 직관적인 UI 제공과 글로벌 부하 테스트 환경을 지원하며, 대규모 시스템 테스트에 적합한 검증된 솔루션이다.</li>
+<li><strong>단점</strong>: Jython/Groovy에 대한 지식이 부족할 경우 복잡한 스크립트 작성이 어려울 수 있다. 또한, 분산 테스트 시 여러 Agent를 사용하는 경우 많은 시스템 자원이 필요하다.</li>
+<li><strong>참고자료</strong>: <a href="https://github.com/naver/ngrinder/tree/develop/docker">nGrinder 설치 (GitHub)</a>, <a href="https://naver.github.io/ngrinder/">nGrinder(공식문서)</a></li>
+</ul>
+</li>
+<li>
+<p>K6</p>
+<ul>
+<li><strong>특징</strong>: 웹 애플리케이션과 API의 부하 및 성능 테스트를 위해 설계된 오픈 소스 성능 테스트 도구로, <strong>개발자 친화적</strong>이고 <strong>확장 가능</strong>하다.</li>
+<li><strong>기능</strong>: 다양한 부하 조건에서 시스템의 성능과 확장성을 측정하며, 여러 기능을 제공한다.
+<ul>
+<li><strong>JavaScript 기반</strong>: JavaScript를 사용해 테스트 스크립트를 작성할 수 있어 JavaScript 개발자들이 쉽게 사용할 수 있다.</li>
+<li><strong>부하 생성</strong>: 여러 가상 머신과 클라우드 인스턴스를 활용해 높은 부하를 생성하고 실제 사용자 행동을 시뮬레이션하여 확장성 테스트를 수행할 수 있다.</li>
+<li><strong>모니터링</strong>: 테스트 결과를 실시간으로 분석하고 성능 문제를 즉시 식별할 수 있다.</li>
+<li><strong>확장성</strong>: 오픈 소스 특성 덕분에 <strong>사용자 정의 플러그인</strong> 개발을 통해 기능을 확장할 수 있다.</li>
+<li><strong>성능 체크</strong>: 시스템 동작을 검증하고 <strong>통과/실패 기준</strong>을 설정할 수 있는 기능을 제공한다.</li>
+<li><strong>통합</strong>: <strong>Grafana Cloud 및 k6 Cloud</strong>와 통합되어 추가적인 결과 저장, 분석, 공유 기능을 제공한다.</li>
+</ul>
+</li>
+<li><strong>단점</strong>: 브라우저 기반 테스트를 지원하지 않으며, Node.js 환경에서 직접 사용할 수 없다. 대규모 부하 테스트를 위해 멀티 Agent 환경을 구성할 때 설정이 복잡할 수 있다.</li>
+<li><strong>참고자료</strong>: <a href="https://grafana.com/docs/k6/latest/">K6 (공식문서)</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="마치면서">마치면서</h2>
+<ul>
+<li>
+<p>이번 글에서는 성능의 기초 개념, 병목 현상, 그리고 성능 테스트에 대해 간단하게 정리해보았다. 이러한 개념을 이해함으로써 시스템의 성능을 최적화하고 문제를 사전에 예방하는 데 필요한 기반 지식을 다질 수 있었다. 글을 작성하면서 성능 테스트와 함께 활용해야 할 모니터링 도구의 중요성도 새롭게 느끼게 되었는데, 이 부분은 다음 글에서 성능 테스트와 함께 더 깊이 다뤄볼 예정이다.</p>
+</li>
+<li>
+<p>추가로, 앞으로 작성할 글에서는 Java/Kotlin, Spring Boot 환경에서 성능을 개선하기 위해 고려할 수 있는 요소들을 다루어 보려 한다.</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://brendangregg.com/linuxperf.html">Linux Performance Guide</a></p>
+<ul>
+<li>
+<p><a href="https://netflixtechblog.com/linux-performance-analysis-in-60-000-milliseconds-accc10403c55">Linux Performance Analysis in 60,000 Miliseconds</a> (리눅스 서버에서 성능 이슈가 발생했을 때, 첫 60초 안에 확인해야할 사항)</p>
+</li>
+<li>
+<p><a href="https://brendangregg.com/Slides/LISA2019_Linux_Systems_Performance.pdf">Linux Systems Performance</a> (넷플릭스 - 시니어 성능 엔지니어 Brendan Gregg)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.youtube.com/live/MqdQc4vd_ws">23년 2월 Tech 세미나 - 성능 테스트와 K6 도구 소개</a></p>
+</li>
+<li>
+<p><a href="https://publib.boulder.ibm.com/httpserv/cookbook/Cookbook_General-Theory.html">IBM: Aspects of Performance Tuning</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/docs/k6/latest/testing-guides/test-types/">[공식문서] Grafana - Load test types</a></p>
+</li>
+<li>
+<p><a href="https://blog.naver.com/naverfinancial/223493300536">nGrinder를 활용한 부하테스트 - 네이버페이 기술블로그</a></p>
+</li>
+<li>
+<p><a href="https://github.com/naver/ngrinder/tree/develop/docker">nGrinder 설치</a></p>
+</li>
+<li>
+<p><a href="https://www.browserstack.com/guide/performance-testing-tools">Top 20 Performance Testing Tools in 2024</a></p>
+</li>
+<li>
+<p><a href="https://github.com/wilump-labs/k6-in-actions">부하테스트 - K6 실습</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Performance-Concept" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#성능-개념을-공부하게-된-이유" data-toc="성능-개념을-공부하게-된-이유" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">성능 개념을 공부하게 된 이유</a></li><li><a href="#1-성능-최적화" data-toc="1-성능-최적화" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">1. 성능 최적화</a></li><li><a href="#11-성능이란-무엇인가" data-toc="11-성능이란-무엇인가" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">1.1 성능이란 무엇인가?</a></li><li><a href="#12-성능-지표와-분석" data-toc="12-성능-지표와-분석" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">1.2 성능 지표와 분석</a></li><li><a href="#13-성능-최적화의-필요성과-목표" data-toc="13-성능-최적화의-필요성과-목표" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">1.3 성능 최적화의 필요성과 목표</a></li><li><a href="#2-병목-현상의-이해와-원인" data-toc="2-병목-현상의-이해와-원인" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">2. 병목 현상의 이해와 원인</a></li><li><a href="#21-병목-현상의-정의" data-toc="21-병목-현상의-정의" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">2.1 병목 현상의 정의</a></li><li><a href="#22-시스템-병목의-주요-원인" data-toc="22-시스템-병목의-주요-원인" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">2.2 시스템 병목의 주요 원인</a></li><li><a href="#23-병목-지점-식별-방법" data-toc="23-병목-지점-식별-방법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">2.3 병목 지점 식별 방법</a></li><li><a href="#3-성능-테스트의-기본과-과정" data-toc="3-성능-테스트의-기본과-과정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">3. 성능 테스트의 기본과 과정</a></li><li><a href="#31-성능-테스트-이해하기" data-toc="31-성능-테스트-이해하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.1 성능 테스트 이해하기</a></li><li><a href="#32-성능-테스트를-통해-알-수-있는-것" data-toc="32-성능-테스트를-통해-알-수-있는-것" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.2 성능 테스트를 통해 알 수 있는 것</a></li><li><a href="#33-성능-테스트의-주요-용어" data-toc="33-성능-테스트의-주요-용어" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.3 성능 테스트의 주요 용어</a></li><li><a href="#34-성능-테스트-과정" data-toc="34-성능-테스트-과정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.4 성능 테스트 과정</a></li><li><a href="#35-성능-테스트-graph" data-toc="35-성능-테스트-graph" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.5 성능 테스트 Graph</a></li><li><a href="#36-성능-테스트별-그래프" data-toc="36-성능-테스트별-그래프" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.6 성능 테스트별 그래프</a></li><li><a href="#37-워크로드-모델링" data-toc="37-워크로드-모델링" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.7 워크로드 모델링</a></li><li><a href="#38-주요-성능-테스트-도구-소개" data-toc="38-주요-성능-테스트-도구-소개" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3.8 주요 성능 테스트 도구 소개</a></li><li><a href="#마치면서" data-toc="마치면서" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">마치면서</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

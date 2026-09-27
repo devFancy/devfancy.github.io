@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[카프카 핵심 가이드] CHAPTER 1. 카프카 시작하기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Kafka-Concept/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[카프카 핵심 가이드] CHAPTER 1. 카프카 시작하기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2025-07-22" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2025-07-22</time><a href="/category/#Kafka" class="chip chip-tag">#Kafka</a></div><p class="view-count text-sm text-muted">조회수 36회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 <a href="https://product.kyobobook.co.kr/detail/S000201464167?utm_source=google&#x26;utm_medium=cpc&#x26;utm_campaign=googleSearch&#x26;gad_source=1">카프카 핵심 가이드</a> 책을 읽고 정리한 글입니다.</p>
+</blockquote>
+<h2 id="prologue">Prologue</h2>
+<p>‘카프카 핵심 가이드’ 책의 1장 ‘카프카 시작하기’를 읽고, 꼭 알아야 할 내용(핵심 위주)만 정리했다.</p>
+<p>이 글에서는 카프카를 왜 사용해야 하는지(Why), 그리고 카프카를 구성하는 핵심 개념은 무엇인지에 초점을 맞췄다.</p>
+<p>자세한 내용은 책의 1장을 참고하자.</p>
+<hr>
+<h2 id="카프카를-왜-사용하는가">카프카를 왜 사용하는가?</h2>
+<p>초기 시스템은 데이터를 보내는 애플리케이션(프로듀서)과 받아서 사용하는 애플리케이션(컨슈머)이 직접 연결된 단순한 구조로 시작한다.</p>
+<p>하지만 비즈니스가 성장하고 시스템이 복잡해지면서, 데이터를 생산하는 프로듀서와 데이터를 필요로 하는 컨슈머의 수가 계속 늘어난다.
+이때마다 시스템 간의 직접 연결(Point-to-Point)을 추가하면, 아래 그림과 같이 전체 아키텍처는 거미줄처럼 얽혀 추적하고 관리하기가 매우 어려워진다.</p>
+<p><img src="/assets/img/server/kafka/Kafka-Why-and-Concept-1.png" alt=""></p>
+<p>이러한 복잡성을 해결하기 위해 <strong>발행/구독(Publish/Subscribe) 모델</strong>을 사용한다.
+모든 프로듀서는 데이터를 중앙 시스템으로 보내고, 모든 컨슈머는 이 중앙 시스템으로부터 데이터를 가져간다.
+이 중앙 시스템이 바로 메시지 큐 또는 카프카와 같은 브로커다.
+이를 통해 아래 그림처럼 프로듀서와 컨슈머 간의 직접적인 의존성이 제거되어 <strong>결합도가 낮아진다.</strong></p>
+<p><img src="/assets/img/server/kafka/Kafka-Why-and-Concept-2.png" alt=""></p>
+<p>그러나 여기서 또 다른 문제가 발생할 수 있다. 모니터링 지표, 서버 로그, 사용자 클릭 정보 등 <strong>데이터의 종류</strong>에 따라 각각 별개의 메시징 시스템을 구축하는 것이다.
+이는 결국 아래 그림과 같이 여러 개의 시스템을 <strong>중복</strong>으로 관리해야 하는 비효율을 초래한다.</p>
+<p><img src="/assets/img/server/kafka/Kafka-Why-and-Concept-3.png" alt=""></p>
+<p>카프카는 바로 이 문제를 해결하기 위해 등장했다.</p>
+<p><code>중앙 집중형 발행/구독 시스템</code>(= 분산 스트리밍 플랫폼)으로서, 기존의 여러 발행/구독 시스템을 하나로 통합하고 대체하며
+모든 종류의 데이터를 처리하는 데이터 허브(Data Hub) 역할을 수행한다.</p>
+<p>결론적으로 카프카는 다음과 같은 강력한 특징 때문에 사용된다.</p>
+<ul>
+<li>
+<p><strong>다수의 프로듀서와 다수의 컨슈머</strong>: 여러 시스템이 동시에 데이터를 보내고, 여러 시스템이 간섭 없이 각자 필요한 데이터를 소비할 수 있다.</p>
+</li>
+<li>
+<p><strong>디스크 기반 데이터 보존</strong>: 데이터를 <code>디스크</code>에 안전하게 보존하므로, 컨슈머가 일시적으로 중단되거나 느려져도 데이터 유실 없이 나중에 처리할 수 있다.</p>
+</li>
+<li>
+<p><strong>확장성과 고성능</strong>: 데이터양이 급증하더라도 브로커를 추가하는 방식으로 손쉽게 수평 확장이 가능하며, 높은 처리량과 낮은 지연 시간을 보장한다.</p>
+</li>
+</ul>
+<h2 id="카프카-핵심-개념">카프카 핵심 개념</h2>
+<h3 id="메시지-message">메시지 (Message)</h3>
+<ul>
+<li>
+<p>카프카에서 다루는 데이터의 기본 단위다.</p>
+</li>
+<li>
+<p>단순한 <strong>바이트 배열</strong> 로, 특정 형식이나 의미를 갖지 않는다.</p>
+</li>
+<li>
+<p>메시지는 <strong>키(Key)와 밸류(Value)</strong> 로 구성된다.</p>
+</li>
+<li>
+<p>키는 메시지를 어느 파티션에 저장할지 결정하는 데 사용된다.</p>
+</li>
+</ul>
+<h3 id="스키마-schema">스키마 (Schema)</h3>
+<ul>
+<li>
+<p>메시지의 구조를 정의하는 형식이다. 카프카 자체는 메시지를 바이트 배열로만 보지만, 데이터를 올바르게 해석하기 위해 스키마를 사용하는 것을 권장한다.</p>
+</li>
+<li>
+<p>프로듀서와 컨슈머가 스키마를 통해 데이터를 <strong>일관된 형식</strong>으로 주고받을 수 있어 서로 독립적으로 개발 및 변경이 가능하다. (e.g. JSON, Avro)</p>
+</li>
+<li>
+<p>이를 통해 프로듀서와 컨슈머의 결합을 더욱 낮추는 핵심적인 역할을 한다</p>
+</li>
+</ul>
+<h3 id="토픽-topic과-파티션-partition">토픽 (Topic)과 파티션 (Partition)</h3>
+<ul>
+<li>
+<p>메시지를 구분하는 카테고리를 <code>토픽</code> 이라고 한다. 데이터베이스의 테이블이나 파일 시스템의 폴더와 유사하다.</p>
+</li>
+<li>
+<p>토픽은 하나 이상의 <strong>파티션</strong>으로 나뉜다. 파티션은 하나의 로그 파일과 같다.</p>
+</li>
+<li>
+<p>메시지는 파티션에 추가(append-only) 방식으로 저장된다.</p>
+</li>
+<li>
+<p>메시지의 순서는 <strong>단일 파티션 내</strong> 에서만 보장된다. 토픽 전체에 대한 순서는 보장되지 않는다.</p>
+</li>
+<li>
+<p>파티션을 통해 데이터를 분산 저장하여 확장성과 가용성을 높인다.  (아래 그림 참고)</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/kafka/Kafka-Why-and-Concept-4.png" alt=""></p>
+<h3 id="프로듀서-producer와-컨슈머-consumer">프로듀서 (Producer)와 컨슈머 (Consumer)</h3>
+<ul>
+<li>
+<p><code>프로듀서</code>는 새로운 메시지를 생성하여 특정 토픽으로 보내는 역할을 한다.</p>
+</li>
+<li>
+<p><code>컨슈머</code>는 특정 토픽에서 메시지를 읽어오는 역할을 한다.</p>
+</li>
+<li>
+<p>컨슈머는 <code>컨슈머 그룹(Consumer Group)</code>에 속해서 동작한다.</p>
+</li>
+<li>
+<p>아래 그림과 같이, 하나의 파티션은 컨슈머 그룹 내에서 <strong>오직 하나의 컨슈머에 의해서</strong>만 소비된다. 이를 통해 메시지 처리를 병렬로 수행할 수 있다.</p>
+<ul>
+<li>
+<p>동일 그룹 내 (병렬 처리): 그림을 보면 각 파티션(<code>0</code>, <code>1</code>, <code>2</code>, <code>3</code>)이 그룹 내의 단 한 개의 컨슈머에게만 할당된 것을 확인할 수 있다. 예를 들어 <strong>파티션 0</strong>은 <strong>컨슈머 0</strong>이, <strong>파티션 3</strong>은 <strong>컨슈머 2</strong>가 전담하여 처리한다. 이를 통해 그룹 내에서 메시지 처리 순서를 보장하고 중복 소비를 방지한다.</p>
+</li>
+<li>
+<p>컨슈머와 파티션의 관계: 컨슈머의 수가 파티션의 수보다 적기 때문에, <strong>컨슈머 1</strong>은 <strong>파티션 1</strong>과 <strong>파티션 2</strong>를 모두 담당하게 되었다. 이처럼 하나의 컨슈머는 여러 파티션을 처리할 수 있지만, 반대는 불가능하다.</p>
+</li>
+<li>
+<p>다른 그룹 간 (독립적 구독): 만약 이 그림의 토픽을 구독하는 새로운 <strong>컨슈머 그룹 B</strong>가 생긴다면, 그 그룹 역시 현재 그룹과는 완전히 독립적으로 파티션 0, 1, 2, 3의 모든 메시지를 처음부터 소비하게 된다. 각 그룹은 자신만의 오프셋(offset, 어디까지 읽었는지의 위치)을 관리하기 때문이다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>이러한 구조 덕분에 하나의 토픽 데이터를 가지고, 한쪽에서는 실시간 분석(그룹 A)을, 다른 한쪽에서는 데이터베이스 저장(그룹 B)을 하는 등 다양한 목적의 애플리케이션을 동시에 운영할 수 있다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/kafka/Kafka-Why-and-Concept-5.png" alt=""></p>
+<h3 id="브로커-broker와-클러스터-cluster">브로커 (Broker)와 클러스터 (Cluster)</h3>
+<ul>
+<li>
+<p>카프카 서버 하나를 <code>브로커</code>라고 부른다.</p>
+</li>
+<li>
+<p>브로커는 프로듀서로부터 메시지를 받아 저장하고, 컨슈머의 요청에 따라 메시지를 전달한다.</p>
+</li>
+<li>
+<p>여러 브로커가 모여 하나의 <strong>클러스터</strong> 를 구성하며, 클러스터 내의 브로커 중 하나는 <strong>컨트롤러(Controller) 역할</strong> 을 맡아 다른 브로커들을 관리한다.</p>
+</li>
+<li>
+<p>아래 그림은 카프카의 고가용성과 내구성을 보장하는 핵심 기능인 <strong>복제(Replication) 동작 방식</strong>을 보여준다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/kafka/Kafka-Why-and-Concept-6.png" alt=""></p>
+<ul>
+<li>
+<p>각 파티션은 여러 브로커에 복제본을 가질 수 있는데, 이 중 단 하나만 <code>리더</code>(Leader) 역할을 하고 나머지는 <code>팔로워</code>(Follower) 가 된다. <strong>모든 데이터의 읽고 쓰는 작업은 <code>리더</code>를 통해서만</strong> 처리되는 것이 원칙이다.</p>
+<ul>
+<li>
+<p>그림에서 ‘토픽 A, 파티션 0’의 리더는 ‘브로커 1’이다. 프로듀서가 보낸 메시지는 먼저 리더인 ‘브로커 1’에 기록된 후, ‘A/0 복제’ 흐름을 따라 ‘브로커 2’에 있는 팔로워에게 복사된다. 반대로 ‘토픽 A, 파티션 1’의 리더는 ‘브로커 2’이며, 같은 방식으로 ‘브로커 1’의 팔로워에게 메시지가 복제된다.</p>
+</li>
+<li>
+<p>이러한 구조 덕분에 리더 역할을 하던 브로커(예: 브로커 1)에 장애가 발생하더라도, 다른 브로커에 있던 팔로워(브로커 2의 파티션 0)가 즉시 새로운 리더로 승격된다. 이를 통해 카프카는 <strong>데이터 유실 없이 중단 없는 서비스</strong>를 이어갈 수 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="오프셋-offset">오프셋 (Offset)</h3>
+<ul>
+<li>
+<p>파티션에 저장된 각 메시지의 <strong>고유한 순번</strong>을 나타내는 정수 값이다.</p>
+</li>
+<li>
+<p>컨슈머는 자신이 <strong>어디까지 메시지를 읽었는지 <code>오프셋</code>을 통해 기록</strong> 한다.</p>
+</li>
+<li>
+<p>이를 통해 컨슈머에 장애가 발생했다가 복구되어도 마지막으로 읽은 위치부터 다시 작업을 이어갈 수 있다.</p>
+</li>
+</ul>
+<h3 id="보존-retention">보존 (Retention)</h3>
+<ul>
+<li>
+<p>카프카가 메시지를 얼마나 오랫동안 디스크에 보관할지를 정하는 정책이다.</p>
+</li>
+<li>
+<p>메시지를 특정 시간(예: 7일) 또는 파티션의 크기(예: 1GB) 기준으로 보존할 수 있다.</p>
+</li>
+<li>
+<p>이 보존 정책 덕분에 컨슈머가 실시간으로 동작하지 않아도 데이터가 유실되지 않으며, 필요할 때 언제든 과거의 데이터를 소비할 수 있다. 이는 카프카의 핵심적인 내구성(durability) 기능이다.</p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://product.kyobobook.co.kr/detail/S000201464167?utm_source=google&#x26;utm_medium=cpc&#x26;utm_campaign=googleSearch&#x26;gad_source=1">카프카 핵심 가이드</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Kafka-Concept" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#카프카를-왜-사용하는가" data-toc="카프카를-왜-사용하는가" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">카프카를 왜 사용하는가?</a></li><li><a href="#카프카-핵심-개념" data-toc="카프카-핵심-개념" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">카프카 핵심 개념</a></li><li><a href="#메시지-message" data-toc="메시지-message" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">메시지 (Message)</a></li><li><a href="#스키마-schema" data-toc="스키마-schema" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">스키마 (Schema)</a></li><li><a href="#토픽-topic과-파티션-partition" data-toc="토픽-topic과-파티션-partition" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">토픽 (Topic)과 파티션 (Partition)</a></li><li><a href="#프로듀서-producer와-컨슈머-consumer" data-toc="프로듀서-producer와-컨슈머-consumer" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">프로듀서 (Producer)와 컨슈머 (Consumer)</a></li><li><a href="#브로커-broker와-클러스터-cluster" data-toc="브로커-broker와-클러스터-cluster" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">브로커 (Broker)와 클러스터 (Cluster)</a></li><li><a href="#오프셋-offset" data-toc="오프셋-offset" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">오프셋 (Offset)</a></li><li><a href="#보존-retention" data-toc="보존-retention" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">보존 (Retention)</a></li><li><a href="#references" data-toc="references" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">References</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

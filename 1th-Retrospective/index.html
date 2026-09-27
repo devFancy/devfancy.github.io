@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>2024년 1분기 회고 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/1th-Retrospective/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header is-overlay" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1"><section class="relative isolate flex overflow-hidden min-h-[25rem] sm:min-h-[clamp(32rem,26vw,40rem)] items-end"><img src="/assets/cover/1th-Retrospective.webp" alt="" loading="eager" fetchpriority="high" decoding="async" class="media-zoom absolute inset-0 -z-10 size-full object-cover object-center"><div class="media-scrim absolute inset-0 -z-10 bg-black/20"></div><div class="media-scrim absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/60 to-transparent"></div><div class="media-scrim absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent"></div><div class="shell pt-28 pb-14 sm:pb-28"><p class="hero-type mb-4 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-white/80" data-astro-cid-g5songws><a href="/category/#%ED%9A%8C%EA%B3%A0" class="inline-block py-1 underline-offset-4 transition-colors hover:text-white hover:underline" data-astro-cid-g5songws>회고</a></p><h1 class="hero-type text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl">2024년 1분기 회고</h1><div class="mt-5 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2024-03-31" class="hero-type mr-1 text-sm text-white/75" data-astro-cid-g5songws>2024-03-31</time></div><p class="view-count text-sm hero-type text-white/75">조회수 48회</p></div></section><div data-hero-end aria-hidden="true" class="h-px"></div><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div class="prose mt-0" data-astro-cid-g5songws><p>그동안 1년 단위로 회고를 진행해왔는데, 최근 3개월은 여러가지 활동들을 보내서 처음으로 분기별 회고를 작성해보려고 합니다.</p>
+<hr>
+<h2 id="개인-공부">개인 공부</h2>
+<h3 id="강의-수강-및-책">강의 수강 및 책</h3>
+<p>1월부터 3월까지 공부한 내용은 다음과 같습니다.</p>
+<ul>
+<li>
+<p>“스프링 DB 1편 - 데이터 접근 핵심 원리” 강의 수강 및 정리 (아래는 해당 강의를 기반으로 정리한 글입니다)</p>
+<ul>
+<li>
+<p><a href="https://devfancy.github.io/Spring-DB-JDBC/">JDBC 라이브러리를 이용하여 CRUD 구현하기</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-DB-ConnectionPool-DataSource/">커넥션 풀과 데이터소스 이해</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/Spring-DB-Transaction/">Spring의 Transaction 이해 (@Transactional)</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>“자바 개발자를 위한 코틀린 입문(Java to Kotlin Starter Guide)” 강의 수강 및 <a href="https://github.com/devFancy/kotlin-practice/tree/main/java-to-kotlin">정리</a></p>
+</li>
+<li>
+<p>“실전! 코틀린과 스프링 부트로 도서관리 애플리케이션 개발하기 (Java 프로젝트 리팩토링)” 강의 수강 및 <a href="https://github.com/devFancy/kotlin-practice/tree/main/library-app">실습</a></p>
+</li>
+<li>
+<p>“가상 면접 사례로 배우는 대규모 설계 시스템 기초” 책 읽기</p>
+</li>
+</ul>
+<p>스프링과 코틀린에 대해 강의를 통해 학습하고 개인 포스팅으로 정리하는 식으로 진행했습니다. 또한 최근에는 설계 시스템에 관심이 가게 되어서 “가상 면접 사례로 배우는 대규모 설계 시스템 기초” 라는 책을 읽었습니다.</p>
+<h3 id="사이드-프로젝트">사이드 프로젝트</h3>
+<blockquote>
+<p>사이드 프로젝트 진행기간: 2023.12 ~ 2024.02</p>
+</blockquote>
+<p>히빗 프로젝트(ver.2)는 백엔드 부분에서의 코드와 구조를 개선하기 위해 혼자서 다시 진행한 프로젝트입니다.</p>
+<p>이와 관련된 부분은 다른 포스팅에 이미 작성해둔 게 있기 때문에, 여기서는 생략하겠습니다.</p>
+<p>(관련 링크 - <a href="https://devfancy.github.io/Hibit-Retrospective/">히빗 V2 업그레이드: 백엔드 개선과 개발자 성장기</a>)</p>
+<h2 id="til-모임">TIL 모임</h2>
+<blockquote>
+<p>TIL 진행기간: 2024.01 ~ 2024.06 (6개월간 진행)</p>
+</blockquote>
+<p>TIL 모임은 글또에서 활동하고 계신 NY님이 올린 모집글을 통해 신청하게 되었습니다.</p>
+<p>처음 1월에는 Slack 채널에서 비공개로 진행했었는데, 대표적으로 2가지 단점이 보이기 시작했습니다.</p>
+<ul>
+<li>
+<p>슬랙 유료 멤버십을 가입하지 않으면, 3개월 이후에는 블러 처리가 되어서 기록된 내용을 볼 수 없게 됩니다.</p>
+</li>
+<li>
+<p>온라인 화상회의를 하려면 다른 플랫폼을 이용해야 한다는 점이 있습니다.</p>
+</li>
+</ul>
+<p>무엇보다도 ‘기록’을 열심히 했음에도, 나중에 볼 수 없다는 점이 가장 큰 단점 이었기 때문에, 2월부터는 디스코드로 갈아탔습니다.</p>
+<p>디스코드는 무료로 기록도 되었고 내부에서 화상 회의가 가능했기 때문에, 위의 2가지 단점을 모두 커버할 수 있었습니다.</p>
+<p>1월에는 6명이서 시작했던 TIL 모임이 이제(3월 기준)는 12명이 되어갔습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-1.png" alt="" width="150">
+<p>2월부터는 TIL 인증 뿐만 아니라, 매주 금요일 혹은 일요일 저녁에 30분 정도 ‘주간 회고’를 진행하면서 KPT 회고를 작성하고, 서로 얘기하는 시간을 가졌습니다.</p>
+<p>확실히 이런 TIL 모임을 하니까, 다른 구성원분들로부터 자극을 받고, 스스로 동기부여를 하면서 매일 공부하는 습관을 유지할 수 있었던 점이 좋았습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-2.png" alt="" width="300">
+<p>1월부터 3월까지 3개월 동안 한 결과, 총 60번의 제출 중 41번을 제출하였습니다. 제출하지 못한 날이 꽤 있어서 아쉽긴 하지만, 그래도 제출한 내용 만큼은 현재뿐 아니라 앞으로도 도움이 되는 기술적 지식 또는 경험 위주로 정리하려고 노력했습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-3.png" alt="" width="400">
+<p>이전까지는 1달 단위로 TIL 모임을 운영해왔지만, 앞으로는 분기별로 진행하면서 꾸준히 공부하면서 성장해가는 개발자가 되도록 노력할 예정입니다 😌.</p>
+<h2 id="이력또-스터디">이력또 스터디</h2>
+<blockquote>
+<p>스터디 진행기간: 2024.01 ~ 2024.02</p>
+</blockquote>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-4.png" alt="" width="500">
+<p>글또에서 활동하고 계신 YH님께서 “이력서, 포트폴리오 개선 스터디원”을 구하신다는 모집글을 보고, 바로 참여하게 되었습니다.</p>
+<p>평소에 이력서에 대한 피드백을 동료분들 혹은 저보다 연차가 많은 개발자분들로부터 받아왔지만, 아직도 부족하다고 느끼고 있었습니다.
+또한 제가 조금이라도 도움이 드릴 수 있는 부분이 있다면 적극적으로 도와드리고 싶었습니다.
+해당 스터디를 통해 더 나은 이력서를 만들고자 참여를 하게 되었습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-5.png" alt="" width="700">
+<p>YH님이 주도적으로 스터디를 이끌어주시면서 어떻게 진행할지 알려주셨고, 더 나은 방법이 있다면 스터디에 참여하는 구성원분들이 의견을 제시해서 조금씩 개선하는 방향으로 나아갔습니다.</p>
+<p>피그마를 이용하여 2주마다 총 3개의 버전을 만들면서 이전 대비 더 나아지는 이력서를 만드는 것이 목표였습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-6.png" alt="" width="300">
+<p>2주 간격으로 온라인 회의(Google Meet)를 진행하면서, YH님이 그때마다 필요한 내용들을 Notion에 정리해주셔서 구성원 모두에게 공유하고 얘기하는 시간을 가졌습니다.
+해당 스터디 이후에 서류에 합격하는 사람이 있으면, 위와 같이 스터디원 분들이 모두 축하해줬습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-7.png" alt="" width="300">
+<p>스터디 마지막 날에는 이번 모임의 목적을 다시 생각하면서, 부족했던 부분, 좋았던 부분, 개선할 부분들을 정리하는 시간을 가졌습니다.
+다음에 또 이력서 스터디를 모집한다면, 지금보다 더 효과를 누릴 수 있지 않을까 생각합니다.</p>
+<h3 id="최종-이력서">최종 이력서</h3>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-8.png" alt="" width="400">
+<p>피그마에서 각 직군별로 분류하였고, 본인의 직무에 있는 곳에 이력서를 올리는 식으로 진행했습니다. 그리고 2주 동안 본인의 이력서를 다른 버전으로 업데이트 하는 동시에, 다른 사람의 이력서를 보고 피드백하는 식으로 했습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-9.png" alt="" width="400">
+<p>저는 해당 스터디를 시작하기 전부터 기존의 이력서가 있었고, 스터디를 진행하면서 서류합격 받은 회사들로부터 면접을 진행하고 있었습니다. (이때가 정말 바빴고, 정신없이 시간을 보냈던 것 같습니다 😂)</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter.png" alt="" width="500">
+<p>그렇게 열심히 노력한 결과, 운이 좋게도 한 회사에 최종합격을 받게 되었습니다. 일부 기술 면접 질문에 대해 제대로 답변을 못한 경우도 있었는데, 그러한 부분을 관대하게 넘어가주셨고, 인성 부분에서 좋게 봐주셔서 ‘합격’해주셨다고 생각합니다.
+앞으로 새로운 회사에 다니면서 꾸준히 성장해서 더 나은 개발자가 되도록 노력하겠습니다.</p>
+<h2 id="글또-백엔드인프라-반상회">글또 백엔드/인프라 반상회</h2>
+<p>글또에 참여하면서, 글을 제출하는 것 외에 글또에 도움이 되는 활동에 참여하고 싶다는 생각이 들었습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-10.png" alt="" width="400">
+<p>그렇게 생각만 하다가 어느 날, 백엔드/인프라 반상회를 위한 준비 위원회 모집 참여글을 확인하게 되었고, 참여 의사를 전달하면서 준비위원회에 합류하게 되었습니다.</p>
+<p>첫 미팅은 온라인으로 진행 했고, 두 번째 미팅은 오프라인(우아한형제들, 선릉역 부근)에서 진행되었습니다. 성윤님이 PO 역할로 큰 부분을 잡아주셨고, 세부적인 부분들은 팀을 꾸려서 전개해 나가도록 진행했습니다.</p>
+<p>저는 굿즈팀에서 키캡을 제작하는 걸 담당했고, 음식팀에서는 TJ님과 메뉴 선정부터 배송 과정까지 기획하는 걸 담당했습니다.
+키캡을 제작하면서, 굿즈팀의 YE님께서 디자인 부분을 많이 도와주셔서 일사천리로 끝내서 정말 감사했습니다. 음식팀에서는 TJ님이 적극적으로 임해주셨고, 성윤님이 뒤에서 많은 부분을 도와주셔서 감사했습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-12.jpg" alt="" width="300">
+<p>결과적으로 키캡은 위와 같이 제작되었습니다.</p>
+<img src="/assets/img/retrospective/retrospective/Retrospective-2024-first-quarter-13.jpg" alt="" width="400">
+<p>그리고 굿즈팀의 YE님과 SM님이 포스터를 정성스럽고 이쁘게 만들어주셨습니다. (비록 백엔드 직무이시만, 취미로 디자인을 하시는 YE님 짱입니다..!)
+이 외에도 여러 팀에서 본인이 맡으신 부분들을 적극적으로 임해주셔서, 결과적으로 백엔드/인프라 반상회 준비가 문제없이 잘 되었다고 생각합니다.</p>
+<p>3월 14일, 반상회 당일 ‘마루 180’이라는 장소에서 100명이 넘는 글또 분들이 오프라인에 참석하면서 오프닝 -> 발표 -> 네트워킹 -> 기념 사진 촬영 으로 진행하게 되었습니다.</p>
+<p>백엔드/인프라 반상회를 한 마디로 정리하면, ‘짧지만 강렬했고 즐거웠던 네트워킹 모임’ 입니다.</p>
+<p>해당 반상회에 대한 자세한 내용이 궁금하시다면, 승현님이 작성한 <a href="https://imksh.com/124">포스팅</a>에서 확인하시면 좋을 것 같습니다 !
+여유가 된다면, 저도 이 부분에 대해 나중에 포스팅으로 업로드할 예정입니다.</p>
+<h2 id="next-plan">Next Plan</h2>
+<p>4월부터는 새로운 회사에서 백엔드 직무로 일하게 되었는데, 우선 회사에 적응을 하면서 도메인과 기술 스택에 빠르게 적응하는 시간이 될 것 같습니다.</p>
+<p>그런 다음에, 백엔드 성장에 필요한 기술들을 별도로 공부하면서 지낼 것 같습니다.</p>
+<p>(해당 포스팅은 추후에 내용을 추가 및 보완할 예정입니다.)</p>
+<p>지금까지 이 글을 읽어주셔서 감사합니다. 😌</p>
+<hr>
+<p>글을 작성하는데 걸린 시간: 약 3시간</p>
+<ul>
+<li>글 작성: 2시간 40분</li>
+<li>맞춤법 수정, 문맥 정리: 20분</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="1th-Retrospective" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/2026-DevHistory/" class="link-title leading-snug">2026 Dev History</a><time datetime="2026-01-01" class="mt-1.5 block text-sm text-muted">2026-01-01</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/geultto-10th-Retrospective/" class="link-title leading-snug">글또 10기 회고</a><time datetime="2025-03-30" class="mt-1.5 block text-sm text-muted">2025-03-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/2025-DevHistory/" class="link-title leading-snug">2025 Dev History</a><time datetime="2025-01-01" class="mt-1.5 block text-sm text-muted">2025-01-01</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#개인-공부" data-toc="개인-공부" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">개인 공부</a></li><li><a href="#강의-수강-및-책" data-toc="강의-수강-및-책" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">강의 수강 및 책</a></li><li><a href="#사이드-프로젝트" data-toc="사이드-프로젝트" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">사이드 프로젝트</a></li><li><a href="#til-모임" data-toc="til-모임" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">TIL 모임</a></li><li><a href="#이력또-스터디" data-toc="이력또-스터디" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">이력또 스터디</a></li><li><a href="#최종-이력서" data-toc="최종-이력서" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">최종 이력서</a></li><li><a href="#글또-백엔드인프라-반상회" data-toc="글또-백엔드인프라-반상회" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">글또 백엔드/인프라 반상회</a></li><li><a href="#next-plan" data-toc="next-plan" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Next Plan</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

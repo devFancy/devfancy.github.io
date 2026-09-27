@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>3.  Introduction to Computing Systems | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/OS-3-Intro-to-Computing-Systems/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>3.  Introduction to Computing Systems</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-11-24" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-11-24</time><a href="/category/#%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C" class="chip chip-tag">#운영체제</a></div><p class="view-count text-sm text-muted">조회수 27회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글의 사진과 내용은 <a href="https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X">공룡책</a> 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.</p>
+</blockquote>
+<h2 id="1-컴퓨터-시스템의-구조">1. 컴퓨터 시스템의 구조</h2>
+<ul>
+<li>컴퓨터 시스템의 구조는 컴퓨터 내부장치인 CPU, 메모리와 컴퓨터 외부장치인 디스크, 키보드, 마우스, 모니터, 네트워크 장치 등으로 구성된다.</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_1.png" alt=""></p>
+<ul>
+<li>
+<p>Processor와 Memory 부분이 컴퓨터 내부장치에 해당하고, 입출력 장치을 컴퓨터 외부장치라 부른다.</p>
+</li>
+<li>
+<p>컴퓨터는 외부장치에서 내부장치로 데이터를 읽어와 각종 연산을 수행한 후, 그 결과를 외부장치로 다시 내보내는 방식으로 업무를 처리한다.</p>
+</li>
+<li>
+<p>이때 컴퓨터 내부로 데이터가 들어오는 것을 <code>입력(input)</code>이라 하고, 컴퓨터 외부 장치로 데이터가 나가는 것을 <code>출력(output)</code>이라고 한다.</p>
+</li>
+<li>
+<p>메모리 및 입출력 장치 등의 각 하드웨어 장치에는 <code>컨트롤러</code>라는 것이 붙어 있다.
+컨트롤러는 각 하드웨어 장치마다 존재하면서 이들을 제어하는 <strong>작은 CPU</strong>라고 할 수 있다.</p>
+</li>
+<li>
+<p>OS는 컴퓨터가 부팅되었을 때부터 항상 수행되면서 각종 자원들을 관리해야 하므로 항상 메모리에 올라가 있다.
+하지만 OS의 모든 코드를 다 메모리에 상주시키면 메모리의 낭비가 발생하게 된다. 따라서 OS 중 항상 메모리에 올라가 있는 부분은 전체 OS 중 핵심적인 부분에 한정되며, 이 부분을 <code>커널(kernel)</code>이라고 한다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="mode-bit">Mode Bit</h3>
+<ul>
+<li>
+<p>Dual Mode in OS by setting mode bit</p>
+<ul>
+<li>
+<p>Mode bit <strong>0</strong> -> <strong>커널 모드</strong>
+: OS가 CPU권한을 갖는다. (시스템을 안전하게 유지, 관리하기 위해서)</p>
+</li>
+<li>
+<p><strong>시스템의 중요한 동작들을 <code>OS</code>가 관리한다.</strong></p>
+</li>
+<li>
+<p>Mode bit <strong>1</strong> -> <strong>User 모드</strong>
+: User가 CPU 권한을 갖는다.</p>
+<ul>
+<li>
+<p>Why dual mode(or multi-mode)?</p>
+</li>
+<li>
+<p><strong>OS 그 자체와 다른 시스템의 구성요소들을 보호</strong>하기 위해서다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="timer">Timer</h3>
+<ul>
+<li>Timer는 특정 시간이 지나면 <strong>CPU를 중단시키는 것</strong>이다.</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_2.png" alt=""></p>
+<ul>
+<li>
+<p>Timer가 동작되면 기존 프로그램을 멈춘 다음, User 모드에서 Kernel 모드로 이동시킨 후 그 다음 프로그램을 수행시킨다.</p>
+</li>
+<li>
+<p>User program이 CPU를 <code>독점(monopolizing)</code>하는 것을 막아준다.</p>
+</li>
+<li>
+<p><code>시분할 시스템(time-sharing system)</code> 구현에 사용된다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="2-cpu-연산과-io-연산">2. CPU 연산과 I/O 연산</h2>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_1.png" alt=""></p>
+<ul>
+<li>
+<p>컴퓨터에서 연산을 한다는 것은 CPU가 무언가 일을 한다는 뜻이다.</p>
+</li>
+<li>
+<p>각 장치마다 이를 제어하기 위해 설치된 장치 컨트롤러는 장치로부터 들어오고 나가는 <strong>데이터를 임시로 저장</strong>하기 위한 작은 메모리를 가지고 있는데, 이를 <code>로컬버퍼(local buffer)</code>라고 부른다.</p>
+</li>
+<li>
+<p>디스크나 키보드 등에서 데이터를 읽어오는 경우, 우선 로컬버퍼에 데이터가 임시로 저장된 후 메모리에 전달된다.</p>
+</li>
+<li>
+<p>이때 장치에서 로컬버퍼로 읽어오는 일은 <strong>컨트롤러(controller)</strong>가 담당한다.</p>
+</li>
+<li>
+<p>로컬버퍼로 읽어오는 작업이 끝났는지를 메인 CPU가 지속적으로 체크하는 것이 아니라 장치에 있는 <strong>컨트롤러가 인터럽트를 발생시켜 CPU에 보고</strong>하게 된다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_3.png" alt=""></p>
+<ul>
+<li>
+<p>이때 <code>인터럽트(interrupt)</code>란 <strong>컨트롤러들이 CPU의 서비스가 필요할 때 이를 통보하는 방법</strong>을 말한다.</p>
+</li>
+<li>
+<p>기본적으로 CPU는 매 시점 메모리에서 명령(instruction)을 <strong>하나씩</strong> 읽어와서 수행한다.</p>
+</li>
+<li>
+<p>이때 CPU 옆에는 <code>인터럽트 라인(interrupt line)</code>이 있어서, CPU가 자신의 작업을 하던 중간에 <strong>인터럽트 라인에 신호가 들어오면</strong> 하던 일을 멈추고 인터럽트와 관련된 일을 <strong>먼저 처리</strong>한다.</p>
+</li>
+<li>
+<p>즉, <strong>CPU는 명령 하나를 수행할 때마다 인터럽트가 발생했는지 확인한다.</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="3-인터럽트의-일반적-기능">3. 인터럽트의 일반적 기능</h2>
+<ul>
+<li>
+<p>OS는 각종 HW 및 SW 자원 관리뿐 아니라 사용자 프로그램에 필요한 서비스도 제공한다. 그 중 한가지가 <strong>인터럽트 처리루틴</strong>이다.</p>
+</li>
+<li>
+<p>CPU는 하던 일을 잠시 멈추고 이 인터럽트가 발생하였을 때 <strong>OS 커널 내</strong>에서 해당 인터럽트의 처리를 위해 정의된 코드를 찾아 수행한다.</p>
+</li>
+<li>
+<p>이때 수행하는 일은 디스크의 로컬버퍼에 있는 내용을 사용자 프로그램의 <strong>메모리</strong>로 전달하고, 해당 프로그램이 CPU를 할당받을 경우 <strong>다음 명령</strong>을 수행할 수 있음을 표시해두는 일이다.</p>
+</li>
+<li>
+<p>OS는 할 일을 쉽게 찾아가기 위해 <code>인터럽트 벡터(interrupt vector)</code>를 가지고 있다.</p>
+</li>
+<li>
+<p><code>인터럽트 벡터</code>란 <strong>인터럽트 종류마다 번호를 정해서, 번호에 따라 처리해야 할 코드가 위치한 부분을 가리키고 있는 자료구조</strong>를 말한다.</p>
+</li>
+<li>
+<p>실제 처리해야할 코드는 <strong>인터럽트 처리루틴(interrupt service routine) 또는 인터럽트 핸들러(interrupt handler)</strong> 라고 불리는 다른 곳에 정의된다.</p>
+</li>
+</ul>
+<h3 id="내부-인터럽트-종류">내부 인터럽트 종류</h3>
+<p>Software interrupt 또는 Internal interrupt</p>
+<ul>
+<li>
+<p>Trap</p>
+<ul>
+<li>
+<p>의도적이다.</p>
+</li>
+<li>
+<p>예시) <strong>system call</strong></p>
+</li>
+<li>
+<p>이벤트 수행하고 나면 <strong>“next”</strong> 명령으로 간다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Fault</p>
+<ul>
+<li>
+<p>의도치 않는 실수이지만 복구 가능하다.</p>
+</li>
+<li>
+<p>예시) page fault</p>
+</li>
+<li>
+<p><strong>“current”</strong> 명령을 재수행하거나 중단한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Abort</p>
+<ul>
+<li>
+<p>의도치 않는 실수이고 복구 불가능하다.</p>
+</li>
+<li>
+<p>예시) illegal instruction</p>
+</li>
+<li>
+<p>현재 프로그램이 멈춘다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4-인터럽트-핸들링">4. 인터럽트 핸들링</h2>
+<ul>
+<li>
+<p>인터럽트 핸들링(interrupt handling)이란 인터럽트가 발생한 경우에 처리해야 할 일의 절차를 의미한다.</p>
+</li>
+<li>
+<p>OS는 현재 시스템 내에서 실행되는 프로그램들을 관리하기 위해 <code>프로세스 제어블록</code>(Process Control Block: <strong>PCB</strong>)이라는 자료구조를 둔다.
+PCB는 각각의 프로그램마다 <strong>하나씩</strong> 존재하며 <strong>해당 프로그램의 어느 부분이 실행 중이었는지</strong>를 저장하고 있다.</p>
+</li>
+<li>
+<p>프로그램 A가 실행되던 중에 인터럽트가 발생하면 A의 <strong>현재 상태</strong>를 PCB에 저정한 후 CPU의 제어권이 <strong>인터럽트 처리루틴</strong>으로 넘어가게 되며, 인터럽트 처리가 끝나면 저장된 상태를 PCB로부터 CPU상에 복원해 <strong>인터럽트 당하기 직전의 위치</strong>부터 실행이 이어지게 되는 것이다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="5-입출력-구조">5. 입출력 구조</h2>
+<ul>
+<li>입출력(I/O)이란 컴퓨터 시스템이 컴퓨터 외부의 입출력 장치들과 데이터를 주고받는 것을 말한다.</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_4.png" alt=""></p>
+<h3 id="동기식-입출력synchronous-io">동기식 입출력(Synchronous I/O)</h3>
+<ul>
+<li>
+<p>동기식 입출력은 프로그램 A가 입출력 요청을 했을 때 입출력 작업이 완료된 후에야 프로그램 A의 후속 작업을 수행할 수 있는 방식을 말한다.</p>
+</li>
+<li>
+<p>동기식 입출력에서 CPU는 입출력 연산이 끝날 때까지 인터럽트를 기다리며 자원을 낭비하게 된다.</p>
+</li>
+</ul>
+<h3 id="비동기식-입출력asynchronous-io">비동기식 입출력(Asynchronous I/O)</h3>
+<ul>
+<li>비동기식 입출력은 입출력 연산을 요청한 후에 연산이 끝나기를 기다리는 것이 아니라 CPU의 제어권을 입출력 연산을 호출한 그 프로그램에게 곧바로 다시 부여하는 방식을 말한다.</li>
+</ul>
+<h4 id="예시">예시</h4>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_5.png" alt=""></p>
+<ul>
+<li>왼쪽이 비동기식 입출력, 오른쪽이 동기식 입출력이다.</li>
+</ul>
+<hr>
+<h2 id="6-dma">6. DMA</h2>
+<p>DMA(Diredt Memory Access)</p>
+<ul>
+<li>
+<p>원칙적으로 메모리는 <strong>CPU에 의해서만</strong> 접근할 수 있는 장치이다.</p>
+</li>
+<li>
+<p>CPU 외의 장치가 메모리의 데이터에 접근하기 위해서는 <strong>CPU에게 인터런트를 발생시켜 CPU가 이를 대행하는 식</strong>으로만 가능하다.</p>
+</li>
+<li>
+<p>하지만, 컨트롤러가 CPU에게 인터럽트를 발생시키면 CPU는 컨트롤러의 로컬버퍼와 메모리 사이에서 데이터를 옮기는 일을 하게 된다.</p>
+</li>
+<li>
+<p>모든 메모리 접근 연산이 CPU에 의해서만 이루어질 경우 입출력 장치가 메모리 접근을 원할 때마다 인터럽트에 의해 CPU의 업무가 방해를 받게 되어 <strong>CPU 사용의 효율성이 떨어지는 문제점</strong>을 발생하게 된다.</p>
+</li>
+<li>
+<p>이러한 비효율성을 극복하기 위해 CPU 이외에 메모리 접근이 가능한 장치를 <code>DMA</code>라고 부른다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_6.png" alt=""></p>
+<ul>
+<li>
+<p>DMA는 일종의 컨트롤러로서, <strong>CPU가 입출력 장치들의 메모리 접근 요청에 의해 자주 인터럽트 당하는 것을 막아주는 역할</strong>을 한다.</p>
+</li>
+<li>
+<p>이때 DMA는 <strong>블록(block)</strong> 이라는 큰 단위로 정보를 메모리로 읽어온 후에 CPU에게 인터럽트를 발생시켜서 해당 작업의 완료를 알려준다.</p>
+</li>
+<li>
+<p>이러한 방식으로 CPU에게 발생하는 <strong>인터럽트의 빈도를 줄여 CPU를 좀 더 효율적으로 관리</strong>하고 <strong>입출력 연산을 빠르게 수행</strong>할 수 있게 된다. (interrupt 낮추고, CPU 성능 높이는)</p>
+</li>
+</ul>
+<hr>
+<h2 id="7-bus">7. Bus</h2>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_7.png" alt=""></p>
+<ul>
+<li>
+<p>Northbridge(= Memory Controller Hub) : PC motherboard 에 있는 핵심 로직 칩셋에서 두개의 칩 중 하나이다.</p>
+<ul>
+<li>
+<p>CPU, Memory, Graphic card에 직접적으로 연결 O</p>
+</li>
+<li>
+<p>매우 빠른 의사소통을 처리한다.</p>
+</li>
+<li>
+<p>PCle bus를 통해 “southbridge”로 연결된다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Southbridge(= I/O Controller Hub) : 모든 컴퓨터 I/O 기능들을 관리하는 칩이다.</p>
+<ul>
+<li>
+<p>USB, audio, serial, BIOS 등등</p>
+</li>
+<li>
+<p>CPU에 직접적으로 연결 X</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-3-Intro-to-Computing-Systems_8.png" alt=""></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="http://www.yes24.com/Product/Goods/90124877">운영 체제와 정보기술의 원리</a></p>
+</li>
+<li>
+<p>학교 수업 내용 - <a href="https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X">Operating Systems Three Easy Pieces</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="OS-3-Intro-to-Computing-Systems" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#1-컴퓨터-시스템의-구조" data-toc="1-컴퓨터-시스템의-구조" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">1. 컴퓨터 시스템의 구조</a></li><li><a href="#mode-bit" data-toc="mode-bit" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Mode Bit</a></li><li><a href="#timer" data-toc="timer" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Timer</a></li><li><a href="#2-cpu-연산과-io-연산" data-toc="2-cpu-연산과-io-연산" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">2. CPU 연산과 I/O 연산</a></li><li><a href="#3-인터럽트의-일반적-기능" data-toc="3-인터럽트의-일반적-기능" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">3. 인터럽트의 일반적 기능</a></li><li><a href="#내부-인터럽트-종류" data-toc="내부-인터럽트-종류" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">내부 인터럽트 종류</a></li><li><a href="#4-인터럽트-핸들링" data-toc="4-인터럽트-핸들링" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">4. 인터럽트 핸들링</a></li><li><a href="#5-입출력-구조" data-toc="5-입출력-구조" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">5. 입출력 구조</a></li><li><a href="#동기식-입출력synchronous-io" data-toc="동기식-입출력synchronous-io" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">동기식 입출력(Synchronous I/O)</a></li><li><a href="#비동기식-입출력asynchronous-io" data-toc="비동기식-입출력asynchronous-io" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">비동기식 입출력(Asynchronous I/O)</a></li><li><a href="#6-dma" data-toc="6-dma" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">6. DMA</a></li><li><a href="#7-bus" data-toc="7-bus" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">7. Bus</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

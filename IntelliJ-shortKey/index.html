@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>IntelliJ 유용한 단축키들 (Mac 기준) | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/IntelliJ-shortKey/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EB%8F%84%EA%B5%AC" class="hover:underline" data-astro-cid-g5songws>도구</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>IntelliJ 유용한 단축키들 (Mac 기준)</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-11-14" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-11-14</time><a href="/category/#IntelliJ" class="chip chip-tag">#IntelliJ</a></div><p class="view-count text-sm text-muted">조회수 58회</p></div><div class="prose mt-10" data-astro-cid-g5songws><ul>
+<li>
+<p>Mac기준으로 인텔리제이를 쓰면서 유용한 단축키 기능들을 정리해보려고 한다.</p>
+</li>
+<li>
+<p>정리한 이후에도 유용한 단축키를 알게되면 추가적으로 업로드를 할 예정이다.</p>
+</li>
+</ul>
+<h2 id="단축키">단축키</h2>
+<h3 id="getter--setter-추가--this-추가--tostring-추가">Getter &#x26; Setter 추가 / this 추가 / toString 추가</h3>
+<ul>
+<li>
+<p><code>cmd + n</code>을 눌러서 Getter &#x26; Setter을 클릭하고 원하는 변수를 선택하여 ok 버튼을 클릭하면 자동으로 추가된다.</p>
+</li>
+<li>
+<p><code>cmd + n</code>을 눌러서 Constructor을 클릭하여 위와 같은 방식으로 처리하면 this가 자동으로 추가된다.</p>
+</li>
+<li>
+<p><code>cmd + n</code>을 눌러서 <code>toString</code> 을 입력하여 클릭하고 위와 같은 방식으로 처리하면 toString이 자동으로 추가된다.</p>
+</li>
+</ul>
+<h3 id="import-추가--이름-변경클래스-메서드-패키지">Import 추가 / 이름 변경(클래스, 메서드, 패키지)</h3>
+<ul>
+<li>
+<p>import가 필요한 경우 <code>option + enter</code>를 누르면 “Implement methods” 를 선택한 다음에</p>
+</li>
+<li>
+<p>해당 변수들을 선택하고 ok버튼을 클릭하면 다음과 같이 자동으로 추가된 것을 확인할 수 있다.</p>
+</li>
+<li>
+<p>이름을 변경하고 싶으면 <code>option + enter</code>를 누르고 “Rename file”을 선택하면 된다.</p>
+</li>
+</ul>
+<h3 id="변수-세미콜론까지-자동으로-입력">변수 (세미콜론까지) 자동으로 입력</h3>
+<ul>
+<li><code>cmd + shift + enter</code> 누르면 세미콜론까지 자동으로 입력된다.</li>
+</ul>
+<h3 id="자동-정렬-기능">자동 정렬 기능</h3>
+<ul>
+<li><code>cmd + option + L</code>을 누르면 자동으로 정렬이 된다.</li>
+</ul>
+<h3 id="변수-선언-및-return-부분을-합치는-기능">변수 선언 및 return 부분을 합치는 기능</h3>
+<p>방법1 : <code>control + t</code> 누르고 Inline Variable 클릭하면 된다.</p>
+<p>방법2 : <code>cmd + option + n</code> (Inline Variable 단축키)</p>
+<blockquote>
+<p>방법2 예시</p>
+</blockquote>
+<p>[변경 전]</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MemberRepository</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    /* ... */</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Member</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">findALl</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        List&#x3C;</span><span style="color:#F97583">Member</span><span style="color:#E1E4E8">> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> em.</span><span style="color:#B392F0">createQuery</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"select m from Member m"</span><span style="color:#E1E4E8">, Member.class)</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">getResultList</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> result;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>변수를 선언한 이후에 해당 {} 안을 깔끔하게 합치려면, <code>cmd + option + n</code>을 누르면 다음과 같이 단축된다.</li>
+</ul>
+<p>[변경 후]</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MemberRepository</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    /* ... */</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">Member</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">findALl</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> em.</span><span style="color:#B392F0">createQuery</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"select m from Member m"</span><span style="color:#E1E4E8">, Member.class)</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">getResultList</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li><code>cmd + option + n</code>을 누르면</li>
+</ul>
+<h4 id="패키지-모든-영역에-적용하고-싶다면-">패키지 모든 영역에 적용하고 싶다면 ?</h4>
+<ul>
+<li>
+<p>하나의 패키지를 선택하고  <code>cmd + option + L</code> 누르고</p>
+</li>
+<li>
+<p>“Run”이라는 버튼을 클릭하면 패키지 안에 있는 모든 클래스가 적용이 된다.</p>
+</li>
+</ul>
+<h3 id="자동-입력-기능">자동 입력 기능</h3>
+<ul>
+<li>
+<p><code>psvm</code> 을 입력하면 public static void main()이 자동으로 생성된다.</p>
+</li>
+<li>
+<p><code>soutv</code> 를 입력하면 System.out.println()과 변수명을 자동으로 생성된다.</p>
+</li>
+<li>
+<p><code>iter</code> 를 입력하면 for()문이 자동으로 생성된다.</p>
+</li>
+</ul>
+<h3 id="검색">검색</h3>
+<ul>
+<li>
+<p>경로내(파일내) 검색하기 : <code>cmd + shift + f</code></p>
+</li>
+<li>
+<p><strong>전체 검색하기</strong> : <code>shift</code> 두번(연속으로)</p>
+</li>
+<li>
+<p>최근 파일 열기 : <code>ctrl + E</code></p>
+</li>
+<li>
+<p><strong>사용하는 코드 추적하기</strong> : 해당 클래스 / 메서드에서 <code>cmd + B</code></p>
+</li>
+</ul>
+<h3 id="코드-edit">코드 Edit</h3>
+<h4 id="변수-자동-생성">변수 자동 생성</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] args) {</span></span>
+<span class="line"><span style="color:#F97583">    new</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">(id</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> 1L</span><span style="color:#E1E4E8">, name</span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> "memberA"</span><span style="color:#E1E4E8">, Grade.VIP);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>방법1) 여기서 <code>cmd + option + v</code>를 누르면, new 앞에 변수가 자동으로 생성된다.</p>
+</li>
+<li>
+<p>(최근 IntelliJ 버전은 맨 앞에 <code>final</code>이라는 변수를 생성한다)</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] args) {</span></span>
+<span class="line"><span style="color:#F97583">   final</span><span style="color:#E1E4E8"> MemberA memberA </span><span style="color:#F97583">=</span><span style="color:#F97583">  new</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">(id</span><span style="color:#F97583">:</span><span style="color:#79B8FF"> 1L</span><span style="color:#E1E4E8">, name</span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> "memberA"</span><span style="color:#E1E4E8">, Grade.VIP);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>방법2) * 그리고 해당 라인에서 <code>option + enter</code>를 치면, 다음과 같이 “introduce loval variable”이라는 일종의 알람이 나타난다.</p>
+</li>
+<li>
+<p>그 상태에서 <code>enter</code>를 치면, 자동으로 선언부가 완성된다.</p>
+</li>
+</ul>
+<h4 id="메서드-추출하기">메서드 추출하기</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">//* 메서드  추출전</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> MemberService </span><span style="color:#B392F0">memberService</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MemberServiceImpl</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> MemoryMemberRepository</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>new MemoryMemberRepository</code>을 드래그 한 다음에 <code>cmd + option + m</code>을 입력하고</p>
+</li>
+<li>
+<p>메서드 이름을 <code>memberRepository</code>로 입력하면 아래와 같이 메서드가 추출된다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">//* 메서드  추출후</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> MemberService </span><span style="color:#B392F0">memberService</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MemberServiceImpl</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">memberRepository</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">private</span><span style="color:#E1E4E8"> MemberRepository </span><span style="color:#B392F0">memberRepository</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MemoryMemberRepository</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="한-줄-복사하기">한 줄 복사하기</h4>
+<ul>
+<li><code>cmd + d</code>를 입력하면 복사가 된다.</li>
+</ul>
+<h4 id="한-줄-삭제하기">한 줄 삭제하기</h4>
+<ul>
+<li><code>cmd + x</code>를 입력하면 삭제가 된다.</li>
+</ul>
+<h4 id="과거-히스토리-확인">과거 히스토리 확인</h4>
+<ul>
+<li><code>cmd + e</code>를 입력하면 과거 히스토리를 확인할 수 있다.</li>
+</ul>
+<h2 id="테스트코드">테스트코드</h2>
+<h3 id="테스트코드-자동-추가">테스트코드 자동 추가</h3>
+<ul>
+<li>메서드 이름앞에서 <code>cmd + shift + T</code> 를 누르면 “Create New Test”를 클릭하고</li>
+</ul>
+<p><img src="/assets/img/tool/intellij/intellij_shortKey_testCode.png" alt=""></p>
+<ul>
+<li>원하는 테스트코드 라이브러리를 선택하고 이름을 지은 후에 Ok버튼을 클릭하면 test폴더에 패키지와 클래스가 자동으로 추가된다.</li>
+</ul>
+<h3 id="assertions-없이-assertthat만-사용하기">Assertions 없이 assertThat()만 사용하기</h3>
+<blockquote>
+<p>static import문을 사용하면 static 멤버를 호출할 때 클래스명을 생략할 수 있다.</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// static import 선언전</span></span>
+<span class="line"><span style="color:#E1E4E8">Assertions.</span><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(discount).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1000</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<ul>
+<li>
+<p>예를 들어, 어떤 조건이 참인지 아닌지 검증하는 <code>org.assertj.core.api.Assertions</code> 라이브러리의 assertThat()은 위와 같이 사용된다.</p>
+</li>
+<li>
+<p>Assertions 앞에서 <code>option + enter</code>를 누르고, <code>Add on-demand static import</code>을 선택하면</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// static import 선언후</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> org.assertj.core.api.Assertions.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<ul>
+<li>import static이 추가가 되면서 Assertions 없이 assertThat()만 사용할 수 있다.</li>
+</ul>
+<h3 id="main---test-이동하기">main &#x3C;-> test 이동하기</h3>
+<ul>
+<li><code>cmd + shift + t</code>를 입력하면 <strong>테스트 -> 메인</strong> 혹은 <strong>메인 -> 테스트</strong>와 같이, 비슷한 이름의 클래스로 편리하게 이동할 수 있다.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard">스프링 핵심 원리 - 기본편</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="IntelliJ-shortKey" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Git-Version-Control/" class="link-title leading-snug">Git 형상 관리 + 작업 단위와 PR 코드 리뷰 + 협업을 잘하는 개발자 (feat. 제미니의 개발실무)</a><time datetime="2023-12-28" class="mt-1.5 block text-sm text-muted">2023-12-28</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/IntelliJ-Live-Template/" class="link-title leading-snug">인텔리제이 템플릿 자동완성(Live Template 적용)</a><time datetime="2023-02-27" class="mt-1.5 block text-sm text-muted">2023-02-27</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-GitHub-Branch-Protection-Rule/" class="link-title leading-snug">GitHub에 올라간 Branch에 Protection Rule 적용하기</a><time datetime="2023-02-05" class="mt-1.5 block text-sm text-muted">2023-02-05</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#단축키" data-toc="단축키" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">단축키</a></li><li><a href="#getter--setter-추가--this-추가--tostring-추가" data-toc="getter--setter-추가--this-추가--tostring-추가" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Getter &amp; Setter 추가 / this 추가 / toString 추가</a></li><li><a href="#import-추가--이름-변경클래스-메서드-패키지" data-toc="import-추가--이름-변경클래스-메서드-패키지" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Import 추가 / 이름 변경(클래스, 메서드, 패키지)</a></li><li><a href="#변수-세미콜론까지-자동으로-입력" data-toc="변수-세미콜론까지-자동으로-입력" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">변수 (세미콜론까지) 자동으로 입력</a></li><li><a href="#자동-정렬-기능" data-toc="자동-정렬-기능" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">자동 정렬 기능</a></li><li><a href="#변수-선언-및-return-부분을-합치는-기능" data-toc="변수-선언-및-return-부분을-합치는-기능" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">변수 선언 및 return 부분을 합치는 기능</a></li><li><a href="#자동-입력-기능" data-toc="자동-입력-기능" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">자동 입력 기능</a></li><li><a href="#검색" data-toc="검색" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">검색</a></li><li><a href="#코드-edit" data-toc="코드-edit" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">코드 Edit</a></li><li><a href="#테스트코드" data-toc="테스트코드" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">테스트코드</a></li><li><a href="#테스트코드-자동-추가" data-toc="테스트코드-자동-추가" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">테스트코드 자동 추가</a></li><li><a href="#assertions-없이-assertthat만-사용하기" data-toc="assertions-없이-assertthat만-사용하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Assertions 없이 assertThat()만 사용하기</a></li><li><a href="#main---test-이동하기" data-toc="main---test-이동하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">main &lt;-&gt; test 이동하기</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

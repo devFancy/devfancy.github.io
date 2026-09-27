@@ -1,0 +1,612 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>연결 리스트 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/DataStructure-LinkedList/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>연결 리스트</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-03-19" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-03-19</time><a href="/category/#%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0" class="chip chip-tag">#자료구조</a></div><p class="view-count text-sm text-muted">조회수 26회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글의 코드와 정보들은 책을 공부하며 정리한 내용을 토대로 작성하였습니다.</p>
+</blockquote>
+<h2 id="연결-리스트">연결 리스트</h2>
+<ul>
+<li><code>연결 리스트</code>는 동적인 데이터를 처리하는 것과 관련된 수많은 문제의 근간을 이루는 자료구조다.</li>
+</ul>
+<h2 id="연결-리스트의-종류">연결 리스트의 종류</h2>
+<ul>
+<li>
+<p>연결 리스트에는 단일 연결 리스트(singly-linked list), 이중 연결리스트(doubly-linked list), 원형 연결 리스트(circularly-linked list), 이렇게 세 가지 기본 유형이 있다.</p>
+</li>
+<li>
+<p>면접에서는 대부분 <strong>단일 연결 리스트</strong>문제가 나오는 편이다.</p>
+</li>
+</ul>
+<h3 id="단일-연결-리스트">단일 연결 리스트</h3>
+<p><img src="/assets/img/cs/datastructure/linkedlist-2.jpg" alt=""></p>
+<ul>
+<li>
+<p>[그림 5-1]에 나와있는 것처럼 리스트에 들어가는 각 데이터 원소에는 리스트의 다음 원소에 대한 <code>연결고리(link)</code>가 들어있다.</p>
+</li>
+<li>
+<p>단일 연결 리스트의 첫 번째 원소는 리스트의 <code>머리(head)</code>라고 부른다.</p>
+</li>
+<li>
+<p>단일 연결 리스트의 마지막 원소는 <code>꼬리(tail)</code>라고 부르며 연결고리는 비어 있거나 널 연결고리로 이어져 있다.</p>
+</li>
+<li>
+<p>단일 연결 리스트에 있는 연결고리는 다음 노드를 가리키는 포인터나 레퍼런스로만 구성되기 때문에 앞으로만 종주할 수 있다.</p>
+</li>
+<li>
+<p>따라서 리스트를 완전 종주하려면 항상 <strong>첫 번째 원소</strong>부터 시작해야 한다.</p>
+</li>
+<li>
+<p>바꿔 말하자면, 리스트에 있는 모든 원소의 위치를 파악하기 위해서는 <strong>리스트의 첫 번째 원소에 대한 포인터나 레퍼런스가 있어야만 한다.</strong></p>
+</li>
+<li>
+<p>기본적으로 <strong>C</strong>에서 단일 연결리스트의 형태를 다음과 같이 정의할 수 있다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> InteElement</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    struct</span><span style="color:#B392F0"> IntElement</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8">next;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> data;</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#B392F0">IntElement</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<ul>
+<li><strong>자바</strong>에서 제네릭을 써서 구현하는 방법도 비슷하다. 물론 포인터가 아니라 레퍼런스를 쓴다는 게 달라진다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// 탬플릿으로 만든 자바용 단일 연결 리스트</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ListElement</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> ListElement</span><span style="color:#E1E4E8">(T </span><span style="color:#FFAB70">value</span><span style="color:#E1E4E8">) { data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> value; }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ListElement&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">next</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> next; }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> T </span><span style="color:#B392F0">value</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> data; }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> setNext</span><span style="color:#E1E4E8"> ( ListElement&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">elem</span><span style="color:#E1E4E8"> ) { next </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> elem; }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> setValue</span><span style="color:#E1E4E8">( T </span><span style="color:#FFAB70">value</span><span style="color:#E1E4E8"> ) { data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> value; }</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> ListElement&#x3C;</span><span style="color:#F97583">T</span><span style="color:#E1E4E8">> next;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> T data;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="이중-연결-리스트">이중 연결 리스트</h3>
+<p><img src="/assets/img/cs/datastructure/linkedlist-1.jpg" alt=""></p>
+<ul>
+<li>
+<p>[그림 5-2]에 나와 있는 이중 연결 리스트는 <strong>단일 연결 리스트의 여러 가지 단점</strong>을 극복하기 위해 만들어졌다.</p>
+</li>
+<li>
+<p><code>이중 연결 리스트</code>는 각 원소마다 리스트에서 그다음에 오는 원소에 대한 연결고리 외에 <strong>그 앞에 있는 원소에 대한 연결고리도 들어 있다</strong>는 점에서 단일 연결 리스트와 다르다.</p>
+</li>
+<li>
+<p>이렇게 연결고리를 추가하면 리스트를 어느 방향으로든 종주할 수 있다.</p>
+</li>
+<li>
+<p>어떤 원소에서 시작하든 리스트 전체를 종주하는 것이 가능하다.</p>
+</li>
+<li>
+<p>이중 연결 리스트에도 단일 연결 리스트와 마찬가지로 머리와 꼬리가 있다.</p>
+</li>
+<li>
+<p>리스트의 머리의 이전 원소에 대한 연결고리는 꼬리의 다음 원소에 대한 연결고리와 마찬가지로 비워두거나 널로 지정한다.</p>
+</li>
+<li>
+<p>이중 연결 리스트는 면접 문제로는 그리 많이 나오지 않는다. 단일 연결 리스트를 쓰는 쪽이 더 어렵기 때문이다.</p>
+</li>
+<li>
+<p>그리고 이중 연결 리스트를 쓰면 불필요하게 복잡해지기만 해서 쓰지 않게 되는 경우도 있다.</p>
+</li>
+</ul>
+<h3 id="원형-연결-리스트">원형 연결 리스트</h3>
+<ul>
+<li>
+<p>원형 연결 리스트에는 끝, 즉 머리나 꼬리가 없다.</p>
+</li>
+<li>
+<p>원형 연결 리스트의 모든 원소에서 다음 원소를 가리키는 포인터나 레퍼런스에는 반드시 <strong>널이 아닌 어떤 원소</strong>가 들어가며, 이중 연결 리스트라면 포인터/레퍼런스에도 <strong>널이 아닌 원소</strong>가 들어가야 한다.</p>
+</li>
+<li>
+<p>원소가 하나밖에 없는 리스트라면 그냥 <strong>자기 자신</strong>을 가리키면 된다.</p>
+</li>
+<li>
+<p>원형 연결 리스트의 종주 문제로는 <strong>사이클 회피 문제</strong>가 많이 나온다. 시작점을 제대로 추적하지 않으면 리스트에서 <strong>무한 루프</strong>를 돌 수 있다.</p>
+</li>
+<li>
+<p>원형 연결 리스트도 가끔 쓸 일이 있지만, 면접 문제로는 거의 나오지 않은 편이다.</p>
+</li>
+</ul>
+<h2 id="기초적인-연결-리스트-연산">기초적인 연결 리스트 연산</h2>
+<ul>
+<li>
+<p>연결 리스트 문제를 제대로 풀려면 연결 리스트에 대한 기초적인 연산을 완벽하게 이해해야 한다.</p>
+</li>
+<li>
+<p>기초 연산에는 리스트를 잃어버리지 않기 위한 <code>머리 원소 추적</code>, <code>리스트 종주</code>, <code>리스트 원소 추가 및 제거</code> 등이 있다.</p>
+</li>
+<li>
+<p>여기에서는 단일 연결 리스트로 구현할 때 빠질 수 있는 함정에 초점을 맞춰보도록 한다.</p>
+</li>
+</ul>
+<h3 id="머리-원소-추적">머리 원소 추적</h3>
+<ul>
+<li>
+<p>단일 연결 리스트에는 <strong>반드시 머리 원소를 추적</strong>해야 한다. 그러지 않으면 언어에 따라 가비지 컬렉터에 의해 제거되거나 어딘가에서 길을 잃고 말게 된다.</p>
+</li>
+<li>
+<p>따라서 새로운 원소를 첫 번째 원소 앞에 <strong>추가</strong>한다거나 리스트의 첫 번째 원소를 <strong>제거</strong>할 때 <strong>리스트의 머리에 대한 포인터 또는 레퍼런스를 갱신</strong>해야 한다.</p>
+</li>
+<li>
+<p>함수나 메서드 내에서 리스트를 <strong>변형</strong>시킬 때는 <strong>머리 원소를 제대로 추적</strong>할 수 있도록 주의해야 한다. 함수나 메서드를 호출한 쪽에 바뀐 새로운 머리 원소를 알려줘야 하기 때문이다.</p>
+</li>
+<li>
+<p>예를 들어, 다음과 자바 코드는 리스트의 머리에 대한 레퍼런스를 갱신하기 위해서는 <strong>새로운 머리 원소에 대한 레퍼런스를 반환</strong>해야 한다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> ListElement</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">Integer</span><span style="color:#F97583">></span><span style="color:#B392F0"> insertInFront</span><span style="color:#E1E4E8"> (ListElement</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">Integer</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> list, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> data) {</span></span>
+<span class="line"><span style="color:#E1E4E8">ListElement&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> l </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ListElement&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> (data);</span></span>
+<span class="line"><span style="color:#E1E4E8">    l.</span><span style="color:#B392F0">setNext</span><span style="color:#E1E4E8">(list);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> l;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>메서드를 호출한 쪽에서는 머리 원소에 대한 레퍼런스를 적당히 갱신해줘야 한다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ...; </span><span style="color:#6A737D">// 삽입할 데이터</span></span>
+<span class="line"><span style="color:#E1E4E8">ListElement&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> head </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ...; </span><span style="color:#6A737D">// 머리에 대한 래퍼런스</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">head </span><span style="color:#F97583">=</span><span style="color:#B392F0"> insertInFront</span><span style="color:#E1E4E8">(head, data);</span></span></code></pre>
+<ul>
+<li>리스트의 맨 앞에 새로운 원소를 추가하는 다음과 같은 <code>C 코드</code>를 생각해보자. 제대로 동작하기 위해서는 head 포인터에 대한 포인터를 넘겨줘야 한다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">bool</span><span style="color:#B392F0"> insertInFront</span><span style="color:#E1E4E8">( </span><span style="color:#B392F0">IntElement</span><span style="color:#F97583"> **</span><span style="color:#FFAB70">head</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> data</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">    IntElement</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8">newElem </span><span style="color:#F97583">=</span><span style="color:#B392F0"> malloc</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(IntElement));</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">( </span><span style="color:#F97583">!</span><span style="color:#E1E4E8">newElem ) </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    newElem->data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> data;</span></span>
+<span class="line"><span style="color:#E1E4E8">    newElem->next </span><span style="color:#F97583">=</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8">head;</span></span>
+<span class="line"><span style="color:#F97583">    *</span><span style="color:#E1E4E8">head </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> newElem;</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>이 함수에서는 리턴 값으로 메모리 할당 성패 여부를 돌려주기 때문에 자바에서처럼 새로운 헤드 포인터를 돌려줄 수가 없다. (C에는 예외 기능이 없음)</p>
+</li>
+<li>
+<p>C++에서는 머리 포인터에 대한 레퍼런스로 전달할 수도 있고, 새로운 머리 포인터를 리턴할 수도 있다.</p>
+</li>
+</ul>
+<h3 id="리스트-종주">리스트 종주</h3>
+<ul>
+<li>
+<p>머리 원소가 아닌 다른 리스트 원소를 가지고 작업을 해야 하는 경우도 있다.</p>
+</li>
+<li>
+<p>연결 리스트의 첫 번째 원소가 아닌 원소에 대한 연산을 하려면 리스트에 있는 원소 중 일부를 종주해야 할 수도 있으며, 이때 <strong>항상 리스트가 끝나지 않는지 확인</strong>을 해야 한다.</p>
+</li>
+<li>
+<p><strong>찾아낼 객체가 리스트에 있는 경우와 마지막 원소를 확인하는 경우</strong>는 다음과 같은 코드로 생각해 볼 수 있다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> ListElement</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">Integer</span><span style="color:#F97583">></span><span style="color:#B392F0"> find</span><span style="color:#E1E4E8">(ListElement</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">Integer</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> head, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> data) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    ListElement&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> elem </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> head;</span></span>
+<span class="line"><span style="color:#F97583">    while</span><span style="color:#E1E4E8">( elem </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#E1E4E8"> elem.</span><span style="color:#B392F0">value</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">!=</span><span style="color:#E1E4E8"> data) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        elem </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> elem.</span><span style="color:#B392F0">next</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> elem;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>함수/메서드를 호출한 쪽에서는 반환 값이 널이 아닌지 확인하여 오류 조건을 찾아야 한다.</li>
+</ul>
+<h3 id="원소의-삽입과-삭제">원소의 삽입과 삭제</h3>
+<ul>
+<li>
+<p>단일 연결 리스트에 있는 원소들은 다음 원소에 대한 연결고리를 통해서만 관리할 수 있기 때문에 <strong>리스트 중간에서 원소를 삽입 또는 삭제하려면 그 앞 원소의 연결고리를 수정</strong>해야 한다.</p>
+</li>
+<li>
+<p>삭제할 원소(또는 삽입해야할 원소)만 지정된 상황이라면 바로 앞 원소를 찾아낼 만한 다른 방법이 딱히 업기 때문에 <strong>머리에서부터 리스트를 종주</strong>해야만 할 수도 있다.</p>
+</li>
+<li>
+<p>삭제할 원소가 머리 원소라면 한층 더 기울여야 한다.</p>
+</li>
+<li>
+<p>리스트에 있는 한 원소를 삽입 또는 삭제하는 C 함수는 다음과 같이 만들 수 있다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#6A737D">// Insert</span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> insertNode</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">listPointer</span><span style="color:#F97583"> *</span><span style="color:#FFAB70">first</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">listPointer</span><span style="color:#FFAB70"> node</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{   </span></span>
+<span class="line"><span style="color:#B392F0">    listPointer</span><span style="color:#E1E4E8"> p, q;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    p </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> q </span><span style="color:#F97583">=</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8">first;</span></span>
+<span class="line"><span style="color:#6A737D">    // Empty (비어있는 경우)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">p) {</span></span>
+<span class="line"><span style="color:#F97583">        *</span><span style="color:#E1E4E8">first </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> node;</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    while</span><span style="color:#E1E4E8">(TRUE) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        p </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> q;</span></span>
+<span class="line"><span style="color:#E1E4E8">        q </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> q->link;</span></span>
+<span class="line"><span style="color:#6A737D">        // Right (맨 끝)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8">(q </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> NULL</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            p->link </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> node;</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Delete</span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> deleteNode</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">listPointer</span><span style="color:#F97583"> *</span><span style="color:#FFAB70">first</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> data</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">    listPointer</span><span style="color:#E1E4E8"> p, q;</span></span>
+<span class="line"><span style="color:#E1E4E8">    p </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> q </span><span style="color:#F97583">=</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8">first;</span></span>
+<span class="line"><span style="color:#6A737D">    // Empty (비어있는 경우)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(p </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> NULL</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">    // Left (맨앞)</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(p->data </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> data) {</span></span>
+<span class="line"><span style="color:#F97583">        *</span><span style="color:#E1E4E8">first </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">first)->link;</span></span>
+<span class="line"><span style="color:#B392F0">        free</span><span style="color:#E1E4E8">(p);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    while</span><span style="color:#E1E4E8">(TRUE) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Middle, Right</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8">(q->data </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> data) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            p->link </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> q->link;</span></span>
+<span class="line"><span style="color:#B392F0">            free</span><span style="color:#E1E4E8">(q);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        p </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> q;</span></span>
+<span class="line"><span style="color:#E1E4E8">        q </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> q->link;</span></span>
+<span class="line"><span style="color:#6A737D">        // No data (찾는 값이 없는 경우)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8">(q </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> NULL</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>
+<p>위의 코드를 이해하기 아래와 같이 쉽게 그림으로 그렸다.</p>
+</li>
+<li>
+<p>그림 옆에는 이해하기 쉽도록 슈도 코드(Pseudo-code)로 작성했다. (슈도 코드에는 <strong>모든 경우의 수</strong>를 생각하여 작성함)</p>
+</li>
+</ul>
+<blockquote>
+<p>InsertNode [1] 중간 / [2] 맨뒤 / [3] 맨앞 / [4] 비어있는 경우</p>
+</blockquote>
+<p><img src="/assets/img/cs/datastructure/linkedList-insertNode-1.png" alt=""></p>
+<p><img src="/assets/img/cs/datastructure/linkedList-insertNode-2.png" alt=""></p>
+<blockquote>
+<p>deleteNode [1] 중간 / [2] 맨뒤 / [3] 맨앞 / [4] 비어있는 경우</p>
+</blockquote>
+<p><img src="/assets/img/cs/datastructure/linkedList-deleteNode-1.png" alt=""></p>
+<p><img src="/assets/img/cs/datastructure/linkedList-deleteNode-2.png" alt=""></p>
+<h2 id="연결-리스트-문제">연결 리스트 문제</h2>
+<ul>
+<li>
+<p>자바나 C# 같은 언어에서는 연결 리스트를 직접 구현해서 쓰는 일이 거의 없기 때문에 답안은 모두 C로 구현했다.</p>
+</li>
+<li>
+<p>연결 리스트를 활용한 스택에 대한 기본적인 구현법만 익히는 것을 목표로 정리했다.</p>
+</li>
+</ul>
+<h3 id="스택-구현법">스택 구현법</h3>
+<blockquote>
+<p>면접 문제 : 스택 자료구조에 대해 논하라.</p>
+<p>연결 리스트 또는 동적 배열을 써서 C로 스택을 구현하고 그 자료구조를 사용한 이유를 설명하라.</p>
+<p>완전하고 일관성 있으면서 사용하기 편리한 스택 인터페이스를 설계하라.</p>
+</blockquote>
+<ul>
+<li>이 문제는 다음과 같은 세 가지를 중점적으로 살펴보기 위한 문제라고 할 수 있다.</li>
+</ul>
+<ol>
+<li>기본적인 자료구조에 대한 지식</li>
+<li>자료구조를 조작하기 위한 루틴을 만드는 능력</li>
+<li>일련의 루틴에 대한 일관성 있는 인터페이스를 설계하는 능력</li>
+</ol>
+<hr>
+<ul>
+<li>위의 면접 문제에 대해 각 단계별로 나누어 정리했다.</li>
+</ul>
+<blockquote>
+<p>[1] 스택 자료구조에 대해 논하라.</p>
+</blockquote>
+<ul>
+<li>
+<p><code>스택</code>은 후입선출(LIFO, last-in-first-out), 즉 마지막에 들어간 것이 가장 먼저 나오는 자료구조다.</p>
+</li>
+<li>
+<p>모든 원소는 접시를 쌓아놓았다가 꺼낼 때와 마찬가지로 들어간 순서와 반대 순서로 나온다.</p>
+</li>
+<li>
+<p>원소를 삽입하고 삭제하는 연산은 각각 푸시(Push)와 팝(Pop)이라고 부른다.</p>
+</li>
+<li>
+<p>스택은 여러 개의 하위 작업으로 나눌 수 있는 작업을 관리할 때 유용하게 쓰이는 자료구조다.</p>
+</li>
+<li>
+<p>스택을 사용하는 대표적인 예로 <strong>서브루틴에서 사용하는 반환 주소, 매개변수, 지역변수 등을 추적</strong>하는 것을 들 수 있다. 프로그래밍 언어를 파싱할 때 <strong>토큰을 추척</strong>하는 것도 또 다른 예라고 할 수 있다. (<code>파싱</code>이란 웹페이지에서 원하는 데이터를 추출하여 가공하기 쉬운 상태로 바꾸는 것을 의미한다)</p>
+</li>
+</ul>
+<blockquote>
+<p>[2] 연결 리스트 또는 동적 배열을 써서 C로 스택을 구현하고 그 자료구조를 사용한 이유를 설명하라.</p>
+</blockquote>
+<ul>
+<li>
+<p>스택을 구현하는 방법 가운데 하나로 배열이 추가될 때마다 필요에 따라 크기가 바뀌는 <strong>동적 배열</strong>을 사용하는 방법을 들 수 있다.</p>
+</li>
+<li>
+<p>연결 리스트에 비하자면 <code>동적 배열</code>은 <strong>배열 원소에 대한 임의 접근이 가능하다는 것이 가장 큰 장점</strong>이라고 할 수 있다.</p>
+</li>
+<li>
+<p>인덱스만 알면 어떤 원소든 즉시 접근할 수 있다.</p>
+</li>
+<li>
+<p>하지만 스택에 대한 연산은 항상 자료구조의 한쪽 끝(스택 맨 위)에 대해서만 이뤄지기 때문에 동적 배열의 임의접근성이라는 장점이 별 힘을 발휘할 수 없다.</p>
+</li>
+<li>
+<p>그리고 동적 배열이 커지면 그에 맞춰 크기를 조절해야 하고, 그 과정에서 기존 배열의 모든 원소들을 새 배열로 복사해야 하기 때문에 그만큼 시간이 오래 걸릴 수 있다.</p>
+</li>
+<li>
+<p><code>연결 리스트</code>에서는 각 원소마다 메모리를 동적으로 할당해야한다. <strong>메모리 할당자의 오버헤드</strong>에 따라 동적 배열에서 필요한 복사 작업보다 메모리 할당에서 더 오랜 시간이 걸릴 수 있다.</p>
+</li>
+<li>
+<p>게다가 동적 배열에서 인접한 원소는 메모리상에서도 인접해 있지만 <strong>연결 리스트에서 인접한 원소는 메모리상에서 떨어져 있을 수도 있다</strong>.</p>
+</li>
+<li>
+<p>또한 동적 배열에서는 모든 원소마다 포인터와 관련된 오버헤드를 감수하지 않아도 된다.</p>
+</li>
+<li>
+<p>따라서 동적 배열에서는 <strong>메모리 국소성 면에서 장점</strong>이 있는데 프로세스가 메모리보다 훨씬 빨라짐에 따라 그 중요성은 점점 더 커지고 있다.</p>
+</li>
+<li>
+<p>이런 이유로 <strong>동적 배열을 기반으로 하는 스택</strong>이 연결 리스트를 기반으로 하는 스택에 비해 <strong>대체로 빠른 편</strong>이다.</p>
+</li>
+<li>
+<p>동적 배열보다는 연결 리스트로 구현하는 것이 훨씬 덜 복잡하기 때문에 면접에서는 연결 리스트를 푸는 쪽이 훨씬 낫다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[3] 완전하고 일관성 있으면서 사용하기 편리한 스택 인터페이스를 설계하라.</p>
+</blockquote>
+<ul>
+<li>
+<p>스택을 구현할 때는 <code>push</code>와 <code>pop</code> 루틴이 필요하다. 각 함수에는 연산을 처리할 스택을 넘겨줘야 한다.</p>
+</li>
+<li>
+<p><code>push</code> 연산에는 집어넣을(푸시할) 데이터를 넘겨줘야 하며, <code>pop</code> 연산에서는 스택에서 꺼낸 데이터를 반환해야 한다.</p>
+</li>
+<li>
+<p>함수 원형을 만들기 위해서 스택에 저장할 데이터형을 알아야 하는데, 보통 조건이 주어지지 않는 경우라면 <strong>void 포인터</strong>를 저장해서 일반적인 데이터형을 모두 커버할 수 있도록 만드는 것도 나쁘지 않다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#E1E4E8">#defind MAX_STACKS </span><span style="color:#79B8FF">10</span><span style="color:#6A737D"> /* maximum number of stacks */</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> key;</span></span>
+<span class="line"><span style="color:#6A737D">    /* other fields */</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#B392F0">element</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> stack</span><span style="color:#E1E4E8"> *stackPointer;</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> stack</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    element</span><span style="color:#E1E4E8"> data;</span></span>
+<span class="line"><span style="color:#B392F0">    stackPointer</span><span style="color:#E1E4E8"> link;</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#B392F0">Node</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">stackPointer top[MAX_STACKS];</span></span></code></pre>
+<p><img src="/assets/img/cs/datastructure/linkedList_stack_linkedlist.png" alt=""></p>
+<ul>
+<li>위과 같은 자료형을 가진 스택 기반의 연결 리스트일 때, push 연산과 pop 연산을 아래와 같이 구현할 수 있다.</li>
+</ul>
+<blockquote>
+<p>push(i, item) : Add to a linked stack</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> push</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> i</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">element</span><span style="color:#FFAB70"> item</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#6A737D"> /* add item to the ith stack */</span></span>
+<span class="line"><span style="color:#B392F0">    stackPointer</span><span style="color:#E1E4E8"> temp;</span></span>
+<span class="line"><span style="color:#B392F0">    MALLOC</span><span style="color:#E1E4E8">(temp, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">temp));</span></span>
+<span class="line"><span style="color:#E1E4E8">    temp->data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> item;</span></span>
+<span class="line"><span style="color:#E1E4E8">    temp->link </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> top[i];</span></span>
+<span class="line"><span style="color:#E1E4E8">    top[i] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> temp;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>item = pop(i) : Delete a linked stack</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#B392F0">element</span><span style="color:#B392F0"> pop</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> i</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span><span style="color:#6A737D">   /* remove top element from the ith stack */</span></span>
+<span class="line"><span style="color:#B392F0">    stackPointer</span><span style="color:#E1E4E8"> temp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> top[i];</span></span>
+<span class="line"><span style="color:#B392F0">    element</span><span style="color:#E1E4E8"> item;</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">temp)</span><span style="color:#6A737D">  // 비어있을 때</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#B392F0"> stackEmpty</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    item </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> temp->Data;</span></span>
+<span class="line"><span style="color:#E1E4E8">    top[i] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> temp->link;</span><span style="color:#6A737D"> // 아래로 한칸 이동</span></span>
+<span class="line"><span style="color:#B392F0">    free</span><span style="color:#E1E4E8">(temp);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> item;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="문제-설명-및-정답-코드">문제 설명 및 정답 코드</h3>
+<p><strong>연결 리스트를 활용하여 스택을 생성하고 실행하는 프로그램</strong>을 만들어보자.</p>
+<blockquote>
+<p>문제 : 다음과 같은 스택을 생성하고 실행하는 프로그램을 작성하라. 이를 위해 push, pop, stackEmpty 함수를 구현하여야 한다.</p>
+</blockquote>
+<ul>
+<li>
+<p>(1) 실행 순서 - [1], [2]</p>
+</li>
+<li>
+<p>[1-1] 아래와 같은 입력으로 부터 <strong>학번 순으로 미리 정렬된 데이터를 입력</strong>받으면서 순서대로 Linked Stack을 구현한다.</p>
+<ul>
+<li>
+<p>(과목번호, 학번, 성적)의 쌍으로 데이터들이 입력되며 각 과목별로 스택에 저장된다.</p>
+</li>
+<li>
+<p>(과목번호 : 1자리수, 학번 : 1자리수, 성적 : 2자리수)</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">0 1 95</span></span>
+<span class="line"><span style="color:#E1E4E8">1 1 80</span></span>
+<span class="line"><span style="color:#E1E4E8">2 1 89</span></span>
+<span class="line"><span style="color:#E1E4E8">0 2 45</span></span>
+<span class="line"><span style="color:#E1E4E8">1 2 81</span></span>
+<span class="line"><span style="color:#E1E4E8">0 3 45</span></span>
+<span class="line"><span style="color:#E1E4E8">1 3 12</span></span>
+<span class="line"><span style="color:#E1E4E8">2 3 33</span></span>
+<span class="line"><span style="color:#E1E4E8">0 4 99</span></span>
+<span class="line"><span style="color:#E1E4E8">1 4 94</span></span>
+<span class="line"><span style="color:#E1E4E8">2 4 91</span></span>
+<span class="line"><span style="color:#E1E4E8">0 5 67</span></span>
+<span class="line"><span style="color:#E1E4E8">2 5 49</span></span></code></pre>
+<ul>
+<li>
+<p>[1-2] 각 과목 별로 학번의 역순으로 학번과 노드의 데이터(학번, 성적)을 출력하라.</p>
+<ul>
+<li>(출력형식 - 과목번호 : %d, 학번 : %d, 성적 : %2d)</li>
+</ul>
+</li>
+<li>
+<p>(2) 구현 세부사항 - 반드시 linked list를 활용한 stack으로 작성해야 한다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#define</span><span style="color:#B392F0"> MAX_STACK</span><span style="color:#79B8FF"> 3</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> id;</span><span style="color:#6A737D">         // 학번</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> grade;</span><span style="color:#6A737D">      // 성적</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#B392F0">element</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> stack</span><span style="color:#E1E4E8"> *stackPointer;</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> stack</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    element</span><span style="color:#E1E4E8"> data;</span></span>
+<span class="line"><span style="color:#B392F0">    stackPointer</span><span style="color:#E1E4E8"> link;</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#B392F0">Node</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">stackPointer top[MAX_STACKS];</span></span>
+<span class="line"><span style="color:#6A737D">/***************************</span></span>
+<span class="line"><span style="color:#6A737D">top[i] = NULL, 0 &#x3C;= i &#x3C; MAX_STACKS // initial codition</span></span>
+<span class="line"><span style="color:#6A737D">top[i] = NULL, iff ith stack is empty // boundary condition</span></span>
+<span class="line"><span style="color:#6A737D">***************************/</span></span></code></pre>
+<ul>
+<li>(3) 실행 예</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#E1E4E8">0 1 95//서버 입력 시작</span></span>
+<span class="line"><span style="color:#E1E4E8">1 1 80</span></span>
+<span class="line"><span style="color:#E1E4E8">2 1 89</span></span>
+<span class="line"><span style="color:#E1E4E8">0 2 45</span></span>
+<span class="line"><span style="color:#E1E4E8">1 2 81</span></span>
+<span class="line"><span style="color:#E1E4E8">0 3 45</span></span>
+<span class="line"><span style="color:#E1E4E8">1 3 12</span></span>
+<span class="line"><span style="color:#E1E4E8">2 3 33</span></span>
+<span class="line"><span style="color:#E1E4E8">0 4 99</span></span>
+<span class="line"><span style="color:#E1E4E8">1 4 94</span></span>
+<span class="line"><span style="color:#E1E4E8">2 4 91</span></span>
+<span class="line"><span style="color:#E1E4E8">0 5 67</span></span>
+<span class="line"><span style="color:#E1E4E8">2 5 49</span></span>
+<span class="line"><span style="color:#E1E4E8">0 0 0//서버 입력 종료</span></span>
+<span class="line"><span style="color:#E1E4E8">0 5 67//사용자 출력 시작</span></span>
+<span class="line"><span style="color:#E1E4E8">0 4 99</span></span>
+<span class="line"><span style="color:#E1E4E8">0 3 45</span></span>
+<span class="line"><span style="color:#E1E4E8">0 2 45</span></span>
+<span class="line"><span style="color:#E1E4E8">0 1 95</span></span>
+<span class="line"><span style="color:#E1E4E8">1 4 94</span></span>
+<span class="line"><span style="color:#E1E4E8">1 3 12</span></span>
+<span class="line"><span style="color:#E1E4E8">1 2 81</span></span>
+<span class="line"><span style="color:#E1E4E8">1 1 80</span></span>
+<span class="line"><span style="color:#E1E4E8">2 5 49</span></span>
+<span class="line"><span style="color:#E1E4E8">2 4 91</span></span>
+<span class="line"><span style="color:#E1E4E8">2 3 33</span></span>
+<span class="line"><span style="color:#E1E4E8">2 1 89// 사용자 출력 종료</span></span></code></pre>
+<blockquote>
+<p>Answer Code</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#define</span><span style="color:#B392F0"> _CRT_SECURE_NO_WARNINGS</span></span>
+<span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;stdio.h></span></span>
+<span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &#x3C;stdlib.h></span></span>
+<span class="line"><span style="color:#F97583">#define</span><span style="color:#B392F0"> MAX_STACKS</span><span style="color:#79B8FF"> 3</span></span>
+<span class="line"><span style="color:#F97583">#define</span><span style="color:#B392F0"> MALLOC</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">p</span><span style="color:#E1E4E8">,</span><span style="color:#FFAB70">s</span><span style="color:#E1E4E8">){</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#F97583">   if</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">((p)</span><span style="color:#F97583">=</span><span style="color:#B392F0">malloc</span><span style="color:#E1E4E8">(s))){</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#B392F0">      fprintf</span><span style="color:#E1E4E8">(stderr, </span><span style="color:#9ECBFF">"insufficient memory"</span><span style="color:#E1E4E8">);</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#B392F0">      exit</span><span style="color:#E1E4E8">(EXIT_FAILURE);</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#E1E4E8">   }</span><span style="color:#79B8FF">\</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">   int</span><span style="color:#E1E4E8"> id;</span></span>
+<span class="line"><span style="color:#F97583">   int</span><span style="color:#E1E4E8"> grade;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span><span style="color:#B392F0">element</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> stack</span><span style="color:#E1E4E8">* stackPointer;</span></span>
+<span class="line"><span style="color:#F97583">typedef</span><span style="color:#F97583"> struct</span><span style="color:#B392F0"> stack</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">   element</span><span style="color:#E1E4E8"> data;</span></span>
+<span class="line"><span style="color:#B392F0">   stackPointer</span><span style="color:#E1E4E8"> link;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span><span style="color:#B392F0">Node</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">stackPointer top[MAX_STACKS];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> push</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> i</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">element</span><span style="color:#FFAB70"> item</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">   stackPointer</span><span style="color:#E1E4E8"> temp;</span></span>
+<span class="line"><span style="color:#B392F0">   MALLOC</span><span style="color:#E1E4E8">(temp, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">temp));</span></span>
+<span class="line"><span style="color:#E1E4E8">   temp->data </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> item;</span></span>
+<span class="line"><span style="color:#E1E4E8">   temp->link </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> top[i];</span></span>
+<span class="line"><span style="color:#E1E4E8">   top[i] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> temp;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> stackEmpty</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">   fprintf</span><span style="color:#E1E4E8">(stderr, </span><span style="color:#9ECBFF">"stack is empty"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">   exit</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">element</span><span style="color:#B392F0"> pop</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> i</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">   stackPointer</span><span style="color:#E1E4E8"> temp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> top[i];</span></span>
+<span class="line"><span style="color:#B392F0">   element</span><span style="color:#E1E4E8"> item;</span></span>
+<span class="line"><span style="color:#F97583">   if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">temp)</span></span>
+<span class="line"><span style="color:#B392F0">      stackEmpty</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">   item </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> temp->data;</span></span>
+<span class="line"><span style="color:#E1E4E8">   top[i] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> temp->link;</span></span>
+<span class="line"><span style="color:#B392F0">   free</span><span style="color:#E1E4E8">(temp);</span></span>
+<span class="line"><span style="color:#F97583">   return</span><span style="color:#E1E4E8"> item;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> stackPrint</span><span style="color:#E1E4E8">() </span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">   element</span><span style="color:#E1E4E8"> item;</span></span>
+<span class="line"><span style="color:#F97583">   for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> MAX_STACKS; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">   {</span></span>
+<span class="line"><span style="color:#F97583">      while</span><span style="color:#E1E4E8"> (top[i])</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#E1E4E8">         item </span><span style="color:#F97583">=</span><span style="color:#B392F0"> pop</span><span style="color:#E1E4E8">(i);</span></span>
+<span class="line"><span style="color:#B392F0">         printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">%d</span><span style="color:#79B8FF"> %d</span><span style="color:#79B8FF"> %2d\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, i, item.id, item.grade);</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">   }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">   int</span><span style="color:#E1E4E8"> n, id, score;</span></span>
+<span class="line"><span style="color:#B392F0">   element</span><span style="color:#E1E4E8"> item;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">   for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> 13</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">   {</span></span>
+<span class="line"><span style="color:#B392F0">      scanf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">%d</span><span style="color:#79B8FF"> %d</span><span style="color:#79B8FF"> %d</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8">n, </span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8">id, </span><span style="color:#F97583">&#x26;</span><span style="color:#E1E4E8">score);</span></span>
+<span class="line"><span style="color:#E1E4E8">      item.id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> id;</span></span>
+<span class="line"><span style="color:#E1E4E8">      item.grade </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> score;</span></span>
+<span class="line"><span style="color:#B392F0">      push</span><span style="color:#E1E4E8">(n, item);</span></span>
+<span class="line"><span style="color:#E1E4E8">   }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">   stackPrint</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">   return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="면접-질문">면접 질문</h2>
+<ul>
+<li>
+<p>연결리스트의 종류와 관련해서 설명해 주세요.</p>
+</li>
+<li>
+<p>연결 리스트를 활용해서 C로 스택을 구현하고 그 자료구조를 사용한 이유를 설명해 주세요.</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="http://www.yes24.com/Product/Goods/75187284">프로그래밍 면접 이렇게 준비한다: p.98 - p.117</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Fundamentals-Data-Structures-Ellis-Horowitz/dp/0929306406">Fundamentals of data structures in C, 2nd edition - Linked Lists</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="DataStructure-LinkedList" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#연결-리스트" data-toc="연결-리스트" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">연결 리스트</a></li><li><a href="#연결-리스트의-종류" data-toc="연결-리스트의-종류" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">연결 리스트의 종류</a></li><li><a href="#단일-연결-리스트" data-toc="단일-연결-리스트" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">단일 연결 리스트</a></li><li><a href="#이중-연결-리스트" data-toc="이중-연결-리스트" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">이중 연결 리스트</a></li><li><a href="#원형-연결-리스트" data-toc="원형-연결-리스트" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">원형 연결 리스트</a></li><li><a href="#기초적인-연결-리스트-연산" data-toc="기초적인-연결-리스트-연산" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">기초적인 연결 리스트 연산</a></li><li><a href="#머리-원소-추적" data-toc="머리-원소-추적" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">머리 원소 추적</a></li><li><a href="#리스트-종주" data-toc="리스트-종주" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">리스트 종주</a></li><li><a href="#원소의-삽입과-삭제" data-toc="원소의-삽입과-삭제" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">원소의 삽입과 삭제</a></li><li><a href="#연결-리스트-문제" data-toc="연결-리스트-문제" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">연결 리스트 문제</a></li><li><a href="#스택-구현법" data-toc="스택-구현법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">스택 구현법</a></li><li><a href="#문제-설명-및-정답-코드" data-toc="문제-설명-및-정답-코드" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">문제 설명 및 정답 코드</a></li><li><a href="#면접-질문" data-toc="면접-질문" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">면접 질문</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

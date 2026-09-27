@@ -1,0 +1,514 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/spring-boot-kotlin-external-api-circuit-breaker/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2025-12-12" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2025-12-12</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 323회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<blockquote>
+<p>이 글에서 다루는 예시 코드는 해당 <a href="https://github.com/devFancy/kotlin-java-playground/tree/main/kotlin-springboot-practice-commerce">Github</a>이며, 시간에 따라 코드가 변경될 수 있습니다.</p>
+</blockquote>
+<p><a href="https://devfancy.github.io/spring-boot-kotlin-circuit-breaker/">저번 글</a>에서는 왜 서킷 브레이커를 사용하는지, 개념과 사용 방식에 대해 알아봤습니다.</p>
+<p>이번 글에서는 외부 시스템으로부터 장애가 전파되는 것을 막기 위해 서킷 브레이커를 적용한 과정을 공유하고자 합니다.</p>
+<p>이전 회사에서 프로젝트를 진행하던 중, 외부 시스템 연동 과정에서 장애를 겪은 경험이 있습니다.
+기능의 요구사항에 따라 동기 혹은 비동기 방식을 통해 연동이 되는데, 그 당시에는 서비스의 기능과 요구사항을 봤을 때 동기 방식으로 진행해야 했습니다.</p>
+<p>그래서 동기 방식으로 진행하고 테스트를 진행했을 때, 성공 케이스에 대해서는 성공적으로 잘 이뤄졌습니다.
+하지만, 서비스를 운영하다보면 해피 케이스 보다는 예외 케이스에 대해 많이 고려해야 한다는 점을 알 수 있었습니다.</p>
+<p>해피 케이스는 비즈니스 요구사항에 맞춰 로직이 정상적으로 수행된 경우를 말합니다.</p>
+<p>예외 케이스는 크게 비즈니스 로직에 의한 예외와 시스템 장애 두 가지로 구분하여 접근해야 합니다.</p>
+<p>첫 번째는 비즈니스 로직상 발생하는 예외입니다. 이는 서비스의 흐름상 충분히 예상 가능한 상황입니다.
+예를 들어, 사용자의 잔액이 부족하거나, 유효하지 않은 카드 번호를 입력하여 PG사로부터 거절 응답(4xx)을 받는 경우가 이에 해당합니다.</p>
+<p>두 번째는 예상치 못한 시스템 장애입니다.
+네트워크 지연으로 인한 타임아웃(Timeout)이나, 외부 PG 서버의 내부 오류(5xx) 등으로 인해 정상적인 통신이 불가능한 경우를 말합니다.</p>
+<p>이번 글에서 저는 “<strong>외부 시스템 장애 발생 시 어떻게 시스템을 격리할 것인가?</strong>”에 대해 초점을 맞췄습니다.</p>
+<p>이를 구체적으로 설명하기 위해 외부 의존성이 높은 ‘결제’ 도메인과 외부 시스템인 PG사 연동을 예시로 활용했습니다.
+(단, 결제 도메인에 대한 실무 경험을 기반으로 작성한 내용은 아니므로, 실제 서비스의 비즈니스 로직과는 차이가 있을 수 있는 점 참고 부탁드립니다.)</p>
+<blockquote>
+<p>예상 독자</p>
+</blockquote>
+<ul>
+<li>
+<p>외부 시스템과의 장애 격리를 위해 Spring Boot, Kotlin 기반 환경에서 서킷 브레이커를 적용한 과정이 궁금한 분</p>
+</li>
+<li>
+<p>서킷 브레이커에서 정확한 집계 처리를 위해 비즈니스 로직상 발생하는 예외와 예상치 못한 시스템 장애를 구분하는 방법이 궁금한 분</p>
+</li>
+<li>
+<p>Beeceptor 를 이용한 Mock 테스트하는 방법이 궁금한 분</p>
+</li>
+</ul>
+<hr>
+<h2 id="결제-중-장애가-발생하면-어떤-일이-벌어질까">결제 중 장애가 발생하면 어떤 일이 벌어질까?</h2>
+<p>일상 생활에서 쇼핑을 하다보면, 어떠한 제품을 구매하고 싶을 때 주문 페이지 혹은 장바구니에서 ‘결제하기’와 같은 버튼을 클릭하면서 결제가 이뤄집니다.</p>
+<p>아래는 네이버 쇼핑을 통해서 화장품 제품인 ‘제로이드 수딩 크림 100ml’를 결제할 때의 사진입니다.</p>
+<p><img src="/assets/img/server/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-naverpay-order.png" alt=""></p>
+<p>이때, ‘결제하기’ 버튼을 클릭했을 때 외부 시스템 PG사로부터 장애가 발생한다면 어떤 일이 발생할까요?</p>
+<p>기존에 타임아웃과 같은 시간을 설정하지 않았다면, 사용자는 대기 상태에 있다가,
+나중에 <code>"@@사에서 에러가 발생했습니다. 잠시 후 다시 시도해 주세요."</code>와 같은 메시지 창이 나갈 것입니다.
+그러면 사용자 입장에서 보면 불편한 경험을 느낄 수 있습니다. 구글 리서치 자료에 따르면, 로딩 시간이 <strong>3초 이상 소요되면 53%가 이탈</strong>한다고 합니다.</p>
+<p>또한, 해당 서비스를 운영하고 있는 개발자에게는 Slack을 통해 장애 관련 알림을 받게 될 것입니다.
+여기서 외부 시스템이 계속 장애가 발생한다면, 알림이 지속적으로 발송될 것이며, 이는 개발자의 피로도를 가중시킬 수 있습니다.</p>
+<p>이처럼 ‘결제’ 도메인은 외부 시스템과 연동하는 과정이 있고, 그 속에서 장애에 대한 대처가 필요합니다.</p>
+<p>아 글에서는 이러한 문제를 해결하기 위해 사용자에게는 빠른 응답을 제공하고, 개발자에게는 불필요한 장애 알림이 반복되지 않도록 개선하고자 했습니다.</p>
+<h2 id="결제와-외부-시스템pg와의-관계">결제와 외부 시스템(PG)와의 관계</h2>
+<p>코드로 넘어가기 전에, 간단하게 내부 서비스인 ‘결제’와 외부 서비스인 ‘PG’사와의 관계를 먼저 살펴보겠습니다.</p>
+<p><img src="/assets/img/server/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-pg.png" alt=""></p>
+<p>위 그림은 내부 결제 서비스와 외부 PG사 간의 상호작용을 나타냅니다.
+구조적으로 보면, PG사로부터 결제 결과(성공/실패)를 콜백(Callback) 형태로 전달받고,
+이를 바탕으로 우리 서버가 다시 PG사에 최종 결제 승인을 요청하는 형태입니다.</p>
+<p>이를 코드로 구현하면 다음과 같습니다. (아래는 토스페이먼츠 PG사 연동 스펙을 참고하여 구성했습니다.)</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@RestController</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PaymentController</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> paymentConfirmFacade: </span><span style="color:#B392F0">PaymentConfirmFacade</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> paymentService: </span><span style="color:#B392F0">PaymentService</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> orderService: </span><span style="color:#B392F0">OrderService</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> ownedCouponService: </span><span style="color:#B392F0">OwnedCouponService</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> pointService: </span><span style="color:#B392F0">PointService</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // NOTE: [결제 요청] 결제를 하기 위한 개념적인 틀을 만들고 DB에 저장해놓은 역할.</span></span>
+<span class="line"><span style="color:#B392F0">    @PostMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/v1/payments"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> create</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        user: </span><span style="color:#B392F0">User</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">        @RequestBody</span><span style="color:#E1E4E8"> request: </span><span style="color:#B392F0">CreatePaymentRequest</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    ): </span><span style="color:#B392F0">ApiResponse</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">CreatePaymentResponse</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> order </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderService.</span><span style="color:#B392F0">getOrder</span><span style="color:#E1E4E8">(user, request.orderKey, OrderState.CREATED)</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> ownedCoupons </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ownedCouponService.</span><span style="color:#B392F0">getOwnedCouponsForCheckout</span><span style="color:#E1E4E8">(user, order.items.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8"> { it.productId })</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> pointBalance </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pointService.</span><span style="color:#B392F0">balance</span><span style="color:#E1E4E8">(user)</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> paymentService.</span><span style="color:#B392F0">createPayment</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            order </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> order,</span></span>
+<span class="line"><span style="color:#E1E4E8">            paymentDiscount </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> request.</span><span style="color:#B392F0">toPaymentDiscount</span><span style="color:#E1E4E8">(ownedCoupons, pointBalance),</span></span>
+<span class="line"><span style="color:#E1E4E8">        )</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> ApiResponse.</span><span style="color:#B392F0">success</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">CreatePaymentResponse</span><span style="color:#E1E4E8">(id))</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // NOTE: [결제 승인] PG사 인증 성공 시 처리</span></span>
+<span class="line"><span style="color:#B392F0">    @PostMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/v1/payments/callback/success"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> callbackForSuccess</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">        @RequestParam</span><span style="color:#E1E4E8"> orderId: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">        @RequestParam</span><span style="color:#E1E4E8"> paymentKey: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">        @RequestParam</span><span style="color:#E1E4E8"> amount: </span><span style="color:#B392F0">BigDecimal</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    ): </span><span style="color:#B392F0">ApiResponse</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Any</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        paymentConfirmFacade.</span><span style="color:#B392F0">success</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            orderKey </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderId,</span></span>
+<span class="line"><span style="color:#E1E4E8">            externalPaymentKey </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> paymentKey,</span></span>
+<span class="line"><span style="color:#E1E4E8">            amount </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> amount,</span></span>
+<span class="line"><span style="color:#E1E4E8">        )</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> ApiResponse.</span><span style="color:#B392F0">success</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // NOTE: [결제 실패] PG사 인증 실패 시 처리</span></span>
+<span class="line"><span style="color:#B392F0">    @PostMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/v1/payments/callback/fail"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> callbackForFail</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">        @RequestParam</span><span style="color:#E1E4E8"> orderId: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">        @RequestParam</span><span style="color:#E1E4E8"> code: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">        @RequestParam</span><span style="color:#E1E4E8"> message: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    ): </span><span style="color:#B392F0">ApiResponse</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Any</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        paymentConfirmFacade.</span><span style="color:#B392F0">fail</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            orderKey </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> orderId,</span></span>
+<span class="line"><span style="color:#E1E4E8">            code </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> code,</span></span>
+<span class="line"><span style="color:#E1E4E8">            message </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> message,</span></span>
+<span class="line"><span style="color:#E1E4E8">        )</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> ApiResponse.</span><span style="color:#B392F0">success</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>이번 시간에는 서킷 브레이커를 도입한 부분을 위주로 설명드리는 것이므로, 외부 PG사와 통신이 일어나는 <code>callbackForSuccess</code> 메서드를 중점으로 보겠습니다.</p>
+<p><code>callbackForSuccess</code>가 호출되면 내부적으로 <code>PaymentConfirmFacade</code>를 통해 최종 승인 로직을 수행하게 됩니다.</p>
+<p>이때 <code>paymentConfirmFacade.success</code> 메서드의 처리 순서는 다음과 같으며, 2번 단계(외부 API 호출)가 서킷 브레이커를 적용할 부분입니다.</p>
+<ul>
+<li>처리 순서: 1. 결제 검증 -> 2. 외부 API 호출 (PG 승인 요청) -> 3. 결제 완료</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@Component</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PaymentConfirmFacade</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> paymentService: </span><span style="color:#B392F0">PaymentService</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> paymentClient: </span><span style="color:#B392F0">PaymentClient</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> success</span><span style="color:#E1E4E8">(orderKey: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">, externalPaymentKey: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">, amount: </span><span style="color:#B392F0">BigDecimal</span><span style="color:#E1E4E8">): </span><span style="color:#B392F0">Long</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">        // 1. [DB Transaction] 결제 검증</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> command </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> paymentService.</span><span style="color:#B392F0">preparePayment</span><span style="color:#E1E4E8">(orderKey, externalPaymentKey, amount)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 2. [No Transaction] 외부 API 호출</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> paymentResult </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> paymentClient.</span><span style="color:#B392F0">requestPayment</span><span style="color:#E1E4E8">(command)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 3. [DB Transaction] 결제 완료 처리</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> paymentService.</span><span style="color:#B392F0">completePayment</span><span style="color:#E1E4E8">(orderKey, paymentResult)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    //...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>여기서 저는 외부 API 호출(PaymentClient)과 내부 DB 트랜잭션(PaymentService)을 분리했습니다.</p>
+<p>데이터베이스의 커넥션 풀(Connection Pool)은 한정된 자원입니다.
+만약 트랜잭션 내부에 응답 시간이 불확실한 외부 API 호출을 포함시킨다면, 외부 시스템 지연 시 DB 커넥션의 점유 시간이 불필요하게 길어지게 됩니다.
+이는 결국 전체 서비스의 성능 저하로 이어질 수 있습니다.</p>
+<p>따라서 Facade 패턴을 활용해 트랜잭션 범위를 최소화하고, 외부 PG사 로직 변경이 내부 도메인 로직에 영향을 주지 않도록 설계했습니다.</p>
+<ul>
+<li>
+<p><code>PaymentService</code>: 내부 비즈니스와 관련된 로직</p>
+</li>
+<li>
+<p><code>PaymentClient</code>: 외부 API 호출과 관련된 로직</p>
+</li>
+</ul>
+<p>(참고로, 실제 운영 환경에서는 외부 결제가 성공하고 내부 DB 반영이 실패하는 경우를 대비해서 별도의 배치나 보상 트랜잭션과 같은 로직을 처리해줘야 합니다.)</p>
+<h2 id="해결-서킷-브레이커-적용하기">해결: 서킷 브레이커 적용하기</h2>
+<p>서킷 브레이커를 적용하기 전에 <code>application.yml</code> 에 서킷 브레이커와 관련된 설정값을 아래와 같이 설정했습니다.</p>
+<p>(아래는 예시로 설정해둔 값이며, 실제 운영 환경에서는 서비스의 트래픽 패턴과 요구사항, 내부 정책을 고려해서 설정해야 합니다.)</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">spring.config.activate.on-profile</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">local</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># @CircuitBreaker name에 지정된 서킷브레이커가 없으면 default 설정을 가져온 해당 이름의 서킷브레이커를 만듭니다.</span></span>
+<span class="line"><span style="color:#85E89D">resilience4j</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  circuitbreaker</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    configs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      default</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        sliding-window-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span></span>
+<span class="line"><span style="color:#85E89D">        failure-rate-threshold</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">50</span></span>
+<span class="line"><span style="color:#85E89D">        wait-duration-in-open-state</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10000</span></span>
+<span class="line"><span style="color:#85E89D">    instances</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      beeceptor-payment</span><span style="color:#E1E4E8">: </span><span style="color:#6A737D"># 코드에서 circuitBreaker.run("beeceptor-payment")로 호출한 이름과 일치해야 합니다.</span></span>
+<span class="line"><span style="color:#85E89D">        base-config</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">default</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">        sliding-window-type</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">COUNT_BASED</span><span style="color:#6A737D">    # 집계 슬라이딩 윈도우 크기 (횟수 기반)</span></span>
+<span class="line"><span style="color:#85E89D">        sliding-window-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#6A737D">             # CLOSED 상태에서 최근 10회 호출을 기준으로 실패율(failureRateThreshold) 계산</span></span>
+<span class="line"><span style="color:#85E89D">        minimum-number-of-calls</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#6A737D">         # 집계에 필요한 최소 호출 수</span></span>
+<span class="line"><span style="color:#85E89D">        failure-rate-threshold</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">50</span><span style="color:#6A737D">          # 실패율 임계값: 실패 50% 이상 시 OPEN 상태로 전환</span></span>
+<span class="line"><span style="color:#85E89D">        slow-call-duration-threshold</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5000</span><span style="color:#6A737D">  # 5000ms 이상 소요 시 실패로 간주</span></span>
+<span class="line"><span style="color:#85E89D">        slow-call-rate-threshold</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">50</span><span style="color:#6A737D">        # slowCallDurationThreshold 초과 비율이 50% 이상 시 OPEN 상태로 전환</span></span>
+<span class="line"><span style="color:#85E89D">        wait-duration-in-open-state</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">30000</span><span style="color:#6A737D">  # OPEN -> HALF_OPEN 전환 전 대기 시간 (ms)</span></span>
+<span class="line"><span style="color:#85E89D">        permitted-number-of-calls-in-half-open-state</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#6A737D">   # HALF_OPEN -> CLOSE or OPEN 으로 판단하기 위해 허용할 호출 횟수</span></span>
+<span class="line"><span style="color:#85E89D">        registerHealthIndicator</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">true</span><span style="color:#6A737D">       # actuator 에서 상태 확인 가능</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#85E89D">        ignoreExceptions</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">          - </span><span style="color:#9ECBFF">org.springframework.web.client.HttpClientErrorException</span></span></code></pre>
+<p>기본값으로 설정한 값이 있고, 외부 API 호출에 대해 테스트하기 위해서 모의 API 테스트를 무료로 제공하는 <a href="https://app.beeceptor.com/">Beeceptor</a>를 사용했습니다.
+그래서 위와 같이 instances 부분에 <code>beeceptor-payment</code> 이라는 이름으로 지었습니다.</p>
+<p>위에서 말한 것처럼, 외부 시스템으로부터 장애 격리를 위해 서킷 브레이커를 도입했습니다.</p>
+<p>yml 파일에서 설정한 <code>beeceptor-payment</code> 이름으로 서킷 브레이커의 run 부분에 추가해두었습니다.
+왜냐하면 run 내부에는 아래와 같이 서킷 브레이커 설정 이름과 실행한 로직을 구현했기 때문입니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> CircuitBreaker</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    /**</span></span>
+<span class="line"><span style="color:#6A737D">     * </span><span style="color:#F97583">@param</span><span style="color:#FFAB70"> name</span><span style="color:#6A737D"> 서킷 브레이커 설정 이름 (기본값: "default")</span></span>
+<span class="line"><span style="color:#6A737D">     * </span><span style="color:#F97583">@param</span><span style="color:#FFAB70"> block</span><span style="color:#6A737D"> 서킷 브레이커로 보호하며 실행할 로직</span></span>
+<span class="line"><span style="color:#6A737D">     */</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(name: </span><span style="color:#B392F0">String</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "default"</span><span style="color:#E1E4E8">, block: () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> T): </span><span style="color:#B392F0">Result</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><code>PaymentClient</code>의 구현체인 <code>BeeceptorPaymentClient</code> 클래스에서 외부 API 호출하는 로직을 아래와 같이 구현했습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@Component</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> BeeceptorPaymentClient</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> restClient: </span><span style="color:#B392F0">RestClient</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> circuitBreaker: </span><span style="color:#B392F0">CircuitBreaker</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">) : </span><span style="color:#B392F0">PaymentClient</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> log </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoggerFactory.</span><span style="color:#B392F0">getLogger</span><span style="color:#E1E4E8">(javaClass)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    override</span><span style="color:#F97583"> fun</span><span style="color:#B392F0"> requestPayment</span><span style="color:#E1E4E8">(command: </span><span style="color:#B392F0">PaymentCommand</span><span style="color:#E1E4E8">): </span><span style="color:#B392F0">PaymentResult</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> circuitBreaker.</span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"beeceptor-payment"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">            executePayment</span><span style="color:#E1E4E8">(command)</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">fallbackIfOpen</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">warn</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[Circuit Open] Beeceptor 결제 서비스 차단됨. 잠시 후 재시도 필요."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">                throw</span><span style="color:#B392F0"> CoreException</span><span style="color:#E1E4E8">(ErrorType.PAYMENT_EXTERNAL_API_UNAVAILABLE)</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">getOrElse</span><span style="color:#E1E4E8"> { e </span><span style="color:#F97583">-></span></span>
+<span class="line"><span style="color:#F97583">                when</span><span style="color:#E1E4E8"> (e) {</span></span>
+<span class="line"><span style="color:#F97583">                    is</span><span style="color:#E1E4E8"> HttpClientErrorException </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                        log.</span><span style="color:#B392F0">warn</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[PAYMENT_REJECTED] 결제 거절: ${e.responseBodyAsString}"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">                        throw</span><span style="color:#B392F0"> CoreException</span><span style="color:#E1E4E8">(ErrorType.PAYMENT_REJECTED)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">                    is</span><span style="color:#E1E4E8"> CoreException </span><span style="color:#F97583">-></span><span style="color:#F97583"> throw</span><span style="color:#E1E4E8"> e</span></span>
+<span class="line"><span style="color:#F97583">                    else</span><span style="color:#F97583"> -></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                        log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[PAYMENT_FAILED] Beeceptor 결제 호출 실패"</span><span style="color:#E1E4E8">, e)</span></span>
+<span class="line"><span style="color:#F97583">                        throw</span><span style="color:#B392F0"> CoreException</span><span style="color:#E1E4E8">(ErrorType.PAYMENT_EXTERNAL_API_FAIL)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    }</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // ... (executePayment 메서드 생략)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="fallback-처리하기">Fallback 처리하기</h3>
+<p>서킷 브레이커가 열렸을 때(Open), 사용자에게 어떤 경험을 제공할지는 도메인의 성격에 따라 다릅니다.</p>
+<p>일반적으로 상품 목록 조회나 검색같은 조회 관련해서는 서킷이 열렸을 때, 빈 리스트를 반환하거나 캐시된 데이터를 보여주는 방식을 사용해서 사용자가 장애를 인지하지 못하게 합니다.</p>
+<p>하지만 결제 도메인은 다릅니다. 금전적인 트랜잭션이 걸려 있는 만큼, 어설픈 성공 처리보다는 명확하게 실패를 알리는 것이 안전합니다.</p>
+<p>그래서 저는 <code>fallbackIfOpen</code> 메서드에서 바로 예외(<code>PAYMENT_EXTERNAL_API_UNAVAILABLE</code>)를 던지도록 했습니다.
+이를 통해 불필요한 스레드 점유를 막고, 사용자에게는 “외부 시스템 처리 작업이 실패했습니다. 잠시 후 다시 시도해주세요.” 같은 메시지를 전달했습니다.</p>
+<h3 id="예상-가능한-에러와-예상치-못한-에러-구분하기">예상 가능한 에러와 예상치 못한 에러 구분하기</h3>
+<p>Fallback 전략을 세웠다면, 다음으로 고민할 점은 “무엇을 장애로 판단하여 서킷을 열 것인가?”입니다.</p>
+<p>만약 사용자의 잔액 부족이나 결제 비밀번호 오류 같은 비즈니스 예외(4xx 에러)까지 장애로 카운팅된다면 어떻게 될까요?
+실제 외부 서버는 멀쩡한데, 사용자의 실수로 인해 실패율이 높아져 서킷이 열려버리는 문제가 발생할 수 있습니다.</p>
+<p>앞서 Prologue에서 정의한 기준에 따라, 서킷 브레이커가 ‘시스템 장애’만 감지하고 ‘비즈니스 예외’는 무시하도록 설정해야 합니다.</p>
+<p>이를 구현하기 위해 <code>application.yml</code> 파일의 <code>ignoreExceptions</code> 설정에 4xx 에러를 추가해서 비즈니스 예외가 발생하더라도 서킷의 실패율에는 영향을 주지 않도록 격리했습니다.</p>
+<p>아래 코드는 앞서 설명한 Fallback 전략과 예외 구분 로직이 모두 포함된 로직입니다.
+<code>circuitBreaker.run</code>을 통해 실행하다가, 서킷이 닫혀있음에도 예외가 발생하면 <code>getOrElse</code> 블록으로 진입하게 되는데, 이때 예외 종류에 따라 처리를 다르게 가져갔습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#6A737D">// ... (생략)</span></span>
+<span class="line"><span style="color:#E1E4E8">        .</span><span style="color:#B392F0">getOrElse</span><span style="color:#E1E4E8"> { e </span><span style="color:#F97583">-></span></span>
+<span class="line"><span style="color:#F97583">            when</span><span style="color:#E1E4E8"> (e) {</span></span>
+<span class="line"><span style="color:#F97583">                is</span><span style="color:#E1E4E8"> HttpClientErrorException </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                    // 비즈니스 예외 (4xx): WARN 로그 기록 &#x26; 서킷 집계 제외</span></span>
+<span class="line"><span style="color:#E1E4E8">                    log.</span><span style="color:#B392F0">warn</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[PAYMENT_REJECTED] 결제 거절: ${e.responseBodyAsString}"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">                    throw</span><span style="color:#B392F0"> CoreException</span><span style="color:#E1E4E8">(ErrorType.PAYMENT_REJECTED)</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">                is</span><span style="color:#E1E4E8"> CoreException </span><span style="color:#F97583">-></span><span style="color:#F97583"> throw</span><span style="color:#E1E4E8"> e</span></span>
+<span class="line"><span style="color:#F97583">                else</span><span style="color:#F97583"> -></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                    // 시스템 장애 (5xx, Timeout): ERROR 로그 기록 &#x26; 서킷 집계 포함</span></span>
+<span class="line"><span style="color:#E1E4E8">                    log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[PAYMENT_FAILED] Beeceptor 결제 호출 실패"</span><span style="color:#E1E4E8">, e)</span></span>
+<span class="line"><span style="color:#F97583">                    throw</span><span style="color:#B392F0"> CoreException</span><span style="color:#E1E4E8">(ErrorType.PAYMENT_EXTERNAL_API_FAIL)</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#6A737D">// ...</span></span></code></pre>
+<p>위의 <code>getOrElse</code> 내부 로직을 자세히 살펴보면 다음과 같은 차이를 두었습니다.</p>
+<ul>
+<li>
+<p><code>HttpClientErrorException</code> (비즈니스 예외)</p>
+<ul>
+<li>PG사로부터 “잔액 부족” 등과 같은 4xx 응답을 받은 경우입니다.</li>
+<li>이는 장애가 아니므로 <code>ignoreExceptions</code>설정에 의해 서킷 집계에서 제외됩니다.</li>
+<li>로그 또한 운영자에게 알림이 가지 않도록 <code>WARN</code> 레벨로 기록해서 알림 피로도를 낮추는 전략을 가져갔습니다.</li>
+</ul>
+</li>
+<li>
+<p>그 외 예외 (시스템 장애)</p>
+<ul>
+<li>타임아웃이나 500 에러 등 실제 장애를 받은 경우입니다.</li>
+<li>이 경우에는 반드시 운영자가 인지해야 하므로 <code>ERROR</code> 레벨로 기록하고, 서킷 브레이커가 실패 횟수를 카운트하도록 했습니다.</li>
+</ul>
+</li>
+</ul>
+<p>이처럼 예상 가능한 에러와 예상치 못한 에러를 명확히 구분함으로써, 서킷 브레이커가 실제 장애 상황에서만 정확하게 동작하도록 구현했습니다.</p>
+<p>운영 환경에서는 다양한 장애가 발생할 수 있기 때문에, 사용자에게는 불편함을 주지 않고, 운영자에게는 불필요한 알림으로 인한 피로도를 줄여, 장애 대응에 집중할 수 있도록 내부 정책을 잘 세우는 것이 중요하다는 걸 알게되었습니다.</p>
+<h3 id="타임아웃-설정하기">타임아웃 설정하기</h3>
+<p>마지막으로, 서킷 브레이커와 함께 반드시 고려해야할 점이 타임아웃(Timeout)입니다.</p>
+<blockquote>
+<p>타임아웃에 대해 개념과 유형이 궁금하시다면, 이전에 제가 작성한 <a href="https://github.com/devFancy/WIL/blob/main/tech/server-developer-timeout.md">서버 개발자가 알아야 할 타임아웃과 유형 알아보기</a> 글을 참고해 주시기 바랍니다.</p>
+</blockquote>
+<p>타임아웃은 단순히 “짧게 설정하면 좋다”가 아니라, 외부 시스템(PG사)의 서비스 수준 협약(SLA)과 데이터 정합성을 고려해야 합니다.</p>
+<p>예를 들어, PG사가 “최대 60초 이내 응답을 보장한다”고 하는데, 내 서버의 <code>Read Timeout</code>을 3초로 설정해버리면 어떻게 될까요?</p>
+<p>PG사는 4초 만에 정상적으로 결제를 처리했지만, 내 서버는 3초 만에 연결을 끊고 “실패”로 처리해버리는 데이터 불일치 문제가 발생할 수 있습니다.
+(예시. 돈은 나갔는데 주문은 실패한 상황)</p>
+<p>따라서 타임아웃과 같은 기준을 고려하여 설정하는 것이 안전합니다.</p>
+<ul>
+<li><code>Connection Timeout</code>: 네트워크 연결 자체의 문제이므로 짧게 설정 (1~3초)</li>
+<li><code>Read Timeout</code>: PG사의 권장 가이드 시간 + 네트워크 지연 버퍼</li>
+</ul>
+<blockquote>
+<p>실제로 토스페이먼츠 개발자 센터에서는 결제 승인 API의 <code>Read Timeout</code>을 60초로 설정할 것을 권장하고 있습니다.</p>
+<p>토스페이먼츠 결제 처리와 관련된 API Read Timeout 설정이 중요해요. 결제 처리와 관련된 API 의 Read Timeout 은 60초로 설정하면 돼요. - <a href="https://docs.tosspayments.com/resources/glossary/timeout">토스페이먼츠 용어집: 타임아웃</a></p>
+</blockquote>
+<p>외부 시스템에서는 우리가 통제할 수 없는 영역이기 때문에, 내부 서비스같은 통제 가능한 영역에 대해서는 가능한 짧게 가져가는 것이 좋습니다.</p>
+<p>이번 포스팅의 예제 코드에서는 테스트 편의상 짧게 설정했지만, 실제 운영 환경이라면 외부 PG사의 가이드라인을 반드시 준수해야 합니다.</p>
+<p>(아래는 예시로 설정해둔 값입니다.)</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@Configuration</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> RestClientConfig</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    @Bean</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> restClient</span><span style="color:#E1E4E8">(): </span><span style="color:#B392F0">RestClient</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> requestFactory </span><span style="color:#F97583">=</span><span style="color:#B392F0"> JdkClientHttpRequestFactory</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpClient.</span><span style="color:#B392F0">newBuilder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">connectTimeout</span><span style="color:#E1E4E8">(Duration.</span><span style="color:#B392F0">ofSeconds</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">        )</span></span>
+<span class="line"><span style="color:#6A737D">        // 실제 운영 시에는 PG사 권장 시간을 고려해야 합니다.</span></span>
+<span class="line"><span style="color:#E1E4E8">        requestFactory.</span><span style="color:#B392F0">setReadTimeout</span><span style="color:#E1E4E8">(Duration.</span><span style="color:#B392F0">ofSeconds</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> RestClient.</span><span style="color:#B392F0">builder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">requestFactory</span><span style="color:#E1E4E8">(requestFactory)</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">baseUrl</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://...free.beeceptor.com/api"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위와 같이 서버(API) 타임아웃뿐만 아니라, 데이터베이스 연결에 대한 타임아웃도 함께 점검하는 것이 좋습니다.</p>
+<p>(아래는 예시로 설정해둔 값입니다.)</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">spring.config.activate.on-profile</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">local</span></span>
+<span class="line"><span style="color:#6A737D"># ...</span></span>
+<span class="line"><span style="color:#85E89D">storage</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  datasource</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    core</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      maximum-pool-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span></span>
+<span class="line"><span style="color:#85E89D">      connection-timeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1100</span></span>
+<span class="line"><span style="color:#85E89D">      data-source-properties</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        socketTimeout</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">3000</span></span></code></pre>
+<h2 id="직접-테스트해보기">직접 테스트해보기</h2>
+<p>로컬 개발 환경에서 실제 결제 승인 대신 Beeceptor를 호출하여 테스트하기 위해 해당 사이트에 들어가서 Mock 서버를 구축했습니다.</p>
+<p>그런 다음, 아래와 같은 순서로 모킹 Rule을 설정하고, 테스트를 위해 테스트용 데이터를 <code>data.sql</code>에 작성했습니다.</p>
+<h3 id="1-mocking-rule-설정하기">1. Mocking Rule 설정하기</h3>
+<p>Beeceptor Console > Mocking Rules 메뉴에서 아래 규칙을 등록해야 합니다.</p>
+<ul>
+<li>Base URL: <code>https://{본인의 도메인}.free.beeceptor.com</code></li>
+<li>Target URL Path: <code>/api/v1/payments</code></li>
+<li>Method: <code>POST</code></li>
+</ul>
+<p>테스트를 위해 적용할 API 부분만 아래 그림과 같이 체크 표시를 하면 됩니다.</p>
+<p><img src="/assets/img/server/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-mocking-rule.png" alt=""></p>
+<blockquote>
+<p>Case 1: 결제 승인 성공 (Success)</p>
+</blockquote>
+<p>정상적으로 결제가 승인되었을 때 PG사로부터 받는 응답 예시입니다.</p>
+<ul>
+<li>Status Code: <code>200 OK</code></li>
+<li>Response Body (JSON):</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "externalPaymentKey"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"payment_key_test"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "method"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"CARD"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "approveNo"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"12345678"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "message"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"결제 성공"</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><img src="/assets/img/server/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-mocking-200-success.png" alt=""></p>
+<blockquote>
+<p>Case 2: 결제 승인 실패 (Failure)</p>
+</blockquote>
+<p>잔액 부족, 한도 초과, 네트워크 오류 등의 상황을 시뮬레이션합니다.</p>
+<ul>
+<li>Status Code: 400 Bad Request (또는 500)</li>
+<li>Response Body (JSON):</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "code"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"PAYMENT_REJECTED"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "message"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"잔액이 부족합니다."</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><img src="/assets/img/server/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-mocking-400-fail.png" alt=""></p>
+<h3 id="2-테스트용-데이터-작성하기">2. 테스트용 데이터 작성하기</h3>
+<p>해당 프로젝트에서 결제 승인 API를 테스트하기 위해서는 사전에 상품과 주문, 결제, 포인트에 대한 더미 데이터가 필요했습니다.</p>
+<p>그래서 저는 <code>data.sql</code>를 이용해서 더미 데이터를 만들었습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#6A737D">-- 1. 상품 (Product)</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> product (id, </span><span style="color:#F97583">name</span><span style="color:#E1E4E8">, thumbnail_url, </span><span style="color:#F97583">description</span><span style="color:#E1E4E8">, short_description, cost_price, sales_price, discounted_price,</span></span>
+<span class="line"><span style="color:#F97583">                     status</span><span style="color:#E1E4E8">, created_at, updated_at)</span></span>
+<span class="line"><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'기모 후드티'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'https://static.toss.im/illusts/hoodie-gray.png'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'따뜻한 기모 후드티입니다.'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'기모 후드티'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20000</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">30000</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25000</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">        'ACTIVE'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">NOW</span><span style="color:#E1E4E8">(), </span><span style="color:#F97583">NOW</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- 2. 주문 (Order) - 결제 대기 상태 (CREATED)</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#9ECBFF"> "order"</span><span style="color:#E1E4E8"> (id, user_id, order_key, </span><span style="color:#F97583">name</span><span style="color:#E1E4E8">, total_price, </span><span style="color:#F97583">state</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">status</span><span style="color:#E1E4E8">, created_at, updated_at)</span></span>
+<span class="line"><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'ORDER_TEST_HOODIE'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'기모 후드티 외 0건'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25000</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'CREATED'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'ACTIVE'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">NOW</span><span style="color:#E1E4E8">(), </span><span style="color:#F97583">NOW</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- 3. 결제 (Payment) - 승인 대기 상태 (READY)</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> payment (id, user_id, order_id, origin_amount, owned_coupon_id, coupon_discount, used_point, paid_amount,</span></span>
+<span class="line"><span style="color:#F97583">                     state</span><span style="color:#E1E4E8">, external_payment_key, method, approve_code, paid_at, </span><span style="color:#F97583">status</span><span style="color:#E1E4E8">, created_at, updated_at)</span></span>
+<span class="line"><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25000</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">25000</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'READY'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">NULL</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">NULL</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">NULL</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">NULL</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'ACTIVE'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">NOW</span><span style="color:#E1E4E8">(), </span><span style="color:#F97583">NOW</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- 4. 포인트 잔액 (PointBalance)</span></span>
+<span class="line"><span style="color:#F97583">INSERT INTO</span><span style="color:#E1E4E8"> point_balance (id, user_id, balance, </span><span style="color:#F97583">version</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">status</span><span style="color:#E1E4E8">, created_at, updated_at)</span></span>
+<span class="line"><span style="color:#F97583">VALUES</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1000</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'ACTIVE'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">NOW</span><span style="color:#E1E4E8">(), </span><span style="color:#F97583">NOW</span><span style="color:#E1E4E8">());</span></span></code></pre>
+<h3 id="3-api-테스트">3. API 테스트</h3>
+<p>위의 두 단계를 진행한 뒤에, 아래와 같이 API 요청을 통해 결제 승인에 대한 성공/실패 케이스를 검증할 수 있습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>### 1. 결제 승인 (성공 케이스) - Case 1 활성화 (200 OK)</span></span>
+<span class="line"><span>POST http://localhost:8080/v1/payments/callback/success?orderId=ORDER_TEST_HOODIE&#x26;paymentKey=payment_key_test&#x26;amount=25000</span></span>
+<span class="line"><span>Content-Type: application/json</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>### 2. 결제 승인 (실패 케이스 - 잔액 부족 등) - Case 2 활성화 (400 Error)</span></span>
+<span class="line"><span>POST http://localhost:8080/v1/payments/callback/fail?orderId=ORDER_TEST_HOODIE&#x26;code=PAYMENT_REJECTED&#x26;message=잔액부족</span></span>
+<span class="line"><span>Content-Type: application/json</span></span></code></pre>
+<p>만약 결제 승인에 대한 성공 케이스를 확인하고 싶다면, Beeceptor의 Mock 서버에서 200 응답에 대한 부분만 활성화해야 합니다.
+반대로, 실패 케이스를 확인하고 싶다면, 400 응답에 대한 부분만 활성화해야 합니다.
+그리고 서킷 브레이커의 활성화 여부(Open)도 확인한다면, 500 응답에 대한 부분을 활성화해주면 됩니다.</p>
+<p>아래는 결제에 대한 성공/실패 케이스에 대해 응답값에 대한 로그로 찍힌 부분입니다.</p>
+<blockquote>
+<p>결제 승인에 성공한 경우 로그 결과</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>13:20:28.854| INFO|{{traceId}},{{spanId}}|i.d.c.c.a.client.BeeceptorPaymentClient |[PAYMENT_CLIENT] Beeceptor 외부 결제 API 호출. Request: BeeceptorPaymentRequest(paymentKey=payment_key_test, orderId=1, amount=25000)</span></span>
+<span class="line"><span>13:20:29.626| INFO|{{traceId}},{{spanId}}|i.d.c.c.a.client.BeeceptorPaymentClient |[PAYMENT_CLIENT] 응답 성공 - Result: PaymentResult(externalPaymentKey=payment_key_test, method=CARD, approveNo=12345678, message=결제 성공)</span></span></code></pre>
+<h2 id="테스트-코드로-확인하기">테스트 코드로 확인하기</h2>
+<p>마지막으로, 앞서 Beeceptor에 설정해둔 500 에러 응답 규칙을 기반으로, 실제 코드에서 서킷 브레이커가 정상적으로 동작하는지 테스트 코드로 검증해보겠습니다.</p>
+<p>이번 테스트는 Mocking(가짜 객체)을 사용하지 않고, 실제 외부 서버(Beeceptor)와 통신하여 서킷 브레이커의 상태 변화를 확인하는 통합 테스트 방식입니다.</p>
+<ul>
+<li><code>given</code>(준비): Beeceptor 설정이 500 에러를 반환하도록 되어 있어야 합니다.</li>
+<li><code>when</code>(실행): 실제 API를 10번 호출하여 실패 횟수를 누적시킵니다. (최소 호출 수 10회, 실패율 50% 달성)</li>
+<li><code>then</code>(검증): 서킷이 <code>OPEN</code> 상태로 변했는지 확인하고, 11번째 요청 시 <code>Fallback</code> 예외가 발생하는지 확인합니다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@Import</span><span style="color:#E1E4E8">(TestRestClientConfig::</span><span style="color:#B392F0">class</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> BeeceptorPaymentClientTest</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> beeceptorPaymentClient: </span><span style="color:#B392F0">BeeceptorPaymentClient</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> circuitBreakerRegistry: </span><span style="color:#B392F0">CircuitBreakerRegistry</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">) : </span><span style="color:#B392F0">ContextTest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  @Test</span></span>
+<span class="line"><span style="color:#F97583">  fun</span><span style="color:#B392F0"> `외부 API가 반복적으로 실패하면 서킷 브레이커가 OPEN 되고 Fallback 예외가 발생한다`</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // given</span></span>
+<span class="line"><span style="color:#F97583">    val</span><span style="color:#E1E4E8"> command </span><span style="color:#F97583">=</span><span style="color:#B392F0"> PaymentCommand</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">      externalPaymentKey </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "payment_key_test"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      orderId </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1L</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      amount </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10000L</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    )</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    val</span><span style="color:#E1E4E8"> circuitBreaker </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> circuitBreakerRegistry.</span><span style="color:#B392F0">circuitBreaker</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"beeceptor-payment"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 초기 상태는 CLOSED 인지 확인</span></span>
+<span class="line"><span style="color:#B392F0">    assertThat</span><span style="color:#E1E4E8">(circuitBreaker.state).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(CircuitBreaker.State.CLOSED)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // when (최소 호출 수 10회, 실패율 50%)</span></span>
+<span class="line"><span style="color:#6A737D">    // 실제 Beeceptor 서버로 10번의 요청을 보냅니다. (현재 500 에러 응답 설정됨)</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> (i </span><span style="color:#F97583">in</span><span style="color:#79B8FF"> 1</span><span style="color:#F97583">..</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">      try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        beeceptorPaymentClient.</span><span style="color:#B392F0">requestPayment</span><span style="color:#E1E4E8">(command)</span></span>
+<span class="line"><span style="color:#E1E4E8">      } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (e: </span><span style="color:#B392F0">Exception</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // 서킷 브레이커 카운팅을 위해 발생한 예외는 무시하고 반복문을 진행합니다.</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // then</span></span>
+<span class="line"><span style="color:#6A737D">    // 1. 10번의 실패 후 서킷 브레이커가 열렸는지(OPEN) 확인</span></span>
+<span class="line"><span style="color:#B392F0">    assertThat</span><span style="color:#E1E4E8">(circuitBreaker.state).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(CircuitBreaker.State.OPEN)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 2. 서킷이 열린 상태에서 추가 요청 시, Fallback 예외(UNAVAILABLE)가 발생하는지 확인</span></span>
+<span class="line"><span style="color:#F97583">    val</span><span style="color:#E1E4E8"> exception </span><span style="color:#F97583">=</span><span style="color:#B392F0"> assertThrows</span><span style="color:#E1E4E8">(CoreException::</span><span style="color:#B392F0">class</span><span style="color:#E1E4E8">.java) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      beeceptorPaymentClient.</span><span style="color:#B392F0">requestPayment</span><span style="color:#E1E4E8">(command)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#B392F0">    assertThat</span><span style="color:#E1E4E8">(exception.errorType).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(ErrorType.PAYMENT_EXTERNAL_API_UNAVAILABLE)</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>테스트 실행 결과, 아래 그림과 같이 모든 검증 과정을 통과한 것을 확인할 수 있습니다.</p>
+<p><img src="/assets/img/server/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-testcode-success.png" alt=""></p>
+<p>Beeceptor Mock 서버의 로그를 확인해보면, 의도한 대로 10번의 500 에러 요청이 발생했음을 알 수 있습니다.</p>
+<p><img src="/assets/img/server/technology/circuit-breaker/springboot-kotlin-external-api-circuit-breaker-payment-500-error.png" alt=""></p>
+<p>마지막으로 애플리케이션 로그를 통해 서킷 브레이커의 상태 변화를 확인할 수 있습니다.
+로그를 자세히 보시면 10번째 실패 이후 <code>CallNotPermittedException</code>이 발생하며, 이후
+<strong>“CircuitBreaker is OPEN”</strong> 이라는 메시지와 함께 결제 요청이 차단되는 것을 볼 수 있습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>// 10번째 실패 로그 (500 Error - 실제 네트워크 통신 발생)</span></span>
+<span class="line"><span>13:53:43.095| WARN|{traceId}, {spanId}|i.d.c.c.s.c.DefaultCircuitBreaker       |[CircuitBreaker: beeceptor-payment] 실행 중 예외 발생: org.springframework.web.client.HttpServerErrorException$InternalServerError: 500 Internal Server Error: [no body]</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>// 11번째 요청 차단 로그 (Circuit Open - 통신 차단)</span></span>
+<span class="line"><span>io.github.resilience4j.circuitbreaker.CallNotPermittedException: CircuitBreaker 'beeceptor-payment' is OPEN and does not permit further calls</span></span>
+<span class="line"><span>13:53:43.099| WARN|{traceId}, {spanId}|i.d.c.c.a.client.BeeceptorPaymentClient |[Circuit Open] Beeceptor 결제 서비스 차단됨. 잠시 후 재시도 필요.</span></span></code></pre>
+<h2 id="모니터링-연동하기">모니터링 연동하기</h2>
+<p>앞서 테스트 코드를 통해 서킷 브레이커가 정상적으로 동작하는 것을 검증했습니다.
+하지만 실제 운영 환경에서는 로그만으로 서킷의 상태 변화나 실패율 추이를 실시간으로 파악하기 어렵습니다.</p>
+<p>따라서 장애 발생 시 빠르게 인지하고 대응하기 위해 Prometheus와 Grafana를 활용하여 모니터링 시스템을 구축했습니다.
+(연동 코드에 대한 자세한 내용은 <a href="https://github.com/devFancy/kotlin-java-playground/pull/9">해당 PR</a>을 참고해 주시기 바랍니다.)</p>
+<p>Resilience4j는 Micrometer를 통해 서킷 브레이커의 상태(OPEN, HALF_OPEN, CLOSED), 실패율, 호출 횟수 등의 다양한 메트릭을 Prometheus로 노출할 수 있도록 지원합니다.
+이를 Grafana 대시보드와 연동하면 아래와 같이 시각화된 데이터를 확인할 수 있습니다.</p>
+<p><img src="/assets/img/server/technology/circuit-breaker/circuit-breeaker-monitoring-metrics.png" alt=""></p>
+<p>이처럼 모니터링을 구축해 두면, 외부 시스템 장애 발생 시 서킷이 정상적으로 차단되었는지, 혹은 회복 상태(Half-Open)로 진입했는지를 대시보드를 통해 직관적으로 확인할 수 있어 운영 안정성을 높일 수 있습니다</p>
+<h2 id="마무리하기">마무리하기</h2>
+<p>외부 시스템 연동 시 장애 전파를 방지하고 시스템을 격리하기 위해 서킷 브레이커를 적용할 수 있습니다.</p>
+<p>현 포스팅에서는 ‘결제’ 도메인을 기준으로 서킷 브레이커를 적용한 부분에 대해 다뤄봤습니다.
+결제 시스템은 ‘안정성’이 중요하고 도메인과 비즈니스 특성상 외부 요인이 많아서 장애에 대한 처리가 중요합니다.</p>
+<p>하지만, 결제 외에도 다른 도메인에서 외부 연동하는 부분이 있고, 장애 격리가 필요한 상황이라면 서킷 브레이커 도입을 고려해 보시기를 추천합니다.</p>
+<p>서비스와 비즈니스에 따라 서킷 브레이커의 설정값과 타임아웃에 대한 전략이 다르기 때문에, 이러한 부분을 서비스의 기능과 요구사항, 내부 정책을 팀원분들과 협의하는 것이 중요하다고 봅니다.</p>
+<p>결국 운영 환경에서는 다양한 장애가 발생할 수 있기 때문에, 사용자에게는 불편함을 주지 않고,
+운영자는 장애 대응에 집중할 수 있도록 명확한 내부 정책을 수립하는 것이 중요하다는 점을 배웠습니다.</p>
+<p>지금까지 읽어주셔서 감사합니다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://app.beeceptor.com/">Beeceptor - Mock 테스트</a></p>
+</li>
+<li>
+<p><a href="https://www.inflearn.com/course/%EC%A0%9C%EB%AF%B8%EB%8B%88%EC%9D%98-%EA%B0%9C%EB%B0%9C%EC%8B%A4%EB%AC%B4-%EC%BB%A4%EB%A8%B8%EC%8A%A4-%EB%B0%B1%EC%97%94%EB%93%9C-%EA%B8%B0%EB%B3%B8">[인프런] 제미니의 개발실무 - 커머스 백엔드 기본편</a></p>
+</li>
+<li>
+<p><a href="https://docs.tosspayments.com/reference">[토스페이먼츠] 개발자센터</a></p>
+</li>
+<li>
+<p><a href="https://techblog.woowahan.com/15236/">[우아한형제들] 기술블로그 - 결제는 계속된다. 결제 담당자가 장애에 대응하는 방법</a></p>
+</li>
+<li>
+<p><a href="https://support.google.com/adsense/answer/7450973?hl=ko">[Google] 모바일 페이지 로드 속도 높이기</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="spring-boot-kotlin-external-api-circuit-breaker" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-circuit-breaker/" class="link-title leading-snug">Spring Boot, Kotlin 함수형으로 안전하게 서킷 브레이커 구현하기</a><time datetime="2025-12-06" class="mt-1.5 block text-sm text-muted">2025-12-06</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#결제-중-장애가-발생하면-어떤-일이-벌어질까" data-toc="결제-중-장애가-발생하면-어떤-일이-벌어질까" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">결제 중 장애가 발생하면 어떤 일이 벌어질까?</a></li><li><a href="#결제와-외부-시스템pg와의-관계" data-toc="결제와-외부-시스템pg와의-관계" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">결제와 외부 시스템(PG)와의 관계</a></li><li><a href="#해결-서킷-브레이커-적용하기" data-toc="해결-서킷-브레이커-적용하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">해결: 서킷 브레이커 적용하기</a></li><li><a href="#fallback-처리하기" data-toc="fallback-처리하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Fallback 처리하기</a></li><li><a href="#예상-가능한-에러와-예상치-못한-에러-구분하기" data-toc="예상-가능한-에러와-예상치-못한-에러-구분하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">예상 가능한 에러와 예상치 못한 에러 구분하기</a></li><li><a href="#타임아웃-설정하기" data-toc="타임아웃-설정하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">타임아웃 설정하기</a></li><li><a href="#직접-테스트해보기" data-toc="직접-테스트해보기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">직접 테스트해보기</a></li><li><a href="#1-mocking-rule-설정하기" data-toc="1-mocking-rule-설정하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">1. Mocking Rule 설정하기</a></li><li><a href="#2-테스트용-데이터-작성하기" data-toc="2-테스트용-데이터-작성하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">2. 테스트용 데이터 작성하기</a></li><li><a href="#3-api-테스트" data-toc="3-api-테스트" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3. API 테스트</a></li><li><a href="#테스트-코드로-확인하기" data-toc="테스트-코드로-확인하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">테스트 코드로 확인하기</a></li><li><a href="#모니터링-연동하기" data-toc="모니터링-연동하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">모니터링 연동하기</a></li><li><a href="#마무리하기" data-toc="마무리하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">마무리하기</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

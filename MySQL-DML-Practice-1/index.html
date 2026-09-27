@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[MySQL] SELECT, JOIN - Practice | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/MySQL-DML-Practice-1/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[MySQL] SELECT, JOIN - Practice</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-06-09" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-06-09</time><a href="/category/#MySQL" class="chip chip-tag">#MySQL</a></div><p class="view-count text-sm text-muted">조회수 17회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 MySQL 기반의 SELECT, JOIN 문제에 대한 정리를 바탕으로 작성했습니다.</p>
+</blockquote>
+<p>해당 문제는 sakila DB를 기반으로 풀었습니다.</p>
+<ul>
+<li>
+<p>설치 과정에 대한 내용은 <a href="https://dev.mysql.com/doc/sakila/en/sakila-installation.html">Installation</a>이며,</p>
+</li>
+<li>
+<p>sakila DB를 다운받는 위치는 <a href="https://dev.mysql.com/doc/index-other.html">Other MySQL Documentation</a> 안에 <strong>Example Databases - <code>sakila database(ZIP)</code></strong> 다운받으면 됩니다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/mysql/mysql-practice.png" alt=""></p>
+<ul>
+<li>
+<p>위의 sakila DB 다운받은 후에 <code>MySQL Workbench</code>를 실행한 다음, 해당 파일(4.exercise)에서 문제를 풀었습니다.</p>
+</li>
+<li>
+<p>문제를 풀기 전에 <code>sakila DB</code>를 사용하는 명령어를 입력한다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">use</span><span style="color:#E1E4E8"> sakila;</span></span></code></pre>
+<h2 id="select-example">SELECT Example</h2>
+<blockquote>
+<p>Q1. actor 테이블에서 전체 컬럼(열) 조회 -> 실행 결과 행의 수는 총 200개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#E1E4E8"> actor </span><span style="color:#F97583">LIMIT</span><span style="color:#79B8FF"> 200</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q2. actor 테이블에서 first_name, last_name 컬럼 조회 -> 실행 결과 행의 수는 총 200개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> first_name, last_name </span><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> actor </span><span style="color:#F97583">LIMIT</span><span style="color:#79B8FF"> 200</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q3. actor 테이블에서 first_name과 last_name을 하나로 연결(concat)하여 Actor Name이라는 컬럼명으로 조회하고, 전부 대문자로 조회 -> 실행 결과 행의 수는 총 200개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> concat</span><span style="color:#E1E4E8">(first_name, </span><span style="color:#9ECBFF">'+'</span><span style="color:#E1E4E8"> ,last_name) </span><span style="color:#F97583">AS</span><span style="color:#E1E4E8"> Actor_Name </span><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> actor;</span></span></code></pre>
+<blockquote>
+<p>Q4. actor 테이블에서 actor_id, first_name, last_name을 조회하되, first_name이 Joe인 데이터만 필터링하여 조회 -> 실행 결과 행의 수는 1개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> actor_id, first_name, last_name</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> actor</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8"> first_name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'Joe'</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q5. actor 테이블에서 actor_id, first_name, last_name을 조회하되, last_name 에 Gen이 포함된 actor를 필터링하여 조회
+(last_name의 맨 앞, 맨 뒤, 중간 등 어느 부분에 포함되어도 상관없이 전체 조회)
+-> 실행 결과 행의 수는 총 4개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> actor_id, first_name, last_name</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> actor</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8"> last_name </span><span style="color:#F97583">LIKE</span><span style="color:#9ECBFF"> '%Gen%'</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q6. actor 테이블에서 actor_id, first_name, last_name을 조회하되,
+last_name에 LI(엘, 아이)가 포함된 데이터를 필터링하고,
+last_name, first_name 순서로 오름차순 정렬하여 조회
+-> 실행 결과 행의 수는 총 10개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> actor_id, first_name, last_name</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> actor</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8"> last_name </span><span style="color:#F97583">LIKE</span><span style="color:#9ECBFF"> '%LI%'</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#E1E4E8"> last_name, first_name </span><span style="color:#F97583">ASC</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q7. country 테이블에서 country_id, country 열을 조회하되,
+<code>IN 연산자</code>를 활용하여 country가 Afghanistan, Bangladesh, China 중에 속하는 데이터만 필터링하여 조회
+-> 실행 결과 행의 수는 총 3개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> country_id, country</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> country</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#E1E4E8"> country </span><span style="color:#F97583">IN</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Afghanistan'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'Bangladesh'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'China'</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<blockquote>
+<p>Q8. actor 테이블에서 서로 동일한 last_name을 사용하는 배우(actor)들이 각각 몇 명인지 조회하고 싶을 때,
+actor 테이블에서 last_name 컬럼과 해당 last_name을 사용하는 사람의 인원 수를 집계해주는 컬럼을 조회
+ex) 아래의 이미지를 참고하면, last_name으로 ALLEN을 사용하는 배우(actor)는 총 3명(2번째 행)
+<a href="https://guguttemy.speedgabia.com/DB/dml_practice8.png">https://guguttemy.speedgabia.com/DB/dml_practice8.png</a>
+-> 8번 문제 실행 결과 행의 수는 총 121개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> last_name, </span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">(last_name)</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> actor</span></span>
+<span class="line"><span style="color:#F97583">GROUP BY</span><span style="color:#E1E4E8"> last_name;</span></span></code></pre>
+<blockquote>
+<p>Q9. actor 테이블에서 last_name 컬럼과 해당 last_name을 사용하는 수를 집계해주는 컬럼을 조회하되,
+집계되는 컬럼의 별칭은 <code>Count of Last Name</code> 이라고 짓고, last_name 카운트가 2 초과인 그룹만 필터링하여 조회
+-> 실행 결과 행의 수는 총 20개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> last_name, </span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">(last_name) </span><span style="color:#F97583">AS</span><span style="color:#9ECBFF"> "Count of Last Name"</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> actor</span></span>
+<span class="line"><span style="color:#F97583">GROUP BY</span><span style="color:#E1E4E8"> last_name</span></span>
+<span class="line"><span style="color:#F97583">HAVING</span><span style="color:#79B8FF"> count</span><span style="color:#E1E4E8">(last_name) </span><span style="color:#F97583">></span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h2 id="join-example">JOIN Example</h2>
+<blockquote>
+<p>Q10. address 테이블의 정보(description) 조회</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#F97583"> address</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q11. address 테이블의 총 행 수 조회 -> 실행 결과 행의 수는 총 603개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> count</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">FROM</span><span style="color:#F97583"> address</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q12. address 테이블의 가상 상위 데이터 5개만 제한(LIMIT)하여 조회 -> 실행 결과 행의 수는 총 5개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#F97583"> address</span><span style="color:#F97583"> ORDER BY</span><span style="color:#E1E4E8"> address_id </span><span style="color:#F97583">LIMIT</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q13. staff 테이블의 별칭을 s, address 테이블의 별칭을 a로 짓고, 두 테이블을 연결(JOIN)하여 address_id가 일치하는 first_name, last_name, address를 조회
+-> 실행 결과 행의 수는 총 2개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> first_name, last_name, </span><span style="color:#F97583">address</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> staff c </span><span style="color:#F97583">JOIN</span><span style="color:#F97583"> address</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> c</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">address_id</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> a</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">address_id</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q14. staff 테이블의 별칭을 s, payment 테이블의 별칭을 p로 짓고, 두 테이블을 연결(JOIN)하여 staff_id가 일치하는 조건의 staff_id, first_name, last_name 및 amount의 총 금액(sum) 컬럼을 조회하되
+payment_date가 2005-08-01 00:00:00 이후이고, 2005-08-02 00:00:00 ‘미만’인 데이터만 필터링하여 staff_id를 기준으로 묶어서(grouping) 조회
+-> 실행 결과 행의 수는 총 2개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#79B8FF"> s</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">staff_id</span><span style="color:#E1E4E8">, first_name, last_name, </span><span style="color:#79B8FF">sum</span><span style="color:#E1E4E8">(amount)</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> staff s </span><span style="color:#F97583">JOIN</span><span style="color:#E1E4E8"> payment p </span><span style="color:#F97583">ON</span><span style="color:#79B8FF"> s</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">staff_id</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> p</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">staff_id</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> p</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">payment_date</span><span style="color:#F97583"> BETWEEN</span><span style="color:#9ECBFF"> '2005-08-01 00:00:00'</span><span style="color:#F97583"> AND</span><span style="color:#9ECBFF">  '2005-08-02 00:00:00'</span></span>
+<span class="line"><span style="color:#F97583">GROUP BY</span><span style="color:#E1E4E8"> staff_id;</span></span></code></pre>
+<blockquote>
+<p>Q15. film 테이블의 별칭을 f, film_actor 테이블의 별칭을 fa로 짓고,
+두 테이블을 연결(JOIN)하여 각 film_id가 일치하는 조건의 title 및 해당 film에 참여한 총 actor의 수를 의미하는 컬럼 ‘총 배우 수’ 컬럼을 film 테이블의 title 별로(grouping) 조회
+(단, 이대로 조회하면 결과 데이터가 총 997행이기 때문에 상위 20개의 행만 제한하여 조회)
+-> 실행 결과 행의 수는 총 20개(로 제한, LIMIT 사용)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> title, actor</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> film f </span><span style="color:#F97583">JOIN</span><span style="color:#E1E4E8"> film_actor fa</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> f</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">film_id</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> fa</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">film_id</span></span>
+<span class="line"><span style="color:#F97583">LIMIT</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q16. inventory 테이블의 정보(description) 조회</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#E1E4E8"> inventory;</span></span></code></pre>
+<blockquote>
+<p>Q17. inventory 테이블의 데이터 상위 10개 조회 ->실행 결과 행의 수는 총 10개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#F97583"> *</span><span style="color:#F97583"> FROM</span><span style="color:#E1E4E8"> inventory </span><span style="color:#F97583">LIMIT</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q18. film 테이블에서 title, description 컬럼을 조회하되, 상위 20개만 조회 -> 실행 결과 행의 수는 총 20개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> title, </span><span style="color:#F97583">description</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> film </span><span style="color:#F97583">LIMIT</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q19. ALABAMA DEVIL film이 모든 영화 대여점에 총 몇 개의 복제본(영화 필름)이 배포되어있는지 알고 싶을 때,
+film 테이블의 별칭을 f, inventory 테이블의 별칭을 i로 짓고,
+두 테이블을 연결(JOIN)하여 film_id 컬럼이 일치하는 조건의 title 및
+film_id의 총 개수(count)를 ‘복제본’으로 별칭을 작성하여 title 별로 조회하되,
+title이 ‘ALABAMA DEVIL’인 film만 조회
+-> 실행 결과 행의 수는 1개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#E1E4E8">LECT title, </span><span style="color:#79B8FF">count</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">f</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">film_id</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">AS</span><span style="color:#9ECBFF"> '복제본'</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> film f </span><span style="color:#F97583">JOIN</span><span style="color:#E1E4E8"> inventory i</span></span>
+<span class="line"><span style="color:#F97583">WHERE</span><span style="color:#79B8FF"> f</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">film_id</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> i</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">film_id</span><span style="color:#F97583"> AND</span><span style="color:#E1E4E8"> title </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'ALABAMA DEVIL'</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<blockquote>
+<p>Q20. 고객 별 총 사용 금액을 last_name을 오름차순 정렬하여 조회하고 싶을 때,
+customer 테이블의 별칭을 c, payment 테이블의 별칭을 p로 짓고,
+두 테이블을 customer_id컬럼으로 연결(JOIN)하여 first_name, last_name, amount의 총 액수를 조회하되,
+first_name, last_name 순으로 묶어서(grouping) last_name을 기준으로 오름차순하여 조회
+-> 실행 결과 행의 수는 599개</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">SELECT</span><span style="color:#E1E4E8"> first_name, last_name, </span><span style="color:#79B8FF">sum</span><span style="color:#E1E4E8">(amount)</span></span>
+<span class="line"><span style="color:#F97583">FROM</span><span style="color:#E1E4E8"> customer c </span><span style="color:#F97583">JOIN</span><span style="color:#E1E4E8"> payment p</span></span>
+<span class="line"><span style="color:#F97583">GROUP BY</span><span style="color:#E1E4E8"> first_name, last_name</span></span>
+<span class="line"><span style="color:#F97583">ORDER BY</span><span style="color:#E1E4E8"> last_name </span><span style="color:#F97583">ASC</span><span style="color:#E1E4E8">;</span></span></code></pre></div><div class="like-row"><button type="button" class="like" data-slug="MySQL-DML-Practice-1" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#select-example" data-toc="select-example" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">SELECT Example</a></li><li><a href="#join-example" data-toc="join-example" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">JOIN Example</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[우아한테크코스] 코수타 내용 정리 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Woowacourse-Cosuta-Review/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[우아한테크코스] 코수타 내용 정리</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-11-23" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-11-23</time><a href="/category/#%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4" class="chip chip-tag">#우아한테크코스</a></div><p class="view-count text-sm text-muted">조회수 91회</p></div><div class="prose mt-10" data-astro-cid-g5songws><p><img src="/assets/img/server/woowacourse/woowacourse_cosuta_review.png" alt=""></p>
+<ul>
+<li>
+<p>우아한테크코스에서 왼손님과 포비님이 유튜브로 진행한 <strong>코수타</strong>에서</p>
+</li>
+<li>
+<p>제 기준으로 중요한 내용 혹은 알면 좋은 내용들을 <strong>정리</strong>해봤습니다.</p>
+</li>
+<li>
+<p>자세한 얘기를 듣고 싶은 분들은 아래의 링크(URL)를 통해 들어주시면 좋을 것 같습니다!</p>
+</li>
+</ul>
+<hr>
+<h3 id="우아한테크코스-코수타-url">우아한테크코스 코수타 URL</h3>
+<p><a href="https://www.youtube.com/watch?v=-2YBDN7UAoE&#x26;ab_channel=%EB%B0%95%EC%9E%AC%EC%84%B1">우아한테크코스_코수타_OT</a></p>
+<p><a href="https://www.youtube.com/watch?v=wwsAvbBGU-8&#x26;ab_channel=%EB%B0%95%EC%9E%AC%EC%84%B1">우아한테크코스_코수타_2주차</a></p>
+<p><a href="https://www.youtube.com/watch?v=67RaXYQe86s&#x26;ab_channel=%EB%B0%95%EC%9E%AC%EC%84%B1">우아한테크코스_코수타_3주차</a></p>
+<p><a href="https://www.youtube.com/watch?v=Dk7YH_wFRdo&#x26;ab_channel=%EB%B0%95%EC%9E%AC%EC%84%B1">우아한테크코스_코수타_4주차</a></p>
+<p><a href="https://www.youtube.com/watch?v=CcUKlzkr62Q&#x26;ab_channel=%EB%B0%95%EC%9E%AC%EC%84%B1">우아한테크코스_코수타 마지막</a></p>
+<hr>
+<h2 id="우아한테크코스-5기-ot">우아한테크코스 5기 OT</h2>
+<p><strong><code>스스로 문제를 해결하자.</code></strong></p>
+<ul>
+<li>
+<p>우테코 취지</p>
+<ul>
+<li>
+<p>취업 준비생을 위한 <strong>10개월간 무료교육과정</strong></p>
+</li>
+<li>
+<p><strong>현장지향형</strong> 교육 운영</p>
+</li>
+<li>
+<p>독학으로 3~6개월간 독학한 친구들이 프리코스를 참여한다면, 합격할 수 있다고 본다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>우테코 지향, 주요부분</p>
+<ul>
+<li>
+<p>함께 하는 교육자분들이 현장 경험이 <strong>최소 2년</strong> 이상인 게 장점이라 본다.</p>
+</li>
+<li>
+<p>level 1,2는 과제 진행 → 현장 개발자들에게 <strong>1대1 코드 리뷰</strong>를 받아볼 수 있다.</p>
+</li>
+<li>
+<p>강의식, 이론 기반보다는 <strong>실무+능동+주도적</strong>인 교육기관이다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>프리코스</p>
+<ul>
+<li>
+<p><strong>과제</strong> 기반 교육을 운영</p>
+</li>
+<li>
+<p>강의는 <strong>최소</strong>한으로 할 예정</p>
+</li>
+<li>
+<p>*짧은 기간 동안 코드에 대해서 <strong>읽기 좋은, 유지 보수, 리팩토링</strong> → 경험들을 배울 것임.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>프리코스 커뮤니티</p>
+<ul>
+<li>
+<p><strong><code>함께 성장, 학습하기 위해서 만든 커뮤니티.</code></strong></p>
+</li>
+<li>
+<p>크게 3가지 활동</p>
+<ol>
+<li>
+<p>peer 코드 리뷰 - <strong>서로 의견 공유</strong></p>
+</li>
+<li>
+<p>아고라 - <strong>학습에 관련한 토론, 질의응답</strong></p>
+</li>
+<li>
+<p>학습 컨텐츠 공유 - 내가 학습을 해서 블로그나 외부 학습자료를 공유</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>스스로 먼저 해보는게 중요하다. (자기주도학습)</p>
+</li>
+<li>
+<p>2주차 첫번째 부터 시작한다.(11월 1일)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>과제 피드백</p>
+<ul>
+<li>
+<p>1주차 끝난 이후에, 코치분들이 공통 피드백을 나갈거다.</p>
+</li>
+<li>
+<p>다음 주차에 공통 피드백을 반영할 예정이다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>함께 학습하고 성장, 협력, 소통하는 soft스킬</strong>이 중요하게 생각한다.</p>
+</li>
+<li>
+<p>프리코스 커뮤니티 → <strong>자발적</strong> 참여 권장</p>
+<ul>
+<li>이걸 가지고 선발 기준에 포함은 안된다.</li>
+</ul>
+</li>
+<li>
+<p>은행권, SI 회사 가지 않는 게 좋다.</p>
+<ul>
+<li>
+<p>검색(구글링)을 할 수 없는 회사는 하루빨리 탈출해라.</p>
+</li>
+<li>
+<p>실력이 갈수록 퇴보될 수밖에 없을 거다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>합격한 크루 공통점</strong></p>
+<ul>
+<li>
+<p>프리코스에 많은 시간을 투자해서 합격한 사람들 많다.</p>
+</li>
+<li>
+<p>4주 동안 잠 덜잔다고 죽진 않는다.</p>
+</li>
+<li>
+<p>하루에 3,4시간씩 자면서 모든 시간을 여기에 투자해 보세요.</p>
+</li>
+<li>
+<p>기말시험 포기하고, 우테코를 준비하는 친구들 많다.</p>
+</li>
+<li>
+<p>선발이 안되더라도, 그 속에서 엄청난 성장을 한다.</p>
+</li>
+<li>
+<p>경험이 적더라도, 꾸준히 노력하면 많은 성장을 할 거다.</p>
+</li>
+<li>
+<p>충분히 할 수 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="코수타-2주차">코수타 2주차</h2>
+<blockquote>
+<p>학습 목표:  <strong>함수의 역할에 따라 분리하고, 테스트 도구에 익숙해지는 것</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Q&#x26;A - 답변자: <strong>포비님</strong>, 프론트엔드 개발자 <strong>준님</strong></p>
+</li>
+<li>
+<p>번아웃</p>
+<ul>
+<li>
+<p>4주 동안 몰입한다 해서 번아웃이 오지 않을 거다.</p>
+</li>
+<li>
+<p>4주 정도는 몰입하는 시간이라 생각한다.</p>
+</li>
+<li>
+<p>또 다른 측면으로 번아웃이 온 시점은 한 번에 여러 가지 잘해야 한다는 욕심이다.</p>
+</li>
+<li>
+<p>휘둘리지 않고, <strong>본인의 속도에 맞게 묵묵히 걸어가는 것</strong>이 번아웃에 빠지지 않는다고 본다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>공지사항</p>
+<ul>
+<li>
+<p>공지사항을 <strong>꼼꼼하게 읽는 것</strong>도 프로그래머로써 중요한 자질이라고 본다.</p>
+</li>
+<li>
+<p>이번 기수부터 더 꼼꼼하게 가이드를 지키지 않으면, 다음 단계를 진행하지 못할 수도 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>기능 요구사항에 대한 커밋 기준</p>
+<ul>
+<li>
+<p>코치가 생각하는 최적의 접근 방법은 <strong>최대한 작게</strong> 쪼개본다.</p>
+</li>
+<li>
+<p>처음에는 최대한 작게 쪼개고, 그다음에 비슷한 것끼리 묶어보는 연습을 해보는 것이 중요하다. 본인에 맞게.</p>
+</li>
+<li>
+<p>핵심을 추가하자면, 작게 쪼개는 <strong>기능 요구사항 중에 핵심적인 것을 먼저 구현해 나가야 한다는 것</strong>이 중요하다.</p>
+</li>
+<li>
+<p>커밋은 제3자가 보기에 읽기 좋은 게 좋은 커밋이다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="코수타-3주차">코수타 3주차</h2>
+<blockquote>
+<p>학습 목표: <strong>클래스 분리 + 1~2주 + 3주 차 요구사항 대로 지키는 것.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Q&#x26;A - 답변자: <strong>포비님</strong></p>
+</li>
+<li>
+<p>의기소침, 자존감</p>
+<ul>
+<li>
+<p>경쟁 환경이다 보니, 어쩔 수 없는 부분이다.</p>
+</li>
+<li>
+<p>잘하는 사람은 그동안 노력해온 시간이 있었기 때문에 당연한 거다.</p>
+</li>
+<li>
+<p>그 친구들의 <code>좋은 점을 빨리 습득해서 나도 성장해야지</code>라는 마인드를 가지자.</p>
+</li>
+<li>
+<p>이번 주의 핵심 목표는 Class의 분리</p>
+</li>
+<li>
+<p>이 자체를 즐기면서, 몰입하고 더 많은 시간을 투자해서, 1-2단계 더 나은 모습을 보여주도록 노력하는 게 중요하다.</p>
+</li>
+<li>
+<p>TDD, ODD, 클린 코드 잘하면 우테코 뭐 하러 들어오는가. 그냥 취업하면 되지.</p>
+</li>
+<li>
+<p>그런 거에 너무 휩쓸리지 말고, 현재 상태를 잘 인식해서 요구사항에서 부족한 게 있으면, 부족한 점을 보완하자.</p>
+</li>
+<li>
+<p>더 잘한다고 선발에 유리한 게 없다.</p>
+</li>
+<li>
+<p><strong>지난주에 못했던 부분들을 보완해서 이번 주에는 더 발전된 모습을 보여주면 된다.</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>성장 정체기</p>
+<ul>
+<li>
+<p>상당히 오랜 시간 동안 프로그래밍을 공부해 왔지만, 어느 순간까지는 성장하지 않는 느낌이 드는 게 당연하다.</p>
+</li>
+<li>
+<p>하지만 꾸준히 학습을 이어가다가 정체가 오는 것 같으면, <code>학습 방법</code>을 바꾸자.</p>
+</li>
+<li>
+<p>예를 들면, <strong>책을 읽는 것도 처음부터 끝까지 읽는 것이 아니라,</strong></p>
+</li>
+<li>
+<p><strong>필요한 부분만 공부하면 학습 효과가 높일 수 있다.</strong></p>
+</li>
+<li>
+<p>처음부터 공부한다는 선입견을 버리자.</p>
+</li>
+<li>
+<p><strong>몰입을 해야 하는 경험이 중요하다.</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>README.md에 있는 것만 잘 지키면 되는지</p>
+<ul>
+<li>
+<p>요구 사항을 지키면서 잘하는 것도 어렵다.</p>
+</li>
+<li>
+<p>기능 목록 잘 만들고, 기능 단위로 커밋 잘하고, 메소드 분리 잘하고, 클래스 분리만 잘해도 된다.</p>
+</li>
+<li>
+<p>TDD 하지 말고, <strong>요구 사항대로만 잘해도 충분하다.</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="코수타-4주차">코수타 4주차</h2>
+<blockquote>
+<p>학습 목표: 3주 차의 학습 목표 + <strong>리팩토링</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Q&#x26;A - 답변자: 프론트엔드 개발자 <strong>준님</strong></p>
+</li>
+<li>
+<p>1주 차와 지금의 차이</p>
+<ul>
+<li>네이밍, 메서드 분리, 테스트 ⇒ 가독성 향상</li>
+</ul>
+</li>
+<li>
+<p>학습 자체가 고통스럽지 않으면 학습이 일어나지 않는다.</p>
+</li>
+<li>
+<p>결과보단 <code>과정</code>을 목표로 잡으면, 훨씬 더 의미 있는 경험을 하게 된다.</p>
+<ul>
+<li>
+<p>계속해서 결과가 안 나온다면, 두 가지 방법이 있다.</p>
+</li>
+<li>
+<p>결과가 나올 때까지 한다.</p>
+</li>
+<li>
+<p>혹은 이 결과가 내가 진정으로 원하는 것인지 고민해 봐야한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>컴퓨터 공학 전공이나 이미 잘하는 개발자와 비교가 들었을 때,</p>
+<ul>
+<li>
+<p>이것은 우테코 들어와도 마찬가지고, 협업에 있을 때도 마찬가지다.</p>
+</li>
+<li>
+<p>이러한 순간들을 고통받기보다는, <strong>그 사람들은 어떤 과정을 통해 문제를 해결했는지</strong>를 보면 좋을 것 같다.</p>
+</li>
+<li>
+<p>잘하는 사람의 커밋 기록을 통해 나와 <code>비교</code>를 하면서 배울 점들을 찾으면 된다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>주간 회고록</code> - 글 쓰는 습관을 기르고 싶어서 회고록을 작성하고 있는데, 글로 옮기기가 쉽지가 않다. 어떻게 하면 회고록을 잘 쓸 수 있을까?</p>
+<ul>
+<li>
+<p>한 번에 잘 쓰려고 하면 어렵다.</p>
+</li>
+<li>
+<p>저 같은 경우 하루에 2-3번 나눠서 쓴다.</p>
+</li>
+<li>
+<p><strong>잘 쓰는 팁)</strong> 미션을 진행하면서, 사이사이에 회고록을 쓰면 쉽다.</p>
+</li>
+<li>
+<p>이번에 클래스 객체 분리를 고민하면서 이러한 부분을 고민했다.</p>
+</li>
+<li>
+<p>이런 접근을 했는데, 생각보다 어려워서 구글링을 했는데 이러한 부분이 인상깊어서 이런 부분들을 적용시키려고 노력했다.</p>
+</li>
+<li>
+<p>내용)  제가 제일 고통 받았던 부분을 한 줄로 쓸 거다. 그러한 부분을 어떻게 해결했는 지 글을 쓰면 좋을 것 같다.</p>
+</li>
+<li>
+<p>(고통 → 성장 과정) / 고통스러웠던 포인트(한 가지)</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="백엔드-코치님-등장">백엔드 코치님 등장</h3>
+<ul>
+<li>
+<p>Q&#x26;A - 답변자: 백엔드 코치님 <strong>브라운님</strong></p>
+</li>
+<li>
+<p>10-15년 뒤에도 성장하는 개발자가 되고 싶다. 그러면 어떤 자세로 개발을 공부해야 할까?</p>
+<ul>
+<li>백엔드 개발자) 개발자의 역량뿐만 아니라, 시야를 넓혀서 개발 전반적인 지식, 그리고 개발 외적인 지식들도 쌓아가는 게 <code>좋은 개발자</code>라고 생각한다.</li>
+</ul>
+</li>
+<li>
+<p>기술적으로 뛰어난 개발자보단 <code>소통</code>을 잘하는 개발자가 더 중요하다.</p>
+</li>
+<li>
+<p>TDD, MVC 같이 미션의 요구사항이 늘어나면서 수준이 어려워서 힘들다.</p>
+<ul>
+<li>
+<p>내가 할 수 있는 만큼 최선을 다해서 하고, 피드백을 받으면서 성장할 수 있을 거라 생각한다.</p>
+</li>
+<li>
+<p>TDD, MVC를 못하면 <strong>메소드를 분리하는 연습</strong>부터 하자.</p>
+</li>
+<li>
+<p>작은 부분부터 공부해서 배우게 나가게 되면 그 속에서도 성장을 하게 된다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="피드백에-대한-코치의-답변">피드백에 대한 코치의 답변</h3>
+<ul>
+<li>
+<p>객체는 객체스럽게 구현하는 걸 추천드리고,</p>
+</li>
+<li>
+<p><strong>요구사항</strong>들을 하나씩 지켜가면서 경험을 쌓아가본다.</p>
+</li>
+<li>
+<p>테스트 코드도 관리해야 할 대상이다.</p>
+<ul>
+<li>어떻게 하면 테스트 도구를 활용해서 효과적으로 구현할 수 있을지를 상상해서</li>
+<li>리팩토링하고 관리해야 한다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="4주-차-미션의-핵심-포인트">4주 차 미션의 핵심 포인트</h3>
+<ul>
+<li>
+<p><strong>객체 설계와 클래스 분리</strong>를 조금 더 깊게 고민해 볼 수 있는 걸 준비했다.</p>
+</li>
+<li>
+<p>요구 사항을 빡세게 나갈 예정이다.(메소드 라인을 10개, 파라미터를 3개이하)</p>
+<ul>
+<li>객체 설계에 도움이 되는 것들.</li>
+</ul>
+</li>
+<li>
+<p><strong>4주차 제출 가능한 기간</strong>은 화요일 당일 오전 10시부터 23시 59분으로 변경되었다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="코수타-마지막">코수타 마지막</h2>
+<blockquote>
+<p><strong>핵심: <code>좋은 개발자가 되기 위해 같이 성장하고 소통하는 인재가 되자</code></strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Q&#x26;A - 답변자: 포비님</p>
+</li>
+<li>
+<p>합격까지 남은 3주 기간 동안</p>
+</li>
+<li>
+<p>프리코스에서 부족한 부분을 보완해나가는 것이 중요하다.</p>
+</li>
+<li>
+<p>책의 도움 없이 구현해 본다던가,</p>
+</li>
+<li>
+<p>속도가 느렸던 분들은 5시간 안에 검색 없이 구현하는 연습을 해야 한다.</p>
+</li>
+<li>
+<p>지금까지 못했던 코드 리뷰 또는 스터디를 해봐라.</p>
+</li>
+<li>
+<p>혹시라도 우테코에 불합격하면, 스터디를 했던 사람들끼리 모여서 취업을 목표로 했으면 좋겠다.</p>
+</li>
+<li>
+<p><strong>목표는 좋은 개발자를 목표로 하고, 그에 맞게 준비를 했으면 좋겠다.</strong></p>
+</li>
+</ul>
+<h3 id="최종-코테">최종 코테</h3>
+<h4 id="최종-코테-인원-합격-기준">최종 코테 인원 합격 기준</h4>
+<ul>
+<li>
+<p>자기소개서</p>
+</li>
+<li>
+<p>4주간의 프리코스</p>
+</li>
+<li>
+<p>소감문</p>
+</li>
+<li>
+<p><strong>날짜 및 시간</strong> : <code>12월 17일(토) 오후 1시 ~ 오후 6시</code></p>
+</li>
+<li>
+<p>최종 코테 인원은 최종 선발 인원의 2배수까지 선발할 것임.</p>
+</li>
+<li>
+<p>합격한 것부터 최종 코테까지 3일밖에 없다.</p>
+</li>
+<li>
+<p>선릉 캠퍼스, 잠실 캠퍼스, 우영 회사 네 군데를 걸쳐서 오프라인으로 진행한다.</p>
+</li>
+<li>
+<p>캠퍼스를 미리 구경할 수 있는 기회가 있다.</p>
+</li>
+<li>
+<p>삶에 있어서 프리코스 4주가 좋은 경험이고, 의미 있는 경험이었다면 여기 있는 경험들을 단단하게 가져가는 고민을 해봤으면 좋겠다.</p>
+</li>
+<li>
+<p>미래의 인재를 요구하는 역량은 함께 성장하고 소통하고 배려할 수 있는 소중함이 더 크기 때문에,</p>
+</li>
+<li>
+<p>그런 부분의 역량을 쌓아가려고 노력했으면 좋겠다.</p>
+</li>
+<li>
+<p>알고리즘 코테를 연습하는 것보다, 함께 성장하는 인재</p>
+</li>
+<li>
+<p>약간의 다른 길을 걸으면서 다른 색깔을 보여주는 게 블루오션을 만드는 게 낫지 않을까?</p>
+</li>
+<li>
+<p>프리코스를 하다 보면, 코드를 다 공개된다. 경쟁 기준으로 바라보면, 공개하면 안 된다.</p>
+</li>
+<li>
+<p>하지만, 공개하면서 그런 코드들을 보면서, <strong>‘보고 배우고 성장하라’</strong>라는 의미이다.</p>
+</li>
+<li>
+<p><strong>‘나도 저렇게 해야지’</strong>라는 마인드로 바꿔라. 이런 사람이 없으니까, 앞으로 이런 인재를 사회가 원하고 있다.</p>
+</li>
+<li>
+<p><strong>‘프리코스는 끝났지만, 여러분의 성장은 끝나지 않았다’</strong></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Woowacourse-Cosuta-Review" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#우아한테크코스-코수타-url" data-toc="우아한테크코스-코수타-url" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">우아한테크코스 코수타 URL</a></li><li><a href="#우아한테크코스-5기-ot" data-toc="우아한테크코스-5기-ot" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">우아한테크코스 5기 OT</a></li><li><a href="#코수타-2주차" data-toc="코수타-2주차" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">코수타 2주차</a></li><li><a href="#코수타-3주차" data-toc="코수타-3주차" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">코수타 3주차</a></li><li><a href="#코수타-4주차" data-toc="코수타-4주차" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">코수타 4주차</a></li><li><a href="#백엔드-코치님-등장" data-toc="백엔드-코치님-등장" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">백엔드 코치님 등장</a></li><li><a href="#피드백에-대한-코치의-답변" data-toc="피드백에-대한-코치의-답변" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">피드백에 대한 코치의 답변</a></li><li><a href="#4주-차-미션의-핵심-포인트" data-toc="4주-차-미션의-핵심-포인트" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">4주 차 미션의 핵심 포인트</a></li><li><a href="#코수타-마지막" data-toc="코수타-마지막" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">코수타 마지막</a></li><li><a href="#최종-코테" data-toc="최종-코테" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">최종 코테</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

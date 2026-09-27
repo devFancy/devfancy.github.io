@@ -1,0 +1,149 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Git 형상 관리 + 작업 단위와 PR 코드 리뷰 + 협업을 잘하는 개발자 (feat. 제미니의 개발실무) | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Git-Version-Control/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EB%8F%84%EA%B5%AC" class="hover:underline" data-astro-cid-g5songws>도구</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Git 형상 관리 + 작업 단위와 PR 코드 리뷰 + 협업을 잘하는 개발자 (feat. 제미니의 개발실무)</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-12-28" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-12-28</time><a href="/category/#Git" class="chip chip-tag">#Git</a></div><p class="view-count text-sm text-muted">조회수 740회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 제미니의 개발실무의 <a href="https://www.youtube.com/watch?v=su-rtXzThjE">Git 형상 관리 + 작업 단위와 PR 코드 리뷰 + 협업을 잘하는 개발자</a> 영상을 보면서 제 생각과 같이 정리한 글입니다.</p>
+</blockquote>
+<blockquote>
+<p>(시청자) 질문. 큰 규모의 작업을 할 때 commit 해야 할 작업 task를 나누는 기준이 궁금합니다.</p>
+<ol>
+<li>commit 할 작업 단위를 먼저 생각해보고 -> 그 단위로 작업을 하면서 중간중간 commit한다.</li>
+<li>그냥 한번에 기능 단위 개발을 하고 -> 이후에 작업을 쪼개면서 commit한다.</li>
+</ol>
+</blockquote>
+<h2 id="작업-task를-나누는-기준">작업 task를 나누는 기준</h2>
+<ul>
+<li>
+<p><code>리뷰</code> 시스템 전체를 개발한다고 가정을 해보자. 그러면 하나의 task로 담기에는 굉장히 클 수 있다.</p>
+</li>
+<li>
+<p>그렇기 때문에 <strong>먼저 <code>작업 단위 자체</code>를 잘 나누는게 가장 중요하다.</strong></p>
+</li>
+<li>
+<p><code>리뷰</code>라는 기능이 있다면,</p>
+<p>리뷰 등록, 리뷰 삭제와 같은 <strong>각 세부 기능에 대해서 <code>하나의 작업</code>이라 생각하고, 그러한 작업을 <code>Issue &#x26; Branch &#x26; PR</code>로 가져가는게 좋다.</strong></p>
+<p>큰 규모의 작업 자체가 있으면, 이는 여러가지 어려움을 만드는 것 같다.</p>
+<p>추가/수정된 파일과 커밋 개수가 많을 수록 다른 사람이 코드 리뷰하는게 까다로울 수 있다.</p>
+</li>
+<li>
+<p>제민님의 의견: 같이 일하는 동료가 내 코드를 쉽게 이해할 수 있도록 task를 작게 가져갈 것 같다.</p>
+<p>작업 단위를 작게 나누고, 위에 질문주신 2가지를 고민할 것 같다.</p>
+<p>작업 단위를 작게 엄청 잘 나누게 되면, 애초에 커밋에 대한 생각을 많이 안해도 되는 경우가 있는 것 같다.</p>
+<p>흔히 많이 하는 실수가 <strong>신규 기능 개발과 리팩터링하는 것을 <code>하나의 task</code>라고 생각하고 작업하는 경우가 있다.</strong></p>
+<p>이러한 실수를 예방하기 위해 <strong>한 가지 작업을 딱 정해서, 최대한 작게 가져가면 커밋에 대한 고민은 크게 하지 않아도 된다.</strong></p>
+<p>즉, 신규 기능 개발과 리팩터링을 각각의 작업 단위로 생각해야 한다. -> task1 : 신규 기능 개발 / task2 : 리팩터링</p>
+</li>
+<li>
+<p>결론적으로 질문 주신 것에 대해 답변을 하면, 1번과 2번을 다 쓰긴 한다.</p>
+<p>어떻게 하면 동료가 코드 리뷰하기 더 좋을까에 대해서 커밋과 PR를 나눈다고 보시면 될 것 같다.</p>
+</li>
+</ul>
+<h2 id="커밋하는-부분도-협업-스킬-중-하나">커밋하는 부분도 협업 스킬 중 하나</h2>
+<ul>
+<li>
+<p>개인적으로 2번을 많이 쓴다. 2번: “그냥 한번에 기능 단위 개발을 하고 -> 이후에 작업을 쪼개면서 commit한다.”</p>
+<p>커밋하는 부분도 협업 스킬 중 하나라고 생각한다.</p>
+</li>
+<li>
+<p>아래와 같이 커밋을 작성하면 리뷰하는 사람 입장에서 힘들 수 있다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>User 클래스에 대한 작업 &#x3C;- 하나의 task</span></span>
+<span class="line"><span>--- 아래부터는 커밋 내용</span></span>
+<span class="line"><span>feat: User 클래스가 수정!</span></span>
+<span class="line"><span>feat: User 클래스가 수정!</span></span>
+<span class="line"><span>feat: User 클래스가 수정! (리팩토링 포함)</span></span>
+<span class="line"><span>feat: User 클래스가 수정!</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>feat: User 클래스가 수정!</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[PR]</span></span>
+<span class="line"><span>수정 파일이 50개</span></span>
+<span class="line"><span>커밋이 10개</span></span></code></pre>
+<ul>
+<li>
+<p>만약 작업 단위가 작았다면, 위에서처럼 발생할 수 없다.</p>
+<p>수정 파일이 많고, 같은 클래스에서 여러 번의 커밋을 작성하면, 리뷰할 사람 입장에서는 이해하기가 어려울 수 있다.</p>
+</li>
+<li>
+<p>[PR 올릴 때 커밋 정리 기준 중 하나] - <strong>한 클래스는 한 파일에서만 수정된다.</strong></p>
+</li>
+<li>
+<p>보통 커밋은 아래와 같이 진행한다.</p>
+</li>
+</ul>
+<ol>
+<li>
+<p>하나의 작업에 대한 커밋을 여러번 작성한다. -> 본인을 위해</p>
+</li>
+<li>
+<p>어느 정도 커밋을 작성하고 PR을 올리기 전에, 지금까지 작성한 커밋들을 정리한다.</p>
+</li>
+<li>
+<p>PR을 올리면서 동료로부터 코드 리뷰를 받고, 추가적인 커밋을 한다. -> 동료를 위해</p>
+</li>
+<li>
+<p>리뷰가 끝나면, 지금까지 작성한 커밋을 한번 더 정리를 한다. -> 회사 자산 관리 + 미래의 동료를 위해</p>
+</li>
+</ol>
+<ul>
+<li>이런 관점으로 접근해서 형상 관리를 하고 있다.</li>
+</ul>
+<h2 id="브랜치-작성-방법">브랜치 작성 방법</h2>
+<ul>
+<li>
+<p><code>리뷰</code>에 대한 기능을 개발한다고 가정했을 때, 작업 단위를 나눈다. -> 리뷰 등록, 리뷰 조회, 리뷰 수정, 리뷰 삭제</p>
+</li>
+<li>
+<p>그런 다음, 작업에 대한 Branch를 나누고 PR도 여러개 올린다.</p>
+<ul>
+<li>
+<p>리뷰 등록에 대한 Branch명: <code>review-add</code></p>
+</li>
+<li>
+<p>리뷰 삭제에 대한 Branch명: <code>review-remove</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>그리고 세부 기능에 대해서 Branch를 <strong>연계적으로 생성</strong>한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/tool/git/Git-Version-Control-1.jpeg" alt=""></p>
+<h2 id="review">Review</h2>
+<ul>
+<li>
+<p>이전 굿프렌즈 팀 프로젝트에서는 우리만의 <a href="https://devfancy.github.io/Goodfriends-Git-flow/">Git flow 전략</a>을 만들면서, 형상 관리를 나름 신경썼다고 생각했다.</p>
+</li>
+<li>
+<p>브랜치 면에서는 이 영상에서 다루는 거와 거의 비슷하게 작업을 진행했지만, 커밋 부분에 있어서는 ‘이 정도로 신경을 써야 하는구나’라는 생각이 많이 들었다.</p>
+</li>
+<li>
+<p>최근에 <code>주문</code> 기능에 대해서 리팩터링 과정을 진행했는데, 작은 작업 단위 보다는 <strong>큰 작업으로 진행해서 아래와 같이 15개의 커밋 내용과 17개의 파일이 수정되었다.</strong></p>
+<p>(물론, 10월 이후부터는 팀원들을 제외한 나 혼자만의 리팩터링을 진행해서 더 신경을 안쓴것도 맞다..ㅎㅎ 😅)</p>
+</li>
+</ul>
+<p><img src="/assets/img/tool/git/Git-Version-Control-2.png" alt=""></p>
+<ul>
+<li>
+<p>다음에 팀 프로젝트를 진행한다면, <code>커밋</code>에 대해서도 신경쓰면서 작업을 진행하면 좋겠다는 생각이 들었다.</p>
+<p>(해당 영상을 참고하시면 더 자세하게 설명해주시니 참고하면 좋을 것 같습니다!)</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=su-rtXzThjE">제미니의 개발실무: GIT 형상 관리 + 작업 단위와 PR 코드리뷰 + 협업 잘 하는 개발자</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Git-Version-Control" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/IntelliJ-Live-Template/" class="link-title leading-snug">인텔리제이 템플릿 자동완성(Live Template 적용)</a><time datetime="2023-02-27" class="mt-1.5 block text-sm text-muted">2023-02-27</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-GitHub-Branch-Protection-Rule/" class="link-title leading-snug">GitHub에 올라간 Branch에 Protection Rule 적용하기</a><time datetime="2023-02-05" class="mt-1.5 block text-sm text-muted">2023-02-05</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/IntelliJ-Connection-Git-Repository/" class="link-title leading-snug">인텔리제이와 깃허브 연동 (Mac 버전)</a><time datetime="2023-01-15" class="mt-1.5 block text-sm text-muted">2023-01-15</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#작업-task를-나누는-기준" data-toc="작업-task를-나누는-기준" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">작업 task를 나누는 기준</a></li><li><a href="#커밋하는-부분도-협업-스킬-중-하나" data-toc="커밋하는-부분도-협업-스킬-중-하나" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">커밋하는 부분도 협업 스킬 중 하나</a></li><li><a href="#브랜치-작성-방법" data-toc="브랜치-작성-방법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">브랜치 작성 방법</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

@@ -1,0 +1,681 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>알고리즘/코딩테스트를 위한 코드 정리 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Algorithm-Summary/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="hover:underline" data-astro-cid-g5songws>알고리즘</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>알고리즘/코딩테스트를 위한 코드 정리</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-10-23" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-10-23</time><a href="/category/#%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0" class="chip chip-tag">#문제해결</a></div><p class="view-count text-sm text-muted">조회수 9회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<ul>
+<li>
+<p>Java로 알고리즘/코딩테스트에서 자주 쓰이는 문법들을 정리하기 위한 포스팅이다.</p>
+</li>
+<li>
+<p>(2025.07.26) 최근에 LeetCode로 문제를 풀면서 새롭게 알게된 개념 및 내용들을 추가했다.</p>
+</li>
+</ul>
+<h2 id="구현">구현</h2>
+<ul>
+<li>
+<p>구현은 머릿속에 있는 알고리즘을 소스코드로 바꾸는 과정이다.</p>
+<ul>
+<li>
+<p>Problem -> Thinking -> Solution</p>
+</li>
+<li>
+<p>구현 유형의 예시는 다음과 같다.</p>
+<ul>
+<li>
+<p>알고리즘은 간단한데 코드가 지나칠 만큼 길어지는 문제</p>
+</li>
+<li>
+<p>실수 연산을 다루고, 특정 소수점 자리까지 출력해야 하는 문제</p>
+</li>
+<li>
+<p>문자열을 특정한 기준에 따라서 끊어 처리해야 하는 문제</p>
+</li>
+<li>
+<p>적절한 라이브러리를 찾아서 사용해야 하는 문제</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>구현 유형은 <code>완전 탐색</code>, <code>시뮬레이션</code>을 포함한다.</p>
+<ul>
+<li><code>완전 탐색</code>(Brute Forcing) : 모든 경우의 수를 주저 없이 다 계산하는 해결 방법</li>
+<li><code>시뮬레이션</code> : 문제에서 제시한 알고리즘을 한 단계씩 차례대로 직접 수행</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>관련 문제</p>
+</blockquote>
+<ul>
+<li>
+<p><a href="/Programmers-150370/">[Programmers] 150370. 개인정보 수집 유효기간</a></p>
+</li>
+<li>
+<p><a href="/Programmers-42888/">[Programmers] 42888. 오픈채팅방</a></p>
+</li>
+<li>
+<p><a href="/Programmers-92341/">[Programmers] 92341. 주차 요금 계산</a></p>
+</li>
+<li>
+<p><a href="/Programmers-12981/">[Programmers] 12981. 영어 끝말잇기</a></p>
+</li>
+<li>
+<p><a href="/Programmers-92334/">[Programmers] 92334. 신고 결과 받기</a></p>
+</li>
+<li>
+<p><a href="/Programmers-118666/">[Programmers] 118666. 성격 유형 검사하기</a></p>
+</li>
+<li>
+<p><a href="/Programmers-81301/">[Programmers] 81301. 숫자 문자열과 영단어</a></p>
+</li>
+<li>
+<p><a href="/Programmers-67256/">[Programmers] 67256. 키패드 누르기</a></p>
+</li>
+</ul>
+<h2 id="dfsbfs">DFS/BFS</h2>
+<ul>
+<li>깊이 우선 탐색과 너비 우선 탐색은 <a href="https://devfancy.github.io/DataStructure-DFS-BFS/">기본적인 그래프 기법 : DFS, BFS</a>에 정리했으니, 해당 글을 참고하자.</li>
+</ul>
+<h3 id="유형1-연결된-요소-찾기">유형1. 연결된 요소 찾기</h3>
+<ul>
+<li>
+<p>연결된 노드의 개수는 몇 개인가요?</p>
+</li>
+<li>
+<p>연결된 묶음/덩어리의 개수는 몇 개인가요?</p>
+</li>
+<li>
+<p>1번과 연결된 노드의 번호를 오름차순으로 출력하세요</p>
+</li>
+<li>
+<p>1번과 3번의 거리는 얼마인가요?</p>
+</li>
+</ul>
+<blockquote>
+<p>이 유형을 잘 풀기 위해 고민할 것들</p>
+</blockquote>
+<ul>
+<li>
+<p>주요 키워드: 정점(node), 간선(edge), 연결, 네트워크, 그래프</p>
+</li>
+<li>
+<p>주어진 정보를 어떻게 변환할지 -> 2차원 배열(1,000이하) / ArrayList(1,000 초과)</p>
+</li>
+<li>
+<p>재방문을 방지하는 방법</p>
+</li>
+</ul>
+<blockquote>
+<p>관련 문제</p>
+</blockquote>
+<ul>
+<li>
+<p>대표: <a href="/solved-class3-backjoon-2606/">[solved.ac] Class3++ 2606. 바이러스</a></p>
+</li>
+<li>
+<p><a href="/solved-class3-backjoon-11724/">[solved.ac] Class3++ 11724. 연결 요소의 개수</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-Baekjoon-24479/">[백준] 알고리즘 수업 - 깊이 우선 탐색 1</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-Baekjoon-24480/">[백준] 알고리즘 수업 - 깊이 우선 탐색 2</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-solved-class3-backjoon-1260/">[solved.ac] Class3++ 1260. DFS와 BFS</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-backjoon-2644/">[백준] 2644번. 촌수계산(DFS)</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-backjoon-11725/">[solved.ac] Class4++ 11725. 트리의 부모찾기</a></p>
+</li>
+<li>
+<p><a href="/Programmers-43162/">[Programmers] 43162. 네트워크</a></p>
+</li>
+</ul>
+<h3 id="유형2-같은-부류-찾기">유형2. 같은 부류 찾기</h3>
+<ul>
+<li>
+<p>연결된 묶음/덩어리의 개수는 몇 개인가요?</p>
+</li>
+<li>
+<p>가장 큰 덩어리의 크기는 얼마인가요?</p>
+</li>
+</ul>
+<blockquote>
+<p>이 유형을 잘 풀기 위해 고민할 것들</p>
+</blockquote>
+<ul>
+<li>
+<p>주요 키워드: 인접한 위치로 이동, 상하좌우, 가로/세로, 대각선으로 이동</p>
+</li>
+<li>
+<p>주어진 정보를 어떻게 변환할지</p>
+</li>
+<li>
+<p>재방문을 방지하는 방법</p>
+</li>
+<li>
+<p>어느 지점에서 DFS를 시작할지</p>
+</li>
+<li>
+<p>어느 방향으로 DFS를 진행할지</p>
+</li>
+<li>
+<p><a href="/solved-class3-backjoon-1012/">[solved.ac] Class3++ 1012. 유기농 배추</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-backjoon-13565/">[백준] 13565. 침투</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-backjoon-4963/">[백준] 4963. 섬의 개수</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-backjoon-1388/">[백준] 1388. 바닥장식</a></p>
+</li>
+<li>
+<p><a href="/Algorithm-backjoon-16173/">[백준] 16173. 점프왕 쩰리 (Small)</a></p>
+</li>
+<li>
+<p><a href="/Programmers-1844/">[Programmers] 1844. 게임 맵 최단거리(bfs)</a> - BFS</p>
+</li>
+</ul>
+<h3 id="그외">그외</h3>
+<ul>
+<li>
+<p><a href="/Programmers-159993/">[Programmers] 159993. 미로 탈출</a></p>
+</li>
+<li>
+<p><a href="/baekjoon-1937/">[백준] 1937. 욕심쟁이 판다</a></p>
+</li>
+<li>
+<p><a href="/Programmers-43165/">[Programmers] 43165. 타켓 넘버(dfs)</a></p>
+</li>
+</ul>
+<h2 id="stack">Stack</h2>
+<p><img src="/assets/img/server/java/stack.png" alt=""></p>
+<ul>
+<li>
+<p>스택은 <code>LIFO</code>(List In First Out, 후입선출) 구조로 데이터를 쌓아올린 형태의 자료구조를 뜻한다. ex) 쓰레기통, 마트용 음료수 진열대, 프링X스(과자)</p>
+</li>
+<li>
+<p>즉 한쪽 끝에서만 자료(데이터)를 넣고 뺄 수 있는 형식의 자료 구조이다.</p>
+</li>
+<li>
+<p>스택은 데이터를 쌓는 형식으로 저장하는데 따라서 조회, 추가, 삭제 모두 <strong>가장 위에 있는, 가장 최근의 값</strong>에서 이루어진다.</p>
+</li>
+<li>
+<p>스택 구조에서 가장 상단에 있는 데이터를 <code>Top</code> 라 부른다.</p>
+</li>
+</ul>
+<blockquote>
+<p>2025.07.26 업데이트</p>
+<p><code>Stack</code> 클래스 대신 <code>Deque</code> 인터페이스를 사용하는 것을 권장한다.</p>
+</blockquote>
+<ul>
+<li>
+<p>Java에서 <code>Stack</code> 클래스는 오래된 <code>Vector</code> 클래스를 상속받아 만들어져 지금은 사용이 권장되지 않는다.</p>
+</li>
+<li>
+<p>대신, <code>Deque</code>(데크) 인터페이스와 그 구현체인 <code>ArrayDeque</code>를 사용하면 스택의 모든 기능을 더 빠르고 효율적으로 사용할 수 있다.</p>
+</li>
+</ul>
+<blockquote>
+<p>관련 문제</p>
+</blockquote>
+<ul>
+<li><a href="/Programmers-131704/">[Programmers] 131704. 택배 상자</a></li>
+</ul>
+<h3 id="stack-선언-deque-사용">Stack 선언 (Deque 사용)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.ArrayDeque;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Deque;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Deque 인터페이스를 사용하여 Stack을 선언 (ArrayDeque이 가장 일반적)</span></span>
+<span class="line"><span style="color:#E1E4E8">Deque&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> stack </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayDeque&#x3C;>();</span></span>
+<span class="line"><span style="color:#E1E4E8">Deque&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> stack2 </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayDeque&#x3C;>();</span></span></code></pre>
+<h3 id="주요-메서드-deque-기준">주요 메서드 (Deque 기준)</h3>
+<ul>
+<li>
+<p><code>void push(E item)</code>: 스택의 맨 위에 데이터를 추가한다.</p>
+</li>
+<li>
+<p><code>E pop()</code>: 스택의 맨 위 데이터를 꺼내서 반환한다. 스택이 비어있으면 예외가 발생한다.</p>
+</li>
+<li>
+<p><code>E peek()</code>: 스택의 맨 위 데이터를 확인만 하고 제거하지는 않는다. 스택이 비어있으면 <code>null</code>을 반환한다.</p>
+</li>
+<li>
+<p><code>boolean isEmpty()</code>: 스택이 비어있는지 확인한다. 비어있으면 <code>true</code>를 반환한다.</p>
+</li>
+<li>
+<p><code>int size()</code>: 스택에 저장된 요소의 개수를 반환한다.</p>
+</li>
+</ul>
+<h3 id="stack-예제-deque-사용">Stack 예제 (Deque 사용)</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.ArrayDeque;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Deque;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> StackExample</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      Deque&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> stack </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayDeque&#x3C;>();</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">      // 데이터 추가</span></span>
+<span class="line"><span style="color:#E1E4E8">      stack.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">      stack.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">      stack.</span><span style="color:#B392F0">push</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">      System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"현재 스택: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> stack); </span><span style="color:#6A737D">// [1, 2, 3]</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">      // 맨 위 데이터 확인</span></span>
+<span class="line"><span style="color:#E1E4E8">      System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"가장 위의 데이터: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> stack.</span><span style="color:#B392F0">peek</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// 3</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">      // 데이터 꺼내기</span></span>
+<span class="line"><span style="color:#E1E4E8">      System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"꺼낸 데이터: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> stack.</span><span style="color:#B392F0">pop</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// 3</span></span>
+<span class="line"><span style="color:#E1E4E8">      System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"현재 스택: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> stack); </span><span style="color:#6A737D">// [1, 2]</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">      // 스택이 비어있는지 확인</span></span>
+<span class="line"><span style="color:#E1E4E8">      System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"스택이 비었나요? "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> stack.</span><span style="color:#B392F0">isEmpty</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// false</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="queue">Queue</h2>
+<p><img src="/assets/img/server/java/queue.png" alt=""></p>
+<ul>
+<li>
+<p>큐는 <code>FIFO</code>(First In First Out, 선입선출) 데이터를 순서대로 줄을 세운 형태의 자료구조를 뜻한다. ex) 놀이공원 이나 매표소 등 줄을 서서 차례로 업무를 처리하는 경우</p>
+</li>
+<li>
+<p>주로 <code>앞(frotn</code>)에서는 <code>조회/삭제</code> 연산을 수행하고, <code>뒤(Rear)</code>에서는 <code>삽입</code> 연산을 수행한다.</p>
+</li>
+<li>
+<p>그래프의 넓이 우선 탐색(BFS)에서도 사용된다.</p>
+</li>
+<li>
+<p>용어 정리</p>
+<ul>
+<li>
+<p><code>Enqueue</code> : 큐 맨 뒤에 데이터 추가</p>
+</li>
+<li>
+<p><code>Dequeue</code> : 큐 맨 앞쪽의 데이터 삭제</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>관련 문제</p>
+</blockquote>
+<ul>
+<li><a href="/Programmers-42587/">[Programmers] 42587. 프린터</a></li>
+</ul>
+<h3 id="queue-선언">Queue 선언</h3>
+<p><code>Queue</code>는 인터페이스이므로, 실제 구현체인 <code>LinkedList</code>나 <code>ArrayDeque</code>를 사용해 인스턴스를 생성해야 한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.LinkedList;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Queue;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.ArrayDeque;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Queue 인터페이스로 선언 (LinkedList가 일반적)</span></span>
+<span class="line"><span style="color:#E1E4E8">Queue&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> queue1 </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> LinkedList&#x3C;>();</span></span>
+<span class="line"><span style="color:#E1E4E8">Queue&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> queue2 </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayDeque&#x3C;>(); </span><span style="color:#6A737D">// ArrayDeque도 Queue 구현체라 사용 가능</span></span></code></pre>
+<ul>
+<li>
+<p>자바에서 큐는 <code>LinkedList</code>를 활용하여 생성해야 한다. 그렇기에 그렇기에 <code>Queue</code>와 <code>LinkedList</code>가 다 <strong>import되어 있어야 사용이 가능</strong>하다.</p>
+</li>
+<li>
+<p><code>Queue&#x3C;Element> queue = new LinkedList&#x3C;>()</code>와 같이 선언해주면 된다.</p>
+</li>
+</ul>
+<h3 id="queue-주요-메서드">Queue 주요 메서드</h3>
+<ul>
+<li>
+<p><code>boolean offer(E e)</code>: 큐의 맨 뒤에 데이터를 추가한다. 성공 시 <code>true</code>를 반환한다. (<code>add</code>는 실패 시 예외 발생)</p>
+</li>
+<li>
+<p><code>E poll()</code>: 큐의 맨 앞에 있는 데이터를 꺼내서 반환한다. 큐가 비어있으면 <code>null</code>을 반환한다.</p>
+</li>
+<li>
+<p><code>E peek()</code>: 큐의 맨 앞에 있는 데이터를 확인만 하고 제거하지는 않는다. 큐가 비어있으면 <code>null</code>을 반환한다.</p>
+</li>
+<li>
+<p><code>boolean isEmpty()</code>: 큐가 비어있는지 확인한다.</p>
+</li>
+<li>
+<p><code>int size()</code>: 큐에 저장된 요소의 개수를 반환한다.</p>
+</li>
+</ul>
+<h3 id="queue-예제">Queue 예제</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.LinkedList;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Queue;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> QueueExample</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Queue&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> queue </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> LinkedList&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 추가</span></span>
+<span class="line"><span style="color:#E1E4E8">        queue.</span><span style="color:#B392F0">offer</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"고객1"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        queue.</span><span style="color:#B392F0">offer</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"고객2"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        queue.</span><span style="color:#B392F0">offer</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"고객3"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"현재 대기열: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> queue); </span><span style="color:#6A737D">// [고객1, 고객2, 고객3]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 맨 앞 데이터 확인</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"다음에 처리할 고객: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> queue.</span><span style="color:#B392F0">peek</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// 고객1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 처리 (꺼내기)</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(queue.</span><span style="color:#B392F0">poll</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "님 업무 처리 완료"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// 고객1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"현재 대기열: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> queue); </span><span style="color:#6A737D">// [고객2, 고객3]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 대기열이 비었는지 확인</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"대기 고객이 없나요? "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> queue.</span><span style="color:#B392F0">isEmpty</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// false</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="hashmap">HashMap</h2>
+<ul>
+<li>
+<p>맵(Map)은 key와 value로 이루어져 있고, 두개의 값이 한 쌍을 이루어 데이터를 저장하는 자료구조이다.</p>
+</li>
+<li>
+<p>key는 중복될 수 없으며, 순서가 보장되지 않는다.</p>
+</li>
+</ul>
+<blockquote>
+<p>관련 문제</p>
+</blockquote>
+<ul>
+<li>
+<p><a href="/Programmers-150370/">[Programmers] 150370. 개인정보 수집 유효기간</a></p>
+</li>
+<li>
+<p><a href="/Programmers-92341/">[Programmers] 92341. 주차 요금 계산</a></p>
+</li>
+</ul>
+<h3 id="hashmap-선언">HashMap 선언</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.HashMap;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Map;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// HashMap 선언 (Map 인터페이스로 선언하는 것이 일반적)</span></span>
+<span class="line"><span style="color:#E1E4E8">Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> map </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashMap&#x3C;>(); </span><span style="color:#6A737D">// Key: String, Value: Integer</span></span>
+<span class="line"><span style="color:#E1E4E8">Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> map2 </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashMap&#x3C;>(); </span><span style="color:#6A737D">// Key: String, Value: String</span></span></code></pre>
+<h3 id="hashmap-주요-메서드">HashMap 주요 메서드</h3>
+<ul>
+<li>
+<p>데이터 추가</p>
+<ul>
+<li><strong><code>V put(K key, V value)</code></strong>: key와 value를 저장한다.</li>
+</ul>
+</li>
+<li>
+<p>데이터 삭제</p>
+<ul>
+<li>
+<p><code>void clear()</code> : 모든 데이터를 삭제한다.</p>
+</li>
+<li>
+<p><strong><code>V remove(Object key)</code></strong> : key와 일치하는 기존 데이터(key와 value)를 삭제한다.</p>
+</li>
+<li>
+<p><code>boolean remove(Object key, Object value)</code> : key와 value가 동시에 일치하는 데이터를 삭제한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>데이터 수정</p>
+<ul>
+<li>
+<p><code>V replace(K key, V value)</code> : key와 일치하는 기존 데이터의 value를 변경한다.</p>
+</li>
+<li>
+<p><code>V replace(K key, V oldValue, V newValue)</code> : key와 oldValue가 동시에 일치하는 데이터의 value를 newValue로 변경한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>데이터 확인</p>
+<ul>
+<li>
+<p><strong><code>boolean containsKey(Object key)</code></strong> : key와 일치하는 데이터가 있는지 여부를 반환한다. (있으면 true)</p>
+</li>
+<li>
+<p><code>boolean containsValue(Object value)</code> : value가 일치하는 데이터가 있는지 여부를 반환한다. (있으면 true)</p>
+</li>
+<li>
+<p><strong><code>boolean isEmpty( )</code></strong> : 데이터가 빈 상태인지 여부를 반환한다. (빈 상태면 true)</p>
+</li>
+<li>
+<p><strong><code>int size( )</code></strong> : key-value 맵핑 데이터의 개수를 반환한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>데이터 반환</p>
+<ul>
+<li>
+<p><strong><code>V get(Object key)</code></strong> : key와 맵핑된 value값을 반환한다.</p>
+</li>
+<li>
+<p><code>V getOrDefault(Object key, V defaultValue)</code> : key와 맵핑된 value값을 반환하고 없으면 defaultValue값을 반환한다.</p>
+</li>
+<li>
+<p><code>Set&#x3C;Map.Entry&#x3C;K, V>> entrySet( )</code> : 모든 key-value 맵핑 데이터를 가진 Set 데이터를 반환한다.</p>
+</li>
+<li>
+<p><code>Set&#x3C;K> keySet()</code> : 모든 key 값을 가진 Set 데이터를 반환한다.</p>
+</li>
+<li>
+<p><code>Collection&#x3C;V> values()</code> : 모든 value 값을 가진 Collection 데이터를 반환한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="hashmap-예제">HashMap 예제</h3>
+<p>다음은 <code>HashMap</code>의 기본적인 사용법을 보여주는 예제 코드이다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.HashMap;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Map;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HashMapExample</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // 메뉴와 가격을 저장할 HashMap 생성</span></span>
+<span class="line"><span style="color:#E1E4E8">        Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> menu </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashMap&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 추가</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"햄버거"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">8000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"피자"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">15000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"치킨"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 조회</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"피자 가격: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"피자"</span><span style="color:#E1E4E8">)); </span><span style="color:#6A737D">// 15000</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 존재 여부 확인</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"치킨이 메뉴에 있나요? "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu.</span><span style="color:#B392F0">containsKey</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"치킨"</span><span style="color:#E1E4E8">)); </span><span style="color:#6A737D">// true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 개수 확인</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"총 메뉴 개수: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu.</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// 3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 삭제</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"햄버거"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 전체 데이터 출력</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"현재 메뉴판: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu); </span><span style="color:#6A737D">// {피자=15000, 치킨=20000}</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="hashset">HashSet</h2>
+<p><code>HashSet</code>은 <strong>중복된 값을 허용하지 않는 데이터의 집합</strong>을 다룰 때 유용한 자료구조이다.</p>
+<p>내부적으로 <code>HashMap</code>을 사용하여 데이터를 저장하며, 이로 인해 순서를 보장하지 않는다는 특징이 있다.</p>
+<p>알고리즘 문제에서 HashSet은 주로 다음과 같은 상황에서 효과적으로 사용된다.</p>
+<ul>
+<li>
+<p>중복된 원소를 간단하게 제거하고 싶을 때</p>
+</li>
+<li>
+<p>특정 값이 이전에 등장했는지 빠르게 확인해야 할 때 (시간 복잡도 O(1))</p>
+</li>
+<li>
+<p>데이터의 순서가 중요하지 않을 때</p>
+</li>
+</ul>
+<blockquote>
+<p>관련 문제</p>
+</blockquote>
+<ul>
+<li>
+<p><a href="/Programmers-64065/">[Programmers] 64065. 튜플</a></p>
+</li>
+<li>
+<p><a href="/Programmers-12981/">[Programmers] 12981. 영어 끝말잇기</a></p>
+</li>
+<li>
+<p><a href="/Programmers-92334/">[Programmers] 92334. 신고 결과 받기</a></p>
+</li>
+</ul>
+<h3 id="hashset-선언">HashSet 선언</h3>
+<p><code>HashSet</code>을 사용하려면 먼저 <code>java.util.HashSet</code> 을 import 해야 한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.HashSet; </span><span style="color:#6A737D">// import</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// HashSet 선언</span></span>
+<span class="line"><span style="color:#E1E4E8">HashSet&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> stringHashSet </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashSet&#x3C;>(); </span><span style="color:#6A737D">// String 타입의 HashSet</span></span>
+<span class="line"><span style="color:#E1E4E8">HashSet&#x3C;</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">> integerHashSet </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashSet&#x3C;>(); </span><span style="color:#6A737D">// Integer 타입의 HashSet</span></span></code></pre>
+<h3 id="hashset-주요-메서드">HashSet 주요 메서드</h3>
+<p><code>HashSet</code>은 다음과 같은 주요 메서드를 제공한다.</p>
+<ul>
+<li>
+<p><code>boolean add(E e)</code>: <code>HashSet</code>에 요소를 추가한다. 성공적으로 추가되면 <code>true</code>, 이미 존재하는 요소라 추가되지 않으면 <code>false</code>를 반환한다.</p>
+</li>
+<li>
+<p><code>boolean remove(Object o)</code>: <code>HashSet</code>에서 특정 요소를 삭제한다. 요소가 존재하여 성공적으로 삭제되면 <code>true</code>, 없으면 <code>false</code>를 반환한다.</p>
+</li>
+<li>
+<p><code>boolean contains(Object o)</code>: <code>HashSet</code>에 특정 요소가 포함되어 있는지 확인한다. 포함되어 있으면 <code>true</code>, 없으면 <code>false</code>를 반환한다.</p>
+</li>
+<li>
+<p><code>void clear()</code>: <code>HashSet</code>의 모든 요소를 제거한다.</p>
+</li>
+<li>
+<p><code>int size()</code>: <code>HashSet</code>에 저장된 요소의 개수를 반환한다.</p>
+</li>
+<li>
+<p><code>boolean isEmpty()</code>: <code>HashSet</code>이 비어있는지 확인한다. 비어있으면 <code>true</code>, 아니면 <code>false</code>를 반환한다.</p>
+</li>
+</ul>
+<h3 id="hashset-예제">HashSet 예제</h3>
+<p>다음은 <code>HashSet</code>의 기본적인 사용법을 보여주는 예제 코드이다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.HashSet;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Set;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HashSetExample</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Set&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> menu </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> HashSet&#x3C;>();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 추가</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"햄버거"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"피자"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"치킨"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"햄버거"</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// 중복된 값은 추가되지 않음</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 포함 여부 확인</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"피자가 있나요? "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu.</span><span style="color:#B392F0">contains</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"피자"</span><span style="color:#E1E4E8">)); </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"파스타가 있나요? "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu.</span><span style="color:#B392F0">contains</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"파스타"</span><span style="color:#E1E4E8">)); </span><span style="color:#6A737D">// false</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 크기 확인</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메뉴의 종류: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu.</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// 3</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 데이터 삭제</span></span>
+<span class="line"><span style="color:#E1E4E8">        menu.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"치킨"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"치킨 삭제 후 종류: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu.</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// 2</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 전체 데이터 출력 (순서는 보장되지 않음)</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"현재 메뉴: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> menu); </span><span style="color:#6A737D">// 예: [피자, 햄버거]</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="문자열">문자열</h2>
+<h3 id="stringtochararray">String.toCharArray()</h3>
+<ul>
+<li>
+<p><code>String.toCharArray()</code>은 문자열을 한 글자씩 쪼개서 이를 char타입의 배열에 집어넣어주는 메소드이다.</p>
+</li>
+<li>
+<p>String(문자열)을 char형 배열로 바꾼다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Solution</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8"> v[][]; </span><span style="color:#6A737D">// 체크 배열</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> solution</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> m</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> n</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">board</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> answer </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        char</span><span style="color:#E1E4E8"> copy [][] </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> char</span><span style="color:#E1E4E8">[m][n];</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // 보드를 2차원 문자 배열로 복사합니다.</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> m; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            copy[i] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> board[i].</span><span style="color:#B392F0">toCharArray</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>예를 들어, 입력으로 주어진 board 배열이 다음과 같다고 가정하면,</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>String[] board = ["CCBDE", "AAADE", "AAABF", "CCBBF"]</span></span></code></pre>
+<ul>
+<li>이때, 위에서 제시한 코드를 통해 copy 배열에는 아래와 같이 데이터가 저장된다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8">[][] copy </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#9ECBFF">'C'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'C'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'B'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'D'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'E'</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#9ECBFF">'A'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'A'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'A'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'D'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'E'</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#9ECBFF">'A'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'A'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'A'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'B'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'F'</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span><span style="color:#9ECBFF">'C'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'C'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'B'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'B'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'F'</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<ul>
+<li>결과적으로 copy 배열은 board 배열의 복사본으로, copy 배열을 변경하여 작업하면 원본 board 배열에는 영향을 미치지 않는다.</li>
+</ul>
+<blockquote>
+<p>관련 문제</p>
+</blockquote>
+<ul>
+<li><a href="/Programmers-17679/">[Programmers] [1차] 프렌즈4블록(2018 카카오 블라인드)</a></li>
+</ul>
+<h3 id="stringcontains">String.contains</h3>
+<ul>
+<li>
+<p>contains() 함수는 대상 문자열에 특정 문자열이 포함되어 있는지 확인하는 함수이다.</p>
+<ul>
+<li>
+<p>대/소문자를 구분한다.</p>
+</li>
+<li>
+<p>공백을 확인한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ContainsTest</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">){</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        String str </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "my java test"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">( str.</span><span style="color:#B392F0">contains</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"java"</span><span style="color:#E1E4E8">) );  </span><span style="color:#6A737D">// true</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">( str.</span><span style="color:#B392F0">contains</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">" my"</span><span style="color:#E1E4E8">) );  </span><span style="color:#6A737D">// false -> 공백이 있기 때문</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">( str.</span><span style="color:#B392F0">contains</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"JAVA"</span><span style="color:#E1E4E8">) );  </span><span style="color:#6A737D">// false</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">( str.</span><span style="color:#B392F0">contains</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"java test"</span><span style="color:#E1E4E8">) );  </span><span style="color:#6A737D">// true</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://product.kyobobook.co.kr/detail/S000001810273">이것이 코딩 테스트다</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Algorithm-Summary" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-383-Ransom-Note/" class="link-title leading-snug">383. Ransom Note</a><time datetime="2024-09-17" class="mt-1.5 block text-sm text-muted">2024-09-17</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-232-Implement-Queue-using-Stacks/" class="link-title leading-snug">32. Implement Queue using Stacks</a><time datetime="2024-09-14" class="mt-1.5 block text-sm text-muted">2024-09-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Programmers-118667/" class="link-title leading-snug">[Programmers] 118667. 두 큐 합 같게 만들기(queue)</a><time datetime="2023-12-28" class="mt-1.5 block text-sm text-muted">2023-12-28</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#구현" data-toc="구현" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">구현</a></li><li><a href="#dfsbfs" data-toc="dfsbfs" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">DFS/BFS</a></li><li><a href="#유형1-연결된-요소-찾기" data-toc="유형1-연결된-요소-찾기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">유형1. 연결된 요소 찾기</a></li><li><a href="#유형2-같은-부류-찾기" data-toc="유형2-같은-부류-찾기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">유형2. 같은 부류 찾기</a></li><li><a href="#그외" data-toc="그외" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">그외</a></li><li><a href="#stack" data-toc="stack" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Stack</a></li><li><a href="#stack-선언-deque-사용" data-toc="stack-선언-deque-사용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Stack 선언 (Deque 사용)</a></li><li><a href="#주요-메서드-deque-기준" data-toc="주요-메서드-deque-기준" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">주요 메서드 (Deque 기준)</a></li><li><a href="#stack-예제-deque-사용" data-toc="stack-예제-deque-사용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Stack 예제 (Deque 사용)</a></li><li><a href="#queue" data-toc="queue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Queue</a></li><li><a href="#queue-선언" data-toc="queue-선언" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Queue 선언</a></li><li><a href="#queue-주요-메서드" data-toc="queue-주요-메서드" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Queue 주요 메서드</a></li><li><a href="#queue-예제" data-toc="queue-예제" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Queue 예제</a></li><li><a href="#hashmap" data-toc="hashmap" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">HashMap</a></li><li><a href="#hashmap-선언" data-toc="hashmap-선언" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HashMap 선언</a></li><li><a href="#hashmap-주요-메서드" data-toc="hashmap-주요-메서드" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HashMap 주요 메서드</a></li><li><a href="#hashmap-예제" data-toc="hashmap-예제" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HashMap 예제</a></li><li><a href="#hashset" data-toc="hashset" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">HashSet</a></li><li><a href="#hashset-선언" data-toc="hashset-선언" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HashSet 선언</a></li><li><a href="#hashset-주요-메서드" data-toc="hashset-주요-메서드" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HashSet 주요 메서드</a></li><li><a href="#hashset-예제" data-toc="hashset-예제" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HashSet 예제</a></li><li><a href="#문자열" data-toc="문자열" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">문자열</a></li><li><a href="#stringtochararray" data-toc="stringtochararray" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">String.toCharArray()</a></li><li><a href="#stringcontains" data-toc="stringcontains" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">String.contains</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>JDBC 라이브러리를 이용하여 CRUD 구현하기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Spring-DB-JDBC/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>JDBC 라이브러리를 이용하여 CRUD 구현하기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2024-01-14" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2024-01-14</time><a href="/category/#Spring" class="chip chip-tag">#Spring</a></div><p class="view-count text-sm text-muted">조회수 24회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 <a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1/dashboard">스프링 DB 1편 - 데이터 접근 핵심 원리</a> 강의를 듣고 정리한 내용입니다.</p>
+</blockquote>
+<h2 id="jdbc-이해">JDBC 이해</h2>
+<h3 id="jdbc-등장-이유">JDBC 등장 이유</h3>
+<p>애플리케이션을 개발할 때 중요한 데이터는 대부분 <code>데이터베이스</code>에 보관한다.</p>
+<p><img src="/assets/img/server/spring/Spring-JDBC-1.png" alt=""></p>
+<p>클라이언트가 애플리케이션 서버를 통해 데이터를 저장하거나 조회하면, <code>애플리케이션 서버</code>는 다음 과정을 통해 <code>데이터베이스</code>를 사용한다.</p>
+<p>일반적으로, 애플리케이션 서버와 DB는 아래와 같은 순서로 진행된다.</p>
+<hr>
+<p><img src="/assets/img/server/spring/Spring-JDBC-2.png" alt=""></p>
+<ol>
+<li>
+<p>커넥션 연결: 주로 TCP/IP를 사용해서 커넥션을 연결한다.</p>
+</li>
+<li>
+<p>SQL 전달: 애플리케이션 서버는 DB가 이해할 수 있는 SQL을 연결된 커넥션을 통해 DB에 전달한다.</p>
+</li>
+<li>
+<p>결과 응답: DB는 전달된 SQL을 수행하고 그 결과를 응답한다. 애플리케이션 서버는 응답 결과를 활용한다.</p>
+</li>
+</ol>
+<p><img src="/assets/img/server/spring/Spring-JDBC-2-2.png" alt=""></p>
+<p>하지만 <strong>각각의 데이터베이스 마다 사용법(커텍션 연결, SQL 전달, 결과 응답)이 다르다</strong>는 문제점을 가지고 있다. (참고로 관계형 데이터베이스는 수십개가 있다)</p>
+<p>여기에는 2가지 큰 문제점이 있다.</p>
+<ol>
+<li>
+<p>데이터베이스를 <strong>다른 종류의 데이터베이스로 변경</strong>하면 애플리케이션 서버에 개발된 데이터베이스 사용 코드도 <strong>함께 변경</strong>해야 한다.</p>
+</li>
+<li>
+<p>개발자가 <strong>각각의 데이터베이스마다</strong> 커넥션 연결, SQL 전달, 그리고 그 결과를 응답 받는 방법을 <strong>새로 학습</strong>해야 한다.</p>
+</li>
+</ol>
+<p>이러한 문제를 해결하기 위해 <strong><code>JDBC</code></strong> 라는 자바 표준이 등장하게 되었다.</p>
+<h3 id="jdbc-표준-인터페이스">JDBC 표준 인터페이스</h3>
+<blockquote>
+<p>JDBC(Java Database Connectivity)는 자바에서 데이터베이스에 접속할 수 있도록 하는 자바 API다.
+JDBC는 데이터베이스에서 자료를 쿼리하거나 업데이트하는 방법을 제공한다. - 위키백과 -</p>
+</blockquote>
+<p><img src="/assets/img/server/spring/Spring-JDBC-3.png" alt=""></p>
+<p>대표적으로 다음 3가지 기능을 <code>표준 인터페이스</code>로 정의해서 제공한다.</p>
+<ul>
+<li><code>java.sql.Connection</code> - 연결</li>
+<li><code>java.sql.Statement</code> - SQL을 담은 내용</li>
+<li><code>java.sql.ResultSet</code> - SQL 요청 응답</li>
+</ul>
+<p>이 JDBC 인터페이스를 각각의 DB 벤더(회사)에서 자신 의 DB에 맞도록 구현해서 라이브러리로 제공하는데, 이를 <code>JDBC 드라이버</code>라 한다.</p>
+<p>예를 들어서 MySQL DB에 접근 할 수 있는 것은 <code>MySQL JDBC 드라이버</code>라 하고, Oracle DB에 접근할 수 있는 것은 <code>Oracle JDBC 드라이버</code>라 한다.</p>
+<p><code>MySQL 드라이버</code>를 사용하면 아래와 같은 그림을 볼 수 있다.</p>
+<p><img src="/assets/img/server/spring/Spring-JDBC-4.png" alt=""></p>
+<p>정리하면 <code>JDBC</code>의 등장으로 두 가지 주요 문제가 해결되었다.</p>
+<ol>
+<li>
+<p>데이터베이스를 다른 종류의 데이터베이스로 변경하면 애플리케이션 서버의 데이터베이스 사용 코드도 함께 변경 해야하는 문제</p>
+<ul>
+<li>해결 방안: 애플리케이션 로직은 이제 JDBC 표준 인터페이스에만 의존한다. 따라서 데이터베이스를 다른 종류의 데이터베이스로 변경하고 싶으면 JDBC 구현 라이브러리만 변경하면 된다. 따라서 다른 종류의
+데이터베이스로
+변경해도 애플리케이션 서버의 사용 코드를 그대로 유지할 수 있다.</li>
+</ul>
+</li>
+<li>
+<p>개발자가 각각의 데이터베이스마다 커넥션 연결, SQL 전달, 그리고 그 결과를 응답 받는 방법을 새로 학습해야하는 문제</p>
+<ul>
+<li>해결 방안: 개발자는 JDBC 표준 인터페이스 사용법만 학습하면 된다. 한번 배워두면 수십개의 데이터베이스에 모두 동일하게 적용할 수 있다.</li>
+</ul>
+</li>
+</ol>
+<p>(참고로 JPA(Java Persistence API)를 사용하면 이렇게 각각의 데이터베이스마다 다른 SQL를 정의해야 하는 문제도 많은 부분을 해결할 수 있다)</p>
+<h2 id="jdbc와-최신-데이터-접근-기술">JDBC와 최신 데이터 접근 기술</h2>
+<p><code>JDBC</code>는 1997년에 출시될 정도로 오래된 기술이고, 사용하는 방법도 복잡하다.</p>
+<p>그래서 최근에는 <code>JDBC</code>를 직접 사용하기 보다는 <code>JDBC</code>를 편리하게 사용하는 다양한 기술이 존재한다. 대표적으로 <code>SQL Mapper</code>와 <code>ORM</code> 기술로 나눌 수 있다.</p>
+<p><img src="/assets/img/server/spring/Spring-JDBC-5.png" alt=""></p>
+<p>SQL Mapper</p>
+<ul>
+<li>장점: JDBC를 편리하게 사용하도록 도와준다.
+<ul>
+<li>SQL 응답 결과를 객체로 편리하게 변환해준다.</li>
+<li>JDBC의 반복 코드를 제거해준다.</li>
+</ul>
+</li>
+<li>단점: 개발자가 SQL을 직접 작성해야한다.</li>
+<li>대표 기술: 스프링 JdbcTemplate, MyBatis</li>
+</ul>
+<p><img src="/assets/img/server/spring/Spring-JDBC-6.png" alt=""></p>
+<p>ORM 기술</p>
+<ul>
+<li><code>ORM</code>은 <strong>객체를 관계형 데이터베이스 테이블과 매핑해주는 기술</strong>이다. 이 기술 덕분에 개발자는 반복적인 SQL을 직접 작성하지 않고, ORM 기술이 개발자 대신에 <strong>SQL을 동적으로 만들어 실행</strong>
+해준다.
+추가로 각각 의 데이터베이스마다 다른 SQL을 사용하는 문제도 중간에서 해결해준다.</li>
+<li>대표 기술: JPA, 하이버네이트, 이클립스링크</li>
+<li><code>JPA</code>는 <strong>자바 진영의 ORM 표준 인터페이스</strong>이고, 이것을 구현한 것으로 하이버네이트와 이클립스 링크 등의 구현 기술이 있다.</li>
+</ul>
+<p>여기서 <strong>중요한 점</strong>은 이런 기술들도 내부에서는 모두 JDBC를 사용한다. 따라서 JDBC를 직접 사용하지 않더라도, JDBC가 어떻게 동작하는지 기본 원리는 알아두어야 한다.</p>
+<p>그래야 해당 기술들을 더 깊이있게 이해할 수 있고, 무엇보다 문제가 발생했을 때 근본적인 문제를 찾아서 해결할 수 있다.</p>
+<p><code>JDBC</code>는 자바 개발자라면 <strong>꼭 알아두어야 하는 필수 기본 기술</strong>이다. (사실 이 말은 듣고, 이번 강의를 통해 확실히 알고 넘어가기로 마음 먹었다)</p>
+<h2 id="h2-데이터베이스-설정">H2 데이터베이스 설정</h2>
+<blockquote>
+<p>H2 데이터베이스는 개발이나 테스트 용도로 사용하기 좋은 가볍고 편리한 DB이다. 그리고 SQL을 실행할 수 있는 웹
+화면을 제공한다.</p>
+</blockquote>
+<p>사전에는 H2 데이터베이스를 위한 <a href="https://www.h2database.com">다운로드 및 설치</a>를 해줘야 한다.</p>
+<ul>
+<li>
+<p>H2 데이터베이스는 스프링 부트 버전에 맞춘다. - <a href="https://www.h2database.com/html/download-archive.html">H2 다운로드 버전</a></p>
+<ul>
+<li>
+<p>스프링 부트 2.x를 사용하면 <strong>1.4.200 버전</strong>을 다운로드 받으면 된다.</p>
+</li>
+<li>
+<p>스프링 부트 3.x를 사용하면 <strong>2.1.214 버전 이상</strong> 사용해야 한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>MAC, 리눅스 사용자 기준으로 아래와 같은 순서로 진행하면 된다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> bin</span><span style="color:#6A737D"> #1. 디렉토리 이동</span></span>
+<span class="line"><span style="color:#B392F0">chmod</span><span style="color:#79B8FF"> 755</span><span style="color:#9ECBFF"> h2.sh</span><span style="color:#6A737D"> #2. 권한 주기</span></span>
+<span class="line"><span style="color:#B392F0">./h2.sh</span><span style="color:#6A737D"> #3. 실행</span></span></code></pre>
+<p><img src="/assets/img/server/spring/Spring-JDBC-7.png" alt=""></p>
+<p>그런 다음, 데이터베이스 파일을 생성한다. (참고로, 주소 맨 앞에 <code>localhost</code> 가 아니라면, <code>localhost</code>로 입력하고 Enter를 입력한다, 나머지 부분은 변경해선 안된다)</p>
+<ul>
+<li>사용자명은 <code>sa</code>를 입력한다.</li>
+<li>JDBC URL 에는 최초로 <code>jdbc:h2:~/test</code> 입력하고, <strong><code>연결</code></strong> 버튼을 직접 눌러야 한다. (<code>연결 시험</code>을 클릭하면 오류가 발생한다)</li>
+<li>연결이 성공되었으면, 이후부터는 <code>jdbc:h2:tcp://localhost/~/test</code> 이렇게 접속한다.</li>
+</ul>
+<p>H2 데이터베이스가 연결되면, 테스트를 위한 Member 테이블을 생성한다.</p>
+<p>H2 데이터베이스 웹 콘솔에 아래와 같은 SQL 문을 입력하고, 실행한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">drop</span><span style="color:#F97583"> table</span><span style="color:#E1E4E8"> member </span><span style="color:#F97583">if</span><span style="color:#F97583"> exists</span><span style="color:#E1E4E8"> cascade;</span></span>
+<span class="line"><span style="color:#F97583">create</span><span style="color:#F97583"> table</span><span style="color:#B392F0"> member</span></span>
+<span class="line"><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    member_id </span><span style="color:#F97583">varchar</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#F97583">    money</span><span style="color:#F97583">     integer</span><span style="color:#F97583"> not null</span><span style="color:#F97583"> default</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">    primary key</span><span style="color:#E1E4E8"> (member_id)</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">insert into</span><span style="color:#E1E4E8"> member(member_id, </span><span style="color:#F97583">money</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">values</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'memberV1'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">insert into</span><span style="color:#E1E4E8"> member(member_id, </span><span style="color:#F97583">money</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">values</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'memberV2'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20000</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">select</span><span style="color:#F97583"> *</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> member;</span></span></code></pre>
+<p>그런 다음, 쿼리를 실행해서 저장한 데이터가 잘 나오는지 결과를 확인한다.</p>
+<p><img src="/assets/img/server/spring/Spring-JDBC-8.png" alt=""></p>
+<h2 id="데이터베이스-연결하기">데이터베이스 연결하기</h2>
+<p>먼저 H2 데이터베이스 서버를 실행시켜주고, 아래와 같이 데이터베이스에 접속하는데 필요한 기본 정보를 입력한다.</p>
+<p>jdbc > connection 패키지</p>
+<ul>
+<li>ConnectionConst</li>
+<li>DBConnectionUtil</li>
+</ul>
+<blockquote>
+<p>ConnectionConst 추상 클래스</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.jdbc.connection;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ConnectionConst</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String URL </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "jdbc:h2:tcp://localhost/~/test"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String USERNAME </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "sa"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String PASSWORD </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>그리고 JDBC를 사용해서 실제 데이터베이스에 연결하는 코드를 작성한다.</p>
+<blockquote>
+<p>DBConnectionUtil 클래스</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> DBConnectionUtil</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> Connection </span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            Connection connection </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> DriverManager.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">(URL, USERNAME, PASSWORD);</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"get connection={}, class={}"</span><span style="color:#E1E4E8">, connection, connection.</span><span style="color:#B392F0">getClass</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> connection;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> IllegalStateException</span><span style="color:#E1E4E8">(e);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>데이터베이스에 연결하려면 JDBC가 제공하는 <code>DriverManager.getConnection(...)</code>를 사용하면 된다.</p>
+<p>이렇게 하면 라이브러리에 있는 데이터베이스 드라이버를 찾아서 해당 드라이버가 제공하는 커넥션을 반환해준다.</p>
+<p>여기서는 <code>H2 데이터베이스 드라이버</code>가 작동해서 실제 데이터베이스와 커넥션을 맺고 그 결과를 반환해준다.</p>
+<blockquote>
+<p>DBConnectionUtilTest 클래스(테스트 코드)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> DBConnectionUtilTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> connection</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Connection connection </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> DBConnectionUtil.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(connection).</span><span style="color:#B392F0">isNotNull</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><img src="/assets/img/server/spring/Spring-JDBC-9.png" alt=""></p>
+<p>실행 결과를 보면, <code>class=class org.h2.jdbc.JdbcConnection</code> 부분을 확인할 수 있다. 이것이 바로 H2 데이터베이스 드라이버가 제공하는 H2 전용 커넥션이다.
+물론 이 커넥션은 JDBC 표준 커넥션 인터페이스인 <code>java.sql.Connection</code> 인터페이스를 구현하고 있다.</p>
+<p>(만약 오류가 발생하면 H2 데이터베이스가 실행되지 않거나 설정에 오류가 있으므로, H2 데이터베이스 설정 부분을 확인한다)</p>
+<h3 id="jdbc-drivermanager-연결-이해">JDBC DriverManager 연결 이해</h3>
+<p><img src="/assets/img/server/spring/Spring-JDBC-10.png" alt=""></p>
+<p>JDBC는 <code>java.sql.Connection</code> 표준 커넥션 인터페이스를 정의한다.</p>
+<p>H2 데이터베이스 드라이버는 JDBC Connection 인터페이스를 구현한 <code>org.h2.jdbc.JdbcConnection</code> 구현체를 제공한다.</p>
+<h3 id="drivermanager-커넥션-요청-흐름">DriverManager 커넥션 요청 흐름</h3>
+<p><img src="/assets/img/server/spring/Spring-JDBC-11.png" alt=""></p>
+<p>JDBC가 제공하는 <code>DriverManager</code>는 라이브러리에 등록된 DB 라이브러리를 관리하고, 커넥션을 획득하는 기능을 제공한다.</p>
+<ol>
+<li>애플리케이션 로직에서 커넥션이 필요하면 <code>DriverManager.getConnection()</code> 을 호출한다.</li>
+<li><code>DriverManager</code> 는 라이브러리에 등록된 드라이버 목록을 자동으로 인식한다. 이 드라이버들에게 순서대로 다음 정보를 넘겨서 커넥션을 획득할 수 있는지 확인한다.
+<ul>
+<li>URL: 예) <code>jdbc:h2:tcp://localhost/~/test</code></li>
+<li>이름, 비밀번호 등 접속에 필요한 추가 정보</li>
+<li>여기서 각각의 드라이버는 URL 정보를 체크해서 본인이 처리할 수 있는 요청인지 확인한다.</li>
+</ul>
+</li>
+<li>이렇게 찾은 커넥션 구현체가 클라이언트에 반환된다.</li>
+</ol>
+<p>여기서는 H2 데이터베이스 드라이버만 라이브러리에 등록했기 때문에 H2 드라이버가 제공하는 H2 커넥션을 제공받는다.</p>
+<h2 id="jdbc로-crud-구현하기">JDBC로 CRUD 구현하기</h2>
+<p>이제 본격적으로 JDBC를 사용해서 애플리케이션을 개발해보자.</p>
+<p>여기서는 JDBC를 사용해서 회원(Member) 데이터를 데이터베이스에 관리하는 기능을 개발해보자.</p>
+<h3 id="jdbc-개발---등록">JDBC 개발 - 등록</h3>
+<blockquote>
+<p>H2 데이터베이스 설정 마지막에 테이블과 샘플 데이터 만들기를 통해 <code>member</code> 테이블을 미리 만들어두어야 한다.</p>
+</blockquote>
+<p>관련 커밋 - <a href="https://github.com/devFancy/Inflearn/commit/455a4345ffc6d03ac15a8d1aba6fa5cbbda003a6">등록</a></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">drop</span><span style="color:#F97583"> table</span><span style="color:#E1E4E8"> member </span><span style="color:#F97583">if</span><span style="color:#F97583"> exists</span><span style="color:#E1E4E8"> cascade;</span></span>
+<span class="line"><span style="color:#F97583">create</span><span style="color:#F97583"> table</span><span style="color:#B392F0"> member</span></span>
+<span class="line"><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    member_id </span><span style="color:#F97583">varchar</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#F97583">    money</span><span style="color:#F97583">     integer</span><span style="color:#F97583"> not null</span><span style="color:#F97583"> default</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#F97583">    primary key</span><span style="color:#E1E4E8"> (member_id)</span></span>
+<span class="line"><span style="color:#E1E4E8">);</span></span></code></pre>
+<blockquote>
+<p>Member 클래스</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Data</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String memberId;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> money;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">memberId</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> money</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.memberId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> memberId;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.money </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> money;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>MemberRepositoryV0 클래스</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * JDBC - DriverManager 사용</span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MemberRepositoryV0</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Member </span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(Member </span><span style="color:#FFAB70">member</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "insert into member(member_id, money) values (?, ?)"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setInt</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, member.</span><span style="color:#B392F0">getMoney</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">executeUpdate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> member;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> close</span><span style="color:#E1E4E8">(Connection </span><span style="color:#FFAB70">con</span><span style="color:#E1E4E8">, Statement </span><span style="color:#FFAB70">stmt</span><span style="color:#E1E4E8">, ResultSet </span><span style="color:#FFAB70">rs</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (rs </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                rs.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (stmt </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                stmt.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// Exception</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (con </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                con.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> Connection </span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> DBConnectionUtil.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>커넥션 획득 - <code>getConnection()</code> : 이전에 만들어둔 <code>DBConnectionUtil</code> 를 통해서 데이터베이스 커넥션을 획득한다.</p>
+</li>
+<li>
+<p><code>save()</code> - SQL 전달</p>
+<ul>
+<li><code>sql</code> : 데이터베이스에 전달할 SQL을 정의한다. 여기서는 데이터를 등록해야 하므로 <code>insert sql</code> 을 준비했다.</li>
+</ul>
+</li>
+<li>
+<p><code>con.prepareStatement(sql);</code> : 데이터베이스에 전달할 SQL과 파라미터로 전달할 데이터들을 준비한다.</p>
+<ul>
+<li>
+<p><code>pstmt.setString(1, member.getMemberId());</code> : SQL의 첫번째 <code>?</code> 에 값을 지정한다. 문자이므 로 <code>setString</code> 을 사용한다.</p>
+</li>
+<li>
+<p><code>pstmt.setInt(2, member.getMoney());</code> : SQL의 두번째 <code>?</code> 에 값을 지정한다. <code>Int</code> 형 숫자이므로 <code>setInt</code> 를 지정한다.</p>
+</li>
+<li>
+<p><code>pstmt.executeUpdate();</code> : <code>Statement</code>를 통해 준비된 SQL을 커넥션을 통해 실제 데이터베이스에 전달한다. 참고로 <code>executeUpdate()</code> 은 <code>int</code> 를 반환하는데 영향받은 DB row 수를 반환한다. 여기서는 하나의 row 를 등록했으므로 1을 반환한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>close()</code> - 리소스 정리</p>
+<ul>
+<li>
+<p>쿼리를 실행하고 나면 리소스를 정리해야 한다. 여기서는 <code>Connection</code>, <code>PreparedStatement</code>를 사용했으므로, 리소스를 정리할 때는 <strong>항상 역순</strong>으로 정리해준다.</p>
+</li>
+<li>
+<p>예외가 발생하든, 하지 않든 항상 수행되어야 하므로 <code>finally</code> 구문에 주의해서 작성해야 한다.</p>
+</li>
+<li>
+<p>만약 이 부분을 놓치게 되면 <strong>커넥션이 끊어지지 않고 계속 유지되는 문제가 발생</strong>할 수 있다.</p>
+</li>
+<li>
+<p>이런 것을 <strong><code>리소스 누수</code></strong> 라고 하는데, 결과적으로 <strong>커넥션 부족으로 장애가 발생</strong>할 수 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>참고: <code>Statement</code> 는 sql에 직접 넣는 것이고, <code>PrepareStatement</code> 는 파라미터에 직접 바인딩해서 sql에 넣는 것이다.</p>
+<p><code>PrepareStatement</code> 는 <code>Statement</code> 를 상속받아서 <code>close()</code> 메서드를 호출할 때, 파라미터로 넘길 수 있는 것이다.
+추가적으로 SQL Injection 공격을 예방하려면 <code>PreparedStatement</code> 를 통한 파라미터 바인딩 방식을 사용해야 한다.</p>
+</blockquote>
+<p><img src="/assets/img/server/spring/Spring-JDBC-12.png" alt=""></p>
+<p>이제 테스트 코드를 통해 JDBC로 회원을 데이터베이스에 등록하는 코드를 작성하면 아래와 같다.</p>
+<blockquote>
+<p>MemberRepositoryV0Test - 회원 등록</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MemberRepositoryV0Test</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    MemberRepositoryV0 repository </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MemberRepositoryV0</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> crud</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#6A737D">        //save</span></span>
+<span class="line"><span style="color:#E1E4E8">        Member member </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"memberV100"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        repository.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(member);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>실행 결과, 데이터베이스에 <code>select * from member</code> 쿼리를 실행하면 데이터가 저장된 것을 확인할 수 있다.</p>
+<p>참고로, 이 테스트는 2번 실행하면 PK 중복 오류가 발생하기 때문에, 이 경우 PK 값을 바꾸거나 혹은 <code>delete from member</code> 쿼리로 데이터를 삭제한 다음에 다시 실행하면 된다.</p>
+<p>아래는 PK 중복 오류에 관한 내용이다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException: Unique index or</span></span>
+<span class="line"><span> primary key violation: "PUBLIC.PRIMARY_KEY_8 ON PUBLIC.MEMBER(MEMBER_ID) VALUES</span></span>
+<span class="line"><span> 9"; SQL statement:</span></span></code></pre>
+<h3 id="jdbc-개발---조회">JDBC 개발 - 조회</h3>
+<p>관련 커밋 - <a href="https://github.com/devFancy/Inflearn/commit/64b3b8b8f3cfdf41efe6ab5beb9466abae8b26f5">조회</a></p>
+<blockquote>
+<p>MemberRepositoryV0 클래스 - findById()</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * JDBC - DriverManager 사용</span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MemberRepositoryV0</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Member </span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(Member </span><span style="color:#FFAB70">member</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "insert into member(member_id, money) values (?, ?)"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setInt</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, member.</span><span style="color:#B392F0">getMoney</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">executeUpdate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> member;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Member </span><span style="color:#B392F0">findById</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">memberId</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "select * from member where member_id = ?"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        ResultSet rs </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, memberId);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">            rs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pstmt.</span><span style="color:#B392F0">executeQuery</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (rs.</span><span style="color:#B392F0">next</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                Member member </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                member.</span><span style="color:#B392F0">setMemberId</span><span style="color:#E1E4E8">(rs.</span><span style="color:#B392F0">getString</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"member_id"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">                member.</span><span style="color:#B392F0">setMoney</span><span style="color:#E1E4E8">(rs.</span><span style="color:#B392F0">getInt</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"money"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8"> member;</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> NoSuchElementException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"member not found memberId ="</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> memberId);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> Connection </span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> DBConnectionUtil.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>finById()</code> - 쿼리 실행</p>
+<ul>
+<li>
+<p><code>sql</code> : 데이터 조회를 위한 select SQL을 준비한다.</p>
+</li>
+<li>
+<p><code>rs = pstmt.executeQuery()</code> 데이터를 변경할 때는 <code>executeUpdate()</code> 를 사용하지만, 데이터를 <strong>조회</strong> 할 때는 <strong><code>executeQuery()</code></strong> 를 사용한다. <code>executeQuery()</code> 는 결과를 <code>ResultSet</code> 에 담아서 반환한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>ResultSet</p>
+<ul>
+<li>
+<p><code>ResultSet</code> 은 다음과 같이 생긴 데이터 구조이다. 보통 select 쿼리의 결과가 순서대로 들어간다.</p>
+<ul>
+<li>
+<p>예를 들어서 <code>select member_id, money</code> 라고 지정하면 <code>member_id</code>, <code>money</code> 라는 이름으로 데이터 가 저장된다.</p>
+</li>
+<li>
+<p>참고로 <code>select *</code> 을 사용하면 테이블의 모든 컬럼을 다 지정한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>ResultSet</code> 내부에 있는 커서( <code>cursor</code> )를 이동해서 다음 데이터를 조회할 수 있다.</p>
+</li>
+<li>
+<p><code>rs.next()</code> : 이것을 호출하면 커서가 다음으로 이동한다. 참고로 최초의 커서는 데이터를 가리키고 있지 않기 때문에  <code>rs.next()</code> 를 <strong>최초 한번은 호출해야 데이터를 조회</strong>할 수 있다.</p>
+<ul>
+<li>
+<p><code>rs.next()</code> 의 결과가 <code>true</code> 면 커서의 이동 결과 데이터가 있다는 뜻이다.</p>
+</li>
+<li>
+<p><code>rs.next()</code> 의 결과가 <code>false</code> 면 더이상 커서가 가리키는 데이터가 없다는 뜻이다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/server/spring/Spring-JDBC-13.png" alt=""></p>
+<p>참고로 이 <code>ResultSet</code>의 결과 예시는 <strong>회원이 2명 조회되는 경우</strong>이다.</p>
+<ul>
+<li>
+<p>1-1 에서 <code>rs.next()</code>를 호출할 때 1-2의 결과로 cursor가 다음으로 이동하고, 이 경우 cursor가 가리키는 데이터가 있으므로 <code>true</code>를 반환한다.</p>
+</li>
+<li>
+<p>2-1 역시 1-1과 마찬가지로 cursor가 가리키는 데이터가 있으므로 <code>true</code>를 반환한다.</p>
+</li>
+<li>
+<p>3-1 에서는 3-2의 결과로 cursor가 가리키는 데이터가 없으므로 <code>false</code>를 반환한다.</p>
+</li>
+</ul>
+<p><code>findById()</code> 에서는 회원 하나를 조회하는 것이 목적이다. 그래서 조회 결과가 항상 1건이므로 <code>if</code> 절을 사용한 것이다.</p>
+<blockquote>
+<p>MemberRepositoryV0Test - 회원 조회</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MemberRepositoryV0Test</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    MemberRepositoryV0 repository </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MemberRepositoryV0</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> crud</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#6A737D">        //save</span></span>
+<span class="line"><span style="color:#E1E4E8">        Member member </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"memberV100"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        repository.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(member);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        //findById</span></span>
+<span class="line"><span style="color:#E1E4E8">        Member findMember </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> repository.</span><span style="color:#B392F0">findById</span><span style="color:#E1E4E8">(member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"findMember={}"</span><span style="color:#E1E4E8">, findMember);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(findMember).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(member);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>실행 결과, member 객체의 참조 값이 아니라 <strong>실제 데이터가 보이는 이유는 lombok의 <code>@Data</code> 가 <code>toString()</code>을 적절히 오버라이딩해서 보여줬기 때문</strong>이다.</p>
+<p><img src="/assets/img/server/spring/Spring-JDBC-14.png" alt=""></p>
+<ul>
+<li>
+<p><code>isEqualTo()</code> : <code>findMember.equals(member)</code> 를 비교한다.</p>
+<p>결과가 참인 이유는 롬복의 <code>@Data</code> 는 해당 객체의 모든 필드를 사용하도록 <code>equals()</code> 를 오버라이딩 하기 때문이다.</p>
+</li>
+</ul>
+<h3 id="jdbc-개발---수정-삭제">JDBC 개발 - 수정, 삭제</h3>
+<p>관련 커밋 - <a href="https://github.com/devFancy/Inflearn/commit/49c29c23bb2759f3e1f145090e57bcfa4de0850a">수정, 삭제</a></p>
+<p>수정과 삭제는 등록과 비슷하다. 따라서 데이터를 변경하는 쿼리는 <code>executeUpdate()</code> 를 작성하면 된다.</p>
+<blockquote>
+<p>MemberRepositoryV0 클래스 - update(), delete()</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.jdbc.repository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.jdbc.connection.DBConnectionUtil;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.jdbc.domain.Member;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> lombok.extern.slf4j.Slf4j;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.sql.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.NoSuchElementException;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * JDBC - DriverManager 사용</span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MemberRepositoryV0</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> update</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">memberId</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> money</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "update member set money=? where member_id=?"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setInt</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, money);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, memberId);</span></span>
+<span class="line"><span style="color:#F97583">            int</span><span style="color:#E1E4E8"> resultSize </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pstmt.</span><span style="color:#B392F0">executeUpdate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"resultSize={}"</span><span style="color:#E1E4E8">, resultSize);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> delete</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">memberId</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "delete from member where member_id=?"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, memberId);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">executeUpdate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> close</span><span style="color:#E1E4E8">(Connection </span><span style="color:#FFAB70">con</span><span style="color:#E1E4E8">, Statement </span><span style="color:#FFAB70">stmt</span><span style="color:#E1E4E8">, ResultSet </span><span style="color:#FFAB70">rs</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (rs </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                rs.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (stmt </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                stmt.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// Exception</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (con </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                con.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> Connection </span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> DBConnectionUtil.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>executeUpdate()</code> 는 쿼리를 실행하고 영향받은 <strong>row 수</strong>를 반환한다. 여기서 하나의 데이터만 변경하기 때문에 결과로 1이 반환된다.</p>
+<p>만약 회원이 100명이고, 모든 회원의 데이터를 한 번에 수정하는 update sql을 실행하면 결과는 100이 되낟.</p>
+</li>
+</ul>
+<blockquote>
+<p>MemberRepositoryV0Test - CRUD(회원 수정, 삭제 포함)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MemberRepositoryV0Test</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    MemberRepositoryV0 repository </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MemberRepositoryV0</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> crud</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#6A737D">        //save</span></span>
+<span class="line"><span style="color:#E1E4E8">        Member member </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"memberV100"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        repository.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(member);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        //findById</span></span>
+<span class="line"><span style="color:#E1E4E8">        Member findMember </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> repository.</span><span style="color:#B392F0">findById</span><span style="color:#E1E4E8">(member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"findMember={}"</span><span style="color:#E1E4E8">, findMember);</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(findMember).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(member);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        //update: money: 10000 -> 20000</span></span>
+<span class="line"><span style="color:#E1E4E8">        repository.</span><span style="color:#B392F0">update</span><span style="color:#E1E4E8">(member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">20000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        Member updateMember </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> repository.</span><span style="color:#B392F0">findById</span><span style="color:#E1E4E8">(member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(updateMember.</span><span style="color:#B392F0">getMoney</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">20000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        //delete</span></span>
+<span class="line"><span style="color:#E1E4E8">        repository.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        Assertions.</span><span style="color:#B392F0">assertThatThrownBy</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> repository.</span><span style="color:#B392F0">findById</span><span style="color:#E1E4E8">(member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">()))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(NoSuchElementException.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>회원을 삭제한 다음, <code>findById()</code>를 통해서 조회한다. 회원이 없기 때문에 <code>NoSuchElementException</code> 이 발생한 것이다.</p>
+<p>(참고로 <code>assertThatThrownBy</code> 는 해당 예외가 발생해야 검증이 성공한다)</p>
+<p>사실 마지막에 회원을 삭제하기 때문에 테스트가 정상 수행하지만, <strong>테스트 중간에 오류가 발생해서 삭제 로직을 수행할 수 없다면</strong> 테스트를 반복해서 실행할 수 없다.</p>
+<p>트랜잭션을 활용해서 이 문제를 해결할 수 있지만, 자세한 내용은 다음 강의(트랜잭션)에서 나올 예정이다.</p>
+<h3 id="최종">최종</h3>
+<p>아래 코드는 이제까지 JDBC 라이브러리를 이용하여 CRUD 개발을 작업한 결과이다.</p>
+<blockquote>
+<p>MemberRepositoryV0(등록, 조회, 수정, 삭제)</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> hello.jdbc.repository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.jdbc.connection.DBConnectionUtil;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> hello.jdbc.domain.Member;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> lombok.extern.slf4j.Slf4j;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.sql.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.NoSuchElementException;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">/**</span></span>
+<span class="line"><span style="color:#6A737D"> * JDBC - DriverManager 사용</span></span>
+<span class="line"><span style="color:#6A737D"> */</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MemberRepositoryV0</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Member </span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(Member </span><span style="color:#FFAB70">member</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "insert into member(member_id, money) values (?, ?)"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, member.</span><span style="color:#B392F0">getMemberId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setInt</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, member.</span><span style="color:#B392F0">getMoney</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">executeUpdate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> member;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Member </span><span style="color:#B392F0">findById</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">memberId</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "select * from member where member_id = ?"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        ResultSet rs </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, memberId);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">            rs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pstmt.</span><span style="color:#B392F0">executeQuery</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (rs.</span><span style="color:#B392F0">next</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                Member member </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                member.</span><span style="color:#B392F0">setMemberId</span><span style="color:#E1E4E8">(rs.</span><span style="color:#B392F0">getString</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"member_id"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">                member.</span><span style="color:#B392F0">setMoney</span><span style="color:#E1E4E8">(rs.</span><span style="color:#B392F0">getInt</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"money"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8"> member;</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> NoSuchElementException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"member not found memberId ="</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> memberId);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> update</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">memberId</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> money</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "update member set money=? where member_id=?"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setInt</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, money);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, memberId);</span></span>
+<span class="line"><span style="color:#F97583">            int</span><span style="color:#E1E4E8"> resultSize </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pstmt.</span><span style="color:#B392F0">executeUpdate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"resultSize={}"</span><span style="color:#E1E4E8">, resultSize);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> delete</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">memberId</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> SQLException {</span></span>
+<span class="line"><span style="color:#E1E4E8">        String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "delete from member where member_id=?"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Connection con </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        PreparedStatement pstmt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            con </span><span style="color:#F97583">=</span><span style="color:#B392F0"> getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> con.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, memberId);</span></span>
+<span class="line"><span style="color:#E1E4E8">            pstmt.</span><span style="color:#B392F0">executeUpdate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"db error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#E1E4E8"> e;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            close</span><span style="color:#E1E4E8">(con, pstmt, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> close</span><span style="color:#E1E4E8">(Connection </span><span style="color:#FFAB70">con</span><span style="color:#E1E4E8">, Statement </span><span style="color:#FFAB70">stmt</span><span style="color:#E1E4E8">, ResultSet </span><span style="color:#FFAB70">rs</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (rs </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                rs.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (stmt </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                stmt.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// Exception</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (con </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                con.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"error"</span><span style="color:#E1E4E8">, e);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> Connection </span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> DBConnectionUtil.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="review">Review</h2>
+<p>JDBC에 대한 개념을 처음부터 학습하고 JDBC 라이브러리를 활용하여 CRUD(등록, 조회, 수정, 삭제) 작업을 직접 구현해보는 경험을 쌓아보았다.</p>
+<p>주로 기초적인 부분에 중점을 두어 다루었기 때문에, 더 깊은 내용은 다른 참고서를 참조해야 할 것 같다. 그러나 이 강의를 통해 JDBC의 핵심 개념과 동작 원리를 이해할 수 있었다.</p>
+<p>이전에도 JDBC를 이용한 CRUD 개발을 시도해봤지만, 제대로 된 복습 없이 넘어간 부분이 있었다. 따라서 이 강의를 통해 그 과정을 제대로 되짚어 볼 수 있게 되었다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1/dashboard">스프링 DB 1편 - 데이터 접근 핵심 원리</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Spring-DB-JDBC" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#jdbc-이해" data-toc="jdbc-이해" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">JDBC 이해</a></li><li><a href="#jdbc-등장-이유" data-toc="jdbc-등장-이유" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">JDBC 등장 이유</a></li><li><a href="#jdbc-표준-인터페이스" data-toc="jdbc-표준-인터페이스" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">JDBC 표준 인터페이스</a></li><li><a href="#jdbc와-최신-데이터-접근-기술" data-toc="jdbc와-최신-데이터-접근-기술" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">JDBC와 최신 데이터 접근 기술</a></li><li><a href="#h2-데이터베이스-설정" data-toc="h2-데이터베이스-설정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">H2 데이터베이스 설정</a></li><li><a href="#데이터베이스-연결하기" data-toc="데이터베이스-연결하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">데이터베이스 연결하기</a></li><li><a href="#jdbc-drivermanager-연결-이해" data-toc="jdbc-drivermanager-연결-이해" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">JDBC DriverManager 연결 이해</a></li><li><a href="#drivermanager-커넥션-요청-흐름" data-toc="drivermanager-커넥션-요청-흐름" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">DriverManager 커넥션 요청 흐름</a></li><li><a href="#jdbc로-crud-구현하기" data-toc="jdbc로-crud-구현하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">JDBC로 CRUD 구현하기</a></li><li><a href="#jdbc-개발---등록" data-toc="jdbc-개발---등록" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">JDBC 개발 - 등록</a></li><li><a href="#jdbc-개발---조회" data-toc="jdbc-개발---조회" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">JDBC 개발 - 조회</a></li><li><a href="#jdbc-개발---수정-삭제" data-toc="jdbc-개발---수정-삭제" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">JDBC 개발 - 수정, 삭제</a></li><li><a href="#최종" data-toc="최종" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">최종</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

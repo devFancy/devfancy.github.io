@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Spring MVC 패턴 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Spring-MVC-Concept/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Spring MVC 패턴</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-11-18" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-11-18</time><a href="/category/#Spring" class="chip chip-tag">#Spring</a></div><p class="view-count text-sm text-muted">조회수 53회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="spring-mvc">Spring MVC</h2>
+<h3 id="mvc란-">MVC란 ?</h3>
+<ul>
+<li><strong>소프트웨어 설계와 관련된 디자인 패턴</strong>으로, 소프트웨어 공학에서의 ‘흔히 사용되는’ 설계 패턴을 의미한다.</li>
+</ul>
+<h3 id="mvc-가-생겨난-이유">MVC 가 생겨난 이유</h3>
+<ul>
+<li>
+<p>코드가 많아지고 길어질수록 나중에 기능을 수정할때마다 코드를 갈아엎어야 하는 경우가 많다.</p>
+</li>
+<li>
+<p>한마디로 유지보수가 너무 불편한 경우가 있다.</p>
+</li>
+<li>
+<p>그래서 프로그래머들이 <strong>유지보수성, 애플리케이션의 확장성, 그리고 유연성이 증가하고, 중복코딩이라는 문제점 또한 사라지는 효과를 가질 수 있기 때문에</strong> Spring MVC라는 구조를 만들었다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="mvc-구조-맛보기">MVC 구조 맛보기</h3>
+<p><img src="/assets/img/server/spring/spring-mvc-concept_1.png" alt=""></p>
+<ul>
+<li>
+<p><strong>M</strong>odel : 데이터와 관련된 부분</p>
+</li>
+<li>
+<p><strong>V</strong>iew : 사용자한테 보여지는 부분</p>
+</li>
+<li>
+<p><strong>C</strong>ontroller : Model과 View를 이어주는 부분</p>
+</li>
+</ul>
+<hr>
+<h3 id="mvc를-지키면서-코딩하는-방법">MVC를 지키면서 코딩하는 방법</h3>
+<ol>
+<li>
+<p>Model은 Controller와 View에 <strong>의존하지 않아야 한다</strong>.(Model 내부에 Controller와 View에 관한 코드가 있으면 안된다.)</p>
+</li>
+<li>
+<p>View는 <strong><code>Model</code>에만 의존</strong>해야하고, Controller에는 의존하면 안된다. (View 내부에 Model 코드만 있을 수 있고, Controller 코드는 있으면 안된다.)</p>
+</li>
+<li>
+<p>View가 Model로부터 데이터를 받을 때, 사용자마다 다르게 보여주어야 하는 데이터에 대해서만 받아야 한다.</p>
+</li>
+<li>
+<p>Controller는 <strong><code>Model</code>과 <code>View</code>에 의존</strong>해도 된다.(Controller 내부에는 Model과 View의 코드가 있을 수 있다.)</p>
+</li>
+<li>
+<p>View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야 한다.</p>
+</li>
+</ol>
+<h3 id="mvc의-장점">MVC의 장점</h3>
+<ul>
+<li>
+<p>기능별로 코드를 분리하여 하나의 파일에 코드가 모이는 것을 방지하여 가독성과 코드의 재사용이 증가한다.</p>
+</li>
+<li>
+<p>각 구성요소들을 독립시켜 협업을 할 때 맡은 부분의 개발에만 집중할 수 있어 개발의 효율성을 높여준다.</p>
+</li>
+<li>
+<p>개발 후에도 유지보수성과 확장성이 보장된다.</p>
+</li>
+</ul>
+<h3 id="mvc의-한계">MVC의 한계</h3>
+<ul>
+<li>
+<p>Model과 View는 서로의 정보를 갖고 있지 않는 독립적인 상태라고 하지만 Model과 View사이에는 Controller를 통해 소통을 이루기에 의존성이 완전히 분리될 수 없다.</p>
+</li>
+<li>
+<p>복잡한 대규모의 프로그램의 경우 다수의 Model과 View가 Controller를 통해 연결되기 때문에, Controller가 불필요하게 커지는 현상이 발생하게 된다.</p>
+</li>
+<li>
+<p>이러한 현상을 <strong>Massive-View-Controller</strong> 이라고 한다.</p>
+</li>
+<li>
+<p>이를 보완하기 위해 MVP, MVVM, Flux, Redux등의 다양한 패턴들이 생겨났다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="더욱-더-체계적인-mvc">더욱 더 체계적인 MVC</h2>
+<ul>
+<li>
+<p>우아한테크코스 프리코스 미션들을 수행하면서 MVC 패턴에 대해 조금 더 체계적으로 이해할 필요가 있어서 추가하게 되었다.</p>
+</li>
+<li>
+<p>Controller, Service, Repository에 대해 개념을 정리해보자.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/spring/spring-mvc-concept_2.png" alt=""></p>
+<h3 id="controller-란">Controller 란?</h3>
+<ul>
+<li>
+<p>Controller은 MVC에서 C에 해당 하며 주로 사용자의 요청을 처리 한 후 지정된 뷰에 모델 객체를 넘겨주는 역할을 한다.</p>
+</li>
+<li>
+<p>즉 사용자의 요청이 진입하는 지점이며 요청에 따라 어떤 처리를 할지 결정을 Service에 넘겨준다.</p>
+</li>
+</ul>
+<h3 id="controller을-사용하는-이유는-">Controller을 사용하는 이유는 ?</h3>
+<ul>
+<li>
+<p>카카오, 네이버와 같은 대규모 서비스에는 다양한 서비스들이 있다.</p>
+</li>
+<li>
+<p>예를 들어 A 서비스, B 서비스, C 서비스 등등 있다고 가정하자.</p>
+</li>
+<li>
+<p>그러면 다양한 서비스를 하나의 클래스에서 처리하는 것보다 Controller 이라는 <strong>중간 제어자(컨트롤타워)</strong>를 만드는 것이다.</p>
+</li>
+<li>
+<p>A 서비스에 대한 것은 A-Controller, B 서비스에 대한 것은 B-Controller, C 서비스에 대한 것은 C-Controller 처럼 <strong>역할</strong>에 따라 설계를 하고 코딩을 하면 <strong>유지보수 비용</strong>이 대폭 줄어들기 때문에 Controller를 사용하는 것이다.</p>
+</li>
+</ul>
+<h3 id="service-란">Service 란?</h3>
+<ul>
+<li>Service에 대한 큰 틀을 다음과 같은 순서로 표현하자면,</li>
+</ul>
+<ol>
+<li>
+<p>Client가 요청(Request)을 보낸다.</p>
+</li>
+<li>
+<p>Client Request에 맞는 URL을 Controller가 수신받는다.</p>
+</li>
+<li>
+<p>Controller는 넘어온 요청을 처리하기 위해 Service를 호출한다.</p>
+</li>
+<li>
+<p>Service는 알맞는 정보를 가공하여 Controller에게 데이터를 넘긴다.</p>
+</li>
+<li>
+<p>Controller는 Service의 결과물을 Client에게 보낸다.</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>이처럼 Service는 <strong>알맞는 정보를 가공</strong>하여 Controller에게 전달해주는 역할이다. 다른 말로 ‘<strong>비즈니스 로직을 수행한다</strong>’라고 한다.</p>
+</li>
+<li>
+<p>Service는 알맞는 정보를 가공하기 이전에, Repository에 데이터를 등록, 조회, 수정, 삭제를 명령하는 메서드들이 있다.</p>
+</li>
+<li>
+<p>즉, Repository로부터 데이터를 가져와서 알맞는 정보로 가공하여 Controller에게 전달해준다.</p>
+</li>
+</ul>
+<h3 id="repository-란">Repository 란?</h3>
+<ul>
+<li>
+<p>Entity에 의해 생성된 <strong>DB에 접근</strong>하는 메서드 들을 사용하기 위한 인터페이스이다.</p>
+</li>
+<li>
+<p>쉽게 말해 DB 연결, 해제, 자원을 관리하고 CRUD 작업을 처리한다.</p>
+</li>
+<li>
+<p>여기서 CRUD는 등록, 조회, 수정, 삭제를 의미한다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="mvc-적용">MVC 적용</h2>
+<ul>
+<li>우아한테크코스4기 최종미션에 나왔던 <strong>페어매칭관리 애플리케이션</strong>을 MVC패턴을 적용하면서 해당 개념들을 조금 더 이해하게 되었다.</li>
+</ul>
+<p><a href="https://github.com/woowacourse/java-pairmatching-precourse">페어매칭관리 애플리케이션</a></p>
+<p><a href="https://github.com/fancy-log/java-pairmatching-precourse-review/pull/1">Pull request 주소</a></p>
+<h3 id="클래스-다이어그램">클래스 다이어그램</h3>
+<ul>
+<li>IntelliJ에서 제공하는 다이어그램 기능을 통해 클래스 다이어그램을 다음과 같이 만들었다.</li>
+</ul>
+<p><img src="/assets/img/server/spring/spring-mvc-concept_3.png" alt=""></p>
+<ul>
+<li>Application()을 중심으로 Controller(빨간색 표시)와 Service(파랑색 표시)를 구분하였다.</li>
+</ul>
+<h3 id="페어매칭-mvc-구조">페어매칭 MVC 구조</h3>
+<ul>
+<li>코드를 작성한 체계는 다음과 같이 구성했다.</li>
+</ul>
+<p><img src="/assets/img/server/spring/spring-mvc-concept_4.png" alt=""></p>
+<ul>
+<li>
+<p><strong>Controller</strong> : View 와 Service 에 위치한 메서드를 호출하여 최종적인 단일 기능의 메서드를 생성하는 부분.</p>
+</li>
+<li>
+<p><strong>Domain(Model)</strong> : 해당 프로그램에서 사용되는 객체 클래스 파일이 담겨 있는 부분(데이터)</p>
+</li>
+<li>
+<p><strong>Repository</strong> : Entity(domain 에 있는 클래스)에 의해 생성된 DB에 접근하는 메서드 들을 사용하기 위한 인터페이스.</p>
+</li>
+<li>
+<p><strong>Service</strong> : Controller 로부터 알맞는 정보를 가공하는 부분.</p>
+</li>
+<li>
+<p><strong>Utils</strong> : 에러 처리 밎 유효성 검사하는 부분.</p>
+</li>
+<li>
+<p><strong>View</strong> : 사용자 입출력에 해당하는 부분.</p>
+</li>
+</ul>
+<hr>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://www.youtube.com/watch?v=ogaXW6KPc8I&#x26;ab_channel=%EC%9A%B0%EC%95%84%ED%95%9CTech">[10분 테코톡] 제리의 MVC 패턴</a></p>
+</li>
+<li>
+<p><a href="https://velog.io/@jybin96/Controller-Service-Repository-%EA%B0%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C">Controller-Service-Repository가 무엇일까</a></p>
+</li>
+<li>
+<p><a href="https://seongwon.dev/ETC/20211207_MVC%ED%8C%A8%ED%84%B4%EC%9D%B4%EB%9E%80/">MVC패턴이란?</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Spring-MVC-Concept" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#spring-mvc" data-toc="spring-mvc" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Spring MVC</a></li><li><a href="#mvc란-" data-toc="mvc란-" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">MVC란 ?</a></li><li><a href="#mvc-가-생겨난-이유" data-toc="mvc-가-생겨난-이유" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">MVC 가 생겨난 이유</a></li><li><a href="#mvc-구조-맛보기" data-toc="mvc-구조-맛보기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">MVC 구조 맛보기</a></li><li><a href="#mvc를-지키면서-코딩하는-방법" data-toc="mvc를-지키면서-코딩하는-방법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">MVC를 지키면서 코딩하는 방법</a></li><li><a href="#mvc의-장점" data-toc="mvc의-장점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">MVC의 장점</a></li><li><a href="#mvc의-한계" data-toc="mvc의-한계" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">MVC의 한계</a></li><li><a href="#더욱-더-체계적인-mvc" data-toc="더욱-더-체계적인-mvc" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">더욱 더 체계적인 MVC</a></li><li><a href="#controller-란" data-toc="controller-란" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Controller 란?</a></li><li><a href="#controller을-사용하는-이유는-" data-toc="controller을-사용하는-이유는-" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Controller을 사용하는 이유는 ?</a></li><li><a href="#service-란" data-toc="service-란" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Service 란?</a></li><li><a href="#repository-란" data-toc="repository-란" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Repository 란?</a></li><li><a href="#mvc-적용" data-toc="mvc-적용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">MVC 적용</a></li><li><a href="#클래스-다이어그램" data-toc="클래스-다이어그램" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">클래스 다이어그램</a></li><li><a href="#페어매칭-mvc-구조" data-toc="페어매칭-mvc-구조" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">페어매칭 MVC 구조</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

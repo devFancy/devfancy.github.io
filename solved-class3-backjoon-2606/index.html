@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[solved.ac] Class3++ 2606. 바이러스 (DFS) | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/solved-class3-backjoon-2606/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="hover:underline" data-astro-cid-g5songws>알고리즘</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[solved.ac] Class3++ 2606. 바이러스 (DFS)</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-11-28" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-11-28</time><a href="/category/#%EB%B0%B1%EC%A4%80" class="chip chip-tag">#백준</a></div><p class="view-count text-sm text-muted">조회수 48회</p></div><div class="prose mt-10" data-astro-cid-g5songws><p><a href="https://www.acmicpc.net/problem/2606">문제 링크</a></p>
+<h2 id="성능-요약">성능 요약</h2>
+<ul>
+<li>메모리: 14236 KB, 시간: 120 ms</li>
+</ul>
+<h2 id="구분">구분</h2>
+<ul>
+<li>그래프 이론, 그래프 탐색, 너비 우선 탐색, 깊이 우선 탐색</li>
+</ul>
+<h2 id="answer-code20231128">Answer Code(2023.11.28)</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[][] graph;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[] visited;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> N, M;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> answer;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> dfs</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> idx</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited[idx] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        answer</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> N; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8">(visited[i] </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> false</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#E1E4E8"> graph[idx][i]) {</span></span>
+<span class="line"><span style="color:#B392F0">                dfs</span><span style="color:#E1E4E8">(i);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#6A737D">        // 0. 입력 및 초화</span></span>
+<span class="line"><span style="color:#E1E4E8">        BufferedReader br </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BufferedReader</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> InputStreamReader</span><span style="color:#E1E4E8">(System.in));</span></span>
+<span class="line"><span style="color:#E1E4E8">        BufferedWriter bw </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BufferedWriter</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> OutputStreamWriter</span><span style="color:#E1E4E8">(System.out));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        N </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        M </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        graph </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[N </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">][N </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[N </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 1. graph에 연결 정보 채우기</span></span>
+<span class="line"><span style="color:#F97583">        int</span><span style="color:#E1E4E8"> x, y;</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> M; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            StringTokenizer st </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> StringTokenizer</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            y </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            graph[x][y] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            graph[y][x] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#6A737D">        // 2. dfs(재귀함수) 호출</span></span>
+<span class="line"><span style="color:#B392F0">        dfs</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 3. 출력</span></span>
+<span class="line"><span style="color:#E1E4E8">        bw.</span><span style="color:#B392F0">write</span><span style="color:#E1E4E8">(String.</span><span style="color:#B392F0">valueOf</span><span style="color:#E1E4E8">(answer </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        br.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        bw.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="문제풀이">문제풀이</h2>
+<ul>
+<li>
+<p>문제를 읽어보면서, 해당 문제가 어느 알고리즘에 해당하는지 생각해야 한다.</p>
+<ul>
+<li>
+<p>한 컴퓨터가 웜 바이러스에 걸리면 그 컴퓨터와 <strong>네트워크 상에서 <code>연결</code>되어 있는 컴퓨터</strong>는 웜 바이러스에 걸리게 된다.</p>
+</li>
+<li>
+<p>예를 들어 7대의 컴퓨터가 &#x3C;그림>1과 같이 <strong>네트워크 상에서 연결되어 있다</strong>고 하자 -> ‘그래프에서 <code>연결</code>되어 있는 걸 <code>탐색</code>해야 겠다’ -> DFS/BFS를 써야 겠다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>해당 문제를 통해 그래프를 정의하고 어떻게 채우는지 중요하고,</p>
+<p>어떻게 하면 재방문을 방지할 수 있는지 고민해야 된다. -> <code>visited</code> 배열을 활용한다.</p>
+</li>
+<li>
+<p><code>visited</code> 배열을 선언할 때 <strong>n+1</strong>를 해줘야 한다.</p>
+<p>컴퓨터가 7대 있지만, 번호를 1번부터 7번까지 쓸 것이므로 실제로 내가 필요한 배열의 크기는 n+1개 이다.</p>
+<p>즉, 8개짜리 배열이 필요하다.</p>
+</li>
+<li>
+<p>결론적으로 <strong>알고리즘 흐름도</strong>는 다음과 같다.</p>
+<p>[0] 입력 및 초기화 -> [1] graph에 연결 정보 채우기(인접 행렬에 값 넣어주기) -> [2] dfs(재귀함수) 호출하기 -> [3] 출력하기</p>
+</li>
+</ul>
+<h3 id="step0-입력-및-초기화">Step0. 입력 및 초기화</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[][] graph;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[] visited;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> N, M;</span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> answer;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#6A737D">        // 0. 입력 및 초화</span></span>
+<span class="line"><span style="color:#E1E4E8">        BufferedReader br </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BufferedReader</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> InputStreamReader</span><span style="color:#E1E4E8">(System.in));</span></span>
+<span class="line"><span style="color:#E1E4E8">        BufferedWriter bw </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BufferedWriter</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> OutputStreamWriter</span><span style="color:#E1E4E8">(System.out));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        N </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        M </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        graph </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[N </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">][N </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"><span style="color:#E1E4E8">        visited </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#F97583"> boolean</span><span style="color:#E1E4E8">[N </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>BufferedReader</code>, <code>BufferedWriter</code>는 입출력을 조금더 빠르게 하기 위해 사용하는 메서드다.</p>
+<ul>
+<li>
+<p>버퍼를 통해 읽고 쓰는 함수이고, 입출력 데이터가 바로 전달되지 않고 중간에 버퍼링이 된 후 전달된다. -> 속도가 빠르다.</p>
+</li>
+<li>
+<p>맨 위에 <code>import.java.io.*</code>과, main 뒤에 <code>throws IOException</code>을 선언해줘야 한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>BufferedReader</code>는 입력 스트림에서 문자를 읽는 함수이다. 문자나 배열, 라인들을 효율적으로 읽기 위해 문자들을 버퍼에 저장하고 (버퍼링) 읽는 방법을 취한다.</p>
+<ul>
+<li>
+<p>BufferedReader 사용법</p>
+<ul>
+<li>
+<p><code>readLine()</code>: <code>BufferedReader</code>을 통해서 한 줄의 입력값을 <strong>String 형</strong>으로 반환해준다.</p>
+</li>
+<li>
+<p><code>Scanner</code> 처럼 공백 단위로 끊어주지 못한다. 엔터만 경계로 인식한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>graph = new boolean[N + 1][N + 1];</code>을 사용하는 이유는 컴퓨터가 1번부터 7번 까지 있는데, <strong><code>N * N</code> 으로 하면은 0번부터 6번까지 존재</strong>하기 때문에, N에다가 +1를 해주는 것이다.</p>
+<p>마찬가지로 <code>visited[] = new boolean[N + 1]</code>로 해준다.</p>
+</li>
+</ul>
+<h3 id="step1-graph에-연결-정보-채우기">Step1: graph에 연결 정보 채우기</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#E1E4E8">      ...</span></span>
+<span class="line"><span style="color:#6A737D">      // 1. graph에 연결 정보 채우기</span></span>
+<span class="line"><span style="color:#F97583">      int</span><span style="color:#E1E4E8"> x, y;</span></span>
+<span class="line"><span style="color:#F97583">      for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> M; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        StringTokenizer st </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> StringTokenizer</span><span style="color:#E1E4E8">(br.</span><span style="color:#B392F0">readLine</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        y </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Integer.</span><span style="color:#B392F0">parseInt</span><span style="color:#E1E4E8">(st.</span><span style="color:#B392F0">nextToken</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        graph[x][y] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        graph[y][x] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">      ...</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>입력받을 변수 x,y 를 만들어주고, i=0부터 M보다 작을때까지 반복한다.</p>
+<p>즉, M개의 간선 정보를 입력받는데, 이때 M은 2개의 숫자가 한 줄에 들어오기 때문에 <code>StringTokenzer</code>을 사용한다.</p>
+<p><code>StringTokenizer st = new StringTokenizer(br.readLine());</code>을 통해 <strong>한 줄에 입력받은 모든 정보를 String으로 변환한 뒤, 띄어쓰기를 기준으로 나눠준다</strong>는 의미이다.</p>
+<p><code>x = st.nextToken</code>은 띄어쓰기를 기준으로 나눈 것중에 그 다음 값을 달라는 의미이다. 초기에는 nextToken을 처음 불러왔기 때문에 첫번째 숫자를 불러온다.</p>
+<p>하지만, x 값도 String으로 받아왔기 때문에 Integer로 바꾸기 위해서는 <code>Integer.parseInt()</code>를 사용해야 한다. => <code>x = Integer.parseInt(st.nextToken());</code></p>
+<p>마찬가지로 두번째 숫자를 받기 위해서 y라는 변수를 활용한다. => <code>y = Integer.parseInt(st.nextToken());</code></p>
+<p>그리고 그래프에 간선 정보를 반영하기 위해서 true를 이용한다. => <code>graph[x][y] = true</code>, <code>graph[y][x] = true;</code></p>
+<p>x번 컴퓨터와 y번 컴퓨터가 서로 연결되어 있기 때문에 2번 적어주는 것이다.</p>
+</li>
+</ul>
+<h3 id="step2-dfs재귀함수-호출하기">Step2: dfs(재귀함수) 호출하기</h3>
+<ul>
+<li><code>dfs(1)</code>을 한 이유는 1번 컴퓨터부터 시작한다는 의미를 전달하기 때문이다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> dfs</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> idx</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      visited[idx] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">      answer</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">      for</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> N; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8">(visited[i] </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> false</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#E1E4E8"> graph[idx][i]) {</span></span>
+<span class="line"><span style="color:#B392F0">          dfs</span><span style="color:#E1E4E8">(i);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#E1E4E8">      ...</span></span>
+<span class="line"><span style="color:#6A737D">        // 2. dfs(재귀함수) 호출</span></span>
+<span class="line"><span style="color:#B392F0">        dfs</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>dfs 함수는 내가 현재 몇 번째(idx) 인덱스를 처리하고 있는지, 그 값을 인자로 받아서 동작한다는 의미이다.</p>
+<p>맨 처음에는 <code>visited[idx] = true;</code>을 통해 가장 처음에 온 1번 컴퓨터는 이미 방문했다는 것으로, 다시는 방문하지 말라는 의미이다.</p>
+</li>
+<li>
+<p>그 뒤에 <code>answer++</code>을 해준 이유는 dfs를 호출되는 횟수만큼 <strong>몇개의 컴퓨터가 연결되었다는 의미</strong>이기 때문이다.</p>
+</li>
+<li>
+<p>그리고 지금의 인덱스를 기준으로 <strong>나와 연결되는 번호가 1번부터 N번까지 몇개 있는지 <code>반복문</code>을 통해 확인</strong>한다.  => <code>for(int i = 1; i &#x3C;= N; i++)</code></p>
+<p>만약 연결되어 있다면, dfs(재귀 함수)를 통해서 호출한다는 것이다.</p>
+<p>여기서 <code>if(visited[i] == false)</code>을 통해 이미 방문한 적이 없는지 확인하기 위해 반복문 바로 다음에 작성한다.</p>
+<p>그리고 동시에 <code>&#x26;&#x26; graph[idx][i]</code>을 한 이유는 idx 기준으로 i번 컴퓨터와 연결이 되어있는지 봐야한다.</p>
+<p>이 조건을 요약해보자면, i번째에 방문하지 않았는데, 지금 들어온 idx번 컴퓨터가 i번 컴퓨터와 연결되어 있다면, dfs라는 재귀함수를 통해 i번째에 간다는 것이다.</p>
+</li>
+</ul>
+<h3 id="step3-출력하기">Step3: 출력하기</h3>
+<ul>
+<li>
+<p>출력하기 전에, <code>BufferedWriter</code>에 대한 사용법부터 익히고 가자.</p>
+</li>
+<li>
+<p><code>BufferedWriter</code>는 한번에 모았다가 출력할 때 사용하는 함수이다. 버퍼를 정의했기 때문에 반드시 <code>flush()/close()</code>를 호출해 뒤처리를 해줘야한다.</p>
+<ul>
+<li>
+<p><code>System.out.println()</code> 처럼 자동개행 기능이 없기 때문에 <strong>개행이 필요한 경우 <code>\n</code> 을 통해 따로 처리해 주어야한다.</strong></p>
+</li>
+<li>
+<p>BufferedWriter 사용법</p>
+<ul>
+<li><code>bw.write(int n)</code> 를 통해 int 형인 데이터를 출력문자 스트림으로 출력한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Main</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#6A737D">// 3. 출력</span></span>
+<span class="line"><span style="color:#E1E4E8">        bw.</span><span style="color:#B392F0">write</span><span style="color:#E1E4E8">(String.</span><span style="color:#B392F0">valueOf</span><span style="color:#E1E4E8">(answer </span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        br.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        bw.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>여기서는 <code>bw.write(answer -1)</code>을 통해 1번과 연결과 관련된 컴퓨터가 몇개 인지 출력한다는 의미이고, 1을 제외한 연결된 개수를 구하는 문제이기 때문에 <code>-1</code>를 해주는 것이다.</p>
+<p>다만, <code>BufferedWriter</code>도 <strong>String으로 전달</strong>해줘야 하기 때문에, <code>String.valueOf()</code> 함수를 통해 해당 Object의 값을 String으로 변환해주고,</p>
+<p>그 변환된 값을 <code>BufferedWriter</code>을 통해 Write 해준다.</p>
+<p>마지막으로 <code>br.close()</code>, <code>bw.close()</code>를 해주면 된다.</p>
+</li>
+</ul>
+<h3 id="정리">정리</h3>
+<ol>
+<li>
+<p>네트워크 상에서 연결 -> <code>DFS/BFS</code></p>
+</li>
+<li>
+<p>서로 연결되었다는 정보를 어떻게 하나의 자료구조로 통합할까?</p>
+</li>
+<li>
+<p>이미 방문한 지점을 다시 방문하지 않으려면 어떤 자료구조를 사용해야 할까?</p>
+</li>
+</ol>
+<p>고민 -> 그래프 &#x26; visited 배열 활용한다.</p>
+<h2 id="review">Review</h2>
+<ul>
+<li>
+<p>DFS에 대한 개념을 확실히 이해하기 위해 그림도 그리면서 문제를 풀었는데 1시간이 훌쩍 지나가버렸다.</p>
+</li>
+<li>
+<p>DFS에 대한 이해가 이전에는 70%였다면, 이제는 90%까지 된 것 같다.</p>
+</li>
+<li>
+<p>해당 문제는 DFS를 이해하는데 중요한 문제인 만큼 3번까지는 그림을 그리면서 복습해 나가자!</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://www.inflearn.com/course/%EC%9E%90%EB%B0%94-%EB%AC%B8%EA%B3%BC%EC%83%9D%EB%8F%84-%EC%9D%B4%ED%95%B4%ED%95%98%EB%8A%94-dfs-%EC%9E%85%EB%AC%B8/dashboard">[자바/Java] 문과생도 이해하는 DFS 알고리즘! -입문편</a></p>
+</li>
+<li>
+<p><a href="https://doozi316.github.io/java/2021/03/22/JAVA1/">JAVA - BufferedReader, BufferedWriter</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="solved-class3-backjoon-2606" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-383-Ransom-Note/" class="link-title leading-snug">383. Ransom Note</a><time datetime="2024-09-17" class="mt-1.5 block text-sm text-muted">2024-09-17</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/LeetCode-232-Implement-Queue-using-Stacks/" class="link-title leading-snug">32. Implement Queue using Stacks</a><time datetime="2024-09-14" class="mt-1.5 block text-sm text-muted">2024-09-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Programmers-118667/" class="link-title leading-snug">[Programmers] 118667. 두 큐 합 같게 만들기(queue)</a><time datetime="2023-12-28" class="mt-1.5 block text-sm text-muted">2023-12-28</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#성능-요약" data-toc="성능-요약" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">성능 요약</a></li><li><a href="#구분" data-toc="구분" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">구분</a></li><li><a href="#answer-code20231128" data-toc="answer-code20231128" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Answer Code(2023.11.28)</a></li><li><a href="#문제풀이" data-toc="문제풀이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">문제풀이</a></li><li><a href="#step0-입력-및-초기화" data-toc="step0-입력-및-초기화" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Step0. 입력 및 초기화</a></li><li><a href="#step1-graph에-연결-정보-채우기" data-toc="step1-graph에-연결-정보-채우기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Step1: graph에 연결 정보 채우기</a></li><li><a href="#step2-dfs재귀함수-호출하기" data-toc="step2-dfs재귀함수-호출하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Step2: dfs(재귀함수) 호출하기</a></li><li><a href="#step3-출력하기" data-toc="step3-출력하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Step3: 출력하기</a></li><li><a href="#정리" data-toc="정리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">정리</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

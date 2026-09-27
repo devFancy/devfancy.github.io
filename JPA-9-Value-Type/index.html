@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[JPA] 값 타입 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/JPA-9-Value-Type/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[JPA] 값 타입</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-12-15" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-12-15</time><a href="/category/#JPA" class="chip chip-tag">#JPA</a></div><p class="view-count text-sm text-muted">조회수 25회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 [자바 ORM 표준 JPA 프로그래밍 - 기본편] 강의를 듣고 정리한 내용입니다.</p>
+</blockquote>
+<h2 id="기본값-타입">기본값 타입</h2>
+<ul>
+<li>
+<p>엔티티 타입</p>
+<ul>
+<li>
+<p><code>@Entity</code> 로 정의하는 객체이다.</p>
+</li>
+<li>
+<p>데이터가 변해도 식별자로 지속해서 추적이 가능하다.</p>
+</li>
+<li>
+<p>ex) 회원 엔티티의 키나 나이 값을 변경해도 식별자로 인식이 가능하다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>값 타입</p>
+<ul>
+<li>
+<p>int, Integer, String 처럼 단순히 값으로 사용하는 자바 기본 타입이나 객체이다.</p>
+</li>
+<li>
+<p>식별자가 없고 값만 있으므로 <strong>변경시 추적 불가능하다</strong></p>
+</li>
+<li>
+<p>ex) 게시판의 내용(content)</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>값 타입 분류</p>
+</blockquote>
+<ul>
+<li>
+<p>기본 값</p>
+<ul>
+<li>
+<p>자바 기본 타입(int, double)</p>
+</li>
+<li>
+<p>래퍼 클래스(Integer, Long)</p>
+</li>
+<li>
+<p>String</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// 기본 값 타입 - 예시) - id, userName</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Id</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GeneratedValue</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "member_id"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Long id;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String userName;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>임베디드 타입(<strong>Embedded type</strong>, 복합 값 타입) - ex) 우편번호</p>
+</li>
+<li>
+<p>컬렉션 값 타입(Collection value type)</p>
+</li>
+</ul>
+<h2 id="임베디드-타입">임베디드 타입</h2>
+<ul>
+<li>
+<p><code>임베디드 타입</code>는 복합 값 타입으로 새로운 값 타입을 직접 정의할 수 있다.</p>
+</li>
+<li>
+<p>주로 기본 값 타입을 모아서 만들어 복합 값 타입이라고도 한다.</p>
+</li>
+<li>
+<p>임베디드 타입 역시 직접 정의를 할 뿐, int, String과 같은 타입으로 이루어진다.</p>
+</li>
+<li>
+<p>예를 들어, 회원 엔티티에 이름, 근무기간, 집 주소를 가질 때 -> 아래와 같이 <code>Address</code> 클래스 임베디드 타입으로 바꿀 수 있다.</p>
+</li>
+<li>
+<p>임베디드 타입을 사용하려면 <strong>값 타입을 정의하는 곳(Address)에 기본 생성자를 필수로 생성해야 한다.</strong></p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-1.png" alt=""></p>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-2.png" alt=""></p>
+<h3 id="임베디드-타입-사용법">임베디드 타입 사용법</h3>
+<ul>
+<li>
+<p><code>@Embeddable</code> : 값 타입을 정의하는 곳에 표시한다. -> Address 클래스</p>
+</li>
+<li>
+<p><code>@Eembedded</code> : 값 타입을 사용하는 곳에 표시한다. -> Member 클래스 안에 Address 객체를 필드로 선언한 뒤, 그 위에 표시해준다.</p>
+</li>
+</ul>
+<h3 id="임베디드-타입의-장점">임베디드 타입의 장점</h3>
+<ul>
+<li>
+<p>재사용성과 높은 응집도</p>
+</li>
+<li>
+<p>임베디드 타입을 포함한 모든 값 타입은, 값 타임을 소유한 엔티티에 생명주기를 의존한다.</p>
+</li>
+</ul>
+<h3 id="임베디드-타입과-테이블-매핑">임베디드 타입과 테이블 매핑</h3>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-3.png" alt=""></p>
+<ul>
+<li>
+<p>임베디드 타입은 엔티티의 값일 뿐이다. 그래서 임베디드 타입을 사용하기 전과 후에 <strong>매핑하는 테이블은 같다.</strong></p>
+</li>
+<li>
+<p>객체와 테이블을 아주 세밀하게 매핑하는 것이 가능하다.</p>
+</li>
+<li>
+<p><strong>잘 설계한 ORM 애플리케이션은</strong> 매핑한 테이블의 수보다 <strong>클래스의 수가 더 많다.</strong></p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-4.png" alt=""></p>
+<h3 id="attributeoverride-속성-재정의">@AttributeOverride: 속성 재정의</h3>
+<ul>
+<li>
+<p>한 엔티티에서 같은 값 타입을 사용하면 컬럼명이 중복될때, <code>@AttributeOverrides</code>, <code>@AttributeOverride</code>를 사용해서 컬러명 속성을 재정의한다.</p>
+</li>
+<li>
+<p>아래 그림과 같이 주소라는 컬럼명을 재정의하기 위해 <code>workAddress</code> 변수를 만들고, 그 위에 <code>@AttributeOverrides</code>, <code>@AttributeOverride</code>을 사용했다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-5.png" alt=""></p>
+<h2 id="값-타입과-불변-객체">값 타입과 불변 객체</h2>
+<ul>
+<li>
+<p>값 타입 공유 참조 - 임베디드 타입 같은 값 타입을 여러 엔티티에서 공유하면 위험함 → 부작용이 발생할 수 있다.</p>
+</li>
+<li>
+<p>따라서 부작용을 피하기 위해서는 값 타입을 복사해준다.</p>
+<ul>
+<li>
+<p>값 타입의 실제 인스턴스인 값을 공유하는 것은 위험하다.</p>
+</li>
+<li>
+<p>대신 값(인스턴스)를 복사해서 사용한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-6.png" alt=""></p>
+<blockquote>
+<p>값 타입의 한계</p>
+</blockquote>
+<ul>
+<li>
+<p>항상 값을 복사해서 사용하면 공유 참조로 인해 발생하는 부작용을 피할 수 있지만, 문제는 임베디드 타입처럼 <strong>직접 정의한 값 타입은 자바의 기본 타입이 아니라 <code>객체 타입</code>이다.</strong></p>
+</li>
+<li>
+<p>객체 타입을 수정할 수 없게 만들기 위해서는 값 타입을 <code>불변 객체</code>로 설계해야 한다.</p>
+<ul>
+<li><code>불변 객체</code>: 생성 시점 이후에 절대 값을 변경할 수 없는 객체를 말한다.</li>
+</ul>
+</li>
+<li>
+<p>불변 객체로 설계하기 위해서는 <strong>생성자로만 값을 설정하고, 수정자(Setter)를 만들지 않으면 된다.</strong></p>
+</li>
+<li>
+<p>참고로, Integer, String은 자바가 제공하는 대표적인 불변 객체이다.</p>
+</li>
+<li>
+<p><strong><code>불변</code>이라는 작은 제약으로 부작용이라는 큰 재양을 막을 수 있다.</strong></p>
+</li>
+</ul>
+<h2 id="값-타입의-비교">값 타입의 비교</h2>
+<ul>
+<li>
+<p>값 타입을 비교할 때 동일성 비교(==) 보다는 동등성 비교(equals)을 이용하여 비교한다.</p>
+</li>
+<li>
+<p><code>동일성(identity) 비교</code>: 인스턴스의 참조 값을 비교해서, <code>==</code>을 사용한다.</p>
+</li>
+<li>
+<p><code>동등성(equivalence) 비교</code>: 인스턴스의 값을 비교해서, <code>equals()</code>을 사용한다.</p>
+</li>
+<li>
+<p>동등성 비교(equals())을 사용하기 위해서는 해당 메서드를 <strong>적절하게 재정의 해줘야 한다.</strong></p>
+</li>
+<li>
+<p>해당 체크를 통해 필드에 직접 접근이 아닌 <strong>getter</strong>를 통해서 동등성을 비교하도록 한다. 그래야 <strong>프록시 객체에 접근할 수 있도록 하여 비교가 가능해진다.</strong></p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-7.png" alt=""></p>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-8.png" alt=""></p>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-9.png" alt=""></p>
+<h2 id="값-타입-컬렉션">값 타입 컬렉션</h2>
+<ul>
+<li>
+<p>값 타입을 하나 이상 저장할 때에는 <code>값 타입 컬렉션</code>을 사용한다. 그래서 컬렉션의 경우 1대다 관계로 되어있다.</p>
+</li>
+<li>
+<p>테이블로 보면 아래와 같이 favoriteFoods, addressHistory와 같이 되어있다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-10.png" alt=""></p>
+<ul>
+<li>
+<p>값 타입을 하나 이상 저장할 때, <code>@ElementCollection</code>, <code>@CollectionTable</code> 을 사용한다.</p>
+</li>
+<li>
+<p><code>@ElementCollection</code> 어노테이션을 사용하여 값 타입 컬렉션을 지정하고(fetch 전략 기본이 지연 로딩(LAZY)임), <code>@CollectionTable</code> 어노테이션을 통해 값 타입 컬렉션이 사용할 테이블을 지정해준다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-11.png" alt=""></p>
+<h3 id="값-타입-컬렉션의-제약사항">값 타입 컬렉션의 제약사항</h3>
+<ul>
+<li>
+<p>하지만 값 타입 컬렉션은 다음과 같은 <strong>제약사항</strong>이 있다.</p>
+<ul>
+<li>
+<p>값 타입은 엔티티와 다르게 <strong>식별자 개념이 없고, 값을 변경하면 추적이 어렵다.</strong></p>
+</li>
+<li>
+<p>값 타입 컬렉션에 변경 사항이 발생하면 주인 엔티티와 연관된 모든 데이터를 삭제하고, 값 타입 컬렉션에 있는 현재 값을 모두 저장하게 된다.</p>
+</li>
+<li>
+<p>그리고 값 타입 컬렉션을 매핑하는 테이블은 모든 컬럼을 묶어서 기본 키를 구성해야 한다. -> null 입력X, 중복 저장X</p>
+</li>
+</ul>
+</li>
+<li>
+<p>따라서 값 타입 컬렉션을 사용하는 걸 추천하지는 않는다.</p>
+</li>
+</ul>
+<h3 id="값-타입-컬렉션의-대안">값 타입 컬렉션의 대안</h3>
+<ul>
+<li>
+<p>대신, 값 타입 컬렉션의 대안으로 실무에서는 상황에 따라 <strong>값 타입 컬렉션 대신에 일대다 관계를 고려한다.</strong></p>
+</li>
+<li>
+<p>일대다 관계를 위한 엔티티를 만들고 여기에서 값 타입을 사용한다.</p>
+</li>
+<li>
+<p><strong>영속성 전이(Cascade) + 고아 객체 제거(orphan remove)</strong> 를 사용해서 값 타입 컬렉션 처럼 사용하는 방법이 있다. ⇒ ex) <code>AddressEntity</code></p>
+</li>
+<li>
+<p>아래와 같이 AddressEntity 라는 엔티티 테이블을 만들고, Member 테이블과 연관관계를 맺어준다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-12.png" alt=""></p>
+<p><img src="/assets/img/server/jpa/JPA-Value-Type-13.png" alt=""></p>
+<ul>
+<li>값 타입 컬렉션은 select box 처럼 멀티로 체크하는 등 단순한 경우에만 사용하는 것을 권장한다.</li>
+</ul>
+<blockquote>
+<p>엔티티 타입과 값 타입의 특징</p>
+</blockquote>
+<ul>
+<li>
+<p>엔티티 타입의 경우 식별자가 있고, 생명 주기를 관리하며, 공유가 된다.</p>
+</li>
+<li>
+<p>값 타입의 경우 식별자가 없고, 생명 주기를 엔티티에 의존하고 공유하지 않는 것이 안전하다. -> 복사해서 사용하거나 불변 객체로 만드는 것이 안전하다.</p>
+</li>
+</ul>
+<p>=> 정리하면, <strong>식별자가 필요하고, 지속해서 값을 추적, 변경해야 한다면 그것은 값 타입이 아닌 <code>엔티티</code>를 사용하는 걸 권장한다.</strong></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/ORM-JPA-Basic/dashboard">자바 ORM 표준 JPA 프로그래밍 - 기본편</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="JPA-9-Value-Type" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#기본값-타입" data-toc="기본값-타입" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">기본값 타입</a></li><li><a href="#임베디드-타입" data-toc="임베디드-타입" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">임베디드 타입</a></li><li><a href="#임베디드-타입-사용법" data-toc="임베디드-타입-사용법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">임베디드 타입 사용법</a></li><li><a href="#임베디드-타입의-장점" data-toc="임베디드-타입의-장점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">임베디드 타입의 장점</a></li><li><a href="#임베디드-타입과-테이블-매핑" data-toc="임베디드-타입과-테이블-매핑" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">임베디드 타입과 테이블 매핑</a></li><li><a href="#attributeoverride-속성-재정의" data-toc="attributeoverride-속성-재정의" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">@AttributeOverride: 속성 재정의</a></li><li><a href="#값-타입과-불변-객체" data-toc="값-타입과-불변-객체" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">값 타입과 불변 객체</a></li><li><a href="#값-타입의-비교" data-toc="값-타입의-비교" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">값 타입의 비교</a></li><li><a href="#값-타입-컬렉션" data-toc="값-타입-컬렉션" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">값 타입 컬렉션</a></li><li><a href="#값-타입-컬렉션의-제약사항" data-toc="값-타입-컬렉션의-제약사항" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">값 타입 컬렉션의 제약사항</a></li><li><a href="#값-타입-컬렉션의-대안" data-toc="값-타입-컬렉션의-대안" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">값 타입 컬렉션의 대안</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

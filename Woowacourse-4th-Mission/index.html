@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[BE] 4주차 미션 회고 (다리 건너기) | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Woowacourse-4th-Mission/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[BE] 4주차 미션 회고 (다리 건너기)</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-12-14" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-12-14</time><a href="/category/#%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4" class="chip chip-tag">#우아한테크코스</a></div><p class="view-count text-sm text-muted">조회수 75회</p></div><div class="prose mt-10" data-astro-cid-g5songws><p><img src="/assets/img/server/woowacourse/woowacourse_name.png" alt=""></p>
+<ul>
+<li>이 글은 프리코스 과정 이후에 한번 더 복습한 과정을 담긴 내용이며, 기존에 제출했던 코드와 다를 수 있습니다.</li>
+</ul>
+<h2 id="미션---다리-건너기">미션 - 다리 건너기</h2>
+<p><a href="https://github.com/woowacourse-precourse/java-bridge">다리건너기</a></p>
+<p><a href="https://github.com/devfancy/java-bridge/tree/fancy-review">구현한 코드</a></p>
+<blockquote>
+<p><strong>4주차 미션 목표</strong></p>
+</blockquote>
+<ol>
+<li>클래스(객체)를 분리하는 연습</li>
+<li>리팩터링</li>
+</ol>
+<blockquote>
+<p><strong>공통 피드백에서 반영한 부분</strong></p>
+</blockquote>
+<ul>
+<li>비즈니스 로직과 UI 로직을 분리한다(3주차 피드백)</li>
+<li>한 함수가 한 가지 기능만 담당하게 한다(2주차 피드백)</li>
+<li>우아한테크코스의 프리코스 미션에서 공통 피드백들 중에서 나에게 어려웠던 위의 2가지를 지키면서 기능을 구현해보자.</li>
+</ul>
+<h2 id="피드백-반영">피드백 반영</h2>
+<h3 id="비즈니스-로직과-ui-로직을-분리">비즈니스 로직과 UI 로직을 분리</h3>
+<ul>
+<li>
+<p><code>비즈니스 로직(도메인 로직)</code>은 <strong>주어진 문제를 해결하기 위한 전반적인 알고리즘 시스템</strong>을 의미하고,</p>
+</li>
+<li>
+<p><code>UI 로직</code>은 <strong>입출력</strong>에 관련된 로직만을 담당한다.</p>
+</li>
+<li>
+<p>프리코스 미션에 참가한 분들 중에 Spring MVC패턴을 적용하는 사람들이 많았다.</p>
+</li>
+<li>
+<p>하지만, 나는 비즈니스 로직와 UI 로직을 분리조차 익숙치가 않아서 이분화한 체계를 제대로 잡은 다음에 Spring MVC패턴을 하기로 결정했다.</p>
+</li>
+<li>
+<p>참고로 Spring MVC를  도메인/UI 로직로 나타낸다면, 아래처럼 표현된다고 생각한다.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Controller + Model = Domain(Business)</strong>
+<strong>View = UI</strong></p>
+</blockquote>
+<ul>
+<li>[변경 전]</li>
+</ul>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_1_logic.png" alt=""></p>
+<ul>
+<li>
+<p>위와 같이, 비즈니스 로직과 UI로직을 분리하지 않은 상태다.</p>
+</li>
+<li>
+<p>그래서 해당 로직을 구분하기 위해 View라는 폴더를 생성하였고, 그 안에 InputView, OutputView를 담았다.</p>
+</li>
+<li>
+<p>[변경 후]</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_2_logic.png" alt=""></p>
+<ul>
+<li>이처럼 비즈니스 로직과 UI 로직을 분리하였다.</li>
+</ul>
+<hr>
+<h3 id="한-함수가-한-가지-기능만-담당">한 함수가 한 가지 기능만 담당</h3>
+<h4 id="예시-1-bridgegame-클래스---init-메서드">예시 1) BridgeGame 클래스 - init() 메서드</h4>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_3_one_function.png" alt=""></p>
+<ul>
+<li>
+<p>위의 init() 메서드는 BridgeGame() 클래스에서 다리 건너기 게임의 초기세팅을 해주는 역할이다.</p>
+</li>
+<li>
+<p>하지만, 메서드 안을 자세히 보면 사용자 입력, 유효값 검증, 그리고 다리를 생성하는 bridgeMaker 클래스를 이용하는 등 여러 일을 하고 있다.</p>
+</li>
+<li>
+<p>그래서 <strong>사용자 입력과 유효값 검증을 (함수)분리</strong>하는 것을 목표를 두고 다음과 같이 분리하였다.</p>
+</li>
+</ul>
+<p>[Application 클래스] - init()</p>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_4_one_function.png" alt=""></p>
+<ul>
+<li>사용자 입력을 받기 위해서 Application 클래스안에 init() 메서드를 새로 생성하였다.</li>
+</ul>
+<p>[BridgeGame 클래스] - init()</p>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_5_one_function.png" alt=""></p>
+<ul>
+<li>유효값 검증과 다리를 생성하기 위해 BridgeGame 클래스 안에 init() 메서드를 위와 같이 코드를 수정했다.</li>
+</ul>
+<h4 id="예시-2-bridgegame-클래스---move-메서드">예시 2) BridgeGame 클래스 - move() 메서드</h4>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_6_one_function.png" alt=""></p>
+<ul>
+<li>
+<p>위의 move() 메서드는 다리 건너기 게임에서 사용자가 칸을 입력할 때마다 결과를 출력해주는 역할이다.</p>
+</li>
+<li>
+<p>move() 메서드 예시(입출력)</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_7_one_function.png" alt=""></p>
+<ul>
+<li>
+<p>하지만, 해당 메서드는 사용자 입력, 유효값 검증, 출력을 하고 있다.</p>
+</li>
+<li>
+<p>그래서 <strong>사용자 입출력과 유효값 검증을 (함수)분리</strong>하기 위해 아래와 같이 코드를 수정했다.</p>
+</li>
+</ul>
+<p>[Application 클래스] - move(), printBridge()</p>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_8_one_function.png" alt=""></p>
+<ul>
+<li>
+<p>Application 클래스 안에 move()와 printBridge()를 새로 생성하였다.</p>
+</li>
+<li>
+<p>해당 move() 메서드는 사용자 입출력을 받고, isRightDirection이라는 boolean 변수를 선언해 BridgeGame 클래스의 move()메서드로부터 값을 받아오는 역할이다.</p>
+</li>
+</ul>
+<p>[Bridge 클래스] - move()</p>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_9_one_function.png" alt=""></p>
+<ul>
+<li>
+<p>Bridge 클래스안에 move() 메서드를 위와 같이 수정했다.</p>
+</li>
+<li>
+<p>해당 move() 메서드는 유효값 검증을 하고, 사용자가 칸을 입력할 때 해당 다리가 정답과 일치여부 값을 가져오기 위해 Bridge 클래스의 isRightDirection()메서드로부터 값을 받아오는 역할이다.</p>
+</li>
+<li>
+<p>이런식으로 <strong>여러 일을 하고 있는 메서드(함수)가 있다면 적절하게 분리</strong>하려고 노력했다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="최종">최종</h2>
+<ul>
+<li>
+<p>기능 요구사항들을 전부 구현한 뒤에 IntelliJ에서 다이어그램을 그려주는 기능을 얼마전에 알게 되었다.</p>
+</li>
+<li>
+<p>해당 기능을 통해 전체 다이어그램을 아래와 같이 나타냈다.(참고로, 해당 다이어그램은 Layout-Orthogonal-Orthogonal Group을 기준으로 만든 다이어그램입니다)</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/woowacourse/4th_bridgeGame_10_class_diagram.png" alt=""></p>
+<ul>
+<li>
+<p>BridgeGame 클래스 다이어그램을 기준으로 구성해보니 머릿속에서 생각하는 것보다 눈으로 쉽게 볼 수 있어서 확실히 이해되기 쉬웠다.</p>
+</li>
+<li>
+<p>(해당 다이어그램을 그리는 방법은 <a href="https://velog.io/@fancy-log/IntelliJ-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8-%EA%B7%B8%EB%A6%AC%EB%8A%94-%EA%B8%B0%EB%8A%A5">IntelliJ - 클래스 다이어그램 그리는 기능</a>에 자세하게 설명했습니다😌)</p>
+</li>
+</ul>
+<hr>
+<h2 id="회고">회고</h2>
+<ul>
+<li>
+<p>이번 4주차 미션의 <code>학습 목표</code>는 <strong>클래스(객체)를 분리하는 연습과 리팩터링</strong>이었습니다.</p>
+</li>
+<li>
+<p>다음 두 가지 학습 목표와 2-3주차 피드백을 바탕으로 4주차 과제인 “다리 건너기” 게임을 구현하려고 노력했습니다.</p>
+</li>
+<li>
+<p><strong>처음에는 기능 목록들을 정리한 이후에, 기능 목록에 있는 순서대로 구현</strong>하였습니다.</p>
+</li>
+<li>
+<p>저는 구현을 완성한 이후에  클래스 분리와 리팩토링을 하였습니다.</p>
+</li>
+<li>
+<p><strong>이번 주차 과제를 하면서 가장 어려웠던 부분이 <code>에러 처리</code>하는 부분과 <code>클래스 분리</code></strong>였습니다.</p>
+</li>
+<li>
+<p><strong><code>에러 처리</code>하는 부분은 “Validate” 클래스</strong>를 생성하여 README.md에 작성해두었던 에러 처리 목록대로 구현하려고 노력했지만, 기능 요구 사항의 의도를 제대로 파악하지 못해서 시간을 오래 잡아먹었습니다.</p>
+</li>
+<li>
+<p>여러 구글링과 자바와 스프링 책을 통해 해당 의도를 파악하였고, 이후에는 버그가 발생하지 않도록 수행하였습니다.</p>
+</li>
+<li>
+<p><strong><code>클래스 분리</code>에서는 과제에서 각각의 클래스의 설명을 해주셨음에도 어떻게 구현해야 할지 막막했습니다.</strong></p>
+</li>
+<li>
+<p>하지만, README.md에 있는 기능 목록대로 구현하면서, 각각의 클래스가 어떤 역할을 하는 지 알게 되었고, 특히 <strong>주석의 중요성</strong>을 다시 알게 되었습니다. 그리고 <strong>각각의 클래스의 역할이 분명하도록 구분하고 구현</strong>하려고 노력하였습니다.</p>
+</li>
+<li>
+<p><strong>리팩터링한 것들 중에서 가장 어려웠던 부분은 과제에 나와있는 “메서드의 길이가 10라인을 넘어가지 않도록 구현한다”</strong> 였습니다. 그래서 최대한 메서드들의 역할을 잘게 쪼개서 구현하려고 했고, 구현 완성된 이후에는 불필요한 메서드나 필드명을 제거해서 깔끔한 코드를 만들려고 노력했습니다.</p>
+</li>
+<li>
+<p>이번 미션를 완수하면서 느낀 점은 함수의 역할이 이전보다 더 명확해서 ‘제 3자가 저의 코드를 봐도 이해할 수 있겠구나’ 라는 생각이 들었습니다. <strong>‘다른 사람이 내 코드를 봐도 충분히 이해할 수 있는 코드를 만드는 것’</strong>이 중요하다는 걸 다시 알게 되었습니다.</p>
+</li>
+<li>
+<p>이번 미션를 통해 <strong>객체 지향 설계 및 좋은 구현</strong>이 무엇인지에 대해 여러 가지를 배우게 해주셔서 감사드립니다.</p>
+</li>
+<li>
+<p>앞으로 남은 시간 동안 이전에 수행했던 미션들을 다시 복습하면서, 피드백에서 전달받은 내용들을 모두 소화시키려고 합니다. 특히 <strong><code>"객체는 객체스럽게 사용한다"</code></strong> 는 부분은 꼭 짚고 넘어가겠습니다.</p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Woowacourse-4th-Mission" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#미션---다리-건너기" data-toc="미션---다리-건너기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">미션 - 다리 건너기</a></li><li><a href="#피드백-반영" data-toc="피드백-반영" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">피드백 반영</a></li><li><a href="#비즈니스-로직과-ui-로직을-분리" data-toc="비즈니스-로직과-ui-로직을-분리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">비즈니스 로직과 UI 로직을 분리</a></li><li><a href="#한-함수가-한-가지-기능만-담당" data-toc="한-함수가-한-가지-기능만-담당" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">한 함수가 한 가지 기능만 담당</a></li><li><a href="#최종" data-toc="최종" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">최종</a></li><li><a href="#회고" data-toc="회고" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">회고</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

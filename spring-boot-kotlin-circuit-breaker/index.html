@@ -1,0 +1,615 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Spring Boot, Kotlin 함수형으로 안전하게 서킷 브레이커 구현하기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/spring-boot-kotlin-circuit-breaker/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Spring Boot, Kotlin 함수형으로 안전하게 서킷 브레이커 구현하기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2025-12-06" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2025-12-06</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 100회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<blockquote>
+<p>이 글에서 다루는 모든 코드는 해당 <a href="https://github.com/devFancy/kotlin-java-playground/tree/main/springboot-kotlin-circuit-breaker">Github</a>을 참고해 주시면 감사하겠습니다.</p>
+</blockquote>
+<p>외부 API 연동 시 주의해야할 점 중 하나는 외부 시스템에 장애가 발생하는 경우입니다.</p>
+<p>외부 시스템의 응답 지연이나 에러가 우리 시스템의 스레드 고갈로 이어지는 것을 방지하고,
+장애 상황에 유연하게 대처하기 위해 서킷 브레이커(Circuit Breaker) 패턴을 사용합니다.</p>
+<p>이번 글에서는 서킷 브레이커의 핵심 개념과 상태 변화, 그리고 Resilience4j를 활용한 구체적인 설정 방법을 정리해 봅니다.</p>
+<p>그리고 이후에 SpringBoot, Kotlin 기반으로 서킷 브레이커를 적용한 경험을 공유하고자 합니다.</p>
+<hr>
+<h2 id="circuitbreaker란">CircuitBreaker란</h2>
+<p><img src="/assets/img/server/technology/circuit-breaker/circuit-breaker-concept-and-apply-springboot-kotlin-1.png" alt=""></p>
+<p><code>CircuitBreaker</code>(서킷 브레이커)는 문제가 발생한 지점을 감지하여 실패하는 요청을 차단하고(Open),
+이를 통해 시스템의 장애 확산을 막고 장애 복구를 도와주는 기능을 제공합니다.</p>
+<p>서킷 브레이커를 지원하는 대표적인 라이브러리는 다음과 같습니다.</p>
+<ul>
+<li>Netflix Hystrix (deprecated)
+<ul>
+<li>MSA 환경에서 서킷 브레이커 패턴을 구현하여 장애 전파를 막고 장애를 감지하고 복구할 수 있는 내결함성을 갖는 오픈소스 라이브러리입니다.</li>
+<li>현재는 개발이 중단되어 유지보수 모드이며, Resilience4j 사용을 권장하고 있습니다.</li>
+</ul>
+</li>
+<li>Resilience4j
+<ul>
+<li>Java 8의 함수형 프로그래밍을 기반으로 설계된 경량화 라이브러리입니다.</li>
+<li>CircuitBreaker 외에도 RateLimiter, Retry, TimeLimiter 등 다양한 코어 모듈을 제공합니다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="슬라이딩-윈도우sliding-window-알고리즘">슬라이딩 윈도우(Sliding Window) 알고리즘</h3>
+<p>서킷 브레이커는 호출 결과를 저장하고 집계하기 위해 슬라이딩 윈도우 알고리즘을 사용합니다.</p>
+<p>Resilience4j는 두 가지 타입을 제공합니다.</p>
+<ul>
+<li>Count-based sliding window (횟수 기반): 마지막 N번의 호출 결과를 집계합니다. (예시. 최근 100번의 요청 중 실패율 계산)</li>
+<li>Time-based sliding window (시간 기반): 마지막 N초 동안의 호출 결과를 집계합니다. (예시. 최근 10초 동안 들어온 요청들의 실패율 계산)</li>
+</ul>
+<h2 id="circuitbreaker의-3가지-상태">CircuitBreaker의 3가지 상태</h2>
+<p>서킷 브레이커는 일반적으로 3가지 상태를 가지며, 이외에 특수 상태로 2가지를 가집니다.</p>
+<p><img src="/assets/img/server/technology/circuit-breaker/circuit-breaker-concept-and-apply-springboot-kotlin-2.png" alt=""></p>
+<ul>
+<li><code>Closed</code> (정상 상태)
+<ul>
+<li>평소 정상적으로 요청을 처리하는 상태입니다.</li>
+<li>실패율이나 느린 응답률이 임계치를 넘으면 <code>Open</code> 상태로 전환되며, 서킷을 끊어버립니다.</li>
+</ul>
+</li>
+<li><code>Open</code> (장애/차단 상태)
+<ul>
+<li>장애가 감지되어 외부 요청을 즉시 차단하는 상태입니다.</li>
+<li>요청 시 CallNotPermittedException 예외를 발생시키거나 Fallback 함수를 실행합니다.</li>
+<li>장애 판단 기준
+<ul>
+<li>Failure Rate: 실패 혹은 오류 응답의 비율.</li>
+<li>Slow Call Rate: 설정한 시간보다 오래 걸린 요청의 비율.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Half_Open</code> (검증 상태)
+<ul>
+<li><code>Open</code> 상태에서 일정 시간이 지난 후, 시스템이 복구되었는지 확인하기 위해 진입하는 상태입니다.</li>
+<li>제한된 횟수의 요청만 허용하여 성공 여부를 확인한 뒤, 다시 <code>Closed</code>나 <code>Open</code>으로 결정합니다.</li>
+</ul>
+</li>
+</ul>
+<p>특수 상태</p>
+<ul>
+<li><code>Disabled</code>: 서킷 브레이커를 비활성화하여 항상 요청을 허용합니다.</li>
+<li><code>Forced_Open</code>: 강제로 서킷을 열어 항상 요청을 거부합니다.</li>
+</ul>
+<h2 id="resilience4j-주요-설정값">Resilience4j 주요 설정값</h2>
+<p>Resilience4j의 <code>CircuitBreakerConfig</code>에서 사용하는 주요 설정값을 상태 전환 흐름에 따라 정리했습니다.</p>
+<h3 id="closed---open">Closed -> Open</h3>
+<p>실패율(Failure Rate) 또는 느린 호출율(Slow Call Rate)이 임계치를 초과할 때 전환됩니다.</p>
+<ul>
+<li>단, <strong>최소한의 호출 횟수</strong>가 쌓여야 계산이 시작됩니다.</li>
+</ul>
+<blockquote>
+<p>관련 설정값에 대해 설명과 기본값을 정리했습니다.</p>
+</blockquote>
+<ul>
+<li>
+<p><code>failureRateThreshold</code></p>
+<ul>
+<li>실패율이 이 설정값(%) 이상이 되면 서킷이 Open 상태로 전환됩니다.</li>
+<li>기본값: 50</li>
+</ul>
+</li>
+<li>
+<p><code>slowCallRateThreshold</code></p>
+<ul>
+<li>느린 호출의 비율이 이 설정값(%) 이상이 되면 서킷이 Open 상태로 전환됩니다.</li>
+<li>기본값: 100</li>
+</ul>
+</li>
+<li>
+<p><code>slowCallDurationThreshold</code></p>
+<ul>
+<li>이 시간(ms)보다 오래 걸리는 호출을 느린 호출(Slow Call)로 간주합니다.</li>
+<li>기본값: 60000 [ms] (60초)</li>
+</ul>
+</li>
+<li>
+<p><code>minimumNumberOfCalls</code></p>
+<ul>
+<li>실패율이나 느린 호출율을 계산하기 위해 필요한 최소한의 호출 횟수입니다.</li>
+<li>이 횟수만큼 데이터가 쌓이기 전에는 서킷이 절대 열리지 않습니다.</li>
+<li>기본값: 100</li>
+</ul>
+</li>
+<li>
+<p><code>slidingWindowType</code></p>
+<ul>
+<li>호출 결과를 집계하는 방식입니다. <code>COUNT_BASED</code>(최근 N회) 또는 <code>TIME_BASED</code>(최근 N초) 중 선택합니다.</li>
+<li>기본값: <code>COUNT_BASED</code></li>
+</ul>
+</li>
+<li>
+<p><code>slidingWindowSize</code></p>
+<ul>
+<li>슬라이딩 윈도우의 크기입니다. <code>COUNT_BASED</code>라면 호출 횟수(N회), <code>TIME_BASED</code>라면 시간(N초)을 의미합니다.</li>
+<li>기본값: 100</li>
+</ul>
+</li>
+</ul>
+<h3 id="open---half_open">Open -> Half_Open</h3>
+<p>Open 상태에서 일정 시간이 지나면 Half_Open 상태로 전환을 시도합니다.</p>
+<ul>
+<li>
+<p><code>waitDurationInOpenState</code></p>
+<ul>
+<li>설명: 서킷이 Open 상태로 진입한 후, Half_Open 상태로 전환되기 전까지 대기하는 시간(ms)입니다.</li>
+<li>기본값: 60000 [ms] (60초)</li>
+</ul>
+</li>
+<li>
+<p><code>automaticTransitionFromOpenToHalfOpenEnabled</code></p>
+<ul>
+<li><code>true</code>로 설정 시, 대기 시간이 지나면 별도의 모니터링 스레드가 자동으로 상태를 Half_Open으로 변경합니다.</li>
+<li><code>false</code>일 경우, 대기 시간이 지난 후 <strong>첫 번째 요청이 들어와야</strong> 상태가 변경됩니다.</li>
+<li>기본값: false</li>
+</ul>
+</li>
+</ul>
+<h3 id="half_open">Half_Open</h3>
+<p>서킷이 열려있던 상태에서, 서비스가 복구되었는지 확인하기 위해 <strong>제한된 횟수의 요청</strong>만 허용합니다.</p>
+<ul>
+<li>
+<p><code>permittedNumberOfCallsInHalfOpenState</code></p>
+<ul>
+<li>Half_Open 상태일 때 허용되는 요청의 횟수입니다.</li>
+<li>이 횟수만큼의 호출 결과를 바탕으로 서킷을 다시 닫을지(Closed) 열지(Open) 결정합니다.</li>
+<li>기본값: 10</li>
+</ul>
+</li>
+<li>
+<p><code>maxWaitDurationInHalfOpenState</code></p>
+<ul>
+<li>Half_Open 상태에서 머무를 수 있는 최대 시간입니다.</li>
+<li>0일 경우: 허용된 횟수(permittedNumberOfCalls)가 다 찰 때까지 무한정 기다립니다.</li>
+<li>0보다 큰 경우: 해당 시간이 지나면 강제로 Open 상태로 전환됩니다.</li>
+<li>기본값: 0</li>
+</ul>
+</li>
+</ul>
+<h3 id="half_open---closed">Half_Open -> Closed</h3>
+<p>Half_Open 상태에서의 집계 결과가 정상 범위(임계치 미만)일 경우 전환됩니다.</p>
+<ul>
+<li>별도의 전용 프로퍼티 없이, 앞서 설정한 <code>failureRateThreshold</code>와 <code>slowCallRateThreshold</code>를 기준으로 판단합니다.</li>
+<li><code>permittedNumberOfCallsInHalfOpenState</code> 만큼의 요청을 수행한 후, <strong>실패율이 임계치보다 낮으면</strong> Closed 상태로 돌아갑니다.</li>
+</ul>
+<h3 id="half_open---open">Half_Open -> Open</h3>
+<p>Half_Open 상태에서의 집계 결과가 여전히 비정상(임계치 이상)일 경우 전환됩니다.</p>
+<ul>
+<li>마찬가지로 <code>failureRateThreshold</code>와 <code>slowCallRateThreshold</code>를 기준으로 판단합니다.</li>
+<li><strong>실패율이 임계치보다 같거나 높으면</strong> 다시 Open 상태로 돌아가며, 다시 <code>waitDurationInOpenState</code> 만큼 대기해야 합니다.</li>
+</ul>
+<h3 id="예외-처리-설정-record--ignore">예외 처리 설정 (Record &#x26; Ignore)</h3>
+<p>모든 예외가 서킷을 열어야 하는 장애는 아닙니다.</p>
+<p>비즈니스 로직상의 예외는 무시하고, 네트워크 에러만 실패로 기록하고 싶을 때 사용합니다.</p>
+<ul>
+<li><code>recordExceptions</code>
+<ul>
+<li>실패로 기록할 예외 클래스들을 지정합니다.</li>
+<li>여기에 지정된 예외(및 그 하위 클래스)가 발생하면 <strong>실패 카운트</strong>가 증가합니다.</li>
+<li>참고: 목록을 명시하면, 여기에 포함되지 않은 다른 예외들은 성공으로 간주됩니다.</li>
+<li>기본값: empty (기본적으로 모든 예외를 실패로 간주하지만, 명시하면 해당 예외만 실패로 봅니다.)</li>
+</ul>
+</li>
+<li><code>ignoreExceptions</code>
+<ul>
+<li>실패나 성공 어느 쪽으로도 기록하지 않고 무시할 예외 클래스들을 지정합니다.</li>
+<li>비즈니스 로직 에러(예: UserNotFoundException) 처리에 유용합니다.</li>
+<li>기본값: empty</li>
+</ul>
+</li>
+<li>우선순위 주의사항
+<ul>
+<li>ignoreExceptions가 recordExceptions보다 우선순위가 높습니다.</li>
+<li>즉, 어떤 예외가 두 설정 목록에 모두 포함되어 있다면, 해당 예외는 <strong>무시</strong>됩니다.</li>
+</ul>
+</li>
+<li><code>recordFailurePredicate</code>
+<ul>
+<li>예외 객체를 인자로 받아 <strong>실패 여부</strong>(true/false)를 반환하는 커스텀 함수를 설정합니다.</li>
+<li>복잡한 예외 판별 로직이 필요할 때 사용합니다.</li>
+<li>기본값: throwable -> true (모든 예외를 실패로 간주)</li>
+</ul>
+</li>
+<li><code>ignoreExceptionPredicate</code>
+<ul>
+<li>예외 객체를 인자로 받아 <strong>무시 여부</strong>(true/false)를 반환하는 커스텀 함수를 설정합니다.</li>
+<li>기본값: throwable -> false (무시하지 않음)</li>
+</ul>
+</li>
+</ul>
+<p>실무에서는 recordExceptions에 IOException, TimeoutException과 같은 명확한 인프라/네트워크 장애만 등록하고, 나머지 예외는 성공으로 처리되도록 하는 방식을 선호합니다.</p>
+<p>이렇게 하면 코드 버그로 인해 서킷이 열려 정상적인 서버가 차단되는 상황을 방지할 수 있습니다.</p>
+<hr>
+<h2 id="spring-boot-kotlin-기반-circuitbreaker-실습해보기">Spring Boot, Kotlin 기반 CircuitBreaker 실습해보기</h2>
+<p>앞서 CircuitBreaker의 개념과 주요 설정값을 알아봤습니다.</p>
+<p>이번에는 Spring Boot, Kotlin 기반으로 이를 실제로 적용한 과정을 공유하고자 합니다.
+(아래부터는 Spring Boot, Kotlin 의 기본적인 문법에 대한 설명은 생략했습니다.)</p>
+<p>먼저 <code>build.gradle.kts</code> 에 서킷 브레이커와 관련하여 의존성을 추가합니다.</p>
+<blockquote>
+<p>build.gradle.kts</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">dependencies</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    implementation</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">    implementation</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"org.springframework.boot:spring-boot-starter-aop"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>spring-boot-starter-aop는 <code>@CircuitBreaker</code> 어노테이션 방식을 사용할 때 프록시(Proxy) 기반으로 동작하기 위해 필수적입니다.</p>
+<p>그런 다음, <code>application.yml</code> 파일에 아래와 같이 Circuit Breaker 설정값을 정의합니다.</p>
+<blockquote>
+<p>application.yml</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#6A737D"># @CircuitBreaker name에 지정된 인스턴스가 없으면 default 설정을 기반으로 생성합니다.</span></span>
+<span class="line"><span style="color:#85E89D">resilience4j</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  circuitbreaker</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">    configs</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">      default</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">        minimum-number-of-calls</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#6A737D">          # 집계에 필요한 최소 호출 수</span></span>
+<span class="line"><span style="color:#85E89D">        sliding-window-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#6A737D">              # CLOSED 상태에서 최근 N회 호출을 기준으로 실패율(failureRateThreshold) 계산</span></span>
+<span class="line"><span style="color:#85E89D">        failure-rate-threshold</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#6A737D">          # 실패 10% 이상 시 OPEN 상태로 전환</span></span>
+<span class="line"><span style="color:#85E89D">        slow-call-duration-threshold</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">500</span><span style="color:#6A737D">   # 500ms 이상 소요 시 실패로 간주</span></span>
+<span class="line"><span style="color:#85E89D">        slow-call-rate-threshold</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#6A737D">        # slowCallDurationThreshold 초과 비율이 10% 이상 시 OPEN 상태로 전환</span></span>
+<span class="line"><span style="color:#85E89D">        wait-duration-in-open-state</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10000</span><span style="color:#6A737D">   # OPEN -> HALF_OPEN 전환 전 대기 시간 (ms)</span></span>
+<span class="line"><span style="color:#85E89D">        permitted-number-of-calls-in-half-open-state</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#6A737D">   # HALF_OPEN -> CLOSE or OPEN 으로 판단하기 위해 허용할 호출 횟수</span></span></code></pre>
+<h2 id="기존-circuitbreaker-방식의-한계">기존 @CircuitBreaker 방식의 한계</h2>
+<p>가장 보편적으로 알려진 방법은 <code>@CircuitBreaker</code> 어노테이션을 사용하는 것입니다.</p>
+<blockquote>
+<p>CircuitAnnotationController.kt</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@RestController</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CircuitAnnotationController</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // fallbackMethod는 본 함수와 파라미터, 반환타입이 일치해야 합니다.</span></span>
+<span class="line"><span style="color:#B392F0">    @CircuitBreaker</span><span style="color:#E1E4E8">(name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "user"</span><span style="color:#E1E4E8">, fallbackMethod </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "failSample"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">    @GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/annotation/user/{id}"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> getSampleUser</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">@PathVariable</span><span style="color:#E1E4E8"> id: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">): </span><span style="color:#B392F0">User</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> list </span><span style="color:#F97583">=</span><span style="color:#B392F0"> listOf</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">            IllegalStateException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"illegalState"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#B392F0">            IllegalArgumentException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"illegalArgument"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">        )</span></span>
+<span class="line"><span style="color:#F97583">        throw</span><span style="color:#E1E4E8"> list.</span><span style="color:#B392F0">random</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // IllegalArgumentException 발생 시 호출</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> fun</span><span style="color:#B392F0"> failSample</span><span style="color:#E1E4E8">(throwable: </span><span style="color:#B392F0">IllegalArgumentException</span><span style="color:#E1E4E8">): </span><span style="color:#B392F0">User</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#B392F0"> User</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"IllegalArgumentException name"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"IllegalArgumentExceptionfail introduce"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // IllegalStateException 발생 시 호출</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> fun</span><span style="color:#B392F0"> failSample</span><span style="color:#E1E4E8">(e: </span><span style="color:#B392F0">IllegalStateException</span><span style="color:#E1E4E8">): </span><span style="color:#B392F0">User</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#B392F0"> User</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"IllegalStateException name"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"IllegalStateExceptionfail introduce"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><code>@CircuitBreaker</code>의 name 속성에 해당하는 설정이 없으면, <code>application.yml</code>의 default 옵션에 있는 값으로 name 속성의 CircuitBreaker가 생성됩니다.</p>
+<p>또한, <code>fallbackMethod</code> 속성에 메서드명을 지정하면 예외가 발생했을 때 지정된 메서드가 대신 실행되어 기본 응답을 내려줄 수 있습니다.</p>
+<p>만약 서킷이 Open 상태로 바뀌어서 차단된 경우, 더 이상 요청은 전달되지 않으면서 Resilience4j는 CallNotPermittedException을 발생시킵니다.</p>
+<p>이 예외 또한 CallNotPermittedException 예외를 받아서 처리하는 failSample 함수를 구현해서 처리할 수도 있습니다.</p>
+<h3 id="어노테이션-방식은-무엇이-문제일까">어노테이션 방식은 무엇이 문제일까?</h3>
+<p>하지만 실무에서 이 방식을 사용하다 보면 몇 가지 문제가 있습니다.</p>
+<ul>
+<li>런타임 에러 위험
+<ul>
+<li>fallbackMethod 이름을 문자열(“failSample”)로 지정하기 때문에, 오타가 나거나 메서드 파라미터, 반환타입이 달라지더라도 컴파일 시점에 알 수 없습니다.</li>
+<li>애플리케이션이 실행되고 나서야 에러를 발견하게 됩니다.</li>
+</ul>
+</li>
+<li>낮은 응집도
+<ul>
+<li>비즈니스 로직과 장애 처리 로직(fallback)이 하나의 클래스 안에 혼재될 수 있습니다.</li>
+<li>이 경우에서 실패하게 되면 어떤 fallback이 실행되는지 찾기 위해 코드를 찾아야 합니다.</li>
+</ul>
+</li>
+<li>구현체 의존성
+<ul>
+<li>서킷이 열렸을 때 발생하는 <code>CallNotPermittedException</code>은 Resilience4j 라이브러리의 고유 예외입니다.</li>
+<li>이를 처리하려면 비즈니스 로직이 특정 라이브러리(Resilience4j)를 알고 있어야 합니다.</li>
+</ul>
+</li>
+<li>같은 클래스의 내부 메서드 호출 불가능
+<ul>
+<li>Spring AOP는 프록시 패턴으로 동작하므로, 같은 클래스 내부의 메서드를 호출(this.method)할 때는 서킷 브레이커가 동작하지 않습니다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="해결-방안-함수형-스타일로-개선하기">해결 방안: 함수형 스타일로 개선하기</h2>
+<p>위의 문제들을 해결하기 위해, Kotlin의 함수형 프로그래밍 스타일을 도입하여 구조를 개선해보겠습니다.</p>
+<h3 id="핵심-인터페이스-및-구현체">핵심 인터페이스 및 구현체</h3>
+<blockquote>
+<p>CircuitBreaker.kt</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">interface</span><span style="color:#B392F0"> CircuitBreaker</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    /**</span></span>
+<span class="line"><span style="color:#6A737D">     * </span><span style="color:#F97583">@param</span><span style="color:#FFAB70"> name</span><span style="color:#6A737D"> 서킷 브레이커 설정 이름 (기본값: "default")</span></span>
+<span class="line"><span style="color:#6A737D">     * </span><span style="color:#F97583">@param</span><span style="color:#FFAB70"> block</span><span style="color:#6A737D"> 서킷 브레이커로 보호하며 실행할 로직</span></span>
+<span class="line"><span style="color:#6A737D">     */</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(name: </span><span style="color:#B392F0">String</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "default"</span><span style="color:#E1E4E8">, block: () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> T): </span><span style="color:#B392F0">Result</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">@Component</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> DefaultCircuitBreaker</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> factory: </span><span style="color:#B392F0">CircuitBreakerFactory</span><span style="color:#E1E4E8">&#x3C;*, *></span></span>
+<span class="line"><span style="color:#E1E4E8">) : </span><span style="color:#B392F0">CircuitBreaker</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> log </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoggerFactory.</span><span style="color:#B392F0">getLogger</span><span style="color:#E1E4E8">(javaClass)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    override</span><span style="color:#F97583"> fun</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        name: </span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        block: () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> T</span></span>
+<span class="line"><span style="color:#E1E4E8">    ): </span><span style="color:#B392F0">Result</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> circuitBreaker </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> factory.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(name)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // runCatching을 사용하여 예외를 던지지 않고 Result 객체로 반환</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> kotlin.</span><span style="color:#B392F0">runCatching</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            circuitBreaker.</span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(block) { e </span><span style="color:#F97583">-></span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">warn</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[CircuitBreaker: </span><span style="color:#79B8FF">$name</span><span style="color:#9ECBFF">] 실행 중 예외 발생: ${e.message}"</span><span style="color:#E1E4E8">, e)</span></span>
+<span class="line"><span style="color:#6A737D">                // 라이브러리 전용 예외를 커스텀 예외로 변환하여 전파</span></span>
+<span class="line"><span style="color:#F97583">                throw</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">convertToCustomException</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위 코드가 수행하는 역할은 다음과 같습니다.</p>
+<ul>
+<li>
+<p><code>DefaultCircuitBreaker</code> 역할</p>
+<ul>
+<li>Spring Cloud에서 제공하는 <code>CircuitBreakerFactory</code>는 create 메서드로 인스턴스를 생성하고,</li>
+<li><code>run</code> 메서드의 첫 번째 인자로 실행할 로직을, 두 번째 인자로 예외 발생 시 처리할 fallback 함수를 전달합니다.</li>
+<li>즉, DefaultCircuitBreaker 클래스는 이러한 복잡한 CircuitBreakerFactory의 사용법을 직접 노출하지 않고, 내부로 캡슐화하여 비즈니스 로직에서 쉽게 사용할 수 있도록 감추는
+역할을 합니다.</li>
+</ul>
+</li>
+<li>
+<p>Result 타입</p>
+<ul>
+<li>Kotlin의 <code>Result&#x3C;T></code> 타입을 사용하여 성공과 실패를 하나의 객체로 캡슐화합니다.</li>
+<li><strong>체이닝이 가능한 이유</strong>
+<ul>
+<li>일반적인 <code>try-catch</code>는 예외가 발생하면 코드의 실행 흐름이 끊기고 catch 블록으로 넘어갑니다.</li>
+<li>반면, Result 타입은 예외가 발생해도 이를 <code>Result.Failure</code> 라는 객체에 담아 반환합니다. 즉, 실패조차도 하나의 값으로 취급하게 됩니다.</li>
+<li>따라서 뒤에 나오는 CircuitUtilController 부분에서 <code>run(...).fallback(...).getOrThrow()</code> 처럼 앞 단계의 결과 여부에 따라 다음 단계로 자연스럽게
+이어질 수 있게 만들 수 있습니다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>convertToCustomException</p>
+<ul>
+<li>Resilience4j의 <code>CallNotPermittedException</code>을 직접 던지지 않고, 제가 정의한 커스텀 예외로 변환합니다.</li>
+<li>이를 통해 비즈니스 로직은 특정 라이브러리에 의존하지 않게 됩니다.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>runCatching 은 왜 사용했나요? - 관련 <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/run-catching.html">코틀린 공식문서</a></p>
+</blockquote>
+<p>runCatching은 Kotlin 1.3부터 도입된 표준 라이브러리 함수로, 예외가 발생할 수 있는 코드를 안전하게 실행하고 그 결과를 <code>Result</code> 객체로 감싸줍니다.</p>
+<p>내부 코드를 살펴보면 아래와 같습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@InlineOnly</span></span>
+<span class="line"><span style="color:#B392F0">@SinceKotlin</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"1.3"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> inline</span><span style="color:#F97583"> fun</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#B392F0">R</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">runCatching</span><span style="color:#E1E4E8">(block: () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> R): </span><span style="color:#B392F0">Result</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">R</span><span style="color:#E1E4E8">> {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#F97583"> try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Result.</span><span style="color:#B392F0">success</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">block</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (e: </span><span style="color:#B392F0">Throwable</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Result.</span><span style="color:#B392F0">failure</span><span style="color:#E1E4E8">(e)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위와 같이 블록 내부에서 발생한 모든 Throwable을 확인해서 <code>Result.failure(e)</code>로 변환해 줍니다.</p>
+<p>또한 <code>inline</code> 함수로 정의되어 있는데, 이는 컴파일 시점에 함수의 내용이 호출 위치에 그대로 복사되는 방식으로 동작합니다.</p>
+<p>따라서 람다 함수 실행을 위해 별도의 객체를 생성하는 메모리 오버헤드가 없으며, 성능 저하 없이 깔끔한 구문을 사용할 수 있습니다.</p>
+<p>추가적으로 Result은 단순한 객체가 아니라 <code>@JvmInline</code> value class로 정의되어 있습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@JvmInline</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> value</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Result</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">out</span><span style="color:#B392F0"> T</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">@PublishedApi</span><span style="color:#F97583"> internal</span><span style="color:#B392F0"> constructor</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#B392F0">    @PublishedApi</span></span>
+<span class="line"><span style="color:#F97583">    internal</span><span style="color:#F97583"> val</span><span style="color:#F97583"> value</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Any</span><span style="color:#E1E4E8">?</span></span>
+<span class="line"><span style="color:#E1E4E8">) : </span><span style="color:#B392F0">Serializable</span></span></code></pre>
+<p>이는 <code>Optional</code> 같은 일반적인 래퍼 클래스와 달리, <strong>런타임에 추가적인 힙 메모리 할당을 최소화한</strong>다는 장점이 있습니다.</p>
+<ul>
+<li>컴파일러가 가능한 경우 래퍼 객체를 생성하지 않고 내부의 값을 직접 사용하도록 최적화합니다.</li>
+<li>덕분에 서킷 브레이커처럼 빈번하게 호출되는 로직에서도 GC 부담을 줄이고 높은 성능을 유지할 수 있습니다.</li>
+</ul>
+<h3 id="유틸리티-확장-함수로-정의하기">유틸리티 확장 함수로 정의하기</h3>
+<p>이제 Result 타입을 더욱 유용하게 다루기 위한 확장 함수를 정의합니다.</p>
+<blockquote>
+<p>CircuitBreakerUtils.kt</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#6A737D">// Result&#x3C;T> 확장 함수: 실패 시 무조건 fallback 실행</span></span>
+<span class="line"><span style="color:#F97583">fun</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">Result</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">T</span><span style="color:#F97583">></span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">fallback</span><span style="color:#E1E4E8">(function: (</span><span style="color:#B392F0">e</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Throwable</span><span style="color:#E1E4E8">?) -> </span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">): </span><span style="color:#B392F0">Result</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">> </span><span style="color:#F97583">=</span><span style="color:#F97583"> when</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.isSuccess) {</span></span>
+<span class="line"><span style="color:#79B8FF">        true</span><span style="color:#F97583"> -></span><span style="color:#79B8FF"> this</span></span>
+<span class="line"><span style="color:#79B8FF">        false</span><span style="color:#F97583"> -></span><span style="color:#E1E4E8"> kotlin.</span><span style="color:#B392F0">runCatching</span><span style="color:#E1E4E8"> { </span><span style="color:#B392F0">function</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">exceptionOrNull</span><span style="color:#E1E4E8">()) }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// NOTE: Result&#x3C;T> 확장 함수: 서킷이 열린 경우(CircuitOpenException)에만 fallback 실행</span></span>
+<span class="line"><span style="color:#F97583">fun</span><span style="color:#E1E4E8"> &#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">Result</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">T</span><span style="color:#F97583">></span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">fallbackIfOpen</span><span style="color:#E1E4E8">(function: (</span><span style="color:#B392F0">e</span><span style="color:#E1E4E8">: </span><span style="color:#B392F0">Throwable</span><span style="color:#E1E4E8">?) -> </span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">): </span><span style="color:#B392F0">Result</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">T</span><span style="color:#E1E4E8">> </span><span style="color:#F97583">=</span><span style="color:#F97583"> when</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">exceptionOrNull</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#F97583">    is</span><span style="color:#E1E4E8"> CircuitOpenException </span><span style="color:#F97583">-></span><span style="color:#B392F0"> runCatching</span><span style="color:#E1E4E8"> { </span><span style="color:#B392F0">function</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">exceptionOrNull</span><span style="color:#E1E4E8">()) }</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#F97583"> -></span><span style="color:#79B8FF"> this</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// NOTE: Resilience4j 예외를 커스텀 예외로 변환</span></span>
+<span class="line"><span style="color:#F97583">fun</span><span style="color:#B392F0"> Throwable</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">convertToCustomException</span><span style="color:#E1E4E8">(): </span><span style="color:#B392F0">Throwable</span><span style="color:#F97583"> =</span><span style="color:#F97583"> when</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    is</span><span style="color:#E1E4E8"> CallNotPermittedException </span><span style="color:#F97583">-></span><span style="color:#B392F0"> CircuitOpenException</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">    else</span><span style="color:#F97583"> -></span><span style="color:#79B8FF"> this</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CircuitOpenException</span><span style="color:#E1E4E8">(message: </span><span style="color:#B392F0">String</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "Circuit breaker is open"</span><span style="color:#E1E4E8">) : </span><span style="color:#B392F0">RuntimeException</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">message</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<ul>
+<li>
+<p>fallback: 어떤 예외든 실패했다면 전달받은 지정된 로직을 실행하여 Result로 감싸서 응답합니다.</p>
+</li>
+<li>
+<p>fallbackIfOpen: 일반적인 런타임 에러는 그대로 두고, <strong>서킷이 열려서 차단된 경우</strong>에만 전달받은 지정된 로직을 실행하여 Result로 감싸서 응답합니다.</p>
+</li>
+<li>
+<p>convertToCustomException: 앞서 <code>DefaultCircuitBreaker</code> 클래스 정의 부분에서 설명한 <code>CallNotPermittedException</code> 예외를 커스텀
+예외(<code>CustomException</code>)로 변경하는 함수입니다.</p>
+</li>
+<li>
+<p>CircuitOpenException: 라이브러리 종속적인 예외(CallNotPermittedException)를 대신할 커스텀 예외입니다.</p>
+</li>
+</ul>
+<h3 id="개선된-controller">개선된 Controller</h3>
+<p>최종적으로 아래와 같이 Controller 클래스를 개선할 수 있습니다.</p>
+<blockquote>
+<p>CircuitUtilController.kt</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#B392F0">@RestController</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CircuitUtilController</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> circuitBreaker: </span><span style="color:#B392F0">CircuitBreaker</span></span>
+<span class="line"><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    @GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/util/users/fallback"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> getFallbackSampleUser</span><span style="color:#E1E4E8">(): </span><span style="color:#B392F0">User</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> circuitBreaker.</span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"fallback-user"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#B392F0"> RuntimeException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"runtime"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        }.</span><span style="color:#B392F0">fallback</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            User</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Fallback name"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Fallback introduce"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        }.</span><span style="color:#B392F0">getOrThrow</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    @GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/util/users/open"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> getFallbackOpenSampleUser</span><span style="color:#E1E4E8">(): </span><span style="color:#B392F0">User</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> circuitBreaker.</span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"fallback-open-user"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#B392F0"> RuntimeException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"runtime"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        }.</span><span style="color:#B392F0">fallbackIfOpen</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">            User</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Fallback Open Default name"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Fallback Open Default introduce"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        }.</span><span style="color:#B392F0">getOrThrow</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>코드가 실행(run) -> 실패 시 대처(fallback) -> 값 추출(getOrThrow) 의 형태로 읽히므로 전보다 가독성이 높아지고 의도가 명확해졌습니다.</p>
+<p>참고로, 위 코드에서 <code>circuitBreaker.run("name") { ... }</code> 를 보면, 실행할 로직이 담긴 중괄호가 소괄호 밖에 나와있는 것을 볼 수 있습니다.</p>
+<ul>
+<li>이는 Kotlin의 후행 람다 문법을 이용한 것입니다.
+<ul>
+<li>함수의 마지막 매개변수가 람다인 경우, 해당 람다식을 소괄호 바깥으로 뺄 수 있습니다.</li>
+<li>즉, circuitBreaker.run(“name”, { … }) 라고 써야 할 것을, 후행 람다 덕분에 더 직관적으로 표현한 것입니다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="테스트로-검증해보기">테스트로 검증해보기</h2>
+<p>마지막으로, 제가 만든 구조가 의도대로 동작하는지 검증해보겠습니다.</p>
+<p>Mockk를 사용하여 간단하게 단위 테스트를 작성할 수 있습니다.</p>
+<blockquote>
+<p>CircuitUtilControllerTest.kt</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CircuitUtilControllerTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> circuitBreaker: </span><span style="color:#B392F0">CircuitBreaker</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> mockk</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> val</span><span style="color:#E1E4E8"> controller </span><span style="color:#F97583">=</span><span style="color:#B392F0"> CircuitUtilController</span><span style="color:#E1E4E8">(circuitBreaker)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    @Test</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> `Controller는 CircuitBreaker가 실패해도 fallback 값을 반환한다`</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"><span style="color:#6A737D">        // execute가 호출되면 무조건 실패(Result.failure)를 반환하도록 설정</span></span>
+<span class="line"><span style="color:#B392F0">        every</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            circuitBreaker.</span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">Any</span><span style="color:#E1E4E8">>(</span><span style="color:#B392F0">any</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">any</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">        } returns Result.</span><span style="color:#B392F0">failure</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">RuntimeException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Error"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> user </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> controller.</span><span style="color:#B392F0">getFallbackSampleUser</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(user.name).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Fallback name"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><img src="/assets/img/server/technology/circuit-breaker/circuit-breaker-concept-and-apply-springboot-kotlin-3.png" alt=""></p>
+<blockquote>
+<p>CircuitBreakerUtilsTest.kt</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CircuitBreakerUtilsTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    @Test</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> `fallback은 실패 시 대체 값을 반환한다`</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> failureResult </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Result.</span><span style="color:#B392F0">failure</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">>(</span><span style="color:#B392F0">RuntimeException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Error"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> failureResult.</span><span style="color:#B392F0">fallback</span><span style="color:#E1E4E8"> { </span><span style="color:#9ECBFF">"Recovered"</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(result.</span><span style="color:#B392F0">getOrNull</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Recovered"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    @Test</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> `fallbackIfOpen은 CircuitOpenException일 때만 대체 값을 반환한다`</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given: 서킷 오픈 예외 발생</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> circuitOpenResult </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Result.</span><span style="color:#B392F0">failure</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">>(</span><span style="color:#B392F0">CircuitOpenException</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> circuitOpenResult.</span><span style="color:#B392F0">fallbackIfOpen</span><span style="color:#E1E4E8"> { </span><span style="color:#9ECBFF">"Recovered from Open"</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(result.</span><span style="color:#B392F0">getOrNull</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Recovered from Open"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    @Test</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> `fallbackIfOpen은 일반 예외일 때는 무시하고 에러를 유지한다`</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given: 일반 런타임 예외</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> runtimeError </span><span style="color:#F97583">=</span><span style="color:#B392F0"> RuntimeException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"General Error"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> failureResult </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Result.</span><span style="color:#B392F0">failure</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">String</span><span style="color:#E1E4E8">>(runtimeError)</span></span>
+<span class="line"><span style="color:#F97583">        var</span><span style="color:#E1E4E8"> isFallbackExecuted </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> failureResult.</span><span style="color:#B392F0">fallbackIfOpen</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            isFallbackExecuted </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span></span>
+<span class="line"><span style="color:#9ECBFF">            "Should not happen"</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#6A737D">        // 결과가 여전히 실패인지 확인</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(result.isFailure).</span><span style="color:#B392F0">isTrue</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(result.</span><span style="color:#B392F0">exceptionOrNull</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(runtimeError)</span></span>
+<span class="line"><span style="color:#6A737D">        // fallback 블록 내부가 실행되지 않았는지 확인</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(isFallbackExecuted).</span><span style="color:#B392F0">isFalse</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    @Test</span></span>
+<span class="line"><span style="color:#F97583">    fun</span><span style="color:#B392F0"> `Resilience4j 예외가 커스텀 예외로 잘 변환된다`</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> r4jException </span><span style="color:#F97583">=</span><span style="color:#B392F0"> mockk</span><span style="color:#E1E4E8">&#x3C;</span><span style="color:#B392F0">CallNotPermittedException</span><span style="color:#E1E4E8">>()</span></span>
+<span class="line"><span style="color:#B392F0">        every</span><span style="color:#E1E4E8"> { r4jException.</span><span style="color:#B392F0">fillInStackTrace</span><span style="color:#E1E4E8">() } returns r4jException</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        val</span><span style="color:#E1E4E8"> converted </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> r4jException.</span><span style="color:#B392F0">convertToCustomException</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(converted).</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(CircuitOpenException::</span><span style="color:#B392F0">class</span><span style="color:#E1E4E8">.java)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><img src="/assets/img/server/technology/circuit-breaker/circuit-breaker-concept-and-apply-springboot-kotlin-4.png" alt=""></p>
+<h2 id="마무리하기">마무리하기</h2>
+<p>지금까지 외부 API 연동 시 발생할 수 있는 장애에 유연하게 대처하기 위해 서킷 브레이커 패턴을 도입하는 과정을 정리했습니다.</p>
+<p>우선 Resilience4j의 핵심 개념과 상태, 그리고 다양한 설정값들이 실제로 어떻게 동작하는지 살펴봤습니다.</p>
+<p>단순히 라이브러리를 적용하는 것에 그치지 않고, 기존 @CircuitBreaker 어노테이션 방식이 가진 한계점을 분석하고 이를 해결하는 과정을 공유했습니다.</p>
+<p>그 결과, Spring Boot와 Kotlin 환경에서 runCatching과 Result 패턴, 그리고 확장 함수를 활용해서 함수형 스타일로 서킷 브레이커 구조를 개선했습니다.</p>
+<p>이 과정을 통해 얻은 이점들을 정리한 결과 아래와 같습니다.</p>
+<ul>
+<li>문자열 기반의 설정에서 코드로 제어해서 컴파일 타임의 안정성을 확보했습니다.</li>
+<li>비즈니스 로직과 장애 복구 로직을 파이프라인 형태로 연결해서 가독성과 응집도를 높였습니다.</li>
+<li>inline 함수를 통한 성능 최적화와 Result 타입의 value class의 메모리 효율성에 대해서도 다시 한번 이해하게 되었습니다.</li>
+</ul>
+<p>물론, 코드를 개선했다고 끝은 아닙니다. 실무에서는 서킷 브레이커의 설정값에 대한 튜닝이 중요합니다.</p>
+<p>본문에서 다룬 임계치나 슬라이딩 윈도우 크기는 예시일 뿐이며,
+실제 운영 환경에서는 서비스의 트래픽 패턴, 외부 시스템의 응답 속도, 장애 허용 범위와 같은 내부 정책에 맞춰
+지속적인 모니터링과 튜닝이 동반되어야 한다고 생각합니다.</p>
+<p>이번 글이 안정적인 서비스를 고민하는 분들께, 그리고 더 나은 코드를 작성하기 위해 고민하는 분들께 작은 도움이 되길 바라며 글을 마치겠습니다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://resilience4j.readme.io/docs/circuitbreaker">[공식문서] CircuitBreaker</a></li>
+<li><a href="https://spring.io/projects/spring-cloud-circuitbreaker#overview">[공식문서] Spring Cloud Circuit Breaker</a></li>
+<li><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/run-catching.html">[공식문서] Kotlin - runCatching</a></li>
+<li><a href="https://techblog.woowahan.com/15694/">[우아한형제들] 개발자 의식의 흐름대로 적용해보는 서킷브레이커</a> - 2024.01.11</li>
+<li><a href="https://www.youtube.com/watch?v=ThLfHtoEe1I">[당근테크] 서킷브레이커 사용 방식 개선하기 - 당근 SERVER 밋업 2회</a> - 2023.11.23</li>
+<li><a href="https://oliveyoung.tech/2023-08-31/circuitbreaker-inventory-squad/">[올리브영] Circuitbreaker를 사용한 장애 전파 방지</a> - 2023.08.31</li>
+<li><a href="https://backtony.tistory.com/83">[개인 블로그] Spring - CircuitBreaker</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="spring-boot-kotlin-circuit-breaker" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#circuitbreaker란" data-toc="circuitbreaker란" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">CircuitBreaker란</a></li><li><a href="#슬라이딩-윈도우sliding-window-알고리즘" data-toc="슬라이딩-윈도우sliding-window-알고리즘" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">슬라이딩 윈도우(Sliding Window) 알고리즘</a></li><li><a href="#circuitbreaker의-3가지-상태" data-toc="circuitbreaker의-3가지-상태" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">CircuitBreaker의 3가지 상태</a></li><li><a href="#resilience4j-주요-설정값" data-toc="resilience4j-주요-설정값" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Resilience4j 주요 설정값</a></li><li><a href="#closed---open" data-toc="closed---open" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Closed -&gt; Open</a></li><li><a href="#open---half_open" data-toc="open---half_open" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Open -&gt; Half_Open</a></li><li><a href="#half_open" data-toc="half_open" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Half_Open</a></li><li><a href="#half_open---closed" data-toc="half_open---closed" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Half_Open -&gt; Closed</a></li><li><a href="#half_open---open" data-toc="half_open---open" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Half_Open -&gt; Open</a></li><li><a href="#예외-처리-설정-record--ignore" data-toc="예외-처리-설정-record--ignore" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">예외 처리 설정 (Record &amp; Ignore)</a></li><li><a href="#spring-boot-kotlin-기반-circuitbreaker-실습해보기" data-toc="spring-boot-kotlin-기반-circuitbreaker-실습해보기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Spring Boot, Kotlin 기반 CircuitBreaker 실습해보기</a></li><li><a href="#기존-circuitbreaker-방식의-한계" data-toc="기존-circuitbreaker-방식의-한계" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">기존 @CircuitBreaker 방식의 한계</a></li><li><a href="#어노테이션-방식은-무엇이-문제일까" data-toc="어노테이션-방식은-무엇이-문제일까" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">어노테이션 방식은 무엇이 문제일까?</a></li><li><a href="#해결-방안-함수형-스타일로-개선하기" data-toc="해결-방안-함수형-스타일로-개선하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">해결 방안: 함수형 스타일로 개선하기</a></li><li><a href="#핵심-인터페이스-및-구현체" data-toc="핵심-인터페이스-및-구현체" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">핵심 인터페이스 및 구현체</a></li><li><a href="#유틸리티-확장-함수로-정의하기" data-toc="유틸리티-확장-함수로-정의하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">유틸리티 확장 함수로 정의하기</a></li><li><a href="#개선된-controller" data-toc="개선된-controller" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">개선된 Controller</a></li><li><a href="#테스트로-검증해보기" data-toc="테스트로-검증해보기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">테스트로 검증해보기</a></li><li><a href="#마무리하기" data-toc="마무리하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">마무리하기</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

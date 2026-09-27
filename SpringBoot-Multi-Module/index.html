@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Kotlin, SpringBoot 기반으로 멀티 모듈 설계와 적용하기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/SpringBoot-Multi-Module/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Kotlin, SpringBoot 기반으로 멀티 모듈 설계와 적용하기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2024-12-14" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2024-12-14</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 154회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 필자 개인의 생각이 담긴 글이며, 틀린 내용이 있다면 언제든 말씀해 주세요 🙂</p>
+</blockquote>
+<h2 id="prologue">Prologue</h2>
+<ul>
+<li>
+<p>IT 회사에서는 서비스 규모가 커질수록 필요한 소프트웨어의 복잡도 역시 증가한다. 특히 단일 모듈로 시작한 프로젝트는 서비스 규모가 커짐에 따라 여러 한계를 드러낼 수밖에 없다.</p>
+</li>
+<li>
+<p>내 경험에 비추어 보면 이런 상황에서는 멀티 모듈 구성이 효과적인 해결책이 될 수 있다.</p>
+</li>
+<li>
+<p>B2C 서비스의 경우, 사용자가 많아질수록 늘어나는 트래픽을 감당하기 위해 멀티 모듈 구성이 필요하다.</p>
+<ul>
+<li>
+<p>트래픽뿐만 아니라 새로운 기술을 적용하기 위해서도 모듈을 분리하면 기존 기술을 손쉽게 대체할 수 있다.</p>
+</li>
+<li>
+<p>또한, 도메인이 점점 세분화되고 코드량이 증가함에 따라 모듈을 분리해 과도한 역할과 책임을 방지할 수 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>B2B 솔루션에서는 고객사의 다양한 요구를 충족하기 위해 멀티 모듈 구성이 유용하다.</p>
+<ul>
+<li>예를 들어, 고객사 A에게는 어드민 기능이 필요 없는 경우 어드민 전용 모듈을 제외하고 배포할 수 있다. 반대로, 고객사 B에게는 어드민과 모니터링 기능이 모두 필요한 경우 두 모듈을 조합해 제공할 수 있다.</li>
+</ul>
+</li>
+<li>
+<p>위와 같은 경험이 없더라도 왜 멀티 모듈을 공부해야 하는지 곰곰히 생각해 본 결과, 아래와 같이 정리했다.</p>
+<ul>
+<li>
+<p>회사에 투입되기 이전부터 프로젝트가 멀티 모듈로 구성되어 있는 경우.</p>
+</li>
+<li>
+<p>현재 프로젝트가 단일 모듈로 관리하기 어려울 정도로 서비스 규모가 커진 경우.</p>
+</li>
+<li>
+<p>멀티 모듈이 무엇인지 제대로 알고 싶고, 실제로 설계와 적용 과정을 통해 그 장점을 직접 체감하고 싶은 경우.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>필자는 위 세 가지 중 일부가 겹치긴 하지만, 마지막 세 번째 이유가 가장 와닿아 이 글을 작성하게 되었다.</p>
+</li>
+<li>
+<p>이번 글에서는 멀티 모듈이 무엇인지 개념을 살펴보고, 실제로 제가 어떻게 적용했는지, 그리고 그 결과 어떤 장단점이 있었는지 정리해보고자 한다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="multi-module-구상하기">Multi Module 구상하기</h2>
+<blockquote>
+<p><code>모듈</code>은 여러 가지로 정의될 수 있지만, 일반적으로 큰 체계의 구성 요소이고, 다른 구성요소와 독립적으로 운영된다. - wikipedia -</p>
+</blockquote>
+<ul>
+<li>
+<p>모듈에 대한 공통적인 특징을 정리하면 다음과 같다.</p>
+<ul>
+<li>
+<p>모듈은 독립적인 의미를 갖는다.</p>
+</li>
+<li>
+<p>모듈은 어떠한 추상화 정도에 대한 계층을 가지고 있다.</p>
+</li>
+<li>
+<p>계층 간 의존 관계에 대한 규칙이 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>이러한 특징을 기반으로 시스템 설계를 고민하며 오픈소스 코드, 기술 블로그, 영상 등을 참고했다.</p>
+</li>
+<li>
+<p>참고한 자료마다 멀티 모듈에 대한 세부적인 내용은 다르므로, 본인이 속한 회사에 적합한 설계를 하는 것이 중요하다.</p>
+</li>
+<li>
+<p>그 중 개인적으로 공감이 되었던 <a href="https://github.com/team-dodn/spring-boot-kotlin-template">spring-boot-kotlin-template</a> 코드와 <a href="https://www.youtube.com/watch?v=PdofVTuM-tE&#x26;list=PL8RgHPKtjlBh-LU_yUxFfIq_flizPm_vZ">SpringBoot + Kotlin 멀티 모듈 구성</a> 영상을 기반으로 아래와 같이 멀티 모듈을 구상했다.</p>
+<ul>
+<li>
+<p>Core-Api 모듈</p>
+</li>
+<li>
+<p>Domain 모듈</p>
+</li>
+<li>
+<p>Storage 모듈</p>
+</li>
+<li>
+<p>Support 모듈</p>
+</li>
+</ul>
+</li>
+<li>
+<p>위의 4가지 모듈을 정의함으로써 각 모듈의 역할과 책임을 명확히 구분할 수 있고, 의존 관계를 최소화하여 지속적으로 성장 가능한 프로젝트를 만들 수 있다.</p>
+</li>
+<li>
+<p>이제 각 모듈이 어떤 의미를 가지는지 하나씩 살펴보고자 한다.</p>
+</li>
+</ul>
+<h3 id="core-api-모듈">Core-Api 모듈</h3>
+<ul>
+<li><code>Core-Api</code> 모듈은 프로젝트 내에서 유일하게 실행 가능한 모듈로, API 관련 로직을 담당한다.</li>
+</ul>
+<h3 id="domain-모듈">Domain 모듈</h3>
+<ul>
+<li><code>Domain</code> 모듈은 도메인 모델과 비즈니스 로직을 관리하며, 핵심 기능을 담당한다.</li>
+</ul>
+<h3 id="storage-모듈">Storage 모듈</h3>
+<ul>
+<li><code>Storage</code> 모듈은 서브 모듈로써 데이터베이스 관련 작업과 통합을 담당한다.</li>
+</ul>
+<h4 id="storagedb-core">storage:db-core</h4>
+<ul>
+<li>Storage 모듈에 있는 <code>db-core</code> 모듈은 Spring Data JPA를 사용하여 데이터베이스와의 상호작용을 담당한다. (데이터베이스의 경우, 예제 코드에는 H2로 되어있지만, 실제 프로젝트에 맞는 DB로 변경한다)</li>
+</ul>
+<h3 id="support-모듈">Support 모듈</h3>
+<p><code>Support</code> 모듈은 서브 모듈로써 로깅 및 모니터링 같은 보조 기능을 담당한다.</p>
+<h4 id="supportlogging">support:logging</h4>
+<ul>
+<li>Support 모듈에 있는 <code>logging</code> 은 애플리케이션의 로깅을 관리하며 다양한 로킹 프레임 워크와의 통합을 지원한다.</li>
+</ul>
+<h4 id="supportmonitoring">support:monitoring</h4>
+<ul>
+<li>Support 모듈에 있는 <code>monitoring</code> 모듈은 서비스의 성능 개선을 위한 모니터링 기능을 제공한다.</li>
+</ul>
+<h2 id="source-code-실전">Source Code (실전)</h2>
+<ul>
+<li>
+<p>위에서 살펴본 4가지 모듈을 그려본 결과, 아래와 같다.</p>
+</li>
+<li>
+<p>아래 그림은 멀티 모듈 프로젝트의 Gradle 의존성 구조를 나타낸다. 화살표는 의존 방향을 의미하며, 각 모듈의 역할과 책임에 따라 설계된 관계를 보여준다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/springboot/springboot-multi-module.png" alt=""></p>
+<ul>
+<li>위의 그림을 바탕으로 Kotlin 1.6.21, Spring Boot 2.7.1 기반으로 실제 프로젝트를 구성해보았다.</li>
+</ul>
+<blockquote>
+<p>실제 프로젝트에 대한 코드가 궁금하다면 <a href="https://github.com/devFancy/kotlin-springboot-multi-module">[Github] kotlin-springboot-multi-module</a> 에서 확인한다.</p>
+</blockquote>
+<p><img src="/assets/img/server/springboot/springboot-multi-module-intelliJ.png" alt=""></p>
+<h3 id="프로젝트-설정-파일">프로젝트 설정 파일</h3>
+<ul>
+<li>
+<p>각 모듈을 살펴보기 전에, 최상위 모듈에 있는 3가지 파일에 대해 정리했다.</p>
+</li>
+<li>
+<p>아래의 3개 파일은 멀티 모듈 프로젝트의 효율적인 관리와 일관성을 유지하는 데 핵심적인 역할을 한다.</p>
+</li>
+</ul>
+<blockquote>
+<p>자세한 내용은 Gradle <a href="https://docs.gradle.org/current/userguide/intro_multi_project_builds.html">공식문서</a>를 참고한다. (주로 참고할 부분 - Learning the Basics : 2번 ~ 5번)</p>
+</blockquote>
+<blockquote>
+<p>gradle.properties</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="properties"><code><span class="line"><span style="color:#6A737D">### Application version ###</span></span>
+<span class="line"><span style="color:#F97583">applicationVersion</span><span style="color:#E1E4E8">=0.0.1</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">### Project configs ###</span></span>
+<span class="line"><span style="color:#F97583">projectGroup</span><span style="color:#E1E4E8">=demo</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">### Project dependency versions ###</span></span>
+<span class="line"><span style="color:#F97583">kotlinVersion</span><span style="color:#E1E4E8">=1.6.21</span></span>
+<span class="line"><span style="color:#F97583">javaVersion</span><span style="color:#E1E4E8">=11</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">### Spring dependency versions ###</span></span>
+<span class="line"><span style="color:#F97583">springBootVersion</span><span style="color:#E1E4E8">=2.7.1</span></span>
+<span class="line"><span style="color:#F97583">springDependencyManagementVersion</span><span style="color:#E1E4E8">=1.0.11.RELEASE</span></span>
+<span class="line"><span style="color:#F97583">springCloudDependenciesVersion</span><span style="color:#E1E4E8">=2021.0.3</span></span></code></pre>
+<ul>
+<li>
+<p>위와 같이 <code>gradle.properties</code> 은 프로젝트 전역에서 사용할 <strong>설정값</strong>과 <strong>의존성 버전</strong>을 정의한다. 이를 통해 모든 모듈이 공통된 설정과 버전을 참조하도록 일관성을 유지한다.</p>
+<ul>
+<li><code>applicationVersion</code>, <code>projectGroup</code> 등 프로젝트 메타 정보를 정의한다.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>settings.gradle.kts</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#E1E4E8">rootProject.name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "kotlin-springboot-multi-module"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">include</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">  "core-api"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">  "support:monitoring"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">  "support:logging"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">  "storage:db-core"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">  "domain"</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">pluginManagement</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  val</span><span style="color:#E1E4E8"> kotlinVersion: </span><span style="color:#B392F0">String</span><span style="color:#B392F0"> by</span><span style="color:#B392F0"> settings</span></span>
+<span class="line"><span style="color:#F97583">  val</span><span style="color:#E1E4E8"> springBootVersion: </span><span style="color:#B392F0">String</span><span style="color:#B392F0"> by</span><span style="color:#B392F0"> settings</span></span>
+<span class="line"><span style="color:#F97583">  val</span><span style="color:#E1E4E8"> springDependencyManagementVersion: </span><span style="color:#B392F0">String</span><span style="color:#B392F0"> by</span><span style="color:#B392F0"> settings</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">  resolutionStrategy</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    eachPlugin</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">      when</span><span style="color:#E1E4E8">(requested.id.id) {</span></span>
+<span class="line"><span style="color:#9ECBFF">        "org.jetbrains.kotlin.jvm"</span><span style="color:#F97583"> -></span><span style="color:#B392F0"> useVersion</span><span style="color:#E1E4E8">(kotlinVersion)</span></span>
+<span class="line"><span style="color:#9ECBFF">        "org.jetbrains.kotlin.plugin.spring"</span><span style="color:#F97583"> -></span><span style="color:#B392F0"> useVersion</span><span style="color:#E1E4E8">(kotlinVersion)</span></span>
+<span class="line"><span style="color:#9ECBFF">        "org.springframework.boot"</span><span style="color:#F97583"> -></span><span style="color:#B392F0"> useVersion</span><span style="color:#E1E4E8">(springBootVersion)</span></span>
+<span class="line"><span style="color:#9ECBFF">        "io.spring.dependency-management"</span><span style="color:#F97583"> -></span><span style="color:#B392F0"> useVersion</span><span style="color:#E1E4E8">(springDependencyManagementVersion)</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>위와 같이 <code>settings.gradle.kts</code> 은 프로젝트의 루트 및 서브 모듈 관계를 명확히 정의하여 <strong>멀티 모듈의 구조와 의존성 관리</strong>를 담당한다. Gradle 플러그인 초기화 및 관리 전략을 설정한다.</p>
+</li>
+<li>
+<p>주요 구성 요소를 정리하면 아래와 같다.</p>
+</li>
+<li>
+<p><code>rootProject.name</code> : 프로젝트의 루트 이름을 정의한다. 멀티 모듈 프로젝트의 최상위 프로젝트 이름을 설정하며, 빌드 환경에서 이 이름으로 인식된다.</p>
+</li>
+<li>
+<p><code>include(...)</code> : 멀티 모듈 프로젝트에서 사용할 서브 프로젝트를 정의한다. 각 모듈은 프로젝트 내에서 고유한 역할을 담당하며, 계층 구조를 설정할 수 있다.</p>
+<ul>
+<li>
+<p><code>core-api</code> : API 관련 로직을 담당하는 모듈</p>
+</li>
+<li>
+<p><code>support:~</code> : 서브 모듈로서 로깅과 모니터링을 담당하는 모듈</p>
+</li>
+<li>
+<p><code>storage:~</code> : 데이터베이스 관련 작업을 담당하는 모듈</p>
+</li>
+<li>
+<p><code>domain</code> : 비즈니스 로직 및 도메인 모듈을 담당하는 모듈</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>pluginManagement</code> : Gradle에서 사용하는 플러그인의 초기화 및 버전 관리 담당하며, 프로젝트에서 필요한 플로그인 버전을 한곳에 설정함으로써 관리 면에서 일관성을 유지할 수 있다.</p>
+<ul>
+<li><code>resolutionStrategy</code> : 요청된 플러그인의 ID에 따라 사전에 정의된 버전을 동적으로 할당하며, 플러그인 간 버전 충돌을 방지한다.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>build.gradle.kts</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="kotlin"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#B392F0"> org.jetbrains.kotlin.gradle.tasks.KotlinCompile</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">plugins</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    kotlin</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"jvm"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">    kotlin</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"plugin.spring"</span><span style="color:#E1E4E8">) apply </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#B392F0">    id</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"org.springframework.boot"</span><span style="color:#E1E4E8">) apply </span><span style="color:#79B8FF">false</span></span>
+<span class="line"><span style="color:#B392F0">    id</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"io.spring.dependency-management"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">java</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    sourceCompatibility </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> JavaVersion.VERSION_11</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> projectGroup: </span><span style="color:#B392F0">String</span><span style="color:#B392F0"> by</span><span style="color:#B392F0"> project</span></span>
+<span class="line"><span style="color:#F97583">val</span><span style="color:#E1E4E8"> applicationVersion: </span><span style="color:#B392F0">String</span><span style="color:#B392F0"> by</span><span style="color:#B392F0"> project</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">allprojects</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    group </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> projectGroup</span></span>
+<span class="line"><span style="color:#E1E4E8">    version </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> applicationVersion</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    repositories</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">        mavenCentral</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">subprojects</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    dependencies</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">        apply</span><span style="color:#E1E4E8">(plugin </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "org.jetbrains.kotlin.jvm"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">        apply</span><span style="color:#E1E4E8">(plugin </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "org.jetbrains.kotlin.plugin.spring"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">        apply</span><span style="color:#E1E4E8">(plugin </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "org.springframework.boot"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">        apply</span><span style="color:#E1E4E8">(plugin </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "io.spring.dependency-management"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">        dependencyManagement</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            val</span><span style="color:#E1E4E8"> springCloudDependenciesVersion: </span><span style="color:#B392F0">String</span><span style="color:#B392F0"> by</span><span style="color:#B392F0"> project</span></span>
+<span class="line"><span style="color:#B392F0">            imports</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">                mavenBom</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"org.springframework.cloud:spring-cloud-dependencies:${springCloudDependenciesVersion}"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">        implementation</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"com.fasterxml.jackson.module:jackson-module-kotlin"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">        implementation</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"org.jetbrains.kotlin:kotlin-reflect"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">        testImplementation</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"org.springframework.boot:spring-boot-starter-test"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    tasks.</span><span style="color:#B392F0">getByName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"bootJar"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        enabled </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    tasks.</span><span style="color:#B392F0">getByName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"jar"</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        enabled </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>build.gradle.kts</code> 은 멀티 프로젝트의 최상위 <strong>빌드 설정</strong>을 관리하며, 공통된 플러그인, 의존성, 버전 관리 및 버스 모듈 설정을 정의한다. 서브 모듈에 적용할 공통 로직과 의존성 관리도 포함된다.</p>
+</li>
+<li>
+<p>주요 구성 요소를 정리하면 아래와 같다.</p>
+<ul>
+<li>
+<p><code>plugins</code> : 프로젝트에서 사용할 플러그인을 선언하며, 최상위 모듈과 서브 모듈에서 플러그인을 관리한다.</p>
+</li>
+<li>
+<p><code>java</code> : Java의 소스 및 대상 버전을 지정할 때 사용하며, 현재는 Java 11 환경에서 동작하도록 설정했다.</p>
+</li>
+<li>
+<p><code>allprojects</code> : 프로젝트의 모든 모듈에 공통적으로 적용할 설정을 정의한다.</p>
+</li>
+<li>
+<p><code>subprojects</code> : 서브 모듈에 공통적으로 적용할 플러그인, 의존성, 의존성 관리 및 작업 설정을 포함한다.</p>
+</li>
+<li>
+<p>이외에 <code>bootJar</code> 와 <code>jar</code> 작업을 비활성화해 서브모듈에서 독립 실행 가능한 아카이브 파일을 생성하지 않도록 설정한다. 이를 통해 빌드 시간을 단축하고, 불필요한 결과물을 방지한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="멀티-모듈-의존성-구조">멀티 모듈 의존성 구조</h3>
+<blockquote>
+<p>core-api</p>
+</blockquote>
+<ul>
+<li><code>core-api</code> 모듈의 <code>build.gradle.kts</code> 를 살펴보면 다음과 같은 의존성과 설정이 있다.</li>
+</ul>
+<p><img src="/assets/img/server/springboot/springboot-multi-module-core-api.png" alt=""></p>
+<ul>
+<li>
+<p>빌드 설정에서 <code>core-api</code> 모듈은 <strong>실행 가능한 JAR 파일을 생성</strong> 하기 위해 <code>bootJar</code> 작업을 활성화했고, 일반적인 라이브러리 JAR 파일 생성은 비활성화했다.</p>
+<ul>
+<li>왜냐하면 <code>core-api</code> 모듈은 실행 가능한 애플리케이션으로 설계되었으므로, 일반 Jar 파일을 생성할 필요가 없기 때문이다.</li>
+</ul>
+</li>
+<li>
+<p>의존성 관계에서는 <code>domain</code> 모듈과 <code>support</code> 모듈을 의존하게 되고, <code>storage</code> 모듈은 런타임 시에만 적용되도록 했다.</p>
+</li>
+<li>
+<p>이러한 의존성을 통해 Core-api 모듈은 도메인 로직과 보조 모듈(storage, support) 을 활용하여 API를 제공한다.</p>
+</li>
+</ul>
+<h3 id="적용한-결과">적용한 결과</h3>
+<ul>
+<li>다시 위에서 보여준 그림을 확인하면 아래와 같다.</li>
+</ul>
+<p><img src="/assets/img/server/springboot/springboot-multi-module.png" alt=""></p>
+<ul>
+<li>
+<p>위와 같이 멀티 모듈을 적용함으로써 이전 단일 모듈에 비해 여러 이점을 아래와 같이 정리했다.</p>
+<ul>
+<li>
+<p><strong>모듈 간 역할과 책임의 명확화</strong> - 각 모듈이 독립적으로 역할과 책임을 가지므로 코드 구조가 명료해졌다. 예를 들어, API 로직은 <code>core-api</code> 에서 처리하고, 비즈니스와 도메인 로직은 <code>domain</code> 에서, 데이터베이스와의 상호작용은 <code>storage</code> 에서, 로깅과 모니터링은 <code>support</code> 에서 담당한다.</p>
+</li>
+<li>
+<p><strong>코드 재사용성 증가</strong> - 공통 기능인 로깅과 모니터링을 <code>support</code> 로 분리하여 다른 모듈에서 필요할 때 쉽게 가져다 쓸 수 있다.</p>
+</li>
+<li>
+<p><strong>기술 변경 및 확장성 강화</strong> - 새로운 기술을 도입하거나 기존 기술을 제거할 때 특정 모듈에만 적용하면 되므로 유연성이 전보다 증가했다. 예를 들어, JPA가 아닌 다른 기술을 사용하려면 기존 <code>storage</code> 모듈만 수정하면 된다.</p>
+</li>
+<li>
+<p><strong>배포의 유연성</strong> - B2B 솔루션 프로젝트에서는 고객사의 요구에 따라 필요한 모듈만 선택적으로 배포할 수 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>멀티 모듈은 역할과 책임을 명확히 구분할 수 있는 장점도 있지만, 모듈을 분리하면서 코드를 이해하거나 관리하는 데 어려움이 있을 수 있다.</p>
+<ul>
+<li>예를 들어, 코드 리뷰 시 단일 모듈에 비해 멀티 모듈에서는 <code>core-api</code>, <code>domain</code>, <code>storage</code>, <code>support</code> 등 여러 모듈을 왔다 갔다 하며 검토해야 하므로 리뷰 과정이 번거로워질 수 있다.</li>
+</ul>
+</li>
+<li>
+<p>또한, 서비스 초기 단계에서는 도메인의 세부 내용이 자주 바뀔 가능성이 있어 위 구조가 적합하지 않을 수 있다. 이 경우, <code>domain</code> 모듈과 <code>core-api</code> 모듈 간 이동이 잦아져 개발 효율이 떨어질 수 있다.</p>
+</li>
+<li>
+<p>따라서 제품 출시 전이나 서비스 초기라면 <code>domain</code> 모듈을 <code>core-api</code> 모듈에 통합하는 구조로 가는 것이 더 효율적일 수 있다. 이를 그림으로 표현하면 아래와 같다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/springboot/springboot-multi-module-domain-in-core-api.png" alt=""></p>
+<ul>
+<li>이 외에도 다양한 상황에 따라 적합한 구조가 달라질 수 있으므로, 아래와 같이 선택 기준을 정리했다.</li>
+</ul>
+<blockquote>
+<p>나만의 선택 기준</p>
+</blockquote>
+<ul>
+<li>
+<p>[1] 도메인 이해도가 부족한 경우, 또는 회사내 도메인 전문가가 없는 경우</p>
+<ul>
+<li>Domain 모듈을 Core-api 모듈에 합치는 구조로 간다.</li>
+</ul>
+</li>
+<li>
+<p>[2] 도메인 이해도가 높고, 회사 내 도메인 전문가가 있는 경우</p>
+<ul>
+<li>Domain 모듈과 Core-api 모듈을 분리한다.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>도메인에 대한 이해도가 부족하다고 느낀다면, 개념 설계를 화이트보드나 툴(<a href="https://miro.com/ko/">miro</a>, <a href="https://excalidraw.com/">excalidraw</a>)을 활용해 직접 그려보며 정리하는 것도 좋은 방법이다.</li>
+</ul>
+<h3 id="통제와-제어">통제와 제어</h3>
+<p><a href="https://www.youtube.com/watch?v=RVO02Z1dLF8">[토스] SLASH 22 - 지속 성장 가능한 코드를 만들어가는 방법</a> 영상을 보면서 개인적으로 기억에 남았던 문장을 가져왔다.</p>
+<blockquote>
+<p>올바른 응집으로 코드를 관리하고 Layer 간의 규칙을 지키며 적절한 Module화로 기술을 격리하여 다양한 변화에 대응할 수 있도록 코드를 통제하려 합니다.</p>
+<p>그리고 이 통제를 기반으로 하여 소프트웨어를 자유자재로 제어하려 합니다.</p>
+<p>통제를 기반으로 코드의 제어권을 얻어 ‘지속 성장 가능한 소프트웨어’를 효과적이고 안정적으로 만들어 내어 산업을 이끌어가는 시스템을 구축하려 합니다.</p>
+</blockquote>
+<ul>
+<li>
+<p>발표자님 말씀처럼, 시간이 지나면서 소프트웨어는 계속 발전하므로 멀티 모듈 구조에도 정답은 없다고 생각한다.</p>
+</li>
+<li>
+<p>중요한 것은 각 모듈의 의존성을 명확히 정의하고, 역할과 책임을 분리하여 변화에 유연하게 대응할 수 있는 코드를 만드는 것이다.</p>
+</li>
+</ul>
+<h2 id="review">Review</h2>
+<ul>
+<li>
+<p>이번 글에서는 멀티 모듈 구조를 왜 공부해야 하는지, 그리고 적용 과정과 결과를 정리했다.</p>
+</li>
+<li>
+<p>멀티 모듈은 단일 모듈의 한계를 넘어서는 좋은 방법이지만, 모든 상황에서 정답은 아니라고 생각한다.</p>
+</li>
+<li>
+<p>서비스 규모, 사용자 수, 팀 구성 등 여러 요소를 고려해 멀티 모듈을 적용할지 결정해야 하며, 적용한 이후에도 상황에 맞게 구조를 계속 다듬는 것이 중요하다.</p>
+</li>
+<li>
+<p>(끝으로, 이 글을 작성하는 데 큰 도움을 주신 <a href="https://github.com/team-dodn/spring-boot-kotlin-template/commits?author=geminiKim">geminiKim</a> 님께 감사의 말씀을 드립니다)</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://techblog.woowahan.com/2637/">[우아한 기술블로그] 멀티모듈 설계 이야기 with Spring, Gradle</a></p>
+</li>
+<li>
+<p><a href="https://github.com/team-dodn/spring-boot-kotlin-template">Github: spring-boot-kotlin-template</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=RVO02Z1dLF8&#x26;ab_channel=%ED%86%A0%EC%8A%A4">[토스] SLASH 22 - 지속 성장 가능한 코드를 만들어가는 방법</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=pimYIfXCUe8&#x26;ab_channel=%EC%A0%9C%EB%AF%B8%EB%8B%88%EC%9D%98%EA%B0%9C%EB%B0%9C%EC%8B%A4%EB%AC%B4">지속 성장 가능한 코드를 만들어가는 방법</a></p>
+</li>
+<li>
+<p>[YouTube] SpringBoot + Kotlin 멀티 모듈 구성 관련 영상들</p>
+<ul>
+<li>
+<p><a href="https://www.youtube.com/watch?v=PdofVTuM-tE">SpringBoot + Kotlin 멀티 모듈 구성 - 단일모듈에서 멀티모듈로 변경해보기 #1</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=rE89ppAmf_Y">SpringBoot + Kotlin 멀티 모듈 구성 - 의존성 버전 관리 + 로깅 모듈 추가하기 #2</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=ODSFmLdecX0">SpringBoot + Kotlin 멀티 모듈 구성 - DB 모듈 추가하기 #3</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=p5ZMF2bpE6A">SpringBoot + Kotlin 멀티 모듈 구성 - 도메인 모듈 분리 #4</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=nVGV8ag8v7g&#x26;ab_channel=%EC%A0%9C%EB%AF%B8%EB%8B%88%EC%9D%98%EA%B0%9C%EB%B0%9C%EC%8B%A4%EB%AC%B4">모듈 분리 시 의존 관계 설정</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://docs.gradle.org/current/userguide/multi_project_builds.html">[Gradle 공식 문서] Structuring Projects with Gradle</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="SpringBoot-Multi-Module" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#multi-module-구상하기" data-toc="multi-module-구상하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Multi Module 구상하기</a></li><li><a href="#core-api-모듈" data-toc="core-api-모듈" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Core-Api 모듈</a></li><li><a href="#domain-모듈" data-toc="domain-모듈" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Domain 모듈</a></li><li><a href="#storage-모듈" data-toc="storage-모듈" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Storage 모듈</a></li><li><a href="#support-모듈" data-toc="support-모듈" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Support 모듈</a></li><li><a href="#source-code-실전" data-toc="source-code-실전" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Source Code (실전)</a></li><li><a href="#프로젝트-설정-파일" data-toc="프로젝트-설정-파일" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">프로젝트 설정 파일</a></li><li><a href="#멀티-모듈-의존성-구조" data-toc="멀티-모듈-의존성-구조" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">멀티 모듈 의존성 구조</a></li><li><a href="#적용한-결과" data-toc="적용한-결과" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">적용한 결과</a></li><li><a href="#통제와-제어" data-toc="통제와-제어" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">통제와 제어</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

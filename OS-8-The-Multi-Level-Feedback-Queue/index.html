@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>8. The Multi-Level Feedback Queue(MLFQ) | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/OS-8-The-Multi-Level-Feedback-Queue/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>8. The Multi-Level Feedback Queue(MLFQ)</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-11-30" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-11-30</time><a href="/category/#%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C" class="chip chip-tag">#운영체제</a></div><p class="view-count text-sm text-muted">조회수 104회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글의 사진과 내용은 <a href="https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X">공룡책</a> 과 컴퓨터학부 수업인 운영체제 강의자료를 기반으로 작성했습니다.</p>
+</blockquote>
+<h2 id="multi-level-queue">Multi-Level Queue</h2>
+<p>멀티-레벨 큐(MLQ)</p>
+<ul>
+<li>
+<p><code>MLQ</code>란 준비 큐를 여러 개로 분할해 관리하는 스케줄링 기법을 말한다.
+즉 프로세스들이 CPU를 기다리기 위해 한 줄로 서는 것이 아니라 <strong>여러 줄</strong>로 서는 것이다.</p>
+</li>
+<li>
+<p>MLQ는 일반적으로 성격이 다른 프로세스들을 별도로 관리하고, 프로세스의 성격에 맞는 스케줄링을 적용하기 위해 ready queue를 별도로 두게 된다.</p>
+</li>
+<li>
+<p><strong>미래를 예측하기 위해 과거를 배우는</strong> 스케줄러이다.</p>
+</li>
+</ul>
+<h2 id="mlfq--basic-rules">ML(F)Q : Basic Rules</h2>
+<ul>
+<li>
+<p>ML(F)Q는 다수의 개별 queue를 유지한다.</p>
+<ul>
+<li>각각의 queue는 다양한 우선순위 레벨을 부여받는다.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>Rule 1</code></strong> : Run-time이 짧은 job에게 우선순위(priority)를 부여한다.</p>
+</li>
+<li>
+<p><strong><code>Rule 2</code></strong> : 만약 우선순위가 같으면, 라운드 로빈 스케줄링(RR)을 사용한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_1.png" alt=""></p>
+<ul>
+<li>ML(F)Q Example : Static Snapshot</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_2.png" alt=""></p>
+<ul>
+<li>
+<p>MLQ는 관찰된 동작에 따라 작업의 우선순위를 변경한다.</p>
+</li>
+<li>
+<p>Example 동작 :</p>
+<ul>
+<li>
+<p>job은 I/O를 기다리는 동안 CPU를 반복적으로 양도한다.</p>
+<ul>
+<li>
+<p>대화형(interative) 프로세스의 동작은 다음과 같습니다.</p>
+</li>
+<li>
+<p>우선순위를 높게 유지(단시간 슬라이스 포함) -> 응답 시간 향상</p>
+</li>
+</ul>
+</li>
+<li>
+<p>job이 장시간 동안 CPU를 집중적으로 사용한다.</p>
+<ul>
+<li>
+<p>일괄(batch) 작업의 동작은 다음과 같습니다.</p>
+</li>
+<li>
+<p>우선순위 감소(긴 시간 슬라이스 포함) -> 소요 시간 단축</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>이러한 방식으로 MLQ는 프로세스가 실행될 때 프로세스에 대해 학습하고, 따라서 job의 기록을 사용하여 미래의 동작을 예측합니다.</p>
+</li>
+</ul>
+<hr>
+<h2 id="multi-level-feedback-queue">Multi-Level Feedback Queue</h2>
+<p>멀티레벨 피드백 큐(MLFQ)</p>
+<ul>
+<li>
+<p><code>MLFQ</code>는 CPU를 기다리는 프로세스를 여러 queue에 줄 세운다는 측면에서  MLQ와 동일하나, <strong>프로세스가 하나의 queue에서 다른 queue로 이동 가능하다는 점이 다르다.</strong></p>
+</li>
+<li>
+<p>목적</p>
+<ul>
+<li>
+<p>Turnaround time(소요 시간)을 최적화하는 것이다.</p>
+</li>
+<li>
+<p>Response time을 최소화하는 것이다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="mlfq--how-to-change-priority">MLFQ : How to Change Priority</h3>
+<ul>
+<li>
+<p>MLFQ 우선순위 조정 알고리즘:</p>
+<ul>
+<li>
+<p><strong><code>Rule 3</code></strong> : job이 시스템에 들어오면, 가장 높은 우선순위를 둔다.</p>
+</li>
+<li>
+<p><strong><code>Rule 4a</code></strong> : 만약 job이 실행하는 동안 time slice를 다 쓰게 되면, 그것의 우선순위를 줄이게 된다(그것은 queue에서 아래로 이동한다)</p>
+</li>
+<li>
+<p><strong><code>Rule 4b</code></strong> : 만약 job이 time slice를 다 쓰기 전에 CPU를 양도한다면, 같은 우선순위 레벨이 유지된다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Example 1 : 한 개의 실행 작업을 가진 작업</p>
+<ul>
+<li>
+<p>A three-queue schedular</p>
+</li>
+<li>
+<p>우선순위가 높을수록 time slice가 작다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_3.png" alt=""></p>
+<ul>
+<li>job이 최고 우선순위인 Q2에 진입한다. 이후 time slice를 소진하면, 다음 Q1 -> Q0으로 진입하게 된다.</li>
+</ul>
+</li>
+<li>
+<p>Example 2 : 짧은 작업과 함께</p>
+<ul>
+<li>
+<p>Job A : A long-running CPU-intensive job(180ms runtime) - 오래 실행되는 CPU 위주 작업</p>
+</li>
+<li>
+<p>Job B : A short-running interactive job(20ms runtime) - 짧은 대화형 작업</p>
+</li>
+<li>
+<p>A가 얼마 동안 실행되고 있다가 B가 시간 T=100에 도착한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_4.png" alt=""></p>
+<ul>
+<li>
+<p>위 예시에서 스케줄러는 B를 먼저 선호(높은 우선순위 부여)하는 것을 볼 수 있다.</p>
+</li>
+<li>
+<p>스케줄러는 짧은 작업이라고 가정하여 높은 우선순위를 부여한다</p>
+</li>
+<li>
+<p>이런 경우 MLFQ는 SJF를 근사할 수 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Example 3: 입출력 작업에서는 어떻게 할까?</p>
+<ul>
+<li>
+<p>Job A : <code>A long-running CPU-intensive job</code>(CPU 중심 작업)</p>
+</li>
+<li>
+<p>Job B : <code>An interactive job</code>(대화형 작업) that need the CPU only for 1ms before performing an I/O</p>
+</li>
+<li>
+<p>규칙 4b가 말하는 것처럼, <strong>프로세스가 타임 슬라이스를 소진하기 전에 프로세서를 양도하면 같은 우선순위를 유지</strong>하게 된다.
+즉, 대화형 작업이 키보드나 마우스로부터 사용자 입력을 대기하며 자주 입출력을 수행하면 time slice가 종료되기 전에 CPU를 양도하게 될 것이다. 그러면 동일한 우선순위를 유지하게 된다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_5.png" alt=""></p>
+<ul>
+<li>
+<p>B는 입출력을 수행하기 전에 CPU를 1ms만 사용한다.</p>
+</li>
+<li>
+<p>A는 긴 배치형 작업(CPU 중심 작업)으로서 B와 CPU를 사용하기 위해 경쟁한다.</p>
+</li>
+<li>
+<p><strong>B는 CPU를 계속해서 양도하기 때문에 MLFQ방식은 B를 가장 높은 우선순위로 유지한다.</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="기본적인-mlfq의-문제점들">기본적인 MLFQ의 문제점들</h3>
+<blockquote>
+<p>[1] Starvation(기아 상태)가 발생할 수 있다.</p>
+</blockquote>
+<ul>
+<li>
+<p>시스템에 너무 많은 대화형 작업이 존재하면 그들이 모든 CPU 시간을 소모하게 될 것이다.</p>
+</li>
+<li>
+<p>따라서 긴 실행 시간 작업은 CPU 시간을 할당받지 못할 것이다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[2] 똑똑한 사용자라면 스케줄러를 자신에게 유리하게 동작하도록 프로그램을 다시 작성할 수 있다.(malicious attack, 악의적 공격)</p>
+</blockquote>
+<ul>
+<li>
+<p>time slice가 99% 실행한 후, 의도적으로 I/O 작업을 실행한다.</p>
+</li>
+<li>
+<p>time slice가 끝나기 전에 CPU를 양도하므로 CPU를 독점하는 기회가 생긴다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[3] 프로그램은 시간이 지남에 따라 동작을 변경할 수 있다.</p>
+</blockquote>
+<ul>
+<li>
+<p>CPU 바운드 프로세스 -> I/O 바운드 프로세스(CPU 위주 작업 -> 대화형 작업)</p>
+</li>
+<li>
+<p>작업이 가장 낮은 큐에 머무르게 된다.</p>
+</li>
+</ul>
+<hr>
+<h3 id="해결방안-1--the-priority-boost">해결방안 1 : The Priority Boost</h3>
+<p>모든 작업의 우선순위를 상향 조정하는 것</p>
+<ul>
+<li>
+<p><strong><code>Rule 5</code></strong> : 일정 시간 S가 지나면, 시스템에 있는 모든 작업들을 최상위 큐로 이동한다.</p>
+</li>
+<li>
+<p>Rule 5 규칙은 1번과 3번의 문제점을 해결한다.</p>
+</li>
+<li>
+<p>최상위 큐에 존재하는 동안 작업은 다른 높은 우선순위 작업들과 라운드 로빈 방식으로 CPU를 공유하게 되고 서비스를 받게 된다.</p>
+</li>
+<li>
+<p>CPU 위주의 작업이 대화형 작업으로 특성이 변할 경우 우선순위 상향을 통해 스케줄러가 변경된 특성에 적합한 스케줄링 방법을 적용한다.</p>
+</li>
+<li>
+<p>Example :</p>
+<ul>
+<li>
+<p>A long-running job(A) with two short-running interactive job(B, C)</p>
+</li>
+<li>
+<p>S값을 어떠한 값으로 할까? 이러한 종류의 값을 <strong><code>voo-doo constants</code>(부두 상수)</strong>라고 부른다.</p>
+</li>
+<li>
+<p><strong>S값이 너무 크면 긴 실행 시간을 가진 작업은 굶을 수 있으며, S값이 너무 작으면 대화형 작업이 적절한 양의 CPU 시간을 사용할 수 없게 된다.</strong></p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_6.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<h3 id="해결방안-2--better-accounting">해결방안 2 : Better Accounting</h3>
+<p>MLFQ의 각 단계에서 CPU 총 사용 시간을 측정하는 것</p>
+<ul>
+<li>
+<p>스케줄러를 자신에게 유리하게 동작시키는 것을 어떻게 막을 수 있는가(CPU 독점)</p>
+</li>
+<li>
+<p>해결 방안</p>
+<ul>
+<li>
+<p>해결책은 MLFQ의 <strong>각 단계에서 CPU 총 사용 시간을 측정하는 것</strong>이다. 스케줄러는 현재 단계에서 프로세스가 소진한 CPU 사용 시간을 저장한다. 프로세스가 타임 슬라이스에 해당하는 시간을 모두 소진하면 다음 우선순위 큐로 강등된다. 타임 슬라이스를 한 번에 소진하든 짧게 여러 번 소진하든 상관 없다.</p>
+</li>
+<li>
+<p><strong>Rule 4</strong>(Rule 4a와 Rule 4b를 합쳐 규칙을 재정의)
+: 주어진 단계에서 <strong>시간 할당량(time allotment)을 소진하면</strong> (CPU를 몇 번 양도하였는지 상관없이), <strong>우선순위는 낮아진다.</strong> (아래 단계의 큐로 이동한다.)</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/os/os-8-The-Multi-Level-Feedback-Queue_7.png" alt=""></p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="http://www.yes24.com/Product/Goods/90124877">운영 체제와 정보기술의 원리</a></p>
+</li>
+<li>
+<p>학교 수업 내용 - <a href="https://www.amazon.com/Operating-Systems-Three-Easy-Pieces/dp/198508659X">Operating Systems Three Easy Pieces</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="OS-8-The-Multi-Level-Feedback-Queue" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#multi-level-queue" data-toc="multi-level-queue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Multi-Level Queue</a></li><li><a href="#mlfq--basic-rules" data-toc="mlfq--basic-rules" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">ML(F)Q : Basic Rules</a></li><li><a href="#multi-level-feedback-queue" data-toc="multi-level-feedback-queue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Multi-Level Feedback Queue</a></li><li><a href="#mlfq--how-to-change-priority" data-toc="mlfq--how-to-change-priority" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">MLFQ : How to Change Priority</a></li><li><a href="#기본적인-mlfq의-문제점들" data-toc="기본적인-mlfq의-문제점들" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">기본적인 MLFQ의 문제점들</a></li><li><a href="#해결방안-1--the-priority-boost" data-toc="해결방안-1--the-priority-boost" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">해결방안 1 : The Priority Boost</a></li><li><a href="#해결방안-2--better-accounting" data-toc="해결방안-2--better-accounting" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">해결방안 2 : Better Accounting</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

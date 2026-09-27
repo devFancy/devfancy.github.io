@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>TCP와 UDP | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Network-Tcp-And-Udp/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>TCP와 UDP</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-02-08" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-02-08</time><a href="/category/#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC" class="chip chip-tag">#네트워크</a></div><p class="view-count text-sm text-muted">조회수 32회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="전송-계층">전송 계층</h2>
+<ul>
+<li>
+<p>전송 계층은 <strong>인터넷 기반의 송신자와 수신자를 연결</strong>하는 통신 서비스를 제공하며</p>
+<p>[1]연결 지향 데이터 스트림 지원, [2]신뢰성, [3]흐름 제어를 제공할 수 있으며</p>
+<p>애플리케이션과 인터넷 계층 사이의 데이터가 전달될 때 <strong>중계 역할</strong>을 한다.</p>
+</li>
+<li>
+<p>대표적으로 TCP와 UDP가 있다.</p>
+</li>
+</ul>
+<h2 id="tcpudp-계층의-기능-및-역할">TCP/UDP 계층의 기능 및 역할</h2>
+<ul>
+<li><strong>실제 데이터의 송신과 관련 있는 계층</strong>으로 전송(Transport) 계층이라고도 한다.</li>
+</ul>
+<h3 id="tcp">TCP</h3>
+<ul>
+<li>
+<p><code>TCP</code>(Transmission Control Protocol)는 데이터의 전송을 보장하는 프로토콜이다.(<strong>신뢰성</strong>이 있는 프로토콜)</p>
+</li>
+<li>
+<p>TCP는 패킷 사이의 순서를 보장하고 신뢰성을 보장하기 때문에 <strong>연결 지향 프로토콜</strong>로 수신여부를 확인하기 때문에 <strong>신뢰성은 높지만 속도가 느리다는 단점</strong>이 있다.</p>
+</li>
+<li>
+<p>대부분 1대1 통신이며, <strong>가상 회선 패킷 교환방식</strong>을 사용한다.</p>
+<ul>
+<li>가상 회선 패킷 교환방식 - 각 패킷에는 가상회선 식별자가 포함되며, 모든 패킷을 전송하면 가상회선이 해제되고 패킷들은 전송된 <strong>순서대로</strong> 도착하는 방식을 말한다.</li>
+</ul>
+<p><img src="/assets/img/cs/network/network-tcp-and-udp-1.jpg" alt=""></p>
+</li>
+<li>
+<p>예) HTTP, Email, File transfer</p>
+</li>
+</ul>
+<h3 id="udp">UDP</h3>
+<ul>
+<li>
+<p><code>UDP</code>(User Datagram Protocol)는 데이터의 전송을 보장하지 않는 프로토콜이다.</p>
+</li>
+<li>
+<p>UDP는 패킷 사이의 <strong>순서를 보장하지 않고 수신 여부를 확인하지 않으며</strong> 단순히 데이터만 주는 <code>데이터 패킷 교환 방식</code>을 사용한다.</p>
+<ul>
+<li>데이터 패킷 교환 방식 - 패킷이 독립적으로 이동하며 최적의 경로를 선택하여 간다. 하나의 메시지에서 분할된 여러 패킷은 도착한 <strong>순서가 다를 수</strong> 있는 방식을 말한다.</li>
+</ul>
+<p><img src="/assets/img/cs/network/network-tcp-and-udp-2.jpg" alt=""></p>
+</li>
+<li>
+<p>1대1 통신 또는 1대 N 통신 또는 N:N 통신이 있다.</p>
+</li>
+<li>
+<p>예) DNS, Broadcasting</p>
+</li>
+</ul>
+<h2 id="흐름-제어-기법flow-control">흐름 제어 기법(Flow control)</h2>
+<ul>
+<li>송신측과 수신측의 <strong>데이터 처리 속도 차이를 해결</strong> 하기 위한 방법</li>
+</ul>
+<ol>
+<li>
+<p>정지-대기(Stop-and-wait) 기법</p>
+</li>
+<li>
+<p>슬라이딩 윈도우 (Sliding Window) 기법</p>
+</li>
+</ol>
+<h3 id="stop-and-wait-동작-방법">Stop-and wait 동작 방법</h3>
+<ul>
+<li>
+<p>전송 측이 프레임을 전송한 다음, 각 데이터 프레임에 대한 <code>ACK</code>를 기다린다.</p>
+</li>
+<li>
+<p><code>ACK</code> 프레임이 도착하면 다음 프레임을 전송하는 기법이다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/network/network-tcp-and-udp-3.png" alt=""></p>
+<h3 id="sliding-window-동작-방법">Sliding Window 동작 방법</h3>
+<ul>
+<li>
+<p>수신측에서 설정한 윈도우 크기만큼 송신측에서 확인 응답(ACK) 없이 패킷을 전송할 수 있어서 <strong>데이터 흐름을 동적으로 조절</strong>하는 기법이다.</p>
+<ul>
+<li>Window : 전송 및 수신 측에서 만들어진 <strong>버퍼의 크기</strong></li>
+</ul>
+</li>
+<li>
+<p>ACK 프레임이 도착하면, 전송측 윈도우는 ACK 프레임 수에 따라 오른쪽 경계가 이동하여 윈도우 크기가 늘어난다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/network/network-tcp-and-udp-4.png" alt=""></p>
+<h2 id="tcp의-내부동작-원리1-연결-설정-단계">TCP의 내부동작 원리1: 연결 설정 단계</h2>
+<blockquote>
+<p>상황 : 팬시가 주디에게 데이터를 전달하는 상황</p>
+</blockquote>
+<ul>
+<li>
+<p>팬시 : 안녕! 주디, 내가 전달할 데이터가 있으니 우리 연결좀 하자.</p>
+</li>
+<li>
+<p>주디 : 알겠어! 지금 나도 준비가 되었으니 언제든 시작해도 좋아!</p>
+</li>
+<li>
+<p>팬시 : 내 요청을 들어줘서 고마워~</p>
+</li>
+</ul>
+<p>이런 TCP 연결 성립 과정을 <code>Three-way handshaking</code> 이라고 한다.</p>
+<p><strong>SYN</strong> - SYN + ACK - <strong>ACK</strong></p>
+<p><img src="/assets/img/cs/network/network-tcp-and-udp-5.png" alt=""></p>
+<ul>
+<li>
+<p>처음 시작 SEQ번호는 <strong>랜덤하게 생성</strong>된다. 그 이유는 연결을 맺을 때 사용하는 포트(Port)는 <strong>유한 범위 내에서 사용하고 시간이 지남에 따라 재사용</strong>된다.</p>
+</li>
+<li>
+<p>따라서 두 통신 호스트가 <strong>과거에 사용된 포트 번호 쌍을 사용하는 가능성이 존재</strong>한다. 서버측에서는 패킷의 SYN을 보고 패킷을 구분하게 되는데 난수가 아닌 순차적인 숫자가 전송된다면 <strong>이전의 연결로부터 오는 패킷으로 인식</strong>할 수 있다.</p>
+</li>
+<li>
+<p>이런 문제의 발생 가능성을 낮추기 위해 SEQ번호를 랜덤으로 설정한다.</p>
+</li>
+</ul>
+<h2 id="tcp의-내부동작-원리2-상대-소켓과의-데이터-송수신">TCP의 내부동작 원리2: 상대 소켓과의 데이터 송수신</h2>
+<p><img src="/assets/img/cs/network/network-tcp-and-udp-6.png" alt=""></p>
+<ul>
+<li>
+<p>ACK의 값을 전송된 바이트 크기만큼 증가시키는 이유는 <strong>패킷의 전송유무 뿐만 아니라, 데이터 손실유무까지 확인</strong>하기 때문이다.</p>
+<ul>
+<li>
+<p>[1] ACK = 1200 + 100 byte + 1</p>
+</li>
+<li>
+<p>[2] ACK = 1301 + 100 byte + 1</p>
+</li>
+</ul>
+</li>
+<li>
+<p>ACK 번호 = <strong>SEQ 번호 + 전송된 바이트 수 + 1</strong></p>
+</li>
+<li>
+<p>SEQ 전송 시 타이머가 작동되며 SEQ에 대한 ACK가 전송되지 않을 경우 데이터를 재전송한다.</p>
+</li>
+</ul>
+<h2 id="tcp의-내부동작-원리3-상대-소켓과의-연결종료">TCP의 내부동작 원리3: 상대 소켓과의 연결종료</h2>
+<blockquote>
+<p>상황 : 팬시가 주디에게 연결을 끊고자 하는 경우</p>
+</blockquote>
+<ul>
+<li>
+<p>팬시 : 주디! 지금 연결을 끊고자 하는데 지금 괜찮을까요?</p>
+</li>
+<li>
+<p>주디 : 아! 그러세요? 잠시만요~</p>
+</li>
+<li>
+<p>주디 : 네 저도 준비가 끝났습니다. 그럼 연결을 끊으시죠!</p>
+</li>
+<li>
+<p>팬시 : 네! 그동안 즐거웠습니다.</p>
+</li>
+</ul>
+<p>이러한 TCP 연결 해제 과정을 <code>Four-way handshaking</code> 이라고 한다.</p>
+<p><strong>FIN</strong> – ACK – FIN - <strong>ACK</strong></p>
+<p><img src="/assets/img/cs/network/network-tcp-and-udp-7.png" alt=""></p>
+<ul>
+<li>
+<p>TCP의 연결 성립 과정과 연결 해제 과정의 <strong>단계수가 차이 나는 이유</strong>는 클라이언트가 데이터 전송을 마쳤다고 해도 서버는 아직 보낼 데이터가 남아있을 수 있기 때문에 일단 FIN에 대한 ACK만 보내고, 데이터를 모두 전송한 후 자신(서버)도 FIN 메시지를 보내기 때문이다.</p>
+</li>
+<li>
+<p>그래서 마지막 4번째인 클라이언트(팬시)에서 <strong>TIME_WAIT</strong> 상태가 된다. 서버(주디)로부터 해지 준비가 되었다는 ACK를 보낸후 서버에서 CLOSE 상태가 된 이후에 클라이언트(팬시)는 어느 정도의 시간을 대기한 후에 연결을 닫고 모든 자원의 연결이 종료된다.</p>
+</li>
+<li>
+<p><code>TIME_WAIT</code>이란 소켓이 바로 소멸되지 않고 일정 시간 유지하는 상태이다.</p>
+</li>
+<li>
+<p><code>Four-way handshaking</code> 과정을 거쳐서 연결을 종료하는 이유는 <strong>패킷이 지연되거나 일반적인 종료로 인한 데이터 손실을 막기 위함</strong>이다.</p>
+</li>
+</ul>
+<h2 id="예상-질문">예상 질문</h2>
+<ul>
+<li>
+<p>Q1. TCP와 UDP의 차이점은?</p>
+</li>
+<li>
+<p>Q2. 초기 Sequence Number인 ISN을 0부터 시작하지 않고 난수를 생성해서 설정하는 이유는?</p>
+<ul>
+<li>A2. 그 이유는 연결을 맺을 때 사용하는 포트(Port)는 <strong>유한 범위 내에서 사용하고 시간이 지남에 따라 재사용</strong>된다. 따라서 두 통신 호스트가 <strong>과거에 사용된 포트 번호 쌍을 사용하는 가능성이 존재</strong>한다. 서버측에서는 패킷의 SYN을 보고 패킷을 구분하게 되는데 난수가 아닌 순차적인 숫자가 전송된다면 <strong>이전의 연결로부터 오는 패킷으로 인식</strong>할 수 있다. 이런 문제의 발생 가능성을 낮추기 위해 SEQ번호를 랜덤으로 설정한다.</li>
+</ul>
+</li>
+<li>
+<p>Q3. 만약 Server에서 FIN 플래그를 전송하기 전에 전송한 패킷이 Routing 지연이나 패킷 유실로 인한 재전송 등으로 인해 FIN 패킷보다 늦게 도착하는 상황이 발생하면 어떻게 될까?</p>
+<ul>
+<li>A3. 이러한 현상에 대비하여 Client는 Server로부터 FIN 플래그를 수신하더라도 일정시간(Default: 240sec)동안 세션을 남겨 놓고 잉여 패킷을 기다리는 과정을 거친다. (TIME_WAIT 과정)</li>
+</ul>
+</li>
+<li>
+<p>Q4. TCP의 연결 성립 과정과 연결 해제 과정의 단계수가 차이 나는 이유는?</p>
+<ul>
+<li>A4. Client가 데이터 전송을 마쳤다고 해도 Server는 아직 보낼 데이터가 남아있을 수 있기 때문에 일단 FIN에 대한 ACK만 보내고, 데이터를 모두 전송한 후 자신도 FIN메세지를 보내기 때문이다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p>학교 수업 자료 - 컴퓨터망프로그래밍</p>
+</li>
+<li>
+<p><a href="https://product.kyobobook.co.kr/detail/S000001834833">면접을 위한 CS 전공 지식 노트</a></p>
+</li>
+<li>
+<p><a href="https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_tcp_and_udp.md">2023-CS-Study : TCP/IP 4계층 모델</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Network-Tcp-And-Udp" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#전송-계층" data-toc="전송-계층" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">전송 계층</a></li><li><a href="#tcpudp-계층의-기능-및-역할" data-toc="tcpudp-계층의-기능-및-역할" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">TCP/UDP 계층의 기능 및 역할</a></li><li><a href="#tcp" data-toc="tcp" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">TCP</a></li><li><a href="#udp" data-toc="udp" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">UDP</a></li><li><a href="#흐름-제어-기법flow-control" data-toc="흐름-제어-기법flow-control" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">흐름 제어 기법(Flow control)</a></li><li><a href="#stop-and-wait-동작-방법" data-toc="stop-and-wait-동작-방법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Stop-and wait 동작 방법</a></li><li><a href="#sliding-window-동작-방법" data-toc="sliding-window-동작-방법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Sliding Window 동작 방법</a></li><li><a href="#tcp의-내부동작-원리1-연결-설정-단계" data-toc="tcp의-내부동작-원리1-연결-설정-단계" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">TCP의 내부동작 원리1: 연결 설정 단계</a></li><li><a href="#tcp의-내부동작-원리2-상대-소켓과의-데이터-송수신" data-toc="tcp의-내부동작-원리2-상대-소켓과의-데이터-송수신" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">TCP의 내부동작 원리2: 상대 소켓과의 데이터 송수신</a></li><li><a href="#tcp의-내부동작-원리3-상대-소켓과의-연결종료" data-toc="tcp의-내부동작-원리3-상대-소켓과의-연결종료" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">TCP의 내부동작 원리3: 상대 소켓과의 연결종료</a></li><li><a href="#예상-질문" data-toc="예상-질문" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">예상 질문</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

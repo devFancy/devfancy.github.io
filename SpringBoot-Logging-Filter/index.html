@@ -1,0 +1,723 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/SpringBoot-Logging-Filter/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header is-overlay" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1"><section class="relative isolate flex overflow-hidden min-h-[25rem] sm:min-h-[clamp(32rem,26vw,40rem)] items-end"><img src="/assets/cover/SpringBoot-Logging-Filter.webp" alt="" loading="eager" fetchpriority="high" decoding="async" class="media-zoom absolute inset-0 -z-10 size-full object-cover object-center"><div class="media-scrim absolute inset-0 -z-10 bg-black/20"></div><div class="media-scrim absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-black/60 to-transparent"></div><div class="media-scrim absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black/75 via-black/35 to-transparent"></div><div class="shell pt-28 pb-14 sm:pb-28"><p class="hero-type mb-4 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-white/80" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="inline-block py-1 underline-offset-4 transition-colors hover:text-white hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="hero-type text-3xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기</h1><div class="mt-5 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2025-04-23" class="hero-type mr-1 text-sm text-white/75" data-astro-cid-g5songws>2025-04-23</time><a href="/category/#Spring%20Boot" class="chip chip-tag chip-on-dark">#Spring Boot</a></div><p class="view-count text-sm hero-type text-white/75">조회수 439회</p></div></section><div data-hero-end aria-hidden="true" class="h-px"></div><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div class="prose mt-0" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<p>이번 포스팅에서는 Spring Boot 프로젝트에서 HTTP 요청과 응답을 효과적으로 로깅하고,
+멀티쓰레드 환경에서 요청 흐름을 명확히 추적할 수 있도록 <code>traceId</code> 를 활용하는 방법을 소개합니다.</p>
+<p>일반적으로</p>
+<ul>
+<li>단일 서비스에서는 <code>requestId</code> 로 요청을 구분하고,</li>
+<li>분산 시스템(마이크로서비스) 에서는 <code>traceId</code> 로 전체 요청 흐름을 추적합니다.</li>
+</ul>
+<p>이 글에서는 단일 서비스 환경을 다루지만, 초기부터 <code>traceId</code>를 적용하여 향후 분산 시스템에서도 확장 가능한 구조를 제공합니다.</p>
+<p>특히, 실무에 적용한 내용을 중심으로 프로덕션 환경에서도 활용 가능한 실용적인 예제를 설명합니다.</p>
+<h3 id="예상-독자">예상 독자</h3>
+<ul>
+<li>
+<p>Spring Boot 프로젝트에 Logging Filter를 적용하고자 하는 분</p>
+</li>
+<li>
+<p>Filter와 HandlerInterceptor의 차이점을 알고 싶은 분</p>
+</li>
+<li>
+<p>OncePerRequestFilter의 동작 원리와 사용 이유가 궁금한 분</p>
+</li>
+<li>
+<p>멀티쓰레드 환경에서 로그가 뒤섞이는 문제를 해결하고 싶은 분</p>
+</li>
+<li>
+<p>프로덕션 환경에 바로 적용 가능한 실용적인 예제를 찾는 분</p>
+</li>
+</ul>
+<blockquote>
+<p>관련 포스팅</p>
+</blockquote>
+<ul>
+<li><a href="https://devfancy.github.io/Multi-Module-Logback-xml/">1편. Spring Boot 환경의 Multi Module에서 logback 환경별 설정하기</a></li>
+</ul>
+<hr>
+<h2 id="filter-vs-handlerinterceptor">Filter vs. HandlerInterceptor</h2>
+<blockquote>
+<p>해당 섹션에 대한 자세한 내용은 이 <a href="https://www.baeldung.com/spring-mvc-handlerinterceptor-vs-filter">글</a>을 참고해 주시기 바랍니다.</p>
+<p>아래 세부 섹션에 있는 내용은 해당 글과 다른 자료들을 종합해서 정리했습니다.</p>
+</blockquote>
+<h3 id="filter">Filter</h3>
+<p><code>Filter</code>는 Spring Framework의 일부가 아닌 웹 서버(servlet container) 수준의 컴포넌트입니다.
+요청과 응답을 서블릿이 처리하기 전후로 가로채어 조작할 수 있습니다.</p>
+<p>대표적인 예로 <code>Spring Security</code>가 있습니다.</p>
+<p><code>Spring Security</code> 에서는 인증/인가를 위해 여러 개의 Filter 체인을 사용하며, 이를 Spring과 연동하기 위해 <code>DelegatingFilterProxy</code>를 활용합니다.<br>
+이 구조 덕분에 <code>Spring Security</code>는 Spring MVC에 종속되지 않고도 동작할 수 있습니다.</p>
+<p>Filter는 다음과 같은 메서드를 제공합니다.</p>
+<ul>
+<li><code>init</code>: 필터 초기화 시 호출</li>
+<li><code>doFilter</code>: 요청과 응답을 가로채어 처리 (핵심 메서드)</li>
+<li><code>destroy</code>: 필터 종료 시 호출</li>
+</ul>
+<h3 id="handlerinterceptor">HandlerInterceptor</h3>
+<p><code>HandlerInterceptor</code>는 Spring MVC Framework의 일부로,<br>
+디스패처 서블릿(DispatcherServlet)과 컨트롤러(Controller) 사이에서 동작합니다.
+요청이 컨트롤러에 도달하기 전이나, 뷰가 렌더링된 후에 요청을 가로챌 수 있습니다.</p>
+<p>HandlerInterceptor는 다음과 같은 메서드를 제공합니다.</p>
+<ul>
+<li><code>preHandle</code>: 컨트롤러 실행 이전 호출</li>
+<li><code>postHandle</code>: 컨트롤러 실행 이후, 뷰 렌더링 이전 호출</li>
+<li><code>afterCompletion</code>: 요청 처리 완료 후 (뷰 렌더링 완료 후) 호출</li>
+</ul>
+<h3 id="filter와-handlerinterceptor의-차이">Filter와 HandlerInterceptor의 차이</h3>
+<p>요청-응답 흐름에서 Filter와 HandlerInterceptor는 다음과 같은 위치에 있습니다.</p>
+<blockquote>
+<p>요청-응답 흐름: Client → <strong>Filter</strong> → DispatcherServlet → <strong>InterHandlerInterceptorceptor</strong> → Controller</p>
+</blockquote>
+<p><img src="/assets/img/server/springboot/springboot-logging-filter-interceptor.png" alt=""></p>
+<p>Filter는 다음과 같은 경우 사용합니다.</p>
+<ul>
+<li>인증(Authentication) 및 인가(Authorization)</li>
+<li>로깅(Logging) 및 감사(Auditing)</li>
+<li>이미지(Image) 및 데이터 압축(data compression)</li>
+<li>Spring MVC와 분리된 전역 처리가 필요할 때</li>
+</ul>
+<p>HandlerInterceptor 는 다음과 같은 경우 사용합니다.</p>
+<ul>
+<li>애플리케이션 로깅과 같은 관점 지향적 처리 (cross-cutting concerns)</li>
+<li>세밀한 권한 검사</li>
+<li>Spring context나 모델 조작</li>
+</ul>
+<p>정리하면,</p>
+<ul>
+<li>Filter 는 Spring MVC 외부에서 동작하며, 전역적인 요청/응답 처리가 필요할 때 사용합니다.</li>
+<li>HandlerInterceptor 는 Spring MVC 내부에서 동작하며, 컨트롤러와 관련된 로직을 조작할 때 사용합니다.</li>
+</ul>
+<h3 id="filter를-선택한-이유">Filter를 선택한 이유</h3>
+<p>실무에서 <code>Filter</code>를 적용한 이유는 다음과 같습니다.</p>
+<ol>
+<li>
+<p>요청(Request)과 응답(Response)을 <strong>가장 먼저, 그리고 마지막</strong>으로 다룰 수 있기 때문입니다.</p>
+<ul>
+<li>클라이언트가 보낸 요청을 가장 먼저 받아서 로깅할 수 있고,</li>
+<li>클라이언트에게 응답을 보내기 직전 상태로 로깅할 수 있습니다.</li>
+</ul>
+</li>
+<li>
+<p>또한, 요청과 응답의 <strong>헤더(Header)를 포함한 원본을 조작하거나 확인</strong>할 수 있습니다.</p>
+<ul>
+<li>HandlerInterceptor 에서는 <code>HttpServletRequest</code>, <code>HttpServletResponse</code>를 조작하긴 어렵지만,</li>
+<li>Filter 에서는 이를 자유롭게 다룰 수 있습니다.</li>
+</ul>
+</li>
+<li>
+<p>마지막으로 <strong><code>Spring MVC</code>에 종속되지 않은</strong> 범용적인 처리가 가능합니다.</p>
+<ul>
+<li>인증/인가, 보안 처리 등은 DispatcherServlet과 무관하게 항상 동작해야 하므로 Filter가 적합합니다.</li>
+<li>예를 들어, 정적 리소스 요청이나 예외 처리 페이지 등 Spring MVC가 관여하지 않는 흐름에서도 Filter는 동작할 수 있습니다.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>아래부터는 Filter를 프로젝트에 적용하기 위해 어떤 환경을 구성했고, 어떻게 구현을 진행했는지 구체적인 과정을 설명드리겠습니다.</p>
+<h2 id="프로젝트-환경-구성">프로젝트 환경 구성</h2>
+<blockquote>
+<p>이 글에서 다루는 모든 코드는 <a href="https://github.com/devFancy/kotlin-java-playground/tree/main/springboot-java-practice">깃허브</a>에서 확인하실 수 있습니다.</p>
+<p>filter 코드 관련 패키지 경로: dev.be.core.api.support.filter</p>
+<p>(추가 - 2025.04.26) 시간이 지남에 따라 해당 코드가 변경될 수 있습니다.</p>
+</blockquote>
+<ul>
+<li>Spring Boot 3.2.5</li>
+<li>Java 21</li>
+<li>Multi Module (시간이 지남에 따라 모듈 구조가 변할 수 있습니다)</li>
+<li>Gradle 8.1</li>
+</ul>
+<h2 id="httplogmessage">HttpLogMessage</h2>
+<p>아래와 같이 요청(request)과 응답(response) 내용에 넣을 정보를 정리합니다.</p>
+<ul>
+<li>
+<p>request</p>
+<ul>
+<li><code>http method</code>: 요청 메서드 (예시: GET, POST, PUT, PATCH, DELETE 등)</li>
+<li><code>url</code>: 요청 API 경로 (예시: /api/health )</li>
+<li><code>headers</code>:  요청에 포함된 HTTP 헤더 목록 (key: value 형태) (예시: Content-Type: application/json; User-Agent: PostmanRuntime/7.43.3)</li>
+<li><code>request body</code>: 요청 본문 (JSON, XML, Form 등)</li>
+</ul>
+</li>
+<li>
+<p>response</p>
+<ul>
+<li><code>http status</code>: 응답 상태 코드 및 메시지 (예시: 200 OK, 404 Not Found)</li>
+<li><code>response body</code>: 응답 본문 (JSON, XML 등)</li>
+</ul>
+</li>
+</ul>
+<p>Logging의 대상이 되는 http 프로토콜 관련 정보들을 Spring Boot Application에 사용하기 위해 <code>HttpLogMessage</code> 클래스를 생성하여 위의 정보를 바탕으로 필드를 추가해줍니다.</p>
+<blockquote>
+<p>HttpLogMessage.class</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> record</span><span style="color:#B392F0"> HttpLogMessage</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        String httpMethod,</span></span>
+<span class="line"><span style="color:#E1E4E8">        String url,</span></span>
+<span class="line"><span style="color:#E1E4E8">        HttpStatus httpStatus,</span></span>
+<span class="line"><span style="color:#E1E4E8">        String headers,</span></span>
+<span class="line"><span style="color:#E1E4E8">        String requestBody,</span></span>
+<span class="line"><span style="color:#E1E4E8">        String responseBody</span></span>
+<span class="line"><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="requestandresponseloggingfilter">RequestAndResponseLoggingFilter</h2>
+<p>그런 다음,  요청(Request)과 응답(Response)을 로깅하는 Filter 클래스를 아래와 같이 구현했습니다.</p>
+<blockquote>
+<p>RequestAndResponseLoggingFilter.java</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Component</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Order</span><span style="color:#E1E4E8">(Ordered.HIGHEST_PRECEDENCE) </span><span style="color:#6A737D">// 모든 필터 중 가장 먼저 실행되도록 설정 (요청/응답 전체를 로깅하기 위함)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpRequestAndResponseLoggingFilter</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> OncePerRequestFilter</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Logger log </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoggerFactory.</span><span style="color:#B392F0">getLogger</span><span style="color:#E1E4E8">(HttpRequestAndResponseLoggingFilter.class);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doFilterInternal</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletRequest </span><span style="color:#FFAB70">request</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    @</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletResponse </span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    @</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> FilterChain </span><span style="color:#FFAB70">filterChain</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        ContentCachingRequestWrapper requestWrapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingRequestWrapper</span><span style="color:#E1E4E8">(request);</span></span>
+<span class="line"><span style="color:#E1E4E8">        ContentCachingResponseWrapper responseWrapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingResponseWrapper</span><span style="color:#E1E4E8">(response);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            filterChain.</span><span style="color:#B392F0">doFilter</span><span style="color:#E1E4E8">(requestWrapper, responseWrapper);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">            // HttpLogMessage 생성</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpLogMessage logMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> HttpLogMessage</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                    requestWrapper.</span><span style="color:#B392F0">getMethod</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">                    requestWrapper.</span><span style="color:#B392F0">getRequestURI</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">                    HttpStatus.</span><span style="color:#B392F0">valueOf</span><span style="color:#E1E4E8">(responseWrapper.</span><span style="color:#B392F0">getStatus</span><span style="color:#E1E4E8">()),</span></span>
+<span class="line"><span style="color:#B392F0">                    getRequestHeaders</span><span style="color:#E1E4E8">(requestWrapper),</span></span>
+<span class="line"><span style="color:#B392F0">                    getRequestBody</span><span style="color:#E1E4E8">(requestWrapper),</span></span>
+<span class="line"><span style="color:#B392F0">                    getResponseBody</span><span style="color:#E1E4E8">(responseWrapper)</span></span>
+<span class="line"><span style="color:#E1E4E8">            );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">{}"</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">toPrettierLog</span><span style="color:#E1E4E8">(logMessage));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">            handleException</span><span style="color:#E1E4E8">(e);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                responseWrapper.</span><span style="color:#B392F0">copyBodyToResponse</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (IOException </span><span style="color:#FFAB70">copyException</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[RequestAndResponseLoggingFilter] I/O exception occurred while copying response body"</span><span style="color:#E1E4E8">, copyException);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위의 클래스에서 사용하는 주요 Filter 관련 클래스를 하나씩 살펴보겠습니다.</p>
+<h3 id="onceperrequestfilter">OncePerRequestFilter</h3>
+<p>Spring에서 필터를 적용할 때 요청(Request)이 여러 번 디스패치(Dispatch) 되는 경우가 있습니다.</p>
+<p>특히, <strong>비동기(Async)</strong>나 에러(Error) 처리가 발생하면 필터가 중복 실행될 수 있습니다.</p>
+<p>이런 중복 실행을 방지하기 위해 Spring에서는 <code>OncePerRequestFilter</code>라는 추상 클래스를 제공합니다.</p>
+<p>이름 그대로 “하나의 요청 당 한 번만 실행” 되도록 보장해주는 필터입니다.</p>
+<p>주요 특징</p>
+<ul>
+<li>요청(Request)마다 단 한 번만 필터 실행.</li>
+<li>비동기(Async) 및 에러(Error) 디스패치 시에도 중복 실행 여부를 제어.</li>
+<li>내부적으로 request attribute를 사용해 중복 실행을 방지.</li>
+</ul>
+<blockquote>
+<p>OncePerRequestFilter.class (Java 17 기준) - 핵심 동작 코드</p>
+</blockquote>
+<blockquote>
+<p>해당 클래스에 대한 자세한 설명은 <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/filter/OncePerRequestFilter.html">공식 문서</a>를 참고해 주시기 바랍니다.</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> OncePerRequestFilter</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> GenericFilterBean</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> final</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doFilter</span><span style="color:#E1E4E8">(ServletRequest </span><span style="color:#FFAB70">request</span><span style="color:#E1E4E8">, ServletResponse </span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">, FilterChain </span><span style="color:#FFAB70">filterChain</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> ServletException, IOException {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // HTTP 프로토콜 기반 요청/응답만 처리 (ServletRequest/ServletResponse는 상위 개념)</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (request </span><span style="color:#F97583">instanceof</span><span style="color:#E1E4E8"> HttpServletRequest httpRequest) {</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (response </span><span style="color:#F97583">instanceof</span><span style="color:#E1E4E8"> HttpServletResponse httpResponse) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">                // "이미 필터가 실행됐는지" 체크할 attribute 이름을 가져옴</span></span>
+<span class="line"><span style="color:#E1E4E8">                String alreadyFilteredAttributeName </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">getAlreadyFilteredAttributeName</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">                boolean</span><span style="color:#E1E4E8"> hasAlreadyFilteredAttribute </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> request.</span><span style="color:#B392F0">getAttribute</span><span style="color:#E1E4E8">(alreadyFilteredAttributeName) </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">                // 디스패치(Dispatch) 타입이 skip 대상이 아니고, 필터링을 하지 않아야 할 경우도 아닌 경우만 필터 수행</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">skipDispatch</span><span style="color:#E1E4E8">(httpRequest) </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#F97583"> !</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">shouldNotFilter</span><span style="color:#E1E4E8">(httpRequest)) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    </span></span>
+<span class="line"><span style="color:#6A737D">                    // 이미 필터가 실행된 경우</span></span>
+<span class="line"><span style="color:#F97583">                    if</span><span style="color:#E1E4E8"> (hasAlreadyFilteredAttribute) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">                        // 만약 에러 디스패치(DispatcherType.ERROR)라면, 별도로 정의된 error 처리 필터를 수행</span></span>
+<span class="line"><span style="color:#F97583">                        if</span><span style="color:#E1E4E8"> (DispatcherType.ERROR.</span><span style="color:#B392F0">equals</span><span style="color:#E1E4E8">(request.</span><span style="color:#B392F0">getDispatcherType</span><span style="color:#E1E4E8">())) {</span></span>
+<span class="line"><span style="color:#79B8FF">                            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">doFilterNestedErrorDispatch</span><span style="color:#E1E4E8">(httpRequest, httpResponse, filterChain);</span></span>
+<span class="line"><span style="color:#F97583">                            return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                        }</span></span>
+<span class="line"><span style="color:#E1E4E8">                        </span></span>
+<span class="line"><span style="color:#6A737D">                        // 이미 실행된 경우 → 그냥 다음 필터로 넘김</span></span>
+<span class="line"><span style="color:#E1E4E8">                        filterChain.</span><span style="color:#B392F0">doFilter</span><span style="color:#E1E4E8">(request, response);</span></span>
+<span class="line"><span style="color:#E1E4E8">                    } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                        //  첫 실행인 경우</span></span>
+<span class="line"><span style="color:#E1E4E8">                        request.</span><span style="color:#B392F0">setAttribute</span><span style="color:#E1E4E8">(alreadyFilteredAttributeName, Boolean.TRUE);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">                        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                            // 실제 필터 로직 실행 (여기서 doFilterInternal 오버라이드)</span></span>
+<span class="line"><span style="color:#79B8FF">                            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">doFilterInternal</span><span style="color:#E1E4E8">(httpRequest, httpResponse, filterChain);</span></span>
+<span class="line"><span style="color:#E1E4E8">                        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                            // 필터 로직 실행 후 → 마킹 attribute 제거</span></span>
+<span class="line"><span style="color:#E1E4E8">                            request.</span><span style="color:#B392F0">removeAttribute</span><span style="color:#E1E4E8">(alreadyFilteredAttributeName);</span></span>
+<span class="line"><span style="color:#E1E4E8">                        }</span></span>
+<span class="line"><span style="color:#E1E4E8">                    }</span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                    // skip 대상(Async, Error 등) → 필터 건너뛰고 다음 필터 체인 실행</span></span>
+<span class="line"><span style="color:#E1E4E8">                    filterChain.</span><span style="color:#B392F0">doFilter</span><span style="color:#E1E4E8">(request, response);</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D">// HTTP 요청 처리가 끝났으면 반환</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // HTTP 요청이 아니면 예외 발생</span></span>
+<span class="line"><span style="color:#F97583">        throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ServletException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"OncePerRequestFilter only supports HTTP requests"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위 클래스에 있는 코드를 정리하면,</p>
+<ul>
+<li>중복 실행을 막기 위해 요청에 “이미 실행됨” 표시(attribute)를 남깁니다.</li>
+<li>이후 다시 호출될 경우 필터를 생략하고, 다음 필터 체인으로 넘깁니다.</li>
+<li>실제 필터 로직은 <code>doFilterInternal()</code> 에서 오버라이드하여 구현합니다.</li>
+</ul>
+<p>이를 통해 요청/응답 로깅 필터도 중복 실행 없이 한 번만 동작하도록 설정한 것입니다.</p>
+<p>이러한 구조를 활용하여 <code>HttpRequestAndResponseLoggingFilter</code> 클래스에서 <code>doFilterInternal()</code> 메서드를 오버라이드해서 구현한 것입니다.</p>
+<h3 id="요청응답-본문-캐싱-contentcachingwrapper">요청/응답 본문 캐싱 (ContentCachingWrapper)</h3>
+<p>제가 오버라이딩해서 구현한 <code>doFilterInternal</code> 메서드에 내부에는 요청(Request)과 응답(Response) 본문을 로깅하기 위해 <code>ContentCachingRequestWrapper</code>, <code>ContentCachingResponseWrapper</code> 를 사용했습니다.</p>
+<p><strong>왜 필요한가?</strong> -> Stream은 기본적으로 한 번만 읽을 수 있는 구조입니다. 한 번 데이터를 읽으면 포인터가 이동하고, 다시 읽을 수 없습니다.</p>
+<blockquote>
+<p>InputStream 과 관련하여 동작 원리에 대한 자세한 설명은 이 <a href="https://www.programmersought.com/article/80902025083/">글</a> 을 참고해 주시기 바랍니다</p>
+</blockquote>
+<p>InputStream 을 예로 들면,</p>
+<ul>
+<li>
+<p>InputStream 내부에는 포인터(pos) 가 있어서, read()를 호출하면 포인터가 앞으로 이동하고, 다시 같은 데이터를 읽을 수 없습니다.</p>
+</li>
+<li>
+<p>이 때문에 Request body나 Response body를 한 번 읽고 나면, 서버 내부에서 재사용할 수 없습니다.</p>
+</li>
+</ul>
+<p>이러한 문제를 해결하기 위해
+<code>ContentCachingRequestWrapper</code>, <code>ContentCachingResponseWrapper</code> 는 <strong>Stream을 메모리에 캐싱해서 여러 번 읽을 수 있도록 지원</strong>합니다.</p>
+<p>쉽게 말해, Stream을 복사해두고 재사용하는 방식으로, InputStream 캐싱과 비슷한 원리입니다.</p>
+<h4 id="contentcachingrequestwrapper---내부-동작">ContentCachingRequestWrapper - 내부 동작</h4>
+<p>해당 두 개의 클래스 중 하나인 <code>ContentCachingRequestWrapper</code> 에 대해 내부 코드를 살펴보면 다음과 같습니다.</p>
+<p>해당 클래스에서 Stream을 어떻게 캐싱하는지 간단히 살펴보겠습니다.</p>
+<blockquote>
+<p>ContentCachingRequestWrapper.class</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ContentCachingRequestWrapper</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> HttpServletRequestWrapper</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> FastByteArrayOutputStream cachedContent;</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ServletInputStream </span><span style="color:#B392F0">getInputStream</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.inputStream </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.inputStream </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingInputStream</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">getRequest</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getInputStream</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.inputStream;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>FastByteArrayOutputStream으로 Request body를 메모리에 저장합니다.</p>
+</li>
+<li>
+<p><code>getInputStream()</code>을 호출하면, 실제 <code>HttpServletRequest.getInputStream()</code>을 ContentCachingInputStream 으로 감싸서, 읽을 때마다 캐시에 저장합니다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> read</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">final</span><span style="color:#F97583"> byte</span><span style="color:#E1E4E8">[] b, </span><span style="color:#F97583">final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> off, </span><span style="color:#F97583">final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> len) throws IOException {</span></span>
+<span class="line"><span style="color:#F97583">            int</span><span style="color:#E1E4E8"> count </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.is.</span><span style="color:#B392F0">read</span><span style="color:#E1E4E8">(b, off, len);</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">writeToCache</span><span style="color:#E1E4E8">(b, off, count);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> count;</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span></span></code></pre>
+<ul>
+<li>요청 본문을 읽을 때마다 캐시에 저장되기 때문에, 나중에 동일한 데이터를 다시 읽을 수 있습니다.</li>
+</ul>
+<h4 id="contentcachingresponsewrapper---내부-동작">ContentCachingResponseWrapper - 내부 동작</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ContentCachingResponseWrapper</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> HttpServletResponseWrapper</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> FastByteArrayOutputStream content </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> FastByteArrayOutputStream</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1024</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Nullable</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> ServletOutputStream outputStream;</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Nullable</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> PrintWriter writer;</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Nullable</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Integer contentLength;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> ContentCachingResponseWrapper</span><span style="color:#E1E4E8">(HttpServletResponse </span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">(response);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>해당 클래스도 <code>ContentCachingRequestWrapper</code>와 마찬가지로, 내부적으로 FastByteArrayOutputStream을 사용해 Response body를 메모리에 캐싱합니다.</p>
+</li>
+<li>
+<p>그리고 <code>getOutputStream()</code> (또는 <code>getWriter()</code>) 를 호출하면, 실제 응답 스트림을 감싸는 ResponseServletOutputStream (또는 ResponsePrintWriter)를 반환합니다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#E1E4E8"> ServletOutputStream </span><span style="color:#B392F0">getOutputStream</span><span style="color:#E1E4E8">() throws IOException {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.outputStream </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.outputStream </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ResponseServletOutputStream</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">getResponse</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">getOutputStream</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.outputStream;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>Response body 은 쓰기 시점에 캐시에 저장됩니다.</li>
+</ul>
+<blockquote>
+<p><code>copyBodyToResponse()</code> 메서드가 중요한 이유</p>
+</blockquote>
+<ul>
+<li><code>ContentCachingResponseWrapper</code> 는 응답 본문을 캐시에 쌓아놓기만 하고, 자동으로 클라이언트에게 전송하지 않습니다.</li>
+<li><code>copyBodyToResponse()</code> 를 호출해야만 캐시에 저장된 응답 본문을 클라이언트로 전송합니다.</li>
+<li>만약 <strong>이 메서드를 호출하지 않으면, 클라이언트가 응답을 받지 못하는 상황이 발생</strong>합니다.</li>
+</ul>
+<p>그래서 보통 finally 블록에서 항상 호출해줘야 응답이 정상적으로 전송됩니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doFilterInternal</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">NonNull</span><span style="color:#E1E4E8"> HttpServletRequest request,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                @</span><span style="color:#F97583">NonNull</span><span style="color:#E1E4E8"> HttpServletResponse response,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                @</span><span style="color:#F97583">NonNull</span><span style="color:#E1E4E8"> FilterChain filterChain) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    ContentCachingRequestWrapper requestWrapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingRequestWrapper</span><span style="color:#E1E4E8">(request);</span></span>
+<span class="line"><span style="color:#E1E4E8">    ContentCachingResponseWrapper responseWrapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingResponseWrapper</span><span style="color:#E1E4E8">(response);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        filterChain.</span><span style="color:#B392F0">doFilter</span><span style="color:#E1E4E8">(requestWrapper, responseWrapper);</span></span>
+<span class="line"><span style="color:#6A737D">        // 로그 출력</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">        handleException</span><span style="color:#E1E4E8">(e);</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            responseWrapper.</span><span style="color:#B392F0">copyBodyToResponse</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// 응답 전송</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (IOException </span><span style="color:#FFAB70">ex</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"[RequestAndResponseLoggingFilter] I/O exception occurred while copying response body"</span><span style="color:#E1E4E8">, ex);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="대용량-데이터-처리-시-주의할-점">대용량 데이터 처리 시 주의할 점</h3>
+<blockquote>
+<p>본 예제 코드에서는 대용량 데이터에 대한 <strong>캐시 제한을 따로 적용하지 않았습니다.</strong></p>
+<p>이 부분은 추후 더 깊이 다루거나, 다른 포스팅에서 별도로 소개할 계획입니다.</p>
+</blockquote>
+<p><code>ContentCachingRequestWrapper</code> 와 <code>ContentCachingResponseWrapper</code> 는 요청/응답 본문을 메모리에 캐싱하기 때문에,
+편리하게 여러 번 읽거나 기록할 수 있습니다.</p>
+<p>하지만 모든 데이터를 메모리에 저장한다는 점에서 몇 가지 주의할 사항이 있습니다.</p>
+<p>특히 <strong>대용량 요청/응답</strong>을 처리할 때는 아래와 같은 문제가 발생할 수 있습니다.</p>
+<ul>
+<li>
+<p>OutOfMemoryError (OOM) 발생 가능성</p>
+<ul>
+<li>
+<p>ContentCachingRequestWrapper, ContentCachingResponseWrapper 두 개의 클래스 모두 요청/응답 전체 본문(body) 내용을 메모리에 저장하는 공통점이 있습니다.</p>
+</li>
+<li>
+<p>(1) 대용량 파일을 다운로드 하거나 (2) 대량의 JSON 요청/응답의 경우 (보통은 응답의 비중이 큼) FastByteArrayOutputStream 에 전부 쌓이기 때문에, 메모리 부족(Out of Memory) 현상이 발생하게 됩니다.</p>
+</li>
+<li>
+<p>대응 방법</p>
+<ul>
+<li>
+<p>본문 크기를 제한하거나 일부만 로깅하는 방식도 고려할 수 있습니다.</p>
+</li>
+<li>
+<p>대용량 파일 다운로드 API는 캐싱 대상에서 제외하는 것도 좋은 방법입니다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>캐시 크기 제한 설정 필요 (Request vs Response)</p>
+<ul>
+<li>
+<p>Request(요청): <code>ContentCachingRequestWrapper</code> 에서는 생성자에서 <code>contentCacheLimit</code> 을 설정할 수 있지만,</p>
+</li>
+<li>
+<p>Response(응답): <code>ContentCachingResponseWrapper</code> 에서는 기본적으로 캐시 크기 제한이 없습니다. 필요하다면, <code>handleContentOverflow()</code> 메서드를 오버라이드해 캐시 용량 초과 시 별도로 처리할 수 있습니다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>copyBodyToResponse() 호출 시점에 대한 응답 전송 지연 가능성</p>
+<ul>
+<li>
+<p>일반적으로 응답 데이터를 모두 캐시에 쌓아둔 다음에 <code>copyBodyToResponse()</code>로 한 번에 클라이언트에 전송합니다.</p>
+</li>
+<li>
+<p>하지만, 대용량 데이터를 응답하는 경우, 메모리가 오래 유지됨으로써 클라이언트에게 전송이 지연될 수 있습니다.</p>
+</li>
+<li>
+<p>대응 방법</p>
+<ul>
+<li>
+<p>응답 크기가 임계치를 넘으면 즉시 전송하는 구조를 고려할 수 있습니다.</p>
+</li>
+<li>
+<p>또는, 대용량 응답 API는 로깅 자체를 생략하는 방식도 가능합니다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="logging-요청응답-format">Logging 요청/응답 format</h3>
+<p><code>HttpRequestAndResponseLoggingFilter</code> 에서는 요청(Request)과 응답(Response)을 아래와 같은 고정된 포맷으로 출력합니다.
+(Logging 포맷 형식의 경우는 개발자 마음이기 때문에 아래 방식 외에 본인이 원하는 방식으로 적용하셔도 됩니다)</p>
+<blockquote>
+<p>HttpRequestAndResponseLoggingFilter.java - toPrettierLog 메서드</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Component</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpRequestAndResponseLoggingFilter</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> OncePerRequestFilter</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">toPrettierLog</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">final</span><span style="color:#E1E4E8"> HttpLogMessage </span><span style="color:#FFAB70">msg</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Java 15+ 텍스트 블록 (""") 사용</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#9ECBFF"> """</span></span>
+<span class="line"><span style="color:#9ECBFF">                [REQUEST] %s %s [RESPONSE - STATUS: %s]</span></span>
+<span class="line"><span style="color:#9ECBFF">                >> HEADERS: %s</span></span>
+<span class="line"><span style="color:#9ECBFF">                >> REQUEST_BODY: %s</span></span>
+<span class="line"><span style="color:#9ECBFF">                >> RESPONSE_BODY: %s</span></span>
+<span class="line"><span style="color:#9ECBFF">                """</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">formatted</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                msg.</span><span style="color:#B392F0">httpMethod</span><span style="color:#E1E4E8">(), msg.</span><span style="color:#B392F0">url</span><span style="color:#E1E4E8">(), msg.</span><span style="color:#B392F0">httpStatus</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">                msg.</span><span style="color:#B392F0">headers</span><span style="color:#E1E4E8">(), msg.</span><span style="color:#B392F0">requestBody</span><span style="color:#E1E4E8">(), msg.</span><span style="color:#B392F0">responseBody</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">        );</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p>Java 15+에서 지원하는 텍스트 블록 (""") 을 활용해, 로그 메시지를 가독성 좋게 정렬합니다.</p>
+</li>
+<li>
+<p><code>%s</code> 포맷팅으로 요청 메서드, URL, 응답 상태, 헤더, 본문 등을 채웁니다.</p>
+</li>
+</ul>
+<h3 id="logging-출력-예시">Logging 출력 예시</h3>
+<blockquote>
+<p>Swagger url: <code>http://localhost:8080/service-docs.html</code></p>
+</blockquote>
+<p>해당 SpringBoot Application 을 실행한 뒤, controller 패키지에 있는 <code>HealthController</code> 클래스에 있는 api 를 호출하면 아래와 같이 출력되는 것을 확인할 수 있습니다.</p>
+<ul>
+<li>[GET] url: <code>http://localhost:8080/api/health</code></li>
+</ul>
+<p><img src="/assets/img/server/springboot/springboot-logging-filter-format-1.png" alt=""></p>
+<p>이번에는 controller/v1 패키지에 있는 <code>ExamplePostController</code> 클래스에 있는 다른 api를 호출해보겠습니다.</p>
+<ul>
+<li>[POST] url: <code>http://localhost:8080/api/posts/new</code></li>
+</ul>
+<p><img src="/assets/img/server/springboot/springboot-logging-filter-format-2.png" alt=""></p>
+<h2 id="멀티쓰레드-환경에서-request-식별자-필요성">멀티쓰레드 환경에서 request 식별자 필요성</h2>
+<p>지금까지는 각 request마다 HTTP 요청/응답 본문을 로깅하는 작업을 진행했습니다.
+하지만 이 상태에서는 요청을 구분할 식별자가 로그에 포함되지 않아, 멀티쓰레드 환경에서는 서로 다른 요청의 로그가 뒤섞이는 문제가 발생할 수 있습니다.</p>
+<blockquote>
+<p>왜 request 식별자가 필요한가?</p>
+</blockquote>
+<p>Spring Boot는 <strong>멀티쓰레드</strong> 기반으로 요청을 처리하며,
+운영체제(OS)는 컨텍스트 스위칭을 통해 여러 쓰레드를 번갈아가며 실행합니다.</p>
+<p>이 때문에 여러 요청이 <strong>동시에</strong> 들어올 때, 서로 다른 요청의 로그가 섞여 출력될 수 있습니다.</p>
+<p>이를 방지하고 요청 흐름을 명확히 구분하기 위해서는 각 요청마다 <strong>고유한 식별자</strong> 를 로그에 남기는 것이 필수적입니다.</p>
+<blockquote>
+<p>requestId vs traceId</p>
+</blockquote>
+<p>requestId와 traceId의 역할은 아래와 같습니다.</p>
+<ul>
+<li>
+<p><code>requestId</code>: 단일 서비스에서 요청을 구분하는 식별자.</p>
+</li>
+<li>
+<p><code>traceId</code>: 분산 시스템(마이크로서비스) 환경에서 여러 서비스를 오가는 요청 전체 흐름을 추적하는 식별자.</p>
+</li>
+</ul>
+<p>이 식별자는 Kibana, Grafana와 같은 모니터링 도구에서 로그를 검색하거나 요청 흐름을 추적할 때도 유용하게 활용됩니다.</p>
+<blockquote>
+<p>(이번 포스팅에서는 단일 서비스 기준에서는 흔히 <code>requestId</code>를 사용하지만, 본 포스팅에서는 분산 추적 확장을 고려해 <code>traceId</code> 라는 용어를 사용합니다.
+향후 Spring Cloud Sleuth 등을 도입할 경우 <code>traceId</code>, <code>spanId</code>로 자연스럽게 확장 가능합니다.</p>
+</blockquote>
+<p>다음 섹션에서는 <strong>MDC</strong>(Mapped Diagnostic Context) 를 활용해
+요청마다 <code>traceId</code> 를 자동으로 설정하고, 이를 Logback 포맷에 적용하는 방법을 설명하겠습니다.</p>
+<p>(참고로, 현재 제가 속한 팀에서는 userId를 추가로 활용해 특정 사용자의 요청 흐름을 더 쉽게 추적하고 있습니다.)</p>
+<h2 id="mdc로-traceid-설정-및-적용">MDC로 traceId 설정 및 적용</h2>
+<blockquote>
+<p>MDC에 대한 자세한 내용은 이 <a href="https://www.baeldung.com/mdc-in-log4j-2-logback">글</a>을 참고해 주시기 바랍니다.</p>
+</blockquote>
+<p>멀티쓰레드 환경에서 각 요청(request)의 로그를 식별하고 추적하기 위해 Spring Boot + Logback 환경에서 <strong>MDC(Mapped Diagnostic Context)</strong> 를 활용했습니다.</p>
+<p>MDC를 적용한 이유는 다음과 같습니다.</p>
+<ul>
+<li>
+<p>MDC는 각 쓰레드별로 별도의 컨텍스트(Context)를 유지할 수 있게 해줍니다.</p>
+</li>
+<li>
+<p>이 컨텍스트에 traceId, requestId와 같은 식별자 정보를 저장하면, <strong>로그를 남길 때마다 해당 정보를 함께 출력</strong>할 수 있습니다.</p>
+</li>
+</ul>
+<p>MDC는 ThreadLocal과 유사하게 현재 실행 중인 쓰레드에만 국한된 정보를 저장합니다.</p>
+<p>MDC의 동작 방식을 간단하게 설명드리자면,</p>
+<p>(이번 포스팅에서는 단일 서비스 기준으로 <code>requestId</code> 대신 <code>traceId</code> 라는 이름을 사용했습니다.)</p>
+<ul>
+<li>
+<p>MDC에 traceId(requestId 역할)를 저장합니다.(예시. <code>MDC.put("traceId", "1234-5678-qwer")</code>)</p>
+</li>
+<li>
+<p>그리고 logback.xml 과 같은 로그 포맷에서 <code>%X{traceId}</code> 와 같은 형태로 MDC 값을 가져와 출력합니다.</p>
+</li>
+<li>
+<p>요청 처리가 완료되면 메모리 누수 방지를 위해 해당 MDC를 제거합니다. (예시. <code>MDC.remove(TRACE_ID)</code>)</p>
+</li>
+</ul>
+<p>이 과정을 통해, 각 요청마다 고유한 traceId가 로그에 출력되며, 멀티쓰레드 환경에서도 로그가 뒤섞이지 않고 요청 흐름을 명확히 추적할 수 있습니다.</p>
+<p>이로써 요청 흐름을 쉽게 구분하고, 문제를 효과적으로 추적할 수 있습니다.</p>
+<p>위에서 작성한 <code>HttpRequestAndResponseLoggingFilter</code> 클래스에 MDC로 <code>traceId</code>를 추가하여 구현한 코드는 아래와 같습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpRequestAndResponseLoggingFilter</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> OncePerRequestFilter</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Logger log </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoggerFactory.</span><span style="color:#B392F0">getLogger</span><span style="color:#E1E4E8">(HttpRequestAndResponseLoggingFilter.class);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String TRACE_ID </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "traceId"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doFilterInternal</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletRequest </span><span style="color:#FFAB70">request</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    @</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletResponse </span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    @</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> FilterChain </span><span style="color:#FFAB70">filterChain</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        ContentCachingRequestWrapper requestWrapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingRequestWrapper</span><span style="color:#E1E4E8">(request);</span></span>
+<span class="line"><span style="color:#E1E4E8">        ContentCachingResponseWrapper responseWrapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingResponseWrapper</span><span style="color:#E1E4E8">(response);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        final</span><span style="color:#E1E4E8"> String traceId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> UUID.</span><span style="color:#B392F0">randomUUID</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">toString</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">32</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        MDC.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(TRACE_ID, traceId);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            filterChain.</span><span style="color:#B392F0">doFilter</span><span style="color:#E1E4E8">(requestWrapper, responseWrapper);</span></span>
+<span class="line"><span style="color:#6A737D">            // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">            handleException</span><span style="color:#E1E4E8">(e);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">            MDC.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(TRACE_ID);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>참고: <code>MDC</code>는 단일 JVM 내에서만 컨텍스트를 유지하므로, 외부 API 통신이 많은 분산 환경 시 traceId 가 전파되지 않습니다.
+이런 분산 환경에서는 Spring Cloud Sleuth 를 도입해 traceId/spanId를 자동으로 생성하고 서비스 간에 전파할 수 있습니다.</p>
+</blockquote>
+<h2 id="logbackxml-에-traceid-설정">logback.xml 에 traceId 설정</h2>
+<p>현재 local 환경에서 작업하고 있어서, <code>logback-local.xml</code> 파일에 아래와 같이 로그 패턴을 설정해줬습니다.</p>
+<blockquote>
+<p>logback-local.xml</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;?</span><span style="color:#85E89D">xml</span><span style="color:#B392F0"> version</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1.0"</span><span style="color:#B392F0"> encoding</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"UTF-8"</span><span style="color:#E1E4E8">?></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">configuration</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">include</span><span style="color:#B392F0"> resource</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"org/springframework/boot/logging/logback/defaults.xml"</span><span style="color:#E1E4E8">/></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">appender</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"STDOUT"</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"ch.qos.logback.core.ConsoleAppender"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">encoder</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D">            &#x3C;!-- traceId 적용 (현재는 단일 서비스 기준으로 requestId 역할, 분산 시스템에서는 traceId + spanId 구조로 확장 가능) --></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">pattern</span><span style="color:#E1E4E8">>%clr(%d{HH:mm:ss.SSS}){faint}|%clr(${level:-%5p})|%32X{traceId:-},%16X{spanId:-}|%clr(%-40.40logger{39}){cyan}%clr(|){faint}%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}&#x3C;/</span><span style="color:#85E89D">pattern</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">charset</span><span style="color:#E1E4E8">>utf8&#x3C;/</span><span style="color:#85E89D">charset</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">encoder</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">appender</span><span style="color:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">logger</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"org.springframework"</span><span style="color:#B392F0"> level</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"INFO"</span><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">logger</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"dev.be"</span><span style="color:#B392F0"> level</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"DEBUG"</span><span style="color:#E1E4E8">/></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">root</span><span style="color:#B392F0"> level</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"INFO"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">appender-ref</span><span style="color:#B392F0"> ref</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"STDOUT"</span><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">root</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">configuration</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="filter-순서-조정">Filter 순서 조정</h2>
+<p>마지막으로 Filter의 순서를 조정해야 합니다.</p>
+<p>Spring Boot 프로젝트에서는 다양한 필터(Filter)를 사용하게 됩니다.</p>
+<p>예를 들어, Spring Security Filter, CORS Filter, Custom Filter 등이 함께 동작할 수 있습니다.</p>
+<p>이때, Logging Filter가 다른 필터보다 먼저 동작해야 요청(Request)과 응답(Response)의 전체 흐름을 가장 먼저/마지막으로 캡처할 수 있습니다.</p>
+<p>예를 들어,</p>
+<ul>
+<li>Spring Security Filter가 먼저 동작하면, 인증/인가 과정 중 발생하는 예외나 리다이렉션을 Logging Filter가 캡처하지 못할 수 있습니다.</li>
+<li>반대로, Logging Filter가 먼저 동작하면 모든 요청/응답을 정확히 캡처할 수 있습니다.</li>
+</ul>
+<p>이를 위해 Filter의 순서를 명시적으로 조정합니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Order</span><span style="color:#E1E4E8">(Ordered.HIGHEST_PRECEDENCE)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpRequestAndResponseLoggingFilter</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> OncePerRequestFilter</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>Ordered.HIGHEST_PRECEDENCE</code>: 모든 필터 중 가장 먼저 실행되도록 설정합니다.</p>
+</li>
+<li>
+<p>이 설정 덕분에 모든 요청/응답 흐름을 가장 앞단에서 로깅할 수 있습니다.</p>
+</li>
+</ul>
+<h2 id="최종-결과">최종 결과</h2>
+<p>이렇게 설정하면, traceId가 포함된 로그 출력을 확인할 수 있습니다.</p>
+<ul>
+<li>[GET] url: <a href="http://localhost:8080/api/health">http://localhost:8080/api/health</a></li>
+</ul>
+<p><img src="/assets/img/server/springboot/springboot-logging-filter-traceId.png" alt=""></p>
+<p>로그에서 traceId가 포함되어, 동일한 요청 흐름의 로그를 쉽게 구분할 수 있습니다.</p>
+<ul>
+<li>
+<p>이렇게 하면 멀티쓰레드 환경에서도 요청별 로그 추적이 용이해지고,</p>
+</li>
+<li>
+<p>나중에 Kibana, Grafana 같은 모니터링 도구에서도 traceId로 검색하여 요청 흐름을 한눈에 파악할 수 있습니다.</p>
+</li>
+</ul>
+<p>(현재는 단일 서비스 기준으로 traceId를 설정했지만,
+향후 분산 시스템(마이크로서비스) 환경에서는 Spring Cloud Sleuth 같은 분산 추적 도구를 연동해 traceId + spanId 구조로 더 확장할 수 있습니다.)</p>
+<h2 id="summary">Summary</h2>
+<p>이번 글에서는 Spring Boot 환경에서 요청과 응답을 로깅하는 필터를 적용하고, traceId를 활용해 멀티쓰레드 환경에서도 요청 흐름을 구분하는 방법을 정리했습니다.</p>
+<p>처음에는 Filter와 HandlerInterceptor의 차이를 이해하는 것부터 시작해, ContentCachingWrapper를 이용한 요청/응답 본문 로깅, 대용량 데이터 처리 시 주의사항, 그리고 MDC를 활용한 traceId 설정까지 순차적으로 정리했습니다.
+이 과정을 통해 요청별로 로그를 구분하고, Kibana나 Grafana와 같은 모니터링 도구를 통해서도 쉽게 추적할 수 있는 구조를 마련했습니다.</p>
+<p>저 역시 처음 이 작업을 시작할 때는 관련 개념들이 생소하게 느껴졌지만, 내부 동작을 하나씩 파악하고 적용해보면서 많은 것을 배울 수 있었습니다.</p>
+<p>이번 글에서 traceId로 개별 요청의 흐름을 추적할 수 있게 되었다면,
+다음 포스팅에서는 한 걸음 더 나아가 Prometheus와 Grafana를 연동하여
+애플리케이션의 전반적인 성능 상태를 한눈에 파악하는 모니터링 대시보드를 구축하는 방법을 다루어보겠습니다.</p>
+<p>지금까지 읽어주셔서 감사합니다.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p><a href="https://www.baeldung.com/spring-mvc-handlerinterceptor-vs-filter">HandlerInterceptors vs. Filters in Spring MVC</a></p>
+</li>
+<li>
+<p><a href="https://www.baeldung.com/spring-http-logging">Spring – Log Incoming Requests</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/filter/OncePerRequestFilter.html">[Docs] OncePerRequestFilter</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/ContentCachingRequestWrapper.html">[Docs] ContentCachingRequestWrapper</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/ContentCachingResponseWrapper.html">[Docs] ContentCachingResponseWrapper</a></p>
+</li>
+<li>
+<p><a href="https://www.programmersought.com/article/80902025083/">How to reuse inputStream?</a></p>
+</li>
+<li>
+<p><a href="https://www.baeldung.com/mdc-in-log4j-2-logback">Improved Java Logging with Mapped Diagnostic Context (MDC)</a></p>
+</li>
+<li>
+<p><a href="https://beaniejoy.tistory.com/97">[Spring] HTTP Request, Response 내용을 logging 적용해보기</a></p>
+</li>
+<li>
+<p><a href="https://beaniejoy.tistory.com/96">[Spring] Filter 중복 호출되는 경우와 OncePerRequestFilter를 통한 처리</a></p>
+</li>
+<li>
+<p><a href="https://gist.github.com/michael-pratt/89eb8800be8ad47e79fe9edab8945c69">[Github] RequestAndResponseLoggingFilter.java</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="SpringBoot-Logging-Filter" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#예상-독자" data-toc="예상-독자" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">예상 독자</a></li><li><a href="#filter-vs-handlerinterceptor" data-toc="filter-vs-handlerinterceptor" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Filter vs. HandlerInterceptor</a></li><li><a href="#filter" data-toc="filter" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Filter</a></li><li><a href="#handlerinterceptor" data-toc="handlerinterceptor" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HandlerInterceptor</a></li><li><a href="#filter와-handlerinterceptor의-차이" data-toc="filter와-handlerinterceptor의-차이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Filter와 HandlerInterceptor의 차이</a></li><li><a href="#filter를-선택한-이유" data-toc="filter를-선택한-이유" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Filter를 선택한 이유</a></li><li><a href="#프로젝트-환경-구성" data-toc="프로젝트-환경-구성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">프로젝트 환경 구성</a></li><li><a href="#httplogmessage" data-toc="httplogmessage" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">HttpLogMessage</a></li><li><a href="#requestandresponseloggingfilter" data-toc="requestandresponseloggingfilter" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">RequestAndResponseLoggingFilter</a></li><li><a href="#onceperrequestfilter" data-toc="onceperrequestfilter" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">OncePerRequestFilter</a></li><li><a href="#요청응답-본문-캐싱-contentcachingwrapper" data-toc="요청응답-본문-캐싱-contentcachingwrapper" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">요청/응답 본문 캐싱 (ContentCachingWrapper)</a></li><li><a href="#대용량-데이터-처리-시-주의할-점" data-toc="대용량-데이터-처리-시-주의할-점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">대용량 데이터 처리 시 주의할 점</a></li><li><a href="#logging-요청응답-format" data-toc="logging-요청응답-format" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Logging 요청/응답 format</a></li><li><a href="#logging-출력-예시" data-toc="logging-출력-예시" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Logging 출력 예시</a></li><li><a href="#멀티쓰레드-환경에서-request-식별자-필요성" data-toc="멀티쓰레드-환경에서-request-식별자-필요성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">멀티쓰레드 환경에서 request 식별자 필요성</a></li><li><a href="#mdc로-traceid-설정-및-적용" data-toc="mdc로-traceid-설정-및-적용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">MDC로 traceId 설정 및 적용</a></li><li><a href="#logbackxml-에-traceid-설정" data-toc="logbackxml-에-traceid-설정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">logback.xml 에 traceId 설정</a></li><li><a href="#filter-순서-조정" data-toc="filter-순서-조정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Filter 순서 조정</a></li><li><a href="#최종-결과" data-toc="최종-결과" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">최종 결과</a></li><li><a href="#summary" data-toc="summary" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Summary</a></li><li><a href="#references" data-toc="references" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">References</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[Goodfriends] Set-Cookie의 보안 속성 적용기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Goodfriends-Set-Cookie/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="hover:underline" data-astro-cid-g5songws>프로젝트</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[Goodfriends] Set-Cookie의 보안 속성 적용기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-10-27" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-10-27</time><a href="/category/#%EC%82%AC%EC%9D%B4%EB%93%9C%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="chip chip-tag">#사이드프로젝트</a></div><p class="view-count text-sm text-muted">조회수 4회</p></div><div class="prose mt-10" data-astro-cid-g5songws><p><a href="https://goodfriends-team.tistory.com/">굿프렌즈 기술 블로그 방문하기 🎋</a></p>
+<h2 id="글을-쓴-계기">글을 쓴 계기</h2>
+<p>이번 글은 <a href="https://devfancy.github.io/Technology-Cookie/">이전 글</a>에서 설명했던 쿠키의 보안속성을 실제 프로젝트(굿프렌즈)에서 어떻게 적용했는지 공유하기 위해 글을 작성하고자 한다.</p>
+<h2 id="소셜-로그인-현재-상황">소셜 로그인 현재 상황</h2>
+<p>현재 <a href="https://goodfriends.life/">굿프렌즈</a>의 소셜 로그인은 구글로 되어있다.</p>
+<p>소셜 로그인을 통해 발급받은 <code>액세스 토큰</code>(Access Token)은 1시간으로, 새로운 액세스 토큰을 발급하기 위해 생성한 <code>리프레시 토큰</code>(Refresh Token)은 14일로 주어져 있다.</p>
+<p>이때 두 토큰 다 ResponseBody로 토큰을 발급받게 되면, 개발자 도구에 있는 Storage을 통해 토큰을 확인할 수 있다.</p>
+<p>하지만, Storage에 대한 접근 및 제어는 자바스크립트를 통해 이루어지기 때문에 CSRF, XSS 등 스크립트 기반 공격이 가능해서 외부 사용자로부터 토큰 값을 탈취당할 수 있다.</p>
+<h2 id="쿠키를-이용하여-리프레시-토큰-관리">쿠키를 이용하여 리프레시 토큰 관리</h2>
+<p>클라이언트 입장에서는 <strong><code>액세스 토큰</code>만 있으면 로그인이 가능</strong>하다.</p>
+<p>이 부분은 로컬 스토리지를 활용해서 검증할 수 있기 때문에 로그인 여부 파악에는 문제가 없다고 본다.</p>
+<p>클라이언트에서 액세스 토큰을 재발급하는 경우는 <strong>기간이 만료되었을 때, 리프레시 토큰을 통해 재발급</strong> 해주면 된다.</p>
+<p>그리고 두 개의 토큰이 로컬 스토리지에 같이 저장되면, 해커나 외부 사용자로부터 공격을 당할 수 있기 때문에 따로 보관해야 한다고 생각했다.</p>
+<p>그래서 <strong>유지 기간이 긴 <code>리프레시 토큰</code>을 쿠키를 이용해서 관리해 주고, 쿠키를 통해서 전달이 되도록 구현</strong>했다.</p>
+<h2 id="쿠키의-보안-속성-적용">쿠키의 보안 속성 적용</h2>
+<blockquote>
+<p>AuthTokenResponseHandler</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Component</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> AuthTokenResponseHandler</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletResponse httpServletResponse;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> AuthTokenResponseHandler</span><span style="color:#E1E4E8">(HttpServletResponse </span><span style="color:#FFAB70">httpServletResponse</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.httpServletResponse </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> httpServletResponse;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> setRefreshTokenCookie</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">refreshToken</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        ResponseCookie refreshTokenCookie </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ResponseCookie.</span><span style="color:#B392F0">from</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"refreshToken"</span><span style="color:#E1E4E8">, refreshToken)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">httpOnly</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">secure</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">sameSite</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"None"</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// SameSite 설정을 None으로 추가</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">maxAge</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">14</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 24</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 60</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 60</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// 리프레시 토큰 유효 기간 설정 (14일)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">path</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/"</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// 쿠키의 유효 경로 설정 (애플리케이션 전체)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        httpServletResponse.</span><span style="color:#B392F0">addHeader</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Set-Cookie"</span><span style="color:#E1E4E8">, refreshTokenCookie.</span><span style="color:#B392F0">toString</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위와 같이 리프레시 토큰을 저장하기 위해 AuthTokenResponseHandler 클래스에서 <code>ResponseCookie</code>형으로 선언했다.</p>
+<p>(ResponseCookie는 스프링 프레임워크에서 제공하고 있으며, HttpCookie로부터 상속받고 있다)</p>
+<p>그런 다음, 브라우저가 <code>https</code> 프로토콜 상에서만 쿠키를 전달해 주기 위해 보안 속성 중 하나인 <strong><code>secure</code>을 true</strong>로 설정했다.</p>
+<p>그리고, 브라우저에서 자바스크립트로 해당 쿠키에 접근하지 못하도록 쿠키의 보안 속성 중 하나인 <strong><code>httpOnly</code>를 true</strong>로 설정했다.</p>
+<p>그래서 액세스 토큰과 리프레시 토큰을 발급하는 API를 아래와 같이 구현했다.</p>
+<blockquote>
+<p>AuthController</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequestMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/auth"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> AuthController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> OAuthUri oAuthUri;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> OAuthClient oAuthClient;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> AuthService authService;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> AuthTokenResponseHandler authTokenResponseHandler;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> AuthController</span><span style="color:#E1E4E8">(OAuthUri </span><span style="color:#FFAB70">oAuthUri</span><span style="color:#E1E4E8">, OAuthClient </span><span style="color:#FFAB70">oAuthClient</span><span style="color:#E1E4E8">, AuthService </span><span style="color:#FFAB70">authService</span><span style="color:#E1E4E8">, AuthTokenResponseHandler </span><span style="color:#FFAB70">authTokenResponseHandler</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.oAuthUri </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> oAuthUri;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.oAuthClient </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> oAuthClient;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.authService </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> authService;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.authTokenResponseHandler </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> authTokenResponseHandler;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 액세스 토큰은 ResponseBody로 발급, 리프레시 토큰은 Set-Cookie로 발급 받기</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">PostMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/{oauthProvider}/token"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ResponseEntity&#x3C;</span><span style="color:#F97583">AccessTokenResponse</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">generateAccessAndRefreshToken</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">PathVariable</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String </span><span style="color:#FFAB70">oauthProvider</span><span style="color:#E1E4E8">, @</span><span style="color:#F97583">Valid</span><span style="color:#E1E4E8"> @</span><span style="color:#F97583">RequestBody</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> TokenRequest </span><span style="color:#FFAB70">tokenRequest</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        OAuthUser oAuthUser </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> oAuthClient.</span><span style="color:#B392F0">getOAuthUser</span><span style="color:#E1E4E8">(tokenRequest.</span><span style="color:#B392F0">getCode</span><span style="color:#E1E4E8">(), tokenRequest.</span><span style="color:#B392F0">getRedirectUri</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        AccessTokenResponse response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> authService.</span><span style="color:#B392F0">generateAccessAndRefreshToken</span><span style="color:#E1E4E8">(oAuthUser);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> ResponseEntity.</span><span style="color:#B392F0">ok</span><span style="color:#E1E4E8">(response);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 리프레시 토큰을 이용하여 새로운 액세스 토큰을 발급 받기</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">PostMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/token/access"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ResponseEntity&#x3C;</span><span style="color:#F97583">AccessTokenResponse</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">generateAccessToken</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">CookieValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"refreshToken"</span><span style="color:#E1E4E8">) String </span><span style="color:#FFAB70">refreshToken</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        TokenRenewalRequest tokenRenewalRequest </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> TokenRenewalRequest</span><span style="color:#E1E4E8">(refreshToken);</span></span>
+<span class="line"><span style="color:#E1E4E8">        AccessTokenResponse response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> authService.</span><span style="color:#B392F0">generateAccessToken</span><span style="color:#E1E4E8">(tokenRenewalRequest);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> ResponseEntity.</span><span style="color:#B392F0">ok</span><span style="color:#E1E4E8">(response);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위의 코드와 같이 액세스 토큰은 ResponseBody에, 리프레시 토큰은 Set-Cookie로 발급받도록 구현했다.</p>
+<p>그리고 액세스 토큰은 개발자 도구의 로컬 스토리지에, 리프레시 토큰은 개발자 도구의 Cookies에 저장해서 관리했고, secure 및 httponly와 같은 보안 속성을 적용했다.</p>
+<p>이로써 보안적으로 문제가 되었던 부분인 스크립트 기반 공격으로부터 방어를 할 수 있게 되었다.</p>
+<h2 id="트러블-슈팅">트러블 슈팅</h2>
+<p>서버와 클라이언트가 통신을 이용한 소셜 로그인 기능을 구현할 때 쿠키를 사용했다.</p>
+<p>하지만, CORS 정책을 따르지 않는 쿠키는 HTTP 통신을 할 수 없게 되었고, 나 역시 이 문제를 해결하는데 2일(8H X 2D = 16H)이라는 시간이 걸렸다.</p>
+<h3 id="samesite-설정">SameSite 설정</h3>
+<blockquote>
+<p>해당 <a href="https://github.com/woorifisa-projects/GoodFriends/pull/310">이슈</a>를 통해 자세한 문제를 확인할 수 있습니다.</p>
+</blockquote>
+<p>https인 도메인 주소에서 소셜 로그인으로 회원가입한 사용자가 이후에 로그아웃이 되지 않는 에러가 발생했다.</p>
+<p>로직상 액세스 토큰과 리프레시 토큰 값이 들어있어야만 로그아웃이 되도록 설정했는데, 브라우저에서는 쿠키를 이용한 리프레시 토큰 값을 받아오고 있지 않아서 에러가 발생한 것이다.</p>
+<p><img src="/assets/img/server/technology/Set-Cookie_1.png" alt=""></p>
+<blockquote>
+<p>Set-Cookie 경고창</p>
+</blockquote>
+<p><img src="/assets/img/server/technology/Set-Cookie_2.png" alt=""></p>
+<p>최근 크롬 정책에 의해 서로 다른 도메인에서의 호출, 즉 SameSite 가 아닌 상태에서의 호출은 브라우저에서 막고 있다.</p>
+<p>메세제를 확인해 보면 브라우저 기본으로 SameSite 값은 <code>Lax</code>로 설정되어 있어서 다른 사이트에서 온 요청에 의한 Cookie 설정은 막는다고 한다.</p>
+<p>따라서, 해당 에러를 해결하기 위해 기본적으로 설정되어 있는 SameSite 값인 Lax를 <code>None</code>으로 수정하면, 서로 다른 도메인에서 온 요청에 대한 Set-Cookie를 허용해 줄 수 있다.</p>
+<p>그래서 위에 있는 AuthTokenResponseHandler 클래스에서 ResponseCookie형인 변수 refreshTokenCookie 부분에 <code>.sameSite("None")</code>를 설정했다.</p>
+<p>(단, 조건이 SameSite가 <code>None</code>인 쿠키는 <strong>반드시 Secure가 true</strong>여야 한다)</p>
+<h3 id="credentials">Credentials</h3>
+<p>두 번째는 CORS 통신에 포함할 쿠키에 관한 설정이다.</p>
+<blockquote>
+<p><code>Credentials</code> 이란 쿠키, Authorization 인증 헤더, TLS client certificates(증명서)를 내포하는 자격 인증 정보를 말한다.</p>
+</blockquote>
+<p>기본적으로 브라우저가 제공하는 요청 API 들은 별도의 옵션 없이 브라우저의 <strong><code>쿠키</code>와 같은 인증과 관련된 데이터를 함부로 요청 데이터에 담지 않도록 되어있다.</strong></p>
+<p>따라서 요청과 응답엥 쿠키를 허용하고 싶을 경우, 이를 해결하기 위한 옵션이 바로 <code>withCredentials</code> 옵션이다.</p>
+<p><code>withCredentials</code> 옵션은 <strong>서로 다른 도메인(Cross Origin)에 요청을 보낼 때 요청에 <code>인증(credential)</code> 정보를 담아서 보낼지를 결정</strong>하는 항목이다.</p>
+<p>즉, <code>쿠키</code>나 <code>인증 헤더</code> 정보를 포함시켜 요청하고 싶다면, <strong>클라이언트</strong>에서 API 요청 메소드를 보낼때 <code>withCredentials</code> 옵션을 true로 설정해야한다.</p>
+<p>또한 인증된 요청을 정상적으로 수행하기 위해선 클라이언트 뿐만 아니라 <strong>서버</strong>에서도 <code>Access-Control-Allow-Credentials</code> 헤더를 true로 함으로써 인증 옵션을 설정해주어야 한다.</p>
+<p>정리하자면, <strong>클라이언트나 서버나 둘다 Credentials 부분을 true로 설정</strong>해줘야 한다.</p>
+<ol>
+<li>표준 CORS 요청은 기본적으로 쿠키를 설정하거나 보낼 수 없다.</li>
+<li>프론트에서 ajax 요청할 때, <code>withCredentials</code> 부분을 true로 해서 (수동으로) CORS 요청에 쿠키 값을 넣어줘야 한다.</li>
+<li>백엔드(서버)에서도 응답 헤더에 <code>Access-Control-Allow-Credentials</code>를 true로 설정해야 한다.</li>
+</ol>
+<blockquote>
+<p>프론트 설정: axios 설정</p>
+</blockquote>
+<p><code>withCredentials</code> 옵션 부분을 axios 전역 설정으로 처리하거나 axios 요청 메서드의 옵션 인자로 넣어 보낼 수 있다.</p>
+<p>두 가지 중 한개를 선택하면 되는데, 해당 프로젝트는 후자로 적용했다.</p>
+<blockquote>
+<p>index.ts</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="typescript"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { API_ERROR } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> '@/constants/strings/error'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> axios, { </span><span style="color:#F97583">type</span><span style="color:#E1E4E8"> AxiosResponse } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'axios'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#79B8FF"> headers</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">    'Content-Type'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'application/json;charset=utf-8'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    'Content-Encoding'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'gzip'</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> const</span><span style="color:#B392F0"> apiInstance</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> instance</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> axios.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">        baseURL: </span><span style="color:#F97583">import</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">meta</span><span style="color:#E1E4E8">.env.</span><span style="color:#79B8FF">VITE_APP_BASE_URL</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        headers: { </span><span style="color:#F97583">...</span><span style="color:#E1E4E8">headers },</span></span>
+<span class="line"><span style="color:#E1E4E8">        withCredentials: </span><span style="color:#79B8FF">true</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">    instance.defaults.timeout </span><span style="color:#F97583">=</span><span style="color:#F97583"> import</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">meta</span><span style="color:#E1E4E8">.env.</span><span style="color:#79B8FF">VITE_APP_TIMEOUT_TIME</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    instance.interceptors.response.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        (</span><span style="color:#FFAB70">res</span><span style="color:#F97583">:</span><span style="color:#B392F0"> AxiosResponse</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> res;</span></span>
+<span class="line"><span style="color:#E1E4E8">        },</span></span>
+<span class="line"><span style="color:#E1E4E8">        (</span><span style="color:#FFAB70">err</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (err.code </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'ECONNABORTED'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                err.message </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> API_ERROR</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">TIMEOUT</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#79B8FF"> Promise</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">reject</span><span style="color:#E1E4E8">(err);</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#79B8FF"> Promise</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">reject</span><span style="color:#E1E4E8">(err);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> instance;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span></code></pre>
+<blockquote>
+<p>백엔드(서버) 설정: Spring</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Configuration</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> WebConfig</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> WebMvcConfigurer</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> allowOriginUrlPatterns;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> addCorsMappings</span><span style="color:#E1E4E8">(CorsRegistry </span><span style="color:#FFAB70">registry</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        String</span><span style="color:#E1E4E8">[] patterns </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> allowOriginUrlPatterns.</span><span style="color:#B392F0">stream</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">toArray</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[]</span><span style="color:#F97583">::new</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        registry.</span><span style="color:#B392F0">addMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/**"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">allowedMethods</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"*"</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// 허용할 HTTP method</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">allowedOrigins</span><span style="color:#E1E4E8">(patterns) </span><span style="color:#6A737D">// 허용할 출처</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">allowCredentials</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>(추가) 서버 EC2의 NGINX 설정 - default</p>
+</blockquote>
+<p>해당 프로젝트에서 NGINX와 SSL를 이용한 HTTPS를 적용하면서, 서버에서도 <code>Access-Control-Allow-Credentials</code>를 true로 설정해줘야 한다.</p>
+<p>경로: /etc/nginx/sites-available/default</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#B392F0">server</span><span style="color:#9ECBFF"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#B392F0">    server_name</span><span style="color:#9ECBFF"> goodfriends.pro</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">    location</span><span style="color:#9ECBFF"> /</span><span style="color:#9ECBFF"> {</span></span>
+<span class="line"><span style="color:#F97583">      if</span><span style="color:#E1E4E8"> ($request_method = </span><span style="color:#9ECBFF">'OPTIONS'</span><span style="color:#E1E4E8">) </span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#B392F0">                            add_header</span><span style="color:#9ECBFF"> 'Access-Control-Allow-Origin'</span><span style="color:#9ECBFF"> 'https://goodfriends.life'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">                            add_header</span><span style="color:#9ECBFF"> 'Access-Control-Allow-Credentials'</span><span style="color:#9ECBFF"> 'true'</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D"># allowed Set-Cookie</span></span>
+<span class="line"><span style="color:#B392F0">                            add_header</span><span style="color:#9ECBFF"> 'Access-Control-Allow-Methods'</span><span style="color:#9ECBFF"> 'GET, POST, DELETE, PUT, PATCH, OPTIONS'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                            </span></span>
+<span class="line"><span style="color:#79B8FF">                            ...</span></span>
+<span class="line"><span style="color:#F97583">                            return</span><span style="color:#79B8FF"> 204</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                            </span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        listen</span><span style="color:#E1E4E8"> [::]:443 ssl ipv6only</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">on</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D"># managed by Certbot</span></span>
+<span class="line"><span style="color:#B392F0">        listen</span><span style="color:#79B8FF"> 443</span><span style="color:#9ECBFF"> ssl</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D"># managed by Certbot</span></span>
+<span class="line"><span style="color:#B392F0">        ssl_certificate</span><span style="color:#9ECBFF"> /etc/letsencrypt/live/goodfriends.pro/fullchain.pem</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D"># managed by Certbot</span></span>
+<span class="line"><span style="color:#B392F0">        ssl_certificate_key</span><span style="color:#9ECBFF"> /etc/letsencrypt/live/goodfriends.pro/privkey.pem</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D"># managed by Certbot</span></span>
+<span class="line"><span style="color:#B392F0">        include</span><span style="color:#9ECBFF"> /etc/letsencrypt/options-ssl-nginx.conf</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D"># managed by Certbot</span></span>
+<span class="line"><span style="color:#B392F0">        ssl_dhparam</span><span style="color:#9ECBFF"> /etc/letsencrypt/ssl-dhparams.pem</span><span style="color:#E1E4E8">; </span><span style="color:#6A737D"># managed by Certbot</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="마치며">마치며</h2>
+<p>프로젝트에 Set-Cookie의 보안 속성 적용 방법과 트러블 슈팅을 경험했다. 쿠키에 대한 개념, 그리고 보안 속성, 쿠키를 이용한 CORS 설정 등 여러 개념들을 알 수 있는 기회였고, 보안에 대한 중요성을 다시 한번 느꼈다.</p>
+<p>위의 방식으로 기능적으로 작동되지만, 완벽히 해결했다고 볼 순 없다고 생각한다. 리프레시 토큰에 대한 보안은 되었으나, 액세스 토큰은 여전히 ResponseBody로 저장되어 있어서 언제든 해커와 같은 악성 사용자로부터 토큰 값을 탈취당할 수 있다.</p>
+<p>프로젝트를 진행하면서 나중에 더 나은 대안이 있다면, 리팩터링을 통해 더 안전하게 보호할 수 있도록 하자.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://inpa.tistory.com/entry/AXIOS-%F0%9F%93%9A-CORS-%EC%BF%A0%ED%82%A4-%EC%A0%84%EC%86%A1withCredentials-%EC%98%B5%EC%85%98">CORS 쿠키 전송하기 (withCredentials 옵션)</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=-2TgkKYmJt4&#x26;ab_channel=%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC">[10분 테코톡] 나봄의 CORS</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Goodfriends-Set-Cookie" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/ETC-Sipethon-Slackbot/" class="link-title leading-snug">SIPE 커뮤니티를 위한 슬랙 봇 만들기 (feat. 사이프톤)</a><time datetime="2025-01-19" class="mt-1.5 block text-sm text-muted">2025-01-19</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Hibit-Retrospective/" class="link-title leading-snug">[Hibit] 히빗 V2 업그레이드: 백엔드 개선과 개발자 성장기</a><time datetime="2024-02-04" class="mt-1.5 block text-sm text-muted">2024-02-04</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Goodfriends-Nginx-SSL-HTTPS/" class="link-title leading-snug">[Goodfriends] Nginx와 Let&#39;s Encrypt로 HTTPS 웹 서비스 배포하기</a><time datetime="2023-11-15" class="mt-1.5 block text-sm text-muted">2023-11-15</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#글을-쓴-계기" data-toc="글을-쓴-계기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">글을 쓴 계기</a></li><li><a href="#소셜-로그인-현재-상황" data-toc="소셜-로그인-현재-상황" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">소셜 로그인 현재 상황</a></li><li><a href="#쿠키를-이용하여-리프레시-토큰-관리" data-toc="쿠키를-이용하여-리프레시-토큰-관리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">쿠키를 이용하여 리프레시 토큰 관리</a></li><li><a href="#쿠키의-보안-속성-적용" data-toc="쿠키의-보안-속성-적용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">쿠키의 보안 속성 적용</a></li><li><a href="#트러블-슈팅" data-toc="트러블-슈팅" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">트러블 슈팅</a></li><li><a href="#samesite-설정" data-toc="samesite-설정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">SameSite 설정</a></li><li><a href="#credentials" data-toc="credentials" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Credentials</a></li><li><a href="#마치며" data-toc="마치며" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">마치며</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

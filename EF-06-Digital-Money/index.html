@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>06. Digital Money | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/EF-06-Digital-Money/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EB%8C%80%ED%95%99%EA%B5%90" class="hover:underline" data-astro-cid-g5songws>대학교</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>06. Digital Money</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-04-25" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-04-25</time><a href="/category/#%EC%A0%84%EC%9E%90%EA%B8%88%EC%9C%B5" class="chip chip-tag">#전자금융</a></div><p class="view-count text-sm text-muted">조회수 13회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 카테고리는 경영학부 전자금융의 이해 수업을 듣고 정리한 내용을 바탕으로 글을 작성하였습니다.</p>
+</blockquote>
+<h3 id="how-are-interbank-payments-made">How Are Interbank Payments Made?</h3>
+<ul>
+<li>
+<p>Digital assets are easy to copy.</p>
+<ul>
+<li>
+<p>수신자들은 그것이 독특한지 구별할 수 없기 때문에 그것을 가치 있게 여기지 않을 것이다 ⇒ 가치 불분명</p>
+</li>
+<li>
+<p>수신자에게 보낸 후 삭제할지 확신할 수 없습니다 ⇒ 불확신</p>
+</li>
+<li>
+<p>수신자는 파일의 복사본을 다른 사람에게 보냈는지 알 수 없습니다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Double spend problem</strong></p>
+<ul>
+<li>
+<p>KOR) 디지털 화폐가 쉽게 중복되지(duplicated)않도록 보장하는 것의 어려움을 설명한다.</p>
+</li>
+<li>
+<p>ENG) describes the difficulty of ensuring digital money is not easily duplicated.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-are-payments-made">How are Payments Made?</h2>
+<h3 id="1-same-bank--같은-은행">1. Same bank ⇒ 같은 은행</h3>
+<ul>
+<li>
+<p>상황) Alice가 Bob에게 $10 을 보내는 경우</p>
+</li>
+<li>
+<p>조건)Alice와 Bob은 Bank에게  $100을 예금한 상태이다.</p>
+</li>
+<li>
+<p>결과) Alice는 $90이 남았고, Bob은 $110이 남아있다. 그리고 은행의 부채는 $200달러로 Before/After 동일하다.</p>
+</li>
+</ul>
+<h3 id="2-different-banks--다른-은행">2. Different banks ⇒ 다른 은행</h3>
+<ul>
+<li>
+<p>상황) Alice가 Bob에게 $10 을 보내는 경우</p>
+</li>
+<li>
+<p>조건) Alice는 Bank A에 $100 을 예금하였고, Bob은 Bank B에게  $100을 예금한 상태이다.</p>
+</li>
+<li>
+<p>결과) Alice는 $90이 남았고, Bob은 $110이 남아있다. 그리고 Bank A의 부채는 $90 이고, Back B의 부채는 $110 이다. 전/후가 다르다.</p>
+</li>
+<li>
+<p>Problem</p>
+<ul>
+<li>
+<p>Bank A now owes Alice $10 less than before and so it is better off. ⇒ 채무가 줄어듦</p>
+</li>
+<li>
+<p>Bank B now owes Bob $10 more and so is worse off. ⇒ 채무가 늘어남</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Solution</p>
+<ul>
+<li>
+<p>Bank A needs to pay Bank B $10 to balance out the customer account movements and complete the end to end payment.</p>
+</li>
+<li>
+<p>Bank A could put a bunch of banknotes in a van and send them to Bank B.</p>
+</li>
+<li>
+<p>Bank A owes Alice $10 less but pays $10 in banknotes to Bank B.</p>
+</li>
+<li>
+<p>Bank B owes Bob $10 more but receives $10 in banknotes from Bank A.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Digital solutions</p>
+<ul>
+<li>
+<p>Two main ways a bank can digitally pay another bank</p>
+<p>[1] using <strong>correspondent bank accounts</strong></p>
+<p>[2] using <strong>a central bank payment</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="correspondent-bank-accounts">Correspondent Bank Accounts</h4>
+<ul>
+<li>
+<p><code>Correspondent Bank</code> : a financial institution that acts as an agent on behalf of other financial institutions</p>
+</li>
+<li>
+<p>다른 은행에 새로운 계좌를 만들때 (기존의 작은 은행보다 더 큰 은행을 만드는 경우) ⇒ <code>Coreespondent Bank</code>를 쓴다.</p>
+</li>
+<li>
+<p><strong>The problem</strong> with correspondent bank accounts</p>
+<ul>
+<li>
+<p>굉장히 많은 correspondent bank account 개설을 해야한다.</p>
+</li>
+<li>
+<p>기회비용이 많이 발생한다 ( =expensive, risky)</p>
+</li>
+<li>
+<p><strong>Solution</strong> → <code>Central Bank Account</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="central-bank-account">Central Bank Account</h4>
+<ul>
+<li>
+<p>A central bank enables banks in its jurisdiction to pay each other without each of them having to maintain accounts with one another. (서로 계정을 유지할 필요가 없다)</p>
+<ul>
+<li>
+<p>The central bank acts as a bank for the banks in its currency zone.</p>
+</li>
+<li>
+<p>Money held at the central bank is called “reserves”.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Central Bank Account 종류 - DNS, RTGS</p>
+</li>
+<li>
+<p><strong>Deferred Net Settlement (DNS) Systems</strong></p>
+<ul>
+<li>
+<p>Bank들 사이에 발생하는 payment 주문들을 줄을 세워 놓고, 하루중 특별한 시점에 결제를 실행시키는 시스템이다.</p>
+</li>
+<li>
+<p>“netted off” - 비용을 제외하고 순수하게 남은 것</p>
+<ul>
+<li>
+<p>장점 - Capital efficiency (자본활용의 효율성) - 순수하게 남은것만 주고 받기 때문에 많은 자본을 확보할 필요가 없다.</p>
+</li>
+<li>
+<p>단점 - Credit risk(신용 위험) - 누적된 것을 쌓아서 나중에 한번에 결제를 하기 때문에, 만약 예측불가능한 상황이 생긴다면 그것에 대해서 대응하기 어려울 수 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Real Time Gross Settlement (RTGS) Systems</strong></p>
+<ul>
+<li>
+<p>고객이 결제를 할때마다 실시간으로 거래가 이루어지는 시스템이다.</p>
+</li>
+<li>
+<p>Each payment instruction is settled independently and not grouped, batched, or netted off against any other instructions. ⇒ 각각의 거래가 독립적으로 이루어진다.</p>
+</li>
+<li>
+<p>장점 - Less capital risk - 실시간으로 이루어지기 때문에 앞으로 발생할 현금흐름에 대한 불확실성이 낮다.</p>
+</li>
+<li>
+<p>단점- Capital inefficiency - 많은 자금을 보유해야 하므로 자본효율성이 낮다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Central clearing counterparty (CCP)</strong> ⇒ “Clearing Bank”</p>
+<ul>
+<li>
+<p>It acts as the legal trading counterparty.</p>
+</li>
+<li>
+<p>Suppose A buys shares from B ⇒ A와 B가 서로 못믿기 때문에,  가운에 “CCP”를 두어서 거래를 하는 구조이다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-cross-border-same-currency--국경간의-이체">3. Cross border (same currency) ⇒ 국경간의 이체</h3>
+<h4 id="international-payments">International Payments</h4>
+<ul>
+<li>
+<p>Two main types</p>
+<ul>
+<li>
+<p>[1] the payment of <strong>a single currency</strong> across a border</p>
+</li>
+<li>
+<p>[2] the transfer of value across borders, with <strong>foreign exchange</strong>, where the sender and the receiver are working in <strong>different currency</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Single Currency Transfer Across a Border</li>
+<li>Sending GBP from UK to Singapore</li>
+</ol>
+<h3 id="4-foreign-exchange--환전하는-경우">4. Foreign exchange ⇒ 환전하는 경우</h3>
+<ul>
+<li>
+<p>Money does not simply become other money.</p>
+<ul>
+<li>화폐가 바뀌는 것이 아니라 교환하는 것이다.</li>
+</ul>
+</li>
+<li>
+<p>Suppose Alice wants to send GBP from her sterling account for it to arrive as USD in Bob’s US dollar account.</p>
+<ul>
+<li>
+<p><strong>Three options</strong> : GBP(pound) → US dollar</p>
+</li>
+<li>
+<p>[1] 보내는 쪽에서 환전하는 경우 (파운드→달러로 환전후 보낸다)</p>
+</li>
+<li>
+<p>[2] 받는쪽에서 환전하는 경우(파운드로 받은 다음 달러로 환전한다)</p>
+</li>
+<li>
+<p>[3] 제 3자가 개입(Alice의 파운드를 받아서  달러로 환전한 뒤, Bob에게 보낸다)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Option 1 : Alice’s (sending) bank does the FX by deducting pounds from Alice and creating Bob with their dollars.</p>
+</li>
+<li>
+<p>Option 2 : Bob’s (receiving) bank does the FX by receiving pounds and crediting Bob with dollars.</p>
+</li>
+<li>
+<p>Option 3 : Third party (e.g., Transferwise) does the FX by receiving Alice’s pounds and sending their dollars to Bob.</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://link.springer.com/book/10.1007/978-3-030-14533-0">The Future of Finance</a></p>
+<ul>
+<li>The Impact of Fintech, AI, and Crypto on Financial Services, Henry Arslanian and Fabrice Fischer, 2019, Springer</li>
+</ul>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="EF-06-Digital-Money" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/PS-04-Continuous-Probability-Distributions/" class="link-title leading-snug">04. Continuous Probability Distributions</a><time datetime="2022-06-30" class="mt-1.5 block text-sm text-muted">2022-06-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/EF-10-Blockchain-Technology/" class="link-title leading-snug">10. Blockchain Technology</a><time datetime="2022-06-26" class="mt-1.5 block text-sm text-muted">2022-06-26</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/BS-Analysis-Of-Variance/" class="link-title leading-snug">12. 분산분석</a><time datetime="2022-06-25" class="mt-1.5 block text-sm text-muted">2022-06-25</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#how-are-interbank-payments-made" data-toc="how-are-interbank-payments-made" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">How Are Interbank Payments Made?</a></li><li><a href="#how-are-payments-made" data-toc="how-are-payments-made" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">How are Payments Made?</a></li><li><a href="#1-same-bank--같은-은행" data-toc="1-same-bank--같은-은행" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">1. Same bank ⇒ 같은 은행</a></li><li><a href="#2-different-banks--다른-은행" data-toc="2-different-banks--다른-은행" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">2. Different banks ⇒ 다른 은행</a></li><li><a href="#3-cross-border-same-currency--국경간의-이체" data-toc="3-cross-border-same-currency--국경간의-이체" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">3. Cross border (same currency) ⇒ 국경간의 이체</a></li><li><a href="#4-foreign-exchange--환전하는-경우" data-toc="4-foreign-exchange--환전하는-경우" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">4. Foreign exchange ⇒ 환전하는 경우</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

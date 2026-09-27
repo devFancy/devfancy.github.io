@@ -1,0 +1,1024 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Practical Testing: 테스트 코드 작성 방법 - Mock, 더 나은 테스트를 위한 구체적 조언 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Practical-Testing2/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Practical Testing: 테스트 코드 작성 방법 - Mock, 더 나은 테스트를 위한 구체적 조언</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-12-14" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-12-14</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 204회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 <a href="https://www.inflearn.com/course/practical-testing-%EC%8B%A4%EC%9A%A9%EC%A0%81%EC%9D%B8-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EA%B0%80%EC%9D%B4%EB%93%9C/dashboard">Practical Testing: 실용적인 테스트 가이드</a> 강의를 듣고 내용을 정리한 글입니다.</p>
+</blockquote>
+<blockquote>
+<p><a href="https://devfancy.github.io/Practical-Testing/">지난 글</a>에 이어서 정리해보려고 합니다.</p>
+</blockquote>
+<h2 id="mock을-마주하는-자세">Mock을 마주하는 자세</h2>
+<h3 id="mockito로-stubbing-하기">Mockito로 Stubbing 하기</h3>
+<blockquote>
+<p>새로운 요구사항</p>
+</blockquote>
+<ul>
+<li>
+<p>관리자 페이지에서 주문관리탭 - 오늘 하루동안 발생한 매출 통계를 메일로 전송받는 기능을 구현한다. → 날짜와 결제금액</p>
+</li>
+<li>
+<p>주문 데이터를 기반으로 총 결제가 이뤄진 금액을 알고 싶다.</p>
+</li>
+<li>
+<p>주문통계에 대한 서비스 - <code>OrderStatisticsService</code></p>
+</li>
+</ul>
+<p>(실무에서는 주문완료 시간과 별도로 결제완료 시간에 대한 필드가 있어야 하는데, 이 토이 프로젝트에서는 모의로 구현하는 것이기때문에 일단 주문완료 시간을 가지고 구현한다)</p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-1.png" alt=""></p>
+<hr>
+<blockquote>
+<p>해당 요구사항에 대한 구현 코드 - <a href="https://github.com/devFancy/cafekiosk/commit/2e42108d2fb4db096c6bc032d23f533f08cbcfc7">Mockito로 Stubbing하기</a>입니다.</p>
+<p>해당 코드에서 <code>OrderStatisticsServiceTest.java</code>을 참고해주시면 되겠습니다.</p>
+</blockquote>
+<p><code>Stubbing</code>이란 테스트를 진행할 때 가짜 객체(Mock)에 대해 어떤 행동을 하도록 지정하는 작업을 말한다.</p>
+<p>여기서 <code>Stubbing</code>을 하기 위해 MailSendClient 클래스를 <code>@MockBean</code>을 통해 Mockito에서 만든 Mock 객체를 주입한 다음, 원하는 행위를 정의해준다.</p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-2.png" alt=""></p>
+<p><code>MockBean</code>은 <strong>기존에 사용되던 Bean의 껍데기만 가져오고 내부의 구현 부분은 모두 사용자에게 위임한 형태</strong>이다. 실제 빈의 동작과는 별개로 사용자(개발자)가 원하는 행동을 정의할 수 있다.</p>
+<p>(<code>@MockBean</code>은 <code>@SpringBootTest</code>에서 사용되며, 테스트에서 사용할 Mock 객체를 주입하는 데에 쓰인다)</p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-3.png" alt=""></p>
+<p>이렇게 <code>@MockBean</code>을 이용하여 Stubbing 하는 행위는 <code>given</code> 절에서 작성한다.</p>
+<ul>
+<li>
+<p><code>when(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class))).thenReturn(true);</code>를 예로 들면,</p>
+</li>
+<li>
+<p><code>when</code> 메서드는 특정 메서드 호출이 발생할 때 어떤 값으로 리턴해야 하는지 정의하는데, 여기서는 <code>mailSendClient.sendEmail</code> 메서드가 아무 문자열(any(String.class)) 인자로 호출될 때,</p>
+</li>
+<li>
+<p>모의 객체(Mock)인 <code>mailSendClient</code>는 항상 true를 반환한다는 의미이다.</p>
+</li>
+<li>
+<p>이처럼 테스트 환경에서는 실제로 이메일을 보내지 않고도, 메일 전송 메서드의 성공적인 호출을 시뮬레이션하기 위해 <code>Mockito로 Stubbing 하는 방식</code>을 사용한다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[참고] 메일 전송과 같은 로직에서는 <code>Transactional</code> 어노테테이션을 붙일 필요가 없다.</p>
+</blockquote>
+<ul>
+<li>
+<p><code>OrderStatisticsService</code>에는 DB 조회를 하는 <code>findOrdersBy</code>와 같은 로직이 존재하는데 왜 트랜잭션이 필요가 없을까?</p>
+</li>
+<li>
+<p>DB 조회를 할 때 커넥션을 가지고 메일이 전송 완료될 때까지 커넥션을 유지하고 있을 것이다. 메일 전송 등과 같은 오랜 시간이 걸리는 작업에서는 트랜잭션을 걸지 않는 것이 좋다.</p>
+</li>
+</ul>
+<h3 id="test-double">Test Double</h3>
+<blockquote>
+<p>Test Double에 대한 정의와 종류에 대해 자세히 알고 싶다면, <a href="https://martinfowler.com/articles/mocksArentStubs.html">이 글</a>을 참고하자.</p>
+</blockquote>
+<ul>
+<li>
+<p><code>Dummy</code> : 아무것도 하지 않는 깡통 객체</p>
+</li>
+<li>
+<p><code>Fake</code> : 단순한 형태로 동일한 기능은 수행하나, 프로덕션에서 쓰기에는 부족한 객체(FakeRepository)</p>
+</li>
+<li>
+<p><strong><code>Stub</code></strong> : 테스트에서 요청한 것에 대해 미리 준비한 결과를 제공하는 객체. 그 외에는 응답하지 않는다.</p>
+</li>
+<li>
+<p><code>Spy</code> : Stub이면서 호출된 내용을 기록하여 보여줄 수 있는 객체. 일부는 실제 객체처럼 동작시키고 일부만 Stubbing만 할 수 있다. → 실제 객체와 유사하게 동작</p>
+</li>
+<li>
+<p><strong><code>Mock</code></strong> : <code>행위</code>에 대한 기대를 명세하고, 그에 따라 동작하도록 만들어진 객체</p>
+</li>
+</ul>
+<h4 id="stub-vs-mock">Stub vs Mock</h4>
+<ul>
+<li>
+<p>공통점: 둘다 가짜 객체, 요청한 것에 대해 미리 준비한 결과를 제공한다.</p>
+</li>
+<li>
+<p>차이점: <strong>검증하는 목적이 다르다</strong>. (There is a difference in that the stub uses state verification while the mock uses behavior verification. - Martin Fowler -)</p>
+<ul>
+<li>
+<p><code>Stub</code>: 상태 검증(State Verification)</p>
+</li>
+<li>
+<p><code>Mock</code>: 행위 검증(Behavior Verification)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="mock-spy-injectmocks">@Mock, @Spy, @InjectMocks</h3>
+<h4 id="모든-객체에-대해-stubbing을-해주지-않았는데도-테스트가-통과되는-이유">모든 객체에 대해 Stubbing을 해주지 않았는데도 테스트가 통과되는 이유</h4>
+<p>아래 코드는 <code>MailService</code>의 sendMail 메서드에 대한 테스트 코드이다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// MailService 클래스</span></span>
+<span class="line"><span style="color:#6A737D">// 클라이언트(MailSendClient)를 통해 메일을 보낸 후, 이를 성공적으로 전송했을 때 해당 이력을 mailSendHistoryRepository 을 통해 기록하는 역할을 수행</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Service</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MailService</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> MailSendClient mailSendClient;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> MailSendHistoryRepository mailSendHistoryRepository;</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> sendMail</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">fromEmail</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">toEmail</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">subject</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mailSendClient.</span><span style="color:#B392F0">sendEmail</span><span style="color:#E1E4E8">(fromEmail, toEmail, subject, content);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8">(result) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            mailSendHistoryRepository.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(MailSendHistory.</span><span style="color:#B392F0">builder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                    .</span><span style="color:#B392F0">fromEmail</span><span style="color:#E1E4E8">(fromEmail)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    .</span><span style="color:#B392F0">toEmail</span><span style="color:#E1E4E8">(toEmail)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    .</span><span style="color:#B392F0">subject</span><span style="color:#E1E4E8">(subject)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    .</span><span style="color:#B392F0">content</span><span style="color:#E1E4E8">(content)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">            );</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#6A737D">// MailServiceTest</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MailServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메일 전송 테스트"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">  void</span><span style="color:#B392F0"> sendMail</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // given</span></span>
+<span class="line"><span style="color:#E1E4E8">    MailSendClient mailSendClient </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Mockito.</span><span style="color:#B392F0">mock</span><span style="color:#E1E4E8">(MailSendClient.class);</span></span>
+<span class="line"><span style="color:#E1E4E8">    MailSendHistoryRepository mailSendHistoryRepository </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Mockito.</span><span style="color:#B392F0">mock</span><span style="color:#E1E4E8">(MailSendHistoryRepository.class);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    MailService mailService </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MailService</span><span style="color:#E1E4E8">(mailSendClient, mailSendHistoryRepository);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Stubbing - Mock 객체에 원하는 행위를 정의하는 것</span></span>
+<span class="line"><span style="color:#B392F0">    when</span><span style="color:#E1E4E8">(mailSendClient.</span><span style="color:#B392F0">sendEmail</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">()))</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">thenReturn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // when</span></span>
+<span class="line"><span style="color:#F97583">    boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mailService.</span><span style="color:#B392F0">sendMail</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // then</span></span>
+<span class="line"><span style="color:#E1E4E8">    Assertions.</span><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(result).</span><span style="color:#B392F0">isTrue</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>자세히 보면, <code>MailService</code>의 sendMail 메서드에서 <code>mailSendHistoryRepository.save()</code>에 대한 Stubbing 없이 sendMail 메서드를 테스트하면 정상적으로 통과가 되는데 왜 그런걸까?</p>
+<p>Mockito의 mock 메서드에 가보면 아래와 같이 withSettings() 메서드를 볼 수 있다.</p>
+<p>여기서 withSettings() 메서드에서 리턴하는 부분에서 <code>RETURNS_DEFAULTS</code>에 가보면</p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-4.png" alt=""></p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-5.png" alt=""></p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-6.png" alt=""></p>
+<p>Integer인 경우 zero을 리턴하고, null이 반환되는 값들은 null을 반환하고, Collection의 경우 empty 를 반환하도록 기본 정책이 걸려있는 걸 확인할 수 있다.</p>
+<p>그래서 save 메서드를 호출했을 때 기본으로 null을 반환하도록 하여 테스트가 통과된 것을 알 수 있다.</p>
+<p>이를 조금 더 명시적으로 검증하기 위해 아래와 같이 <code>verify</code> 메서드를 통해 작성해볼 수 있다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>// mailSendHistoryRepository.save()가 1 번 호출되었는지를 검증</span></span>
+<span class="line"><span>Mockito.verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));</span></span></code></pre>
+<p>위의 <code>MailServiceTest</code>을 다음과 같이 리팩터링 작업을 진행한다.</p>
+<ul>
+<li>
+<p><code>MailSendClient</code>, <code>MailSendHistoryRepository</code> 클래스를 <code>Mock</code> 어노테이션을 이용하여 생성자를 주입한다.</p>
+</li>
+<li>
+<p>그리고 MailServiceTest 위에 <code>@ExtendWith(MockitoExtension.class)</code> 걸어준다 -> “테스트가 시작될때, Mockito를 통해 mock 만들거야”를 알려줘야 한다. → 그리고 mock 객체를 만들어주고 <code>mailService</code>에 넣어주게 된다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">ExtendWith</span><span style="color:#E1E4E8">(MockitoExtension.class)</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MailServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Mock</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailSendClient mailSendClient;</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Mock</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailSendHistoryRepository mailSendHistoryRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메일 전송 테스트"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> sendMail</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"><span style="color:#E1E4E8">        MailService mailService </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> MailService</span><span style="color:#E1E4E8">(mailSendClient, mailSendHistoryRepository);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // Stubbing - Mock 객체에 원하는 행위를 정의하는 것</span></span>
+<span class="line"><span style="color:#B392F0">        when</span><span style="color:#E1E4E8">(mailSendClient.</span><span style="color:#B392F0">sendEmail</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">()))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">thenReturn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mailService.</span><span style="color:#B392F0">sendMail</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#E1E4E8">        Assertions.</span><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(result).</span><span style="color:#B392F0">isTrue</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">        // mailSendHistoryRepository.save()가 1 번 호출되었는지를 검증</span></span>
+<span class="line"><span style="color:#E1E4E8">        Mockito.</span><span style="color:#B392F0">verify</span><span style="color:#E1E4E8">(mailSendHistoryRepository, </span><span style="color:#B392F0">times</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)).</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">any</span><span style="color:#E1E4E8">(MailSendHistory.class));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>여기서 <code>MailService</code>도 <code>@InjectMocks</code> 어노테이션으로 만들어줄 수 있다.</p>
+<ul>
+<li>
+<p><code>MailService</code>에 생성자를 보고 Mockito의 mock으로 선언된 <code>MailSendClient</code>, <code>MailSendHistoryRepository</code> 애들을 inject 해준다.</p>
+</li>
+<li>
+<p>즉, <code>@InjectMocks</code> 어노테이션은 DI와 똑같은 일을 하게 된다.</p>
+<ul>
+<li>
+<p><code>MailService</code> 클래스 내에서 사용하는 Mock 객체들을 자동으로 주입해주는 역할이다.  => <code>MailService mailService = new MailService(mailSendClient, mailSendHistoryRepository);</code></p>
+</li>
+<li>
+<p>이는 Mockito가 관리하는 Mock 객체들을 테스트 대상 클래스에 주입하여 테스트를 수행할 수 있도록 도와주는 기능이다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>InjectMocks 어노테이션 사용하면 아래와 같이 된다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">ExtendWith</span><span style="color:#E1E4E8">(MockitoExtension.class)</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MailServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Mock</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailSendClient mailSendClient;</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Mock</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailSendHistoryRepository mailSendHistoryRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">InjectMocks</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailService mailService;</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메일 전송 테스트"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> sendMail</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // Stubbing - Mock 객체에 원하는 행위를 정의하는 것</span></span>
+<span class="line"><span style="color:#B392F0">        when</span><span style="color:#E1E4E8">(mailSendClient.</span><span style="color:#B392F0">sendEmail</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">()))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">thenReturn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mailService.</span><span style="color:#B392F0">sendMail</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#E1E4E8">        Assertions.</span><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(result).</span><span style="color:#B392F0">isTrue</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">        // mailSendHistoryRepository.save()가 1 번 호출되었는지를 검증</span></span>
+<span class="line"><span style="color:#E1E4E8">        Mockito.</span><span style="color:#B392F0">verify</span><span style="color:#E1E4E8">(mailSendHistoryRepository, </span><span style="color:#B392F0">times</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)).</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">any</span><span style="color:#E1E4E8">(MailSendHistory.class));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="spy는-기록을-하는-객체">@Spy는 기록을 하는 객체</h4>
+<p><code>@Spy</code> 어노테이션은 <strong>객체의 일부 메소드만을 Mock으로 대체</strong>할 수 있기 때문에, 나머지 메소드는 실제 객체의 동작을 그대로 따르게 된다.</p>
+<p>이는 특히 특정 메소드의 동작을 유지하면서 일부 동작을 변경하거나 감시할 때 유용하다. -> 일부만 Stubbing만 하여 테스트를 할 수 있다.</p>
+<p>예를 들어, <code>MailSendClient</code> 클래스에 여러 메서드 기능들이 있고, <code>MailService</code>에서 a,b,c 기능을 그대로 사용하고 있다고 가정해보자.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// MailSendClient - sendMail, a, b, c 메서드가 구현되어 있음.</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Slf4j</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Component</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MailSendClient</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> sendEmail</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">fromEmail</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">toEmail</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">subject</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메일 전송"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">    throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> IllegalArgumentException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메일 전송"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> a</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"a"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> b</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"b"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> c</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    log.</span><span style="color:#B392F0">info</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"c"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// MailService - a, b, c 기능을 그대로 사용하고 있음.</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequiredArgsConstructor</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Service</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> MailService</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> MailSendClient mailSendClient;</span></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> MailSendHistoryRepository mailSendHistoryRepository;</span></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> sendMail</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">fromEmail</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">toEmail</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">subject</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mailSendClient.</span><span style="color:#B392F0">sendEmail</span><span style="color:#E1E4E8">(fromEmail, toEmail, subject, content);</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(result) {</span></span>
+<span class="line"><span style="color:#E1E4E8">      mailSendHistoryRepository.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(MailSendHistory.</span><span style="color:#B392F0">builder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">              .</span><span style="color:#B392F0">fromEmail</span><span style="color:#E1E4E8">(fromEmail)</span></span>
+<span class="line"><span style="color:#E1E4E8">              .</span><span style="color:#B392F0">toEmail</span><span style="color:#E1E4E8">(toEmail)</span></span>
+<span class="line"><span style="color:#E1E4E8">              .</span><span style="color:#B392F0">subject</span><span style="color:#E1E4E8">(subject)</span></span>
+<span class="line"><span style="color:#E1E4E8">              .</span><span style="color:#B392F0">content</span><span style="color:#E1E4E8">(content)</span></span>
+<span class="line"><span style="color:#E1E4E8">              .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">      );</span></span>
+<span class="line"><span style="color:#E1E4E8">      mailSendClient.</span><span style="color:#B392F0">a</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">      mailSendClient.</span><span style="color:#B392F0">b</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">      mailSendClient.</span><span style="color:#B392F0">c</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// </span></span></code></pre>
+<p>여기서 <code>MailServiceTest</code> 에서 <code>MailSendClient</code> 의 sendEmail()만 Stubbing 하고 싶고, 나머지 a,b,c는 원본 객체의 기능이 동일하게 동작하고 싶은 경우 <code>@Spy</code> 어노테이션을 활용한다.</p>
+<ul>
+<li>
+<p><code>@Spy</code>는 실제 객체를 기반으로 만들어지기 때문에, <code>MailServiceTest</code>에서 아래와 같은 when 부분을 지워야(주석 처리해야) 한다. → Stubbing이 되지 않는다.</p>
+</li>
+<li>
+<p>대신 doReturn으로 아래와 같이 작성해준다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">ExtendWith</span><span style="color:#E1E4E8">(MockitoExtension.class)</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MailServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Spy</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailSendClient mailSendClient;</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Mock</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailSendHistoryRepository mailSendHistoryRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">InjectMocks</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailService mailService;</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메일 전송 테스트"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> sendMail</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">//        // Stubbing - Mock 객체에 원하는 행위를 정의하는 것</span></span>
+<span class="line"><span style="color:#6A737D">//        when(mailSendClient.sendEmail(anyString(), anyString(), anyString(), anyString()))</span></span>
+<span class="line"><span style="color:#6A737D">//                .thenReturn(true);</span></span>
+<span class="line"><span style="color:#B392F0">        doReturn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">when</span><span style="color:#E1E4E8">(mailSendClient)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">sendEmail</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mailService.</span><span style="color:#B392F0">sendMail</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#E1E4E8">        Assertions.</span><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(result).</span><span style="color:#B392F0">isTrue</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">        // mailSendHistoryRepository.save()가 1 번 호출되었는지를 검증</span></span>
+<span class="line"><span style="color:#E1E4E8">        Mockito.</span><span style="color:#B392F0">verify</span><span style="color:#E1E4E8">(mailSendHistoryRepository, </span><span style="color:#B392F0">times</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)).</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">any</span><span style="color:#E1E4E8">(MailSendHistory.class));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-7.png" alt=""></p>
+<p>sendEmail()만 원하는 Stubbing이 된거고, 나머지 a,b,c 라는 실제 객체는 그대로 동작이 되었다.</p>
+<p>이처럼 일부는 Stubbing, 나머지 실제처럼 사용할 때 <code>@Spy</code> 어노테이션을 사용한다.</p>
+<p>(사실 <code>@Spy</code>를 사용하면 특정 서비스의 일부 기능만 테스트하는데, 빈도수가 그렇게 많지는 않아서 실무에서는 <code>@Spy</code> 보다는 <code>@Mock</code>을 더 자주 사용한다)</p>
+<h3 id="bddmockito">BDDMockito</h3>
+<p>아래 코드에서 given 절을 보면, 어색한 부분을 확인할 수 있다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">ExtendWith</span><span style="color:#E1E4E8">(MockitoExtension.class)</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MailServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Mock</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailSendClient mailSendClient;</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Mock</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailSendHistoryRepository mailSendHistoryRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">InjectMocks</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> MailService mailService;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메일 전송 테스트"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> sendMail</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given - Stubbing</span></span>
+<span class="line"><span style="color:#E1E4E8">        Mockito.</span><span style="color:#B392F0">when</span><span style="color:#E1E4E8">(mailSendClient.</span><span style="color:#B392F0">sendEmail</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">()))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">thenReturn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mailService.</span><span style="color:#B392F0">sendMail</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#E1E4E8">        Assertions.</span><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(result).</span><span style="color:#B392F0">isTrue</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">        // mailSendHistoryRepository.save()가 1 번 호출되었는지를 검증</span></span>
+<span class="line"><span style="color:#E1E4E8">        Mockito.</span><span style="color:#B392F0">verify</span><span style="color:#E1E4E8">(mailSendHistoryRepository, </span><span style="color:#B392F0">times</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)).</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">any</span><span style="color:#E1E4E8">(MailSendHistory.class));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>given 절에 사용된 <code>Mockito.when()</code> 메서드는 Stubbing을 위해 given 영역에 사용하는 것이 맞지만 when() 이라는 문법이 가독성을 저하시키고 혼란을 야기할 수 있다.</p>
+<p>그래서 이를 해결하기 위해 BDDMockito의 문법인 <code>BDDMockito.given()</code> 메서드를 사용하면, given 절과 유사해진다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">ExtendWith</span><span style="color:#E1E4E8">(MockitoExtension.class)</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> MailServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"메일 전송 테스트"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> sendMail</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"><span style="color:#6A737D">        // BDDMockito의 문법인 BDDMockito.given을 사용하면 BDD 스타일을 지킬 수 있다.</span></span>
+<span class="line"><span style="color:#E1E4E8">        BDDMockito.</span><span style="color:#B392F0">given</span><span style="color:#E1E4E8">(mailSendClient.</span><span style="color:#B392F0">sendEmail</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">(), </span><span style="color:#B392F0">anyString</span><span style="color:#E1E4E8">()))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">willReturn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mailService.</span><span style="color:#B392F0">sendMail</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#E1E4E8">        Assertions.</span><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(result).</span><span style="color:#B392F0">isTrue</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">        // mailSendHistoryRepository.save()가 1 번 호출되었는지를 검증</span></span>
+<span class="line"><span style="color:#E1E4E8">        Mockito.</span><span style="color:#B392F0">verify</span><span style="color:#E1E4E8">(mailSendHistoryRepository, </span><span style="color:#B392F0">times</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)).</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">any</span><span style="color:#E1E4E8">(MailSendHistory.class));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-8.png" alt=""></p>
+<p><code>BDDMockito</code> 를 가보면 Mockito를 감싸고 있다. (상속받고 있다)</p>
+<p>모든 동작이 같은데, BDD 스타일로만 바뀐 것이다. -> 이름만 바꿨고, 기능은 동일하다.</p>
+<p>결론은 앞으로 테스트 코드를 <strong>BDD 스타일로 작성할 때는 <code>BDDMockito</code> 문법을 사용</strong>하자!</p>
+<h3 id="classicist-vs-mockist">Classicist vs Mockist</h3>
+<ul>
+<li>
+<p>Classicist - 진짜 객체로 테스트를 하자. -> <strong>상태 검증</strong>을 통한 의존 객체의 구현보다는 실제 입/출력 값을 통해 검증하는 테스트이다.</p>
+</li>
+<li>
+<p>Mockist - 모든 걸 mocking 위주(가짜 객체)로 테스트를 하자. -> <strong>행위 검증</strong>을 통해 의존 객체의 특정 행동이 이루어졌는지를 검증하는 테스트이다.</p>
+</li>
+</ul>
+<p>이번 강의에서는 Controller 테스트할 때는 Service와 Repository를 Mocking하여 단위 테스트를 진행했고, Service 테스트 할 때는 Repository의 실제 객체를 사용한 통합 테스트를 진행했다.</p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-9.png" alt=""></p>
+<p>Mockist 입장에서 바라보면 Service 테스트 할 때에도 Repository에도 실제 객체가 아닌 Mocking을 하여 단위 테스트로 신속히 테스트를 해야 한다. -> 어느 것이 더 좋은 방법일까?</p>
+<blockquote>
+<p>이 강의를 만드신 우빈님의 생각</p>
+</blockquote>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-10.png" alt=""></p>
+<ul>
+<li>
+<p>메일 전송같은 외부 시스템을 요청하거나 연결할 때 Mocking을 쓴다. -> 외부 시스템은 우리가 개발한 게 아니기 때문이다.</p>
+</li>
+<li>
+<p>Mocking 위주로 테스트를 작성한다면, <strong>“실제 프로덕션 코드에서 런타임 시점에 일어날 일을 정확하게 <code>Stubbing(Mocking)</code> 했다고 단언할 수 있는가?”</strong></p>
+</li>
+<li>
+<p>테스트를 했다고 100% 재현할 수 있나? → 그런 리스크를 안고 갈 바에는 비용을 조금 더 들여서 실제 객체를 가져와서 테스트를 하는게 낫다는게 Classicist 입장이신 우빈님의 생각이다.</p>
+</li>
+</ul>
+<p>-> 내 생각: <strong>AWS S3나 소셜 로그인(OAuth 2.0)과 같은 외부 시스템과 연동하는 비즈니스 로직을 테스트할 경우에는 Mock을 사용하는 것이 효과적</strong>이라는 생각이 들었다.</p>
+<h2 id="더-나은-테스트를-작성하기-위한-구체적-조언">더 나은 테스트를 작성하기 위한 구체적 조언</h2>
+<h3 id="한-문단에-한-주제">한 문단에 한 주제!</h3>
+<p>테스트 코드를 글쓰기 관점에서 봤을 때, 하나의 테스트는 하나의 주제만을 가져야 한다.</p>
+<p>논리구조에는 분기문(if), 반복문(while, for)이 있다.</p>
+<ul>
+<li>
+<p>분기문이 존재한다는 것 자체가 2가지 이상 내용이 들어가있다는 걸 반증한다.</p>
+</li>
+<li>
+<p>반복문 역시 테스트 코드를 읽는 사람이 한번 더 생각해야 한다.</p>
+</li>
+<li>
+<p>결론은, 케이스가 두 가지 이상 생기면 → 테스트 코드를 2개로 나눠서 코드를 작성한다. -> 논리구조는 방해 요소가 될 수 있기 때문에 되도록 지양하자.</p>
+</li>
+</ul>
+<h3 id="완벽하게-제어하기">완벽하게 제어하기</h3>
+<p>테스트 환경에서 제어할 수 없는 것들은 완벽하게 제어할 수 있도록 한다.</p>
+<p><code>LocalDateTime.now()</code>와 같은 제어할 수 없는 코드의 경우 -> 현재 시간을 분리해서 상위 레벨로 올리고, 테스트할 때는 원하는 시간을 주입해서 상황을 재연한다.</p>
+<p>현재 시간이라는 데이터를 기준으로 테스트하는 것 보다, 고정된 날짜 또는 시간 등을 가지고 테스트하는 것이 좋다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// CafeKiosk</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Getter</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> CafeKiosk</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Order </span><span style="color:#B392F0">createOrder</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">            LocalDateTime currentDateTime </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LocalDateTime.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            LocalTime currentTime </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> currentDateTime.</span><span style="color:#B392F0">toLocalTime</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8">(currentTime.</span><span style="color:#B392F0">isBefore</span><span style="color:#E1E4E8">(SHOP_OPEN_TIME) </span><span style="color:#F97583">||</span><span style="color:#E1E4E8"> currentTime.</span><span style="color:#B392F0">isAfter</span><span style="color:#E1E4E8">(SHOP_CLOSE_TIME)) {</span></span>
+<span class="line"><span style="color:#F97583">                throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> IllegalArgumentException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"주문 시간이 아닙니다. 관리자에게 문의하세요."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Order</span><span style="color:#E1E4E8">(currentDateTime, beverages);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">		</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> Order </span><span style="color:#B392F0">createOrder</span><span style="color:#E1E4E8">(LocalDateTime </span><span style="color:#FFAB70">currentDateTime</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        LocalTime currentTime </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> currentDateTime.</span><span style="color:#B392F0">toLocalTime</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8">(currentTime.</span><span style="color:#B392F0">isBefore</span><span style="color:#E1E4E8">(SHOP_OPEN_TIME) </span><span style="color:#F97583">||</span><span style="color:#E1E4E8"> currentTime.</span><span style="color:#B392F0">isAfter</span><span style="color:#E1E4E8">(SHOP_CLOSE_TIME)) {</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> IllegalArgumentException</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"주문 시간이 아닙니다. 관리자에게 문의하세요."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Order</span><span style="color:#E1E4E8">(currentDateTime, beverages);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// CafeKioskTest</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CafeKioskTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> createOrder</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">      CafeKiosk cafeKiosk </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> CafeKiosk</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">      Americano americano </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Americano</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">      cafeKiosk.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(americano);</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">      Order order </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> cafeKiosk.</span><span style="color:#B392F0">createOrder</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#B392F0">      assertThat</span><span style="color:#E1E4E8">(order.</span><span style="color:#B392F0">getBeverages</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">hasSize</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">      assertThat</span><span style="color:#E1E4E8">(order.</span><span style="color:#B392F0">getBeverages</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">getName</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"아메리카노"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> createOrderWithCurrentTime</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">      CafeKiosk cafeKiosk </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> CafeKiosk</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">      Americano americano </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Americano</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">      cafeKiosk.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(americano);</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">      Order order </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> cafeKiosk.</span><span style="color:#B392F0">createOrder</span><span style="color:#E1E4E8">(LocalDateTime.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2023</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">11</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#B392F0">      assertThat</span><span style="color:#E1E4E8">(order.</span><span style="color:#B392F0">getBeverages</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">hasSize</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">      assertThat</span><span style="color:#E1E4E8">(order.</span><span style="color:#B392F0">getBeverages</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">getName</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"아메리카노"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> createOrderOutsideOpenTime</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">      CafeKiosk cafeKiosk </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> CafeKiosk</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">      Americano americano </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Americano</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">      cafeKiosk.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(americano);</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#B392F0">      assertThatThrownBy</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> cafeKiosk.</span><span style="color:#B392F0">createOrder</span><span style="color:#E1E4E8">(LocalDateTime.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2023</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">11</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">9</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">59</span><span style="color:#E1E4E8">)))</span></span>
+<span class="line"><span style="color:#E1E4E8">              .</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(IllegalArgumentException.class)</span></span>
+<span class="line"><span style="color:#E1E4E8">              .</span><span style="color:#B392F0">hasMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"주문 시간이 아닙니다. 관리자에게 문의하세요."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><code>createOrder()</code>는 현재 시간을 기준으로 성공할 수도, 실패할 수도 있다.</p>
+<p>반면에, <code>createOrderWithCurrentTime()</code>, <code>createOrderOutsideOpenTime()</code> 는 임의의 시간을 정해서 원하는 상황을 완벽하게 연출할 수 있게 되었다.</p>
+<p>외부 시스템일 경우, Mocking 처리하고 테스트를 구성한다.</p>
+<h3 id="테스트-환경의-독립성을-보장하자">테스트 환경의 독립성을 보장하자</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// OrderServiceTest</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> OrderServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"재고가 부족한 상품으로 주문을 생성하려는 경우 예외가 발생한다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> createOrderWithNoStock</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        LocalDateTime registeredDateTime </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LocalDateTime.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"><span style="color:#E1E4E8">        Product product1 </span><span style="color:#F97583">=</span><span style="color:#B392F0"> createProduct</span><span style="color:#E1E4E8">(BOTTLE, </span><span style="color:#9ECBFF">"001"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        Product product2 </span><span style="color:#F97583">=</span><span style="color:#B392F0"> createProduct</span><span style="color:#E1E4E8">(BAKERY, </span><span style="color:#9ECBFF">"002"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        Product product3 </span><span style="color:#F97583">=</span><span style="color:#B392F0"> createProduct</span><span style="color:#E1E4E8">(HANDMADE, </span><span style="color:#9ECBFF">"003"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        productRepository.</span><span style="color:#B392F0">saveAll</span><span style="color:#E1E4E8">(List.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(product1, product2, product3));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Stock stock1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Stock.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"001"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        Stock stock2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Stock.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"002"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        stock1.</span><span style="color:#B392F0">deductQuantity</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">); </span><span style="color:#6A737D">// todo</span></span>
+<span class="line"><span style="color:#E1E4E8">        stockRepository.</span><span style="color:#B392F0">saveAll</span><span style="color:#E1E4E8">(List.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(stock1, stock2));</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        OrderCreateServiceRequest request </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> OrderCreateServiceRequest.</span><span style="color:#B392F0">builder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">productNumbers</span><span style="color:#E1E4E8">(List.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"001"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"001"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"002"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"003"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when &#x26; then</span></span>
+<span class="line"><span style="color:#B392F0">        assertThatThrownBy</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> orderService.</span><span style="color:#B392F0">createOrder</span><span style="color:#E1E4E8">(request, registeredDateTime))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(IllegalArgumentException.class)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">hasMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"재고가 부족한 상품이 있습니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>여기서 <code>stock1.deductQuantity(3);</code> 으로 하고 createOrderWithNoStock 메서드에 대한 테스트를 실행하면 실패가 뜨는데, 왜그럴까?</p>
+<ul>
+<li>
+<p>재 001에 대한 재고는 2개인데, 3개를 차감한다고 설정했기 때문에 <code>차감할 재고 수량이 없습니다.</code>와 같은 예외 메시지가 보여지게 된다.</p>
+</li>
+<li>
+<p>이러면 2가지 문제가 있다.</p>
+<ul>
+<li>
+<p>given 환경에서 <code>stock1.deductQuantity(1);</code>에 대한 맥락을 이해해야 한다. → 논리적인 사고과정 1번 더 이해해야함 → 해당 기능이 <code>stock1.deductQuantity(3);</code> 와 같이 문제가 될 수도 있다.</p>
+</li>
+<li>
+<p>테스트가 실패하는 부분은 when 혹은 then이어야 하는데, given에서 실패할 수도 있다는 생각을 고려해야함 → 테스트 주제와 맞지 않은 부분(given)에서 테스트가 실패한 것이다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>이런 테스트 환경을 구성할 때, <strong>생성자 기반으로 구성하는 것이 좋다.</strong></p>
+</li>
+<li>
+<p>create 메서드 보다는 createProduct 메서드와 같이 <strong>순수한 빌더 패턴이나 생성자 기반으로 객체를 생성하고, given절에 구성하는게 좋다.</strong></p>
+</li>
+</ul>
+<h3 id="한-눈에-들어오는-test-fixture-구성하기">한 눈에 들어오는 Test Fixture 구성하기</h3>
+<p><code>Test Fixture</code>란 Given절을 구성할 때, 테스트를 위해 원하는 상태로 고정시킨 일련의 객체를 의미한다.</p>
+<blockquote>
+<p>Fixture: 고정물, 고정되어 있는 물체</p>
+</blockquote>
+<ul>
+<li>
+<p><code>@BeforeAll</code> - 매 <strong>테스트 클래스</strong>를 실행하기 전에 무언가 작업을 하는 어노테이션</p>
+</li>
+<li>
+<p><code>@BeforeEach</code> - 매 <strong>테스트 메서드</strong>를 실행하기 전에 무언가 작업을 하는 어노테이션</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">BeforeAll</span></span>
+<span class="line"><span style="color:#F97583">static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> beforeAll</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">BeforeEach</span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> setUp</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><code>@BeforeEach</code>의 단점 - setUp을 지양하는 이유</p>
+<ul>
+<li>
+<p>setUp() 에 위치한 공동의 fixture들은 <strong>테스트간 결합도가 생기게 만듬 → 모든 테스트에 영향을 주기 때문에</strong> 지양, 사용하지 않는 것이 좋다.</p>
+</li>
+<li>
+<p>setUp() 에 fixture들을 구성했다. -> 그런데 만약 테스트 길이가 긴 경우, setUp()과 연관지어서 생각을 해야해서 문서로의 역할을 기대하기 어렵다.</p>
+</li>
+</ul>
+<p>그렇다면 <code>@BeforeEach</code>을 언제 사용해야 할까?</p>
+<ul>
+<li>
+<p>각 테스트 입장에서 봤을 때, 아예 몰라도 테스트 내용을 이해하는 데에 문제가 없는가?</p>
+</li>
+<li>
+<p>setUp() 메서드를 수정해도 모든 테스트에 영향을 주지 않는가?</p>
+</li>
+</ul>
+<p>위 2가지 질문을 만족한다면 <code>@BeforeEach</code>의 setUp() 메서드를 사용해도 괜찮을 것이다.</p>
+<h4 id="fixture-구성할-때-유의해야-할-점들">Fixture 구성할 때 유의해야 할 점들</h4>
+<p>[1] 미리 셋업하는 data.sql과 같은 파일은 되도록 지양하자! (권장하지 않음)</p>
+<ul>
+<li>애플리케이션이 점점 고도화될 수록 해당 파일에 들어가는 데이터양이 증가하면-> 하나의 테스트 클래스 혹은 문서를 볼 때, 테스트의 목적을 파악하기 힘들고, sql의 파일의 수가 늘어나 관리하기가 힘들어 질 수 있다.</li>
+</ul>
+<p>[2] given 절을 구성할 때 필요한 파라미터만 구성하자! 아래와 같이 테스트에 딱 필요한 메서드만 명시하는게 좋다.</p>
+<ul>
+<li>
+<p><strong>테스트 클래스마다 필요한 파라미터를 넣어서 구분</strong>하는게 관리면에서 중요하다.</p>
+</li>
+<li>
+<p>아래 클래스에서 <code>name</code>과 같은 필드가 없어도 상관없는 테스트라면 2번처럼 사용하면 된다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ProductServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // 모든 필드 파라미터로 받는 Builder 메서드</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Product </span><span style="color:#B392F0">createProduct</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">productNumber</span><span style="color:#E1E4E8">, ProductType </span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">, ProductSellingStatus </span><span style="color:#FFAB70">sellingStatus</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">name</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> price</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Product product1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Product.</span><span style="color:#B392F0">builder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">productNumber</span><span style="color:#E1E4E8">(productNumber)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">type</span><span style="color:#E1E4E8">(type)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">sellingStatus</span><span style="color:#E1E4E8">(sellingStatus)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">name</span><span style="color:#E1E4E8">(name)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">price</span><span style="color:#E1E4E8">(price)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> product1;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // 2. 불필요한 파라미터(name)를 제거한 Builder 메서드</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Product </span><span style="color:#B392F0">createProduct</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">productNumber</span><span style="color:#E1E4E8">, ProductType </span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">, ProductSellingStatus </span><span style="color:#FFAB70">sellingStatus</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> price</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Product product1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Product.</span><span style="color:#B392F0">builder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">productNumber</span><span style="color:#E1E4E8">(productNumber)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">type</span><span style="color:#E1E4E8">(type)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">sellingStatus</span><span style="color:#E1E4E8">(sellingStatus)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">name</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"아메리카노"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">price</span><span style="color:#E1E4E8">(price)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> product1;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>[3] <strong>fixture를 만들기 위한 builder를 한 곳에 모으는 것은 지양</strong>하자! → 수십개가 생겨서 복잡도가 올라간다.</p>
+<ul>
+<li>
+<p>실무에서 사용하는 객체들은 필드가 수십개가 넘는 경우가 대부분이다. -> 각기 다른 builder를 만들어서 다른 패키지(fixture)에 넣으면 관리가 안된다. → 이유: builder만 수십개만 만들어져서 갈수록 사용하기 힘들어진다.</p>
+</li>
+<li>
+<p><strong>테스트 클래스마다 필요한 파라미터만 뽑는 builder를 만드는게 낫다.</strong></p>
+</li>
+<li>
+<p>(코틀린을 사용하면 어느정도 해소가 된다.(lombok, builder 필요 없음) → 코틀린에서는 default 값을 명시할 수 있어서 편하게 사용할 수가 있다)</p>
+</li>
+</ul>
+<h3 id="test-fixture-클렌징">Test Fixture 클렌징</h3>
+<blockquote>
+<p>deleteAll() 과 deleteAllBatch()의 차이점</p>
+</blockquote>
+<ul>
+<li>
+<p><code>OrderProduct</code>는 Order, Product의 외래키를 가지고 있음, 주문과 상품의 중간테이블 역할이다.</p>
+</li>
+<li>
+<p><code>OrderProduct</code>는 <code>Order</code>와 양방향 매핑 처리를 했고, <code>Product</code>에는 단방향 매핑 처리를 했다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> OrderServiceTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> ProductRepository productRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> OrderRepository orderRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> OrderProductRepository orderProductRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> StockRepository stockRepository;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> OrderService orderService;	</span></span>
+<span class="line"><span style="color:#E1E4E8">		@</span><span style="color:#F97583">AfterEach</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> tearDown</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        orderProductRepository.</span><span style="color:#B392F0">deleteAllInBatch</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        productRepository.</span><span style="color:#B392F0">deleteAllInBatch</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        orderRepository.</span><span style="color:#B392F0">deleteAllInBatch</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        stockRepository.</span><span style="color:#B392F0">deleteAllInBatch</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>createOrder() 메서드에 대해 테스트를 실행하면, <strong>연관된 테이블을 한번에 삭제하게 해준다.</strong></p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-11.png" alt=""></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">//</span><span style="color:#E1E4E8"> 시스템 로그</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        order_product</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        product</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        orders</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        stock</span></span></code></pre>
+<p>여기서 orderProductRepository와 productRepository 순서를 바꾸고 다시 실행해보면, 실패가 된다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint ["FKHNFGQYJX3I80QOYMRSSLS3KNO: PUBLIC.ORDER_PRODUCT FOREIGN KEY(PRODUCT_ID) REFERENCES PUBLIC.PRODUCT(ID) (CAST(1 AS BIGINT))"; SQL statement:</span></span>
+<span class="line"><span>delete from product [23503-214]]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement</span></span></code></pre>
+<p><code>productRepository</code>을 먼저 지우려고 하다보니까, <strong><code>Product</code>의 PK가 <code>OrderProduct</code>에 참조키로 제약조건이 걸려있어서 지울 수 없다는 예외가 발생한 것</strong>이다.</p>
+<p>-> 매핑 테이블에서 외래키를 가지고 있는 테이블(<code>OrderProduct</code>)을 먼저 지워야 테스트가 성공적으로 된다.</p>
+<p>즉, <strong>상품과 주문의 외래키를 가지고 있는 <code>OrderProduct</code> 테이블을 먼저 지워야 한다.</strong> -> 테스트 성공</p>
+<p>이처럼 <code>deleteAllBatch()</code>는 순서를 고려해야 한다. (외래키 조건)</p>
+<p><code>deleteAllBatch()</code> 대신 <code>deleteAll()</code>로 바꾸고 실행하면 <strong>테스트는 성공해도, 조회하는 쿼리가 많아졌다.</strong></p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-12.png" alt=""></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="sql"><code><span class="line"><span style="color:#F97583">//</span><span style="color:#E1E4E8"> 시스템 로그</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    select</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> id1_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">created_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> created_2_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">modified_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> modified3_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_st4_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">registered_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> register5_2_,</span></span>
+<span class="line"><span style="color:#79B8FF">        order0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">total_price</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> total_pr6_2_ </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        orders order0_</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    select</span></span>
+<span class="line"><span style="color:#79B8FF">        orderprodu0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_id4_1_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        orderprodu0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> id1_1_0_,</span></span>
+<span class="line"><span style="color:#79B8FF">        orderprodu0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> id1_1_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        orderprodu0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">created_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> created_2_1_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        orderprodu0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">modified_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> modified3_1_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        orderprodu0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> order_id4_1_1_,</span></span>
+<span class="line"><span style="color:#79B8FF">        orderprodu0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">product_id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> product_5_1_1_ </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        order_product orderprodu0_ </span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#79B8FF">        orderprodu0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">order_id</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">?</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        order_product </span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">        id</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">?</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        order_product </span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">        id</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">?</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        orders </span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">        id</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">?</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    select</span></span>
+<span class="line"><span style="color:#79B8FF">        product0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> id1_3_,</span></span>
+<span class="line"><span style="color:#79B8FF">        product0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">created_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> created_2_3_,</span></span>
+<span class="line"><span style="color:#79B8FF">        product0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">modified_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> modified3_3_,</span></span>
+<span class="line"><span style="color:#79B8FF">        product0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> name4_3_,</span></span>
+<span class="line"><span style="color:#79B8FF">        product0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">price</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> price5_3_,</span></span>
+<span class="line"><span style="color:#79B8FF">        product0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">product_number</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> product_6_3_,</span></span>
+<span class="line"><span style="color:#79B8FF">        product0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">selling_status</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> selling_7_3_,</span></span>
+<span class="line"><span style="color:#79B8FF">        product0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">type</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> type8_3_ </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        product product0_</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        product </span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">        id</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">?</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        product </span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">        id</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">?</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    delete</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        product </span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">        id</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">?</span></span>
+<span class="line"><span style="color:#E1E4E8">Hibernate: </span></span>
+<span class="line"><span style="color:#F97583">    select</span></span>
+<span class="line"><span style="color:#79B8FF">        stock0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">id</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> id1_4_,</span></span>
+<span class="line"><span style="color:#79B8FF">        stock0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">created_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> created_2_4_,</span></span>
+<span class="line"><span style="color:#79B8FF">        stock0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">modified_date_time</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> modified3_4_,</span></span>
+<span class="line"><span style="color:#79B8FF">        stock0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">product_number</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> product_4_4_,</span></span>
+<span class="line"><span style="color:#79B8FF">        stock0_</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">quantity</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> quantity5_4_ </span></span>
+<span class="line"><span style="color:#F97583">    from</span></span>
+<span class="line"><span style="color:#E1E4E8">        stock stock0_</span></span></code></pre>
+<p>위 로그만 봐도 알 수 있듯이 테스트 코드의 given 절이 많아질 수록 클렌징 시 deleteAll()과 deleteAllInBatch()의 성능 차이가 발생한다.</p>
+<p>deleteAll()을 자세히 들어가보면(단축키: option + command + b)</p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-13.png" alt=""></p>
+<p>전체 테이블을 읽어온다음에, 반복문을 돌면서 건 by 건으로 delete하고 있다.</p>
+<p>-> 결론적으로 말하면 deleteAll()을 사용하면 deleteAllBatch()보다 성능이 더 안좋을 수 있다.</p>
+<ul>
+<li>
+<p>예를 들어, Test given절이 많아서 해당 테이블의 연관관계를 모두 찾아서 하나씩 다 지워야 하기 때문에, 성능적으로 더 안좋을 수 있다.</p>
+</li>
+<li>
+<p>테스트도 비용이다. 전체 테스트를 돌리거나 빠른 테스트를 돌릴 때 시간 자체도 비용이 발생한다.</p>
+</li>
+</ul>
+<p>또한, deleteAll()도 deleteAllBatch()와 마찬가지로 순서를 고려해야 한다.</p>
+<p>정리하면, <strong>테이블의 연관관계를 잘 고려해서 메서드 순서를 잘 지정해주면, 테스트 속도와 성능 면에서 <code>deleteAllInBatch()</code>를 사용하는 것이 더 효과적</strong>이라는 것이다.</p>
+<h3 id="parameterized-test">@Parameterized Test</h3>
+<p><code>@ParameterizedTest</code>는 값을 여러개 바꾸면서 테스트를 하고 싶을 경우 사용하는 Junit 어노테이션이다.</p>
+<p>(아래 예시 외에 다른 예시들은 <a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests">공식문서</a>를 참고하자)</p>
+<blockquote>
+<p>containsStockType3 -  모든 타입에 대해서 테스트를 한다.</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ProductTypeTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"상품 타입이 재고 관련 타입인지를 체크한다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">CsvSource</span><span style="color:#E1E4E8">({</span><span style="color:#9ECBFF">"HANDMADE,false"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"BOTTLE,true"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"BAKERY,true"</span><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">ParameterizedTest</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> containsStockType3</span><span style="color:#E1E4E8">(ProductType </span><span style="color:#FFAB70">productType</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">boolean</span><span style="color:#FFAB70"> expected</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // when</span></span>
+<span class="line"><span style="color:#F97583">        boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ProductType.</span><span style="color:#B392F0">containsStockType</span><span style="color:#E1E4E8">(productType);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // then</span></span>
+<span class="line"><span style="color:#B392F0">        assertThat</span><span style="color:#E1E4E8">(result).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(expected);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>containsStockType4 - 별도의 메서드로 빼서 어떤 타입을 테스트할지 값을 명시해서 테스트를 한다.</p>
+</blockquote>
+<ul>
+<li><code>@MethodSource</code> 안에는 사용할 메서드 이름을 써주면 된다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ProductTypeTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> Stream&#x3C;</span><span style="color:#F97583">Arguments</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">provideProductTypesForCheckingStockType</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> Stream.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">              Arguments.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(ProductType.HANDMADE, </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">              Arguments.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(ProductType.BOTTLE, </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">              Arguments.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(ProductType.BAKERY, </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">      );</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"상품 타입이 재고 관련 타입인지를 체크한다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">MethodSource</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"provideProductTypesForCheckingStockType"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">ParameterizedTest</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> containsStockType4</span><span style="color:#E1E4E8">(ProductType </span><span style="color:#FFAB70">productType</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">boolean</span><span style="color:#FFAB70"> expected</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">      // when</span></span>
+<span class="line"><span style="color:#F97583">      boolean</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> ProductType.</span><span style="color:#B392F0">containsStockType</span><span style="color:#E1E4E8">(productType);</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">      // then</span></span>
+<span class="line"><span style="color:#B392F0">      assertThat</span><span style="color:#E1E4E8">(result).</span><span style="color:#B392F0">isEqualTo</span><span style="color:#E1E4E8">(expected);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="dynamictest">@DynamicTest</h3>
+<p><code>@DynamicTest</code>는 단계별로 테스트를 수행하고 싶을 경우 사용한다. -> 시나리오를 기반으로 상태(given절)를 공유하면서 테스트를 작성해 볼 수 있다.</p>
+<blockquote>
+<p><strong>Dynamic Test</strong>는 런타임 동안에 테스트가 생성되고 수행된다. 그래서 프로그램이 수행되는 도중에도 동작을 변경할 수 있는 특징이 있다. 이 다이나믹 테스트는 <code>@Test</code> 어노테이션을 사용하지 않고, <code>@TestFactory 어노테이션</code>을 통해 팩토리 메서드로 생성된다.</p>
+</blockquote>
+<p>DynamicTest의 경우 아래와 같은 형식으로 작성한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> DynamicTestEx</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">      @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">      @</span><span style="color:#F97583">TestFactory</span></span>
+<span class="line"><span style="color:#E1E4E8">      Collection&#x3C;</span><span style="color:#F97583">DynamicTest</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">dynamicTest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">          return</span><span style="color:#E1E4E8"> List.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                  DynamicTest.</span><span style="color:#B392F0">dynamicTest</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">                  }),</span></span>
+<span class="line"><span style="color:#E1E4E8">                  DynamicTest.</span><span style="color:#B392F0">dynamicTest</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">                  })</span></span>
+<span class="line"><span style="color:#E1E4E8">          );</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>재고 차감에 대한 시나리오를 DynamicTest으로 작성하면 아래와 같다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> StockTest</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">      @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"재고 차감 시나리오"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">      @</span><span style="color:#F97583">TestFactory</span></span>
+<span class="line"><span style="color:#E1E4E8">      Collection&#x3C;</span><span style="color:#F97583">DynamicTest</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">stockDeductionDynamicTest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">      // given</span></span>
+<span class="line"><span style="color:#E1E4E8">      Stock stock </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Stock.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"001"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> List.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">              DynamicTest.</span><span style="color:#B392F0">dynamicTest</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"재고를 주어진 개수만큼 차감할 수 있다."</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                // given</span></span>
+<span class="line"><span style="color:#F97583">                int</span><span style="color:#E1E4E8"> quantity </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">                // when</span></span>
+<span class="line"><span style="color:#E1E4E8">                stock.</span><span style="color:#B392F0">deductQuantity</span><span style="color:#E1E4E8">(quantity);</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">                // then</span></span>
+<span class="line"><span style="color:#B392F0">                assertThat</span><span style="color:#E1E4E8">(stock.</span><span style="color:#B392F0">getQuantity</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isZero</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#E1E4E8">              }),</span></span>
+<span class="line"><span style="color:#E1E4E8">              DynamicTest.</span><span style="color:#B392F0">dynamicTest</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"재고보다 많은 수의 수량으로 차감 시도하는 경우 예외가 발생한다."</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                // given</span></span>
+<span class="line"><span style="color:#F97583">                int</span><span style="color:#E1E4E8"> quantity </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">                // when &#x26; then</span></span>
+<span class="line"><span style="color:#B392F0">                assertThatThrownBy</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> stock.</span><span style="color:#B392F0">deductQuantity</span><span style="color:#E1E4E8">(quantity))</span></span>
+<span class="line"><span style="color:#E1E4E8">                        .</span><span style="color:#B392F0">isInstanceOf</span><span style="color:#E1E4E8">(IllegalArgumentException.class)</span></span>
+<span class="line"><span style="color:#E1E4E8">                        .</span><span style="color:#B392F0">hasMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"차감할 재고 수량이 없습니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">              })</span></span>
+<span class="line"><span style="color:#E1E4E8">      );</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="테스트-수행도-비용이다-환경-통합하기">테스트 수행도 비용이다. 환경 통합하기</h3>
+<p>테스트를 작성하는 이유는 기계의 도움을 받아서 수시로 피드백을 받고 프로덕션 코드를 발전시켜 나갈 수 있는 도구이다.</p>
+<p>테스트를 수행되는 시간이 비용이기 때문에 이런한 것들도 관리가 필요하다.</p>
+<h4 id="전체-테스트-수행하기">전체 테스트 수행하기</h4>
+<blockquote>
+<p>전체 테스트 수행: Gredle -> Tasks -> verification -> test를 통해 수행할 수 있다.</p>
+</blockquote>
+<p><code>test</code>를 더블 클릭해서 전체 테스트 개수 및 서버가 몇번 실행되는지 확인할 수 있다.</p>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-14.png" alt=""></p>
+<p>여기서 “Spring Boot” 라는 키워드를 검색했을 때 총 6번이 나온다. → 서버가 뜨는 횟수</p>
+<ul>
+<li>
+<p>@SpringBootTest 를 사용하면 서버가 띄우게 된다.</p>
+</li>
+<li>
+<p>서버가 뜨는 횟수가 많아지면 테스트 수행시간이 길어지게 된다.</p>
+</li>
+<li>
+<p>테스트 환경이 바뀔수록, 서버 뜨는 횟수가 전체 테스트에서 많아지는데, 이는 곧 비용이 많아지게 되고, 테스트를 덜 자주 수행하게 된다.</p>
+</li>
+<li>
+<p>이런 비용들도 계속 관리하면서 어떻게 하면 더 빠른 시간안에 효율적으로 테스트를 수행할지 고민봐야 한다.</p>
+</li>
+</ul>
+<blockquote>
+<p>Q. 서버 횟수를 줄이려면 어떻게 해야할까?</p>
+</blockquote>
+<p>A. 통합 테스트의 어노테이션이 붙어있는(SpringBootTest)걸 기반으로 <code>IntegrationTestSupport</code> 추상 클래스를 만들고,</p>
+<p>아래와 같이 <code>OrderServiceTest</code>, <code>OrderStatisticsServiceTest</code>, <code>ProductServiceTest</code> 클래스가 <code>IntegrationTestSupport</code>으로부터 상속받게 한다.</p>
+<p>그리고 <code>@MockBean</code> 처리한 걸 상위 클래스인 <code>IntegrationTestSupport</code>에 옮긴다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// IntegrationTestSupport - 추상 클래스</span></span>
+<span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> sample.cafekiosk.spring;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.boot.test.context.SpringBootTest;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.test.context.ActiveProfiles;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">ActiveProfiles</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"test"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">SpringBootTest</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> IntegrationTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">MockBean</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> MailSendClient mailSendClient; </span><span style="color:#6A737D">// 대신 다른 클래스에 적용할 수 있도록 private -> protected 로 바꿔준다. </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// ProductServiceTest, OrderServiceTest, OrderStatisticsServiceTest -> IntegrationTestSupport 로부터 상속받음</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ProductServiceTest</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> IntegrationTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> OrderServiceTest</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> IntegrationTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> OrderStatisticsServiceTest</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> IntegrationTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><code>OrderStatisticsServiceTest</code>의 경우 MockBean으로 Mock 객체를 생성했기 때문에 스프링 서버가 실행될 때, Mock이 사용된 환경으로 인식하기 때문에 서버가 다시 실행하게 되는 것이다.</p>
+<p>-> MockBean 처리된 필드를 상위 클래스(IntegrationTestSupport)에 두게 된다면 동일한 테스트 환경에서 실행할 수 있다.</p>
+<p>다만, 테스트 환경을 고려해서 다른 서비스 테스트에도 <code>Mock</code>이 필요한지 고려해봐야 한다.</p>
+<p>-> <strong><code>Mock</code> 처리가 필요없는 테스트 환경을 위한 <code>TestSupport</code> 상위 클래스를 구축하고, <code>Mock</code> 처리가 필요한 테스트 환경을 위한 <code>MockTestSupport</code> 상위 클래스를 구축하여 <code>Mock</code>을 기준으로 테스트 환경을 구분</strong>해주면 된다.</p>
+<h4 id="repository-test의-경우-datajpatest-vs-springboottest-둘-중-어느-것을-사용해야-할까">Repository Test의 경우 @DataJpaTest vs @SpringBootTest, 둘 중 어느 것을 사용해야 할까?</h4>
+<p>현재 시스템 로그상으로 확인하면, <code>StockRepositoryTest</code>, <code>ProductRepositoryTest</code> 모두 서버가 각각 실행되고 있다.</p>
+<p>Service 테스트 하면서 Repository도 같이 Test 하면 어떨까?</p>
+<p>꼭 <code>@DataJpaTest</code>를 사용하는 것이 아니라면 <strong>시간 절약을 위해 <code>@SpringBootTest</code>를 사용한다.</strong></p>
+<p><code>@SpringBootTest</code>를 사용한다면, <strong><code>@DataJpaTest</code>에서 자동으로 제공해주는 <code>@Transactional</code>이 적용되지 않기에 다시 RepositoryTest 클래스에 <code>@Transactional</code> 어노테이션을 붙여줘야 한다.</strong></p>
+<p>-> 이렇게 해서 Repository Test도 Service Test 환경과 동일하게 상위 클래스인 <code>IntegrationTestSupport</code> 클래스를 상속받도록 하면, Service와 Repository를 하나의 서버에 수행할 수 있게 되었다.</p>
+<h4 id="controller-test의-테스트-환경-통합하기">Controller Test의 테스트 환경 통합하기</h4>
+<p>Controller의 경우, <code>@WebMvcTest(controllers = OrderController.class)</code> 을 사용했는데, 사실 통합하기가 어렵다. → WebMvcTest를 위한 환경을 구축한다.</p>
+<p>spring 패키지 하위에 ControllerTestSupport 추상 클래스를 만들어준다.</p>
+<ul>
+<li><code>OrderController</code>, <code>ProductController</code>에 사용했던 <code>@MockBean</code>과 <code>@Authowired</code>를 가져와주고 protected로 바꿔준다. (다른 클래스에 사용하기 위해 private → protected로 바꿔준 것이다)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// ControllerTestSupport - 추상 클래스</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">WebMvcTest</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">controllers</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        OrderController.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">        ProductController.class</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ControllerTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> MockMvc mockMvc;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> ObjectMapper objectMapper;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">MockBean</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> OrderService orderService;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">MockBean</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> ProductService productService;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#6A737D">// OrderControllerTest, ProductControllerTest</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> OrderControllerTest</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> ControllerTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ProductControllerTest</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> ControllerTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>이제 전체 테스트를 수행해주면 Spring Boot, <strong>서버가 총 2번</strong> 나오는 걸 확인할 수 있다. (OrderControllerTest, OrderServiceTest)</p>
+<ul>
+<li>서버 개수를 줄일수록 테스트 시간을 줄일 수 있게 된다.</li>
+</ul>
+<p><img src="/assets/img/server/testcode/Practical-Testing2-15.png" alt=""></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/practical-testing-%EC%8B%A4%EC%9A%A9%EC%A0%81%EC%9D%B8-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EA%B0%80%EC%9D%B4%EB%93%9C/dashboard">Practical Testing: 테스트 코드 작성 방법</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Practical-Testing2" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#mock을-마주하는-자세" data-toc="mock을-마주하는-자세" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Mock을 마주하는 자세</a></li><li><a href="#mockito로-stubbing-하기" data-toc="mockito로-stubbing-하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Mockito로 Stubbing 하기</a></li><li><a href="#test-double" data-toc="test-double" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Test Double</a></li><li><a href="#mock-spy-injectmocks" data-toc="mock-spy-injectmocks" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">@Mock, @Spy, @InjectMocks</a></li><li><a href="#bddmockito" data-toc="bddmockito" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">BDDMockito</a></li><li><a href="#classicist-vs-mockist" data-toc="classicist-vs-mockist" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Classicist vs Mockist</a></li><li><a href="#더-나은-테스트를-작성하기-위한-구체적-조언" data-toc="더-나은-테스트를-작성하기-위한-구체적-조언" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">더 나은 테스트를 작성하기 위한 구체적 조언</a></li><li><a href="#한-문단에-한-주제" data-toc="한-문단에-한-주제" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">한 문단에 한 주제!</a></li><li><a href="#완벽하게-제어하기" data-toc="완벽하게-제어하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">완벽하게 제어하기</a></li><li><a href="#테스트-환경의-독립성을-보장하자" data-toc="테스트-환경의-독립성을-보장하자" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">테스트 환경의 독립성을 보장하자</a></li><li><a href="#한-눈에-들어오는-test-fixture-구성하기" data-toc="한-눈에-들어오는-test-fixture-구성하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">한 눈에 들어오는 Test Fixture 구성하기</a></li><li><a href="#test-fixture-클렌징" data-toc="test-fixture-클렌징" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Test Fixture 클렌징</a></li><li><a href="#parameterized-test" data-toc="parameterized-test" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">@Parameterized Test</a></li><li><a href="#dynamictest" data-toc="dynamictest" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">@DynamicTest</a></li><li><a href="#테스트-수행도-비용이다-환경-통합하기" data-toc="테스트-수행도-비용이다-환경-통합하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">테스트 수행도 비용이다. 환경 통합하기</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

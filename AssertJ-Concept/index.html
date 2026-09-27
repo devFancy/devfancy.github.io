@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>AssertJ 개념 정리 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/AssertJ-Concept/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>AssertJ 개념 정리</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-11-25" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-11-25</time><a href="/category/#AssertJ" class="chip chip-tag">#AssertJ</a></div><p class="view-count text-sm text-muted">조회수 30회</p></div><div class="prose mt-10" data-astro-cid-g5songws><ul>
+<li>
+<p>테스트코드를 작성하면서 JUnit과 AssertJ 사용법을 익혀야 한다는 사실을 알게 되고 난 이후에 따로 공부를 하게 되었다.</p>
+</li>
+<li>
+<p>그 중 AssertJ 개념을 정리하자.</p>
+</li>
+</ul>
+<hr>
+<h2 id="개요">개요</h2>
+<ul>
+<li><code>AssertJ</code> : Java 테스트에서 유창하고 풍부한 어설션을 작성하는 데 사용되는 오픈 소스 커뮤니티 기반 라이브러리이다.</li>
+</ul>
+<hr>
+<h2 id="메이븐-종속성">메이븐 종속성</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">dependency</span><span style="color:#F97583">></span></span>
+<span class="line"><span style="color:#F97583">    &#x3C;</span><span style="color:#E1E4E8">groupId</span><span style="color:#F97583">></span><span style="color:#E1E4E8">org.assertj</span><span style="color:#F97583">&#x3C;/</span><span style="color:#E1E4E8">groupId</span><span style="color:#F97583">></span></span>
+<span class="line"><span style="color:#F97583">    &#x3C;</span><span style="color:#E1E4E8">artifactId</span><span style="color:#F97583">></span><span style="color:#E1E4E8">assertj</span><span style="color:#F97583">-</span><span style="color:#E1E4E8">core</span><span style="color:#F97583">&#x3C;/</span><span style="color:#E1E4E8">artifactId</span><span style="color:#F97583">></span></span>
+<span class="line"><span style="color:#F97583">    &#x3C;</span><span style="color:#E1E4E8">version</span><span style="color:#F97583">></span><span style="color:#79B8FF">3.4</span><span style="color:#E1E4E8">.</span><span style="color:#FDAEB7;font-style:italic">1</span><span style="color:#F97583">&#x3C;/</span><span style="color:#E1E4E8">version</span><span style="color:#F97583">></span></span>
+<span class="line"><span style="color:#F97583">    &#x3C;</span><span style="color:#E1E4E8">scope</span><span style="color:#F97583">></span><span style="color:#E1E4E8">test</span><span style="color:#F97583">&#x3C;/</span><span style="color:#E1E4E8">scope</span><span style="color:#F97583">></span></span>
+<span class="line"><span style="color:#F97583">&#x3C;/</span><span style="color:#E1E4E8">dependency</span><span style="color:#F97583">></span></span></code></pre>
+<ul>
+<li>
+<p>이 종속성은 기본 Java 어설션에만 적용된다.</p>
+</li>
+<li>
+<p>Java 7 및 이전 버전의 경우 AssertJ 코어 버전 2.xx를 사용해야 한다.</p>
+</li>
+<li>
+<p>최신 버전은 AssertJ 코어 버전 3.23를 제공해주고 있다.</p>
+</li>
+</ul>
+<h2 id="지원">지원</h2>
+<ul>
+<li>
+<p>AssertJ는 다음을 위해 유창하고 아름다운 어설션을 쉽게 작성할 수 있도록 하는 <strong>일련의 클래스 및 유틸리티 메서드</strong>를 제공한다.</p>
+<ul>
+<li>
+<p>Standard Java</p>
+</li>
+<li>
+<p>Java 8</p>
+</li>
+<li>
+<p>Guava</p>
+</li>
+<li>
+<p>Joda Time</p>
+</li>
+<li>
+<p>Neo4J and</p>
+</li>
+<li>
+<p>Swing components</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="assertj-적용">AssertJ 적용</h2>
+<ul>
+<li>여기서부터는 AssertJ를 설정하고 그 가능성을 탐색하는 데 중점을 둘 것이다.</li>
+</ul>
+<h3 id="assertions-클래스">Assertions 클래스</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.assertj.core.api.Assertions;</span></span></code></pre>
+<ul>
+<li>이 Assertions 클래스는 AssertJ 사용을 시작하는데 필요한 유일한 클래스이며 필요한 모든 메서드를 제공합니다.</li>
+</ul>
+<h3 id="assertions-작성">Assertions 작성</h3>
+<ul>
+<li>assertion를 작성하려면 항상 객체를 <code>Assertions.assertThat()</code> 메서드에 전달한 다음 실제 어설션을 따라야 한다.</li>
+</ul>
+<h3 id="object-assertions">Object Assertions</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Dog</span><span style="color:#E1E4E8"> { </span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String name; </span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Float weight;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // standard getters and setters</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Dog fido </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Dog</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Fido"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5.25</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">Dog fidosClone </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Dog</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Fido"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5.25</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">복사</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>
+<p>다음과 같이 두 object의 동등성을 비교할 수 있는 방법이 있다.</p>
+</li>
+<li>
+<p>내용을 비교하려면,</p>
+</li>
+<li>
+<p><code>isEqualToComparingFieldByFieldRecursively()</code>을 사용한다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(fido).</span><span style="color:#B392F0">isEqualToComparingFieldByFieldRecursively</span><span style="color:#E1E4E8">(fidosClone);</span></span></code></pre>
+<ul>
+<li>한 object의 각 필드가 다른 개체의 필드와 비교되기 때문에 Fido 와 fidosClone 은 필드별 재귀 필드 비교를 수행할 때 동일하다.</li>
+</ul>
+<h3 id="boolean-assertions">Boolean Assertions</h3>
+<ul>
+<li>
+<p>진실 테스트를 위한 간단한 방법이 있다.</p>
+<ul>
+<li>
+<p>isTrue()</p>
+</li>
+<li>
+<p>isFalse()</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">isEmpty</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">isTrue</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<h3 id="iterablearray-assertions">Iterable/Array Assertions</h3>
+<ul>
+<li>Iterable 또는 Array에 주어진 요소가 포함되어 있는 지 확인하는 방법이 있다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> list </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Arrays.</span><span style="color:#B392F0">asList</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"1"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"2"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"3"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(list).</span><span style="color:#B392F0">contains</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"1"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<ul>
+<li>List가 비어있지 않은 경우</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(list).</span><span style="color:#B392F0">isNotEmpty</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<ul>
+<li>List가 주어진 문자로 시작하는 경우(ex. “1”로 시작)</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(list).</span><span style="color:#B392F0">startsWith</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"1"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<ul>
+<li>
+<p>동일한 object에 둘 이상의 assertion을 만드는 경우</p>
+<ul>
+<li>
+<p>제공된 List가 비어 있지 않고</p>
+</li>
+<li>
+<p>“1” 요소를 포함하고</p>
+</li>
+<li>
+<p>null을 포함하지 않고</p>
+</li>
+<li>
+<p>요소 “2”, “3”의 시퀀스를 포함하는지 확인하는 assertion</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(list)</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">isNotEmpty</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">contains</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"1"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">doesNotContainNull</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">containsSequence</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"2"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"3"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="character-assertions">Character Assertions</h3>
+<ul>
+<li>
+<p>문자 유형에 대한 assertion은 대부분 <code>비교</code>와 심지어 주어진 문자가 유니코드 테이블에서 온 것인지 <code>확인</code>하는 작업을 포함한다.</p>
+<ul>
+<li>
+<p>다음은 제공된 문자가 ‘a’가 아닌지,</p>
+</li>
+<li>
+<p>유니코드 테이블에 있는지,</p>
+</li>
+<li>
+<p>‘b’보다 크고</p>
+</li>
+<li>
+<p>소문자인지 확인하는 assertion의 예다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#B392F0">assertThat</span><span style="color:#E1E4E8">(someCharacter)</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">isNotEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'a'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">inUnicode</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">isGreaterThanOrEqualTo</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'b'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">  .</span><span style="color:#B392F0">isLowerCase</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<ul>
+<li>이 밖에도 다양한 assertion이 존재한다.</li>
+</ul>
+<hr>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://www.baeldung.com/introduction-to-assertj#2-writing-assertions">AssertJ 소개</a></p>
+</li>
+<li>
+<p><a href="https://github.com/eugenp/tutorials/tree/master/testing-modules/assertion-libraries">모든 예제 및 코드 구현</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="AssertJ-Concept" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#개요" data-toc="개요" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">개요</a></li><li><a href="#메이븐-종속성" data-toc="메이븐-종속성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">메이븐 종속성</a></li><li><a href="#지원" data-toc="지원" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">지원</a></li><li><a href="#assertj-적용" data-toc="assertj-적용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">AssertJ 적용</a></li><li><a href="#assertions-클래스" data-toc="assertions-클래스" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Assertions 클래스</a></li><li><a href="#assertions-작성" data-toc="assertions-작성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Assertions 작성</a></li><li><a href="#object-assertions" data-toc="object-assertions" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Object Assertions</a></li><li><a href="#boolean-assertions" data-toc="boolean-assertions" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Boolean Assertions</a></li><li><a href="#iterablearray-assertions" data-toc="iterablearray-assertions" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Iterable/Array Assertions</a></li><li><a href="#character-assertions" data-toc="character-assertions" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Character Assertions</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

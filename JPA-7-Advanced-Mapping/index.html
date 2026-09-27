@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[JPA] 고급 매핑 (상속관계 매핑, BaseEntity) | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/JPA-7-Advanced-Mapping/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[JPA] 고급 매핑 (상속관계 매핑, BaseEntity)</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-11-24" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-11-24</time><a href="/category/#JPA" class="chip chip-tag">#JPA</a></div><p class="view-count text-sm text-muted">조회수 45회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 [자바 ORM 표준 JPA 프로그래밍 - 기본편] 강의를 듣고 정리한 내용입니다.</p>
+</blockquote>
+<h2 id="상속관계-매핑">상속관계 매핑</h2>
+<ul>
+<li>
+<p>관계형 데이터베이스에는 상속 관계가 없다.</p>
+</li>
+<li>
+<p>대신에 관계형 데이터베이스는 <strong>슈퍼타입 서브타입 관계</strong>라는 모델링 기법이 객체 상속과 유사하다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Advanced-Mapping-1.png" alt=""></p>
+<ul>
+<li>
+<p>왼쪽이 <code>슈퍼타입 서브타입 논리 모델</code>이고, 오른쪽이 <code>객체 상속 모델</code>이다.</p>
+</li>
+<li>
+<p><code>상속관계 매핑</code>이란 관계형 데이터베이스의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법을 말한다.</p>
+</li>
+<li>
+<p>상속관계 매핑하는 방법에는 3가지 방법이 있다.</p>
+<ul>
+<li>
+<p><code>조인 전략</code>: 각각 테이블로 변환</p>
+</li>
+<li>
+<p><code>단일 테이블 전략</code>: 통합 테이블로 변환</p>
+</li>
+<li>
+<p><code>구현 클래스마다 테이블 전략</code>: 서브타입 테이블로 변환</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="주요-어노테이션">주요 어노테이션</h3>
+<ul>
+<li>
+<p><code>@Inheritance(strategy=InheritanceType.XXX)</code></p>
+<ul>
+<li>
+<p><code>JOINED</code> : 조인 전략 (InheritanceType.JOINED)</p>
+</li>
+<li>
+<p><code>SINGLE_TABLE</code> : 단일 테이블 전략 (InheritanceType.JOINED)</p>
+</li>
+<li>
+<p><code>TABLE_PER_CLASS</code> : 구현 클래스마다 테이블 전략 (InheritanceType.TABLE_PER_CLASS)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>@DiscriminatorColumn(name=“DTYPE”)</code> : 부모에서 <strong>구분 컬럼을 지정</strong>할 때 사용한다. 기본값이 <code>DTYPE</code>이므로 name 속성은 생략 가능하나, 작성하는 것이 협업하기 있어서 좋다.</p>
+</li>
+<li>
+<p><code>@DiscriminatorValue(“XXX”)</code> : 자식에서 구분 컬럼에 입력할 값을 지정할 때 사용한다. 기본값은 <code>엔티티 이름</code>이다.</p>
+</li>
+<li>
+<p><code>@PrimaryKeyJoinColumn(name = "Book_ID")</code> : 기본 값으로 자식 테이블은 부모 테이블 id 컬럼명을 그대로 사용하나, 변경 시 해당 설정값을 추가해줘야 한다.</p>
+</li>
+</ul>
+<h3 id="조인-전략">조인 전략</h3>
+<ul>
+<li>
+<p><code>조인 전략</code>은 엔티티마다 모두 테이블로 만들어주고 부모의 기본키를 <code>기본키 + 외래키</code>로 사용한다.</p>
+</li>
+<li>
+<p>그래서 조회할 때 조인을 사용한다.</p>
+</li>
+<li>
+<p>다만 객체는 타입이 있는데 <strong>테이블은 타입에 개념이 없어서 따로 컬럼을 추가</strong>해줘야 한다.</p>
+<ul>
+<li>ex) <code>@DiscriminatorColumn(name = "DTYPE")</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Advanced-Mapping-2.png" alt=""></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// Item 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Inheritance</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">strategy</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> InheritanceType.JOINED)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorColumn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "DTYPE"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Item</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">	@</span><span style="color:#F97583">Id</span><span style="color:#E1E4E8"> @</span><span style="color:#F97583">GeneratedValue</span></span>
+<span class="line"><span style="color:#E1E4E8">	@</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "ITEM_ID"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> Long id;</span></span>
+<span class="line"><span style="color:#E1E4E8">	</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> String name;</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> price;</span></span>
+<span class="line"><span style="color:#E1E4E8">	</span></span>
+<span class="line"><span style="color:#E1E4E8">	...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Album 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Album</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Item</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> String artist;</span></span>
+<span class="line"><span style="color:#E1E4E8">	...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Movie 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"M"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Movie</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Item</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> String director;</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> String actor;</span></span>
+<span class="line"><span style="color:#E1E4E8">	...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Book 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"B"</span><span style="color:#E1E4E8">) </span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Book</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> Item</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String author;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String isbn;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">...</span></span></code></pre>
+<ul>
+<li>
+<p>Item 엔티티에서 상속 매핑을 하기 위해서 <code>@Inheritance</code> 추가하고, 조인 전략을 사용하기 위해 <code>InheritanceType.JOINED</code>을 추가한다.</p>
+</li>
+<li>
+<p>그리고 부모에서 구분 컬럼을 지정한다. -> <code>@DiscriminatorColumn(name = "DTYPE")</code></p>
+</li>
+<li>
+<p>자식들은 구분 컬럼을 어떻게 저장할지 작성한다.</p>
+<ul>
+<li>
+<p><code>Album 엔티티</code>는 부모로부터 DTYPE에 <code>A</code>라는 값으로 저장된다. -> <code>@DiscriminatorValue("A")</code></p>
+</li>
+<li>
+<p><code>Movie 엔티티</code>는 부모로부터 DTYPE에 <code>M</code>라는 값으로 저장된다.</p>
+</li>
+<li>
+<p><code>Book 엔티티</code>는 부모로부터 DTYPE에 <code>B</code>라는 값으로 저장된다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>자식 엔티티에는 Id가 없는데 부모 테이블에서 Id를 자식 테이블에서 그대로 사용한다.</p>
+<ul>
+<li>만약 자식 테이블 기본 컬럼명을 따로 설정하려면 <code>@PrimaryKeyJoinColumn</code>을 사용한다.</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// Book 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"B"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">PrimaryKeyJoinColumn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "BOOK_ID"</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<ul>
+<li>위처럼 Book 테이블에서 Id 컬럼명은 <code>BOOK_ID</code>(이전: ITEM_ID)로 된다.</li>
+</ul>
+<h4 id="조인-전략-장단점">조인 전략 장단점</h4>
+<ul>
+<li>
+<p>장점</p>
+<ul>
+<li>
+<p>테이블이 정규화가 된다.</p>
+</li>
+<li>
+<p>외래 키 참조 무결성 제약조건을 활용할 수 있다. -> 외래 키 참조로 <code>ITEM_ID</code>로 ITEM 테이블만 확인해도 된다.</p>
+<ul>
+<li>
+<p><code>참조 무결성 제약조건</code>이란 자식 릴레이션의 외래 키의 값은 <strong>참조된 부모 릴레이션의 기본 키 값과 같아야 하며</strong>, 자식 릴레이션의 값이 변경될 때 부모 릴레이션의 제약을 받는다는 조건을 말한다.</p>
+</li>
+<li>
+<p><code>외래 키</code>는 NULL 값이거나 또는 부모 테이블의 기본 키 or 고유 키 값과 동일해야 한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>저장공간을 효율적으로 사용할 수 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>단점</p>
+<ul>
+<li>
+<p>조회시 조인을 많이 사용해서 성능이 저하된다.</p>
+</li>
+<li>
+<p>조회 쿼리가 복잡하다.</p>
+</li>
+<li>
+<p>데이터 저장시 INSERT SQL을 2번 호출한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="단일-테이블-전략">단일 테이블 전략</h3>
+<ul>
+<li>
+<p><code>단일 테이블 전략</code>은 말 그대로 <strong>테이블을 하나로 합치는 전략</strong>이다.</p>
+</li>
+<li>
+<p>구분 컬럼(DTYPE)을 통해 어떤 자식 데이터가 저장되었는지 알 수 있다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Advanced-Mapping-3.png" alt=""></p>
+<ul>
+<li>
+<p>조인 전략과 형식은 비슷한데, 부모 테이블에 <code>@Inheritance</code>에 <code>(strategy = InheritanceType.SINGLE_TABLE)</code>을 지정한다.</p>
+</li>
+<li>
+<p>또한 <strong>모든 테이블이 하나로 통합되어 있기 때문에 <code>구분 컬럼</code>은 필수</strong>다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// Item 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Inheritance</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">strategy</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> InheritanceType.SINGLE_TABLE)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DisciminatorColumn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "DTYPE"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 자식 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"M"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"B"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">...</span></span></code></pre>
+<h4 id="단일-테이블-전략-장단점">단일 테이블 전략 장단점</h4>
+<ul>
+<li>
+<p>장점</p>
+<ul>
+<li>
+<p>테이블이 하나이므로 조인이 필요없기 때문에 일반적으로 조회 성능이 빠르다.</p>
+</li>
+<li>
+<p>조회 쿼리가 단순하다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>단점</p>
+<ul>
+<li>
+<p>자식들을 모두 하나의 테이블로 만들었기 때문에, <strong>자식들마다 컬럼이 달라서 null 값이 많을 수 있다.</strong> -> null 값 허용 예) Album 엔티티에는 ACTOR 컬럼을 쓰지 않아 null 이다.</p>
+</li>
+<li>
+<p>단일 테이블에 모든 것이 저장되므로 <strong>테이블이 커질 수록 조회 성능이 오히려 느릴 수 있다.</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="구현-클래스마다-테이블-전략">구현 클래스마다 테이블 전략</h3>
+<ul>
+<li><code>구현 클래스마다 테이블 전략</code>은 자식 테이블이 부모 테이블의 모든 것을 다 가지고 있는 형태이다. 그래서 자식 엔티티마다 테이블을 다 만들어준다.</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Advanced-Mapping-4.png" alt=""></p>
+<ul>
+<li>이 전략은 <strong>데이터베이스 설계자와 ORM 전문자 둘다 추천하지 않는 전략</strong>이다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// Item 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Inheritance</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">strategy</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> InheritanceType.TABLE_PER_CLASS)</span></span>
+<span class="line"><span style="color:#E1E4E8">...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 자식 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"A"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"M"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">DiscriminatorValue</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"B"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">...</span></span></code></pre>
+<ul>
+<li>부모 테이블에 <code>@Inheritance</code>에 <code>(strategy = InheritanceType.TABLE_PER_CLASS)</code>을 지정한다.</li>
+</ul>
+<h4 id="구현-클래스마다-테이블-전략-장단점">구현 클래스마다 테이블 전략 장단점</h4>
+<ul>
+<li>
+<p>장점</p>
+<ul>
+<li>
+<p>서브 타입을 구분해서 처리할 때 효과적이다.</p>
+</li>
+<li>
+<p>not null 제약조건을 사용할 수 있다. (각각의 테이블을 가지고 있기 때문)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>단점</p>
+<ul>
+<li>
+<p>여러 자식 테이블을 함께 조회할 때 성능이 느리다. (SQL에 <code>UNION</code>을 사용한다)</p>
+</li>
+<li>
+<p>자식 테이블을 통합해서 쿼리하기가 어렵다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="mappedsuperclass">@MappedSuperclass</h2>
+<ul>
+<li>
+<p>위에서는 부모-자식 클래스 모두 데이터베이스 테이블과 상속 관계로 매핑했는데, 여기선 다르다.</p>
+</li>
+<li>
+<p><strong>객체 입장에서 부모 클래스를 자식 클래스에게 매핑 정보만 제공</strong>하고 싶을때, <code>@MappedSuperclass</code> 를 사용한다.</p>
+</li>
+<li>
+<p><code>@Entity</code>가 있는 클래스의 경우 실제 테이블과 매핑되지만, <strong><code>@MappedSuperclass</code>를 사용한 클래스는 실제 테이블과 매핑되지 않고, 공통 매핑 정보가 필요할 때 사용할 목적</strong>으로만 사용된다.</p>
+</li>
+<li>
+<p>아래 그림처럼 id, name과 같은 공통 매핑 정보가 필요할 때 <code>BaseEntity</code> 클래스를 만들어서 Member와 Seller로부터 상속받게 설계를 한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/server/jpa/JPA-Advanced-Mapping-5.png" alt=""></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// BaseEntity</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">MappedSuperclass</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> BaseEntity</span><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#E1E4E8">	@</span><span style="color:#F97583">Id</span><span style="color:#E1E4E8"> @</span><span style="color:#F97583">GeneratedValue</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> Long id;</span></span>
+<span class="line"><span style="color:#E1E4E8">	</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> String name;</span></span>
+<span class="line"><span style="color:#E1E4E8">	...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Member 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Member</span><span style="color:#E1E4E8"> exteds BaseEntity{</span></span>
+<span class="line"><span style="color:#6A737D">	// ID, NAME 상속</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> String email;</span></span>
+<span class="line"><span style="color:#E1E4E8">	...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Seller 엔티티</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Seller</span><span style="color:#E1E4E8"> exteds BaseEntity{</span></span>
+<span class="line"><span style="color:#6A737D">	// ID, NAME 상속</span></span>
+<span class="line"><span style="color:#F97583">	private</span><span style="color:#E1E4E8"> String shopName;</span></span>
+<span class="line"><span style="color:#E1E4E8">	...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ul>
+<li>
+<p><code>@MappedSuperclass</code> 특징을 정리하면 아래와 같다.</p>
+<ul>
+<li>
+<p>상속관계 매핑이 아니다.</p>
+</li>
+<li>
+<p>그래서 엔티티도 아니고 테이블과 매핑하지도 않는다.</p>
+</li>
+<li>
+<p>부모 클래스를 상속 받은 <strong>자식 클래스에 매핑 정보만 제공</strong>해준다.</p>
+</li>
+<li>
+<p>직접 생성해서 사용할 일이 없기 때문에 <strong>추상 클래스로 사용하는 것을 권장</strong>한다.</p>
+</li>
+<li>
+<p>엔티티와 다르게 <code>BaseEntity</code> 추상 클래스에는 <strong>조회나 검색이 불가능</strong>하다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>정리하면, <code>@MappedSuperclass</code>는 테이블과 관계 없고, 단순히 엔티티가 <strong>공통으로 사용하는 매핑 정보를 모으는 역할</strong>이고,</p>
+<p>주로 등록일, 수정일, 등록자, 수정자와 같은 전체 엔티티에서 <strong>공통적으로 적용하는 정보를 모을 때 사용</strong>한다.</p>
+</li>
+</ul>
+<h3 id="실제-예시">실제 예시</h3>
+<p><a href="https://github.com/woorifisa-projects/GoodFriends">굿프렌즈</a> 프로젝트에서 몇몇 테이블에 <strong>등록 시간과 수정 시간이 공통적으로 필요</strong>해서, <code>@MappedSuperclass</code>을 사용했다.</p>
+<ul>
+<li>
+<p>회원, 상품, 주문, 신고 테이블에 <strong>등록 시간과 수정 시간이 필요</strong>해서 <code>BaseTimeEntity</code> 추상 클래스를 만들어서 상속받도록 했다.</p>
+<p>프로필, 신고 테이블에는 <strong>등록 시간만 필요</strong>해서 <code>BaseCreateTimeEntity</code> 추상 클래스를 만들어서 상속받도록 했다.</p>
+</li>
+<li>
+<p><code>굿프렌즈</code> 프로젝트에서는 공통으로 쓰는 클래스를 global -> common 패키지에 넣어두었다.</p>
+<ul>
+<li>참고로 <code>@EntityListeners(AuditingEntityListener.class)</code>에 대한 부분은 나중에 다른 포스팅에서 설명할 에정이다.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>BaseTimeEntity - 등록 시간, 수정 시간</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> woorifisa.goodfriends.backend.global.common;</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> lombok.experimental.SuperBuilder;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.data.annotation.CreatedDate;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.data.annotation.LastModifiedDate;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.data.jpa.domain.support.AuditingEntityListener;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.persistence.Column;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.persistence.EntityListeners;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.persistence.MappedSuperclass;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.time.LocalDateTime;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">SuperBuilder</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">MappedSuperclass</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">EntityListeners</span><span style="color:#E1E4E8">(AuditingEntityListener.class) </span><span style="color:#6A737D">// 3, 4</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> BaseTimeEntity</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">CreatedDate</span><span style="color:#6A737D"> // 1</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "created_at"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">nullable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">updatable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> LocalDateTime createdAt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">LastModifiedDate</span><span style="color:#6A737D"> // 1</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "last_modified_at"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">nullable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> LocalDateTime lastModifiedAt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> BaseTimeEntity</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> LocalDateTime </span><span style="color:#B392F0">getCreatedAt</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> createdAt;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> LocalDateTime </span><span style="color:#B392F0">getLastModifiedAt</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> lastModifiedAt;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>BaseCreateTimeEntity - 등록 시간</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> woorifisa.goodfriends.backend.global.common;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> lombok.experimental.SuperBuilder;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.data.annotation.CreatedDate;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.springframework.data.jpa.domain.support.AuditingEntityListener;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.persistence.Column;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.persistence.EntityListeners;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.persistence.MappedSuperclass;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.time.LocalDateTime;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">SuperBuilder</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">MappedSuperclass</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">EntityListeners</span><span style="color:#E1E4E8">(AuditingEntityListener.class)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> BaseCreateTimeEntity</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">CreatedDate</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "created_at"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">nullable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">updatable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> LocalDateTime createdAt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> BaseCreateTimeEntity</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> LocalDateTime </span><span style="color:#B392F0">getCreatedDate</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> createdAt;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>회원 테이블(User) - BaseTimeEntity 추상 클래스로부터 상속받음</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> woorifisa.goodfriends.backend.user.domain;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> lombok.experimental.SuperBuilder;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> woorifisa.goodfriends.backend.global.common.BaseTimeEntity;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> woorifisa.goodfriends.backend.user.exception.InvalidUserException;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.persistence.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.regex.Matcher;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.regex.Pattern;</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">SuperBuilder</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Table</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "users"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> User</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> BaseTimeEntity</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Pattern EMAIL_PATTERN </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> Pattern.</span><span style="color:#B392F0">compile</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"^[a-z0-9._-]+@[a-z]+[.]+[a-z]{2,3}$"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> MAX_NICKNAME_LENGTH </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#F97583">Id</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#F97583">GeneratedValue</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">strategy</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> GenerationType.IDENTITY)</span></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "user_id"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#E1E4E8"> Long id;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "email"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">nullable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#E1E4E8"> String email;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "nickname"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">nullable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#E1E4E8"> String nickname;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">  @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "profile_image_url"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">nullable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#E1E4E8"> String profileImageUrl;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> ban;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583">  boolean</span><span style="color:#E1E4E8"> activated </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  protected</span><span style="color:#B392F0"> User</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  public</span><span style="color:#B392F0"> User</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">email</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">nickname</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">profileImageUrl</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">    validateEmail</span><span style="color:#E1E4E8">(email);</span></span>
+<span class="line"><span style="color:#B392F0">    validateNickname</span><span style="color:#E1E4E8">(nickname);</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.email </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> email;</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.nickname </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> nickname;</span></span>
+<span class="line"><span style="color:#79B8FF">    this</span><span style="color:#E1E4E8">.profileImageUrl </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> profileImageUrl;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> validateEmail</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">final</span><span style="color:#E1E4E8"> String </span><span style="color:#FFAB70">email</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    Matcher matcher </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> EMAIL_PATTERN.</span><span style="color:#B392F0">matcher</span><span style="color:#E1E4E8">(email);</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">matcher.</span><span style="color:#B392F0">matches</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#F97583">      throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> InvalidUserException</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> validateNickname</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">final</span><span style="color:#E1E4E8"> String </span><span style="color:#FFAB70">nickname</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8">(nickname.</span><span style="color:#B392F0">isEmpty</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">||</span><span style="color:#E1E4E8"> nickname.</span><span style="color:#B392F0">length</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">></span><span style="color:#E1E4E8"> MAX_NICKNAME_LENGTH) {</span></span>
+<span class="line"><span style="color:#F97583">      throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> InvalidUserException</span><span style="color:#E1E4E8">(String.</span><span style="color:#B392F0">format</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름은 1자 이상 %d자 이하여야 합니다."</span><span style="color:#E1E4E8">, MAX_NICKNAME_LENGTH));</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#6A737D">  // getter, update 생략</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>프로필 테이블(Profile) - BaseCreateTimeEntity 추상 클래스로부터 상속받음</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">package</span><span style="color:#E1E4E8"> woorifisa.goodfriends.backend.profile.domain;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> lombok.experimental.SuperBuilder;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.hibernate.annotations.OnDelete;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.hibernate.annotations.OnDeleteAction;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> woorifisa.goodfriends.backend.global.common.BaseCreateTimeEntity;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> woorifisa.goodfriends.backend.user.domain.User;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.persistence.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">SuperBuilder</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Table</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "profiles"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Entity</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> Profile</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> BaseCreateTimeEntity</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Id</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GeneratedValue</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">strategy</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> GenerationType.IDENTITY)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "id"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Long id;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">OneToOne</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">fetch</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> FetchType.LAZY)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">JoinColumn</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "user_id"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">OnDelete</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">action</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> OnDeleteAction.CASCADE)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> User user;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "mobile_phone"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String mobileNumber;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "address"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String address;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "account_type"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> AccountType accountType;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Column</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "account_number"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String accountNumber;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#B392F0"> Profile</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> Profile</span><span style="color:#E1E4E8">(User </span><span style="color:#FFAB70">user</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">mobileNumber</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">address</span><span style="color:#E1E4E8">, AccountType </span><span style="color:#FFAB70">accountType</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">accountNumber</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.user </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> user;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.mobileNumber </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mobileNumber;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.address </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> address;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.accountType </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> accountType;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.accountNumber </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> accountNumber;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // getter, update 생략</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://www.inflearn.com/course/ORM-JPA-Basic/dashboard">자바 ORM 표준 JPA 프로그래밍 - 기본편</a></p>
+</li>
+<li>
+<p><a href="https://github.com/woorifisa-projects/GoodFriends">[굿프렌즈] 프로젝트 URL</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="JPA-7-Advanced-Mapping" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#상속관계-매핑" data-toc="상속관계-매핑" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">상속관계 매핑</a></li><li><a href="#주요-어노테이션" data-toc="주요-어노테이션" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">주요 어노테이션</a></li><li><a href="#조인-전략" data-toc="조인-전략" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">조인 전략</a></li><li><a href="#단일-테이블-전략" data-toc="단일-테이블-전략" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">단일 테이블 전략</a></li><li><a href="#구현-클래스마다-테이블-전략" data-toc="구현-클래스마다-테이블-전략" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">구현 클래스마다 테이블 전략</a></li><li><a href="#mappedsuperclass" data-toc="mappedsuperclass" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">@MappedSuperclass</a></li><li><a href="#실제-예시" data-toc="실제-예시" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">실제 예시</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[데이터베이스개론] 정규화 과정 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/DB-Normalization/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[데이터베이스개론] 정규화 과정</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-11-13" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-11-13</time><a href="/category/#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4" class="chip chip-tag">#데이터베이스</a></div><p class="view-count text-sm text-muted">조회수 143회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 <code>데이터베이스 개론</code> 교재와 <a href="https://github.com/devSquad-study/2023-CS-Study/blob/main/DB/db_erd_normalization.md">ERD와 정규화 과정</a>를 공부하고 필자의 생각을 포함하여 정리한 내용으로 사실과 맞지 않는 부분이 있을 수 있습니다.</p>
+</blockquote>
+<ul>
+<li>
+<p>이 글은 정규화를 이용해 데이터베이스를 설계하는 방법에 대해 소개한다.</p>
+</li>
+<li>
+<p><code>정규화</code>는 데이터베이스를 설계한 후 설계 결과물을 검증하기 위해 사용하기도 한다.</p>
+</li>
+<li>
+<p>두 설계 방법은 데이터 설계 결과물이 비슷한 수준을 유지하므로 상황에 따라 적절한 방법을 선택하면 된다.</p>
+</li>
+</ul>
+<h2 id="이상-현상의-개념">이상 현상의 개념</h2>
+<ul>
+<li>
+<p>데이터베이스를 잘못 설계하면 <strong>불필요한 데이터 중복이 발생</strong>하여 릴레이션에 대한 데이터 삽입, 수정, 삭제 연산을 수행할 때 부작용이 발생하는데</p>
+<p>이러한 부작용을 <code>이상(anomaly)</code> 현상이라 부른다.</p>
+</li>
+<li>
+<p>이상 현상을 제거하면서 데이터베이스를 올바르게 설계해 나가는 과정이 <code>정규화</code>다.</p>
+</li>
+<li>
+<p>정규화의 필요성과 방법을 구체적으로 알아보기에 앞서 먼저 이상 현상을 종류별로 알아보자.</p>
+</li>
+</ul>
+<h3 id="이상-현상의-종류">이상 현상의 종류</h3>
+<ul>
+<li>이상 현상에는 삽입 이상(insertion anomaly), 갱신 이상(update anomaly), 삭제 이상(deletion anomaly)이 있다.</li>
+</ul>
+<h4 id="삽입-이상">삽입 이상</h4>
+<ul>
+<li><code>삽입 이상</code>(insertion anomaly)은 <strong>새 데이터를 삽입하기 위해 불필요한 데이터도 함께 삽입</strong>해야 하는 문제를 말한다.</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-1.JPG" alt=""></p>
+<ul>
+<li>
+<p>[그림 9-2]의 이벤트참여 릴레이션은 고객들이 이벤트에 참여한 결과를 저장하고 있는 릴레이션이다.</p>
+</li>
+<li>
+<p>여기서 이벤트참여 릴레이션에 아이디가 <code>melon</code>이고, 이름이 <code>성원용</code>, 등급이 <code>gold</code>인 신규 고객에 대한 데이터를 삽입한다고 가정해보자.</p>
+</li>
+<li>
+<p>이 고객이 참여한 이벤트가 아직 없다면, 다시 말하면, 이벤트번호와 당첨여부가 존재하지 않는다면 해당 릴레이션에 신규 고객에 대한 데이터를 삽입할 수 없다.</p>
+</li>
+<li>
+<p>따라서 신규 고객(성원용)와 같이 이벤트참여 릴레이션에 삽입하려면 실제로 참여하지 않는 임시 이벤트번호를 삽입해야 하는데, 이때 발생하게 되는 것이 <code>삽입 이상</code>이다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-2.jpg" alt=""></p>
+<h4 id="갱신-이상">갱신 이상</h4>
+<ul>
+<li><code>갱신 이상</code>(update anomaly)은 릴레이션의 <strong>중복된 튜플(=행)들 중 일부만 수정하여 데이터가 불일치하게 되는 모순이 발생</strong>하는 문제를 말한다.</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-1.JPG" alt=""></p>
+<ul>
+<li>
+<p>[그림 9-2]의 이벤트참여 릴레이션에는 아이디가 <code>apple</code>인 고객에 대한 튜플(행)이 3개 존재하여, 고객아이디, 고객이름, 등급 속성의 값이 중복되어 있다.</p>
+</li>
+<li>
+<p>만약 아이디가 <code>apple</code>인 고객의 등급이 <code>gold</code>에서 <code>vip</code>로 변경하게 된다면, <code>apple</code> 고객에 대한 튜플 3개의 등급 속성 값이 모두 수정되어야 한다.</p>
+</li>
+<li>
+<p>그렇지 않고, 아래 [그림 9-4]와 같이 2개의 튜플만 등급이 수정되면 <code>apple</code> 고객이 서로 다른 등급을 가지는 모순이 생겨 <code>갱신 이상</code>이 발생하게 된다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-3.JPG" alt=""></p>
+<h4 id="삭제-이상">삭제 이상</h4>
+<ul>
+<li>
+<p><code>삭제 이상</code>(deletion anomaly)은 릴레이션에서 튜플(행)을 삭제하면 <strong>꼭 필요한 데이터까지 함께 삭제하여 데이터가 손실</strong>되는 연쇄 삭제 현상을 말한다.</p>
+</li>
+<li>
+<p>아이디어가 <code>orange</code>인 고객이 이벤트 참여를 취소하여 [그림 9-2]의 이벤트참여 릴레이션에서 관련된 튜플을 삭제해야 한다면, 아래 [그림 9-5]와 같이 하나의 튜플만 삭제하면 된다.</p>
+</li>
+<li>
+<p>그런데 이 튜플은 이벤트에 대한 정보(이벤트번호, 당첨여부) 뿐만 아니라 의도치 않게 해당 고객에 대한 정보인 고객아이디, 고객이름, 등급에 대한 정보도 같이 손실되는 <code>삭제 이상</code>이 발생하게 된다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-4.JPG" alt=""></p>
+<h2 id="정규화의-필요성">정규화의 필요성</h2>
+<ul>
+<li>
+<p>[그림 9-2]의 이벤트참여 릴레이션에서 여러 <code>이상 현상</code>이 발생하는 이유는 관련 없는 속성들이 하나의 릴레이션에 모아두고 있기 때문이다.</p>
+</li>
+<li>
+<p>이상 현상이 발생하지 않기 위해서는 <strong>관련 있는 속성들로만 릴레이션을 구성</strong> 해야 하는데 이를 위해 필요한 것이 <code>정규화</code>다.</p>
+</li>
+<li>
+<p><code>정규화</code>는 이상 현상이 발생하지 않도록, 릴레이션을 <strong>관련있는 속성들로만 구성하기 위해 릴레이션을 <code>분해</code></strong> 하는 과정이다.</p>
+</li>
+<li>
+<p><code>정규화</code> 과정에서 고려해야 하는 속성들 간의 관련성을 <code>함수적 종속성</code>(FD, Functional Dependency)이라고 한다.</p>
+</li>
+</ul>
+<h3 id="함수-종속">함수 종속</h3>
+<blockquote>
+<p>이후부터는 <code>함수적 종속성</code> 대신 <code>함수 종속성</code>이라는 용어를 사용하기로 한다.</p>
+</blockquote>
+<blockquote>
+<p><code>함수적 종속성</code>: 테이블의 특정 컬럼 A의 값을 알면 다른 <code>컬럼 B</code> 값을 알 수 있을 때, <code>컬럼 B</code>는 컬럼 A에 함수적 종속성이 있다고 한다.</p>
+</blockquote>
+<ul>
+<li>
+<p>함수 종속 관계는 X -> Y를 표현하고 X를 <code>결정자</code>, Y를 <code>종속자</code>라고 한다.</p>
+</li>
+<li>
+<p>일반적으로 릴레이션에 함수적 종속성이 하나 존재하도록 정규화를 통해 릴레이션을 분해한다.</p>
+</li>
+<li>
+<p>아래 [그림 9-7]의 고객 릴레이션을 대상으로 속성 간의 함수 종속 관계를 판단해보자.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-5.jpg" alt=""></p>
+<ul>
+<li>
+<p>고객 릴레이션에서 각 <code>고객아이디</code> 속성 값에 대응되는 <code>고객이름</code> 속성과 <code>등급</code> 속성의 값이 단 하나이므로,</p>
+</li>
+<li>
+<p><code>고객아이디</code>가 <code>고객이름</code>과 <code>등급</code>을 결정한다고 볼 수 있다.</p>
+</li>
+<li>
+<p>그러므로 고객 릴레이션에서 <code>고객아이디</code>는 <strong>결정자</strong>가 되고, <code>고객이름</code>과 <code>등급</code>은 <strong>종속자</strong>가 된다.</p>
+</li>
+<li>
+<p>함수 종속에는 2가지 종류가 있다.</p>
+<ul>
+<li>
+<p><code>완전 함수 종속</code>은 릴레이션에서 속성 집합 Y가 속성 집합 X <strong>전체</strong>에 함수적으로 종속되어 있다는 의미이다.</p>
+</li>
+<li>
+<p><code>부분 함수 종속</code>은 속성 집합 Y가 속성 집합 X의 전체가 아닌 <strong>일부분</strong>에도 함수적으로 종속됨을 의미한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-6.jpg" alt=""></p>
+<ul>
+<li>예를 들어, [그림 9-10]의 이벤트참여 릴레이션에서 <code>고객이름</code>은 고객아이디에 완전 함수 종속되어 있지만, {고객아이디, 이벤트번호}에는 부분 함수 종속되어 있다. 그리고 <code>당첨여부</code>는 {고객아이디, 이벤트번호}에 완전 함수 종속되어 있다.</li>
+</ul>
+<h2 id="기본-정규형과-정규화-과정">기본 정규형과 정규화 과정</h2>
+<h3 id="정규화의-개념과-정규형의-종류">정규화의 개념과 정규형의 종류</h3>
+<ul>
+<li>
+<p><code>정규화</code>(normalization)란 <strong>함수적 종속성을 이용</strong>하여 릴레이션을 연관성이 있는 속성들로만 구성되도록 분해해서, 이상 현상이 발생하지 않는 올바른 릴레이션으로 만들어나가는 과정을 말한다.</p>
+</li>
+<li>
+<p><code>정규화</code>의 기본 목표는 <strong>관련이 없는 함수 종속성을 별개의 릴레이션으로 표현</strong>하는 것이다.</p>
+</li>
+<li>
+<p>릴레이션이 정규화된 정도는 <code>정규형</code>(NF, Nomal Form)으로 표현된다.</p>
+</li>
+<li>
+<p>정규형은 크게 <code>기본 정규형</code>과 <code>고급 정규형</code>으로 나뉜다.</p>
+<ul>
+<li>
+<p><code>기본 정규형</code>에는 제1정규형, 제2정규형, 제3정규형, 보이스/코드 정규형이 있다.</p>
+</li>
+<li>
+<p><code>고급 정규형</code>에는 제4정규형, 제5정규형이 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-7.JPG" alt=""></p>
+<ul>
+<li>
+<p>각 정규형마다 만족시켜야 하는 제약조건이 존재하며, 정규형의 차수가 높아질수록 요구되는 제약조건이 많이지고 엄격해진다.</p>
+</li>
+<li>
+<p>일반적으로 차수가 높은 정규형일수록 바람직한 릴레이션일 수 있다.</p>
+</li>
+<li>
+<p>하지만 모든 릴레이션이 제5정규형에 속해야 되는 것은 아니므로 릴레이션의 특성을 고려해서 적합한 정규형을 선택해야 한다.</p>
+</li>
+<li>
+<p>일반적으로 <code>기본 정규형</code>에 속하도록 릴레이션을 정규화하는 경우가 대부분이므로 여기서는 <code>기본 정규형</code>을 중심으로 정규화 과정을 알아본다.</p>
+</li>
+</ul>
+<h3 id="제1정규형1nf">제1정규형(1NF)</h3>
+<blockquote>
+<p><code>제1정규형</code> : 릴레이션에 속한 <strong>모든 속성의 도메인이 원자값으로만 구성</strong>되어 있으면 제 1 정규형에 속한다.</p>
+</blockquote>
+<ul>
+<li>
+<p>릴레이션이 제1정규형에 속하려면 릴레이션에 속한 모든 속성이 <strong>더는 분해되지 않는 원자 값</strong>만 가져야 한다.</p>
+</li>
+<li>
+<p>즉, <strong>다중 값을 가질 수 있는 속성은 분리</strong>되어야 한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-8.JPG" alt=""></p>
+<ul>
+<li>
+<p>[그림 9-16]의 이벤트참여 릴레이션에서 이벤트번호 속성과 당첨여부 속성은 하나의 고객아이디에 해당하는 값이 여러 개다.</p>
+</li>
+<li>
+<p>제1정규형에 속하게 하려면 <strong>튜플마다 <code>이벤트번호</code>와 <code>당첨여부</code> 속성 값을 하나씩만 포함되도록 분해</strong>하여, 모든 속성이 원자값을 가지도록 해야 한다.</p>
+</li>
+<li>
+<p>제1정규형을 만족하도록 정규화를 수행한 결과는 아래 [그림 9-17]과 같다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-9.JPG" alt=""></p>
+<ul>
+<li>
+<p>제1정규형을 정리하면 아래와 같다.</p>
+<ul>
+<li>
+<p>[1] 모든 속성은 원자 값을 가져야 한다.</p>
+</li>
+<li>
+<p>[2] 다중 값을 가질 수 있는 속성은 분리되어야 한다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>[그림 9-17]은 제1정규형에 속하지만, 불필요한 데이터 중복으로 인해 이상 현상이 발생하는 릴레이션이 있을 수 있다.</p>
+</li>
+<li>
+<p>이러한 문제를 해결하기 위해서는 부분 함수 종속이 제거되도록 이벤트참여 릴레이션을 분해해야 한다.</p>
+</li>
+<li>
+<p>릴레이션을 분리하여 부분 함수 종속을 제거하면, 분해된 릴레이션들은 제2정규형에 속하게 되고 이상 현상은 발생하지 않게 된다.</p>
+</li>
+</ul>
+<h3 id="제2정규형2nf">제2정규형(2NF)</h3>
+<blockquote>
+<p><code>제2정규형</code> : 릴레이션이 제1정규형에 속하고, <strong>기본키가 아닌 모든 속성이 기본키에 완전 함수 종속</strong>되면 제2정규형에 속한다.</p>
+</blockquote>
+<ul>
+<li><code>제2정규형</code>을 만족하게 하려면, 부분 함수 종속을 제거하고 모든 속성이 기본키에 완전 함수 종속되도록 릴레이션을 분해하는 정규화 과정을 거쳐야 한다.</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-10.JPG" alt=""></p>
+<ul>
+<li>
+<p>이벤트참여 릴레이션에서 기본키인 {고객아이디, 이벤트번호}에 완전 함수 종속되지 않는 등급, 할인율 속성이 존재하므로</p>
+</li>
+<li>
+<p>[그림 9-24]와 같이 2개의 릴레이션으로 분해하면, 분해된 <code>고객</code> 릴레이션과 <code>이벤트참여</code> 릴레이션은 모두 <strong>제2정규형</strong>에 속하게 된다.</p>
+</li>
+<li>
+<p>정규화 과정에서 릴레이션을 분해할 때 주의할 점은, 분해된 릴레이션들을 자연 조인하여 분해 전의 릴레이션으로 다시 복원할 수 있어야 한다.</p>
+</li>
+<li>
+<p>즉, 릴레이션이 의미상 <strong>동등한</strong> 릴레이션들로 분해되어야 하고, 릴레이션을 분해했을 때 <strong>정보 손실이 발생하지 않아야 한다.</strong></p>
+</li>
+<li>
+<p>제2정규형을 정리하면 아래와 같다.</p>
+<ul>
+<li>
+<p>[1] 제 1정규형을 만족하고 모든 Non-Key 컬럼은 기본키(PK) 전체에 종속(완전 종속)되어야 한다.</p>
+</li>
+<li>
+<p>[2] 만약 Non-Key 컬럼이 기본키에 종속되어있지 않거나 부분 종속되어 있으면, 기본키에 완전 종속되도록 릴레이션을 분리되어야 한다.</p>
+</li>
+<li>
+<p>[3] 정규화 과정에서 수행되는 릴레이션의 분해는 <code>무손실 분해</code>여야 한다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><code>무손실 분해</code>(nonloss decomposition): 정보의 손실 없이 릴레이션을 분해하는 것을 의미한다.</p>
+</blockquote>
+<h3 id="제3정규형3nf">제3정규형(3NF)</h3>
+<ul>
+<li>
+<p><code>제3정규형</code> : 릴레이션이 제2정규형에 속하고, <strong>기본키가 아닌 모든 속성이 기본키에 이행적 함수 종속이 되지 않으면</strong>, 제3정규형에 속한다.</p>
+</li>
+<li>
+<p>제3정규형을 살펴보기에 앞서 이를 이해하기 위해 필요한 <code>이행적 함수 종속</code>(transitive FD)을 잠깐 살펴보자.</p>
+</li>
+<li>
+<p>릴레이션을 구성하는 3개의 속성 집합 X, Y, Z에 대해 함수 종속 관계 X -> Y 와 Y -> Z가 존재하면 논리적으로 X -> Z가 성립한다.</p>
+</li>
+<li>
+<p>이때 속성 집합 Z가 집합 X에 <strong>이행적으로 함수 종속</strong>되었다고 한다.</p>
+</li>
+<li>
+<p><code>제2정규형</code>을 만족하더라도 하나의 릴레이션에 <strong>함수 종속 관계가 여러개 존재</strong>하고, 논리적으로 이행적 함수 종속 관계가 유도되면 이상 현상이 발생할 수 있다.</p>
+</li>
+<li>
+<p><code>제3정규형</code>을 만족하기 위해서는 릴레이션에서 <strong>이행적 함수 종속을 제거</strong>해서, 모든 속성이 <strong>기본키에 이행적 함수 종속이 되지 않도록 릴레이션을 분해</strong>하는 정규화 과정을 거쳐야 한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-11.jpg" alt=""></p>
+<ul>
+<li>
+<p>위 [그림 9-26]에서 보는 것처럼 고객아이디가 등급을 결정하고, 등급이 할인율을 결정하는 함수 종속 관계로 인해,</p>
+</li>
+<li>
+<p>고객아이디가 등급을 통해 할인율을 결정하는 이행적 함수 종속 관계도 존재한다.</p>
+</li>
+<li>
+<p>이러한 이행적 함수 종속이 나타나는 이유는 함수 종속 관계가 하나의 릴레이션에 여러 개 존재하기 때문이다.</p>
+</li>
+<li>
+<p>따라서 <code>고객 릴레이션</code>에 이상 현상이 발생하지 않도록 하려면 <strong>이행적 함수 종속이 나타나지 않게 2개의 릴레이션으로 분해</strong>해야 한다.</p>
+</li>
+<li>
+<p>제3정규형을 만족하기 위해서 [그림 9-26]의 분해된 고객 릴레이션은 고객아이디 -> 등급, 등급 -> 할인율의 함수 종속 관계를 유지할 수 있도록 아래 [그림 9-32]와 같이 2개의 릴레이션으로 분해하면 된다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-12.jpg" alt=""></p>
+<ul>
+<li>아래 [그림 9-33]의 함수 종속 다이어그램에서 확인할 수 있듯이, 릴레이션을 분해하면 하나의 릴레이션에 하나의 관계만 존재하게 되어 이행적 함수 종속으로 인한 이상 현상이 발생하지 않게 된다.</li>
+</ul>
+<p>![](<img src="/assets/img/cs/db/DB-Normalization-13.jpg" alt=""></p>
+<ul>
+<li>고객 릴레이션과 고객등급 릴레이션 모두 기본기가 직접 결정하므로 제3정규형에 속한다.</li>
+</ul>
+<h3 id="보이스코드-정규형bcnf">보이스/코드 정규형(BCNF)</h3>
+<blockquote>
+<p><code>보이스/코드 정규형</code>(BCNFm Boyce/Codd Normal Form): 릴레이션의 함수 종속 관계에서 모든 결정자가 후보키이면 보이스/코드 정규형에 속한다.</p>
+</blockquote>
+<ul>
+<li>
+<p>하나의 릴레이션에 여러개의 후보키가 존재할 수도 있는데, 이 경우에는 제3정규형까지 모두 만족하더라도 이상 현상이 발생할 수 있다.</p>
+</li>
+<li>
+<p>이를 해결하기 위해 <strong>제3정규형보다 좀 더 엄격한 제약조건을 제시</strong>한 것이 <code>보이스/코드 정규형</code>이다.</p>
+</li>
+<li>
+<p>[그림 9-26]에서 {고객아이디, 이벤트번호} -> 당첨여부의 함수 종속 관계를 포함하고 있는 분해된 <code>이벤트참여 릴레이션</code>은 {고객아이디, 이벤트번호}가 <strong>유일한 <code>후보키</code>이자 기본키이면서 함수 종속관계에서도 유일한 <code>결정자</code></strong> 다.</p>
+</li>
+<li>
+<p>그러므로 제3정규형에 속하는 <code>이벤트참여 릴레이션</code>은 보이스/코드 정규형에도 속한다.</p>
+</li>
+<li>
+<p>[그림 9-32]에서 고객아이디 -> 등급의 함수 종속 관계를 포함하고 있는 분해된 <code>고객 릴레이션</code>도 마찬가지로 기본키인 고객아이디가 함수 종속 관계에서 유일한 결정자이므로 보이스/코드 정규형에 속한다.</p>
+</li>
+<li>
+<p>이제 제3정규형에 속하지만 보이스/코드 정규형에는 속하지 않는 릴레이션의 예를 통해, 후보키가 여러 개인 릴레이션에서 어떠한 이상 현상이 발생할 수 있는지 알아보자.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-14.jpg" alt=""></p>
+<ul>
+<li>
+<p>[그림 9-34]의 강좌신청 릴레이션은 고객이 인터넷강좌를 신청하면 해당 강좌의 담당강사에 대한 데이터를 저장한다.</p>
+</li>
+<li>
+<p>요구 사항은 다음과 같다고 가정해본다.</p>
+<ul>
+<li>
+<p>한 고객이 인터넷강좌를 여러 개 신청할 수 있지만 동일한 인터넷강좌를 여러 번 신청할 수는 없다.</p>
+</li>
+<li>
+<p>그리고 강사 한 명이 인터넷강좌를 하나만 담당할 수 있고, 하나의 인터넷강좌는 여러 강사가 담당할 수 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>그러므로 튜플을 구별할 수 있는 후보키는 {고객아이디, 인터넷강좌}, {고객아이디, 담당강사번호}가 있고 이 중에서 {고객아이디, 인터넷강좌}를 기본키로 선정했다.</p>
+</li>
+<li>
+<p>[그림 9-34]의 강좌신청 릴레이션에서 기본키인 {고객아이디, 인터넷강좌}가 담당강사번호 속성을 함수적으로 결정하는 것은 당연하다.</p>
+</li>
+<li>
+<p>그리고 강사 한 명이 인터넷강좌를 하나만 담당하므로 담당강사번호가 인터넷강좌를 함수적으로 결정한다고 볼 수 있다.</p>
+</li>
+<li>
+<p>강좌신청 릴레이션의 함수 종속 다이어그램은 아래 [그림 9-35]와 같다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-15.jpg" alt=""></p>
+<ul>
+<li>하지만 담당강사번호 속성이 <strong>후보키가 아님에도 인터넷강좌 속성을 결정</strong>하므로 강좌신청 릴레이션은 보이스/코드 정규형에는 속하지 않는다.</li>
+</ul>
+<blockquote>
+<p>후보키: 유일성과 최소성을 만족하는 속성 또는 속성들의 집합이다. <code>고객아이디</code> 속성은 단독으로 고객 튜플을 유일하게 구별할 수 있으므로 후보키가 될 수 있다.</p>
+<ul>
+<li>키에 대해 자세한 설명은 이전에 작성한 <a href="https://devfancy.github.io/DB-RDB-Concept-Key/#%ED%9B%84%EB%B3%B4%ED%82%A4">[DB] 관계 데이터 모델의 개념 - Key의 종류</a>글을 참고하자.</li>
+</ul>
+</blockquote>
+<ul>
+<li>이상현상이 발생하지 않도록 하려면 모든 결정자가 후보키가 될 수 있도록 강좌신청 릴레이션을 아래 [그림 9-40]과 같이 2개의 릴레이션으로 분해해야 된다.</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-16.jpg" alt=""></p>
+<ul>
+<li>
+<p>고객담당강사 릴레이션은 함수 종속 관계가 성립하지 않는 고객아이디, 담당강사번호 속성으로 구성하고, {고객아이디, 담당강사번호}가 기본키의 역할을 담당한다.</p>
+</li>
+<li>
+<p>강좌담당 릴레이션은 담당강사 -> 인터넷강좌의 함수 종속 관계를 포함하고 있고 담당강사번호가 유일한 후보키이자 기본키다.</p>
+</li>
+<li>
+<p>두 개의 릴레이션 모두 후보키가 아닌 결정자가 존재하지 않아 보이스/코드 정규형에 속한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/db/DB-Normalization-17.jpg" alt=""></p>
+<ul>
+<li>[그림 9-41]은 강좌신청 릴레이션을 분해한 후의 고객담당강사와 강좌담당 릴레이션의 함수 종속 다이어그램이다.</li>
+</ul>
+<h2 id="제4정규형과-제-5정규형">제4정규형과 제 5정규형</h2>
+<p>고급 정규형으로 분류되는 제4정규형과 제5정규형은 필요시 나중에 자료를 직접 찾아보고 정리하기로 하고 여기서는 간단하게 개념만 알고 넘어가자 .</p>
+<blockquote>
+<p><code>제4정규형</code>은 릴레이션이 보이스/코드 정규형을 만족하면서, 함수 종속이 아닌 다치 종속(MVD, Multi Valued Dependency)을 제거해야 만족할 수 있다.</p>
+</blockquote>
+<blockquote>
+<p><code>제5정규형</code>은 릴레이션이 제4정규형을 만족하면서 후보키를 통하지 않는 조인 종속(JD, Join Dependency)를 제거해야 만족할 수 있다.</p>
+</blockquote>
+<h2 id="마치며">마치며..</h2>
+<ul>
+<li>
+<p>실제로 데이터베이스를 설계할 때 모든 릴레이션이 무조건 제5정규형에 속하도록 분해해야 하는 것은 아니라고 생각한다.</p>
+</li>
+<li>
+<p>오히려 제5정규형으 만족할때 까지 분해하면 비효율적이고 바람직하지 않는 경우가 많다. (성능이 100% 좋아지는 것은 아니다)</p>
+<ul>
+<li>
+<p>테이블을 나누게 되면 어떠한 쿼리는 조인을 해야 하는 경우도 발생해서 오히려 느려질 수도 있기 때문에 서비스에 따라 정규화 또는 비정규화 과정을 진행해야 한다고 생각한다.</p>
+</li>
+<li>
+<p>실제로 최근에 했던 <a href="https://github.com/woorifisa-projects/GoodFriends">굿프렌즈</a>의 경우 여러번의 조인을 발생하지 않고 한번만 조인을 하도록 설계했다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>일반적으로는 제3정규형이나 보이스/코드 정규형에 속하도록 릴레이션을 분해하여 데이터 중복을 줄이고 이상 형산이 발생하는 문제를 해결하는 경우가 있다.</p>
+</li>
+<li>
+<p>굿프렌즈 프로젝트를 진행할 때 정규화 과정을 생각하면서 테이블을 설계했지만, 위의 정규화 과정을 모두 지킨 것은 아니라고 생각한다. 굿프렌즈 프로젝트에 있는 DB 설계 부분을 서비스 환경과 성능에 따라 개선할 수 있는 부분이 있다면 추후에 리팩터링하자.</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://product.kyobobook.co.kr/detail/S000001743852">데이터베이스 개론</a></p>
+</li>
+<li>
+<p><a href="https://github.com/devSquad-study/2023-CS-Study/blob/main/DB/db_erd_normalization.md">ERD와 정규화 과정</a></p>
+</li>
+<li>
+<p><a href="https://product.kyobobook.co.kr/detail/S000001834833">면접을 위한 CS 전공지식 노트</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="DB-Normalization" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-NGINX/" class="link-title leading-snug">NGINX란?</a><time datetime="2023-10-28" class="mt-1.5 block text-sm text-muted">2023-10-28</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#이상-현상의-개념" data-toc="이상-현상의-개념" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">이상 현상의 개념</a></li><li><a href="#이상-현상의-종류" data-toc="이상-현상의-종류" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">이상 현상의 종류</a></li><li><a href="#정규화의-필요성" data-toc="정규화의-필요성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">정규화의 필요성</a></li><li><a href="#함수-종속" data-toc="함수-종속" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">함수 종속</a></li><li><a href="#기본-정규형과-정규화-과정" data-toc="기본-정규형과-정규화-과정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">기본 정규형과 정규화 과정</a></li><li><a href="#정규화의-개념과-정규형의-종류" data-toc="정규화의-개념과-정규형의-종류" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">정규화의 개념과 정규형의 종류</a></li><li><a href="#제1정규형1nf" data-toc="제1정규형1nf" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">제1정규형(1NF)</a></li><li><a href="#제2정규형2nf" data-toc="제2정규형2nf" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">제2정규형(2NF)</a></li><li><a href="#제3정규형3nf" data-toc="제3정규형3nf" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">제3정규형(3NF)</a></li><li><a href="#보이스코드-정규형bcnf" data-toc="보이스코드-정규형bcnf" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">보이스/코드 정규형(BCNF)</a></li><li><a href="#제4정규형과-제-5정규형" data-toc="제4정규형과-제-5정규형" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">제4정규형과 제 5정규형</a></li><li><a href="#마치며" data-toc="마치며" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">마치며..</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

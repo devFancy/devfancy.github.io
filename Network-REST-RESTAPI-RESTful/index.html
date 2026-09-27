@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>REST, REST API, RESTful | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Network-REST-RESTAPI-RESTful/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>REST, REST API, RESTful</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-02-18" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-02-18</time><a href="/category/#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC" class="chip chip-tag">#네트워크</a></div><p class="view-count text-sm text-muted">조회수 50회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="rest">REST</h2>
+<blockquote>
+<p><code>REST</code>(Representation State Transfer)란 자원을 이름으로 구분하여 해당 자원의 상태를 주고 받는 모든 것을 의미한다.</p>
+</blockquote>
+<ul>
+<li>
+<p>HTTP URI(Uniform Resource Identifier)를 통해 자원을 명시하고, HTTP 메소드(GET, POST, PUT, PATCH, DELETE)를 통해 해당 자원(URI)에 대한 CRUD Operation을 적용하는 것을 의미한다.</p>
+</li>
+<li>
+<p><code>CRUD Operation</code>이란 Create, Read, Update, Delete를 묶어서 읽컫는 말이다.</p>
+</li>
+<li>
+<p>REST 에서 CRUD Operation 동작 예시는 다음과 같다.(HTTP 메소드와 비교)</p>
+<ul>
+<li>
+<p><code>Create</code> : 데이터 생성 &#x3C;-> POST</p>
+</li>
+<li>
+<p><code>Read</code> : 데이터 조회 &#x3C;-> GET</p>
+</li>
+<li>
+<p><code>Update</code> : 데이터 수정 &#x3C;-> PUT, PATCH</p>
+</li>
+<li>
+<p><code>Delete</code> : 데이터 삭제 &#x3C;-> DELETE</p>
+</li>
+</ul>
+</li>
+<li>
+<p>참고) <a href="https://devfancy.github.io/HTTP-3-Method/">HTTP 메소드</a>에 가면, HTTP 메소드의 종류와 속성을 따로 정리해 두었다.</p>
+</li>
+</ul>
+<h3 id="rest-구성-요소">REST 구성 요소</h3>
+<ul>
+<li>
+<p>자원(Resource) : HTTP URI 형태로 나타낸다.</p>
+</li>
+<li>
+<p>자원에 대한 행위(Verb) : HTTP Method를 나타낸다.</p>
+</li>
+<li>
+<p>자원에 대한 행위의 내용(Representations) : HTTP Message Pay Load를 타나낸다.</p>
+</li>
+</ul>
+<h3 id="rest의-특징">REST의 특징</h3>
+<blockquote>
+<p>[1] Uniform Interface(인터페이스 일관성)</p>
+</blockquote>
+<ul>
+<li>
+<p>HTTP 표준에만 따른다면, 안드로이드/IOS 플랫폼이든, 특정 언어나 기술에 종속하지 않고 <strong>모든 플랫폼</strong>에 사용할 수 있으며, URI로 지정한 리소스에 대한 조작이 가능한 아키텍쳐 스타일을 의미한다.</p>
+</li>
+<li>
+<p>이러한 범용성을 갖추기 위해 REST API의 HTTP Response Body는 HTML 보다는 JSON, XML 등 여러 플랫폼에서 사용하기 적절한 단순한 텍스트 포맷을 사용한다.</p>
+</li>
+</ul>
+<p>(REST를 이야기 하면, HTTP + JSON을 쉽게 떠올리는데, JSON은 하나의 옵션일 뿐, 메시지 포맷을 꼭 JSON으로 적용해야할 필요는 없다)</p>
+<blockquote>
+<p>[2] Stateless(무상태)</p>
+</blockquote>
+<ul>
+<li>
+<p>작업을 위한 상태 정보를 따로 저장하지 않고 관리하지 않는다. 즉, 각 요청에 대한 컨텍스트(세션, 로그인 정보)가 서버에 저장되어선 안된다.</p>
+</li>
+<li>
+<p>세션 정보나 쿠키 정보를 별도로 저장, 관리하지 않기 때문에 API 서버는 들어오는 요청만을 단순히 처리하면 된다.</p>
+</li>
+<li>
+<p>그래서 서비스의 자유도가 높아지고 서버에서 불필요한 정보를 관리하지 않으므로 구현이 단순해진다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[3] Cacheable(캐시 처리 가능)</p>
+</blockquote>
+<ul>
+<li>
+<p>REST의 가장 큰 특징 중 하나는 HTTP라는 기존 웹 표준을 그대로 사용하므로 웹에서 사용하는 기존 인프라를 그대로 활용이 가능하다.</p>
+</li>
+<li>
+<p>HTTP 프로토콜 기반의 로드 밸런서나 암호화(SSL)은 물론이고 HTTP가 가진 가장 강력한 특징중의 하나인 <strong>캐싱 기능</strong>을 적용할 수 있다.</p>
+</li>
+<li>
+<p>HTTP 프로토콜 표준에서 사용하는 <code>Last-Modified</code> 태그나 <code>E-Tag</code>를 이용하면 캐싱 구현이 가능하다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[4] Client-Server(클라이언트-서버 구조)</p>
+</blockquote>
+<ul>
+<li>
+<p>REST 서버는 API를 제공하고, 제공된 API를 이용해서 <strong>비즈니스 로직 처리 및 저장</strong>을 책임진다.</p>
+</li>
+<li>
+<p>클라이언트는 사용자 인증이나 컨텍스트(세션, 로그인 정보) 등을 직접 관리하는 구조로 <strong>각각의 역할이 확실히 구분</strong>되기 때문에 클라이언트와 서버에서 개발해야 할 <strong>내용이 명확</strong>해지고 서로 간에 <strong>의존성</strong>이 줄어들게 된다.</p>
+</li>
+</ul>
+<blockquote>
+<p>[5] Layered System(계층형 구조)</p>
+</blockquote>
+<ul>
+<li>
+<p>클라이언트는 보통 대상 서버에 직접 연결되었는지 중간 서버를 통해 연결 되었는지를 알 수 없다.</p>
+</li>
+<li>
+<p>중간 서버는 <strong>로드 밸런싱 기능</strong>이나 <strong>공유 캐시 기능</strong>을 제공함으로써 시스템 규모의 확장성을 향상시키는데 유용하다.</p>
+</li>
+<li>
+<p>클라이언트 입장에서는 REST API 서버만 호출할 수 있는 반면에, 서버는 <strong>다중 계층</strong>으로 구성될 수 있다.</p>
+</li>
+<li>
+<p>순수 비즈니스 로직을 수행하는 API 서버와 그 앞단에 <strong>사용자인증(보안), 로드 밸런싱, 암호화(SSL)</strong> 계층을 추가해서 <strong>구조상의 유연성</strong>을 둘 수 있다.</p>
+</li>
+<li>
+<p>그리고 Proxy, Gateway 같은 네트워크 기반의 중간매체를 사용할 수 있게 한다.</p>
+</li>
+</ul>
+<h3 id="rest의-장단점">REST의 장단점</h3>
+<blockquote>
+<p>장점</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>HTTP 프로토콜의 표준</strong>을 최대한 활용하여 여러 추가적인 장점을 함께 가져갈 수 있게 해준다.</p>
+</li>
+<li>
+<p>HTTP 표준 프로토콜에 따르는 <strong>모든 플랫폼</strong>에서 사용이 가능하다.</p>
+</li>
+<li>
+<p>REST API 메시지가 의도하는 바를 명확하게 나타내기 때문에 의도하는 바를 쉽게 파악할 수 있다.</p>
+</li>
+<li>
+<p>여러 가지 서비스 디자인에서 생길 수 있는 문제를 최소화한다.</p>
+</li>
+<li>
+<p>클라이언트와 서버의 역할을 명확하게 분리한다.</p>
+</li>
+</ol>
+<blockquote>
+<p>단점</p>
+</blockquote>
+<ol>
+<li>
+<p>REST는 <strong>표준이 없어서</strong> 관리가 어렵다.</p>
+</li>
+<li>
+<p>HTTP 메소드 형태가 <strong>제한적</strong>이다.</p>
+</li>
+<li>
+<p>웹 브라우저를 통해 테스트해야할 일이 많은 서비스라면, 쉽게 고칠 수 있는 URI보다 Header 정보의 값을 처리해야 하므로 <strong>전문성</strong>이 요구된다.</p>
+</li>
+<li>
+<p>구형 브라우저에서 호환되지 않아, 익스플로어와 같은 지원이 안되는 동작이 많다.</p>
+</li>
+</ol>
+<h2 id="rest-api">REST API</h2>
+<blockquote>
+<p><code>REST API</code>란 REST의 아키텍쳐 스타일을 따르는 API를 의미한다.</p>
+</blockquote>
+<ul>
+<li><code>API</code>란 Application Programming Interface 약자로, 다른 소프트웨어 시스템과 통신하기 위해 따라야 하는 규칙을 의미한다.</li>
+</ul>
+<h3 id="rest-api-설계-가이드">REST API 설계 가이드</h3>
+<p>[1] URI는 명사, 소문자를 사용해야 한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Bad Example https://devfancy.github.io/Healthy</span></span>
+<span class="line"><span>Good Example https://devfancy.github.io/health</span></span></code></pre>
+<p>[2] 마지막에 슬래시(/) 포함하지 않는다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Bad Example https://devfancy.github.io/health/</span></span>
+<span class="line"><span>Good Example https://devfancy.github.io/health</span></span></code></pre>
+<p>[3] 언더바(_) 대신 가독성을 높이는 하이픈(-)을 사용한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Bad Example https://devfancy.github.io/health_club</span></span>
+<span class="line"><span>Good Example https://devfancy.github.io/health-club</span></span></code></pre>
+<p>[4] 파일 확장자(.png, .jpg)는 URI에 포함시키지 않는다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Bad Example https://devfancy.github.io/developer.png</span></span>
+<span class="line"><span>Good Example https://devfancy.github.io/developer</span></span></code></pre>
+<p>[5] 행위를 포함하지 않는다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Bad Example https://devfancy.github.io/delete/post/1</span></span>
+<span class="line"><span>Good Example https://devfancy.github.io/post/1</span></span></code></pre>
+<h2 id="restful">RESTful</h2>
+<blockquote>
+<p><code>RESTful</code>은 일반적으로 REST라는 아키텍쳐를 구현하는 웹 서비스를 나타내기 위해 사용하는 용어이다.</p>
+</blockquote>
+<ul>
+<li>
+<p>RESTful API 용어와 REST API 용어는 일반적으로 같은 의미로 사용하나, REST를 사용했다고 모두 RESTful 하다고 볼 수 없다.</p>
+</li>
+<li>
+<p>REST API의 설계 규칙을 제대로 지킨 시스템을 <strong>RESTful</strong>하다고 볼 수 있다</p>
+</li>
+<li>
+<p>만약 모든 CRUD 기능을 REST API 혹은 URI 규칙대로 지키지 않았다면, REST API를 사용했다고 말하지만, RESTful 하지 못한 시스템이라고 말할 수 있다.</p>
+</li>
+<li>
+<p>RESTful의 목적은 <strong>이해하기 쉽고 사용하기 쉬운 REST API</strong>를 만드는 것이다.</p>
+</li>
+<li>
+<p>RESTful한 API를 구현하는 근본적인 목적이 성능 향상에 있는 것이 아니라 <strong>일관적인 컨벤션</strong>을 통한 API의 이해도 및 호환성을 높여주는 것이 주 목적이다.</p>
+</li>
+<li>
+<p>성능 향상이 주 목적인 상황에서는 굳이 RESTful한 API를 구현할 필요는 없다.</p>
+</li>
+</ul>
+<h3 id="restful-api-작동원리">RESTful API 작동원리</h3>
+<ol>
+<li>
+<p>클라이언트가 서버에게 요청을 전송한다.</p>
+</li>
+<li>
+<p>서버가 클라이언트를 인증하고 해당 요청을 수행할 수 있는 권한이 클라이언트에 있는지 확인한다.</p>
+</li>
+<li>
+<p>서버가 요청을 수신하고 내부적으로 처리한다.</p>
+</li>
+<li>
+<p>서버가 클라이언트에 응답을 반환한다. 응답에는 요청이 성공했는지 여부를 클라이언트에게 알려주는 정보가 포함된다. 또한 클라이언트가 요청한 모든 정보도 포함된다.</p>
+</li>
+</ol>
+<h2 id="review">Review</h2>
+<ul>
+<li>
+<p>REST에 대한 개념을 공부했지만, 아직은 부족한 느낌이 든다.</p>
+</li>
+<li>
+<p>REST와 REST API, RESTful API에 대한 공부를 추가적으로 더 하면서 해당 블로그를 업데이트를 하자.</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_rest_api_restful.md">REST API + RESTful</a></p>
+</li>
+<li>
+<p><a href="https://goodgid.github.io/REST-API/#rest%EC%9D%98-%ED%8A%B9%EC%84%B1">REST API</a></p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/ko/what-is/restful-api/">RESTful API란 무엇인가요?</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Network-REST-RESTAPI-RESTful" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#rest" data-toc="rest" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">REST</a></li><li><a href="#rest-구성-요소" data-toc="rest-구성-요소" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">REST 구성 요소</a></li><li><a href="#rest의-특징" data-toc="rest의-특징" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">REST의 특징</a></li><li><a href="#rest의-장단점" data-toc="rest의-장단점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">REST의 장단점</a></li><li><a href="#rest-api" data-toc="rest-api" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">REST API</a></li><li><a href="#rest-api-설계-가이드" data-toc="rest-api-설계-가이드" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">REST API 설계 가이드</a></li><li><a href="#restful" data-toc="restful" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">RESTful</a></li><li><a href="#restful-api-작동원리" data-toc="restful-api-작동원리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">RESTful API 작동원리</a></li><li><a href="#review" data-toc="review" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Review</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

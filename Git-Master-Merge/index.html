@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[Git 마스터과정] Git Merge 정리하기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Git-Master-Merge/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EB%8F%84%EA%B5%AC" class="hover:underline" data-astro-cid-g5songws>도구</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[Git 마스터과정] Git Merge 정리하기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2022-04-14" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2022-04-14</time><a href="/category/#Git" class="chip chip-tag">#Git</a></div><p class="view-count text-sm text-muted">조회수 83회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 Git 마스터 과정에서 배운 것을 정리한 내용입니다.</p>
+</blockquote>
+<h2 id="merge">Merge</h2>
+<ul>
+<li>
+<p>fast-forward 같은 경우는 <strong>master branch에서 새로운 branch가 생성된 이후에 master branch의 변동사항이 없다면</strong>,  merge를 할 때, 단순히 master branch가 가리키고 있는 포인터를 새로운 branch(featureA)로 옮기면 된다. 그리고 branch를 삭제하면 된다.</p>
+</li>
+<li>
+<p>fast-forward 단점 - 히스토리에 merge가 되었다는 사실이 남지 않는다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">[fast-forward merge 하는 경우] - merge하는 동시에 이전 feature-A가 사라지게 된다. </span></span>
+<span class="line"><span style="color:#9ECBFF">	=</span><span style="color:#E1E4E8">> </span><span style="color:#9ECBFF">깔끔한</span><span style="color:#9ECBFF"> merge</span><span style="color:#E1E4E8"> (history에 </span><span style="color:#9ECBFF">남지</span><span style="color:#9ECBFF"> 않기</span><span style="color:#9ECBFF"> 때문</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> merge</span><span style="color:#9ECBFF"> featureA</span><span style="color:#6A737D"> #merges featureA branch into the current one</span></span>
+<span class="line"><span style="color:#6A737D">	# 현재 위치인 master가 featureA로 merge되면서 이동된다.</span></span>
+<span class="line"><span style="color:#6A737D">	# featureA로 merge 했다면 더이상 feature-A의 branch가 필요없기 때문에</span></span>
+<span class="line"><span style="color:#6A737D">	# 해당 branch를 삭제한다. => git branch -d feature-A</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">---</span></span>
+<span class="line"><span style="color:#E1E4E8">[fast-forward  merge 하기 싫은 경우] -</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> --no-ff 옵션을 사용한다.</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> merge</span><span style="color:#79B8FF"> --no-ff</span><span style="color:#9ECBFF"> featureA</span><span style="color:#6A737D"> #creates a merge commit </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">---</span></span>
+<span class="line"><span style="color:#E1E4E8">[fast-forward merge 불가능한 경우] =</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> Three-way merge를 이용해야 한다.</span></span>
+<span class="line"><span style="color:#B392F0">-</span><span style="color:#9ECBFF"> master</span><span style="color:#9ECBFF"> branch와</span><span style="color:#9ECBFF"> 파생된</span><span style="color:#9ECBFF"> feature-A</span><span style="color:#9ECBFF"> branch의</span><span style="color:#9ECBFF"> 변동사항을</span><span style="color:#9ECBFF"> 모두</span><span style="color:#9ECBFF"> 합해서</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#B392F0">-</span><span style="color:#9ECBFF"> merge</span><span style="color:#9ECBFF"> commit을</span><span style="color:#9ECBFF"> 만든</span><span style="color:#9ECBFF"> 다음에</span><span style="color:#9ECBFF"> master</span><span style="color:#9ECBFF"> branch에</span><span style="color:#9ECBFF"> commit을</span><span style="color:#9ECBFF"> 해야한다.</span></span>
+<span class="line"><span style="color:#9ECBFF">=</span><span style="color:#E1E4E8">> </span><span style="color:#9ECBFF">fast-forward가</span><span style="color:#9ECBFF"> 불가능한</span><span style="color:#9ECBFF"> 상황에서</span><span style="color:#9ECBFF"> git</span><span style="color:#9ECBFF"> merge</span><span style="color:#9ECBFF"> feature-A</span><span style="color:#9ECBFF"> 를</span><span style="color:#9ECBFF"> 하게</span><span style="color:#9ECBFF"> 될</span><span style="color:#9ECBFF"> 때,</span></span>
+<span class="line"><span style="color:#B392F0">따로</span><span style="color:#9ECBFF"> merge</span><span style="color:#9ECBFF"> commit이</span><span style="color:#9ECBFF"> 만들어진다.</span><span style="color:#E1E4E8"> =</span><span style="color:#F97583">></span><span style="color:#9ECBFF"> 해당</span><span style="color:#9ECBFF"> commit을</span><span style="color:#9ECBFF"> 종료하고</span><span style="color:#9ECBFF"> git</span><span style="color:#9ECBFF"> hist를</span><span style="color:#9ECBFF"> 통해</span></span>
+<span class="line"><span style="color:#B392F0">새로운</span><span style="color:#9ECBFF"> merge</span><span style="color:#9ECBFF"> commit이</span><span style="color:#9ECBFF"> 만들어진</span><span style="color:#9ECBFF"> 것을</span><span style="color:#9ECBFF"> 볼</span><span style="color:#9ECBFF"> 수</span><span style="color:#9ECBFF"> 있다.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">---</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> merge</span><span style="color:#79B8FF"> --squash</span><span style="color:#9ECBFF"> featureA</span><span style="color:#6A737D"> #suqash merge, only one commit</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> merge</span><span style="color:#79B8FF"> --continue</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> merge</span><span style="color:#79B8FF"> --abort</span><span style="color:#6A737D"> # merge하는 것을 취소하고 싶을 때</span></span>
+<span class="line"><span style="color:#B392F0">git</span><span style="color:#9ECBFF"> mergetool</span><span style="color:#6A737D"> #opens merge tool </span></span></code></pre>
+<h2 id="conflict-해결-방법">Conflict 해결 방법</h2>
+<ul>
+<li>
+<p>예) feature → master에 merge를 할때, conflict이 발생했다.</p>
+</li>
+<li>
+<p>merge를 했을 때, conflict상황이 발생했다면  다음과 같은 상황이 발생한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-1.png" alt=""></p>
+<ul>
+<li>git status → 입력하게 되면 아래와 같이 나타나게 된다.</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-2.png" alt=""></p>
+<ul>
+<li>cat main.txt → 아래와 같은 &#x3C;&#x3C;&#x3C;&#x3C; HEAD ~~~ >>>>> feature 이라는 메세지가 추가된다.</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-3.png" alt=""></p>
+<h3 id="해결방안-1-수동적-해결">해결방안 1) 수동적 해결</h3>
+<ul>
+<li>
+<p><strong>open main.txt</strong> 입력 → 수동적으로 둘 중 하나만 남기고 나머지는 지운다</p>
+</li>
+<li>
+<p>“Oh.. Here!! From master branch!” 만 남기고 지우거나 둘다 남겨도 된다.</p>
+</li>
+<li>
+<p>단, 새로운 메세지를 추가해서는 절대 안된다 → 현직 개발자들도 실수를 종종 한다.</p>
+</li>
+<li>
+<p>git status에 보시면 “git add <file>…” 라는 것을 해결할 수 있다고 나와있다.</file></p>
+</li>
+<li>
+<p><strong>git add main.txt</strong> → git status를 하면 수정이 되었고, merge을 이어서 계속하면 → <code>git merge --continue</code> 입력하면 아래와 같이 <strong>merge가 성공</strong>적으로 되는 것을 볼 수 있다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-4.png" alt=""></p>
+<ul>
+<li>추가 설명) <code>git merge --continue</code> 이것은 fast-forward merge가 아니기 때문에,  merge commit이 만들어진다.  타이틀을 입력한 다음에, 파일을 끄면 <strong>merge가 완성</strong>되는 것을 볼 수 있다.</li>
+</ul>
+<h3 id="해결방안-2-vscode로-conflict-해결하기">해결방안 2) VSCode로 Conflict 해결하기</h3>
+<ul>
+<li>
+<p>git config —global -e 입력 → 다음 4줄을 맨 밑에 추가해준다.</p>
+</li>
+<li>
+<p>다음 4줄을 추가해주고 닫아준다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">[merge]</span></span>
+<span class="line"><span style="color:#B392F0">tool</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> vscode</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool </span><span style="color:#9ECBFF">"vscode"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#B392F0">cmd</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> code</span><span style="color:#79B8FF"> --wait</span><span style="color:#E1E4E8"> $MERGED</span></span></code></pre>
+<ul>
+<li>
+<p><code>git merge feature</code> (conflict 발생한지 확인 후) → <code>git mergetool</code> 입력한다.</p>
+</li>
+<li>
+<p>다음 과 같은 <strong>4가지 옵션중에 한가지를 고르면 된다</strong>. → A선택, B선택, 둘다선택, 두개 비교 (예시 - Accept Current Chage = A선택)</p>
+</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-5.png" alt=""></p>
+<ul>
+<li>선택 후 닫으면 conflict해결되면서 merge완료되는 것을 알 수 있다. → <code>git status</code>로 확인한다.</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-6.png" alt=""></p>
+<p><img src="/assets/img/tool/git/git-master-merge-7.png" alt=""></p>
+<ul>
+<li>
+<p>그러면 git status 에서 <strong>main.txt.orig</strong> (오리지널 파일)보이는데, 이것은 이전에 merge conflict이 발생하였을 때, 내용이 포함된 것을 볼 수 있다.</p>
+</li>
+<li>
+<p>이것을 끈다고 하면, <code>git config --global mergetool.keepBackup false</code> 입력한다.</p>
+</li>
+<li>
+<p>또는 <code>git config --global -e</code> → edit 창에 들어가서 [merge] 밑에 다음과 같이 추가해줘도 된다. ⇒ 기존 4줄 밑에 추가한다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">[merge]</span></span>
+<span class="line"><span style="color:#B392F0">tool</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> vscode</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool </span><span style="color:#9ECBFF">"vscode"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#B392F0">cmd</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> code</span><span style="color:#79B8FF"> --wait</span><span style="color:#E1E4E8"> $MERGED</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool]</span></span>
+<span class="line"><span style="color:#B392F0">keepBackup</span><span style="color:#9ECBFF"> =</span><span style="color:#79B8FF"> false</span></span></code></pre>
+<ul>
+<li>
+<p><code>git merge --abort</code> : merge 취소</p>
+</li>
+<li>
+<p><code>git clean -fd</code> : false적으로 directory에 있는 것들을 정리한다. (“Removing main.txt.orig” 라는 메세지가 나오는 것을 볼 수 있다)</p>
+</li>
+<li>
+<p><strong>다시 처음부터 merge를 한다.</strong> git merge feature → git mergetool (수정하고) → git status를 확인해보면, <strong>main.txt.orig이 생기지 않는 것을 볼 수 있다</strong>.</p>
+</li>
+<li>
+<p>마지막으로 <code>merge --continue</code> 입력 (→ commit 메세지 저장후 종료) → <strong>merge 완료</strong></p>
+</li>
+</ul>
+<h3 id="해결방안-3-p4merge로-conflict-해결하기">해결방안 3) P4Merge로 Conflict 해결하기</h3>
+<ul>
+<li>
+<p>무료툴이고, 조금 더 막강한 개발자들이 많이 사용한다.</p>
+</li>
+<li>
+<p>다운로드 방법 : Google 홈페이지에서  <code>p4merge</code> 검색 → <a href="https://www.perforce.com/ko/jepum/helix-core-apps/merge-diff-tool-p4merge">해당 홈페이지</a> -> <code>다운로드</code> 버튼 클릭 -> 운영체제(<code>Mac</code>) 선택 후 <code>DOWNLOAD</code> 버튼 클릭</p>
+<p>-> 해당 메세지(이름,이메일,핸드폰번호)는 입력하지 않고, 위에 <code>Skip registration</code> 버튼 클릭하면 다운로드 된다.</p>
+</li>
+<li>
+<p><code>git merge feature</code> 입력 → merge conflict 발생한다. 현재 mergetool이 vscode 설정되었기 때문에, 설정에 들어가서 megetool을 <strong>P4Merge</strong>로 바꿔야한다.</p>
+</li>
+<li>
+<p><code>git config --global -e</code> 입력한다. (입력하면 edit 창으로 이동하게 된다)</p>
+</li>
+<li>
+<p>다음과 같이 merge, mergetool을 p4merge에 맞게 수정해준다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">[merge]</span></span>
+<span class="line"><span style="color:#B392F0">    tool</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> p4merge</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool]</span></span>
+<span class="line"><span style="color:#B392F0">	keepBackup</span><span style="color:#9ECBFF"> =</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool </span><span style="color:#9ECBFF">"vscode"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#B392F0">    cmd</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> code</span><span style="color:#79B8FF"> --wait</span><span style="color:#E1E4E8"> $MERGED</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool </span><span style="color:#9ECBFF">"p4merge"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#B392F0">    path</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> "/Applications/p4merge.app/Contents/MacOS/p4merge"</span></span></code></pre>
+<p><img src="/assets/img/tool/git/git-master-merge-8.png" alt="">)</p>
+<ul>
+<li><code>git mergetool</code> 입력하면 → p4merge에 대한 창이 나오게 된다.</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-9.png" alt=""></p>
+<ul>
+<li>
+<p><strong>p4merge창 설명</strong></p>
+<ul>
+<li>
+<p>오른쪽에 초록색으로 되어있고, <code>LOCAL</code>이라고 적혀져 있는 의미는 내가 지금 작업하고 있는 branch를 말한다. (= master branch 변경사항을 의미한다)</p>
+</li>
+<li>
+<p>왼쪽에 파랑색으로 되어있고, <code>REMOTE</code>라고 적혀져 있는 의미는 내 작업환경이 아니라 merge하고자 하는 branch를 말한다. (= feature branch 변경사항을 의미한다)</p>
+</li>
+<li>
+<p>가운데는 이 두가지의 변경사항이 없는 base를 확인할 수 있다.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>변경 사항</strong>) 밑에 있는 main.txt 우측에 동그라미 버튼이 있는데, 거기서 파랑색 버튼을 클릭하거나 초록색 버튼을 클릭할 수 있다. <strong>만약 두가지 동시에 선택</strong>하고 싶으면 <code>Shift</code>키을 누르면서 동그라미 버튼을 클릭하면 된다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-10.png" alt=""></p>
+<ul>
+<li>
+<p><strong>저장</strong>)  왼쪽 상탄 저장버튼을 클릭하거나 <code>command + s</code> 누르면 된다.</p>
+</li>
+<li>
+<p>그리고 해당 창을 나간 후에 터미널에 돌아오면, 여전히 명령어를 수행하는 것을 볼 수 있는데, 여기서 <code>Ctrl + c</code> 을 누르고 <code>git status</code> 입력하면 main.txt가 <strong>modified 되었다</strong>는 것을 알 수 있다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/tool/git/git-master-merge-11.png" alt=""></p>
+<ul>
+<li><code>git merge --continue</code> 입력 → (해당 창에 메세지 입력후 저장후 창 나가면) merge가 정상적으로 완료된다.</li>
+</ul>
+<p>Merge tool Config</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">[merge]</span></span>
+<span class="line"><span style="color:#B392F0">    tool</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> vscode</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool]</span></span>
+<span class="line"><span style="color:#B392F0">	keepBackup</span><span style="color:#9ECBFF"> =</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool </span><span style="color:#9ECBFF">"vscode"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#B392F0">    cmd</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> code</span><span style="color:#79B8FF"> --wait</span><span style="color:#E1E4E8"> $MERGED</span></span>
+<span class="line"><span style="color:#E1E4E8">[mergetool </span><span style="color:#9ECBFF">"p4merge"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#B392F0">    path</span><span style="color:#9ECBFF"> =</span><span style="color:#9ECBFF"> "/Applications/p4merge.app/Contents/MacOS/p4merge"</span></span></code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://git-scm.com/book/en/v2">git 공식문서</a></p>
+</li>
+<li>
+<p><a href="https://academy.dream-coding.com/courses/git">Dream Coding - Git 마스터 과정</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Git-Master-Merge" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Git-Version-Control/" class="link-title leading-snug">Git 형상 관리 + 작업 단위와 PR 코드 리뷰 + 협업을 잘하는 개발자 (feat. 제미니의 개발실무)</a><time datetime="2023-12-28" class="mt-1.5 block text-sm text-muted">2023-12-28</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/IntelliJ-Live-Template/" class="link-title leading-snug">인텔리제이 템플릿 자동완성(Live Template 적용)</a><time datetime="2023-02-27" class="mt-1.5 block text-sm text-muted">2023-02-27</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-GitHub-Branch-Protection-Rule/" class="link-title leading-snug">GitHub에 올라간 Branch에 Protection Rule 적용하기</a><time datetime="2023-02-05" class="mt-1.5 block text-sm text-muted">2023-02-05</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#merge" data-toc="merge" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Merge</a></li><li><a href="#conflict-해결-방법" data-toc="conflict-해결-방법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Conflict 해결 방법</a></li><li><a href="#해결방안-1-수동적-해결" data-toc="해결방안-1-수동적-해결" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">해결방안 1) 수동적 해결</a></li><li><a href="#해결방안-2-vscode로-conflict-해결하기" data-toc="해결방안-2-vscode로-conflict-해결하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">해결방안 2) VSCode로 Conflict 해결하기</a></li><li><a href="#해결방안-3-p4merge로-conflict-해결하기" data-toc="해결방안-3-p4merge로-conflict-해결하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">해결방안 3) P4Merge로 Conflict 해결하기</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

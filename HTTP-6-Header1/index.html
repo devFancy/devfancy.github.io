@@ -1,0 +1,578 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>HTTP 웹 기본 지식 : HTTP 헤더1 - 일반 헤더 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/HTTP-6-Header1/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>HTTP 웹 기본 지식 : HTTP 헤더1 - 일반 헤더</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-01-25" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-01-25</time><a href="/category/#HTTP" class="chip chip-tag">#HTTP</a></div><p class="view-count text-sm text-muted">조회수 47회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글의 코드와 정보들은 강의를 들으며 정리한 내용을 토대로 작성하였습니다.</p>
+</blockquote>
+<h2 id="contents">Contents</h2>
+<ul>
+<li>다음 순서에 맞게 보시는 것을 권장해드립니다.</li>
+</ul>
+<ol>
+<li>
+<p><a href="https://devfancy.github.io/HTTP-1-Basic/">HTTP 웹 기본 지식 : HTTP 기본</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/HTTP-2-Basic/">HTTP 웹 기본 지식 : HTTP 메세지</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/HTTP-3-Method/">HTTP 웹 기본 지식 : HTTP 메서드</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/HTTP-4-Method-Application/">HTTP 웹 기본 지식 : HTTP 메서드 활용</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/HTTP-5-Status-Code/">HTTP 웹 기본 지식 : HTTP 상태코드</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/HTTP-6-Header1/">HTTP 웹 기본 지식 : HTTP 헤더1 - 일반 헤더</a></p>
+</li>
+<li>
+<p><a href="https://devfancy.github.io/HTTP-7-Header2/">HTTP 웹 기본 지식 : HTTP 헤더2 - 캐시와 조건부 요청</a></p>
+</li>
+</ol>
+<h2 id="http-헤더-개요">HTTP 헤더 개요</h2>
+<h3 id="http-헤더">HTTP 헤더</h3>
+<blockquote>
+<p><code>Content-Type: text/html;charset=UTF-8</code></p>
+</blockquote>
+<ul>
+<li>
+<p><code>Content-Type</code> : field-name(대소문자 구분 없음)</p>
+</li>
+<li>
+<p><code>text/html;charset=UTF-8</code> : OWS field-value OWS (OWS: 띄어쓰기 허용)</p>
+</li>
+<li>
+<p>예) <img src="/assets/img/cs/http/http-6-header1_1.png" alt="" width="400"></p>
+</li>
+<li>
+<p>HTTP 헤더 용도 : <strong>HTTP 전송에 필요한 모든 부가정보</strong></p>
+<ul>
+<li>
+<p>예) 메시지 바디의 내용, 메시지 바디의 크기, 압축, 인증, 요청 클라이언트, 서버 정보, 캐시 관련 정보</p>
+</li>
+<li>
+<p>표준 헤더가 너무 많다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="http-body">HTTP BODY</h3>
+<ul>
+<li>
+<p>HTTP 표준 : 2014년 RFC7230 ~ 7235 등장으로 최근에는 <strong>표현</strong>이라는 단어를 사용하기 시작했다.</p>
+</li>
+<li>
+<p>여기서 <code>표현</code>은  표현 헤더와 표현 데이터의 합을 나타내고, <strong>요청이나 응답에서 전달할 실제 데이터</strong>를 의미한다.</p>
+</li>
+</ul>
+<img src="/assets/img/cs/http/http-6-header1_2.png" alt="" width="400">
+<ul>
+<li>
+<p>메시지 본문을 통해 표현 데이터를 전달하고, 메시지 본문은 <code>페이로드(payload)</code>라고 부르기도 한다.</p>
+</li>
+<li>
+<p><code>표현 헤더</code>는 <strong>표현 데이터를 해석할 수 있는 정보를 제공</strong>한다. (데이터 유형(html, json), 데이터 길이, 압축 정보)</p>
+</li>
+</ul>
+<h2 id="표현">표현</h2>
+<img src="/assets/img/cs/http/http-6-header2_0.png" alt="" width="400">
+<ul>
+<li>
+<p><code>Content-Type</code> : 표현 데이터의 형식</p>
+</li>
+<li>
+<p><code>Content-Encoding</code> : 표현 데이터의 압축 방식</p>
+</li>
+<li>
+<p><code>Content-Language</code> : 표현 데이터의 자연 언어</p>
+</li>
+<li>
+<p><code>Content-Length</code> : 표현 데이터의 길이</p>
+</li>
+<li>
+<p>표현 헤더는 전송, 응답 둘다 사용한다.</p>
+</li>
+</ul>
+<h3 id="content-type">Content-Type</h3>
+<img src="/assets/img/cs/http/http-6-header2_1.png" alt="" width="400">
+<ul>
+<li>
+<p>미디어 타입, 문자 인코딩을 나타낸다.</p>
+</li>
+<li>
+<p>예)</p>
+<ul>
+<li>
+<p>text/html; charset=UTF-8</p>
+</li>
+<li>
+<p>application/json</p>
+</li>
+<li>
+<p>image/png</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="content-encoding">Content-Encoding</h3>
+<img src="/assets/img/cs/http/http-6-header2_2.png" alt="" width="400">
+<ul>
+<li>
+<p>표현 데이터를 압축하기 위해 사용한다.</p>
+</li>
+<li>
+<p>데이터를 전달하는 곳(서버)에서  <code>gzip</code> 같은 압축 파일로 압축 후 서버가 클라이언트에게 보낼 때, 클라이언트가 알 수 있도록 <code>Content-Encoding</code>이라는 인코딩 헤더를 추가한다.</p>
+</li>
+<li>
+<p>데이터를 읽는 쪽(클라이언트)에서 인코딩 헤더의 정보로 압축을 해제한다.</p>
+</li>
+<li>
+<p>예)</p>
+<ul>
+<li>
+<p>gzip</p>
+</li>
+<li>
+<p>deflate</p>
+</li>
+<li>
+<p>identity</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="content-language">Content-Language</h3>
+<img src="/assets/img/cs/http/http-6-header2_3.png" alt="" width="400">
+<ul>
+<li>
+<p>표현 데이터의 자연 언어를 표현한다.</p>
+</li>
+<li>
+<p>예)</p>
+<ul>
+<li>
+<p>ko (한국어)</p>
+</li>
+<li>
+<p>en (영어)</p>
+</li>
+<li>
+<p>en-US</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="content-length">Content-Length</h3>
+<img src="/assets/img/cs/http/http-6-header2_4.png" alt="" width="400">
+<ul>
+<li>표현 데이터의 길이를 나타낸다. (바이트 단위)</li>
+</ul>
+<h2 id="콘텐츠-협상">콘텐츠 협상</h2>
+<ul>
+<li>
+<p><code>협상</code>이란 <strong>클라이언트가 선호하는 표현을 서버에게 요청하는 것</strong>을 의미한다.</p>
+</li>
+<li>
+<p><code>Accept</code> : 클라이언트가 선호하는 미디어 타입 전달</p>
+</li>
+<li>
+<p><code>Accept-Charset</code> : 클라이언트가 선호하는 문자 인코딩</p>
+</li>
+<li>
+<p><code>Accept-Encoding</code> : 클라이언트가 선호하는 압축 인코딩</p>
+</li>
+<li>
+<p><code>Accept-Language</code> : 클라이언트가 선호하는 자연 언어</p>
+</li>
+<li>
+<p>협상 헤더는 요청시에만 사용한다.</p>
+</li>
+</ul>
+<h3 id="accept-language-적용-후">Accept-Language 적용 후</h3>
+<p><img src="/assets/img/cs/http/http-6-header3_1.png" alt=""></p>
+<ul>
+<li>
+<p>위의 그림과 같이 클라이언트가 <code>Accept-Language</code>에서 언어를 <code>ko</code>(한국어)로 요청했기 때문에 서버가 그에 맞게 한국어로 응답을 해줬다.</p>
+</li>
+<li>
+<p>만약, 한국어를 지원하지 않게 된다면 <strong>우선순위</strong>를 사용하면 된다.</p>
+</li>
+</ul>
+<h3 id="협상과-우선순위1">협상과 우선순위1</h3>
+<ul>
+<li>
+<p>우선순위를 사용하기 위해서는 <code>Quality Values(q)</code> 값을 사용해야 한다.</p>
+</li>
+<li>
+<p>q 값은 0 ~ 1 사이이며, <strong>값이 클 수록 높은 우선순위</strong>를 갖는다.</p>
+</li>
+<li>
+<p>만약 q 값을 생략하면 값이 1로 사용된다.</p>
+</li>
+</ul>
+<img src="/assets/img/cs/http/http-6-header3_2.png" alt="" width="400">
+<ul>
+<li>
+<p>예) <code>Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7</code></p>
+<ul>
+<li>
+<p>[1] ko-KR;q=1 (q 생략) -> 가장 높은 우선순위</p>
+</li>
+<li>
+<p>[2] ko;q=0.9</p>
+</li>
+<li>
+<p>[3] en-US;q=0.8</p>
+</li>
+<li>
+<p>[4] en;q=0.7 -> 가장 낮은 우선순위</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="협상과-우선순위2">협상과 우선순위2</h3>
+<ul>
+<li>
+<p><strong>구체적인 것</strong>을 우선순위에 두는 경우도 있다.</p>
+</li>
+<li>
+<p><code>,</code> 로 구분짓는다.</p>
+</li>
+<li>
+<p>예) <code>Accept: text/*, text/plain, text/plain;format=flowed, */*</code></p>
+<ul>
+<li>
+<p>[1] text/plain;format=flowed -> 가장 높은 우선순위</p>
+</li>
+<li>
+<p>[2] text/plain</p>
+</li>
+<li>
+<p>[3] text/*</p>
+</li>
+<li>
+<p>[4]  <em>/</em></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="협상과-우선순위3">협상과 우선순위3</h3>
+<ul>
+<li>
+<p>구체적인 것을 기준으로 미디어 타입과 대응해서 맞춘다</p>
+</li>
+<li>
+<p>예) <code>Accept: text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5</code></p>
+</li>
+<li>
+<p>Media Type - Quality (1대1 대응)</p>
+<ul>
+<li>
+<p>text/html;level=1 - 1</p>
+</li>
+<li>
+<p>text/html - 0.7</p>
+</li>
+<li>
+<p>text/plain - 0.3</p>
+</li>
+<li>
+<p>image/jpeg - 0.5</p>
+</li>
+<li>
+<p>text/html;level=2 - 0.4</p>
+</li>
+<li>
+<p>text/html;level=3 - 0.7</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="전송-방식">전송 방식</h2>
+<ul>
+<li>전송 방식은 4가지로 구분할 수 있다.</li>
+</ul>
+<ol>
+<li>
+<p>단순 전송 - <code>Content-Length</code> 예) <strong>Content-Length: 1121</strong></p>
+</li>
+<li>
+<p>압축 전송 - <code>Content-Encoding</code> 예) <strong>Content-Encoding: gzip</strong></p>
+</li>
+<li>
+<p>분할 전송 - <code>Transfer-Encoding</code> 예) <strong>Transfer-Encoding: chunked</strong></p>
+</li>
+<li>
+<p>범위 전송 - <code>Range</code>, <code>Content-Range</code> 예) <strong>Content-Range: bytes 1001-2000 / 2000</strong></p>
+</li>
+</ol>
+<h2 id="일반-정보">일반 정보</h2>
+<ul>
+<li>
+<p>일반 정보는 인터넷의 <code>F12 - Network - Header - request header</code> 부분에서 확인할 수 있다.</p>
+</li>
+<li>
+<p>From: 유저 에이전트의 이메일 정보</p>
+</li>
+<li>
+<p>Referer: 이전 웹 페이지 주소</p>
+</li>
+<li>
+<p>User-Agent: 유저 에이전트 애플리케이션 정보</p>
+</li>
+<li>
+<p>Server: 요청을 처리하는 오리진 서버의 소프트웨어 정보</p>
+</li>
+<li>
+<p>Date: 메시지가 생성된 날짜</p>
+</li>
+<li>
+<p>From, Referer, User-Agent는 <strong>요청</strong>에서 사용하고</p>
+<p>Server, Date는 <strong>응답</strong>에서 사용한다.</p>
+</li>
+</ul>
+<h3 id="from">From</h3>
+<ul>
+<li>일반적으로 잘 사용하지는 않는데, <strong>검색 엔진</strong> 주로 사용한다.</li>
+</ul>
+<h3 id="referer">Referer</h3>
+<ul>
+<li>
+<p>많이 사용하는 정보로, A->B로 이동하는 경우 B를 요청할 때 이전 주서인 A의 주소를 보여줄 때 사용한다.</p>
+</li>
+<li>
+<p>예) 유튜브 주소(A)에서 네이버 주소(B)로 넘어갈 때 F12 -> 네트워크 -> 헤더 부분 -> 요청 헤더에 가보면</p>
+<p><code>referer: https://www.youtube.com/</code> 와 같이 이전 주소인 유튜브 주소를 볼 수 있다.</p>
+</li>
+<li>
+<p>Referer를 사용해서 <strong>유입 경로를 분석(데이터 분석)</strong> 할 때 사용한다.</p>
+</li>
+</ul>
+<h3 id="user-agent">User-Agent</h3>
+<ul>
+<li>
+<p><strong>클라이언트(유저)의 애플리케이션 정보</strong>라고 부르고, 또는 웹 브라우저 정보라고 부르기도 한다.</p>
+</li>
+<li>
+<p>어떤 종류의 브라우저에서 장애가 발생하는지 파악할 수 있다.</p>
+</li>
+<li>
+<p><strong>특정 브라우저에서 버그가 생기면 어떤 문제인지 파악이 가능</strong>하고, 사용자들이 어떤 브라우저에서 많이 들어오는 지 <strong>통계 정보</strong>로도 사용된다.</p>
+</li>
+<li>
+<p>예) <code>user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36</code></p>
+</li>
+</ul>
+<h3 id="server">Server</h3>
+<ul>
+<li>
+<p>요청을 처리하는 Origin 서버의 소프트웨어 정보이다.</p>
+<ul>
+<li><code>ORIGIN</code>이라는 단어의 의미는 내가 요청한 데이터를 만들어주는 서버를 말한다.</li>
+</ul>
+</li>
+<li>
+<p>예) Naver - <code>server: NWS</code></p>
+</li>
+</ul>
+<h3 id="date">Date</h3>
+<ul>
+<li>
+<p>메시지가 발생한 날짜와 시간을 나타내는 정보이다.</p>
+</li>
+<li>
+<p>예) 1월 25일 수요일 네이버 접속 - <code>date: Wed, 25 Jan 2023 09:30:16 GMT</code></p>
+</li>
+</ul>
+<h2 id="특별한-정보">특별한 정보</h2>
+<ul>
+<li>
+<p>Host: 요청한 호스트 정보(도메인)</p>
+</li>
+<li>
+<p>Location: 페이지 리다이렉션</p>
+</li>
+<li>
+<p>Allow: 허용 가능한 HTTP 메서드</p>
+</li>
+<li>
+<p>Retry-After: 유저 에이전트가 다음 요청을 하기까지 기다려야 하는 시간</p>
+</li>
+</ul>
+<h3 id="host">Host</h3>
+<ul>
+<li>
+<p>Host 정보는 <strong>필수</strong>로 사용해야 한다.</p>
+</li>
+<li>
+<p>요청에서 사용한다.</p>
+</li>
+<li>
+<p>하나의 서버가 여러 도메인을 처리할 때</p>
+<p>또는 하나의 IP 주소에 여러 도메인이 적용되어 있을 때 <strong>요청한 호스트 정보(도메인)</strong> 을 반드시 넣어줘야 한다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/http/http-6-header6_1.png" alt=""></p>
+<h3 id="location">Location</h3>
+<ul>
+<li>
+<p>웹 브라우저는 3xx 응답의 결과에 Location 헤더가 있으면, 그 Location 위치로 자동 이동하게 되는 것을 의미한다.</p>
+</li>
+<li>
+<p>이러한 것을 <code>리다이렉트</code> 라고 부른다.</p>
+</li>
+<li>
+<p>3xx (Redirection) : Location 값은 요청을 자동으로 리다이렉션하기 위한 대상 리소스를 가리킨다.</p>
+</li>
+<li>
+<p>예) 로그인한 회원만 볼 수 있는 메인 페이지가 있을 때 로그인 하지 않는 비회원이 메인 페이지 url로 접속할 경우,</p>
+<p>메인 페이지에 접속할 권한이 없기 때문에 로그인 페이지로 리다이렉트를 걸게 된다. (로그인 페이지로 이동하게 된다)</p>
+</li>
+</ul>
+<h3 id="allow">Allow</h3>
+<ul>
+<li>
+<p>허용 가능한 HTTP 메서드로, <code>GET</code>, <code>HEAD</code>, <code>PUT</code>만 제공한다.</p>
+</li>
+<li>
+<p>Allow는 서버에서 많이 구현되어 있지 않으므로 참고만 하자.</p>
+</li>
+</ul>
+<h3 id="retry-after">Retry-After</h3>
+<ul>
+<li>
+<p>유저 에이전트가 다음 요청을 하기까지 기다려야 하는 시간을 의미한다.</p>
+</li>
+<li>
+<p><code>503</code>(Service Unavailable): 서비스가 언제까지 불능인지 알려줄 수 있다.</p>
+</li>
+<li>
+<p>예1) Retry-After: Fri, 31 Dec 1999 23:59:59 GMT (날짜 표기)</p>
+</li>
+<li>
+<p>예2) Retry-After: 120 (초단위 표기)</p>
+</li>
+</ul>
+<h2 id="인증">인증</h2>
+<ul>
+<li>
+<p>Authorization : 클라이언트 인증 정보를 서버에 전달할 수 있다.</p>
+</li>
+<li>
+<p>WWW-Authenticate : 리소스 접근시 필요한 인증 방법을 정의한다.</p>
+</li>
+</ul>
+<h2 id="쿠키">쿠키</h2>
+<ul>
+<li>
+<p>쿠키는 상당히 많이 사용하고 중요하다.</p>
+</li>
+<li>
+<p><code>Set-Cookie</code> : 서버에서 클라이언트로 쿠키 전달(응답)한다.</p>
+</li>
+<li>
+<p><code>Cookie</code> : 클라이언트가 서버에서 받은 쿠키를 저장하고, HTTP 요청시 서버로 전달한다.</p>
+</li>
+<li>
+<p>HTTP는 <strong>무상태(Stateless) 프로토콜</strong>로 클라이언트와 서버가 요청과 응답을 주고 받으면 연결이 끊어지기 때문에 <strong>서로 상태를 유지하지 않는다.</strong></p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/http/http-6-header8-1.png" alt=""></p>
+<ul>
+<li>웹 브라우저 내부에는 쿠키 저장소가 있는데, 그 저장소로 <code>user=홍길동</code>을 저장한다.</li>
+</ul>
+<p><img src="/assets/img/cs/http/http-6-header8-2.png" alt=""></p>
+<ul>
+<li>
+<p>로그인 이후에 웹 브라우저가 welcome 페이지에 접근한다. 그리고 요청을 보낼 때마다 자동으로 쿠키 저장소를 확인해서 <code>Cookie:user=홍길동</code> 이라는 값을 꺼내서 서버에 전송한다.</p>
+</li>
+<li>
+<p>정리</p>
+<ul>
+<li>
+<p>쿠키는 주로 사용자 로그인 세션 관리, 광고 정보 트래킹을 사용한다.</p>
+</li>
+<li>
+<p>쿠키 정보는 항상 서버에 전송되는데, 이러한 점 때문에 네트워크 트래픽이 유발되므로 최소한의 정보만 사용하는 게 좋다.(세션 id, 인증 토큰)</p>
+</li>
+<li>
+<p>주의) 개인정보와 같은 보안에 민감한 데이터(주민번호, 신용카드 번호, 계좌 번호)는 저장하면 안된다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="생명주기">생명주기</h3>
+<p>Expires, max-age</p>
+<ul>
+<li>
+<p>Set-Cookie: <strong>expires</strong>=Sat, 26-Dec-2020 04:39:21 GMT</p>
+<ul>
+<li>만료일이 되면 해당 쿠키가 삭제된다.</li>
+</ul>
+</li>
+<li>
+<p>Set-Cookie: <strong>max-age</strong>=3600 (3600초)</p>
+<ul>
+<li>0 혹은 음수를 지정하면 쿠키가 삭제된다.</li>
+</ul>
+</li>
+<li>
+<p>세션 쿠키 : 만료 날짜를 생략하면 브라우저 종료시 까지만 유지되는 것을 의미한다.</p>
+</li>
+<li>
+<p>영속 쿠키 : 만료 날짜를 입력하면 해당 날짜까지 유지되는 것을 의미한다.</p>
+</li>
+</ul>
+<h3 id="도메인">도메인</h3>
+<p>Domain</p>
+<ul>
+<li>
+<p>쿠키는 도메인을 지정할 수 있는데 2가지 방법이 있다.</p>
+</li>
+<li>
+<p>예) <code>domain=example.org</code></p>
+</li>
+<li>
+<p><code>명시</code> : <strong>명시한 문서 기준 도메인 + 서브 도메인을 포함한다.</strong></p>
+<ul>
+<li><code>domain=example.org</code>를 지정해서 쿠키가 생성된다.</li>
+</ul>
+</li>
+<li>
+<p><code>생략</code> : <strong>현재 문서 기준 도메인만 적용된다.</strong></p>
+<ul>
+<li>만약 example.org 에서 쿠키를 생성하고 domain 지정을 생략하면 <code>dev.example.org</code>에는 쿠키가 접근할 수 없다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="경로">경로</h3>
+<ul>
+<li>
+<p>예) <code>path=/home</code></p>
+</li>
+<li>
+<p>이 경로를 포함한 하위 경로 페이지만 쿠키가 접근할 수 있다.</p>
+</li>
+<li>
+<p>일반적으로 <code>path=/</code> 루트로 지정한다.</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard">모든 개발자를 위한 HTTP 웹 기본 지식</a></li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="HTTP-6-Header1" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#contents" data-toc="contents" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Contents</a></li><li><a href="#http-헤더-개요" data-toc="http-헤더-개요" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">HTTP 헤더 개요</a></li><li><a href="#http-헤더" data-toc="http-헤더" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HTTP 헤더</a></li><li><a href="#http-body" data-toc="http-body" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">HTTP BODY</a></li><li><a href="#표현" data-toc="표현" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">표현</a></li><li><a href="#content-type" data-toc="content-type" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Content-Type</a></li><li><a href="#content-encoding" data-toc="content-encoding" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Content-Encoding</a></li><li><a href="#content-language" data-toc="content-language" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Content-Language</a></li><li><a href="#content-length" data-toc="content-length" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Content-Length</a></li><li><a href="#콘텐츠-협상" data-toc="콘텐츠-협상" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">콘텐츠 협상</a></li><li><a href="#accept-language-적용-후" data-toc="accept-language-적용-후" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Accept-Language 적용 후</a></li><li><a href="#협상과-우선순위1" data-toc="협상과-우선순위1" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">협상과 우선순위1</a></li><li><a href="#협상과-우선순위2" data-toc="협상과-우선순위2" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">협상과 우선순위2</a></li><li><a href="#협상과-우선순위3" data-toc="협상과-우선순위3" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">협상과 우선순위3</a></li><li><a href="#전송-방식" data-toc="전송-방식" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">전송 방식</a></li><li><a href="#일반-정보" data-toc="일반-정보" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">일반 정보</a></li><li><a href="#from" data-toc="from" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">From</a></li><li><a href="#referer" data-toc="referer" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Referer</a></li><li><a href="#user-agent" data-toc="user-agent" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">User-Agent</a></li><li><a href="#server" data-toc="server" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Server</a></li><li><a href="#date" data-toc="date" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Date</a></li><li><a href="#특별한-정보" data-toc="특별한-정보" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">특별한 정보</a></li><li><a href="#host" data-toc="host" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Host</a></li><li><a href="#location" data-toc="location" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Location</a></li><li><a href="#allow" data-toc="allow" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Allow</a></li><li><a href="#retry-after" data-toc="retry-after" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Retry-After</a></li><li><a href="#인증" data-toc="인증" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">인증</a></li><li><a href="#쿠키" data-toc="쿠키" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">쿠키</a></li><li><a href="#생명주기" data-toc="생명주기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">생명주기</a></li><li><a href="#도메인" data-toc="도메인" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">도메인</a></li><li><a href="#경로" data-toc="경로" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">경로</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

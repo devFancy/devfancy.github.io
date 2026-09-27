@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Spring Boot에서 Sentry를 이용한 에러 추적 시스템 개선하기 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/spring-boot-sentry/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>Spring Boot에서 Sentry를 이용한 에러 추적 시스템 개선하기</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2025-10-17" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2025-10-17</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 126회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="prologue">Prologue</h2>
+<p>서비스를 운영하다 보면 운영 전 단계인 환경(Staging)에서 QA 작업을 진행하면서 예상치 못한 오류들이 실제 운영 환경에서 발생하곤 합니다.
+특히 예측 불가능한 외부 요인(네트워크, OS, 브라우저 등)이나 아주 특이한 케이스에서만 발생하는 런타임 오류는 개발자가 모든 경우를 예측하고 대비하기 어렵습니다.</p>
+<p>이런 예측 불가능한 오류를 신속하게 탐지하고, 원인을 정확히 파악하여 빠르게 대응할 수 있도록 도와주는 것이 바로 실시간 에러 추적 도구이며,
+<code>Sentry</code>는 이러한 해결책 도구들 중 하나입니다.</p>
+<p>이번 글에서는 Sentry에 대한 개념과 연동 과정, 그리고 에러를 추적하는 방법에 대해 공유하고자 합니다.</p>
+<blockquote>
+<p>예상 독자</p>
+</blockquote>
+<ul>
+<li>
+<p>Spring Boot 환경에서 Sentry 연동뿐만 아니라, Logback을 활용해 에러 감지하는 방법이 궁금한 분</p>
+</li>
+<li>
+<p>단순한 에러 수집을 넘어, 태그를 활용해 알림 규칙을 정교하게 관리하고 싶은 분</p>
+</li>
+</ul>
+<hr>
+<h2 id="왜-sentry를-사용하는가">왜 Sentry를 사용하는가?</h2>
+<blockquote>
+<p><a href="https://docs.sentry.io/product/">공식문서</a>에 따르면, Sentry는 개발자가 성능 문제와 에러를 식별하고 디버깅하는 데 도움을 주는 소프트웨어 모니터링 도구라고 합니다.</p>
+</blockquote>
+<p>애플리케이션 모니터링 도구는 많지만, 그중 Sentry를 선택한 이유는 단순한 에러 수집을 넘어, 코드 레벨의 관측 가능성을 제공하기 때문입니다.</p>
+<p>기존의 로그 파일로 확인하는 방식은 에러 발생 당시의 구체적인 맥락과 원인을 파악하는데 시간 소요가 크다는 점이 있습니다.</p>
+<p>이에 비해 Sentry는 이슈를 실시간으로 감지하여 알림을 제공하고, 유사한 에러를 그룹화하며 문제가 발생한 정확한 코드 라인을 시각화해줍니다.</p>
+<p>결과적으로 단순한 로그 수집을 넘어 코드 레벨의 관측 가능성을 확보함으로써 장애 인지부터 원인 파악까지의 시간을 단축하기 위해 도입하게 되었습니다.</p>
+<h2 id="sentry-연동-및-테스트">Sentry 연동 및 테스트</h2>
+<p>아래는 Spring Boot 환경에서 Sentry를 연동하고 테스트하는 과정입니다. (관련
+공식문서: <a href="https://docs.sentry.io/platforms/java/guides/spring-boot/">Spring Boot</a>)</p>
+<p>먼저 Spring Boot 환경에서 <code>build.gradle</code> 파일에서 Sentry 의존성을 추가하고 <code>application.yml</code> 에 DSN 키만 설정하면 간단하게 연동할 수 있습니다.</p>
+<h3 id="설정configure">설정(Configure)</h3>
+<p>예시를 위해 Spring Boot 3.2.5 버전과 호환되는 라이브러리를 사용했습니다.</p>
+<blockquote>
+<p>build.gradle</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="groovy"><code><span class="line"><span style="color:#E1E4E8">implementation </span><span style="color:#9ECBFF">"io.sentry:sentry-spring-boot-starter-jakarta:${property("sentryVersion")}"</span><span style="color:#6A737D"> // 7.19.0</span></span></code></pre>
+<p>DSN 키는 Sentry <a href="https://sentry.io/welcome/">공식 홈페이지</a>에서 로그인한 뒤에 프로젝트 설정 메뉴에서 발급받을 수 있습니다.
+(참고로, 저는 Github 계정을 통해 로그인했습니다.)</p>
+<blockquote>
+<p>application.yml</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="color:#85E89D">sentry</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#85E89D">  dsn</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">https://....ingest.us.sentry.io/...</span><span style="color:#6A737D">  # Sentry 프로젝트에서 발급받은 DSN 키</span></span></code></pre>
+<blockquote>
+<p>DSN 키 발급 위치: Sentry 대시보드 - Settings -> Project -> SDK SetUp -> Client Keys(DSN)</p>
+</blockquote>
+<p><img src="/assets/img/server/technology/sentry/spring-boot-sentry-client-keys-dsn.png" alt=""></p>
+<h3 id="간단히-테스트해보기">간단히 테스트해보기</h3>
+<p>설정을 마쳤다면 Sentry가 에러를 정상적으로 추적하는지 확인하기 위해, 의도적으로 예외를 발생시키는 테스트 API를 호출해봅니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequestMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/coupon"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> CouponController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/sentry-test"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ResponseEntity&#x3C;CommonResponse&#x3C;</span><span style="color:#F97583">Void</span><span style="color:#E1E4E8">>> </span><span style="color:#B392F0">sentryTest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> CouponException</span><span style="color:#E1E4E8">(ErrorType.SENTRY_ERROR);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위의 코드의 동작 흐름은 다음과 같습니다.</p>
+<ul>
+<li><code>CouponController</code>에서 <code>CouponException</code> 발생하면, 별도의 처리 로직이 없으므로 예외가 서블릿 컨테이너까지 전파됩니다.</li>
+<li>이때 스프링의 <code>HandlerExceptionResolver</code> 체인 중 하나인 <code>SentryExceptionResolver</code>가 이를 감지하여 Sentry로 이벤트를 전송합니다.</li>
+</ul>
+<p>결과적으로 아래와 같이 Sentry 대시보드에서 에러가 수집된 것을 확인할 수 있습니다.</p>
+<p><img src="/assets/img/server/technology/sentry/spring-boot-sentry-feed.png" alt=""></p>
+<h2 id="sentry-연동의-한계">Sentry 연동의 한계</h2>
+<p>하지만 만약 <code>try-catch</code> 구문을 통해 예외를 내부에서 처리한다면 어떻게 될까요?</p>
+<p>아래 코드는 의도적으로 예외를 발생시키지만, catch 블록에서 잡아 500 에러 응답을 반환하는 구조입니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RequestMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/coupon"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> CouponController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">GetMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/sentry-test"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ResponseEntity&#x3C;ApiResultResponse&#x3C;</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">>> </span><span style="color:#B392F0">sentryTest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> CouponException</span><span style="color:#E1E4E8">(ErrorType.SENTRY_ERROR);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (CouponException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">            // 예외를 잡아서 응답 객체로 변환하여 리턴</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> ResponseEntity.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(HttpStatus.INTERNAL_SERVER_ERROR)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    .</span><span style="color:#B392F0">body</span><span style="color:#E1E4E8">(ApiResultResponse.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(ErrorType.SENTRY_ERROR));</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>테스트 결과, 클라이언트는 500 에러를 응답받았지만 Sentry 대시보드에는 아무런 에러도 기록되지 않았습니다.</p>
+<h3 id="원인-분석해보기">원인 분석해보기</h3>
+<p>Spring Boot 환경에서 Sentry 의존성을 추가하면 <code>SentryExceptionResolver</code>가 자동으로 등록됩니다.</p>
+<p>이 클래스는 <strong>처리되지 않고 컨트롤러 밖으로 던져진 예외</strong>를 가로채 Sentry로 전송하는 역할을 합니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> SentryExceptionResolver</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> HandlerExceptionResolver</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">Ordered</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> @NotNull SentryEvent </span><span style="color:#B392F0">createEvent</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">NotNull</span><span style="color:#E1E4E8"> HttpServletRequest </span><span style="color:#FFAB70">request</span><span style="color:#E1E4E8">, @</span><span style="color:#F97583">NotNull</span><span style="color:#E1E4E8"> Exception </span><span style="color:#FFAB70">ex</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // ... 예외 정보를 담아 이벤트 생성</span></span>
+<span class="line"><span style="color:#E1E4E8">        SentryEvent event </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> SentryEvent</span><span style="color:#E1E4E8">(throwable);</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> event;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>하지만 위에서 컨트롤러 코드에서 다룬 것처럼 로직 내부에 <code>try-catch</code>로 예외를 잡아 처리해버리면, 예외 객체가 서블릿 컨테이너의 Resolver까지 도달하지 않습니다.</p>
+<p>즉, 개발자는 의도적으로 예외를 처리했지만, Sentry 입장에서는 에러가 발생하지 않은 정상적인 요청으로 간주하여 모니터링 누락이 발생합니다.</p>
+<p>또한, 실무에서는 보통 사용자 경험을 위해 <code>@RestControllerAdvice</code> 어노테이션을 사용해서 전역적으로 예외를 핸들링합니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestControllerAdvice</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> GlobalExceptionHandler</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">ExceptionHandler</span><span style="color:#E1E4E8">(Exception.class)</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ResponseEntity&#x3C;ApiResultResponse&#x3C;</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">>> </span><span style="color:#B392F0">handleException</span><span style="color:#E1E4E8">(Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        log.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Exception : {}"</span><span style="color:#E1E4E8">, e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">(), e); </span><span style="color:#6A737D">// 로그는 찍지만 Sentry로 가지 않음</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ResponseEntity&#x3C;>(ApiResultResponse.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(ErrorType.DEFAULT_ERROR), ErrorType.DEFAULT_ERROR.</span><span style="color:#B392F0">getStatus</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>이 경우 모든 예외가 <code>ExceptionHandler</code>에 의해 잡히기 때문에 <code>SentryExceptionResolver</code> 까지 전달되지 않습니다.</p>
+<p>물론 catch 블록마다 <code>Sentry.captureException(e)</code>를 명시적으로 호출할 수도 있습니다.
+하지만 이렇게 되면 비즈니스 로직과 모니터링 로직이 강하게 결합되는 또다른 문제가 생깁니다.</p>
+<p>그래서 만약 <code>log.error</code> 와 같은 에러 로그를 남기고 있다면, 코드 수정 없이 로그 레벨에 따라 자동으로 이벤트를 수집해주는 <code>SentryAppender</code> 방식을 도입하는 것이 효율적이라고 생각합니다.</p>
+<h2 id="logback-연동을-통해-예외-감지하는-범위-확장하기">Logback 연동을 통해 예외 감지하는 범위 확장하기</h2>
+<p><code>SentryAppender</code>를 Logback 설정에 추가하면, Sentry가 <code>log.error()</code> 같은 로깅 이벤트를 직접 감시할 수 있게 됩니다.</p>
+<p>이를 통해 예외가 컨트롤러까지 전파되지 않더라도, 개발자가 <code>log.error()</code>로 기록되는 모든 중요한 예외 상황을 Sentry 이벤트로 발행할 수 있습니다.</p>
+<h3 id="logback에-sentryappender-설정하기">Logback에 SentryAppender 설정하기</h3>
+<p><code>logback.xml</code> 파일(또는 <code>logback-spring.xml</code>)에 아래와 같이 <code>SentryAppender</code> 를 추가하고, <code>root</code> 로거에 참조를 추가합니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">configuration</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">appender</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"SENTRY"</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"io.sentry.logback.SentryAppender"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">minimumEventLevel</span><span style="color:#E1E4E8">>WARN&#x3C;/</span><span style="color:#85E89D">minimumEventLevel</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">minimumBreadcrumbLevel</span><span style="color:#E1E4E8">>INFO&#x3C;/</span><span style="color:#85E89D">minimumBreadcrumbLevel</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">appender</span><span style="color:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">root</span><span style="color:#B392F0"> level</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"INFO"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">appender-ref</span><span style="color:#B392F0"> ref</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"STDOUT"</span><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">appender-ref</span><span style="color:#B392F0"> ref</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"SENTRY"</span><span style="color:#E1E4E8">/></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">root</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">configuration</span><span style="color:#E1E4E8">></span></span></code></pre>
+<p>주요 설정값은 다음과 같습니다.</p>
+<ul>
+<li>
+<p><code>minimumEventLevel</code>: Sentry 대시보드에서 <strong>하나의 이슈(Issue)로 등록될 최소 로그 레벨을 지정</strong>할 때 사용합니다.</p>
+<ul>
+<li><code>WARN</code> 으로 설정하면, <code>log.warn()</code>이 호출될 때 Sentry 이슈가 생성됩니다.</li>
+</ul>
+</li>
+<li>
+<p><code>minimumBreadcrumbLevel</code>: 이슈가 발생했을 때, 그 원인을 파악할 수 있도록 첨부되는 Breadcrumbs(발자국)의 최소 로그 레벨을 지정할 때 사용합니다.</p>
+<ul>
+<li><code>INFO</code> 로 설정하면, 에러 발생 직전의 <code>log.info()</code> 기록까지 타임라인에 함께 표시되어 문맥을 파악하는 데 큰 도움이 됩니다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="예외를-올바르게-전달하는-방법">예외를 올바르게 전달하는 방법</h3>
+<p><code>SentryAppender</code>를 효과적으로 사용하려면 로그를 남길 때 반드시 <strong>예외 객체 자체를 파라미터로 함께 전달</strong>해야 합니다.
+(예시. <code>log.error("예외 발생!!", e);</code>)</p>
+<p>SLF4J의 마지막 인자로 예외 객체 <code>e</code> 를 전달하면, <code>SentryAppender</code> 가 이를 감지하여 스택 트레이스를 포함한 이슈를 생성합니다.
+이렇게 해야 Sentry의 분석 및 그룹핑 기능을 활용할 수 있습니다.</p>
+<h3 id="logback-연동-후-다시-테스트하기">Logback 연동 후 다시 테스트하기</h3>
+<p>Logback 연동 후 애플리케이션을 재실행하고 API를 다시 호출하면, 아래와 같이 Sentry 대시보드에서 해당 에러를 확인할 수 있습니다.</p>
+<p>특히 <code>minimumBreadcrumbLevel</code> 값을 INFO로 설정했기 때문에, 에러 발생 시점뿐만 아니라 그 이전의 INFO 로그까지 Breadcrumbs에 기록된 것을 볼 수 있습니다.</p>
+<p><img src="/assets/img/server/technology/sentry/spring-boot-sentry-issues-breadcrumbs.png" alt=""></p>
+<h2 id="에러-추적-시스템-개선하기">에러 추적 시스템 개선하기</h2>
+<p>단순히 에러를 수집하는 것은 부족합니다.
+운영 환경에서는 수많은 요청이 뒤섞여 들어오기 때문에, 특정 사용자의 요청 흐름을 한눈에 파악할 수 있어야 합니다.</p>
+<p>또한, 모든 예외를 무차별적으로 알림으로 보내면 담당자(개발자 또는 운영자)에게 알림 피로도를 누적시킬 수 있습니다.
+담당자가 알림에 대해 집중력이 떨어지게 되면, 정작 긴급한 장애가 발생했을 때 대응이 늦어지는 리스크로 이어질 수 있습니다.</p>
+<p>이러한 문제를 해결하기 위해 Sentry의 <code>Tag</code> 기능을 활용하여 추적 가능한 에러와 선별적인 알림 규칙을 아래와 같이 정의했습니다.</p>
+<ul>
+<li>
+<p><code>globalTraceId</code> (Scope Tag): 요청의 전체 흐름을 추적하기 위한 범위 태그.</p>
+</li>
+<li>
+<p><code>errorCode</code> (Event Tag): 에러의 종류를 분류하고 알림을 최적화하기 위한 이벤트 태그.</p>
+</li>
+</ul>
+<h3 id="globaltraceid-분산-환경에서의-요청-추적">globalTraceId: 분산 환경에서의 요청 추적</h3>
+<p><code>globalTraceId</code>는 사용자의 요청이 여러 서비스를 거쳐 처리될 때, 그 모든 여정을 하나의 ID로 묶어주는 역할을 합니다.
+이 태그는 에러 발생 여부와 관계없이, 해당 요청 내에서 발생하는 모든 Sentry 이벤트에 공통적으로 포함되어야 합니다.</p>
+<p>이를 위해 아래와 같이 <code>Sentry.configureScope</code>를 사용하여 요청 스코프 전역에 태그를 주입하는 방식을 적용했습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpRequestAndResponseLoggingFilter</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> OncePerRequestFilter</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String GLOBAL_TRACE_ID_HEADER </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "X-Global-Trace-Id"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String GLOBAL_TRACE_ID_KEY </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "globalTraceId"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> doFilterInternal</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletRequest </span><span style="color:#FFAB70">request</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    @</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> HttpServletResponse </span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                                    @</span><span style="color:#F97583">NonNull</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> FilterChain </span><span style="color:#FFAB70">filterChain</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> ServletException, IOException {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        ContentCachingRequestWrapper requestWrapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingRequestWrapper</span><span style="color:#E1E4E8">(request);</span></span>
+<span class="line"><span style="color:#E1E4E8">        ContentCachingResponseWrapper responseWrapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ContentCachingResponseWrapper</span><span style="color:#E1E4E8">(response);</span></span>
+<span class="line"><span style="color:#6A737D">        // Trace ID 추출 또는 생성 (Gateway 등 앞단에서 넘어온 헤더가 있으면 우선 사용)</span></span>
+<span class="line"><span style="color:#E1E4E8">        String globalTraceId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> requestWrapper.</span><span style="color:#B392F0">getHeader</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_HEADER);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">StringUtils.</span><span style="color:#B392F0">hasText</span><span style="color:#E1E4E8">(globalTraceId)) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            globalTraceId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> UUID.</span><span style="color:#B392F0">randomUUID</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">toString</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">substring</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">32</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // MDC와 Sentry Scope에 Trace ID 주입 -> MDC: 로그백(Logback)에서 사용, Sentry: 이슈 태깅에 사용</span></span>
+<span class="line"><span style="color:#E1E4E8">        MDC.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_KEY, globalTraceId);</span></span>
+<span class="line"><span style="color:#F97583">        final</span><span style="color:#E1E4E8"> String finalGlobalTraceId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> globalTraceId;</span></span>
+<span class="line"><span style="color:#E1E4E8">        Sentry.</span><span style="color:#B392F0">configureScope</span><span style="color:#E1E4E8">(scope </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> scope.</span><span style="color:#B392F0">setTag</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_KEY, finalGlobalTraceId));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            filterChain.</span><span style="color:#B392F0">doFilter</span><span style="color:#E1E4E8">(requestWrapper, responseWrapper);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">            log</span><span style="color:#E1E4E8">(requestWrapper, responseWrapper);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            responseWrapper.</span><span style="color:#B392F0">copyBodyToResponse</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            MDC.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(GLOBAL_TRACE_ID_KEY);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    //...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>구현 참고: <code>ContentCachingWrapper</code>를 사용하여 요청/응답 본문(Body)을 안전하게 캐싱하고 <code>MDC</code>를 통해 쓰레드 컨텍스트를 관리하는 구체적인 원리는
+이전에 작성한 <a href="https://devfancy.github.io/SpringBoot-Logging-Filter/">Spring Boot 요청 흐름 추적: Logging Filter와 traceId 적용기</a>
+포스팅에서 자세히 다루었으므로 해당 글을 참고해 주시기 바랍니다.)</p>
+</blockquote>
+<p>이렇게 설정된 <code>globalTraceId</code> 는 Sentry뿐만 아니라 Grafana Loki와 같은 중앙 로그 시스템과 연계할 때 에러의 전체 맥락을 파악하는 데 도움이 됩니다.</p>
+<blockquote>
+<p>활용 예시1: Sentry 이슈 추적</p>
+</blockquote>
+<p>Sentry 이슈 화면에서 <code>globalTraceId</code> 태그를 클릭하거나 검색하면, 아래와 같이 해당 요청 시점에서 발생한 특정 이벤트를 필터링하여 볼 수 있습니다.</p>
+<p><img src="/assets/img/server/technology/sentry/spring-boot-sentry-tags-globalTraceId.png" alt=""></p>
+<blockquote>
+<p>활용 예시2: Grafana Loki 연계 분석</p>
+</blockquote>
+<p>Sentry에서 확보한 <code>globalTraceId</code>를 Grafana Loki의 레이블 필터로 사용하면,
+에러 로그뿐만 아니라 해당 요청이 남긴 모든 정상 로그까지 타임라인 순으로 조회하여 문제의 전체 맥락을 상세하게 파악할 수 있습니다.</p>
+<p><img src="/assets/img/server/technology/sentry/spring-boot-sentry-grafana-loki-label-globalTraceId.png" alt=""></p>
+<h3 id="errorcode-동적-태깅으로-검색-및-알림-설정">errorCode: 동적 태깅으로 검색 및 알림 설정</h3>
+<p>에러를 검색하거나 정교한 알림 규칙을 만들 때 “쿠폰이 존재하지 않습니다.”와 같은 에러 메시지를 기준으로 삼으면, 나중에 해당 에러 메시지가 조금만 바뀌어도 규칙이 깨질 수 있습니다.</p>
+<p>따라서 변하기 쉬운 메시지 대신 <code>E500</code> 와 같은 고유 값인 <code>errorCode</code>를 태그로 달아 관리하는 것이 유리합니다.</p>
+<blockquote>
+<p>beforeSend vs configureScope 을 비교하면 아래와 같습니다.</p>
+</blockquote>
+<ul>
+<li>
+<p>configureScope: “앞으로 발생할 모든 이벤트에 이 꼬리표를 미리 붙여둬라.” (정적)</p>
+</li>
+<li>
+<p>beforeSend: “이벤트가 발생했네? 잠깐 멈춰봐. 내용을 뜯어보고 태그를 달거나 버릴지 결정하자” (동적)</p>
+</li>
+</ul>
+<p>아래와 같이 beforeSend 콜백을 구현하여, <code>CouponException</code> 이 발생 시 내부에 담긴 에러 코드를 추출해 태그로 등록하고, 불필요한 <code>INFO</code> 레벨의 예외는 필터링하여 비용을 줄이는 로직을
+구현했습니다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Component</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> SentryBeforeSendCallback</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> SentryOptions.BeforeSendCallback</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String ERROR_CODE_TAG </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "errorCode"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Logger log </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LoggerFactory.</span><span style="color:#B392F0">getLogger</span><span style="color:#E1E4E8">(SentryBeforeSendCallback.class);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> SentryEvent </span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">NotNull</span><span style="color:#E1E4E8"> SentryEvent </span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">, @</span><span style="color:#F97583">NotNull</span><span style="color:#E1E4E8"> Hint </span><span style="color:#FFAB70">hint</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (event.</span><span style="color:#B392F0">getExceptions</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">event.</span><span style="color:#B392F0">getExceptions</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">isEmpty</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            SentryException sentryException </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> event.</span><span style="color:#B392F0">getExceptions</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            log.</span><span style="color:#B392F0">debug</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Sentry Exception Type: {}, Value: {}"</span><span style="color:#E1E4E8">, sentryException.</span><span style="color:#B392F0">getType</span><span style="color:#E1E4E8">(), sentryException.</span><span style="color:#B392F0">getValue</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">        Throwable throwable </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> event.</span><span style="color:#B392F0">getThrowable</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // 커스텀 예외(CouponException)인 경우에만 전처리 로직 수행</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (throwable </span><span style="color:#F97583">instanceof</span><span style="color:#E1E4E8"> CouponException couponException) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            ErrorType errorType </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> couponException.</span><span style="color:#B392F0">getErrorType</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (errorType </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (errorType.</span><span style="color:#B392F0">getLogLevel</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> LogLevel.INFO) {</span></span>
+<span class="line"><span style="color:#F97583">                    return</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#6A737D">                // 에러 코드를 태그로 추가한다.</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (errorType.</span><span style="color:#B392F0">getCode</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    event.</span><span style="color:#B392F0">setTag</span><span style="color:#E1E4E8">(ERROR_CODE_TAG, errorType.</span><span style="color:#B392F0">getCode</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">name</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> event;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><code>errorCode</code> 태그를 적용한 결과, 다음과 같이 Sentry의 활용도를 높일 수 있게 되었습니다.</p>
+<blockquote>
+<p>errorCode로 이슈 필터링</p>
+</blockquote>
+<p>Sentry의 Issues 피드 검색창에 <code>errorCode is E500</code>과 같은 쿼리를 입력하면, 수많은 에러 로그 속에서도 특정 비즈니스 로직과 관련된 문제만 즉시 선별하여 확인할 수 있습니다.
+이는 장애 발생 시 노이즈를 제거하고 핵심 원인을 빠르게 파악하는 데 큰 도움이 됩니다.</p>
+<p><img src="/assets/img/server/technology/sentry/spring-boot-sentry-errorCode-issue-filtering.png" alt=""></p>
+<blockquote>
+<p>errorCode 기반의 정교한 Alert 규칙 정의</p>
+</blockquote>
+<p>단순히 에러 발생 횟수로 알림을 받는 것이 아니라, 태그를 활용해 자동화된 알림 규칙을 만들 수 있습니다.</p>
+<p>아래 그림과 같이 “(WHEN) 새로운 이슈가 발생했고, (IF) 태그의 errorCode가 E500과 같다면, (THEN) 즉시 담당자에게 알림을 발송하라”는 규칙을 적용할 수 있습니다.</p>
+<p><img src="/assets/img/server/technology/sentry/spring-boot-sentry-errorCode-alert.png" alt=""></p>
+<p>이를 통해 비즈니스 중요도에 따라 알림 채널을 분리하거나, 특정 팀에게만 선별적으로 알림을 보내는 등 에러 대응 프로세스를 구축할 수 있습니다.</p>
+<h2 id="정리-및-마무리하기">정리 및 마무리하기</h2>
+<p>운영 환경에서 발생하는 예측 불가능한 오류를 신속하게 탐지하고 분석하는 것은 서비스 안정성의 핵심입니다.
+단순히 로그를 적재하는 것만으로는 파편화된 서비스 환경에서 장애의 근본 원인을 추적하기 어렵습니다.</p>
+<p>이번 포스팅에서는 Sentry를 도입하여 에러를 실시간으로 감지하고, 주요 컨텍스트를 파악할 수 있는 환경을 구축했습니다.</p>
+<p>무엇보다 Sentry의 Tag 기능을 두 가지 전략으로 활용하여 관측 가능성을 높였습니다.</p>
+<p>첫 번째로 <code>globalTraceId</code>를 통해 분산된 요청의 흐름을 하나로 묶었습니다. 이를 Grafana Loki와 연계함으로써, 에러 로그뿐만 아니라 에러가 발생한 시점의 정상 로그까지 한 번에 추적하여 전체
+맥락을 파악할 수 있게 했습니다.</p>
+<p>두 번째로 <code>errorCode</code>를 태그로 등록하여 에러 관리의 효율성을 높였습니다. Sentry 내에서 특정 유형의 에러를 검색하는 것을 포함하여, 비즈니스 중요도에 따라 선별적인 알림 규칙을 적용하여 대응
+체계를 구축했습니다.</p>
+<p>이처럼 Sentry는 단순한 에러 수집 도구가 아닌 분석 플랫폼으로 활용함으로써, 무분별한 알림으로 인한 운영 피로도를 낮추고 장애 대응 속도를 개선할 수 있었습니다.
+이는 곧 사용자에게 더 신뢰받는 서비스를 제공하는 기반이 될 것입니다.</p>
+<p>지금까지 읽어주셔서 감사합니다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://docs.sentry.io/product/">[공식문서] Sentry</a></p>
+</li>
+<li>
+<p><a href="https://docs.sentry.io/platforms/java/guides/spring-boot/">[공식문서] Sentry - Spring Boot</a></p>
+</li>
+<li>
+<p><a href="https://docs.sentry.io/platforms/java/guides/spring-boot/configuration/filtering/">[공식문서] Sentry - Filtering</a></p>
+</li>
+<li>
+<p><a href="https://jaehoney.tistory.com/432">[개인 블로그] Spring - Sentry 이해하기! (+ 모니터링 개선, Tag 사용하기!)</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="spring-boot-sentry" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#prologue" data-toc="prologue" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Prologue</a></li><li><a href="#왜-sentry를-사용하는가" data-toc="왜-sentry를-사용하는가" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">왜 Sentry를 사용하는가?</a></li><li><a href="#sentry-연동-및-테스트" data-toc="sentry-연동-및-테스트" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Sentry 연동 및 테스트</a></li><li><a href="#설정configure" data-toc="설정configure" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">설정(Configure)</a></li><li><a href="#간단히-테스트해보기" data-toc="간단히-테스트해보기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">간단히 테스트해보기</a></li><li><a href="#sentry-연동의-한계" data-toc="sentry-연동의-한계" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Sentry 연동의 한계</a></li><li><a href="#원인-분석해보기" data-toc="원인-분석해보기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">원인 분석해보기</a></li><li><a href="#logback-연동을-통해-예외-감지하는-범위-확장하기" data-toc="logback-연동을-통해-예외-감지하는-범위-확장하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Logback 연동을 통해 예외 감지하는 범위 확장하기</a></li><li><a href="#logback에-sentryappender-설정하기" data-toc="logback에-sentryappender-설정하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Logback에 SentryAppender 설정하기</a></li><li><a href="#예외를-올바르게-전달하는-방법" data-toc="예외를-올바르게-전달하는-방법" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">예외를 올바르게 전달하는 방법</a></li><li><a href="#logback-연동-후-다시-테스트하기" data-toc="logback-연동-후-다시-테스트하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Logback 연동 후 다시 테스트하기</a></li><li><a href="#에러-추적-시스템-개선하기" data-toc="에러-추적-시스템-개선하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">에러 추적 시스템 개선하기</a></li><li><a href="#globaltraceid-분산-환경에서의-요청-추적" data-toc="globaltraceid-분산-환경에서의-요청-추적" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">globalTraceId: 분산 환경에서의 요청 추적</a></li><li><a href="#errorcode-동적-태깅으로-검색-및-알림-설정" data-toc="errorcode-동적-태깅으로-검색-및-알림-설정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">errorCode: 동적 태깅으로 검색 및 알림 설정</a></li><li><a href="#정리-및-마무리하기" data-toc="정리-및-마무리하기" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">정리 및 마무리하기</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

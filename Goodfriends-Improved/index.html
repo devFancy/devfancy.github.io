@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[Goodfriends] - 사용자 기반 기능 전체 리팩터링 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Goodfriends-Improved/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[Goodfriends] - 사용자 기반 기능 전체 리팩터링</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-12-27" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-12-27</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 96회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="리팩터링을-도입하게-된-배경">리팩터링을 도입하게 된 배경</h2>
+<ul>
+<li>
+<p>8월 1일부터 9월 27일까지 팀 프로젝트를 진행했지만, 그 당시에는 ‘구현’에 초점이 맞춰졌기 때문에, 개개인의 코드의 품질에 제대로 신경쓰지 못하고 개발했다.</p>
+<p>(초반에는 코드 리뷰를 열심히 해왔지만, 한정된 시간안에 구현해야 하는 압박감과 부담감에 후반으로 갈 수록 코드 리뷰를 제대로 못했다..)</p>
+<p>그리고 좋은 코드가 무엇인지, 좋은 코드를 짜기 위해서 어떻게 리팩터링하는지에 대해서 제대로 알지 못했다.</p>
+</li>
+<li>
+<p>그래서 팀 프로젝트가 끝난 이후에, ‘나중에 반드시 리팩터링 해야겠다!’ 고 다짐했다.</p>
+<p>그렇게 한달이 지나고, 예상치 못한 좋은 기회로 11월부터 12월까지 우아한 스터디의 “<code>내 코드가 그렇게 이상한가요?</code>” 주제에 참가하게 되어서, 좋은 코드가 무엇인지 배우게 되었다.</p>
+<p>“내 코드가 그렇게 이상한가요?” 책을 읽으면서 스터디에 참가하는 분들과 토론하면서 좋은 코드로 개선하는 방법을 알게되었다.</p>
+<p>(해당 책을 공부하면서 내 <a href="https://devfancy.github.io/category/#GoodCode">블로그: GoodGode</a>에 따로 정리해두었다)</p>
+</li>
+<li>
+<p>해당 스터디에서 배운 내용을 기반으로 기존에 구현했던 기능들, 특히 <strong>사용자 기반</strong> 기능(프로필, 상품, 주문, 신고)을 우선적으로 리팩터링을 진행했다.</p>
+</li>
+</ul>
+<h2 id="주문-도메인에-대한-리팩터링-과정"><code>주문</code> 도메인에 대한 리팩터링 과정</h2>
+<blockquote>
+<p>주요 기능 중 하나인 <code>주문</code>에 대한 리팩터링 과정을 자세히 확인하고 싶다면, <a href="https://github.com/woorifisa-projects/GoodFriends/pull/355">PR</a>을 참고하자.</p>
+</blockquote>
+<ul>
+<li>사용자 기반의 여러 기능 중 <code>주문</code> 도메인에서 <strong>본인이 판매 등록한 물품에 들어온 주문서 전체를 조회하는 API</strong>와 관련된 비즈니스 로직에 대한 리팩터링 과정을 정리하고자 한다.</li>
+</ul>
+<blockquote>
+<p>리팩터링 전) <code>주문</code> 도메인에서 주문서 전체를 조회하는 API에 대한 비즈니스 로직(OrderService.class) - findAllOrder</p>
+</blockquote>
+<p><img src="/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-0.png" alt=""></p>
+<ul>
+<li>리팩터링을 하기전에, 지켜야할 부분을 아래와 같이 정리했다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold"># 목표</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 구조를 파악할 수 있도록 기존의 클래스/메서드/변수명 수정할 것 - 굿프렌즈 WIKI에 있는 [</span><span style="color:#DBEDFF;text-decoration:underline">객체 및 메서드 생성 규칙</span><span style="color:#E1E4E8">](</span><span style="color:#E1E4E8;text-decoration:underline">https://github.com/woorifisa-projects/GoodFriends/wiki/객체-및-메서드-생성-규칙</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 불변 활용할 것</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 단일 책임 원칙을 지키기 위해 하나의 메서드에 한가지 일만 담당하도록 구현한다.</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 메서드 최대 길이 15줄 이내로 할 것  </span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [ ] 리팩터링 이후 불필요한 주석은 제거할 것</span></span></code></pre>
+<ul>
+<li>[1] 먼저 <strong>구조를 파악할 수 있도록 기존의 클래스/메서드 변수명을 수정</strong>하기 위해 <code>findAllOrder()</code> 메서드명을 <code>findAllMyProductOrders()</code>로 수정했다.</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-1.png" alt=""></p>
+<ul>
+<li>
+<p>[2] 그리고 <code>findAllMyProductOrders()</code> 메서드에서 유효성을 검사하는 로직을 <code>validateOffenderAndMyProduct()</code> 메서드를 생성해서 처리해주도록 수정했다.</p>
+</li>
+<li>
+<p>추가적으로 예외 클래스명에 대해서도 직관적이고 이해할 수 있는 클래스명으로 수정했다. (예외 처리 클래스를 각 도메인의 비즈니스 규칙에 맞도록 커스터마이징했다)</p>
+<ul>
+<li>
+<p>기존) <code>NotAccessProductException</code> -> 변경) <code>InactiveUserAccessException</code> - 예외 메시지: ‘비활성화 상태인 유저로 해당 페이지에 접근이 불가능합니다’</p>
+</li>
+<li>
+<p>기존) <code>NotOwnProductException</code> -> 변경) <code>InvalidProductOrderAccessException</code> - 예외 메시지: ‘본인이 등록하지 않은 상품의 주문서는 조회할 수 없습니다.’</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-2.png" alt=""></p>
+<ul>
+<li>
+<p>[3] <code>findAllMyProductOrders()</code>에는 <strong>여러 로직을 처리하고 있어서 <code>단일 책임 원칙</code>에 위배</strong>되고 있다.</p>
+</li>
+<li>
+<p>이를 해결하기 위해 첫 번째로 <strong>하나의 메서드에 한 가지 일만 담당</strong>하도록 로직을 수정했고, 동시에 <strong>중첩 if문을 제거</strong>했다.</p>
+<ul>
+<li>이때, 상태 체크와 해당 상태에 따른 주문서를 조회하는 로직을 분리했다. -> <code>handleNonSellProduct()</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-3-1.png" alt=""></p>
+<ul>
+<li>
+<p>[4] 그런 다음, 두 번째로 map 부분에서 <code>OrderProductResponse</code> 클래스(이전 클래스명: <code>OrderViewOneResponse</code>) <strong><code>정적 팩토리 메서드</code>(of)를 추가하여 중복되는 부분을 최소화</strong>했다.</p>
+<ul>
+<li>
+<p><code>팩토리 메서드 패턴</code>(Factory Method Pattern)은 <strong>객체 생성</strong>을 처리하기 위한 디자인 패턴 중 하나다.</p>
+</li>
+<li>
+<p>이 패턴을 사용함으로써 객체 생성과정이 클래스 외부로 추상화되어, 코드의 가독성이 높아지고 유지보수가 용이해진다.</p>
+</li>
+<li>
+<p>또한 <code>팩토리 메서드 패턴</code>은 <strong>객체 생성에 필요한 복잡한 로직을 한 곳에 모아둠으로써 중복을 줄일 수 있다.</strong></p>
+</li>
+<li>
+<p><code>of</code> 메서드는 주로 정적(static) 팩터리 메서드로 사용되며, <strong>해당 객체를 생성하고 초기화하는데 사용</strong>된다. 불변성(Immutability)을 강조하거나 특정한 시나리오에서 명확하게 사용할 수 있도록 하는데 주로 쓰인다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-3-2.png" alt=""></p>
+<ul>
+<li>[5] <code>findAllMyProductOrders()</code>, <code>handleNonSellProduct()</code> 두 메서드의 return 하는 부분에서 true/false 값은 판매 상태 여부를 나타내는 걸 의미하는데, 이를 <code>private static final</code>로 상수화로 선언해서 아래와 같이 수정했다.</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-4.png" alt=""></p>
+<ul>
+<li>[6] <code>findAllMyProductOrders()</code> 메서드에서 <strong>주문 응답을 가져오는 로직</strong>을 <code>getOrderProductResponses()</code> 메서드로 추출했다.</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-5.png" alt=""></p>
+<ul>
+<li>
+<p>마지막으로 <code>findAllMyProductOrders()</code> 메서드에서 로직을 처리하는 순서에 맞게 조정했다.</p>
+<p>그리고 <code>handleNonSellProduct()</code>메서드 명에 대해서도 직관적으로 이해할 수 있게 <code>beginDealForOrder()</code>으로 다시 수정했다.</p>
+</li>
+<li>
+<p>이렇게 해서 <code>주문</code> 도메인에서 <strong>본인이 판매 등록한 물품에 들어온 주문서 전체를 조회하는 API</strong>와 관련된 비즈니스 로직에 대한 리팩터링을 진행했다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="markdown"><code><span class="line"><span style="color:#79B8FF;font-weight:bold"># 목표 달성</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [</span><span style="color:#DBEDFF;text-decoration:underline">x</span><span style="color:#E1E4E8">] 구조를 파악할 수 있도록 기존의 클래스/메서드/변수명 수정할 것 - 굿프렌즈 WIKI에 있는 [</span><span style="color:#DBEDFF;text-decoration:underline">객체 및 메서드 생성 규칙</span><span style="color:#E1E4E8">](</span><span style="color:#E1E4E8;text-decoration:underline">https://github.com/woorifisa-projects/GoodFriends/wiki/객체-및-메서드-생성-규칙</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [</span><span style="color:#DBEDFF;text-decoration:underline">x</span><span style="color:#E1E4E8">] 불변 활용할 것</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [</span><span style="color:#DBEDFF;text-decoration:underline">x</span><span style="color:#E1E4E8">] 단일 책임 원칙을 지키기 위해 하나의 메서드에 한가지 일만 담당하도록 구현한다.</span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [</span><span style="color:#DBEDFF;text-decoration:underline">x</span><span style="color:#E1E4E8">] 메서드 최대 길이 15줄 이내로 할 것  </span></span>
+<span class="line"><span style="color:#FFAB70">-</span><span style="color:#E1E4E8"> [</span><span style="color:#DBEDFF;text-decoration:underline">x</span><span style="color:#E1E4E8">] 리팩터링 이후 불필요한 주석은 제거할 것</span></span></code></pre>
+<blockquote>
+<p>리팩터링 후) <code>주문</code> 도메인에서 주문서 전체를 조회하는 API에 대한 비즈니스 로직(OrderService.class) - <code>findAllMyProductOrders()</code></p>
+</blockquote>
+<p><img src="/assets/img/project/goodfriends/order-refactor-findAllMyProductOrders-6.png" alt=""></p>
+<h2 id="리팩터링을-마치며">리팩터링을 마치며</h2>
+<ul>
+<li>
+<p>사실 <code>주문</code> 도메인에 대한 리팩터링 하기 이전에, 이미 <code>프로필</code>, <code>신고</code>, <code>상품</code>에 대해 리팩터링을 진행했다.</p>
+<ul>
+<li>
+<p><a href="https://github.com/woorifisa-projects/GoodFriends/pull/346"><code>신고</code>에 대한 리팩터링 과정 -PR</a></p>
+</li>
+<li>
+<p><a href="https://github.com/woorifisa-projects/GoodFriends/pull/348"><code>프로필</code>에 대한 리팩터링 과정 -PR</a></p>
+</li>
+<li>
+<p><a href="https://github.com/woorifisa-projects/GoodFriends/pull/350"><code>상품</code>에 대한 리팩터링 과정 -PR</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>스터디에서 배운 내용을 기반으로 기존 프로젝트(굿프렌즈)에서 사용자 기반의 기능들을 모두 리팩터링하면서 적용해봤다.</p>
+</li>
+<li>
+<p>책에 있는 기술, 개념들을 적용하는 과정에서 시간이 많이 걸렸지만, 그 만큼 많은 경험을 얻게 되었다.</p>
+</li>
+<li>
+<p>다음에는 이전에 테스트 코드 강의를 듣고 정리해둔 <a href="https://devfancy.github.io/Practical-Testing/">Practical Testing: 테스트 코드 작성 방법</a>을 기반으로 굿프렌즈 프로젝트에 단위 및 통합 테스트 코드를 작성해보자!</p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Goodfriends-Improved" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#리팩터링을-도입하게-된-배경" data-toc="리팩터링을-도입하게-된-배경" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">리팩터링을 도입하게 된 배경</a></li><li><a href="#주문-도메인에-대한-리팩터링-과정" data-toc="주문-도메인에-대한-리팩터링-과정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">주문 도메인에 대한 리팩터링 과정</a></li><li><a href="#리팩터링을-마치며" data-toc="리팩터링을-마치며" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">리팩터링을 마치며</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

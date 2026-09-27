@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[Goodfriends] 시스템 장애를 미리 예방하기 위해 Amazon CloudWatch를 활용 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Goodfriends-Aws-CloudWatch/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="hover:underline" data-astro-cid-g5songws>프로젝트</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[Goodfriends] 시스템 장애를 미리 예방하기 위해 Amazon CloudWatch를 활용</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-10-13" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-10-13</time><a href="/category/#%EC%82%AC%EC%9D%B4%EB%93%9C%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="chip chip-tag">#사이드프로젝트</a></div><p class="view-count text-sm text-muted">조회수 15회</p></div><div class="prose mt-10" data-astro-cid-g5songws><p><a href="https://goodfriends-team.tistory.com/">굿프렌즈 기술 블로그 방문하기 🎋</a></p>
+<blockquote>
+<p>이 글은 우리FISA 1기 <a href="https://goodfriends-team.tistory.com/24">굿프렌즈팀의 기술 블로그</a>에 게시된 글 입니다.</p>
+</blockquote>
+<p><code>Amazon CloudWatch</code>가 무엇이고 왜 도입해야 하는지 알고 넘어가려고 합니다.</p>
+<h2 id="도입-배경">도입 배경</h2>
+<blockquote>
+<p>모니터링 없이 시스템을 운영하게 된다면 마치 계기판을 보지 않고 자동차를 운전하는 것과 같다는 이야기가 있습니다.
+시스템 장애는 곧바로 서비스 중지로 이어질 수 있기 때문에 시스템 모니터링은 그만큼 중요합니다.
+따라서 시스템 관리자는 지속적으로 시스템의 상태를 모니터링하고 분석하여 미래에 발생할 수 있는 예기치 않는 장애에 대비해야 합니다.</p>
+</blockquote>
+<p>시스템 관리자는 시스템의 다음 요소들을 모니터링할 필요가 있습니다.</p>
+<ul>
+<li>CPU 사용률</li>
+<li>메모리 사용률</li>
+<li>디스크 사용률</li>
+<li>네트워크 부하</li>
+</ul>
+<p><code>Amazon CloudWatch</code>은 AWS 리소스와 온프레미스 서버에서 CPU 사용률, 디스크 I/O, 네트워크 부화 등과 같은 기본 지표를 수집하여 모니터링 서비스를 제공하고 있습니다.</p>
+<p>현재 굿프렌즈의 백엔드, 프론트 EC2 인스턴스 유형은 t2.micro입니다. 1GB 메모리, 8GB 디스크 사용량으로 아주 작은 사이즈입니다.</p>
+<p>간혹 서비스를 운영하다보면 특히 비즈니스 로직이 많이 들어있는 백엔드 EC2 서버 디스크 용량이 50% 이상 넘길 수도 있습니다.</p>
+<p>그래서 인스턴스의 디스크 사용량이 전부 차기전에 미리 알아야 하기 때문에, <strong>EC2 인스턴스의 사용중인 용량이 4GB 넘어가면 (50% 이상) Amazaon Cloudwatch를 통해 모니터링을 하고 알림을 받을 수 있도록 설정</strong>을 하려고 합니다.</p>
+<p>아래 글은 백엔드 기준, EC2 인스턴스의 디스크 사용량을 체크하기 위해서 CloudWatch 적용하는 방법을 소개해드리고자 합니다.</p>
+<h2 id="ec2-서버에-amazon-cloudwatch-적용하는-과정">EC2 서버에 Amazon CloudWatch 적용하는 과정</h2>
+<p>굿프렌즈 백엔드 EC2 애플리케이션 및 OS 이미지는 아래와 같습니다.</p>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_1.png" alt=""></p>
+<h3 id="iam-역할-설정">IAM 역할 설정</h3>
+<p>먼저 EC2에 CloudWatch 서비스에 대한 엑세스 권한을 부여해야 한다.</p>
+<ol>
+<li>AWS Management 콘솔에서 IAM 접속</li>
+<li>액세스 관리 - 역할 - 역할 만들기 클릭</li>
+<li>신뢰할 수 있는 엔터티 선택 설정 및 다음</li>
+</ol>
+<ul>
+<li>신뢰할 수 있는 엔터티 유형 - AWS 서비스</li>
+<li>사용 사례 - EC2</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_2.png" alt=""></p>
+<ol start="4">
+<li>권한 추가</li>
+</ol>
+<ul>
+<li>CloudWatchAgent 검색</li>
+<li>CloudWatchAgentServerPolicy 선택</li>
+<li>다음 클릭</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_3.png" alt=""></p>
+<ol start="5">
+<li>이름 지정, 검토 및 생성</li>
+</ol>
+<ul>
+<li>역할 이름 - ec2-monitoring (원하는 이름으로 해도 상관없다.)</li>
+<li>역할 이름 지정 후 역할 생성</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_4.png" alt=""></p>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_5.png" alt=""></p>
+<ol start="6">
+<li>EC2 인스턴스에 IAM 적용</li>
+</ol>
+<ul>
+<li>EC2 인스턴스로 이동</li>
+<li>CloudWatch를 붙이고 싶은 인스턴스 클릭</li>
+<li>작업 - 보안 - IAM 역할 수정</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_6.png" alt=""></p>
+<ul>
+<li>IAM 역할에 방금 만들어둔 role 선택후 저장</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_7.png" alt=""></p>
+<h3 id="cloudwatch-에이전트-설치">CloudWatch 에이전트 설치</h3>
+<ol>
+<li>ssh를 통해 EC2 인스턴스에 접속</li>
+<li>CloudWatch 에이전트 다운로드</li>
+</ol>
+<ul>
+<li>운영체제 별로 패키지 파일이 다르다. 본 글에서는 ubuntu를 사용하기 때문에 ubuntu 20.04 기준으로 작성</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> /tmp</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#B392F0">wget</span><span style="color:#9ECBFF"> https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb</span></span></code></pre>
+<ul>
+<li>실행 결과</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#B392F0">/tmp$</span><span style="color:#9ECBFF"> wget</span><span style="color:#9ECBFF"> https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb</span></span>
+<span class="line"><span style="color:#B392F0">--2023-10-13</span><span style="color:#9ECBFF"> 08:27:01--</span><span style="color:#9ECBFF">  https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb</span></span>
+<span class="line"><span style="color:#B392F0">Resolving</span><span style="color:#9ECBFF"> s3.amazonaws.com</span><span style="color:#E1E4E8"> (s3.amazonaws.com)... 52.217.44.206, 52.217.161.112, 54.231.171.168, ...</span></span>
+<span class="line"><span style="color:#B392F0">Connecting</span><span style="color:#9ECBFF"> to</span><span style="color:#9ECBFF"> s3.amazonaws.com</span><span style="color:#E1E4E8"> (s3.amazonaws.com)</span><span style="color:#F97583">|</span><span style="color:#B392F0">52.217.44.206</span><span style="color:#F97583">|</span><span style="color:#B392F0">:443...</span><span style="color:#9ECBFF"> connected.</span></span>
+<span class="line"><span style="color:#B392F0">HTTP</span><span style="color:#9ECBFF"> request</span><span style="color:#9ECBFF"> sent,</span><span style="color:#9ECBFF"> awaiting</span><span style="color:#9ECBFF"> response...</span><span style="color:#79B8FF"> 200</span><span style="color:#9ECBFF"> OK</span></span>
+<span class="line"><span style="color:#B392F0">Length:</span><span style="color:#79B8FF"> 98300736</span><span style="color:#E1E4E8"> (94M) [application/octet-stream]</span></span>
+<span class="line"><span style="color:#B392F0">Saving</span><span style="color:#9ECBFF"> to:</span><span style="color:#9ECBFF"> ‘amazon-cloudwatch-agent.deb’</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">amazon-cloudwatch-a</span><span style="color:#9ECBFF"> 100%[==================</span><span style="color:#E1E4E8">=</span><span style="color:#F97583">></span><span style="color:#9ECBFF">]</span><span style="color:#9ECBFF">  93.75M</span><span style="color:#9ECBFF">  7.72MB/s</span><span style="color:#9ECBFF">    in</span><span style="color:#9ECBFF"> 13s</span><span style="color:#E1E4E8">     </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">2023-10-13</span><span style="color:#9ECBFF"> 08:27:15</span><span style="color:#E1E4E8"> (6.95 </span><span style="color:#9ECBFF">MB/s</span><span style="color:#E1E4E8">) - ‘amazon-cloudwatch-agent.deb’ saved [98300736/98300736]</span></span></code></pre>
+<ol start="3">
+<li>CloudWatch 에이전트 설치</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#B392F0">/tmp$</span><span style="color:#9ECBFF"> sudo</span><span style="color:#9ECBFF"> dpkg</span><span style="color:#79B8FF"> -i</span><span style="color:#79B8FF"> -E</span><span style="color:#9ECBFF"> ./amazon-cloudwatch-agent.deb</span></span>
+<span class="line"><span style="color:#B392F0">Selecting</span><span style="color:#9ECBFF"> previously</span><span style="color:#9ECBFF"> unselected</span><span style="color:#9ECBFF"> package</span><span style="color:#9ECBFF"> amazon-cloudwatch-agent.</span></span>
+<span class="line"><span style="color:#E1E4E8">(</span><span style="color:#B392F0">Reading</span><span style="color:#9ECBFF"> database</span><span style="color:#9ECBFF"> ...</span><span style="color:#79B8FF"> 96276</span><span style="color:#9ECBFF"> files</span><span style="color:#9ECBFF"> and</span><span style="color:#9ECBFF"> directories</span><span style="color:#9ECBFF"> currently</span><span style="color:#9ECBFF"> installed.</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">Preparing</span><span style="color:#9ECBFF"> to</span><span style="color:#9ECBFF"> unpack</span><span style="color:#9ECBFF"> ./amazon-cloudwatch-agent.deb</span><span style="color:#9ECBFF"> ...</span></span>
+<span class="line"><span style="color:#B392F0">create</span><span style="color:#9ECBFF"> group</span><span style="color:#9ECBFF"> cwagent,</span><span style="color:#9ECBFF"> result:</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#B392F0">create</span><span style="color:#9ECBFF"> user</span><span style="color:#9ECBFF"> cwagent,</span><span style="color:#9ECBFF"> result:</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#B392F0">Unpacking</span><span style="color:#9ECBFF"> amazon-cloudwatch-agent</span><span style="color:#E1E4E8"> (1.300028.4b233-1) ...</span></span>
+<span class="line"><span style="color:#B392F0">Setting</span><span style="color:#9ECBFF"> up</span><span style="color:#9ECBFF"> amazon-cloudwatch-agent</span><span style="color:#E1E4E8"> (1.300028.4b233-1) ...</span></span></code></pre>
+<ol start="4">
+<li>CloudWatch 설정 파일 생성</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#B392F0">/tmp$</span><span style="color:#9ECBFF"> sudo</span><span style="color:#9ECBFF"> vim</span><span style="color:#9ECBFF"> /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json</span></span></code></pre>
+<ul>
+<li>아래 파일처럼 설정하면 / (root)에 대한 disk 사용량을 1시간마다 수집한다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#B392F0">  "agent"</span><span style="color:#79B8FF">:</span><span style="color:#9ECBFF"> {</span></span>
+<span class="line"><span style="color:#B392F0">    "metrics_collection_interval"</span><span style="color:#79B8FF">:</span><span style="color:#79B8FF"> 3600</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#B392F0">  "metrics"</span><span style="color:#79B8FF">:</span><span style="color:#9ECBFF"> {</span></span>
+<span class="line"><span style="color:#B392F0">    "append_dimensions"</span><span style="color:#79B8FF">:</span><span style="color:#9ECBFF"> {</span></span>
+<span class="line"><span style="color:#B392F0">        "InstanceId"</span><span style="color:#79B8FF">:</span><span style="color:#9ECBFF"> "${</span><span style="color:#E1E4E8">aws</span><span style="color:#F97583">:</span><span style="color:#E1E4E8">InstanceId</span><span style="color:#9ECBFF">}"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#B392F0">    "metrics_collected"</span><span style="color:#79B8FF">:</span><span style="color:#9ECBFF"> {</span></span>
+<span class="line"><span style="color:#B392F0">      "disk"</span><span style="color:#79B8FF">:</span><span style="color:#9ECBFF"> {</span></span>
+<span class="line"><span style="color:#B392F0">        "measurement"</span><span style="color:#79B8FF">:</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#B392F0">          "used_percent"</span></span>
+<span class="line"><span style="color:#E1E4E8">        ],</span></span>
+<span class="line"><span style="color:#B392F0">        "metrics_collection_interval"</span><span style="color:#79B8FF">:</span><span style="color:#9ECBFF"> 3600,</span></span>
+<span class="line"><span style="color:#B392F0">        "resources"</span><span style="color:#79B8FF">:</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#B392F0">          "/"</span></span>
+<span class="line"><span style="color:#E1E4E8">        ]</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<ol start="5">
+<li>cloud watch 재시작 및 로그 확인</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#B392F0">//</span><span style="color:#9ECBFF"> cloud</span><span style="color:#9ECBFF"> watch</span><span style="color:#9ECBFF"> 재시작</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> restart</span><span style="color:#9ECBFF"> amazon-cloudwatch-agent</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">//</span><span style="color:#9ECBFF"> 로그</span><span style="color:#9ECBFF"> 확인</span></span>
+<span class="line"><span style="color:#B392F0">tail</span><span style="color:#79B8FF"> -f</span><span style="color:#9ECBFF"> /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">//</span><span style="color:#9ECBFF"> 인스턴스</span><span style="color:#9ECBFF"> 재부팅시에</span><span style="color:#9ECBFF"> 자동으로</span><span style="color:#9ECBFF"> 재시작</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> enable</span><span style="color:#9ECBFF"> amazon-cloudwatch-agent</span></span></code></pre>
+<ul>
+<li>실행 결과</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="shell"><code><span class="line"><span style="color:#B392F0">ubuntu@</span><span style="color:#9ECBFF">{Private</span><span style="color:#9ECBFF"> Ip</span><span style="color:#9ECBFF"> Adress}:/tmp</span><span style="color:#E1E4E8">$ </span><span style="color:#9ECBFF">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> restart</span><span style="color:#9ECBFF"> amazon-cloudwatch-agent</span></span>
+<span class="line"><span style="color:#B392F0">ubuntu@</span><span style="color:#9ECBFF">{Private</span><span style="color:#9ECBFF"> Ip</span><span style="color:#9ECBFF"> Adress}:/tmp</span><span style="color:#E1E4E8">$ </span><span style="color:#9ECBFF">tail</span><span style="color:#79B8FF"> -f</span><span style="color:#9ECBFF"> /opt/aws/amazon-cloudwatch-agent/logs/amazon-cloudwatch-agent.log</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03Z</span><span style="color:#9ECBFF"> I!</span><span style="color:#9ECBFF"> creating</span><span style="color:#9ECBFF"> new</span><span style="color:#9ECBFF"> logs</span><span style="color:#9ECBFF"> agent</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03Z</span><span style="color:#9ECBFF"> I!</span><span style="color:#E1E4E8"> [logagent] starting</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03.943Z</span><span style="color:#9ECBFF">	info</span><span style="color:#9ECBFF">	service/telemetry.go:96</span><span style="color:#9ECBFF">	Skipping</span><span style="color:#9ECBFF"> telemetry</span><span style="color:#9ECBFF"> setup.</span><span style="color:#9ECBFF">	{"address":</span><span style="color:#9ECBFF"> "",</span><span style="color:#9ECBFF"> "level":</span><span style="color:#9ECBFF"> "None"}</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03.959Z</span><span style="color:#9ECBFF">	info</span><span style="color:#9ECBFF">	service/service.go:131</span><span style="color:#9ECBFF">	Starting</span><span style="color:#9ECBFF"> CWAgent...</span><span style="color:#9ECBFF">	{"Version":</span><span style="color:#9ECBFF"> "1.300028.4b233",</span><span style="color:#9ECBFF"> "NumCPU":</span><span style="color:#79B8FF"> 1</span><span style="color:#9ECBFF">}</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03.959Z</span><span style="color:#9ECBFF">	info</span><span style="color:#9ECBFF">	extensions/extensions.go:30</span><span style="color:#9ECBFF">	Starting</span><span style="color:#9ECBFF"> extensions...</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03Z</span><span style="color:#9ECBFF"> I!</span><span style="color:#9ECBFF"> cloudwatch:</span><span style="color:#9ECBFF"> get</span><span style="color:#9ECBFF"> unique</span><span style="color:#9ECBFF"> roll</span><span style="color:#9ECBFF"> up</span><span style="color:#9ECBFF"> list</span><span style="color:#E1E4E8"> []</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03.967Z</span><span style="color:#9ECBFF">	info</span><span style="color:#9ECBFF">	ec2tagger/ec2tagger.go:435</span><span style="color:#9ECBFF">	ec2tagger:</span><span style="color:#9ECBFF"> Check</span><span style="color:#9ECBFF"> EC2</span><span style="color:#9ECBFF"> Metadata.{"kind":</span><span style="color:#9ECBFF"> "processor",</span><span style="color:#9ECBFF"> "name":</span><span style="color:#9ECBFF"> "ec2tagger",</span><span style="color:#9ECBFF"> "pipeline":</span><span style="color:#9ECBFF"> "metrics/host"}</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03Z</span><span style="color:#9ECBFF"> I!</span><span style="color:#9ECBFF"> cloudwatch:</span><span style="color:#9ECBFF"> publish</span><span style="color:#9ECBFF"> with</span><span style="color:#9ECBFF"> ForceFlushInterval:</span><span style="color:#9ECBFF"> 1m0s,</span><span style="color:#9ECBFF"> Publish</span><span style="color:#9ECBFF"> Jitter:</span><span style="color:#9ECBFF"> 31.292800063s</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03.970Z</span><span style="color:#9ECBFF">	info</span><span style="color:#9ECBFF">	ec2tagger/ec2tagger.go:411</span><span style="color:#9ECBFF">	ec2tagger:</span><span style="color:#9ECBFF"> EC2</span><span style="color:#9ECBFF"> tagger</span><span style="color:#9ECBFF"> has</span><span style="color:#9ECBFF"> started,</span><span style="color:#9ECBFF"> finished</span><span style="color:#9ECBFF"> initial</span><span style="color:#9ECBFF"> retrieval</span><span style="color:#9ECBFF"> of</span><span style="color:#9ECBFF"> tags</span><span style="color:#9ECBFF"> and</span><span style="color:#9ECBFF"> Volumes</span><span style="color:#9ECBFF">	{"kind":</span><span style="color:#9ECBFF"> "processor",</span><span style="color:#9ECBFF"> "name":</span><span style="color:#9ECBFF"> "ec2tagger",</span><span style="color:#9ECBFF"> "pipeline":</span><span style="color:#9ECBFF"> "metrics/host"}</span></span>
+<span class="line"><span style="color:#B392F0">2023-10-13T08:31:03.971Z</span><span style="color:#9ECBFF">	info</span><span style="color:#9ECBFF">	service/service.go:148</span><span style="color:#9ECBFF">	Everything</span><span style="color:#9ECBFF"> is</span><span style="color:#9ECBFF"> ready.</span><span style="color:#9ECBFF"> Begin</span><span style="color:#9ECBFF"> running</span><span style="color:#9ECBFF"> and</span><span style="color:#9ECBFF"> processing</span><span style="color:#9ECBFF"> data.</span></span>
+<span class="line"><span style="color:#B392F0">^C</span></span>
+<span class="line"><span style="color:#B392F0">ubuntu@</span><span style="color:#9ECBFF">{Private</span><span style="color:#9ECBFF"> Ip</span><span style="color:#9ECBFF"> Adress}:/tmp</span><span style="color:#E1E4E8">$ </span><span style="color:#9ECBFF">sudo</span><span style="color:#9ECBFF"> systemctl</span><span style="color:#9ECBFF"> enable</span><span style="color:#9ECBFF"> amazon-cloudwatch-agent</span></span>
+<span class="line"><span style="color:#B392F0">Created</span><span style="color:#9ECBFF"> symlink</span><span style="color:#9ECBFF"> /etc/systemd/system/multi-user.target.wants/amazon-cloudwatch-agent.service</span><span style="color:#9ECBFF"> →</span><span style="color:#9ECBFF"> /etc/systemd/system/amazon-cloudwatch-agent.service.</span></span></code></pre>
+<ul>
+<li>이제 CloudWatch에서 EC2 디스크 사용량을 확인할 수 있다.</li>
+</ul>
+<h2 id="cloudwatch에서-확인">CloudWatch에서 확인</h2>
+<ol>
+<li>CloudWatch - 지표 - 모든 지표 - 찾아보기 - CWAgent</li>
+</ol>
+<ul>
+<li>최초 실행시에는 로그 수집까지 5분 정도 소요 될 수 있다.</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_8.png" alt=""></p>
+<ul>
+<li>InstanceId, device, fstype, pat - 등록한 인스턴스 클릭</li>
+<li>이제 상단 그래프에 현재 디스크 사용량이 표시된다.</li>
+<li>아래 예시의 경우 서비스에 대한 기능을 실제 테스트 하기 전이므로 전체 디스크를 0%를 사용하고 있다.</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_9.png" alt=""></p>
+<h2 id="cloud-watch-알림-설정">Cloud Watch 알림 설정</h2>
+<ol>
+<li>경보 생성</li>
+</ol>
+<ul>
+<li>CloudWatch - 경보 - “경보 생성” 버튼 클릭</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_10.png" alt=""></p>
+<ul>
+<li>지표 선택</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_11.png" alt=""></p>
+<ul>
+<li>CWAgent - InstanceId, device, fstype, path3 - CloudWatch를 붙여둔 instance</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_12.png" alt=""></p>
+<ul>
+<li>지표 및 조건 지정
+<ul>
+<li>기간 - 1시간으로 변경</li>
+<li>1시간마다 디스크의 사용량을 확인</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_13.png" alt=""></p>
+<ul>
+<li>조건: 디스크의 사용량이 50% 이상일 때 알림을 준다.</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_14.png" alt=""></p>
+<ul>
+<li>작업 구성
+<ul>
+<li>주제가 이미 존재한다면 기존 주제 사용</li>
+<li>주제가 없다면 아래 예시처럼 주제 구성 후 주제 생성</li>
+</ul>
+</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_15.png" alt=""></p>
+<ul>
+<li>주제 생성 후 기존 SNS 주제 선택 및 “다음” 선택</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_16.png" alt=""></p>
+<ul>
+<li>이름 및 설명 추가</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_17.png" alt=""></p>
+<ul>
+<li>경보 생성</li>
+<li>위의 주제에서 등록한 이메일에서 confirm (최초만 적용)</li>
+</ul>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_18.png" alt=""></p>
+<p>이제 Test 인스턴스의 용량이 50% 이상을 사용한다면 이메일로 알림이 온다.</p>
+<p><img src="/assets/img/project/goodfriends/Goodfriends_Aws_CloudWatch_result.png" alt=""></p>
+<p>이것으로 AWS EC2 인스턴스에 CloudWatch 적용하는 과정을 마치겠습니다.</p>
+<p>지금까지 읽어주셔서 감사합니다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://systorage.tistory.com/entry/AWS-CloudWatch%EB%A1%9C-EC2-%EB%94%94%EC%8A%A4%ED%81%AC-%EC%82%AC%EC%9A%A9%EB%9F%89-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-%EB%B0%8F-%EC%95%8C%EB%A6%BC%EB%B0%9B%EA%B8%B0">[AWS] CloudWatch로 EC2 디스크 사용량 모니터링 및 알림 받기</a></p>
+</li>
+<li>
+<p><a href="https://aws.amazon.com/ko/blogs/korea/using-cloudwatch-to-monitor-windows-server-metrics-effectively/">Amazon CloudWatch를 이용한 효율적인 윈도 서버 모니터링</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Goodfriends-Aws-CloudWatch" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/ETC-Sipethon-Slackbot/" class="link-title leading-snug">SIPE 커뮤니티를 위한 슬랙 봇 만들기 (feat. 사이프톤)</a><time datetime="2025-01-19" class="mt-1.5 block text-sm text-muted">2025-01-19</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Hibit-Retrospective/" class="link-title leading-snug">[Hibit] 히빗 V2 업그레이드: 백엔드 개선과 개발자 성장기</a><time datetime="2024-02-04" class="mt-1.5 block text-sm text-muted">2024-02-04</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Goodfriends-Nginx-SSL-HTTPS/" class="link-title leading-snug">[Goodfriends] Nginx와 Let&#39;s Encrypt로 HTTPS 웹 서비스 배포하기</a><time datetime="2023-11-15" class="mt-1.5 block text-sm text-muted">2023-11-15</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#도입-배경" data-toc="도입-배경" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">도입 배경</a></li><li><a href="#ec2-서버에-amazon-cloudwatch-적용하는-과정" data-toc="ec2-서버에-amazon-cloudwatch-적용하는-과정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">EC2 서버에 Amazon CloudWatch 적용하는 과정</a></li><li><a href="#iam-역할-설정" data-toc="iam-역할-설정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">IAM 역할 설정</a></li><li><a href="#cloudwatch-에이전트-설치" data-toc="cloudwatch-에이전트-설치" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">CloudWatch 에이전트 설치</a></li><li><a href="#cloudwatch에서-확인" data-toc="cloudwatch에서-확인" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">CloudWatch에서 확인</a></li><li><a href="#cloud-watch-알림-설정" data-toc="cloud-watch-알림-설정" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Cloud Watch 알림 설정</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>[Hibit] Swagger에서 Spring Rest docs로 전환하기: 이유, 개념, 그리고 적용 가이드 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Hibit-Spring-Rest-Docs/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#%EC%84%9C%EB%B2%84" class="hover:underline" data-astro-cid-g5songws>서버</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>[Hibit] Swagger에서 Spring Rest docs로 전환하기: 이유, 개념, 그리고 적용 가이드</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2024-02-28" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2024-02-28</time><a href="/category/#Spring%20Boot" class="chip chip-tag">#Spring Boot</a></div><p class="view-count text-sm text-muted">조회수 47회</p></div><div class="prose mt-10" data-astro-cid-g5songws><blockquote>
+<p>이 글은 실제 <a href="https://github.com/hibit-team/hibit-backend-improved">히빗 프로젝트(ver.2)</a>를 혼자서 개발하면서 경험한 내용을 정리한 글입니다.</p>
+</blockquote>
+<blockquote>
+<p>이와 관련해서 코드에 대한 부분은 <a href="https://github.com/hibit-team/hibit-backend-improved/pull/57">PR</a>에 있습니다.</p>
+</blockquote>
+<hr>
+<h2 id="전환하는-이유">전환하는 이유</h2>
+<p><code>Swagger</code>는 <strong>API 동작을 테스트하는 용도</strong>에 더 특화되어 있습니다.</p>
+<p>그래서 프론트와 백엔드에서 테스트 유무를 확인할 때는 용이했습니다.</p>
+<p>기존 version1 에 개발했던 Hibit은 <code>Swagger</code>로 API 문서를 만들었습니다.</p>
+<p>그러나 <code>Swagger</code>를 적용하면서 <strong>백엔드 코드에 <code>Swagger</code>와 관련된 어노테이션이 추가</strong>되는데, 이로 인해 코드 내부에 <strong>기능과 문서가 혼합되어 깔끔하지 않은 코드</strong>가 되었습니다.</p>
+<p>예를 들어, 게시글을 등록하는 API 부분의 코드는 다음과 같습니다.</p>
+<blockquote>
+<p>기존 version1 - PostController</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Tag</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "posts"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "게시글"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">RestController</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> PostController</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> PostService postService;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> PostController</span><span style="color:#E1E4E8">(PostService </span><span style="color:#FFAB70">postService</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.postService </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> postService;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">PostMapping</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/posts/new"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Operation</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">summary</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "/api/posts/new"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "매칭 게시글 작성"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Parameters</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "title"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "제목"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">example</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "디뮤지엄 전시 보러가요"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "exhibition"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "가고싶은 전시회"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">example</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "오스틴리 전시회"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "exhibitionAttendance"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "전시 관람 인원"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">example</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "4"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "possibleTime"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "관람 희망 날짜"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">example</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "[</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">2023-12-25</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">]"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "openChatUrl"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "오픈 채팅방 URL"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">example</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "http://kakao"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "togetherActivity"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "함께 하고싶은 활동"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">example</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "EAT"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "content"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "상세 내용"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">example</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "오스린리 전시회 보러가실 분 있나요?"</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#E1E4E8">            @</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "postImages"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">description</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "게시글 이미지 리스트 URL"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">example</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "[</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">image1</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">, </span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">image2</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">, </span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">image3</span><span style="color:#79B8FF">\"</span><span style="color:#9ECBFF">]"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    })</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ResponseEntity&#x3C;</span><span style="color:#F97583">Post</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(@</span><span style="color:#F97583">Parameter</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">hidden</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">) @</span><span style="color:#F97583">AuthenticationPrincipal</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> LoginMember </span><span style="color:#FFAB70">loginMember</span><span style="color:#E1E4E8">, @</span><span style="color:#F97583">RequestBody</span><span style="color:#E1E4E8"> PostCreateRequest </span><span style="color:#FFAB70">request</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        Post post </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> postService.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(request, loginMember.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> ResponseEntity.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(HttpStatus.CREATED).</span><span style="color:#B392F0">body</span><span style="color:#E1E4E8">(post);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>이런 형태의 코드는 <code>Swagger</code>를 사용할 때 발생하는 문제를 나타냅니다.</p>
+<p>따라서 이러한 이유로 version2 프로젝트에서는 <code>Swagger</code> 보다는 <strong>깔끔하고 명료한 문서</strong>를 생성할 수 있는, 주로 <strong>문서 제공 용도</strong>로 사용되는 <code>Spring Rest Docs</code>로의 전환을 결정하게 되었습니다.</p>
+<h2 id="spring-rest-docs-개념">Spring Rest Docs 개념</h2>
+<p>Spring Rest Docs의 특징으로는 다음과 같습니다.</p>
+<ul>
+<li>
+<p>테스트 코드를 통한 API 문서 자동화 도구입니다. (제가 만든 api 명세를 테스트 코드를 작성해서 build하면 문서처럼 보여지는 것)</p>
+</li>
+<li>
+<p>API 명세를 문서로 만들고 외부에 제공함으로써 협업을 원활하게 합니다.</p>
+</li>
+<li>
+<p>기본적으로 <code>AsciiDoc</code>을 사용하여 문서를 작성합니다. (markdown 같은 것)</p>
+</li>
+</ul>
+<h3 id="rest-docs-vs-swagger">Rest Docs vs Swagger</h3>
+<p>Rest Docs와 Swagger의 장점과 단점을 비교하면 다음과 같습니다.</p>
+<blockquote>
+<p>Rest Docs</p>
+</blockquote>
+<p>장점</p>
+<ul>
+<li>
+<p><strong>테스트를 통과해야 문서가 만들어진다. (신뢰도가 높다)</strong></p>
+</li>
+<li>
+<p><strong>프로덕션 코드에 비침투적이다.</strong> (= 코드 내부에 기능과 문서가 혼합되어 있지 않아 깔끔하다)</p>
+</li>
+</ul>
+<p>단점</p>
+<ul>
+<li>
+<p>코드 양이 많다.</p>
+</li>
+<li>
+<p>설정이 어렵다.</p>
+</li>
+</ul>
+<blockquote>
+<p>Swagger</p>
+</blockquote>
+<p>장점</p>
+<ul>
+<li>
+<p>적용이 쉽다.</p>
+</li>
+<li>
+<p>문서에서 바로 API 호출을 수행해볼 수 있다.</p>
+</li>
+<li>
+<p>(UI에 대해) 알록달록하게 문서를 작성할 수 있다.</p>
+</li>
+</ul>
+<p>단점</p>
+<ul>
+<li>
+<p>프로덕션 코드에 침투적이다.</p>
+</li>
+<li>
+<p>테스트와 무관하기 때문에 신뢰도가 떨어질 수 있다. → 실제로 동작하는 것과 문서가 따로 돌 수 있다.</p>
+</li>
+</ul>
+<h2 id="spring-rest-docs-적용">Spring Rest Docs 적용</h2>
+<h3 id="개발-환경">개발 환경</h3>
+<p>현재 히빗 version2 프로젝트는 아래와 같은 기술을 사용하고 있습니다.</p>
+<p><code>Language</code> - Java 11</p>
+<p><code>Framework</code> - Spring Boot 2.7.1, Spring MVC 5.3.2</p>
+<p><code>ORM</code> - Spring Data JPA 2.7.1, JPA Hibernate 5.6.1</p>
+<p><code>Database</code> - H2, MySQL 7.4</p>
+<p><code>Build Tool</code> - Gradle 8.0</p>
+<p><code>Test</code> - Junit 5, Mockito 4.5.1</p>
+<h3 id="mockmvc-vs-rest-assured">MockMvc vs Rest Assured</h3>
+<blockquote>
+<p>Rest Assured</p>
+</blockquote>
+<p><code>Rest Assured</code> 는 별도의 구성 없이는 <code>@SpringBootTest</code>로 수행해야 합니다.
+<code>@SpringBootTest</code>는 <strong>스프링의 전체 컨텍스트를 로드하여 빈을 주입하기에 속도가 많이 느립니다.</strong></p>
+<p>즉, <code>Rest Assured</code>는 스프링 애플리케이션이 동작하는 실제 환경과 거의 동일한 환경에서 테스트를 진행할 때 사용됩니다.
+그래서 <code>@SpringBootTest</code>을 적용한 <code>RestAssured</code>는 <strong>속도가 느리고, 비용이 많이 듭니다.</strong></p>
+<blockquote>
+<p>MockMvc</p>
+</blockquote>
+<p>반면에 <code>MockMvc</code>는 <code>@SpringBootTest</code> 와 함께 사용할 수 있고, <code>@WebMvcTest</code>와 함께 사용할 수도 있습니다.
+<code>@SpringBootTest</code> 다르게 <code>@WebMvcTest</code>는 <strong>Controller Layer(=Presentation Layer) 만 테스트 하기에 속도가 빠릅니다.</strong>
+(<code>@WebMvcTest</code> 사용할 때는 보통 서비스 계층을 Mocking을 하여 작성하기 때문입니다)</p>
+<blockquote>
+<p>결론</p>
+</blockquote>
+<p>만약 통합테스트를 한다면 <code>Rest Assured</code>가 좋은 선택이지만, Spring Rest Docs로 문서를 작성하는 데에는 <code>MockMvc</code>가 더 나은 선택이라 생각하여 <code>MockMvc</code> 기반으로 진행하게 되었습니다.</p>
+<h3 id="asciidoc-vs-markdown">Asciidoc vs Markdown</h3>
+<p>저에게 익숙한 <code>Markdown</code> 이 작성하기 더 편할 수 있지만, <code>Markdown</code>으로 Rest Docs를 작성하려면 Ruby 프로젝트인 <a href="https://github.com/slatedocs/slate">slate</a>가 필요합니다. (include가 되지 않아 별도로 설치해야 합니다)</p>
+<p><code>slate</code>는 Gradle로 관리되는 프로젝트가 아니기 때문에, 해당 프로젝트를 직접 다운로드 받아서 진행해야 합니다.</p>
+<p>이는 곧, <code>slate</code>에 의존해야만 하는 구조가 되고, Ruby 의존성들이 추가로 생성되면서 빌드 시간이 전체적으로 오래 걸리게 됩니다.</p>
+<p>또한 개인적으로 <code>slate</code>로 만들어진 UI가 저에게 친숙하지 않았습니다.</p>
+<p>반면에, <code>Asciidoc</code>는 문서를 작성할 수 include 기능을 제공하며(Gradle로 관리됨), 표현할 수 있는 문법들이 많이 있습니다.</p>
+<p>그리고 UI도 <code>slate</code>에 비해 깔끔하면서 이뻤습니다.</p>
+<p>그래서 <code>Asciidoc</code>을 사용하기로 했습니다.</p>
+<h3 id="buildgradle">build.gradle</h3>
+<p><code>MockMvc</code>, <code>Asciidoc</code> 기반 Rest Docs 설정 - build.gradle</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="groovy"><code><span class="line"><span style="color:#E1E4E8">plugins {</span></span>
+<span class="line"><span style="color:#E1E4E8">    id </span><span style="color:#9ECBFF">'java'</span></span>
+<span class="line"><span style="color:#E1E4E8">    id </span><span style="color:#9ECBFF">'org.springframework.boot'</span><span style="color:#E1E4E8"> version </span><span style="color:#9ECBFF">'2.7.10'</span></span>
+<span class="line"><span style="color:#E1E4E8">    id </span><span style="color:#9ECBFF">'io.spring.dependency-management'</span><span style="color:#E1E4E8"> version </span><span style="color:#9ECBFF">'1.0.15.RELEASE'</span></span>
+<span class="line"><span style="color:#E1E4E8">    id </span><span style="color:#9ECBFF">'jacoco'</span></span>
+<span class="line"><span style="color:#E1E4E8">    id </span><span style="color:#9ECBFF">"org.asciidoctor.jvm.convert"</span><span style="color:#E1E4E8"> version </span><span style="color:#9ECBFF">"3.3.2"</span><span style="color:#6A737D"> // (1) plugin 추가</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">group </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'com'</span></span>
+<span class="line"><span style="color:#E1E4E8">version </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '0.0.1-SNAPSHOT'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">java {</span></span>
+<span class="line"><span style="color:#E1E4E8">    sourceCompatibility </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '11'</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">configurations {</span></span>
+<span class="line"><span style="color:#E1E4E8">    compileOnly {</span></span>
+<span class="line"><span style="color:#E1E4E8">        extendsFrom annotationProcessor</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    asciidoctorExt </span><span style="color:#6A737D">// (2) asciidoctor의 Extention에 대한 configuration 추가</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">repositories {</span></span>
+<span class="line"><span style="color:#E1E4E8">    mavenCentral()</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">dependencies {</span></span>
+<span class="line"><span style="color:#6A737D">    // Spring boot</span></span>
+<span class="line"><span style="color:#E1E4E8">    implementation </span><span style="color:#9ECBFF">'org.springframework.boot:spring-boot-starter-data-jpa'</span></span>
+<span class="line"><span style="color:#E1E4E8">    implementation </span><span style="color:#9ECBFF">'org.springframework.boot:spring-boot-starter-web'</span></span>
+<span class="line"><span style="color:#E1E4E8">    implementation </span><span style="color:#9ECBFF">'org.springframework.boot:spring-boot-starter-validation'</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // spring restdocs (3), (4)</span></span>
+<span class="line"><span style="color:#E1E4E8">    asciidoctorExt </span><span style="color:#9ECBFF">'org.springframework.restdocs:spring-restdocs-asciidoctor'</span></span>
+<span class="line"><span style="color:#E1E4E8">    testImplementation </span><span style="color:#9ECBFF">'org.springframework.restdocs:spring-restdocs-mockmvc'</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">ext { </span><span style="color:#6A737D">// (5) 문서 조각들에 대한 경로를 지정</span></span>
+<span class="line"><span style="color:#6A737D">    // 전역 변수</span></span>
+<span class="line"><span style="color:#E1E4E8">    snippetsDir </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> file(</span><span style="color:#9ECBFF">'build/generated-snippets'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">tasks</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">named(</span><span style="color:#9ECBFF">'bootBuildImage'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    builder </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'paketobuildpacks/builder-jammy-base:latest'</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">test {</span></span>
+<span class="line"><span style="color:#E1E4E8">    outputs</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">dir snippetsDir </span><span style="color:#6A737D">// (6) 테스트에서 테스트가 끝난 결과물을 snippetsDir 에 넣음</span></span>
+<span class="line"><span style="color:#E1E4E8">    useJUnitPlatform()</span></span>
+<span class="line"><span style="color:#E1E4E8">    finalizedBy </span><span style="color:#9ECBFF">'jacocoTestReport'</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// (7) asciidoctor 태스크에 대한 설정</span></span>
+<span class="line"><span style="color:#E1E4E8">asciidoctor {</span></span>
+<span class="line"><span style="color:#E1E4E8">    inputs</span><span style="color:#F97583">.</span><span style="color:#E1E4E8">dir snippetsDir </span><span style="color:#6A737D">// 불러올 스니펫 위치를 snippetsDir로 설정</span></span>
+<span class="line"><span style="color:#E1E4E8">    configurations </span><span style="color:#9ECBFF">'asciidoctorExt'</span><span style="color:#6A737D"> // Asciidoctor 확장에 대한 설정</span></span>
+<span class="line"><span style="color:#E1E4E8">    sources { </span><span style="color:#6A737D">// 특정 파일만 html로 만듬</span></span>
+<span class="line"><span style="color:#E1E4E8">        include(</span><span style="color:#9ECBFF">"**/index.adoc"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    baseDirFollowsSourceFile() </span><span style="color:#6A737D">// 다른 adoc 파일을 include 할 때 경로를 baseDir로 맞춤</span></span>
+<span class="line"><span style="color:#E1E4E8">    dependsOn test </span><span style="color:#6A737D">// test 태스크 이후에 asciidoctor를 실행하도록 설정</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p><code>Asciidocotor</code>는 Asci 파일을 html 파일로 변환해주는 도구 입니다.</p>
+</blockquote>
+<p>(1) AsciiDoc 파일을 컨버팅하고 Build 폴더에 복사하기 위한 플러그인을 추가합니다.</p>
+<p>(2) asciidoctor의 Extention(확장)에 대한 Configuration 구성을 추가합니다.</p>
+<p>(3) <code>asciidoctorExt</code>에 spring-restdocs-asciidoctor 의존성을 추가합니다. 이 종속성이 있어야 <code>build/generated-snippets</code> 에 있는 <code>.adoc</code> 파일을 읽어들여 <code>.html</code> 파일로 만들어낼 수 있습니다.</p>
+<p>(4) <code>MockMvc</code>를 사용하기 위한 spring-restdocs-mockmvc 의존성을 추가합니다.</p>
+<p>(5) 생성되는 스니펫들이 생성되는 디렉터리 경로를 설정합니다.</p>
+<p>(6) 테스트가 끝난 결과물을 <code>snippetsDir</code> 에 넣습니다.</p>
+<p>(7) <code>asciidoctor</code> 태스크에 대한 설정을 합니다.</p>
+<hr>
+<blockquote>
+<p>Preference - Plugins - <code>AsciiDoc</code> 설치</p>
+</blockquote>
+<p><img src="/assets/img/server/hibit/spring-rest-docs-plugin-ascii.png" alt=""></p>
+<h3 id="예제테스트-코드-작성">예제(테스트 코드 작성)</h3>
+<blockquote>
+<p>ControllerTestSupport</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">AutoConfigureRestDocs</span><span style="color:#6A737D"> // (1)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">WebMvcTest</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">controllers</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        MemberController.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">        AuthController.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">        ProfileController.class,</span></span>
+<span class="line"><span style="color:#E1E4E8">        PostController.class</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Import</span><span style="color:#E1E4E8">(ExternalApiConfig.class)</span></span>
+<span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">ActiveProfiles</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"test"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> abstract</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ControllerTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> MockMvc mockMvc;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Autowired</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> ObjectMapper objectMapper;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // ...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">MockBean</span></span>
+<span class="line"><span style="color:#F97583">    protected</span><span style="color:#E1E4E8"> PostService postService; </span><span style="color:#6A737D">// (2)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<blockquote>
+<p>PostControllerTest</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PostControllerTest</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> ControllerTestSupport</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String AUTHORIZATION_HEADER_NAME </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "Authorization"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String AUTHORIZATION_HEADER_VALUE </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "Bearer aaaaaaaa.bbbbbbbb.cccccccc"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">DisplayName</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"등록된 게시글을 모두 조회한다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Test</span></span>
+<span class="line"><span style="color:#F97583">    void</span><span style="color:#B392F0"> 등록된_게시글을_모두_조회한다</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
+<span class="line"><span style="color:#6A737D">        // given</span></span>
+<span class="line"><span style="color:#E1E4E8">        Member 팬시 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> 팬시();</span></span>
+<span class="line"><span style="color:#E1E4E8">        팬시 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> memberRepository.</span><span style="color:#B392F0">save</span><span style="color:#E1E4E8">(팬시);</span></span>
+<span class="line"><span style="color:#E1E4E8">        List</span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8">Post</span><span style="color:#F97583">></span><span style="color:#E1E4E8"> 게시글_목록 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> List.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(프로젝트</span><span style="color:#B392F0">_해시테크</span><span style="color:#E1E4E8">(팬시), 오스틴리</span><span style="color:#B392F0">_전시회</span><span style="color:#E1E4E8">(팬시));</span></span>
+<span class="line"><span style="color:#E1E4E8">        PostsResponse response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> PostsResponse.</span><span style="color:#B392F0">of</span><span style="color:#E1E4E8">(게시글_목록);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">        given</span><span style="color:#E1E4E8">(postService.</span><span style="color:#B392F0">findAll</span><span style="color:#E1E4E8">()).</span><span style="color:#B392F0">willReturn</span><span style="color:#E1E4E8">(response); </span><span style="color:#6A737D">// (3)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">        // when &#x26; then</span></span>
+<span class="line"><span style="color:#E1E4E8">        mockMvc.</span><span style="color:#B392F0">perform</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/posts"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                        .</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(AUTHORIZATION_HEADER_NAME, AUTHORIZATION_HEADER_VALUE)</span></span>
+<span class="line"><span style="color:#E1E4E8">                        .</span><span style="color:#B392F0">accept</span><span style="color:#E1E4E8">(MediaType.APPLICATION_JSON)</span></span>
+<span class="line"><span style="color:#E1E4E8">                        .</span><span style="color:#B392F0">contentType</span><span style="color:#E1E4E8">(MediaType.APPLICATION_JSON))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">andDo</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">print</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">andDo</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">document</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"posts/find/all/success"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">                        preprocessRequest</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">prettyPrint</span><span style="color:#E1E4E8">()),</span></span>
+<span class="line"><span style="color:#B392F0">                        preprocessResponse</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">prettyPrint</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">                ))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">andExpect</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">isOk</span><span style="color:#E1E4E8">()); </span><span style="color:#6A737D">// (4)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>(1) <code>@AutoConfigureRestDocs</code> 어노테이션은 Spring REST Docs를 자동 구성해주는 어노테이션입니다. 이를 적용하게 되면 테스트 케이스 실행시 자동으로 API 문서가 생성됩니다.</p>
+<ul>
+<li><code>@AutoConfigureRestDocs</code> 에 uri 정보가 선언되어 있으면 적용하고, 없으면 기본 설정값으로 적용</li>
+</ul>
+<p>(2) <code>PostService</code>의 구현체를 mocking하기 위해 <code>@MockBean</code>을 선언합니다.</p>
+<p>(3) 테스트에서 given 메소드를 사용하여 <code>postService.findAll()</code> 메소드 호출 시 <code>PostsResponse</code> 객체를 반환하도록 설정합니다.</p>
+<p>(4) 테스트에서 <code>mockMvc.perform()</code> 메소드를 사용하여 실제 HTTP 요청을 모의로 실행하고, 그 결과를 검증합니다. document 메소드를 통해 요청과 응답을 문서화합니다.</p>
+<p>이러한 과정을 통해 Spring REST Docs를 활용하여 API 문서를 생성할 수 있습니다.</p>
+<h3 id="확인---결과">확인 -> 결과</h3>
+<p>오른쪽 Gradle - Tasks - documentation - asciidoctor 실행하면 성공이 되고,</p>
+<p><img src="/assets/img/server/hibit/hibit-spring-rest-docs-1.png" alt=""></p>
+<p>build 안에 <code>posts</code> 폴더가 생기고, <code>find/all/success</code> 폴더 안에 문서 조각들이 생깁니다.</p>
+<p><img src="/assets/img/server/hibit/hibit-spring-rest-docs-2.png" alt=""></p>
+<p>이 다음에 해야할 작업은 문서 조각을 하나로 합쳐서 <strong>하나의 문서</strong>로 만드는 작업 입니다.</p>
+<p>src 폴더 하위에 docs 라는 폴더를 만든 뒤, 그 안에 asciidoc 폴더를 생성한 뒤에 <code>index.adoc</code> 이라는 파일을 만듭니다.</p>
+<p><img src="/assets/img/server/hibit/hibit-spring-rest-docs-3.png" alt=""></p>
+<p><code>index.adoc</code> 파일 안에 아래와 같이 작성하면 미리보기를 통해 확인할 수 있습니다.</p>
+<p><img src="/assets/img/server/hibit/hibit-spring-rest-docs-4.png" alt=""></p>
+<p>오른쪽 Gradle - build (또는 documentation - asciidoctor)를 눌러주면, 왼쪽 docs 폴더 - asciidoc 폴더 안에 <code>index.html</code> 파일이 생성됩니다.</p>
+<p><img src="/assets/img/server/hibit/hibit-spring-rest-docs-5.png" alt=""></p>
+<p>그리고 Chrome 창으로 열어보면 아래와 같이 API 문서가 나오게 됩니다.</p>
+<p><img src="/assets/img/server/hibit/hibit-spring-rest-docs-6.png" alt=""></p>
+<h2 id="마무리">마무리</h2>
+<p>Spring Rest Docs를 Hibit version2 프로젝트에 통합하는 과정을 통해, 초기 설정부터 실제 적용까지의 단계를 체계적으로 이해하게 되었습니다.</p>
+<p>이 과정에서 Asciidoc 문법의 기초를 배웠음에도 불구하고, 아직 배워야 할 내용이 많다는 것을 깨달았습니다.</p>
+<p>앞으로는 Spring Rest Docs의 활용 방법에 대해 더욱 개방적인 태도로 접근하며, 이를 통해 지식을 확장하고 실무 경험을 축적해 나가겠습니다.</p>
+<blockquote>
+<p>해당 부분에 대한 코드는 <a href="https://github.com/hibit-team/hibit-backend-improved/pull/57">Github(PR)</a> 에서 확인할 수 있습니다.</p>
+</blockquote>
+<p>지금까지 읽어주셔서 감사합니다.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://www.inflearn.com/course/practical-testing-%EC%8B%A4%EC%9A%A9%EC%A0%81%EC%9D%B8-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EA%B0%80%EC%9D%B4%EB%93%9C">Practical Testing: 실용적인 테스트 가이드</a></p>
+</li>
+<li>
+<p><a href="https://techblog.woowahan.com/2597/">Spring Rest Docs 적용</a></p>
+</li>
+<li>
+<p><a href="https://hudi.blog/spring-rest-docs/">Spring REST Docs를 사용한 API 문서 자동화</a></p>
+</li>
+<li>
+<p><a href="https://jojoldu.tistory.com/289">Spring Rest Docs를 Markdown으로 작성하기</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Hibit-Spring-Rest-Docs" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kafka-dlq/" class="link-title leading-snug">시스템 장애를 처리하기 위해 재처리 및 DLQ 적용하기</a><time datetime="2026-01-06" class="mt-1.5 block text-sm text-muted">2026-01-06</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-coupon-system-performance-improvement/" class="link-title leading-snug">AWS EC2 기반 부하 테스트를 진행하며 시스템 아키텍처 및 성능 개선하기</a><time datetime="2025-12-30" class="mt-1.5 block text-sm text-muted">2025-12-30</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/spring-boot-kotlin-external-api-circuit-breaker/" class="link-title leading-snug">외부 시스템과의 연동 시 발생하는 장애를 격리하기 위해 서킷 브레이커 적용하기</a><time datetime="2025-12-12" class="mt-1.5 block text-sm text-muted">2025-12-12</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#전환하는-이유" data-toc="전환하는-이유" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">전환하는 이유</a></li><li><a href="#spring-rest-docs-개념" data-toc="spring-rest-docs-개념" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Spring Rest Docs 개념</a></li><li><a href="#rest-docs-vs-swagger" data-toc="rest-docs-vs-swagger" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Rest Docs vs Swagger</a></li><li><a href="#spring-rest-docs-적용" data-toc="spring-rest-docs-적용" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Spring Rest Docs 적용</a></li><li><a href="#개발-환경" data-toc="개발-환경" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">개발 환경</a></li><li><a href="#mockmvc-vs-rest-assured" data-toc="mockmvc-vs-rest-assured" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">MockMvc vs Rest Assured</a></li><li><a href="#asciidoc-vs-markdown" data-toc="asciidoc-vs-markdown" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">Asciidoc vs Markdown</a></li><li><a href="#buildgradle" data-toc="buildgradle" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">build.gradle</a></li><li><a href="#예제테스트-코드-작성" data-toc="예제테스트-코드-작성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">예제(테스트 코드 작성)</a></li><li><a href="#확인---결과" data-toc="확인---결과" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">확인 -&gt; 결과</a></li><li><a href="#마무리" data-toc="마무리" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">마무리</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>

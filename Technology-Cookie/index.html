@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>쿠키와 세션 | devfancy</title><meta name="description" content="백엔드 개발자 문준용의 기록"><link rel="canonical" href="https://devfancy.github.io/Technology-Cookie/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)"><script async src="https://www.googletagmanager.com/gtag/js?id=G-7BMWW1711K"></script><script>(function(){const id = "G-7BMWW1711K";
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', id);
+        })();</script><script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('theme');
+          const dark = saved ? saved === 'dark'
+            : matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.dataset.theme = 'dark';
+        } catch {}
+      })();
+    </script><link rel="stylesheet" href="/_astro/Base.CdHty9Xs.css"><style>#toc-rail[data-astro-cid-g5songws]{opacity:0;transition:opacity .35s,transform .35s;transform:translateY(6px)}#toc-rail[data-astro-cid-g5songws].is-on{opacity:1;transform:none}@media (prefers-reduced-motion:reduce){#toc-rail[data-astro-cid-g5songws]{transition:none}}
+</style></head><body class="flex min-h-[100dvh] flex-col"><header id="site-header" class="site-header" data-astro-cid-nen7h5rs><div class="shell flex items-center gap-x-1 py-4 sm:gap-x-5" data-astro-cid-nen7h5rs><a href="/" data-logo class="text-xl font-extrabold tracking-tight lowercase sm:text-2xl" data-astro-cid-nen7h5rs>devfancy</a><nav class="ml-auto hidden gap-5 text-base whitespace-nowrap sm:flex" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a><a href="/category/" data-astro-cid-nen7h5rs>Categories</a><a href="/about/" data-astro-cid-nen7h5rs>About</a></nav><button id="theme-toggle" type="button" aria-label="테마 전환" class="ml-auto inline-flex size-11 items-center justify-center rounded-full sm:ml-0" data-astro-cid-nen7h5rs><svg data-icon="sun" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-nen7h5rs></path></svg><svg data-icon="moon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-nen7h5rs><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-nen7h5rs></path></svg></button><button id="menu-toggle" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="menu-panel" class="inline-flex size-11 items-center justify-center rounded-full sm:hidden" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-nen7h5rs><path class="bar bar-top" d="M4 7h16" data-astro-cid-nen7h5rs></path><path class="bar bar-mid" d="M4 12h16" data-astro-cid-nen7h5rs></path><path class="bar bar-bot" d="M4 17h16" data-astro-cid-nen7h5rs></path></svg></button></div><nav id="menu-panel" class="sm:hidden" hidden data-astro-cid-nen7h5rs><ul class="shell pb-2" data-astro-cid-nen7h5rs><li style="--i:0" data-astro-cid-nen7h5rs><a href="/archive/" data-astro-cid-nen7h5rs>Archives</a></li><li style="--i:1" data-astro-cid-nen7h5rs><a href="/category/" data-astro-cid-nen7h5rs>Categories</a></li><li style="--i:2" data-astro-cid-nen7h5rs><a href="/about/" data-astro-cid-nen7h5rs>About</a></li></ul></nav></header><script type="module">var e=document.getElementById(`menu-toggle`),t=document.getElementById(`menu-panel`);if(e&&t){t.hidden=!1;let n=n=>{e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`is-open`,n)};e.addEventListener(`click`,()=>{n(e.getAttribute(`aria-expanded`)!==`true`)}),document.addEventListener(`click`,e=>{e.target.closest(`#site-header`)||n(!1)}),addEventListener(`keydown`,e=>{e.key===`Escape`&&n(!1)}),matchMedia(`(min-width: 640px)`).addEventListener(`change`,e=>{e.matches&&n(!1)})}document.getElementById(`theme-toggle`)?.addEventListener(`click`,()=>{let e=document.documentElement,t=e.dataset.theme===`dark`;t?delete e.dataset.theme:e.dataset.theme=`dark`;try{localStorage.setItem(`theme`,t?`light`:`dark`)}catch{}});var n=document.getElementById(`site-header`);if(n?.classList.contains(`is-overlay`)){let e=!1,t=()=>{e=!1,n.classList.toggle(`is-solid`,scrollY>8)},r=()=>{e||(e=!0,requestAnimationFrame(t))};t(),addEventListener(`scroll`,r,{passive:!0}),addEventListener(`resize`,r)}</script><main class="w-full flex-1 pt-[4.6rem]"><div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 pb-10 lg:grid-cols-[minmax(0,1fr)_15rem] pt-10" data-astro-cid-g5songws><article class="min-w-0 lg:ml-auto lg:max-w-3xl" data-astro-cid-g5songws><div data-astro-cid-g5songws><p class="mb-3 flex flex-wrap gap-x-3 text-sm font-semibold tracking-[.06em] text-accent" data-astro-cid-g5songws><a href="/category/#CS" class="hover:underline" data-astro-cid-g5songws>CS</a></p><h1 class="text-[26px] leading-snug text-balance sm:text-4xl" data-astro-cid-g5songws>쿠키와 세션</h1><div class="mt-4 flex flex-wrap items-center gap-2" data-astro-cid-g5songws><time datetime="2023-10-24" class="mr-1 text-sm text-muted" data-astro-cid-g5songws>2023-10-24</time><a href="/category/#%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC" class="chip chip-tag">#네트워크</a></div><p class="view-count text-sm text-muted">조회수 39회</p></div><div class="prose mt-10" data-astro-cid-g5songws><h2 id="쿠키를-사용하게-된-배경">쿠키를 사용하게 된 배경</h2>
+<ul>
+<li>
+<p>HTTP 주요 특징은 <strong>무상태성</strong>과, <strong>비연결성</strong>이다.</p>
+</li>
+<li>
+<p><code>무상태성</code>은 서버가 클라이언트의 상태를 보존하지 않는다는 것을 의미하고, <code>비연결성</code>은 말 그대로 연결을 유지하지 않는다는 것을 의미한다.</p>
+</li>
+<li>
+<p>두가지 특징에 대한 자세한 설명은 <a href="https://devfancy.github.io/HTTP-1-Basic/">HTTP 기본</a>에 작성해두었다.</p>
+</li>
+<li>
+<p>예를 들어, 홈페이지에서 로그인을 하고 난 뒤에 <strong>새로 고침을 하게 되면 로그인이 풀리는 상태</strong>가 된다.</p>
+</li>
+<li>
+<p>로그인을 유지하기 위해서 서버가 다수의 클라이언트와 연결을 유지할 수 있지만, 그로 인해 <strong>자원이 낭비가 된다</strong>.</p>
+</li>
+<li>
+<p>이러한 HTTP의 2가지 특징을 보완하기 위해 <code>쿠키</code>가 등장하게 되었다.</p>
+</li>
+</ul>
+<h2 id="쿠키cookie">쿠키(Cookie)</h2>
+<ul>
+<li><code>쿠키</code>(Cookie)는 사용자(클라이언트)가 어떤 웹 사이트를 방문할 때, 사용자의 <strong>웹 브라우저</strong>를 통해 사용자 로컬에 <strong>키(Key)와 값(Value)</strong> 을 저장하는 <strong>작은 데이터 파일</strong>이다.</li>
+</ul>
+<p><img src="/assets/img/cs/network/network-cookie-and-session-1.png" alt=""></p>
+<ul>
+<li>
+<p>서버는 클라이언트의 로그인 요청에 대한 응답을 작성할 때, 클라이언트 측에 저장하고 싶은 정보를 <strong>응답 헤더의 <code>Set-Cookie</code>에 담아 전달</strong>한다.</p>
+</li>
+<li>
+<p>이후 해당 클라이언트는 요청을 보낼 때마다 요청 헤더에 <code>Cookie</code>를 담아 전송한다.</p>
+</li>
+<li>
+<p>쿠키에 담긴 정보를 통해 서버는 해당 요청의 클라이언트가 누구인지 식별한다.</p>
+</li>
+</ul>
+<h3 id="쿠키의-타입">쿠키의 타입</h3>
+<ul>
+<li>
+<p>쿠키는 <code>세션 쿠키</code>와 <code>지속 쿠키</code>, 두 가지 타입으로 나뉜다.</p>
+</li>
+<li>
+<p><code>세션 쿠키</code>(Session Cookie) : 브라우저 메모리에 저장되므로, 사용자가 사이트를 검색할 때 관련된 설정과 선호 사항들을 저장하는 임시 쿠키로 브라우저를 종료하면 해당정보가 삭제된다.</p>
+</li>
+<li>
+<p><code>지속 쿠키</code>(Persistent Cookie) : 파일로 저장되므로, 브라우저가 종료되거나 컴퓨터가 재시작되어도 해당정보가 남아있다.</p>
+</li>
+<li>
+<p>두 가지 쿠키를 구분하는 기준은 <strong>파기되는 시점</strong>이다. 파기되는 시점을 가리키는 <code>Expires</code> 혹은 <code>Max-Age</code> 파라미터가 없으면 <strong>세션 쿠키</strong>이다.</p>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Set-Cookie: &#x3C;쿠키 이름>=&#x3C;쿠키 값>; Expires=종료 시점</span></span>
+<span class="line"><span>Set-Cookie: &#x3C;쿠키 이름>=&#x3C;쿠키 값>; Max-Age=유효 기간</span></span></code></pre>
+<h3 id="쿠키의-단점">쿠키의 단점</h3>
+<p>쿠키가 브라우저, 즉 클라이언트 측에 저장된다라는 것은 상당히 널리 알려진 사실이다. 이 부분은 쿠키가 탄생하게 된 중요한 배경이며, 안타깝게도 갖가지 이슈가 존재한다.</p>
+<p>따라서 쿠키를 사용할 때는 아래와 같은 쿠키의 한계점들을 잘 인지하고 사용하는 것이 중요하다.</p>
+<ul>
+<li>
+<p>쿠키의 값이 <strong>브라우저에서 확인</strong>할 수 있어서 누군가로부터 유출 및 조작 당할 위험이 존재하므로 <strong>보안에 취약</strong>하다.</p>
+</li>
+<li>
+<p>쿠키는 작은 데이터 파일로, <strong>용량에 제한</strong>이 있기 때문에 많은 정보를 담을 수 없다.</p>
+</li>
+<li>
+<p>웹 브라우저마다 쿠기에 대한 지원 형식이 다르기 때문에 <strong>브라우저 간에 공유가 불가능</strong>하다.</p>
+</li>
+<li>
+<p>쿠기의 사이즈가 커질수록 네트워크에 부하가 심해진다.</p>
+</li>
+</ul>
+<h3 id="쿠키의-보안-속성">쿠키의 보안 속성</h3>
+<p>이러한 쿠키의 한계와 대체 기술에도 불구하고 반드시 쿠키를 사용해야 하는 상황이라면 가급적 보안 속성을 사용하시기를 권장한다.</p>
+<ul>
+<li>첫번째 보안 속성은 <code>Secure</code> 이다. <code>Set-Cookie</code> 응답 헤더에 이 속성이 명시된 쿠키는 브라우저가 <code>https</code> 프로토콜 상에서만 서버로 돌려 보낸다. 네트워크 상에서 탈취되었을 때 문제가 될 수 있는 쿠키를 상대로 쓰면 유용할 것이다.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Set-Cookie: &#x3C;쿠키 이름>=&#x3C;쿠키 값>; Secure</span></span></code></pre>
+<ul>
+<li>두번째 보안 속성은 <code>HttpOnly</code>이다.
+<code>Set-Cookie</code> 응답 헤더에 이 속성이 명시된 쿠키는 이 속성이 명시된 쿠키는 브라우저에서 <strong>자바스크립트로 <code>Document.cookie</code>객체를 통해 접근할 수 없다.</strong></li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Set-Cookie: &#x3C;쿠키 이름>=&#x3C;쿠키 값>; HttpOnly</span></span></code></pre>
+<h2 id="세션session">세션(Session)</h2>
+<ul>
+<li>
+<p>쿠키는 브라우저에 저장하기 때문에 보안에 취약하는 단점이 있다.</p>
+</li>
+<li>
+<p>쿠키의 가장 큰 단점인 유출 및 조작 당할 위험을 보완하기 위해 <code>세션</code>을 사용한다.</p>
+</li>
+<li>
+<p>세션은 비밀번호와 같은 <strong>클라이언트의 인증 정보</strong>를 쿠키가 아닌 <strong>서버에 저장하고 관리</strong>한다.</p>
+</li>
+<li>
+<p>클라이언트가 서버측에 요청을 보내면, 해당 서버의 엔진이 클라이언트에게 <strong>유일한 ID</strong>를 부여하는데, 이때 이 유일한 ID가 <code>세션ID</code>이다.</p>
+</li>
+</ul>
+<p><img src="/assets/img/cs/network/network-cookie-and-session-2.png" alt=""></p>
+<ol>
+<li>클라이언트가 서버에게 로그인 요청(ID, Password)을 보낸다.</li>
+<li>서버는 로그인 요청이 정상적으로 처리된다면, 유일한 ID인 <code>세션ID</code>을 생성하여 서버의 메모리에 저장한다.</li>
+<li>서버가 클라이언트의 로그인 요청에 대한 응답을 보낼 때 이전에 생성한 <code>세션ID</code>를 쿠키에 담아서 전달한다.</li>
+<li>이후에 클라이언트는 요청을 보낼 때마다 쿠키에 있는 <code>세션ID</code>를 전달한다.</li>
+<li>서버는 <code>세션ID</code>의 유효성을 판별하여 클라이언트를 식별한다.</li>
+<li>사용자가 브라우저를 종료하면 Session의 정보는 삭제된다.</li>
+</ol>
+<h2 id="세션의-장단점">세션의 장단점</h2>
+<ul>
+<li>
+<p>장점1 : 쿠키를 포함한 요청이 외부에 노출되더라도 세션ID 자체는 유의미한 개인정보를 담고 있지 않아서 비교적 안전하다.</p>
+</li>
+<li>
+<p>단점1 : 하지만 누군가가 중간에 세션ID를 탈취해서 클라이언트인척 위장할 수 있다는 한계는 존재한다.</p>
+</li>
+<li>
+<p>장점2 : 각 사용자마다 유일한 ID인 세션ID가 발급되므로, 요청이 들어올 때마다 회원 정보를 확인할 필요가 없다.</p>
+</li>
+<li>
+<p>단점2 : 클라이언트의 인증 정보가 서버에 메모리에 저장되므로 클라이언트의 요청이 많아지면 서버에 부하가 심해진다.</p>
+</li>
+</ul>
+<h2 id="쿠키와-세션의-차이">쿠키와 세션의 차이</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>쿠키</th><th>세션</th></tr></thead><tbody><tr><td>저장위치</td><td>쿠키는 브라우저에 메모리 또는 파일로 저장된다</td><td>세션은 서버의 메모리에 저장된다</td></tr><tr><td>보안</td><td>쿠키는 브라우저에서 확인할 수 있으므로 유출 및 조작 당할 위험이 존재한다</td><td>세션은 클라이언트 정보가 서버의 메모리에 저장되므로 비교적 안전하다</td></tr><tr><td>라이프 사이클</td><td>쿠키는 파일로 저장될 때 브라우저가 종료되어도 정보가 남아있다</td><td>세션은 서버의 만료시간/날짜가 지나면 사라지거나 브라우저 종료시 세션ID가 사라진다</td></tr><tr><td>속도</td><td>쿠키에 정보가 있기 때문에 서버에 요청시 속도가 빠르다</td><td>세션은 서버의 메모리로부터 세션ID를 조회해야 하므로 속도가 쿠키보다 비교적 느리다</td></tr></tbody></table>
+<blockquote>
+<p>세션을 주로 사용하면 좋은데, 왜 굳이 쿠키를 사용하는 이유는?</p>
+</blockquote>
+<p>세션은 브라우저가 아닌 서버에 데이터를 저장하므로, 서버의 메모리를 계속 사용하면 <strong>속도 저하</strong>가 올 수 있기 때문이다.</p>
+<blockquote>
+<p>웹 개발에서 쿠키를 사용할 수 밖에 없는 결정적인 이유</p>
+</blockquote>
+<p>HTTP 프로토콜은 서버가 클라이언트의 상태를 보존하지 않는 무상태성과 연결을 유지시키지 않는 비연결성 특징을 가지고 있다.</p>
+<p>즉, 서버가 클라이언트의 요청에 응답을 하는 순간 HTTP 연결은 끊어지며, 클라이언트에서 새로운 요청을 해야 다시 HTTP 연결이 맺어지게 된다.</p>
+<p>간단한 웹사이트가 아닌 이상 대부분의 서비스에서는 하나의 브라우저로 부터 순차적으로 들어오는 여러 개의 요청이 동일한 사용자로 부터 오는 것이라는 것을 알아야 한다.</p>
+<p><strong>클라이언트와 연결이 유지되지 않는 상황에서 동시에 서버로 유입되는 수많은 요청이 각각 어느 사용자의 것인지 판단하는 것은 서버 입장에서 매우 힘든 일</strong>이다.</p>
+<p>여기서 쿠키의 지속성이 빛을 발휘하게 된다.</p>
+<p>바로 <strong>서버가 쿠키를 한 번 브라우저에 저장하면 브라우저는 해당 쿠키를 매 요청마다 계속해서 서버로 돌려 보낸다는 것</strong>이다.
+다시 말해 서버가 브라우저에 쿠키 하나만 심어 놓으면 그 후로 브라우저는 성실하게 매번 서버를 방문할 때 마다 해당 쿠키를 다시 가져온다.</p>
+<p>이러한 쿠키의 특성을 활용하면 서버는 각 요청이 어느 브라우저에서 오는 것인지 어렵지 않게 판단할 수 있다.</p>
+<p>예를 들어, 사용자가 서비스에 최초로 접속했을 때 서버가 브라우저에게 <code>a=1</code> 쿠키를 저장하라고 시키면,</p>
+<p>HTTP 요청</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>GET /index.html HTTP/1.1</span></span>
+<span class="line"><span>Host: www.test.com</span></span></code></pre>
+<p>HTTP 응답</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>HTTP/1.1 200 OK</span></span>
+<span class="line"><span>Content-Type: text/html</span></span>
+<span class="line"><span>Set-Cookie: a=1</span></span></code></pre>
+<p>해당 브라우저는 사용자가 <code>www.test.com</code> 이라는 도메인에 머무는 한 <code>/index.html</code>을 방문하든 <code>/about.html</code>을 방문하든 <code>/contact.html</code>을 방문하든 매번 같은 쿠키를 돌려준다.</p>
+<p>그러므로 서버 입장에서는 <code>a=1</code> 쿠키를 들고 들어오는 요청은 모두 이 브라우저로 부터 오는 것이구나라고 쉽게 알 수 있다.</p>
+<p>(물론 다른 브라우저에게 <code>a=1</code> 대신에 <code>a=2</code>, <code>a=3</code>와 같은 다른 쿠키를 응답해줘야 한다)</p>
+<h2 id="쿠키와-캐시의-차이">쿠키와 캐시의 차이</h2>
+<ul>
+<li>
+<p>쿠키는 <strong>사용자를 식별하고 세션을 유지하는 방식</strong> 중에서 현재까지 널리 사용하는 방식이다.</p>
+</li>
+<li>
+<p>쿠키는 <strong>캐시와 충돌할 우려</strong>가 있으므로 대부분의 캐시나 브라우저는 쿠키에 있는 정보를 캐싱하지 않는다.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th>쿠키</th><th>캐시</th></tr></thead><tbody><tr><td>정의</td><td>쿠키는 정보를 저장하기 위해 사용된다. 기본적으로 웹서버에서 PC로 보내는 작은 파일들을 저장한다. 보통 쿠키는 누군가 특정한 웹 사이트를 접속할 때 발생한다.</td><td>캐시 또한 웹 페이지 요소를 저장하기 위한 임시 저장소이다. 특히, 나중에 필요할 것 같은 요소들을 저장한다.이러한 요소들은 그림 파일이나 문서 파일 등이 될 수 있다.</td></tr><tr><td>목적</td><td>쿠키는 사용자의 인증을 도와준다.</td><td>캐시는 웹 페이지가 빠르게 렌더링 할 수 있도록 도와준다.</td></tr><tr><td>삭제</td><td>쿠키는 만료기간이 있어 시간이 지나면 자동삭제 된다.</td><td>캐시는 사용자가 직접 수동으로 삭제해주어야한다.</td></tr><tr><td>예시</td><td>유저의 선호도(로그인 정보, 방문기록, 방문횟수)</td><td>오디오, 비디오 파일</td></tr></tbody></table>
+<h2 id="예상-질문">예상 질문</h2>
+<ul>
+<li>
+<p>쿠키를 사용하게게 된 배경은 무엇인가요?</p>
+</li>
+<li>
+<p>쿠키의 보안 속성에 대해 설명해 주세요.</p>
+</li>
+<li>
+<p>세션 방식의 로그인 과정에 대해 설명해 주세요.</p>
+</li>
+<li>
+<p>쿠키와 세션과의 차이점은 무엇인가요?</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="https://github.com/devfancy/2023-CS-Study/blob/main/Network/network_cookie_and_session.md">2023-CS-Study : 쿠키와 세션</a></p>
+</li>
+<li>
+<p><a href="https://jeong-pro.tistory.com/80">Web - 쿠키와 세션의 차이, 용도, 사용법</a></p>
+</li>
+<li>
+<p><a href="http://www.yes24.com/Product/Goods/15381085">HTTP 완벽 가이드 - 11장 클라이언트 식별과 쿠키</a></p>
+</li>
+<li>
+<p><a href="https://www.daleseo.com/http-cookies/">쿠키 1부: HTTP로 설명하는 쿠키(cookie)</a></p>
+</li>
+<li>
+<p><a href="https://www.daleseo.com/http-session/">쿠키 2부: 세션은 쿠키가 필요해~</a></p>
+</li>
+</ul></div><div class="like-row"><button type="button" class="like" data-slug="Technology-Cookie" data-db="https://devfancy-f3614-default-rtdb.asia-southeast1.firebasedatabase.app" data-count="0" aria-pressed="false" aria-label="이 글이 좋았어요"><svg class="like-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg><span class="like-count"><span class="like-num">0</span></span></button></div><script type="module">var e=document.querySelector(`.like`);if(e){let t=e.dataset.slug??``,n=`${e.dataset.db??``}/likes/${encodeURIComponent(t)}.json`,r=`liked:${t}`,i=e.querySelector(`.like-count`),a=e.querySelector(`.like-num`),o=e.querySelector(`.like-icon`),s=t=>{a&&(a.textContent=String(t)),e.dataset.count=String(t),e.setAttribute(`aria-label`,t===0?`이 글이 좋았어요`:`이 글이 좋았어요. 지금까지 ${t}명`)},c=!1;try{c=localStorage.getItem(r)===`1`}catch{}e.setAttribute(`aria-pressed`,String(c)),fetch(n).then(e=>e.ok?e.json():0).then(e=>s(typeof e==`number`?e:0)).catch(()=>s(0)),e.addEventListener(`animationend`,t=>{t.target===o&&e.classList.remove(`is-on`),t.target===a&&i?.classList.remove(`is-rolling`)});let l=!1;e.addEventListener(`click`,async()=>{if(l)return;l=!0;let t=e.getAttribute(`aria-pressed`)===`true`,o=Number(a?.textContent??0),c=t?-1:1;e.setAttribute(`aria-pressed`,String(!t)),s(Math.max(0,o+c));try{t?localStorage.removeItem(r):localStorage.setItem(r,`1`)}catch{}t||(e.classList.remove(`is-on`),i?.classList.remove(`is-rolling`),e.offsetWidth,e.classList.add(`is-on`),i?.classList.add(`is-rolling`));try{let e=await fetch(n,{method:`PUT`,body:JSON.stringify({".sv":{increment:c}})});if(!e.ok)throw Error(String(e.status));let t=await e.json();typeof t==`number`&&s(t)}catch{e.setAttribute(`aria-pressed`,String(t)),s(o);try{t?localStorage.setItem(r,`1`):localStorage.removeItem(r)}catch{}}finally{l=!1}})}</script><section class="mt-16 border-t border-rule pt-8"><h2 id="recommend" class="text-[25px] leading-snug font-medium">Recommend</h2><ul class="mt-4"><li class="border-b border-rule py-4 first:border-t"><a href="/Technology-HTTPS/" class="link-title leading-snug">왜 HTTPS를 사용하나요?</a><time datetime="2023-11-14" class="mt-1.5 block text-sm text-muted">2023-11-14</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/DB-Normalization/" class="link-title leading-snug">[데이터베이스개론] 정규화 과정</a><time datetime="2023-11-13" class="mt-1.5 block text-sm text-muted">2023-11-13</time></li><li class="border-b border-rule py-4 first:border-t"><a href="/Priority-Queue/" class="link-title leading-snug">우선순위 큐(Priority Queue) 개념 및 사용법 정리</a><time datetime="2023-11-04" class="mt-1.5 block text-sm text-muted">2023-11-04</time></li></ul></section></article><aside id="toc-rail" class="hidden lg:block" data-astro-cid-g5songws><div class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto" data-astro-cid-g5songws><nav aria-label="목차" class="text-[15px]"><p class="mb-3 text-sm font-semibold tracking-wide text-muted">목차</p><ul class="space-y-1 border-l border-rule"><li><a href="#쿠키를-사용하게-된-배경" data-toc="쿠키를-사용하게-된-배경" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">쿠키를 사용하게 된 배경</a></li><li><a href="#쿠키cookie" data-toc="쿠키cookie" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">쿠키(Cookie)</a></li><li><a href="#쿠키의-타입" data-toc="쿠키의-타입" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">쿠키의 타입</a></li><li><a href="#쿠키의-단점" data-toc="쿠키의-단점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">쿠키의 단점</a></li><li><a href="#쿠키의-보안-속성" data-toc="쿠키의-보안-속성" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-6">쿠키의 보안 속성</a></li><li><a href="#세션session" data-toc="세션session" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">세션(Session)</a></li><li><a href="#세션의-장단점" data-toc="세션의-장단점" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">세션의 장단점</a></li><li><a href="#쿠키와-세션의-차이" data-toc="쿠키와-세션의-차이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">쿠키와 세션의 차이</a></li><li><a href="#쿠키와-캐시의-차이" data-toc="쿠키와-캐시의-차이" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">쿠키와 캐시의 차이</a></li><li><a href="#예상-질문" data-toc="예상-질문" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">예상 질문</a></li><li><a href="#reference" data-toc="reference" class="-ml-px block border-l-2 border-transparent py-1 leading-snug text-muted hover:border-rule hover:text-accent pl-3">Reference</a></li></ul></nav><script type="module">var e=[...document.querySelectorAll(`[data-toc]`)],t=e.map(e=>document.getElementById(e.dataset.toc??``));if(e.length){let n=[`border-accent`,`text-accent`],r=!1,i=()=>{r=!1;let i=-1;for(let e=0;e<t.length;e++){let n=t[e];if(n&&n.getBoundingClientRect().top<=96)i=e;else break}e.forEach((e,t)=>{for(let r of n)e.classList.toggle(r,t===i)})},a=()=>{r||(r=!0,requestAnimationFrame(i))};i(),addEventListener(`scroll`,a,{passive:!0}),addEventListener(`resize`,a)}</script></div></aside></div><script type="module">var e=document.getElementById(`toc-rail`);if(e){let t=!1,n=()=>{t=!1,e.classList.toggle(`is-on`,scrollY>240)};n(),addEventListener(`scroll`,()=>{t||(t=!0,requestAnimationFrame(n))},{passive:!0})}</script></main><footer class="mt-auto border-t border-rule"><div class="shell py-8 text-sm text-muted"><p class="mt-1">© 2026 devfancy</p><div class="mt-4"><ul class="flex items-center gap-2"><li><a href="https://github.com/devFancy" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.94 9.94 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg></a></li><li><a href="mailto:fancy.junyongmoon@gmail.com" aria-label="Mail" class="inline-flex size-11 items-center justify-center -m-2.5 text-muted hover:text-accent"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 5.5h18c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1Zm.9 2 8.1 5.4 8.1-5.4H3.9Zm16.1 1.9-7.55 5.03a1 1 0 0 1-1.1 0L3.8 9.4V16.5h16.2V9.4Z"></path></svg></a></li></ul></div></div></footer></body></html>
